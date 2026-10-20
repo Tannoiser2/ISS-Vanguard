@@ -1,0 +1,17 @@
+{
+  "issvanguard": {
+    "campagne": {
+      "$codice": {
+        ".read": "auth != null",
+        ".write": "auth != null",
+        ".validate": "$codice.length === 6 && newData.hasChildren(['json', 'aggiornata']) && newData.child('json').isString() && newData.child('json').val().length < 5000000",
+        "json": {".validate": "newData.isString()"},
+        "nome": {".validate": "newData.isString() && newData.val().length <= 60"},
+        "camp": {".validate": "newData.isNumber()"},
+        "aggiornata": {".validate": "newData.isNumber()"},
+        "uid": {".validate": "newData.isString()"},
+        "$altro": {".validate": false}
+      }
+    }
+  }
+}
