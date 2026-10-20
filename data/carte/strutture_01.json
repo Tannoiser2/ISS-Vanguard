@@ -1,0 +1,681 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/facility_upgrades/f01_15000.webp",
+   "nomi": [
+    "F01"
+   ],
+   "id": "F01",
+   "tipo": "medbay_upgrade",
+   "titolo": {
+    "en": "TRAUMA CENTER",
+    "it": "CENTRO TRAUMATOLOGICO"
+   },
+   "testo_colore": {
+    "en": "A specialized expansion of the Medbay that deals with traumatic injury.",
+    "it": "Un'espansione specializzata dell'Infermeria che si occupa delle lesioni traumatiche."
+   },
+   "testo": {
+    "en": "When performing the Survival Check, you may reroll 1 [damage] result.",
+    "it": "Quando esegui la Prova di Sopravvivenza, puoi ritirare 1 risultato [damage]."
+   },
+   "campi": {
+    "categoria": "MEDBAY UPGRADE"
+   },
+   "dubbi": "Riquadro bianco in basso vuoto. 'Survival Check' tradotto 'Prova di Sopravvivenza' (termine ufficiale da verificare)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/facility_upgrades/f02_15701.webp",
+   "nomi": [
+    "F02"
+   ],
+   "id": "F02",
+   "tipo": "medbay_upgrade",
+   "titolo": {
+    "en": "METABOLIC ACCELERATOR",
+    "it": "ACCELERATORE METABOLICO"
+   },
+   "testo_colore": {
+    "en": "If necessary, this facility can cut down the recovery time of a Crewmember – with the added risk of deadly consequences.",
+    "it": "Se necessario, questa struttura può ridurre il tempo di recupero di un Membro dell'Equipaggio, con il rischio aggiuntivo di conseguenze letali."
+   },
+   "testo": {
+    "en": "You may perform an additional Survival Check to move a Crewmember in any Medbay slot to the right.",
+    "it": "Puoi eseguire una Prova di Sopravvivenza aggiuntiva per spostare verso destra un Membro dell'Equipaggio in qualsiasi spazio dell'Infermeria."
+   },
+   "campi": {
+    "categoria": "MEDBAY UPGRADE"
+   },
+   "dubbi": "Riquadro bianco in basso vuoto."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/facility_upgrades/f03_15802.webp",
+   "nomi": [
+    "F03"
+   ],
+   "id": "F03",
+   "tipo": "medbay_upgrade",
+   "titolo": {
+    "en": "REJUVENATION TANK",
+    "it": "VASCA DI RIGENERAZIONE"
+   },
+   "testo_colore": {
+    "en": "Though reliant on hard-to-find ingredients, this radical therapy greatly cuts down on recovery times.",
+    "it": "Pur dipendendo da ingredienti difficili da reperire, questa terapia radicale riduce enormemente i tempi di recupero."
+   },
+   "testo": {
+    "en": "You may discard 1 Strange Flora Discovery and 1 Microorganism Discovery. If you do, return up to one Crewmember of each Section from the Medbay slots to that Section's \"Resting Crew.\"",
+    "it": "Puoi scartare 1 Scoperta Strana Vegetazione e 1 Scoperta Microorganismo. Se lo fai, riporta fino a un Membro dell'Equipaggio di ogni Reparto dagli spazi dell'Infermeria all'area \"Equipaggio a Riposo\" di quel Reparto."
+   },
+   "campi": {
+    "categoria": "MEDBAY UPGRADE",
+    "costo_scoperte": [
+     {
+      "tipo": "strange_flora",
+      "n": 1
+     },
+     {
+      "tipo": "microorganism",
+      "n": 1
+     }
+    ]
+   },
+   "dubbi": "Riquadro bianco in basso vuoto. 'Resting Crew' reso 'Equipaggio a Riposo' (da verificare)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/facility_upgrades/f04_9703.webp",
+   "nomi": [
+    "F04"
+   ],
+   "id": "F04",
+   "tipo": "production_upgrade",
+   "titolo": {
+    "en": "DUAL PRODUCTION LINES",
+    "it": "DOPPIE LINEE DI PRODUZIONE"
+   },
+   "testo_colore": {
+    "en": "An entire second manufacturing complex essentially doubles our production capacity.",
+    "it": "Un intero secondo complesso manifatturiero raddoppia di fatto la nostra capacità produttiva."
+   },
+   "testo": {
+    "en": "You may now use Production Queue 2 slots.",
+    "it": "Da ora puoi usare gli spazi della Coda di Produzione 2."
+   },
+   "campi": {
+    "categoria": "PRODUCTION UPGRADE",
+    "sblocca": "production_queue_2"
+   },
+   "dubbi": "Riquadro bianco in basso vuoto."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/facility_upgrades/f05_15904.webp",
+   "nomi": [
+    "F05"
+   ],
+   "id": "F05",
+   "tipo": "production_upgrade",
+   "titolo": {
+    "en": "ROBOTIC ASSISTANTS",
+    "it": "ASSISTENTI ROBOTICI"
+   },
+   "testo_colore": {
+    "en": "These automated workers can be a significant help – but they don't always get it right...",
+    "it": "Questi lavoratori automatizzati possono essere di grande aiuto, ma non sempre fanno la cosa giusta..."
+   },
+   "testo": {
+    "en": "Once during the Production Complex resolution you may choose up to one Production Project in the Production Queue and roll a Danger die. On a [rare] result, move this Project one slot to the left. On any other result, move this Project one slot to the right. You can't use this effect on Projects that have other Projects to the left or right.",
+    "it": "Una volta durante la risoluzione del Complesso di Produzione puoi scegliere fino a un Progetto di Produzione nella Coda di Produzione e tirare un dado Pericolo. Con un risultato [rare], sposta questo Progetto di uno spazio a sinistra. Con qualsiasi altro risultato, sposta questo Progetto di uno spazio a destra. Non puoi usare questo effetto su Progetti che hanno altri Progetti a sinistra o a destra."
+   },
+   "campi": {
+    "categoria": "PRODUCTION UPGRADE"
+   },
+   "dubbi": "Icona del risultato: sembra 'rare' (cristallo a tre punte); potrebbe essere 'uncommon'. Il dado Pericolo non è specificato (nessuna lettera)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/facility_upgrades/f06_16005.webp",
+   "nomi": [
+    "F06"
+   ],
+   "id": "F06",
+   "tipo": "production_upgrade",
+   "titolo": {
+    "en": "MANUFACTURING NANOBOTS",
+    "it": "NANOBOT MANIFATTURIERI"
+   },
+   "testo_colore": {
+    "en": "A cloud of nanobots causes our designs to literally build themselves – but they require plenty of exotic materials to run.",
+    "it": "Una nube di nanobot fa sì che i nostri progetti si costruiscano letteralmente da soli, ma per funzionare richiedono molti materiali esotici."
+   },
+   "testo": {
+    "en": "You may discard 1 Strange Flora Discovery and 1 Microorganism Discovery. If you do, progress all Projects in both Production Queues one slot to the right.",
+    "it": "Puoi scartare 1 Scoperta Strana Vegetazione e 1 Scoperta Microorganismo. Se lo fai, fai avanzare tutti i Progetti in entrambe le Code di Produzione di uno spazio a destra."
+   },
+   "campi": {
+    "categoria": "PRODUCTION UPGRADE",
+    "costo_scoperte": [
+     {
+      "tipo": "strange_flora",
+      "n": 1
+     },
+     {
+      "tipo": "microorganism",
+      "n": 1
+     }
+    ]
+   },
+   "dubbi": "Riquadro bianco in basso vuoto."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/research_laboratory_c746de.webp",
+   "nomi": [
+    "research_laboratory"
+   ],
+   "tipo": "pagina",
+   "nome": "Research Laboratory",
+   "testo": {
+    "en": "",
+    "it": ""
+   },
+   "spazi": [],
+   "dubbi": "L'immagine è solo una texture di metallo spazzolato (piastra/sfondo del modulo TTS) senza testo, icone o slot: nessuno spazio trascrivibile. Le icone degli slot del Laboratorio sono probabilmente su un'altra immagine."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/medbay_fcd557.webp",
+   "nomi": [
+    "medbay"
+   ],
+   "tipo": "pagina",
+   "nome": "Medbay",
+   "testo": {
+    "en": "",
+    "it": ""
+   },
+   "spazi": [],
+   "campi": {
+    "forma": "segnalino rotondo",
+    "illustrazione": "cupole cristalline blu/verdi su terreno innevato"
+   },
+   "dubbi": "L'immagine è un segnalino rotondo illustrato (cupole) senza testo né caselle: non mostra le caselle Ferite lievi/moderate/critiche. Probabilmente il nome 'medbay' è un'etichetta TTS errata (somiglia a un segnalino Avamposto/struttura)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/memorial_1d9b4a.webp",
+   "nomi": [
+    "memorial"
+   ],
+   "tipo": "pagina",
+   "nome": "Memorial",
+   "testo": {
+    "en": "MEMORIAL",
+    "it": "MEMORIALE"
+   },
+   "spazi": [
+    {
+     "nome": "Memorial",
+     "tipo": "memorial",
+     "icone": [],
+     "reparto": "",
+     "bonus": {
+      "en": "Raise Morale. If it's already \"High\", gain 1 Command token instead.",
+      "it": "Alza il Morale. Se è già \"Alto\", ottieni invece 1 segnalino Comando."
+     }
+    }
+   ],
+   "campi": {
+    "morale": 1,
+    "comando_se_alto": 1
+   },
+   "dubbi": "Tessera del Muro della memoria (logo ISS Vanguard, generica senza reparto); la parte destra è trasparente (taglio della tessera)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/memorial_510e32.webp",
+   "nomi": [
+    "memorial"
+   ],
+   "tipo": "pagina",
+   "nome": "Memorial",
+   "testo": {
+    "en": "MEMORIAL",
+    "it": "MEMORIALE"
+   },
+   "spazi": [
+    {
+     "nome": "Memorial",
+     "tipo": "memorial",
+     "icone": [],
+     "reparto": "",
+     "bonus": {
+      "en": "Gain 3 Energy tokens.",
+      "it": "Ottieni 3 segnalini Energia."
+     }
+    }
+   ],
+   "campi": {
+    "energia": 3
+   },
+   "dubbi": "Tessera del Muro della memoria (logo ISS Vanguard, generica senza reparto); la parte destra è trasparente (taglio della tessera)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/memorial_69a78a.webp",
+   "nomi": [
+    "memorial"
+   ],
+   "tipo": "pagina",
+   "nome": "Memorial",
+   "testo": {
+    "en": "MEMORIAL",
+    "it": "MEMORIALE"
+   },
+   "spazi": [
+    {
+     "nome": "Memorial",
+     "tipo": "memorial",
+     "icone": [],
+     "reparto": "",
+     "bonus": {
+      "en": "Each Section gains 1 Section Die.",
+      "it": "Ogni Reparto ottiene 1 dado Reparto."
+     }
+    }
+   ],
+   "campi": {
+    "dadi_reparto_ciascuno": 1
+   },
+   "dubbi": "Tessera del Muro della memoria (logo ISS Vanguard, generica senza reparto); la parte destra è trasparente (taglio della tessera)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/memorial_dfa53c.webp",
+   "nomi": [
+    "memorial"
+   ],
+   "tipo": "pagina",
+   "nome": "Memorial",
+   "testo": {
+    "en": "MEMORIAL",
+    "it": "MEMORIALE"
+   },
+   "spazi": [
+    {
+     "nome": "Memorial",
+     "tipo": "memorial",
+     "icone": [],
+     "reparto": "",
+     "bonus": {
+      "en": "Each Section may draw 1 random Recruit. The Recruit may be placed into a Rank 1sleeve or returned to \"Recruits\".",
+      "it": "Ogni Reparto può pescare 1 Recluta a caso. La Recluta può essere inserita in una bustina di Grado 1 o rimessa tra le \"Reclute\"."
+     }
+    }
+   ],
+   "campi": {
+    "reclute_ciascuno": 1
+   },
+   "dubbi": "Tessera del Muro della memoria (logo ISS Vanguard, generica senza reparto); la parte destra è trasparente (taglio della tessera). Testo originale 'Rank 1sleeve' senza spazio (refuso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/memorial_f7d97c.webp",
+   "nomi": [
+    "memorial"
+   ],
+   "tipo": "pagina",
+   "nome": "Memorial",
+   "testo": {
+    "en": "MEMORIAL",
+    "it": "MEMORIALE"
+   },
+   "spazi": [
+    {
+     "nome": "Memorial",
+     "tipo": "memorial",
+     "icone": [],
+     "reparto": "",
+     "bonus": {
+      "en": "Gain 1 Command Token.",
+      "it": "Ottieni 1 segnalino Comando."
+     }
+    }
+   ],
+   "campi": {
+    "comando": 1
+   },
+   "dubbi": "Tessera del Muro della memoria (logo ISS Vanguard, generica senza reparto); la parte destra è trasparente (taglio della tessera)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/engineering_memorial_36a53d.webp",
+   "nomi": [
+    "engineering_memorial"
+   ],
+   "tipo": "pagina",
+   "nome": "Engineering Memorial 1",
+   "testo": {
+    "en": "ENGINEERING MEMORIAL 1",
+    "it": "MEMORIALE INGEGNERIA 1"
+   },
+   "spazi": [
+    {
+     "nome": "Engineering Memorial 1",
+     "tipo": "memorial",
+     "icone": [
+      "engineering"
+     ],
+     "reparto": "engineering",
+     "numero": 1,
+     "bonus": {
+      "en": "Engineering may promote one Rank 1 Crewmember to Rank 2 OR draw 2 random Recruits and place one of them into a Rank 1 sleeve.",
+      "it": "Ingegneria può promuovere un Membro dell'Equipaggio di Grado 1 al Grado 2 OPPURE pescare 2 Reclute a caso e inserirne una in una bustina di Grado 1."
+     }
+    }
+   ],
+   "dubbi": "Tessera del memoriale di reparto (icona engineering in alto a sinistra, numero 1). Non è chiaro se il numero indichi la casella del Muro della memoria; nomi italiani dei reparti (Ingegneria/Ricognizione/Scienza/Sicurezza) da verificare. 'Gathered Discoveries' reso 'Scoperte Raccolte'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/recon_memorial_178dcc.webp",
+   "nomi": [
+    "recon_memorial"
+   ],
+   "tipo": "pagina",
+   "nome": "Recon Memorial 2",
+   "testo": {
+    "en": "RECON MEMORIAL 2",
+    "it": "MEMORIALE RICOGNIZIONE 2"
+   },
+   "spazi": [
+    {
+     "nome": "Recon Memorial 2",
+     "tipo": "memorial",
+     "icone": [
+      "recon"
+     ],
+     "reparto": "recon",
+     "numero": 2,
+     "bonus": {
+      "en": "Draw 2 Discoveries of any types, move one to \"Gathered Discoveries\", and return the other.",
+      "it": "Pesca 2 Scoperte di qualsiasi tipo, spostane una tra le \"Scoperte Raccolte\" e rimetti a posto l'altra."
+     }
+    }
+   ],
+   "dubbi": "Tessera del memoriale di reparto (icona recon in alto a sinistra, numero 2). Non è chiaro se il numero indichi la casella del Muro della memoria; nomi italiani dei reparti (Ingegneria/Ricognizione/Scienza/Sicurezza) da verificare. 'Gathered Discoveries' reso 'Scoperte Raccolte'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/science_memorial_2a1fa8.webp",
+   "nomi": [
+    "science_memorial"
+   ],
+   "tipo": "pagina",
+   "nome": "Science Memorial 3",
+   "testo": {
+    "en": "SCIENCE MEMORIAL 3",
+    "it": "MEMORIALE SCIENZA 3"
+   },
+   "spazi": [
+    {
+     "nome": "Science Memorial 3",
+     "tipo": "memorial",
+     "icone": [
+      "science"
+     ],
+     "reparto": "science",
+     "numero": 3,
+     "bonus": {
+      "en": "Gain 1 Command token.",
+      "it": "Ottieni 1 segnalino Comando."
+     }
+    }
+   ],
+   "dubbi": "Tessera del memoriale di reparto (icona science in alto a sinistra, numero 3). Non è chiaro se il numero indichi la casella del Muro della memoria; nomi italiani dei reparti (Ingegneria/Ricognizione/Scienza/Sicurezza) da verificare. 'Gathered Discoveries' reso 'Scoperte Raccolte'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/security_memorial_6e10c5.webp",
+   "nomi": [
+    "security_memorial"
+   ],
+   "tipo": "pagina",
+   "nome": "Security Memorial 1",
+   "testo": {
+    "en": "SECURITY MEMORIAL 1",
+    "it": "MEMORIALE SICUREZZA 1"
+   },
+   "spazi": [
+    {
+     "nome": "Security Memorial 1",
+     "tipo": "memorial",
+     "icone": [
+      "security"
+     ],
+     "reparto": "security",
+     "numero": 1,
+     "bonus": {
+      "en": "Security may promote one Rank 1 Crewmember to Rank 2 OR draw 2 random Recruits and place one of them into a Rank 1 sleeve.",
+      "it": "Sicurezza può promuovere un Membro dell'Equipaggio di Grado 1 al Grado 2 OPPURE pescare 2 Reclute a caso e inserirne una in una bustina di Grado 1."
+     }
+    }
+   ],
+   "dubbi": "Tessera del memoriale di reparto (icona security in alto a sinistra, numero 1). Non è chiaro se il numero indichi la casella del Muro della memoria; nomi italiani dei reparti (Ingegneria/Ricognizione/Scienza/Sicurezza) da verificare. 'Gathered Discoveries' reso 'Scoperte Raccolte'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/production_upgrade_94a4e5.webp",
+   "nomi": [
+    "production_upgrade"
+   ],
+   "tipo": "pagina",
+   "nome": "Production Upgrade",
+   "testo": {
+    "en": "PRODUCTION UPGRADE",
+    "it": "POTENZIAMENTO PRODUZIONE"
+   },
+   "spazi": [
+    {
+     "nome": "Production Upgrade",
+     "tipo": "upgrade_slot",
+     "icone": [],
+     "reparto": "",
+     "bonus": {
+      "en": "",
+      "it": ""
+     }
+    }
+   ],
+   "dubbi": "Striscia-intestazione (titolo con doppie frecce dorate e riquadro dorato sotto): sembra l'alloggiamento delle carte Production Upgrade (F04-F06); nessun altro testo/slot visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/medbay_upgrades_faacf4.webp",
+   "nomi": [
+    "medbay_upgrades"
+   ],
+   "tipo": "pagina",
+   "nome": "Medbay Upgrade",
+   "testo": {
+    "en": "MEDBAY UPGRADE",
+    "it": "POTENZIAMENTO INFERMERIA"
+   },
+   "spazi": [
+    {
+     "nome": "Medbay Upgrade",
+     "tipo": "upgrade_slot",
+     "icone": [],
+     "reparto": "",
+     "bonus": {
+      "en": "",
+      "it": ""
+     }
+    }
+   ],
+   "dubbi": "Striscia-intestazione (doppie frecce verdi, riquadro verde sotto): alloggiamento delle carte Medbay Upgrade (F01-F03); nessun altro testo/slot visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/armory_767f42.webp",
+   "nomi": [
+    "armory"
+   ],
+   "tipo": "pagina",
+   "nome": "Armory",
+   "testo": {
+    "en": "ARMORY",
+    "it": "ARMERIA"
+   },
+   "spazi": [],
+   "campi": {
+    "illustrazione": "armi su rastrelliera, toni rosa/viola"
+   },
+   "dubbi": "Solo titolo 'ARMORY' e illustrazione (probabilmente retro/divisorio o copertina di sezione): nessuno slot o regola visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/war_room_112a93.webp",
+   "nomi": [
+    "war_room"
+   ],
+   "tipo": "pagina",
+   "nome": "War Room",
+   "pagine": "40",
+   "testo": {
+    "en": "1. ADD NEW PLANETS\nTake all Target Planet cards out of the \"Awaiting...\" envelope and insert each into an empty slot on the next page. Ensure the \"Target Planet\" side is showing.\n2. SEND EXPEDITIONARY FORCES\nYou may choose to send an armed force to another planet. To do so, choose a Target Planet card on the next page. You must then remove from the game Available Crewmembers to meet the Rank requirement depicted on the card; these Crewmembers are now stationed on the planet. You cannot remove the last Available Crewmember in your Section this way.\nExample: [rank1] + [rank1] OR [rank2] means a Planet requires two Crewmembers of at least Rank 1 or one Crewmember of at least Rank 2.\nReturn the Rank Sleeves of any removed Crewmembers to the corresponding Section Compartments.\nFlip the chosen Target Planet to its other side. You may repeat this entire step any number of times.\n3. SPOILS & TRIBUTES\nPick one of the three keywords (Conquered, Military Base, Supply Raids). Gain the bonuses from all Planet cards with the chosen keyword in an order of your choice. Any bonus that requires you to discard a Discovery, discard a Success token, or Assign a Crewmember is optional.\nIf you have sent Expeditionary Force Officers to all 9 Planets – Go to Log 924.\n4. CHOOSE YOUR NEXT FACILITY\nReturn to page 6 of the Ship book.",
+    "it": "1. AGGIUNGI NUOVI PIANETI\nPrendi tutte le carte Pianeta Bersaglio dalla busta \"In attesa...\" e inseriscine ognuna in uno spazio vuoto della pagina successiva. Assicurati che sia visibile il lato \"Pianeta Bersaglio\".\n2. INVIA FORZE DI SPEDIZIONE\nPuoi scegliere di inviare una forza armata su un altro pianeta. Per farlo, scegli una carta Pianeta Bersaglio nella pagina successiva. Devi quindi rimuovere dal gioco Membri dell'Equipaggio Disponibili in modo da soddisfare il requisito di Grado raffigurato sulla carta; questi Membri dell'Equipaggio ora sono di stanza sul pianeta. Non puoi rimuovere in questo modo l'ultimo Membro dell'Equipaggio Disponibile del tuo Reparto.\nEsempio: [rank1] + [rank1] OPPURE [rank2] significa che un Pianeta richiede due Membri dell'Equipaggio di Grado almeno 1 oppure un Membro dell'Equipaggio di Grado almeno 2.\nRimetti le bustine del Grado dei Membri dell'Equipaggio rimossi nei corrispondenti Scomparti del Reparto.\nGira la carta Pianeta Bersaglio scelta sull'altro lato. Puoi ripetere l'intero passo un numero qualsiasi di volte.\n3. BOTTINI E TRIBUTI\nScegli una delle tre parole chiave (Conquistato, Base Militare, Razzie di Rifornimenti). Ottieni i bonus di tutte le carte Pianeta con la parola chiave scelta, nell'ordine che preferisci. Qualsiasi bonus che richieda di scartare una Scoperta, scartare un segnalino Successo o Assegnare un Membro dell'Equipaggio è facoltativo.\nSe hai inviato Ufficiali delle Forze di Spedizione su tutti i 9 Pianeti, vai all'Annotazione 924.\n4. SCEGLI LA TUA PROSSIMA STRUTTURA\nTorna a pagina 6 del Manuale della Nave."
+   },
+   "spazi": [],
+   "campi": {
+    "parole_chiave": [
+     "Conquered",
+     "Military Base",
+     "Supply Raids"
+    ],
+    "log_completamento": 924,
+    "pianeti": 9,
+    "tipo_carte": "Target Planet",
+    "ritorno_pagina": 6
+   },
+   "dubbi": "Pagina 40 del Manuale della Nave (Sala Operativa). Gli spazi per le carte Pianeta sono sulla pagina successiva, non presente. Traduzioni delle parole chiave non ufficiali."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/embassy_23e31d.webp",
+   "nomi": [
+    "embassy"
+   ],
+   "tipo": "pagina",
+   "nome": "Embassy",
+   "pagine": "40",
+   "testo": {
+    "en": "1. ADD NEW PLANETS\nTake all Contacted Planet cards out of the \"Awaiting...\" envelope and insert each into an empty slot on the next page. Ensure the \"Contacted Planet\" side is showing.\n2. SEND ENVOYS\nYou may choose to establish diplomatic relations with another planet. To do so, choose a Contacted Planet card on the next page. You must then remove from the game Available Crewmembers to meet the Rank requirement depicted on the card; these Crewmembers are now stationed on the planet. You cannot remove the last Available Crewmember in your Section this way.\nExample: [rank1] + [rank1] OR [rank2] means a Planet requires two Crewmembers of at least Rank 1 or one Crewmember of at least Rank 2.\nReturn the Rank Sleeves of any removed Crewmembers to the corresponding Section Compartments.\nFlip the chosen Contacted Planet to its other side. You may repeat this entire step any number of times.\n3. TRADE & GIFTS\nChoose one of the three keywords (Allied, Colony, or Embassy).\nGain the bonuses from all Planet cards with the chosen keyword in an order of your choice. Any bonus that requires you to discard a Discovery, discard a Success token, or Assign a Crewmember is optional.\nIf you have sent Envoys to all 9 Planets – Go to Log 922.\n4. CHOOSE YOUR NEXT FACILITY\nReturn to page 6 of the Ship book.",
+    "it": "1. AGGIUNGI NUOVI PIANETI\nPrendi tutte le carte Pianeta Contattato dalla busta \"In attesa...\" e inseriscine ognuna in uno spazio vuoto della pagina successiva. Assicurati che sia visibile il lato \"Pianeta Contattato\".\n2. INVIA EMISSARI\nPuoi scegliere di stabilire relazioni diplomatiche con un altro pianeta. Per farlo, scegli una carta Pianeta Contattato nella pagina successiva. Devi quindi rimuovere dal gioco Membri dell'Equipaggio Disponibili in modo da soddisfare il requisito di Grado raffigurato sulla carta; questi Membri dell'Equipaggio ora sono di stanza sul pianeta. Non puoi rimuovere in questo modo l'ultimo Membro dell'Equipaggio Disponibile del tuo Reparto.\nEsempio: [rank1] + [rank1] OPPURE [rank2] significa che un Pianeta richiede due Membri dell'Equipaggio di Grado almeno 1 oppure un Membro dell'Equipaggio di Grado almeno 2.\nRimetti le bustine del Grado dei Membri dell'Equipaggio rimossi nei corrispondenti Scomparti del Reparto.\nGira la carta Pianeta Contattato scelta sull'altro lato. Puoi ripetere l'intero passo un numero qualsiasi di volte.\n3. COMMERCIO E DONI\nScegli una delle tre parole chiave (Alleato, Colonia o Ambasciata).\nOttieni i bonus di tutte le carte Pianeta con la parola chiave scelta, nell'ordine che preferisci. Qualsiasi bonus che richieda di scartare una Scoperta, scartare un segnalino Successo o Assegnare un Membro dell'Equipaggio è facoltativo.\nSe hai inviato Emissari su tutti i 9 Pianeti, vai all'Annotazione 922.\n4. SCEGLI LA TUA PROSSIMA STRUTTURA\nTorna a pagina 6 del Manuale della Nave."
+   },
+   "spazi": [],
+   "campi": {
+    "parole_chiave": [
+     "Allied",
+     "Colony",
+     "Embassy"
+    ],
+    "log_completamento": 922,
+    "pianeti": 9,
+    "tipo_carte": "Contacted Planet",
+    "ritorno_pagina": 6
+   },
+   "dubbi": "Pagina 40 del Manuale della Nave (Ambasciata, alternativa alla Sala Operativa). Gli spazi per le carte Pianeta sono sulla pagina successiva, non presente."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/outpost_48b6ba.webp",
+   "nomi": [
+    "outpost"
+   ],
+   "tipo": "pagina",
+   "nome": "Outpost",
+   "testo": {
+    "en": "",
+    "it": ""
+   },
+   "spazi": [],
+   "campi": {
+    "forma": "segnalino rotondo",
+    "illustrazione": "cupola rossa con antenna su terreno innevato"
+   },
+   "dubbi": "Segnalino Avamposto rotondo, solo illustrazione, nessun testo."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/command_64e721.webp",
+   "nomi": [
+    "command"
+   ],
+   "tipo": "pagina",
+   "nome": "Command token",
+   "testo": {
+    "en": "",
+    "it": ""
+   },
+   "spazi": [],
+   "campi": {
+    "forma": "esagono",
+    "icona": "command"
+   },
+   "dubbi": "Segnalino Comando (stella bianca su esagono blu), nessun testo."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/energy_38d61f.webp",
+   "nomi": [
+    "energy"
+   ],
+   "tipo": "pagina",
+   "nome": "Energy token",
+   "testo": {
+    "en": "",
+    "it": ""
+   },
+   "spazi": [],
+   "campi": {
+    "forma": "pentagono",
+    "icona": "energy_token"
+   },
+   "dubbi": "Segnalino Energia (fulmine blu su pentagono), nessun testo."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/penalty_35b79b.webp",
+   "nomi": [
+    "penalty"
+   ],
+   "tipo": "pagina",
+   "nome": "Penalty",
+   "testo": {
+    "en": "PENALTY",
+    "it": "PENALITÀ"
+   },
+   "spazi": [],
+   "dubbi": "Solo titolo 'PENALTY' su illustrazione (probabilmente retro di carte/segnalini Penalità); nessuna regola visibile. Traduzione ufficiale da verificare."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/planetary_scanner_53a9f5.webp",
+   "nomi": [
+    "planetary_scanner"
+   ],
+   "tipo": "pagina",
+   "nome": "Planetary Scanner",
+   "lato": "coperchio",
+   "testo": {
+    "en": "PLANETARY SCANNER",
+    "it": "SCANNER PLANETARIO"
+   },
+   "spazi": [],
+   "dubbi": "Lato decorativo/coperchio dello Scanner Planetario: solo titolo e logo ISS Vanguard."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/planetary_scanner_e4d3d1.webp",
+   "nomi": [
+    "planetary_scanner"
+   ],
+   "tipo": "pagina",
+   "nome": "Planetary Scanner",
+   "testo": {
+    "en": "PAY THE COST ABOVE AND PUSH THE LANDING CARD UP UNTIL YOU SEE ANOTHER COST. REPEAT ANY NUMBER OF TIMES, OR UNTIL THE CARD LEAVES THE SCANNER. THEN, READ ANY REVEALED PARTS ON THE OTHER SIDE OF THE LANDING CARD.",
+    "it": "PAGA IL COSTO SOPRA E SPINGI IN ALTO LA CARTA ATTERRAGGIO FINCHÉ NON VEDI UN ALTRO COSTO. RIPETI UN NUMERO QUALSIASI DI VOLTE, O FINCHÉ LA CARTA NON ESCE DALLO SCANNER. POI LEGGI LE PARTI RIVELATE SUL RETRO DELLA CARTA ATTERRAGGIO."
+   },
+   "spazi": [
+    {
+     "nome": "Finestra del costo",
+     "tipo": "scanner_window",
+     "icone": [],
+     "reparto": "",
+     "bonus": {
+      "en": "Finestra (ritaglio trasparente) fra due frecce rosse > < in cui appare il costo stampato sulla carta Atterraggio.",
+      "it": "Finestra (ritaglio trasparente) fra due frecce rosse > < in cui appare il costo stampato sulla carta Atterraggio."
+     }
+    }
+   ],
+   "dubbi": "Lato operativo dello Scanner: la finestra centrale in alto è trasparente (ritaglio) e mostra il costo della carta Atterraggio inserita."
+  }
+ ]
+}

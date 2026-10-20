@@ -1,0 +1,1226 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/eye_of_the_void_f83f76.webp",
+   "nomi": [
+    "Eye of the Void"
+   ],
+   "tipo": "sistema",
+   "nome": "EYE OF THE VOID",
+   "pagina": "2",
+   "testo": {
+    "en": "This is the main objective of the Vanguard's voyage – Divine Coordinates embedded in our DNA. Sadly, there's nothing of interest in this old, dead system, encased in a cloaked Dyson Sphere.",
+    "it": "Questo è l'obiettivo principale del viaggio della Vanguard: le Coordinate Divine impresse nel nostro DNA. Purtroppo, in questo sistema vecchio e morto, racchiuso in una Sfera di Dyson occultata, non c'è niente di interessante."
+   },
+   "rotte": [
+    {
+     "verso": "TOI-2",
+     "pagina": null,
+     "energia": 1,
+     "log": 400,
+     "richiede": "",
+     "colore": "",
+     "testo": {
+      "en": "Go to Log 400",
+      "it": "Vai all'Annotazione 400"
+     }
+    },
+    {
+     "verso": "Beta Tarsoni",
+     "pagina": "22",
+     "energia": 6,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red",
+     "testo": {
+      "en": "Requires Bridge Upgrade B02, page 22",
+      "it": "Richiede il Potenziamento del Ponte B02, pagina 22"
+     }
+    }
+   ],
+   "destinazioni": [
+    {
+     "n": 1,
+     "nome": "Unidentified Signal",
+     "energia": null,
+     "atterraggio": "",
+     "log": null,
+     "descrizione": {
+      "en": "",
+      "it": ""
+     },
+     "testo": {
+      "en": "No... thing to worry about",
+      "it": "Niente di cui preoccuparsi"
+     },
+     "icona_atterraggio": false
+    }
+   ],
+   "dubbi": "Destinazione (1) 'Unidentified Signal': il testo è volutamente corrotto (glitch grafico); si legge a fatica 'No th... to worry abo...ut' (probabilmente 'Nothing to worry about'); nessun costo in energia né istruzione leggibile. Rotta Beta Tarsoni: icona energia con bordo rosso (colore='red'), probabilmente indica la necessità del potenziamento B02."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/toi_2_efbb1c.webp",
+   "nomi": [
+    "TOI-2"
+   ],
+   "tipo": "sistema",
+   "nome": "TOI-2",
+   "pagina": "3",
+   "testo": {
+    "en": "This is the closest system marked by the Builders – we hope it will shed more light on their grand plan. Did they seed life here, just like on Earth? Did it live, or did it wither?",
+    "it": "Questo è il sistema più vicino fra quelli segnati dai Costruttori: speriamo che getti più luce sul loro grande piano. Hanno seminato la vita qui, proprio come sulla Terra? Ha prosperato o è avvizzita?"
+   },
+   "rotte": [
+    {
+     "verso": "81 INF",
+     "pagina": "4",
+     "energia": 1,
+     "log": null,
+     "richiede": "",
+     "colore": "",
+     "testo": {
+      "en": "Page 4",
+      "it": "Pagina 4"
+     }
+    },
+    {
+     "verso": "NU4 Ceti",
+     "pagina": "5",
+     "energia": 1,
+     "log": null,
+     "richiede": "",
+     "colore": "",
+     "testo": {
+      "en": "Page 5",
+      "it": "Pagina 5"
+     }
+    },
+    {
+     "verso": "Eye of the Void",
+     "pagina": "2",
+     "energia": 1,
+     "log": null,
+     "richiede": "",
+     "colore": "",
+     "testo": {
+      "en": "Page 2",
+      "it": "Pagina 2"
+     }
+    }
+   ],
+   "destinazioni": [
+    {
+     "n": 1,
+     "nome": "TOI-2 – \"Cuboid\"",
+     "energia": 2,
+     "atterraggio": "",
+     "log": 156,
+     "descrizione": {
+      "en": "A piece of rectangular debris floating through space.",
+      "it": "Un frammento rettangolare che fluttua nello spazio."
+     },
+     "testo": {
+      "en": "Go to Log 156.",
+      "it": "Vai all'Annotazione 156."
+     },
+     "icona_atterraggio": false
+    },
+    {
+     "n": 2,
+     "nome": "TOI-2 B",
+     "energia": 2,
+     "atterraggio": "",
+     "log": null,
+     "descrizione": {
+      "en": "The conditions on this planet are barely survivable, and it lacks any useful resources – if necessary, we can use it as a penal colony, leaving the worst trouble-makers behind.",
+      "it": "Le condizioni su questo pianeta sono appena sopportabili e mancano risorse utili: se necessario, possiamo usarlo come colonia penale, lasciandovi i peggiori piantagrane."
+     },
+     "testo": {
+      "en": "Raise the Morale in the Bridge cardholder (Ship Book page 3).",
+      "it": "Aumenta il Morale nel portacarte del Ponte (Manuale della Nave, pagina 3)."
+     },
+     "icona_atterraggio": false
+    },
+    {
+     "n": 3,
+     "nome": "TOI-2 C – \"Pellucid\"",
+     "energia": 0,
+     "atterraggio": "L1",
+     "log": null,
+     "descrizione": {
+      "en": "This is going to be our first landing on a planet marked by the Builders. We need to gain insight into the origin and effects of the calamity that destroyed this planet.",
+      "it": "Questo sarà il nostro primo atterraggio su un pianeta segnato dai Costruttori. Dobbiamo capire l'origine e gli effetti della calamità che ha distrutto questo pianeta."
+     },
+     "testo": {
+      "en": "LANDING – Place Landing card L1 in your Planetary Scanner and go to the next Starmap step.",
+      "it": "ATTERRAGGIO – Metti la carta Atterraggio L1 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare."
+     },
+     "icona_atterraggio": true
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/inf_d941b3.webp",
+   "nomi": [
+    "81 INF"
+   ],
+   "tipo": "sistema",
+   "nome": "81 INF",
+   "pagina": "4",
+   "testo": {
+    "en": "Science and Recon Sections both intercepted a strange, repeating signal coming from this system.",
+    "it": "I Reparti Scienza e Ricognizione hanno entrambi intercettato uno strano segnale ripetuto proveniente da questo sistema."
+   },
+   "rotte": [
+    {
+     "verso": "TOI-2",
+     "pagina": "3",
+     "energia": 1,
+     "log": null,
+     "richiede": "",
+     "colore": "",
+     "testo": {
+      "en": "Page 3",
+      "it": "Pagina 3"
+     }
+    },
+    {
+     "verso": "Iota Pegasi",
+     "pagina": null,
+     "energia": 3,
+     "log": 430,
+     "richiede": "",
+     "colore": "",
+     "testo": {
+      "en": "Go to Log 430",
+      "it": "Vai all'Annotazione 430"
+     }
+    },
+    {
+     "verso": "GYF-4",
+     "pagina": "6",
+     "energia": 2,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow",
+     "testo": {
+      "en": "Requires Bridge Upgrade B01, page 6",
+      "it": "Richiede il Potenziamento del Ponte B01, pagina 6"
+     }
+    },
+    {
+     "verso": "MP-212",
+     "pagina": "8",
+     "energia": 3,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow",
+     "testo": {
+      "en": "Requires Bridge Upgrade B01, page 8",
+      "it": "Richiede il Potenziamento del Ponte B01, pagina 8"
+     }
+    }
+   ],
+   "destinazioni": [
+    {
+     "n": 1,
+     "nome": "81 INF A – \"Tidecaller Moon\"",
+     "energia": 0,
+     "atterraggio": "",
+     "log": 263,
+     "descrizione": {
+      "en": "The vast bodies of liquid water could support life.",
+      "it": "Le vaste distese d'acqua liquida potrebbero ospitare la vita."
+     },
+     "testo": {
+      "en": "Assign 1 Crewmember to go to Log 263.",
+      "it": "Assegna 1 Membro dell'Equipaggio per andare all'Annotazione 263."
+     },
+     "icona_atterraggio": false
+    },
+    {
+     "n": 2,
+     "nome": "81 INF B – \"Brimstone\"",
+     "energia": 0,
+     "atterraggio": "L3",
+     "log": null,
+     "descrizione": {
+      "en": "This young planet is characterized by heavy geothermal activity. Scans also reveal rich mineral deposits and vast cave systems, making it a prime target for a ground mission.",
+      "it": "Questo giovane pianeta è caratterizzato da un'intensa attività geotermica. Le scansioni rivelano anche ricchi depositi minerali e vasti sistemi di caverne, che lo rendono un obiettivo ideale per una missione di superficie."
+     },
+     "testo": {
+      "en": "LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L3 in your Planetary Scanner and go to the next Starmap step.",
+      "it": "ATTERRAGGIO – Rimetti tra le \"carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L3 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare."
+     },
+     "icona_atterraggio": true
+    },
+    {
+     "n": 3,
+     "nome": "81 INF C",
+     "energia": 3,
+     "atterraggio": "",
+     "log": 291,
+     "descrizione": {
+      "en": "From time to time, this scorching gas giant flings plumes of molten metal into the exosphere.",
+      "it": "Di tanto in tanto, questo gigante gassoso rovente scaglia pennacchi di metallo fuso nell'esosfera."
+     },
+     "testo": {
+      "en": "Go to Log 291.",
+      "it": "Vai all'Annotazione 291."
+     },
+     "icona_atterraggio": false
+    },
+    {
+     "n": 4,
+     "nome": "81 INF D",
+     "energia": 2,
+     "atterraggio": "",
+     "log": null,
+     "descrizione": {
+      "en": "The planet is just a giant rock floating in space, but its moon is strewn with strange structures.",
+      "it": "Il pianeta è solo un'enorme roccia che fluttua nello spazio, ma la sua luna è disseminata di strane strutture."
+     },
+     "testo": {
+      "en": "Assign 2 Crewmembers to draw 1 Mineral Discovery and move it to \"Gathered Discoveries\".",
+      "it": "Assegna 2 Membri dell'Equipaggio per pescare 1 Scoperta Minerale e spostala in \"Scoperte Raccolte\"."
+     },
+     "icona_atterraggio": false
+    }
+   ],
+   "dubbi": "Le rotte verso GYF-4 e MP-212 hanno l'icona energia sottolineata in giallo e lo sfondo bruno (legate al Potenziamento del Ponte B01)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/nu4_ceti_25c5c3.webp",
+   "nomi": [
+    "NU4 Ceti"
+   ],
+   "tipo": "sistema",
+   "nome": "NU4 CETI",
+   "pagina": "5",
+   "testo": {
+    "en": "The proto-planetary nebula in the vicinity of this system contains a high amount of oxygen particles. We also detect high oxygen levels on several objects in the system, giving us hope for lush, verdant worlds.",
+    "it": "La nebulosa protoplanetaria nelle vicinanze di questo sistema contiene un'elevata quantità di particelle di ossigeno. Rileviamo alti livelli di ossigeno anche su diversi corpi del sistema, il che ci fa sperare in mondi rigogliosi e verdeggianti."
+   },
+   "rotte": [
+    {
+     "verso": "TOI-2",
+     "pagina": "3",
+     "energia": 1,
+     "log": null,
+     "richiede": "",
+     "colore": "",
+     "testo": {
+      "en": "Page 3",
+      "it": "Pagina 3"
+     }
+    },
+    {
+     "verso": "GYF-4",
+     "pagina": "6",
+     "energia": 2,
+     "log": null,
+     "richiede": "",
+     "colore": "",
+     "testo": {
+      "en": "Page 6",
+      "it": "Pagina 6"
+     }
+    }
+   ],
+   "destinazioni": [
+    {
+     "n": 1,
+     "nome": "NU4 Ceti A",
+     "energia": 1,
+     "atterraggio": "",
+     "log": null,
+     "descrizione": {
+      "en": "The plants and creatures of this small verdant world developed complex pheromones that also seem to affect humans.",
+      "it": "Le piante e le creature di questo piccolo mondo verdeggiante hanno sviluppato feromoni complessi che sembrano avere effetto anche sugli umani."
+     },
+     "testo": {
+      "en": "MAKE CONTACT (requires Objectives O06 – O11) – Place Planet card NU4 Ceti A in the \"Awaiting...\" envelope.",
+      "it": "STABILISCI UN CONTATTO (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta NU4 Ceti A nella busta \"In attesa...\"."
+     },
+     "icona_atterraggio": false
+    },
+    {
+     "n": 2,
+     "nome": "NU4 Ceti B – \"Matchstick\"",
+     "energia": 0,
+     "atterraggio": "L2",
+     "log": null,
+     "descrizione": {
+      "en": "A large green planet – brimming with life but troubled by flash fires.",
+      "it": "Un grande pianeta verde, brulicante di vita ma afflitto da incendi improvvisi."
+     },
+     "testo": {
+      "en": "LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L2 in your Planetary Scanner and go to the next Starmap step.",
+      "it": "ATTERRAGGIO – Rimetti tra le \"carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L2 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare."
+     },
+     "icona_atterraggio": true
+    },
+    {
+     "n": 3,
+     "nome": "S/NU4 Ceti B 1",
+     "energia": 3,
+     "atterraggio": "",
+     "log": null,
+     "descrizione": {
+      "en": "The moon's waters, thick with amino acids and archaea, could give birth to interesting life forms in a mere billion years.",
+      "it": "Le acque di questa luna, dense di amminoacidi e archei, potrebbero dare vita a forme di vita interessanti in appena un miliardo di anni."
+     },
+     "testo": {
+      "en": "Assign 1 Crewmember to draw 1 Microorganism Discovery and move it to \"Gathered Discoveries\".",
+      "it": "Assegna 1 Membro dell'Equipaggio per pescare 1 Scoperta Microorganismo e spostala in \"Scoperte Raccolte\"."
+     },
+     "icona_atterraggio": false
+    },
+    {
+     "n": 4,
+     "nome": "NU4 Ceti C – \"Burning Niflheim\"",
+     "energia": 2,
+     "atterraggio": "",
+     "log": 323,
+     "descrizione": {
+      "en": "Extreme gravity and temperatures make this place as inhospitable as it gets.",
+      "it": "Gravità e temperature estreme rendono questo posto quanto di più inospitale si possa immaginare."
+     },
+     "testo": {
+      "en": "Go to Log 323.",
+      "it": "Vai all'Annotazione 323."
+     },
+     "icona_atterraggio": false
+    }
+   ],
+   "dubbi": "Destinazione (1): requisito 'Objectives O06 – O11' letto come lettera O + numero (carte Obiettivo del Ponte)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/gyf_4_6bf669.webp",
+   "nomi": [
+    "GYF-4"
+   ],
+   "tipo": "sistema",
+   "nome": "GYF-4",
+   "pagina": "6",
+   "testo": {
+    "en": "Something within this system emitted a clear, strong signal as we approached, using the same incomprehensible encryption as the message from the Eye of the Void. A large artifact of the Builders must be nearby!",
+    "it": "Qualcosa in questo sistema ha emesso un segnale chiaro e potente al nostro avvicinarsi, usando la stessa cifratura incomprensibile del messaggio proveniente dall'Occhio del Vuoto. Un grande manufatto dei Costruttori deve trovarsi nelle vicinanze!"
+   },
+   "rotte": [
+    {
+     "verso": "NU4 Ceti",
+     "pagina": "5",
+     "energia": 2,
+     "log": null,
+     "richiede": "",
+     "colore": "",
+     "testo": {
+      "en": "Page 5",
+      "it": "Pagina 5"
+     }
+    },
+    {
+     "verso": "81 INF",
+     "pagina": "4",
+     "energia": 2,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow",
+     "testo": {
+      "en": "Requires Bridge Upgrade B01, page 4",
+      "it": "Richiede il Potenziamento del Ponte B01, pagina 4"
+     }
+    },
+    {
+     "verso": "MP-212",
+     "pagina": "8",
+     "energia": 2,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow",
+     "testo": {
+      "en": "Requires Bridge Upgrade B01, page 8",
+      "it": "Richiede il Potenziamento del Ponte B01, pagina 8"
+     }
+    }
+   ],
+   "destinazioni": [
+    {
+     "n": 1,
+     "nome": "GYF-4 – \"Black Shard\"",
+     "energia": 2,
+     "atterraggio": "",
+     "log": 205,
+     "descrizione": {
+      "en": "Unusual space debris slowly orbits the cold sun.",
+      "it": "Insoliti detriti spaziali orbitano lentamente attorno al sole freddo."
+     },
+     "testo": {
+      "en": "Go to Log 205.",
+      "it": "Vai all'Annotazione 205."
+     },
+     "icona_atterraggio": false
+    },
+    {
+     "n": 2,
+     "nome": "GYF-4 B – \"Everstorm\"",
+     "energia": 0,
+     "atterraggio": "L4",
+     "log": null,
+     "descrizione": {
+      "en": "Gargantuan mounds protrude from the raging storm that covers the entirety of the planet. We have never seen natural structures of this scale. A closer investigation is required.",
+      "it": "Enormi rilievi emergono dalla tempesta furiosa che copre l'intero pianeta. Non abbiamo mai visto strutture naturali di queste dimensioni. Serve un'indagine più approfondita."
+     },
+     "testo": {
+      "en": "LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L4 in your Planetary Scanner and go to the next Starmap step. / MAKE CONTACT (requires Objectives O06 – O11) – Place Planet card GYF-4 B in the \"Awaiting...\" envelope.",
+      "it": "ATTERRAGGIO – Rimetti tra le \"carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L4 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare. / STABILISCI UN CONTATTO (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta GYF-4 B nella busta \"In attesa...\"."
+     },
+     "opzioni": [
+      {
+       "energia": 0,
+       "en": "LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L4 in your Planetary Scanner and go to the next Starmap step.",
+       "it": "ATTERRAGGIO – Rimetti tra le \"carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L4 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare.",
+       "atterraggio": "L4"
+      },
+      {
+       "energia": 1,
+       "en": "MAKE CONTACT (requires Objectives O06 – O11) – Place Planet card GYF-4 B in the \"Awaiting...\" envelope.",
+       "it": "STABILISCI UN CONTATTO (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta GYF-4 B nella busta \"In attesa...\".",
+       "requisito": "O06–O11"
+      }
+     ],
+     "icona_atterraggio": true
+    },
+    {
+     "n": 3,
+     "nome": "GYF-4 C",
+     "energia": 0,
+     "atterraggio": "",
+     "log": null,
+     "descrizione": {
+      "en": "A methane ice giant with a dense atmosphere. Scans indicate it has no core and no geological activity.",
+      "it": "Un gigante di ghiaccio di metano con un'atmosfera densa. Le scansioni indicano che non ha nucleo né attività geologica."
+     },
+     "testo": {
+      "en": "Assign 2 Crewmembers to gain 1 [energy_token].",
+      "it": "Assegna 2 Membri dell'Equipaggio per ottenere 1 [energy_token]."
+     },
+     "icona_atterraggio": false
+    }
+   ],
+   "dubbi": "Destinazione (2) ha due opzioni con costi diversi (0 energia: Atterraggio L4; 1 energia: Stabilisci un contatto), riportate in 'opzioni'; 'energia' indica il costo dell'Atterraggio. In (3) l'icona ottenuta è un fulmine bianco su sfondo nero (stessa grafica del costo): trascritta come [energy_token]."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/iota_pegasi_f21c99.webp",
+   "nomi": [
+    "Iota Pegasi"
+   ],
+   "tipo": "sistema",
+   "nome": "IOTA PEGASI",
+   "pagina": "7",
+   "testo": {
+    "en": "Our scans reveal an artificial object in the barycenter of these binary stars. Something that shouldn't be here. Another Builders' construct? Unfortunately, it is covered with an anomaly that's too dangerous to approach.",
+    "it": "Le nostre scansioni rivelano un oggetto artificiale nel baricentro di queste stelle binarie. Qualcosa che non dovrebbe essere qui. Un altro manufatto dei Costruttori? Purtroppo è avvolto da un'anomalia troppo pericolosa per avvicinarsi."
+   },
+   "rotte": [
+    {
+     "verso": "81 INF",
+     "pagina": "4",
+     "energia": 3,
+     "log": null,
+     "richiede": "",
+     "colore": "",
+     "testo": {
+      "en": "Page 4",
+      "it": "Pagina 4"
+     }
+    },
+    {
+     "verso": "MP-212",
+     "pagina": "8",
+     "energia": 2,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow",
+     "testo": {
+      "en": "Requires Bridge Upgrade B01, page 8",
+      "it": "Richiede il Potenziamento del Ponte B01, pagina 8"
+     }
+    },
+    {
+     "verso": "51 Arietis",
+     "pagina": "11",
+     "energia": 4,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red",
+     "testo": {
+      "en": "Requires Bridge Upgrade B02, page 11",
+      "it": "Richiede il Potenziamento del Ponte B02, pagina 11"
+     }
+    }
+   ],
+   "destinazioni": [
+    {
+     "n": 1,
+     "nome": "Iota Pegasi A",
+     "energia": 4,
+     "atterraggio": "",
+     "log": null,
+     "descrizione": {
+      "en": "Everything here is perfect: temperature, atmosphere, water... The fact that a planet more habitable than Earth doesn't show even the slightest signs of life is surprising – and disconcerting. If we succeed with our mission, humanity may settle here one day.",
+      "it": "Qui è tutto perfetto: temperatura, atmosfera, acqua... Il fatto che un pianeta più abitabile della Terra non mostri il minimo segno di vita è sorprendente, e inquietante. Se la nostra missione avrà successo, un giorno l'umanità potrebbe stabilirsi qui."
+     },
+     "testo": {
+      "en": "Gain 1 [success]. / SET UP A COLONY (requires Objectives O06 – O11) – Place Planet card Iota Pegasi A in the \"Awaiting...\" envelope.",
+      "it": "Ottieni 1 [success]. / FONDA UNA COLONIA (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta Iota Pegasi A nella busta \"In attesa...\"."
+     },
+     "opzioni": [
+      {
+       "energia": 4,
+       "en": "Gain 1 [success].",
+       "it": "Ottieni 1 [success]."
+      },
+      {
+       "energia": 1,
+       "en": "SET UP A COLONY (requires Objectives O06 – O11) – Place Planet card Iota Pegasi A in the \"Awaiting...\" envelope.",
+       "it": "FONDA UNA COLONIA (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta Iota Pegasi A nella busta \"In attesa...\".",
+       "requisito": "O06–O11"
+      }
+     ],
+     "icona_atterraggio": false
+    },
+    {
+     "n": 2,
+     "nome": "Iota Pegasi B – Mineral-Rich Asteroid Belt",
+     "energia": 3,
+     "atterraggio": "",
+     "log": 116,
+     "descrizione": {
+      "en": "Rare minerals needed for Vanguard's equipment.",
+      "it": "Minerali rari necessari per l'attrezzatura della Vanguard."
+     },
+     "testo": {
+      "en": "Go to Log 116.",
+      "it": "Vai all'Annotazione 116."
+     },
+     "icona_atterraggio": false
+    },
+    {
+     "n": 3,
+     "nome": "Iota Pegasi C – \"Atropos\"",
+     "energia": 0,
+     "atterraggio": "L5",
+     "log": null,
+     "descrizione": {
+      "en": "The spinning magnetic field and extreme radiation of this planet make landing here extremely risky.",
+      "it": "Il campo magnetico rotante e le radiazioni estreme di questo pianeta rendono l'atterraggio estremamente rischioso."
+     },
+     "testo": {
+      "en": "LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L5 in your Planetary Scanner and go to the next Starmap step.",
+      "it": "ATTERRAGGIO – Rimetti tra le \"carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L5 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare."
+     },
+     "icona_atterraggio": true
+    },
+    {
+     "n": 4,
+     "nome": "S/Iota Pegasi C 1",
+     "energia": 2,
+     "atterraggio": "",
+     "log": 232,
+     "descrizione": {
+      "en": "These two moons are welded together with enormous bridges.",
+      "it": "Queste due lune sono saldate insieme da enormi ponti."
+     },
+     "testo": {
+      "en": "Go to Log 232.",
+      "it": "Vai all'Annotazione 232."
+     },
+     "icona_atterraggio": false
+    }
+   ],
+   "dubbi": "Destinazione (1) ha due opzioni (4 energia: Ottieni 1 [success]; 1 energia: Fonda una colonia), in 'opzioni'. 'SET UP A COLONY' tradotto 'FONDA UNA COLONIA' (termine ufficiale non verificato)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/mp_212_44a8a8.webp",
+   "nomi": [
+    "MP-212"
+   ],
+   "tipo": "sistema",
+   "nome": "MP-212",
+   "pagina": "8",
+   "testo": {
+    "en": "This system moves in the opposite direction to the rest of the stars in the cluster, as if in defiance of the global expansion of the universe.",
+    "it": "Questo sistema si muove nella direzione opposta rispetto al resto delle stelle dell'ammasso, come a sfidare l'espansione globale dell'universo."
+   },
+   "rotte": [
+    {
+     "verso": "Iota Pegasi",
+     "pagina": "7",
+     "energia": 2,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow",
+     "testo": {
+      "en": "Requires Bridge Upgrade B01, page 7",
+      "it": "Richiede il Potenziamento del Ponte B01, pagina 7"
+     }
+    },
+    {
+     "verso": "GYF-4",
+     "pagina": "6",
+     "energia": 2,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow",
+     "testo": {
+      "en": "Requires Bridge Upgrade B01, page 6",
+      "it": "Richiede il Potenziamento del Ponte B01, pagina 6"
+     }
+    },
+    {
+     "verso": "81 INF",
+     "pagina": "4",
+     "energia": 3,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow",
+     "testo": {
+      "en": "Requires Bridge Upgrade B01, page 4",
+      "it": "Richiede il Potenziamento del Ponte B01, pagina 4"
+     }
+    },
+    {
+     "verso": "Kepler 831",
+     "pagina": "10",
+     "energia": 1,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow",
+     "testo": {
+      "en": "Requires Bridge Upgrade B01, page 10",
+      "it": "Richiede il Potenziamento del Ponte B01, pagina 10"
+     }
+    }
+   ],
+   "destinazioni": [
+    {
+     "n": 1,
+     "nome": "MP-212 – \"Mermaid\"",
+     "energia": 3,
+     "atterraggio": "",
+     "log": 306,
+     "descrizione": {
+      "en": "Researching the strange spectrum of this star may give us some insight into this system.",
+      "it": "Studiare lo strano spettro di questa stella potrebbe darci qualche indicazione su questo sistema."
+     },
+     "testo": {
+      "en": "Go to Log 306.",
+      "it": "Vai all'Annotazione 306."
+     },
+     "icona_atterraggio": false
+    },
+    {
+     "n": 2,
+     "nome": "MP-212 C – Asteroid Belt",
+     "energia": 3,
+     "atterraggio": "",
+     "log": null,
+     "descrizione": {
+      "en": "A dense belt of asteroids full of rare, precious metals.",
+      "it": "Una densa fascia di asteroidi ricca di metalli rari e preziosi."
+     },
+     "testo": {
+      "en": "Gain 1 [command].",
+      "it": "Ottieni 1 [command]."
+     },
+     "icona_atterraggio": false
+    },
+    {
+     "n": 3,
+     "nome": "MP-212 D",
+     "energia": 0,
+     "atterraggio": "",
+     "log": 207,
+     "descrizione": {
+      "en": "The ring system of this planet reflects and amplifies the light of the sun. The Science Section discovered a spot above the rings where we could rapidly recharge our batteries – but doing it more than once would be too risky.",
+      "it": "Il sistema di anelli di questo pianeta riflette e amplifica la luce del sole. Il Reparto Scienza ha scoperto un punto sopra gli anelli dove potremmo ricaricare rapidamente le batterie, ma farlo più di una volta sarebbe troppo rischioso."
+     },
+     "testo": {
+      "en": "Go to Log 207.",
+      "it": "Vai all'Annotazione 207."
+     },
+     "icona_atterraggio": false
+    }
+   ],
+   "dubbi": "Tutte le rotte in uscita richiedono il Potenziamento B01 (icona sottolineata in giallo). In (2) l'icona è una stella in un esagono: trascritta come [command]."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/lcs_17_fe70d1.webp",
+   "nomi": [
+    "LCS-17"
+   ],
+   "tipo": "sistema",
+   "nome": "LCS-17",
+   "pagina": "9",
+   "testo": {
+    "en": "The white dwarf in the middle of this system is very faint, providing local planets with the bare minimum of energy.",
+    "it": "La nana bianca al centro di questo sistema è molto debole e fornisce ai pianeti locali il minimo indispensabile di energia."
+   },
+   "rotte": [
+    {
+     "verso": "GJ 1164",
+     "pagina": "17",
+     "energia": 2,
+     "log": null,
+     "richiede": "",
+     "colore": "",
+     "testo": {
+      "en": "Page 17",
+      "it": "Pagina 17"
+     }
+    },
+    {
+     "verso": "Gliese 368-2",
+     "pagina": "14",
+     "energia": 2,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow",
+     "testo": {
+      "en": "Requires Bridge Upgrade B01, page 14",
+      "it": "Richiede il Potenziamento del Ponte B01, pagina 14"
+     }
+    },
+    {
+     "verso": "Mu Librae",
+     "pagina": "16",
+     "energia": 2,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow",
+     "testo": {
+      "en": "Requires Bridge Upgrade B01, page 16",
+      "it": "Richiede il Potenziamento del Ponte B01, pagina 16"
+     }
+    },
+    {
+     "verso": "51 Arietis",
+     "pagina": "11",
+     "energia": 5,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red",
+     "testo": {
+      "en": "Requires Bridge Upgrade B02, page 11",
+      "it": "Richiede il Potenziamento del Ponte B02, pagina 11"
+     }
+    },
+    {
+     "verso": "Kepler 831",
+     "pagina": "10",
+     "energia": 3,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red",
+     "testo": {
+      "en": "Requires Bridge Upgrade B02, page 10",
+      "it": "Richiede il Potenziamento del Ponte B02, pagina 10"
+     }
+    }
+   ],
+   "destinazioni": [
+    {
+     "n": 1,
+     "nome": "LCS-17 A – \"Golfball\"",
+     "energia": 0,
+     "atterraggio": "L8",
+     "log": null,
+     "descrizione": {
+      "en": "The planet resembles a rocky golf ball with ice nested in its craters – two of the pits are possible sources of the Builders' signal. It also looks like a good place to replenish our water supplies.",
+      "it": "Il pianeta somiglia a una pallina da golf rocciosa con del ghiaccio annidato nei crateri: due delle cavità sono possibili sorgenti del segnale dei Costruttori. Sembra anche un buon posto per rifornirci d'acqua."
+     },
+     "testo": {
+      "en": "LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L8 in your Planetary Scanner and go to the next Starmap step.",
+      "it": "ATTERRAGGIO – Rimetti tra le \"carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L8 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare."
+     },
+     "icona_atterraggio": true
+    },
+    {
+     "n": 2,
+     "nome": "S/LCS-17 A 1",
+     "energia": 2,
+     "atterraggio": "",
+     "log": null,
+     "descrizione": {
+      "en": "We may extract more water from this ice moon, but something down there really spooks the crew.",
+      "it": "Potremmo estrarre altra acqua da questa luna ghiacciata, ma qualcosa laggiù spaventa davvero l'equipaggio."
+     },
+     "testo": {
+      "en": "Lower the Morale in the Bridge cardholder (Ship Book page 3) to gain 1 [command].",
+      "it": "Riduci il Morale nel portacarte del Ponte (Manuale della Nave, pagina 3) per ottenere 1 [command]."
+     },
+     "icona_atterraggio": false
+    },
+    {
+     "n": 3,
+     "nome": "C/LCS-17 Comet \"Iapetus\"",
+     "energia": 2,
+     "atterraggio": "",
+     "log": null,
+     "descrizione": {
+      "en": "The comet has a tail made of rare gasses – gathering them would greatly help Vanguard's mission.",
+      "it": "La cometa ha una coda di gas rari: raccoglierli aiuterebbe molto la missione della Vanguard."
+     },
+     "testo": {
+      "en": "Assign 2 Crewmembers to gain 1 [success].",
+      "it": "Assegna 2 Membri dell'Equipaggio per ottenere 1 [success]."
+     },
+     "icona_atterraggio": false
+    },
+    {
+     "n": 4,
+     "nome": "LCS-17 – Resting Place",
+     "energia": 3,
+     "atterraggio": "",
+     "log": null,
+     "descrizione": {
+      "en": "A graveyard for strayed explorers. What could have beckoned them here?",
+      "it": "Un cimitero di esploratori smarriti. Cosa può averli attirati qui?"
+     },
+     "testo": {
+      "en": "Draw 1 Alien Tech Discovery and move it to \"Gathered Discoveries\".",
+      "it": "Pesca 1 Scoperta Tecnologia Aliena e spostala in \"Scoperte Raccolte\"."
+     },
+     "icona_atterraggio": false
+    }
+   ],
+   "dubbi": "Destinazione (4): sulla mappa il nome compare fra virgolette (\"Resting Place\"), nel riquadro senza."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/kepler_831_6405d6.webp",
+   "nomi": [
+    "Kepler 831"
+   ],
+   "tipo": "sistema",
+   "nome": "KEPLER 831",
+   "pagina": "10",
+   "testo": {
+    "en": "Something in this vast proto-planetary disc emits a signal reminiscent of the Builders' steles.",
+    "it": "Qualcosa in questo vasto disco protoplanetario emette un segnale che ricorda le steli dei Costruttori."
+   },
+   "rotte": [
+    {
+     "verso": "12 Leonis",
+     "pagina": null,
+     "energia": 1,
+     "log": 760,
+     "richiede": "",
+     "colore": "",
+     "testo": {
+      "en": "Go to Log 760",
+      "it": "Vai all'Annotazione 760"
+     }
+    },
+    {
+     "verso": "MP-212",
+     "pagina": "8",
+     "energia": 1,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow",
+     "testo": {
+      "en": "Requires Bridge Upgrade B01, page 8",
+      "it": "Richiede il Potenziamento del Ponte B01, pagina 8"
+     }
+    },
+    {
+     "verso": "LCS-17",
+     "pagina": "9",
+     "energia": 3,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red",
+     "testo": {
+      "en": "Requires Bridge Upgrade B02, page 9",
+      "it": "Richiede il Potenziamento del Ponte B02, pagina 9"
+     }
+    }
+   ],
+   "destinazioni": [
+    {
+     "n": 1,
+     "nome": "Kepler 831 A",
+     "energia": 2,
+     "atterraggio": "",
+     "log": null,
+     "descrizione": {
+      "en": "The surface of this planet is safe and uninteresting – a perfect place for training.",
+      "it": "La superficie di questo pianeta è sicura e priva di interesse: il posto perfetto per l'addestramento."
+     },
+     "testo": {
+      "en": "Assign 2 Rank 2 Crewmembers to gain 1 [success].",
+      "it": "Assegna 2 Membri dell'Equipaggio di Grado 2 per ottenere 1 [success]."
+     },
+     "icona_atterraggio": false
+    },
+    {
+     "n": 2,
+     "nome": "Kepler 831 B – Stele Cluster Signal",
+     "energia": 0,
+     "atterraggio": "",
+     "log": 504,
+     "descrizione": {
+      "en": "Steles' signal comes from inside this asteroid field. The view is obscured, and a strong EM field disrupts the scans.",
+      "it": "Il segnale delle steli proviene dall'interno di questo campo di asteroidi. La visuale è oscurata e un forte campo elettromagnetico disturba le scansioni."
+     },
+     "testo": {
+      "en": "Requires Bridge Upgrade B03 – Go to Log 504.",
+      "it": "Richiede il Potenziamento del Ponte B03 – Vai all'Annotazione 504."
+     },
+     "richiede": "B03",
+     "icona_atterraggio": true
+    },
+    {
+     "n": 3,
+     "nome": "Kepler 831 – \"Cultivation\"",
+     "energia": 2,
+     "atterraggio": "",
+     "log": null,
+     "descrizione": {
+      "en": "A cluster of glass, asteroid-sized containers filled with withered plants. Was it some strange space cultivation?",
+      "it": "Un ammasso di contenitori di vetro grandi come asteroidi, pieni di piante avvizzite. Era una strana coltivazione spaziale?"
+     },
+     "testo": {
+      "en": "Draw 1 Strange Flora Discovery and move it to \"Gathered Discoveries\".",
+      "it": "Pesca 1 Scoperta Strana Vegetazione e spostala in \"Scoperte Raccolte\"."
+     },
+     "icona_atterraggio": false
+    }
+   ],
+   "dubbi": "Destinazione (2) ha l'icona di atterraggio ma nessuna carta Atterraggio: richiede il Potenziamento del Ponte B03 e rimanda all'Annotazione 504 (atterraggio lasciato vuoto)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/arietis_528f53.webp",
+   "nomi": [
+    "51 Arietis"
+   ],
+   "tipo": "sistema",
+   "nome": "51 ARIETIS",
+   "pagina": "11",
+   "testo": {
+    "en": "A distant, small planetary system that was marked by Builders, although we cannot find any stele's signal. It's strange enough to draw the higher-ups' attention and consider exploring this place.",
+    "it": "Un piccolo e lontano sistema planetario segnato dai Costruttori, anche se non riusciamo a trovare alcun segnale di stele. È abbastanza strano da attirare l'attenzione dei superiori e da far prendere in considerazione l'esplorazione di questo luogo."
+   },
+   "rotte": [
+    {
+     "verso": "Iota Pegasi",
+     "pagina": "7",
+     "energia": 4,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red",
+     "testo": {
+      "en": "Requires Bridge Upgrade B02, page 7",
+      "it": "Richiede il Potenziamento del Ponte B02, pagina 7"
+     }
+    },
+    {
+     "verso": "LCS-17",
+     "pagina": "9",
+     "energia": 5,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red",
+     "testo": {
+      "en": "Requires Bridge Upgrade B02, page 9",
+      "it": "Richiede il Potenziamento del Ponte B02, pagina 9"
+     }
+    },
+    {
+     "verso": "LF-122",
+     "pagina": "19",
+     "energia": 3,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red",
+     "testo": {
+      "en": "Requires Bridge Upgrade B02, page 19",
+      "it": "Richiede il Potenziamento del Ponte B02, pagina 19"
+     }
+    }
+   ],
+   "destinazioni": [
+    {
+     "n": 1,
+     "nome": "51 Arietis A – \"Operation Lone Wolf\"",
+     "energia": 0,
+     "atterraggio": "L11",
+     "log": null,
+     "descrizione": {
+      "en": "Flora abundance and interesting geological structures make this place a perfect spot for exploration.",
+      "it": "L'abbondanza di vegetazione e le interessanti strutture geologiche rendono questo luogo perfetto per l'esplorazione."
+     },
+     "testo": {
+      "en": "LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L11 in your Planetary Scanner and go to the next Starmap step.",
+      "it": "ATTERRAGGIO – Rimetti tra le \"carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L11 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare."
+     },
+     "icona_atterraggio": true
+    },
+    {
+     "n": 2,
+     "nome": "51 Arietis B",
+     "energia": 4,
+     "atterraggio": "",
+     "log": null,
+     "descrizione": {
+      "en": "A protoplanet full of radioactive minerals. It will grow up in mere billions of years – until then, only unmanned, sample-gathering missions are possible here.",
+      "it": "Un protopianeta pieno di minerali radioattivi. Crescerà in appena qualche miliardo di anni: fino ad allora, qui sono possibili solo missioni senza equipaggio per la raccolta di campioni."
+     },
+     "testo": {
+      "en": "Draw 1 Microorganism Discovery and move it to \"Gathered Discoveries\".",
+      "it": "Pesca 1 Scoperta Microorganismo e spostala in \"Scoperte Raccolte\"."
+     },
+     "icona_atterraggio": false
+    },
+    {
+     "n": 3,
+     "nome": "S/51 Arietis C 1 – \"Overgrown Moon\"",
+     "energia": 4,
+     "atterraggio": "",
+     "log": 367,
+     "descrizione": {
+      "en": "The caustic atmosphere makes research attempts dangerous and uncertain.",
+      "it": "L'atmosfera caustica rende i tentativi di ricerca pericolosi e incerti."
+     },
+     "testo": {
+      "en": "Assign 1 Crewmember to go to Log 367.",
+      "it": "Assegna 1 Membro dell'Equipaggio per andare all'Annotazione 367."
+     },
+     "icona_atterraggio": false
+    }
+   ],
+   "dubbi": "Tutte le rotte in uscita richiedono il Potenziamento B02 (icona bordata di rosso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/leonis_349d7a.webp",
+   "nomi": [
+    "12 Leonis"
+   ],
+   "tipo": "sistema",
+   "nome": "12 LEONIS",
+   "pagina": "12",
+   "testo": {
+    "en": "A star similar to our sun and a large water world are not the only reasons for Vanguard to explore this system. While the Builders didn't mark it on their maps, there are alien structures on one of its planets – possibly hinting at a race capable of interstellar travel.",
+    "it": "Una stella simile al nostro sole e un grande mondo acquatico non sono gli unici motivi per cui la Vanguard dovrebbe esplorare questo sistema. Anche se i Costruttori non l'hanno segnato sulle loro mappe, su uno dei suoi pianeti ci sono strutture aliene, forse indizio di una razza capace di viaggi interstellari."
+   },
+   "rotte": [
+    {
+     "verso": "Kepler 831",
+     "pagina": "10",
+     "energia": 1,
+     "log": null,
+     "richiede": "",
+     "colore": "",
+     "testo": {
+      "en": "Page 10",
+      "it": "Pagina 10"
+     }
+    },
+    {
+     "verso": "Gliese 368-2",
+     "pagina": "14",
+     "energia": 3,
+     "log": null,
+     "richiede": "",
+     "colore": "",
+     "testo": {
+      "en": "Page 14",
+      "it": "Pagina 14"
+     }
+    },
+    {
+     "verso": "HR 5730",
+     "pagina": "13",
+     "energia": 2,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow",
+     "testo": {
+      "en": "Requires Bridge Upgrade B01, page 13",
+      "it": "Richiede il Potenziamento del Ponte B01, pagina 13"
+     }
+    }
+   ],
+   "destinazioni": [
+    {
+     "n": 1,
+     "nome": "12 Leonis A",
+     "energia": 4,
+     "atterraggio": "",
+     "log": null,
+     "descrizione": {
+      "en": "People can breathe easily in this water world's atmosphere. It's a good spot for a short vacation.",
+      "it": "Nell'atmosfera di questo mondo acquatico si respira senza problemi. È un buon posto per una breve vacanza."
+     },
+     "testo": {
+      "en": "Raise Morale in the Bridge cardholder (Ship Book page 3).",
+      "it": "Aumenta il Morale nel portacarte del Ponte (Manuale della Nave, pagina 3)."
+     },
+     "icona_atterraggio": false
+    },
+    {
+     "n": 2,
+     "nome": "12 Leonis – \"Object X\"",
+     "energia": 2,
+     "atterraggio": "",
+     "log": 24,
+     "descrizione": {
+      "en": "A derelict spacecraft orbiting one of the planets like a tiny moon.",
+      "it": "Un relitto di astronave che orbita attorno a uno dei pianeti come una minuscola luna."
+     },
+     "testo": {
+      "en": "Go to Log 24.",
+      "it": "Vai all'Annotazione 24."
+     },
+     "icona_atterraggio": false
+    },
+    {
+     "n": 3,
+     "nome": "12 Leonis B – Desert Colony",
+     "energia": 0,
+     "atterraggio": "",
+     "log": 184,
+     "descrizione": {
+      "en": "A desert planet with visible artificial structures on its surface. Scanners don't detect any abnormal activity – it may be abandoned.",
+      "it": "Un pianeta desertico con strutture artificiali visibili sulla superficie. Gli scanner non rilevano alcuna attività anomala: potrebbe essere abbandonato."
+     },
+     "testo": {
+      "en": "Go to Log 184.",
+      "it": "Vai all'Annotazione 184."
+     },
+     "icona_atterraggio": true
+    },
+    {
+     "n": 4,
+     "nome": "12 Leonis C",
+     "energia": 1,
+     "atterraggio": "",
+     "log": null,
+     "descrizione": {
+      "en": "Somehow, a colony of Tardigrade-like organisms lives inside this asteroid.",
+      "it": "In qualche modo, una colonia di organismi simili a tardigradi vive all'interno di questo asteroide."
+     },
+     "testo": {
+      "en": "Assign 1 Rank 3 Crewmember to draw 1 Live Specimen Discovery and move it to \"Gathered Discoveries\".",
+      "it": "Assegna 1 Membro dell'Equipaggio di Grado 3 per pescare 1 Scoperta Esemplare Vivo e spostala in \"Scoperte Raccolte\"."
+     },
+     "icona_atterraggio": false
+    }
+   ],
+   "dubbi": "Destinazione (3) ha l'icona di atterraggio ma nessuna carta Atterraggio indicata: rimanda all'Annotazione 184 (atterraggio lasciato vuoto)."
+  }
+ ]
+}

@@ -207,3 +207,79 @@ Per la plancia usa l'immagine ad alta risoluzione indicata e ritaglia le zone pe
 - Membri dell'Equipaggio: il reparto si riconosce dal colore della striscia/del numero e dalle icone; il numero grande in basso
   a destra sono le Cariche iniziali.
 - Ogni voce deve avere `"file"` (percorso dell'immagine) e `"nomi"` copiato dal lotto.
+
+## CARTE DELLA NAVE (Gestione della Nave, Ship Book)
+Scopo aggiuntivo: automatizzare anche la **Gestione della Nave**. Campi comuni a tutte queste carte:
+`"file"`, `"nomi"` (dal lotto), `"id"` (codice stampato: B01, O02, R05, C04, S11, F01…), `"tipo"`,
+`"titolo":{en,it}`, `"testo_colore":{en,it}` (testo narrativo in corsivo), `"testo":{en,it}` (regole),
+`"concede":["Bridge Upgrade","Research Project"]` (riga GRANTS: copiata in inglese), `"dubbi":""`.
+Se nel lotto una voce ha `"retro"`, guarda **anche** quell'immagine e trascrivila nel campo `"retro"`
+(`{"titolo":{en,it},"testo":{en,it}}`): sul retro dei progetti c'è l'effetto che si applica quando si completano.
+
+### Ponte (Bridge cards: potenziamenti, obiettivi, livello tecnologico, morale)
+```json
+{"id":"B01","tipo":"bridge_upgrade|bridge_upgrade_travel|objective|secondary_objective|tech_level|morale",
+ "titolo":{...},"testo":{...},"testo_colore":{...},
+ "campi":{"comando":3,            // segnalini Comando ottenuti (carte Obiettivo)
+          "situazioni":2,         // carte Situazione da pescare (carte Obiettivo)
+          "energia":4,            // segnalini Energia (carte Livello tecnologico)
+          "livello":1,            // numero del livello tecnologico
+          "obiettivo":{"en":"Explore the nearest world ...","it":"..."},  // OBJECTIVE:
+          "modifica_comando":0, "modifica_energia":0},   // se il testo modifica i segnalini ricevuti
+ "livelli_morale":[{"livello":"high|normal|low|very low","en":"...","it":"..."}],  // solo carta Morale: ogni lato/orientamento
+ "dubbi":""}
+```
+Metti in `campi` tutti i numeri utili che vedi (anche icone [command] / [energy_token] con numeri).
+
+### Progetti di ricerca (Research Projects, fronte + retro)
+```json
+{"id":"R02","tipo":"research_project","parola_chiave":"BUILDERS","titolo":{...},"testo_colore":{...},
+ "costo":{"en":"Free","it":"Gratis"},
+ "costo_scoperte":[{"tipo":"mineral|microorganism|live_specimen|strange_flora|alien_tech|any","n":1,"rarita":"|rare|ultra-rare"}],
+ "concede":["Bridge Upgrade","Research Project"],
+ "retro":{"titolo":{...},"testo":{"en":"... Go to Log 100.","it":"..."}}, "dubbi":""}
+```
+
+### Progetti di produzione (Production Projects, fronte + retro)
+```json
+{"id":"C04","tipo":"production_project","titolo":{...},"testo_colore":{...},
+ "icone_potenziamento":["technology","scienceDice"],   // riquadro BOOST: icone di conversione (alternative, "OR")
+ "stadio_iniziale":3,                                   // STARTING STAGE
+ "concede":["Production Project","Equipment"],
+ "retro":{"titolo":{...},"testo":{...}}, "dubbi":""}
+```
+
+### Situazioni (Possible / Future Situations)
+```json
+{"id":"S01","tipo":"situation","titolo":{...},"testo_colore":{...},
+ "effetto":{"en":"Lose 1 [command] and shuffle this card into \"Possible Situations\". OR Lose 1 [success] and ...","it":"..."},
+ "risolta":{"en":"Remove this card from the game.","it":"..."},        // WHEN SOLVED
+ "icone_risolta":["construction","scienceDice"],                       // icone accanto a WHEN SOLVED (alternative)
+ "dubbi":""}
+```
+Icone della nave: `command` (stella), `energy_token` (fulmine nel pentagono), `success`, `crewAssignment`.
+
+### Strutture e altre plance (potenziamenti di strutture, infermeria, memoriale, laboratorio, armeria…)
+Per le carte (Facility/Medbay/Production upgrade) usa i campi comuni con `"tipo":"facility_upgrade|medbay_upgrade|production_upgrade"`.
+Per le immagini di plance/pagine (laboratorio, infermeria, muro della memoria, armeria, scanner, pool…) usa:
+```json
+{"tipo":"pagina","nome":"Medbay","testo":{en,it},
+ "spazi":[{"nome":"Light Injuries 1","tipo":"light|moderate|critical|research|memorial|...","icone":["construction"],
+           "reparto":"engineering|...|","bonus":{"en":"...","it":"..."}}],
+ "dubbi":""}
+```
+Descrivi tutti gli spazi (slot) visibili con le loro icone, eventuali bonus stampati e numeri.
+
+### Mappe dei sistemi (System Maps, una pagina per sistema)
+Ogni pagina descrive un sistema stellare: in alto le rotte verso altri sistemi (Outbound), in basso le
+destinazioni del sistema (pianeti, stazioni…). Ritaglia e ingrandisci: i testi sono piccoli.
+```json
+{"tipo":"sistema","nome":"TOI-2","pagina":"(numero di pagina del libretto, se stampato)",
+ "testo":{"en":"(testo descrittivo)","it":"..."},
+ "rotte":[{"verso":"81 INF","pagina":"(pagina del sistema di arrivo)","energia":2,
+           "log":(numero di Log se indicato, altrimenti null),"richiede":"(potenziamento del Ponte richiesto, es. icona/colore giallo)",
+           "colore":"(colore della rotta se significativo, es. yellow)"}],
+ "destinazioni":[{"nome":"PELLUCID","energia":1,"atterraggio":"L01 (carta Atterraggio se c'è l'icona di atterraggio)",
+                  "log":null,"testo":{"en":"(istruzioni accanto alla destinazione)","it":"..."}}],
+ "dubbi":""}
+```

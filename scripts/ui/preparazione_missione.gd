@@ -10,6 +10,9 @@ const REPARTI := {"ingegneria": "engineering", "ricognizione": "recon", "scienza
 const TUTORIAL := [["AMIR ZAYNAB", "scienza", 1], ["CHO JAE-YONG", "ingegneria", 2], ["JOPPE ULRICH", "ricognizione", 1], ["RIKU HASHIMURA", "sicurezza", 2]]
 
 var pagina_iniziale := "p.2-3"
+## Dalla Gestione della Nave: {"pagina", "membri": [{nave, carta, file, reparto, grado, cariche, dadi, conv}], "lander"}
+var dalla_nave: Dictionary = {}
+var _griglia: GridContainer
 var _pianeta: OptionButton
 var _righe := []          # [{membro: OptionButton, reparto: OptionButton, grado: SpinBox, attivo: CheckBox}]
 var _lander: OptionButton
@@ -61,6 +64,7 @@ func _ready() -> void:
 	_equip = Carte.categoria("equipaggio")
 	_equip.sort_custom(func(a, b): return str(a.get("nome", "")) < str(b.get("nome", "")))
 	var g := GridContainer.new()
+	_griglia = g
 	g.columns = 4
 	g.add_theme_constant_override("h_separation", 10)
 	v.add_child(g)
@@ -88,6 +92,15 @@ func _ready() -> void:
 		g.add_child(rep)
 		g.add_child(gr)
 		_righe.append({"membro": om, "reparto": rep, "grado": gr, "attivo": att, "settore": int(t[2])})
+	if not dalla_nave.is_empty():
+		g.visible = false
+		var lst := Label.new()
+		lst.text = "\n".join((dalla_nave.get("membri", []) as Array).map(func(m): return "• %s — %s, Grado %d" % [m["carta"], Dati.SEZIONI[m["reparto"]]["nome"], int(m["grado"])]))
+		v.add_child(lst)
+		_tutorial.button_pressed = false
+		for i in _pianeti.size():
+			if _pianeti[i]["stato"] == str(dalla_nave.get("pagina", "")):
+				_pianeta.select(i)
 	# lander
 	var hl := HBoxContainer.new()
 	v.add_child(hl)
@@ -97,7 +110,7 @@ func _ready() -> void:
 	for k in _lander_carte.size():
 		var cm: Dictionary = _lander_carte[k].get("campi", {})
 		_lander.add_item("%s — Provviste %s, Scoperte max %s" % [cm.get("nome", "?"), _provviste(cm), int(cm.get("scoperte_max", 0))])
-		if str(cm.get("nome", "")).to_upper() == "SPACE RANGER":
+		if str(cm.get("nome", "")).to_upper() == str(dalla_nave.get("lander", "SPACE RANGER")).to_upper():
 			_lander.select(k)
 	hl.add_child(_lander)
 	# missioni e condizione
@@ -152,7 +165,18 @@ func _conferma() -> void:
 	var st: String = _pianeti[_pianeta.selected]["stato"]
 	var squadra := []
 	var visti := {}
+	for m in dalla_nave.get("membri", []):
+		var cv = m.get("conv", {})
+		var conv := {}
+		if cv is Dictionary and not cv.is_empty():
+			conv = {"colore": str(cv.get("colore", "")).replace("Die", ""), "a": str(cv.get("a", ""))}
+		squadra.append({"nave": int(m["nave"]), "carta": m["carta"], "file": m["file"], "reparto": m["reparto"], "grado": int(m["grado"]),
+			"dadi": m["dadi"], "mazzo": _mazzo_reparto(REPARTI[m["reparto"]], int(m["grado"])), "conv": conv,
+			"cariche": int(m.get("cariche", 0)), "mano_iniziale": 2})
+		visti[m["reparto"]] = true
 	for r in _righe:
+		if not dalla_nave.is_empty():
+			break
 		if not r["attivo"].button_pressed:
 			continue
 		var e: Dictionary = _equip[r["membro"].selected]

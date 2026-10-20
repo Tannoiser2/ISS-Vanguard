@@ -67,6 +67,9 @@ static func nome(n: String) -> String:
 	return n.trim_prefix("/ ").strip_edges()
 
 const ICONE := {"travel": "viaggio", "time": "tempo", "marker": "segnalino", "lightning": "fulmine",
+	"biology": "biologia", "xenology": "xenologia", "scouting": "esplorazione", "scienceDice": "scienza",
+	"technology": "tecnologia", "construction": "costruzione", "physical": "forza fisica", "defence": "difesa",
+	"gathering": "raccolta", "anySameIcons": "qualsiasi icona", "vanguard": "Vanguard", "basic": "base", "accident": "incidente",
 	"travelII": "viaggio II", "travelIII": "viaggio III", "travel2": "viaggio II", "travel3": "viaggio III"}
 
 static func icona(n: String) -> String:

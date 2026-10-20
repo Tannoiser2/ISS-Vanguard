@@ -1,0 +1,601 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r02_15501.webp",
+   "nomi": [
+    "R02"
+   ],
+   "lato": "fronte",
+   "id": "R02",
+   "tipo": "research_project",
+   "parola_chiave": "BUILDERS",
+   "titolo": {
+    "en": "ANALYZING THE MESSAGE",
+    "it": "ANALIZZARE IL MESSAGGIO"
+   },
+   "testo_colore": {
+    "en": "Is there something we might have missed in the recording the Builders left for us?",
+    "it": "C'è qualcosa che potremmo esserci persi nella registrazione che i Costruttori ci hanno lasciato?"
+   },
+   "costo": {
+    "en": "Free",
+    "it": "Gratis"
+   },
+   "costo_scoperte": [],
+   "concede": [
+    "Bridge Upgrade",
+    "Research Project"
+   ],
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15501.webp",
+    "titolo": {
+     "en": "ANALYZING THE MESSAGE",
+     "it": "ANALIZZARE IL MESSAGGIO"
+    },
+    "testo_colore": {
+     "en": "The additional data recovered from The Message helped us better understand what the Builders attempted to do...",
+     "it": "I dati aggiuntivi recuperati dal Messaggio ci hanno aiutato a capire meglio che cosa i Costruttori cercassero di fare..."
+    },
+    "testo": {
+     "en": "Go to Log 100.",
+     "it": "Vai all'Annotazione 100."
+    }
+   },
+   "dubbi": "Builders = Costruttori (non nel glossario). Nomi italiani di buste/mazzi (\"Awaiting...\"=\"In attesa...\", \"Unavailable Equipment\"=\"Attrezzatura non disponibile\", \"Armory\"=\"Armeria\", \"Production Projects\"=\"Progetti di produzione\", \"Lander Mods\"=\"Modifiche del Lander\") e dei titoli delle carte citate non presenti nel glossario: traduzione mia."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r03_15502.webp",
+   "nomi": [
+    "R03"
+   ],
+   "lato": "fronte",
+   "id": "R03",
+   "tipo": "research_project",
+   "parola_chiave": "TECH",
+   "titolo": {
+    "en": "ALIEN PROGRAMMING",
+    "it": "PROGRAMMAZIONE ALIENA"
+   },
+   "testo_colore": {
+    "en": "We have gathered a large number of inert alien machines in good condition. The only thing stopping us from activating some of them and putting them to good use is our poor understanding of alien computer systems and programming language.",
+    "it": "Abbiamo raccolto un gran numero di macchine aliene inerti in buone condizioni. L'unica cosa che ci impedisce di attivarne alcune e metterle a buon uso è la nostra scarsa comprensione dei sistemi informatici e del linguaggio di programmazione alieni."
+   },
+   "costo": {
+    "en": "1 Alien Tech Discovery, 1 Discovery (any)",
+    "it": "1 Scoperta Tecnologia Aliena, 1 Scoperta (qualsiasi)"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "alien_tech",
+     "n": 1,
+     "rarita": ""
+    },
+    {
+     "tipo": "any",
+     "n": 1,
+     "rarita": ""
+    }
+   ],
+   "concede": [
+    "Equipment"
+   ],
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15502.webp",
+    "titolo": {
+     "en": "ALIEN PROGRAMMING",
+     "it": "PROGRAMMAZIONE ALIENA"
+    },
+    "testo_colore": {
+     "en": "Most alien machines proved unsuited to our purposes or outright hostile. However, we've managed to reprogram some of them as perfect bodyguards for our Away Teams.",
+     "it": "La maggior parte delle macchine aliene si è rivelata inadatta ai nostri scopi o apertamente ostile. Tuttavia, siamo riusciti a riprogrammarne alcune come perfette guardie del corpo per le nostre Squadre di Sbarco."
+    },
+    "testo": {
+     "en": "Move the following card from \"Unavailable Equipment\" to \"Armory\":\n• E34 (Android Bodyguard)",
+     "it": "Sposta la carta seguente da \"Attrezzatura non disponibile\" all'\"Armeria\":\n• E34 (Androide Guardia del Corpo)"
+    }
+   },
+   "dubbi": "Nomi italiani di buste/mazzi (\"Awaiting...\"=\"In attesa...\", \"Unavailable Equipment\"=\"Attrezzatura non disponibile\", \"Armory\"=\"Armeria\", \"Production Projects\"=\"Progetti di produzione\", \"Lander Mods\"=\"Modifiche del Lander\") e dei titoli delle carte citate non presenti nel glossario: traduzione mia."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r05_15504.webp",
+   "nomi": [
+    "R05"
+   ],
+   "lato": "fronte",
+   "id": "R05",
+   "tipo": "research_project",
+   "parola_chiave": "MATERIALS",
+   "titolo": {
+    "en": "SCINTILLATING CRYSTAL SHARD",
+    "it": "SCHEGGIA DI CRISTALLO SCINTILLANTE"
+   },
+   "testo_colore": {
+    "en": "Due to its unusual properties, the sample taken from Pellucid could help us improve our existing laser technologies.",
+    "it": "Grazie alle sue proprietà insolite, il campione prelevato da Pellucid potrebbe aiutarci a migliorare le nostre attuali tecnologie laser."
+   },
+   "costo": {
+    "en": "1 Mineral Discovery, 1 Alien Tech Discovery",
+    "it": "1 Scoperta Minerale, 1 Scoperta Tecnologia Aliena"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "mineral",
+     "n": 1,
+     "rarita": ""
+    },
+    {
+     "tipo": "alien_tech",
+     "n": 1,
+     "rarita": ""
+    }
+   ],
+   "concede": [
+    "Production Project",
+    "Equipment"
+   ],
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15504.webp",
+    "titolo": {
+     "en": "SCINTILLATING CRYSTAL SHARD",
+     "it": "SCHEGGIA DI CRISTALLO SCINTILLANTE"
+    },
+    "testo_colore": {
+     "en": "The extreme scintillation of the crystal makes it a perfect material for potent, laser-focusing lenses.",
+     "it": "L'estrema scintillazione del cristallo lo rende il materiale perfetto per potenti lenti di focalizzazione laser."
+    },
+    "testo": {
+     "en": "Move the following card from \"Production Projects\" to the \"Awaiting...\" envelope:\n• C11 (Main Ship Armament)\nMove the following card from \"Unavailable Equipment\" to \"Armory\":\n• E35 (Heavy Mining Laser)",
+     "it": "Sposta la carta seguente da \"Progetti di produzione\" alla busta \"In attesa...\":\n• C11 (Armamento principale della nave)\nSposta la carta seguente da \"Attrezzatura non disponibile\" all'\"Armeria\":\n• E35 (Laser minerario pesante)"
+    }
+   },
+   "dubbi": "Nomi italiani di buste/mazzi (\"Awaiting...\"=\"In attesa...\", \"Unavailable Equipment\"=\"Attrezzatura non disponibile\", \"Armory\"=\"Armeria\", \"Production Projects\"=\"Progetti di produzione\", \"Lander Mods\"=\"Modifiche del Lander\") e dei titoli delle carte citate non presenti nel glossario: traduzione mia."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r06_15505.webp",
+   "nomi": [
+    "R06"
+   ],
+   "lato": "fronte",
+   "id": "R06",
+   "tipo": "research_project",
+   "parola_chiave": "BUILDERS",
+   "titolo": {
+    "en": "BUILDERS' LANDMARK",
+    "it": "MONUMENTO DEI COSTRUTTORI"
+   },
+   "testo_colore": {
+    "en": "The stele we brought from the planet's surface warrants further study.",
+    "it": "La stele che abbiamo portato dalla superficie del pianeta merita ulteriori studi."
+   },
+   "costo": {
+    "en": "1 Alien Tech Discovery",
+    "it": "1 Scoperta Tecnologia Aliena"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "alien_tech",
+     "n": 1,
+     "rarita": ""
+    }
+   ],
+   "concede": [
+    "Story Log"
+   ],
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15505.webp",
+    "titolo": {
+     "en": "BUILDERS' LANDMARK",
+     "it": "MONUMENTO DEI COSTRUTTORI"
+    },
+    "testo": {
+     "en": "Go to Log 51.",
+     "it": "Vai all'Annotazione 51."
+    }
+   },
+   "dubbi": "'Landmark' tradotto 'Monumento' (scelta mia). Nomi italiani di buste/mazzi (\"Awaiting...\"=\"In attesa...\", \"Unavailable Equipment\"=\"Attrezzatura non disponibile\", \"Armory\"=\"Armeria\", \"Production Projects\"=\"Progetti di produzione\", \"Lander Mods\"=\"Modifiche del Lander\") e dei titoli delle carte citate non presenti nel glossario: traduzione mia."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r07_15506.webp",
+   "nomi": [
+    "R07"
+   ],
+   "lato": "fronte",
+   "id": "R07",
+   "tipo": "research_project",
+   "parola_chiave": "TECH",
+   "titolo": {
+    "en": "EXTREME BIOME SURVIVAL",
+    "it": "SOPRAVVIVENZA IN BIOMI ESTREMI"
+   },
+   "testo_colore": {
+    "en": "We have a lengthy list of different, extreme worlds to visit. We must prepare!",
+    "it": "Abbiamo una lunga lista di mondi estremi e diversi da visitare. Dobbiamo prepararci!"
+   },
+   "costo": {
+    "en": "1 Alien Tech Discovery, 1 Microorganism Discovery, 1 Strange Flora Discovery",
+    "it": "1 Scoperta Tecnologia Aliena, 1 Scoperta Microorganismo, 1 Scoperta Strana Vegetazione"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "alien_tech",
+     "n": 1,
+     "rarita": ""
+    },
+    {
+     "tipo": "microorganism",
+     "n": 1,
+     "rarita": ""
+    },
+    {
+     "tipo": "strange_flora",
+     "n": 1,
+     "rarita": ""
+    }
+   ],
+   "concede": [
+    "Production Projects",
+    "Lander Mod",
+    "Equipment"
+   ],
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15506.webp",
+    "titolo": {
+     "en": "EXTREME BIOME SURVIVAL",
+     "it": "SOPRAVVIVENZA IN BIOMI ESTREMI"
+    },
+    "testo_colore": {
+     "en": "We've drafted plans for specialized suits that provide protection and enhanced capabilities in the most hostile environments.",
+     "it": "Abbiamo elaborato i progetti di tute specializzate che offrono protezione e capacità potenziate negli ambienti più ostili."
+    },
+    "testo": {
+     "en": "Move the following cards to the \"Awaiting...\" envelope:\n• C10 (Planetside Outposts)\n• C12 (Section Suits) from \"Production Projects\"\n• A09 (Secure Containers) from \"Lander Mods\"\nMove the following cards from \"Unavailable Equipment\" to \"Armory\":\n• E14 (Defense System)\n• E22 (Automated Protective Nanofoam)\n• E26 (Medbay)\nMove Tech Level 3 card from \"Bridge Cards\" to the \"Awaiting...\" envelope",
+     "it": "Sposta le carte seguenti nella busta \"In attesa...\":\n• C10 (Avamposti planetari)\n• C12 (Tute di Reparto) da \"Progetti di produzione\"\n• A09 (Contenitori sicuri) da \"Modifiche del Lander\"\nSposta le carte seguenti da \"Attrezzatura non disponibile\" all'\"Armeria\":\n• E14 (Sistema di difesa)\n• E22 (Nanoschiuma protettiva automatica)\n• E26 (Infermeria)\nSposta la carta Livello tecnologico 3 da \"Carte del Ponte\" alla busta \"In attesa...\""
+    }
+   },
+   "dubbi": "Retro: per C10 non è indicata la provenienza (solo C12 \"from Production Projects\"); probabilmente anche C10 viene da \"Production Projects\". Ultima riga senza punto finale sulla carta. Nomi italiani di buste/mazzi (\"Awaiting...\"=\"In attesa...\", \"Unavailable Equipment\"=\"Attrezzatura non disponibile\", \"Armory\"=\"Armeria\", \"Production Projects\"=\"Progetti di produzione\", \"Lander Mods\"=\"Modifiche del Lander\") e dei titoli delle carte citate non presenti nel glossario: traduzione mia."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r08_15507.webp",
+   "nomi": [
+    "R08"
+   ],
+   "lato": "fronte",
+   "id": "R08",
+   "tipo": "research_project",
+   "parola_chiave": "MATERIALS",
+   "titolo": {
+    "en": "IMPROVED LANDERS",
+    "it": "LANDER MIGLIORATI"
+   },
+   "testo_colore": {
+    "en": "Knowing more about the worlds we are to visit, we should be able to come up with some new Lander and Module designs.",
+    "it": "Conoscendo meglio i mondi che dovremo visitare, dovremmo riuscire a ideare nuovi progetti di Lander e Moduli."
+   },
+   "costo": {
+    "en": "2 Mineral Discovery, 1 Alien Tech Discovery",
+    "it": "2 Scoperte Minerale, 1 Scoperta Tecnologia Aliena"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "mineral",
+     "n": 2,
+     "rarita": ""
+    },
+    {
+     "tipo": "alien_tech",
+     "n": 1,
+     "rarita": ""
+    }
+   ],
+   "concede": [
+    "Production Projects"
+   ],
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15507.webp",
+    "titolo": {
+     "en": "IMPROVED LANDERS",
+     "it": "LANDER MIGLIORATI"
+    },
+    "testo_colore": {
+     "en": "Some worlds we are to visit might prove too much for our old designs. We developed some new ship designs to tackle them.",
+     "it": "Alcuni dei mondi che dovremo visitare potrebbero rivelarsi troppo per i nostri vecchi progetti. Abbiamo sviluppato nuovi progetti di navette per affrontarli."
+    },
+    "testo": {
+     "en": "Move the following cards from \"Production Projects\" to the \"Awaiting...\" envelope:\n• C16 (Dragonfly Lander)\n• C17 (Faustschlag Lander)",
+     "it": "Sposta le carte seguenti da \"Progetti di produzione\" alla busta \"In attesa...\":\n• C16 (Lander Dragonfly)\n• C17 (Lander Faustschlag)"
+    }
+   },
+   "dubbi": "Nomi italiani di buste/mazzi (\"Awaiting...\"=\"In attesa...\", \"Unavailable Equipment\"=\"Attrezzatura non disponibile\", \"Armory\"=\"Armeria\", \"Production Projects\"=\"Progetti di produzione\", \"Lander Mods\"=\"Modifiche del Lander\") e dei titoli delle carte citate non presenti nel glossario: traduzione mia."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r09_15508.webp",
+   "nomi": [
+    "R09"
+   ],
+   "lato": "fronte",
+   "id": "R09",
+   "tipo": "research_project",
+   "parola_chiave": "BUILDERS",
+   "titolo": {
+    "en": "THE BLACK KNIGHT",
+    "it": "IL CAVALIERE NERO"
+   },
+   "testo_colore": {
+    "en": "This device seems to have been made by the Builders and employs the same camouflage method as the Eye of the Void. We should study it immediately!",
+    "it": "Questo dispositivo sembra essere stato costruito dai Costruttori e usa lo stesso metodo di mimetizzazione dell'Occhio del Vuoto. Dovremmo studiarlo immediatamente!"
+   },
+   "costo": {
+    "en": "Free",
+    "it": "Gratis"
+   },
+   "costo_scoperte": [],
+   "concede": [
+    "Bridge Upgrade"
+   ],
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15508.webp",
+    "titolo": {
+     "en": "THE BLACK KNIGHT",
+     "it": "IL CAVALIERE NERO"
+    },
+    "testo": {
+     "en": "Go to Log 730.",
+     "it": "Vai all'Annotazione 730."
+    }
+   },
+   "dubbi": "'Eye of the Void' = 'Occhio del Vuoto' (traduzione mia). Nomi italiani di buste/mazzi (\"Awaiting...\"=\"In attesa...\", \"Unavailable Equipment\"=\"Attrezzatura non disponibile\", \"Armory\"=\"Armeria\", \"Production Projects\"=\"Progetti di produzione\", \"Lander Mods\"=\"Modifiche del Lander\") e dei titoli delle carte citate non presenti nel glossario: traduzione mia."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r10_15509.webp",
+   "nomi": [
+    "R10"
+   ],
+   "lato": "fronte",
+   "id": "R10",
+   "tipo": "research_project",
+   "parola_chiave": "ALIEN",
+   "titolo": {
+    "en": "ARROGATOR TECH",
+    "it": "TECNOLOGIA ARROGATOR"
+   },
+   "testo_colore": {
+    "en": "This warlike race specialized in creating robust, autonomous combat platforms. We can use some of their experience...",
+    "it": "Questa razza bellicosa era specializzata nella creazione di robuste piattaforme da combattimento autonome. Possiamo sfruttare parte della loro esperienza..."
+   },
+   "costo": {
+    "en": "1 Rare Alien Tech Discovery, 3 Discovery (any)",
+    "it": "1 Scoperta Tecnologia Aliena Rara, 3 Scoperte (qualsiasi)"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "alien_tech",
+     "n": 1,
+     "rarita": "rare"
+    },
+    {
+     "tipo": "any",
+     "n": 3,
+     "rarita": ""
+    }
+   ],
+   "concede": [
+    "Lander Mod",
+    "Production Projects",
+    "Research Projects",
+    "Equipment"
+   ],
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15509.webp",
+    "titolo": {
+     "en": "ARROGATOR TECH",
+     "it": "TECNOLOGIA ARROGATOR"
+    },
+    "testo": {
+     "en": "Move the following cards to the \"Awaiting...\" envelope:\n• A11 (Automated Pilot Assist) from \"Lander Mods\"\n• C08 (Planetary Exploration Transporters)\n• C14 (Advanced Weaponry) from \"Production Projects\", if present there\n• R15 (Advanced Physics)\n• R18 (Quantuum AI) from \"Research Projects\", if present there\nMove the following card from \"Unavailable Equipment\" to \"Armory\":\n• E14 (Defense System), if present there",
+     "it": "Sposta le carte seguenti nella busta \"In attesa...\":\n• A11 (Assistente di pilotaggio automatico) da \"Modifiche del Lander\"\n• C08 (Trasportatori per l'esplorazione planetaria)\n• C14 (Armamenti avanzati) da \"Progetti di produzione\", se presente lì\n• R15 (Fisica avanzata)\n• R18 (IA quantistica) da \"Progetti di ricerca\", se presente lì\nSposta la carta seguente da \"Attrezzatura non disponibile\" all'\"Armeria\":\n• E14 (Sistema di difesa), se presente lì"
+    }
+   },
+   "dubbi": "Retro: \"Quantuum AI\" scritto così sulla carta (refuso). C08 e R15 senza provenienza esplicita: si deduce che la frase \"from ...\" finale di C14/R18 vale anche per la voce precedente (C08 da Production Projects, R15 da Research Projects). Nomi italiani di buste/mazzi (\"Awaiting...\"=\"In attesa...\", \"Unavailable Equipment\"=\"Attrezzatura non disponibile\", \"Armory\"=\"Armeria\", \"Production Projects\"=\"Progetti di produzione\", \"Lander Mods\"=\"Modifiche del Lander\") e dei titoli delle carte citate non presenti nel glossario: traduzione mia."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r11_15510.webp",
+   "nomi": [
+    "R11"
+   ],
+   "lato": "fronte",
+   "id": "R11",
+   "tipo": "research_project",
+   "parola_chiave": "ALIEN",
+   "titolo": {
+    "en": "TELEPATHY",
+    "it": "TELEPATIA"
+   },
+   "testo_colore": {
+    "en": "A strange, toroid creature we found seems to move and communicate using telepathy and telekinesis.",
+    "it": "Una strana creatura toroidale che abbiamo trovato sembra muoversi e comunicare tramite telepatia e telecinesi."
+   },
+   "costo": {
+    "en": "1 Live Specimen Discovery",
+    "it": "1 Scoperta Esemplare Vivo"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "live_specimen",
+     "n": 1,
+     "rarita": ""
+    }
+   ],
+   "concede": [
+    "Equipment"
+   ],
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15510.webp",
+    "titolo": {
+     "en": "TELEPATHY",
+     "it": "TELEPATIA"
+    },
+    "testo_colore": {
+     "en": "It turns out, there was nothing supernatural about the creature. It used various exotic fields to manipulate matter. However, one of these fields appears to interact with the human brain...",
+     "it": "A quanto pare, non c'era niente di soprannaturale nella creatura. Usava vari campi esotici per manipolare la materia. Tuttavia, uno di questi campi sembra interagire con il cervello umano..."
+    },
+    "testo": {
+     "en": "Move the following card from \"Unavailable Equipment\" to \"Armory\":\n• E48 (Automated Mental Inhibitor)",
+     "it": "Sposta la carta seguente da \"Attrezzatura non disponibile\" all'\"Armeria\":\n• E48 (Inibitore mentale automatico)"
+    }
+   },
+   "dubbi": "Nomi italiani di buste/mazzi (\"Awaiting...\"=\"In attesa...\", \"Unavailable Equipment\"=\"Attrezzatura non disponibile\", \"Armory\"=\"Armeria\", \"Production Projects\"=\"Progetti di produzione\", \"Lander Mods\"=\"Modifiche del Lander\") e dei titoli delle carte citate non presenti nel glossario: traduzione mia."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r12_15511.webp",
+   "nomi": [
+    "R12"
+   ],
+   "lato": "fronte",
+   "id": "R12",
+   "tipo": "research_project",
+   "parola_chiave": "BASIC",
+   "titolo": {
+    "en": "BIO-ASSIMILATION",
+    "it": "BIO-ASSIMILAZIONE"
+   },
+   "testo_colore": {
+    "en": "An organism that can eat any type of inorganic matter could help us survive on harsh worlds.",
+    "it": "Un organismo in grado di nutrirsi di qualsiasi tipo di materia inorganica potrebbe aiutarci a sopravvivere su mondi ostili."
+   },
+   "costo": {
+    "en": "1 Rare Microorganism Discovery",
+    "it": "1 Scoperta Microorganismo Rara"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "microorganism",
+     "n": 1,
+     "rarita": "rare"
+    }
+   ],
+   "concede": [
+    "Equipment"
+   ],
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15511.webp",
+    "titolo": {
+     "en": "BIO-ASSIMILATION",
+     "it": "BIO-ASSIMILAZIONE"
+    },
+    "testo_colore": {
+     "en": "We grew a colony of these ravenous organisms that can create protein sludge out of pretty much anything.",
+     "it": "Abbiamo coltivato una colonia di questi organismi voraci, capaci di produrre una poltiglia proteica a partire da praticamente qualsiasi cosa."
+    },
+    "testo": {
+     "en": "Move the following card from \"Unavailable Equipment\" to \"Armory\":\n• E28 (Biomass Fabricator)",
+     "it": "Sposta la carta seguente da \"Attrezzatura non disponibile\" all'\"Armeria\":\n• E28 (Fabbricatore di biomassa)"
+    }
+   },
+   "dubbi": "Nomi italiani di buste/mazzi (\"Awaiting...\"=\"In attesa...\", \"Unavailable Equipment\"=\"Attrezzatura non disponibile\", \"Armory\"=\"Armeria\", \"Production Projects\"=\"Progetti di produzione\", \"Lander Mods\"=\"Modifiche del Lander\") e dei titoli delle carte citate non presenti nel glossario: traduzione mia."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r13_15512.webp",
+   "nomi": [
+    "R13"
+   ],
+   "lato": "fronte",
+   "id": "R13",
+   "tipo": "research_project",
+   "parola_chiave": "BASIC",
+   "titolo": {
+    "en": "CRYPTOBIOTIC BULBS",
+    "it": "BULBI CRIPTOBIOTICI"
+   },
+   "testo_colore": {
+    "en": "The remains of this plant were found in incredibly deadly conditions. Yet, when brought into the lab, they miraculously sprouted back to life.",
+    "it": "I resti di questa pianta sono stati trovati in condizioni incredibilmente letali. Eppure, una volta portati in laboratorio, sono miracolosamente tornati a germogliare."
+   },
+   "costo": {
+    "en": "1 Rare Strange Flora Discovery",
+    "it": "1 Scoperta Strana Vegetazione Rara"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "strange_flora",
+     "n": 1,
+     "rarita": "rare"
+    }
+   ],
+   "concede": [
+    "Lander Mod",
+    "Facility Upgrade"
+   ],
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15512.webp",
+    "titolo": {
+     "en": "CRYPTOBIOTIC BULBS",
+     "it": "BULBI CRIPTOBIOTICI"
+    },
+    "testo_colore": {
+     "en": "We've learned a lot about artificial metabolic modulation. Some of this knowledge could be used to treat human subjects...",
+     "it": "Abbiamo imparato molto sulla modulazione metabolica artificiale. Parte di queste conoscenze potrebbe essere usata per curare soggetti umani..."
+    },
+    "testo": {
+     "en": "Move the following cards to the \"Awaiting...\" envelope:\n• A05 (Relaxation Oculus) from \"Lander Mods\"\n• F02 (Metabolic Accelerator) from \"Facility Upgrades\"",
+     "it": "Sposta le carte seguenti nella busta \"In attesa...\":\n• A05 (Oculus rilassante) da \"Modifiche del Lander\"\n• F02 (Acceleratore metabolico) da \"Potenziamenti delle Strutture\""
+    }
+   },
+   "dubbi": "Nomi italiani di buste/mazzi (\"Awaiting...\"=\"In attesa...\", \"Unavailable Equipment\"=\"Attrezzatura non disponibile\", \"Armory\"=\"Armeria\", \"Production Projects\"=\"Progetti di produzione\", \"Lander Mods\"=\"Modifiche del Lander\") e dei titoli delle carte citate non presenti nel glossario: traduzione mia."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r14_15513.webp",
+   "nomi": [
+    "R14"
+   ],
+   "lato": "fronte",
+   "id": "R14",
+   "tipo": "research_project",
+   "parola_chiave": "ALIEN",
+   "titolo": {
+    "en": "IDEMIAN TECH",
+    "it": "TECNOLOGIA IDEMIANA"
+   },
+   "testo_colore": {
+    "en": "This incredible race of long-lived, patient artisans developed a technology that's vastly different from ours.",
+    "it": "Questa incredibile razza di artigiani longevi e pazienti ha sviluppato una tecnologia enormemente diversa dalla nostra."
+   },
+   "costo": {
+    "en": "1 Rare Alien Tech Discovery, 3 Discovery (any)",
+    "it": "1 Scoperta Tecnologia Aliena Rara, 3 Scoperte (qualsiasi)"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "alien_tech",
+     "n": 1,
+     "rarita": "rare"
+    },
+    {
+     "tipo": "any",
+     "n": 3,
+     "rarita": ""
+    }
+   ],
+   "concede": [
+    "Production Project",
+    "Lander Mod",
+    "Research Project"
+   ],
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15513.webp",
+    "titolo": {
+     "en": "IDEMIAN TECH",
+     "it": "TECNOLOGIA IDEMIANA"
+    },
+    "testo_colore": {
+     "en": "Studying Idemian Tech not only allowed us to copy many of their inventions – it also led us to a new understanding of fundamental physics.",
+     "it": "Studiare la Tecnologia Idemiana non solo ci ha permesso di copiare molte delle loro invenzioni: ci ha anche portato a una nuova comprensione della fisica fondamentale."
+    },
+    "testo": {
+     "en": "Move the following cards to the \"Awaiting...\" envelope:\n• C22 (Miniaturized Quantum Computers) from \"Production Projects\"\n• A20 (Inflatable Storage) from \"Lander Mods\"",
+     "it": "Sposta le carte seguenti nella busta \"In attesa...\":\n• C22 (Computer quantistici miniaturizzati) da \"Progetti di produzione\"\n• A20 (Deposito gonfiabile) da \"Modifiche del Lander\""
+    }
+   },
+   "dubbi": "GRANTS cita \"Research Project\" ma il retro non sposta nessun progetto di ricerca. Nomi italiani di buste/mazzi (\"Awaiting...\"=\"In attesa...\", \"Unavailable Equipment\"=\"Attrezzatura non disponibile\", \"Armory\"=\"Armeria\", \"Production Projects\"=\"Progetti di produzione\", \"Lander Mods\"=\"Modifiche del Lander\") e dei titoli delle carte citate non presenti nel glossario: traduzione mia."
+  }
+ ]
+}

@@ -1,0 +1,100 @@
+{
+ "tipo": "ricerca",
+ "immagini": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r15_15514.webp",
+   "nomi": [
+    "R15"
+   ],
+   "lato": "fronte",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15514.webp"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r16_15515.webp",
+   "nomi": [
+    "R16"
+   ],
+   "lato": "fronte",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15515.webp"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r17_15516.webp",
+   "nomi": [
+    "R17"
+   ],
+   "lato": "fronte",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15516.webp"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r18_15517.webp",
+   "nomi": [
+    "R18"
+   ],
+   "lato": "fronte",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15517.webp"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r19_15518.webp",
+   "nomi": [
+    "R19"
+   ],
+   "lato": "fronte",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15518.webp"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r20_15519.webp",
+   "nomi": [
+    "R20"
+   ],
+   "lato": "fronte",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15519.webp"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r21_15520.webp",
+   "nomi": [
+    "R21"
+   ],
+   "lato": "fronte",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15520.webp"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r22_15521.webp",
+   "nomi": [
+    "R22"
+   ],
+   "lato": "fronte",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15521.webp"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r23_15522.webp",
+   "nomi": [
+    "R23"
+   ],
+   "lato": "fronte",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15522.webp"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r24_35700.webp",
+   "nomi": [
+    "R24"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/r01/r01_15500.webp",
+   "nomi": [
+    "R01"
+   ],
+   "lato": "fronte",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/r01/retro_15500.webp"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/r04/r04_15503.webp",
+   "nomi": [
+    "R04"
+   ],
+   "lato": "fronte",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/r04/retro_15503.webp"
+  }
+ ]
+}

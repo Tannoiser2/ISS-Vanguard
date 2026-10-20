@@ -99,13 +99,33 @@ def norm_azione(a):
 def norm_azioni(lista):
     return [x for x in (norm_azione(a) for a in (lista or [])) if x]
 
+DEST = {"awaiting": "busta", "armory": "armeria", "removed": "rimossa", "hangar": "hangar",
+        "possible situations": "situazioni", "future situations": "situazioni_future", "recruits": "reclute"}
+
+def norm_retro(r):
+    """Spostamenti di carte sul retro dei progetti: [{"carta": "E38", "da": "...", "a": "busta|armeria|rimossa|hangar"}]."""
+    out = []
+    for k in ("spostamenti", "movimenti", "sposta"):
+        for m in r.pop(k, []) or []:
+            if not isinstance(m, dict):
+                continue
+            verso = str(m.get("a") or m.get("verso") or m.get("destinazione") or "").lower()
+            dest = next((v for kk, v in DEST.items() if kk in verso), verso)
+            carte = m.get("carte") or ([m.get("carta")] if m.get("carta") else [])
+            for c in carte:
+                cid = c.get("carta", c.get("id", "")) if isinstance(c, dict) else str(c)
+                cid = re.sub(r"\s.*$", "", str(cid)).upper()
+                if cid:
+                    out.append({"carta": cid, "da": str(m.get("da") or ""), "a": dest, "n": int(m.get("quantita", 1) or 1)})
+    r["spostamenti"] = out
+
 def rel(f):
     f = str(f or "")
     if f.startswith(WEB):
         return f[len(WEB):]
     return f
 
-db = {"per_file": {}, "per_id": {}, "pianeti": {}}
+db = {"sistemi": {}, "per_file": {}, "per_id": {}, "pianeti": {}}
 # nomi degli stati del Planetopedia dai lotti (le trascrizioni hanno solo il file)
 nomi_pianeti = {}
 for lp in glob.glob(os.path.join(PRJ, "tools", "trascrizione", "lotti", "pianeta_*.json")):
@@ -148,6 +168,12 @@ for p in sorted(glob.glob(os.path.join(PRJ, "data", "carte", "*.json"))):
             for n in nomi:
                 db["pianeti"][n] = c
             continue
+        if c.get("tipo") == "sistema":
+            c["file"] = rel(c.get("file", ""))
+            db.setdefault("sistemi", {})[str(c.get("nome", "")).upper()] = c
+            continue
+        if isinstance(c.get("retro"), dict):
+            norm_retro(c["retro"])
         r = rel(c.get("file", ""))
         c["file"] = r
         db["per_file"][r] = c

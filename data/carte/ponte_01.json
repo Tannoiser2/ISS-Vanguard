@@ -1,0 +1,502 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b01_9300.webp",
+   "nomi": [
+    "B01"
+   ],
+   "lato": "fronte",
+   "id": "B01",
+   "tipo": "bridge_upgrade_travel",
+   "titolo": {
+    "en": "REINFORCED HULL",
+    "it": "SCAFO RINFORZATO"
+   },
+   "testo": {
+    "en": "The Vanguard may now fly to dangerous systems or destinations (yellow Outbound options).",
+    "it": "La Vanguard ora può volare verso sistemi o destinazioni pericolosi (opzioni in Uscita gialle)."
+   },
+   "testo_colore": {
+    "en": "Improved structural integrity of ISS Vanguards will allow us to enter even most dangerous systems.",
+    "it": "L'integrità strutturale migliorata della ISS Vanguard ci permetterà di entrare anche nei sistemi più pericolosi."
+   },
+   "campi": {
+    "sblocca_outbound": "yellow"
+   },
+   "dubbi": "Termine 'Outbound' tradotto 'in Uscita' (traduzione ufficiale non verificata)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b02_9301.webp",
+   "nomi": [
+    "B02"
+   ],
+   "lato": "fronte",
+   "id": "B02",
+   "tipo": "bridge_upgrade_travel",
+   "titolo": {
+    "en": "IMPROVED ENGINES",
+    "it": "MOTORI MIGLIORATI"
+   },
+   "testo": {
+    "en": "The Vanguard may now fly to distant systems or destinations (red Outbound options).",
+    "it": "La Vanguard ora può volare verso sistemi o destinazioni lontani (opzioni in Uscita rosse)."
+   },
+   "campi": {
+    "sblocca_outbound": "red"
+   },
+   "dubbi": "Termine 'Outbound' tradotto 'in Uscita' (traduzione ufficiale non verificata)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b03_9302.webp",
+   "nomi": [
+    "B03"
+   ],
+   "lato": "fronte",
+   "id": "B03",
+   "tipo": "bridge_upgrade_travel",
+   "titolo": {
+    "en": "LONG RANGE DETECTION ARRAY",
+    "it": "SENSORI A LUNGO RAGGIO"
+   },
+   "testo": {
+    "en": "Go to Log 509 when installed. The Vanguard can now detect the Builders' Steles from a long distance!",
+    "it": "Vai all'Annotazione 509 quando viene installato. La Vanguard ora può rilevare le Stele dei Costruttori da grande distanza!"
+   },
+   "campi": {
+    "log_installazione": 509
+   },
+   "dubbi": "La seconda frase non è in corsivo, quindi l'ho lasciata nel testo di regole."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b04_9303.webp",
+   "nomi": [
+    "B04"
+   ],
+   "lato": "fronte",
+   "id": "B04",
+   "tipo": "bridge_upgrade_travel",
+   "titolo": {
+    "en": "VISITORS' GATEWAY",
+    "it": "PORTALE DEI VISITATORI"
+   },
+   "testo": {
+    "en": "The Vanguard may now begin a journey to the Visitors' dimension. If you wish to start it, place Landing card L6 in the Planetary Scanner.",
+    "it": "La Vanguard ora può iniziare un viaggio verso la dimensione dei Visitatori. Se desideri iniziarlo, metti la carta Atterraggio L6 nello Scanner Planetario."
+   },
+   "campi": {
+    "carta_atterraggio": "L6"
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b05_9304.webp",
+   "nomi": [
+    "B05"
+   ],
+   "lato": "fronte",
+   "id": "B05",
+   "tipo": "bridge_upgrade_travel",
+   "titolo": {
+    "en": "CRAFTWORLD COORDINATES",
+    "it": "COORDINATE DEL MONDO-NAVE"
+   },
+   "testo": {
+    "en": "The Vanguard may now reach the mysterious Arrogator Craftworld — if you wish to explore it, go to system K3-569 and explore the Dark Space destination.",
+    "it": "La Vanguard ora può raggiungere il misterioso Mondo-Nave degli Arrogatori: se desideri esplorarlo, vai al sistema K3-569 ed esplora la destinazione Spazio Oscuro."
+   },
+   "campi": {
+    "sistema": "K3-569",
+    "destinazione": "Dark Space"
+   },
+   "dubbi": "Traduzioni di 'Craftworld', 'Arrogator' e 'Dark Space' non verificate col glossario ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b06_9305.webp",
+   "nomi": [
+    "B06"
+   ],
+   "lato": "fronte",
+   "id": "B06",
+   "tipo": "bridge_upgrade_travel",
+   "titolo": {
+    "en": "BUILDERS' VAULT ACCESS",
+    "it": "ACCESSO ALLA CRIPTA DEI COSTRUTTORI"
+   },
+   "testo": {
+    "en": "The Vanguard may now begin the final exploration of the Builders' Vault. When in the Eye of the Void system, you may go to Log 460 to start it.",
+    "it": "La Vanguard ora può iniziare l'esplorazione finale della Cripta dei Costruttori. Quando sei nel sistema Occhio del Vuoto, puoi andare all'Annotazione 460 per iniziarla."
+   },
+   "campi": {
+    "log": 460,
+    "sistema": "Eye of the Void"
+   },
+   "dubbi": "Traduzioni di 'Builders' Vault' e 'Eye of the Void' non verificate."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b07_9306.webp",
+   "nomi": [
+    "B07"
+   ],
+   "lato": "fronte",
+   "id": "B07",
+   "tipo": "bridge_upgrade_travel",
+   "titolo": {
+    "en": "ADVANCED STARMAP",
+    "it": "MAPPA STELLARE AVANZATA"
+   },
+   "testo": {
+    "en": "Reduce the cost of travel to any Outbound System by [energyCost] to a minimum of [energyCost].",
+    "it": "Riduci di [energyCost] il costo del viaggio verso qualsiasi Sistema in Uscita, fino a un minimo di [energyCost]."
+   },
+   "testo_colore": {
+    "en": "Utilizing calculations performed by the Builders, it will make our travels between the systems more efficient.",
+    "it": "Sfruttando i calcoli eseguiti dai Costruttori, renderà più efficienti i nostri viaggi tra i sistemi."
+   },
+   "campi": {
+    "riduzione_costo_viaggio_sistema": 1,
+    "costo_minimo": 1
+   },
+   "dubbi": "Icona a pillola nera '1 + fulmine' = energyCost del foglio (costo di 1 Energia di viaggio). Termine 'Outbound' tradotto 'in Uscita' (traduzione ufficiale non verificata)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b08_9307.webp",
+   "nomi": [
+    "B08"
+   ],
+   "lato": "fronte",
+   "id": "B08",
+   "tipo": "bridge_upgrade_travel",
+   "titolo": {
+    "en": "QUANTUM NETWORK",
+    "it": "RETE QUANTISTICA"
+   },
+   "testo": {
+    "en": "You may spend 1 [command] to gain 2 [energy_token].",
+    "it": "Puoi spendere 1 [command] per ottenere 2 [energy_token]."
+   },
+   "testo_colore": {
+    "en": "A new central computer network with upgraded software will expand our research capabilities.",
+    "it": "Una nuova rete informatica centrale con software aggiornato espanderà le nostre capacità di ricerca."
+   },
+   "campi": {
+    "spendi_comando": 1,
+    "ottieni_energia": 2
+   },
+   "dubbi": "Icona esagono nero con stella = segnalino Comando, trascritta come [command] (sul foglio la stella è senza esagono)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b09_9308.webp",
+   "nomi": [
+    "B09"
+   ],
+   "lato": "fronte",
+   "id": "B09",
+   "tipo": "bridge_upgrade",
+   "titolo": {
+    "en": "IMPROVED SOLAR PANELS",
+    "it": "PANNELLI SOLARI MIGLIORATI"
+   },
+   "testo": {
+    "en": "+1 [energy_token] whenever you generate your Energy Pool.",
+    "it": "+1 [energy_token] ogni volta che generi la tua Riserva di Energia."
+   },
+   "testo_colore": {
+    "en": "The advanced, photoelectric inner coating of the Eye of the Void can be replicated to improve the output of the Vanguard's solar panels.",
+    "it": "L'avanzato rivestimento interno fotoelettrico dell'Occhio del Vuoto può essere replicato per migliorare la resa dei pannelli solari della Vanguard."
+   },
+   "campi": {
+    "modifica_energia": 1
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b10_9309.webp",
+   "nomi": [
+    "B10"
+   ],
+   "lato": "fronte",
+   "id": "B10",
+   "tipo": "bridge_upgrade",
+   "titolo": {
+    "en": "VINDICATOR CANNON",
+    "it": "CANNONE VINDICATOR"
+   },
+   "testo": {
+    "en": "The Vanguard is now ready for battle (some story events will check if this card is in the Bridge).",
+    "it": "La Vanguard ora è pronta alla battaglia (alcuni eventi della storia verificheranno se questa carta è sul Ponte)."
+   },
+   "testo_colore": {
+    "en": "A massive, hull-mounted energy cannon, capable of punching through a small moon — or clearing the way through a field of debris.",
+    "it": "Un enorme cannone a energia montato sullo scafo, capace di perforare una piccola luna, o di aprire la strada attraverso un campo di detriti."
+   },
+   "campi": {
+    "flag_storia": "Vindicator Cannon"
+   },
+   "dubbi": "Nome proprio 'Vindicator' lasciato in inglese."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b11_9310.webp",
+   "nomi": [
+    "B11"
+   ],
+   "lato": "fronte",
+   "id": "B11",
+   "tipo": "bridge_upgrade",
+   "titolo": {
+    "en": "HALL OF TROPHIES",
+    "it": "SALA DEI TROFEI"
+   },
+   "testo": {
+    "en": "Whenever you have 3 or fewer [success] at the start of the Bridge step, add 1 [success] to your Success Pool.",
+    "it": "Ogni volta che hai 3 o meno [success] all'inizio della fase del Ponte, aggiungi 1 [success] alla tua Riserva dei Successi."
+   },
+   "testo_colore": {
+    "en": "Treasures discovered during perilous voyages remind those who doubt the true value of their mission.",
+    "it": "I tesori scoperti durante viaggi pericolosi ricordano a chi dubita il vero valore della propria missione."
+   },
+   "campi": {
+    "soglia_successi": 3,
+    "ottieni_successi": 1
+   },
+   "dubbi": "'Success Pool' tradotto 'Riserva dei Successi' (non nel glossario)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b12_9311.webp",
+   "nomi": [
+    "B12"
+   ],
+   "lato": "fronte",
+   "id": "B12",
+   "tipo": "bridge_upgrade",
+   "titolo": {
+    "en": "PROJECT EDEN",
+    "it": "PROGETTO EDEN"
+   },
+   "testo": {
+    "en": "Whenever you have Very Low Morale at the start of the Bridge step, raise Morale.",
+    "it": "Ogni volta che hai il Morale Molto Basso all'inizio della fase del Ponte, alza il Morale."
+   },
+   "testo_colore": {
+    "en": "The iron monument built in the heart of the ship is a symbol of Security's sacrifice for the good of all the Vanguard's crewmembers.",
+    "it": "Il monumento di ferro costruito nel cuore della nave è il simbolo del sacrificio della Sicurezza per il bene di tutti i membri dell'equipaggio della Vanguard."
+   },
+   "campi": {
+    "condizione_morale": "very low",
+    "effetto": "raise_morale"
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b13_9312.webp",
+   "nomi": [
+    "B13"
+   ],
+   "lato": "fronte",
+   "id": "B13",
+   "tipo": "bridge_upgrade",
+   "titolo": {
+    "en": "MEMORIAL BOTS",
+    "it": "ROBOT COMMEMORATIVI"
+   },
+   "testo": {
+    "en": "Every time you Scan a Planet, revealing the first part of a card is free.",
+    "it": "Ogni volta che Scansioni un Pianeta, rivelare la prima parte di una carta è gratuito."
+   },
+   "testo_colore": {
+    "en": "For every one of their fallen, the Engineering Section built one personalized automaton. Now, their fallen are still with them, roaming the decks and helping on the ship.",
+    "it": "Per ognuno dei suoi caduti, il Reparto Ingegneria ha costruito un automa personalizzato. Ora i loro caduti sono ancora con loro, vagano per i ponti e aiutano sulla nave."
+   },
+   "campi": {
+    "scansione_prima_parte_gratis": true
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b14_9313.webp",
+   "nomi": [
+    "B14"
+   ],
+   "lato": "fronte",
+   "id": "B14",
+   "tipo": "bridge_upgrade",
+   "titolo": {
+    "en": "AI AVATARS",
+    "it": "AVATAR IA"
+   },
+   "testo": {
+    "en": "You may spend 4 [energy_token] to gain 1 [command].",
+    "it": "Puoi spendere 4 [energy_token] per ottenere 1 [command]."
+   },
+   "campi": {
+    "spendi_energia": 4,
+    "ottieni_comando": 1
+   },
+   "dubbi": "Icona esagono nero con stella = segnalino Comando, trascritta come [command] (sul foglio la stella è senza esagono)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b15_9314.webp",
+   "nomi": [
+    "B15"
+   ],
+   "lato": "fronte",
+   "id": "B15",
+   "tipo": "bridge_upgrade_travel",
+   "titolo": {
+    "en": "ARMILLARY SPHERES",
+    "it": "SFERE ARMILLARI"
+   },
+   "testo": {
+    "en": "Reduce the cost of visiting destinations by [energyCost] to a minimum of [energyCost].",
+    "it": "Riduci di [energyCost] il costo per visitare le destinazioni, fino a un minimo di [energyCost]."
+   },
+   "campi": {
+    "riduzione_costo_destinazione": 1,
+    "costo_minimo": 1
+   },
+   "dubbi": "Icona a pillola nera '1 + fulmine' = energyCost del foglio (costo di 1 Energia di viaggio)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b16_9315.webp",
+   "nomi": [
+    "B16"
+   ],
+   "lato": "fronte",
+   "id": "B16",
+   "tipo": "bridge_upgrade",
+   "titolo": {
+    "en": "ENCYCLOPEDIA GALACTICA",
+    "it": "ENCICLOPEDIA GALATTICA"
+   },
+   "testo": {
+    "en": "You may spend 1 [command] to gain 3 [success].",
+    "it": "Puoi spendere 1 [command] per ottenere 3 [success]."
+   },
+   "campi": {
+    "spendi_comando": 1,
+    "ottieni_successi": 3
+   },
+   "dubbi": "Icona esagono nero con stella = segnalino Comando, trascritta come [command] (sul foglio la stella è senza esagono)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b17_9316.webp",
+   "nomi": [
+    "B17"
+   ],
+   "lato": "fronte",
+   "id": "B17",
+   "tipo": "bridge_upgrade",
+   "titolo": {
+    "en": "OMNIPRESENCE",
+    "it": "ONNIPRESENZA"
+   },
+   "testo": {
+    "en": "You may move 1 Crewmember to the Resting Crew to return one revealed Situation card to the Possible Siltuations.",
+    "it": "Puoi spostare 1 Membro dell'Equipaggio nell'Equipaggio a Riposo per rimettere una carta Situazione rivelata fra le Situazioni Possibili."
+   },
+   "campi": {
+    "costo": "1 Crewmember -> Resting Crew"
+   },
+   "dubbi": "Refuso stampato 'Siltuations' trascritto fedelmente. 'Resting Crew' = 'Equipaggio a Riposo' (non nel glossario)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/b18_9317.webp",
+   "nomi": [
+    "B18"
+   ],
+   "lato": "fronte",
+   "id": "B18",
+   "tipo": "bridge_upgrade",
+   "titolo": {
+    "en": "STELES DATABASE",
+    "it": "DATABASE DELLE STELE"
+   },
+   "testo": {
+    "en": "Go to Log 55 when installed.",
+    "it": "Vai all'Annotazione 55 quando viene installato."
+   },
+   "campi": {
+    "log_installazione": 55
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o02_11801.webp",
+   "nomi": [
+    "O02"
+   ],
+   "lato": "fronte",
+   "id": "O02",
+   "tipo": "objective",
+   "titolo": {
+    "en": "FROM EONS PAST",
+    "it": "DA EONI PASSATI"
+   },
+   "testo": {
+    "en": "OBJECTIVE: Find more Builders' steles on the nearby worlds: Brimstone in 81 Inf system, Matchstick in NU4 Ceti system, Everstorm in GYF-4 system, or Atropos in Iota Pegasi system.",
+    "it": "OBIETTIVO: Trova altre stele dei Costruttori sui mondi vicini: Brimstone nel sistema 81 Inf, Matchstick nel sistema NU4 Ceti, Everstorm nel sistema GYF-4 o Atropos nel sistema Iota Pegasi."
+   },
+   "testo_colore": {
+    "en": "The steles that predate the local civilizations have to be a part of the Builders' plan – whatever it is.",
+    "it": "Le stele che precedono le civiltà locali devono far parte del piano dei Costruttori, qualunque esso sia."
+   },
+   "campi": {
+    "comando": 2,
+    "situazioni": 1,
+    "obiettivo": {
+     "en": "Find more Builders' steles on the nearby worlds: Brimstone in 81 Inf system, Matchstick in NU4 Ceti system, Everstorm in GYF-4 system, or Atropos in Iota Pegasi system.",
+     "it": "Trova altre stele dei Costruttori sui mondi vicini: Brimstone nel sistema 81 Inf, Matchstick nel sistema NU4 Ceti, Everstorm nel sistema GYF-4 o Atropos nel sistema Iota Pegasi."
+    },
+    "pianeti": [
+     {
+      "pianeta": "Brimstone",
+      "sistema": "81 Inf"
+     },
+     {
+      "pianeta": "Matchstick",
+      "sistema": "NU4 Ceti"
+     },
+     {
+      "pianeta": "Everstorm",
+      "sistema": "GYF-4"
+     },
+     {
+      "pianeta": "Atropos",
+      "sistema": "Iota Pegasi"
+     }
+    ]
+   },
+   "dubbi": "Etichetta stampata 'CAMPAIGN OBJECTIVE'. Nomi di pianeti lasciati in inglese. Icona esagono nero con stella = segnalino Comando, trascritta come [command] (sul foglio la stella è senza esagono)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o03_9202.webp",
+   "nomi": [
+    "O03"
+   ],
+   "lato": "fronte",
+   "id": "O03",
+   "tipo": "objective",
+   "titolo": {
+    "en": "CLOAKED SATELLITE",
+    "it": "SATELLITE OCCULTATO"
+   },
+   "testo": {
+    "en": "OBJECTIVE: Complete the R09 Research Project (The Black Knight).",
+    "it": "OBIETTIVO: Completa il Progetto di Ricerca R09 (Il Cavaliere Nero)."
+   },
+   "testo_colore": {
+    "en": "The strange satellite we brought from the orbit of the previous world seems connected to the Eye of the Void!",
+    "it": "Lo strano satellite che abbiamo portato dall'orbita del mondo precedente sembra collegato all'Occhio del Vuoto!"
+   },
+   "campi": {
+    "comando": 3,
+    "situazioni": 2,
+    "obiettivo": {
+     "en": "Complete the R09 Research Project (The Black Knight).",
+     "it": "Completa il Progetto di Ricerca R09 (Il Cavaliere Nero)."
+    },
+    "progetto_richiesto": "R09"
+   },
+   "dubbi": "Etichetta stampata 'CAMPAIGN OBJECTIVE'. Titolo italiano del progetto R09 'The Black Knight' non verificato. Icona esagono nero con stella = segnalino Comando, trascritta come [command] (sul foglio la stella è senza esagono)."
+  }
+ ]
+}

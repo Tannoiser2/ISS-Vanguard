@@ -80,3 +80,18 @@ func _cerca_img(o: Dictionary) -> void:
 	for k in ["contenuto", "stati"]:
 		for x in o.get(k, []):
 			_cerca_img(x)
+
+## Pagina della mappa dei sistemi per nome (TOI-2, 81 INF…).
+func sistema(nome: String) -> Dictionary:
+	return db.get("sistemi", {}).get(nome.to_upper(), {})
+
+## Pianeta del Planetopedia che corrisponde al nome stampato su una carta Atterraggio.
+func pianeta_per_nome(nome: String) -> String:
+	var n := nome.to_upper().strip_edges()
+	for p in pianeti():
+		if str(p["nome"]).to_upper() == n:
+			return str(p["stato"])
+	for p in pianeti():
+		if n != "" and (str(p["nome"]).to_upper().contains(n) or n.contains(str(p["nome"]).to_upper())):
+			return str(p["stato"])
+	return ""

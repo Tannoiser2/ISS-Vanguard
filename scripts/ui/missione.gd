@@ -12,8 +12,8 @@ signal _scelto(i: int)
 const AR_PIANETA := 2.0121
 const NOMI_SCOPERTE := {"mineral": "Minerale", "microorganism": "Microrganismo", "live_specimen": "Esemplare vivo",
 	"strange_flora": "Flora strana", "alien_tech": "Tecnologia aliena"}
-const NOMI_FERITE := {"wounded": "Ferito", "panicked": "In preda al panico", "freezing": "Congelato", "exhausted": "Allo stremo",
-	"critically_wounded": "Ferito gravemente", "burned": "Ustionato", "just_a_scratch": "Solo un graffio!"}
+const NOMI_FERITE := {"wounded": "Ferito", "panicked": "Panico", "freezing": "Congelamento", "exhausted": "Allo Stremo",
+	"critically_wounded": "Lesione Grave", "burned": "Ustione", "just_a_scratch": "Solo un graffio!"}
 const REP_EN := {"ingegneria": "engineering", "ricognizione": "recon", "scienza": "science", "sicurezza": "security"}
 
 var esp: Esplorazione
@@ -878,7 +878,12 @@ func _pannello_fine() -> void:
 	_pannello.add_child(Tema.pulsante_primario("TORNA ALLA NAVE", func():
 		var arch: Array = Campagna.dati.get_or_add("esplorazioni_concluse", [])
 		arch.append({"pagina": esp.s["pagina"], "finita": esp.s["finita"], "successi": esp.s["successi"], "scoperte": esp.s["scoperte"],
-			"eccezionali": esp.s["eccezionali"], "equipaggio": esp.s["equipaggio"].map(func(m): return {"carta": m["carta"], "reparto": m["reparto"], "ferite": m["ferite"], "morto": m["morto"]})})
+			"eccezionali": esp.s["eccezionali"], "grado_girato": esp.s.get("grado_girato", false), "missioni_rimaste": esp.s["missioni"],
+			"tutorial": esp.s.get("tutorial", false), "settori": esp.s["settori"], "minacce": esp.s["minacce"],
+			"equipaggio": esp.s["equipaggio"].map(func(m): return {"carta": m["carta"], "reparto": m["reparto"], "ferite": m["ferite"], "morto": m["morto"], "nave": int(m.get("nave", -1)), "grado": int(m["grado"])})})
+		var nv = Campagna.dati.get("nave")
+		if nv is Dictionary and str(nv.get("passo", "")) == "esplorazione":
+			nv["passo"] = "partenza"
 		Campagna.dati.erase("esplorazione")
 		Campagna.annota("Esplorazione conclusa: %s" % str(pl.get("pianeta", "")))
 		Campagna.modificata()

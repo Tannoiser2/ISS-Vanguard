@@ -1,0 +1,858 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c04_15603.webp",
+   "nomi": [
+    "C04"
+   ],
+   "id": "C04",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "ADVANCED SECTION TOOLS",
+    "it": "STRUMENTI AVANZATI DEI REPARTI"
+   },
+   "testo_colore": {
+    "en": "Too many times, our Away Team faced tasks they were barely able to handle. These new tools should help us to easier solve challenges that may appear during Planetary Exploration.",
+    "it": "Troppe volte la nostra Squadra di Sbarco ha affrontato compiti che riusciva a malapena a gestire. Questi nuovi strumenti dovrebbero aiutarci a risolvere più facilmente le sfide che possono presentarsi durante l'Esplorazione Planetaria."
+   },
+   "icone_potenziamento": [
+    "technology",
+    "scienceDice"
+   ],
+   "logica_potenziamento": "OR",
+   "stadio_iniziale": 3,
+   "concede": [
+    "Production Project",
+    "Equipment"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED!",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA!"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15603.webp",
+    "titolo": {
+     "en": "ADVANCED SECTION TOOLS",
+     "it": "STRUMENTI AVANZATI DEI REPARTI"
+    },
+    "testo_colore": {
+     "en": "With this wide variety of tools, there's no task our specialists will fear.",
+     "it": "Con questa vasta gamma di strumenti, non c'è compito che i nostri specialisti temeranno."
+    },
+    "testo": {
+     "en": "Move the following cards from \"Unavailable Equipment\" to \"Armory\": E38 (Portable Probe), E39 (Physical Enhancer), E40 (Mapping Minidrones), E41 (Bioanalyser). Move the following card from \"Production Projects\" to the \"Awaiting...\" envelope: C23 (Expert Section Tools).",
+     "it": "Sposta le seguenti carte da \"Attrezzatura Non Disponibile\" ad \"Armeria\": E38 (Portable Probe), E39 (Physical Enhancer), E40 (Mapping Minidrones), E41 (Bioanalyser). Sposta la seguente carta da \"Progetti di Produzione\" nella busta \"In attesa...\": C23 (Expert Section Tools)."
+    },
+    "movimenti": [
+     {
+      "da": "Unavailable Equipment",
+      "a": "Armory",
+      "carte": [
+       "E38",
+       "E39",
+       "E40",
+       "E41"
+      ]
+     },
+     {
+      "da": "Production Projects",
+      "a": "Awaiting...",
+      "carte": [
+       "C23"
+      ]
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate (Attrezzature, Modifiche, Lander) lasciati in inglese: traduzione ufficiale italiana non verificata. Termini 'Armory', 'Unavailable Equipment', 'Awaiting...' tradotti in modo non ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c05_15604.webp",
+   "nomi": [
+    "C05"
+   ],
+   "id": "C05",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "BIOME SUITS",
+    "it": "TUTE PER BIOMI"
+   },
+   "testo_colore": {
+    "en": "Our study into hazardous biomes and situations gave us ideas for many specialized armor and exoskeleton systems.",
+    "it": "Il nostro studio dei biomi e delle situazioni pericolose ci ha dato idee per molti sistemi specializzati di corazze ed esoscheletri."
+   },
+   "icone_potenziamento": [
+    "defence",
+    "biology"
+   ],
+   "logica_potenziamento": "OR",
+   "stadio_iniziale": 2,
+   "concede": [
+    "Equipment",
+    "Production Project"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED!",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA!"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15604.webp",
+    "titolo": {
+     "en": "BIOME SUITS",
+     "it": "TUTE PER BIOMI"
+    },
+    "testo_colore": {
+     "en": "This new generation of armored suits will make our Away Team capable of superhuman feats.",
+     "it": "Questa nuova generazione di tute corazzate renderà la nostra Squadra di Sbarco capace di imprese sovrumane."
+    },
+    "testo": {
+     "en": "Move the following cards from \"Unavailable Equipment\" to \"Armory\": 4x E19 (Mobility Suit MK1), 4x E20 (Stasis Suit MK1), 4x E21 (Protective Suit MK1). Move the following card from \"Production Projects\" to the \"Awaiting...\" envelope: C13 (Advanced Biome Suits).",
+     "it": "Sposta le seguenti carte da \"Attrezzatura Non Disponibile\" ad \"Armeria\": 4x E19 (Mobility Suit MK1), 4x E20 (Stasis Suit MK1), 4x E21 (Protective Suit MK1). Sposta la seguente carta da \"Progetti di Produzione\" nella busta \"In attesa...\": C13 (Advanced Biome Suits)."
+    },
+    "movimenti": [
+     {
+      "da": "Unavailable Equipment",
+      "a": "Armory",
+      "carte": [
+       "4x E19",
+       "4x E20",
+       "4x E21"
+      ]
+     },
+     {
+      "da": "Production Projects",
+      "a": "Awaiting...",
+      "carte": [
+       "C13"
+      ]
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate (Attrezzature, Modifiche, Lander) lasciati in inglese: traduzione ufficiale italiana non verificata. Termini 'Armory', 'Unavailable Equipment', 'Awaiting...' tradotti in modo non ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c07_15606.webp",
+   "nomi": [
+    "C07"
+   ],
+   "id": "C07",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "LANDER FACILITIES",
+    "it": "STRUTTURE DEL LANDER"
+   },
+   "testo_colore": {
+    "en": "Now that we begin to develop larger Landers, we could also create a line of modular facilities to fit in them.",
+    "it": "Ora che iniziamo a sviluppare Lander più grandi, potremmo anche creare una linea di strutture modulari da installarvi."
+   },
+   "icone_potenziamento": [
+    "technology",
+    "defence"
+   ],
+   "logica_potenziamento": "+",
+   "stadio_iniziale": 2,
+   "concede": [
+    "Lander Mods"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED!",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA!"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15606.webp",
+    "titolo": {
+     "en": "LANDER FACILITIES",
+     "it": "STRUTTURE DEL LANDER"
+    },
+    "testo_colore": {
+     "en": "These new facilities fit aboard all of our Landers and provide, Away Team with new, exciting capabilities.",
+     "it": "Queste nuove strutture si adattano a bordo di tutti i nostri Lander e forniscono alla Squadra di Sbarco nuove ed entusiasmanti capacità."
+    },
+    "testo": {
+     "en": "Move the following cards from \"Lander Mods\" to the \"Awaiting...\" envelope: A04 (Expanded Storage), A06 (Med-Bots), A07 (Evac Shuttle).",
+     "it": "Sposta le seguenti carte da \"Modifiche del Lander\" nella busta \"In attesa...\": A04 (Expanded Storage), A06 (Med-Bots), A07 (Evac Shuttle)."
+    },
+    "movimenti": [
+     {
+      "da": "Lander Mods",
+      "a": "Awaiting...",
+      "carte": [
+       "A04",
+       "A06",
+       "A07"
+      ]
+     }
+    ]
+   },
+   "dubbi": "GRANTS stampato 'Lander Mods' (plurale), altrove 'Lander Mod'. Nomi delle carte citate (Attrezzature, Modifiche, Lander) lasciati in inglese: traduzione ufficiale italiana non verificata. Termini 'Armory', 'Unavailable Equipment', 'Awaiting...' tradotti in modo non ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c08_15607.webp",
+   "nomi": [
+    "C08"
+   ],
+   "id": "C08",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "PLANETARY EXPLORATION TRANSPORTERS",
+    "it": "TRASPORTATORI PER L'ESPLORAZIONE PLANETARIA"
+   },
+   "testo_colore": {
+    "en": "Lightweight, automated assistants could help our Away Team overcome challenges more easily.",
+    "it": "Assistenti automatizzati e leggeri potrebbero aiutare la nostra Squadra di Sbarco a superare le sfide più facilmente."
+   },
+   "icone_potenziamento": [
+    "xenology",
+    "scouting"
+   ],
+   "logica_potenziamento": "+",
+   "stadio_iniziale": 2,
+   "concede": [
+    "Equipment"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED!",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA!"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15607.webp",
+    "titolo": {
+     "en": "PLANETARY EXPLORATION TRANSPORTERS",
+     "it": "TRASPORTATORI PER L'ESPLORAZIONE PLANETARIA"
+    },
+    "testo_colore": {
+     "en": "Our P.E.T. vehicle never tires and never gets bored – even with the most mundane tasks.",
+     "it": "Il nostro veicolo P.E.T. non si stanca mai e non si annoia mai, nemmeno con i compiti più banali."
+    },
+    "testo": {
+     "en": "Move the following card from \"Unavailable Equipment\" to \"Armory\": E23 (P.E.T.).",
+     "it": "Sposta la seguente carta da \"Attrezzatura Non Disponibile\" ad \"Armeria\": E23 (P.E.T.)."
+    },
+    "movimenti": [
+     {
+      "da": "Unavailable Equipment",
+      "a": "Armory",
+      "carte": [
+       "E23"
+      ]
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate (Attrezzature, Modifiche, Lander) lasciati in inglese: traduzione ufficiale italiana non verificata. Termini 'Armory', 'Unavailable Equipment', 'Awaiting...' tradotti in modo non ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c09_15608.webp",
+   "nomi": [
+    "C09"
+   ],
+   "id": "C09",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "CERAMIC PLATING",
+    "it": "PLACCATURA IN CERAMICA"
+   },
+   "testo_colore": {
+    "en": "Replicating a recently discovered, ultra-durable ceramic compound could help us build tougher containers.",
+    "it": "Replicare un composto ceramico ultra-resistente scoperto di recente potrebbe aiutarci a costruire contenitori più robusti."
+   },
+   "icone_potenziamento": [
+    "defence",
+    "physical"
+   ],
+   "logica_potenziamento": "+",
+   "stadio_iniziale": 3,
+   "concede": [
+    "Lander Mod"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED!",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA!"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15608.webp",
+    "titolo": {
+     "en": "CERAMIC PLATING",
+     "it": "PLACCATURA IN CERAMICA"
+    },
+    "testo_colore": {
+     "en": "With these new compounds, we constructed several ultra-light and resistant external cargo pods. We were also able to use them in some of our suits.",
+     "it": "Con questi nuovi composti abbiamo costruito diversi moduli di carico esterni ultraleggeri e resistenti. Siamo anche riusciti a usarli in alcune delle nostre tute."
+    },
+    "testo": {
+     "en": "Move the following card from \"Lander Mods\" to the \"Awaiting...\" envelope: A10 (External Cargo Pods).",
+     "it": "Sposta la seguente carta da \"Modifiche del Lander\" nella busta \"In attesa...\": A10 (External Cargo Pods)."
+    },
+    "movimenti": [
+     {
+      "da": "Lander Mods",
+      "a": "Awaiting...",
+      "carte": [
+       "A10"
+      ]
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate (Attrezzature, Modifiche, Lander) lasciati in inglese: traduzione ufficiale italiana non verificata. Termini 'Armory', 'Unavailable Equipment', 'Awaiting...' tradotti in modo non ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c10_15609.webp",
+   "nomi": [
+    "C10"
+   ],
+   "id": "C10",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "PLANETSIDE OUTPOSTS",
+    "it": "AVAMPOSTI PLANETARI"
+   },
+   "testo_colore": {
+    "en": "For a while now, the Away Team has requested some form of shelter they could raise during their exploration of alien worlds. But producing one that's light and small enough to fit in the Lander bay, yet easy enough to assemble, won't be easy.",
+    "it": "Da tempo la Squadra di Sbarco chiede una qualche forma di riparo da montare durante l'esplorazione dei mondi alieni. Ma produrne uno abbastanza leggero e piccolo da entrare nella stiva del Lander, e al tempo stesso facile da assemblare, non sarà semplice."
+   },
+   "icone_potenziamento": [
+    "biology",
+    "construction"
+   ],
+   "logica_potenziamento": "+",
+   "stadio_iniziale": 2,
+   "concede": [
+    "Equipment",
+    "Production Project"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED!",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA!"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15609.webp",
+    "titolo": {
+     "en": "PLANETSIDE OUTPOSTS",
+     "it": "AVAMPOSTI PLANETARI"
+    },
+    "testo_colore": {
+     "en": "We devised two types of planetary constructions that can be built by a single crewmember – and a universal toolkit to go with them.",
+     "it": "Abbiamo ideato due tipi di costruzioni planetarie che possono essere erette da un solo membro dell'equipaggio, e un kit di attrezzi universale da abbinarvi."
+    },
+    "testo": {
+     "en": "Move the following cards from \"Unavailable Equipment\" to \"Armory\": E33 (Scout Craft), E43 (Multitool), E47 (Outpost). Move the following cards to the \"Awaiting...\" envelope: C27 (Outpost Improvements) from \"Production Projects\", A14 (Crew Quarters) from \"Lander Mods\".",
+     "it": "Sposta le seguenti carte da \"Attrezzatura Non Disponibile\" ad \"Armeria\": E33 (Scout Craft), E43 (Multitool), E47 (Outpost). Sposta le seguenti carte nella busta \"In attesa...\": C27 (Outpost Improvements) da \"Progetti di Produzione\", A14 (Crew Quarters) da \"Modifiche del Lander\"."
+    },
+    "movimenti": [
+     {
+      "da": "Unavailable Equipment",
+      "a": "Armory",
+      "carte": [
+       "E33",
+       "E43",
+       "E47"
+      ]
+     },
+     {
+      "da": "Production Projects",
+      "a": "Awaiting...",
+      "carte": [
+       "C27"
+      ]
+     },
+     {
+      "da": "Lander Mods",
+      "a": "Awaiting...",
+      "carte": [
+       "A14"
+      ]
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate (Attrezzature, Modifiche, Lander) lasciati in inglese: traduzione ufficiale italiana non verificata. Termini 'Armory', 'Unavailable Equipment', 'Awaiting...' tradotti in modo non ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c11_15610.webp",
+   "nomi": [
+    "C11"
+   ],
+   "id": "C11",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "MAIN SHIP ARMAMENT",
+    "it": "ARMAMENTO PRINCIPALE DELLA NAVE"
+   },
+   "testo_colore": {
+    "en": "ISS Vanguard was never meant for war, but we can no longer rule out a conflict with another intelligent race. This massive energy cannon could potentially keep us safe.",
+    "it": "La ISS Vanguard non è mai stata pensata per la guerra, ma non possiamo più escludere un conflitto con un'altra razza intelligente. Questo enorme cannone a energia potrebbe tenerci al sicuro."
+   },
+   "icone_potenziamento": [
+    "defence",
+    "scienceDice"
+   ],
+   "logica_potenziamento": "+",
+   "stadio_iniziale": 1,
+   "concede": [
+    "Bridge Upgrade",
+    "Production Project"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED!",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA!"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15610.webp",
+    "titolo": {
+     "en": "MAIN SHIP ARMAMENT",
+     "it": "ARMAMENTO PRINCIPALE DELLA NAVE"
+    },
+    "testo_colore": {
+     "en": "The Security Section is ecstatic, and many crewmembers feel safer, but some of us can't help but think it was a giant waste of resources...",
+     "it": "Il Reparto Sicurezza è entusiasta e molti membri dell'equipaggio si sentono più sicuri, ma alcuni di noi non possono fare a meno di pensare che sia stato un enorme spreco di risorse..."
+    },
+    "testo": {
+     "en": "Move the following cards to the \"Awaiting...\" envelope: B10 (Vindicator Cannon) from \"Bridge Upgrades\", C14 (Advanced Weaponry) from \"Production Projects\".",
+     "it": "Sposta le seguenti carte nella busta \"In attesa...\": B10 (Vindicator Cannon) da \"Potenziamenti del Ponte\", C14 (Advanced Weaponry) da \"Progetti di Produzione\"."
+    },
+    "movimenti": [
+     {
+      "da": "Bridge Upgrades",
+      "a": "Awaiting...",
+      "carte": [
+       "B10"
+      ]
+     },
+     {
+      "da": "Production Projects",
+      "a": "Awaiting...",
+      "carte": [
+       "C14"
+      ]
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate (Attrezzature, Modifiche, Lander) lasciati in inglese: traduzione ufficiale italiana non verificata. Termini 'Armory', 'Unavailable Equipment', 'Awaiting...' tradotti in modo non ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c12_15611.webp",
+   "nomi": [
+    "C12"
+   ],
+   "id": "C12",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "SECTION SUITS",
+    "it": "TUTE DEI REPARTI"
+   },
+   "testo_colore": {
+    "en": "After several ground missions, each Section submitted its own idea for a specialized suit. We could manufacture them all at once, using as many standardized parts as possible.",
+    "it": "Dopo diverse missioni a terra, ogni Reparto ha proposto la propria idea per una tuta specializzata. Potremmo produrle tutte insieme, usando quante più parti standardizzate possibile."
+   },
+   "icone_potenziamento": [
+    "biology"
+   ],
+   "logica_potenziamento": "",
+   "stadio_iniziale": 2,
+   "livello_tecnologico_richiesto": 3,
+   "concede": [
+    "Equipment"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED!",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA!"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15611.webp",
+    "titolo": {
+     "en": "SECTION SUITS",
+     "it": "TUTE DEI REPARTI"
+    },
+    "testo_colore": {
+     "en": "These four new suit types require extensive specialized training – but they do bolster our Away Team even further.",
+     "it": "Questi quattro nuovi tipi di tuta richiedono un addestramento specialistico approfondito, ma rafforzano ulteriormente la nostra Squadra di Sbarco."
+    },
+    "testo": {
+     "en": "Move the following cards from \"Unavailable Equipment\" to \"Armory\": E24 (Hazmat Suit), E25 (Heavy Suit), E27 (Sensor Suit), E30 (Stillsuit).",
+     "it": "Sposta le seguenti carte da \"Attrezzatura Non Disponibile\" ad \"Armeria\": E24 (Hazmat Suit), E25 (Heavy Suit), E27 (Sensor Suit), E30 (Stillsuit)."
+    },
+    "movimenti": [
+     {
+      "da": "Unavailable Equipment",
+      "a": "Armory",
+      "carte": [
+       "E24",
+       "E25",
+       "E27",
+       "E30"
+      ]
+     }
+    ]
+   },
+   "dubbi": "Riquadro BOOST con una sola icona (biology). Nomi delle carte citate (Attrezzature, Modifiche, Lander) lasciati in inglese: traduzione ufficiale italiana non verificata. Termini 'Armory', 'Unavailable Equipment', 'Awaiting...' tradotti in modo non ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c13_15612.webp",
+   "nomi": [
+    "C13"
+   ],
+   "id": "C13",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "ADVANCED BIOME SUITS",
+    "it": "TUTE PER BIOMI AVANZATE"
+   },
+   "testo_colore": {
+    "en": "Our previous biome suit projects are getting long in the tooth. We should update them with newer, stronger materials and more efficient energy sources.",
+    "it": "I nostri precedenti progetti di tute per biomi stanno invecchiando. Dovremmo aggiornarli con materiali nuovi e più resistenti e fonti di energia più efficienti."
+   },
+   "icone_potenziamento": [
+    "scouting",
+    "xenology"
+   ],
+   "logica_potenziamento": "+",
+   "stadio_iniziale": 1,
+   "livello_tecnologico_richiesto": 4,
+   "concede": [
+    "Equipment"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED!",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA!"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15612.webp",
+    "titolo": {
+     "en": "ADVANCED BIOME SUITS",
+     "it": "TUTE PER BIOMI AVANZATE"
+    },
+    "testo_colore": {
+     "en": "As a direct upgrade, these new designs make our previous Biome Suits obsolete.",
+     "it": "Come aggiornamento diretto, questi nuovi modelli rendono obsolete le nostre precedenti Tute per Biomi."
+    },
+    "testo": {
+     "en": "Remove the following cards in \"Armory\" from the game: 4x E19 (Mobility Suit MK1), 4x E20 (Stasis Suit MK1), 4x E21 (Protective Suit MK1). Move the following cards from \"Unavailable Equipment\" to \"Armory\": E51 (Advanced Toolkit), 4x E54 (Mobility Suit MK2), 4x E55 (Stasis Suit MK2), 4x E56 (Protective Suit MK2).",
+     "it": "Rimuovi dal gioco le seguenti carte presenti in \"Armeria\": 4x E19 (Mobility Suit MK1), 4x E20 (Stasis Suit MK1), 4x E21 (Protective Suit MK1). Sposta le seguenti carte da \"Attrezzatura Non Disponibile\" ad \"Armeria\": E51 (Advanced Toolkit), 4x E54 (Mobility Suit MK2), 4x E55 (Stasis Suit MK2), 4x E56 (Protective Suit MK2)."
+    },
+    "movimenti": [
+     {
+      "da": "Armory",
+      "a": "removed_from_game",
+      "carte": [
+       "4x E19",
+       "4x E20",
+       "4x E21"
+      ]
+     },
+     {
+      "da": "Unavailable Equipment",
+      "a": "Armory",
+      "carte": [
+       "E51",
+       "4x E54",
+       "4x E55",
+       "4x E56"
+      ]
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate (Attrezzature, Modifiche, Lander) lasciati in inglese: traduzione ufficiale italiana non verificata. Termini 'Armory', 'Unavailable Equipment', 'Awaiting...' tradotti in modo non ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c14_15613.webp",
+   "nomi": [
+    "C14"
+   ],
+   "id": "C14",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "ADVANCED WEAPONRY",
+    "it": "ARMAMENTI AVANZATI"
+   },
+   "testo_colore": {
+    "en": "Thanks to our breakthroughs in laser and force field technologies, we could mass-produce a modular turret to deploy on ground missions..",
+    "it": "Grazie alle nostre scoperte nelle tecnologie laser e dei campi di forza, potremmo produrre in serie una torretta modulare da schierare nelle missioni a terra."
+   },
+   "icone_potenziamento": [
+    "defence",
+    "construction"
+   ],
+   "logica_potenziamento": "+",
+   "stadio_iniziale": 2,
+   "concede": [
+    "Equipment"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED!",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA!"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15613.webp",
+    "titolo": {
+     "en": "ADVANCED WEAPONRY",
+     "it": "ARMAMENTI AVANZATI"
+    },
+    "testo_colore": {
+     "en": "The LF-48B Modular Turret can be configured to help us guard areas against hostile life – or to deploy protective force fields.",
+     "it": "La Torretta Modulare LF-48B può essere configurata per aiutarci a difendere aree dalle forme di vita ostili, oppure per generare campi di forza protettivi."
+    },
+    "testo": {
+     "en": "Move the following cards from \"Unavailable Equipment\" to \"Armory\": E62 (Modular Turret), E63 (Shield Unit), E64 (Cannon Unit).",
+     "it": "Sposta le seguenti carte da \"Attrezzatura Non Disponibile\" ad \"Armeria\": E62 (Modular Turret), E63 (Shield Unit), E64 (Cannon Unit)."
+    },
+    "movimenti": [
+     {
+      "da": "Unavailable Equipment",
+      "a": "Armory",
+      "carte": [
+       "E62",
+       "E63",
+       "E64"
+      ]
+     }
+    ]
+   },
+   "dubbi": "Testo di colore stampato con doppio punto finale ('missions..'). Nomi delle carte citate (Attrezzature, Modifiche, Lander) lasciati in inglese: traduzione ufficiale italiana non verificata. Termini 'Armory', 'Unavailable Equipment', 'Awaiting...' tradotti in modo non ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c15_15614.webp",
+   "nomi": [
+    "C15"
+   ],
+   "id": "C15",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "IMPROVED VANGUARD DRIVE",
+    "it": "PROPULSORE VANGUARD MIGLIORATO"
+   },
+   "testo_colore": {
+    "en": "We now not only know how Vanguard's alien core works – we know how to improve it. This will allow us to reach many new star systems!",
+    "it": "Ora non solo sappiamo come funziona il nucleo alieno della Vanguard: sappiamo anche come migliorarlo. Questo ci permetterà di raggiungere molti nuovi sistemi stellari!"
+   },
+   "icone_potenziamento": [
+    "technology",
+    "xenology"
+   ],
+   "logica_potenziamento": "+",
+   "stadio_iniziale": 1,
+   "concede": [
+    "Bridge Upgrade",
+    "Lander Mod"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED!",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA!"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15614.webp",
+    "titolo": {
+     "en": "IMPROVED VANGUARD DRIVE",
+     "it": "PROPULSORE VANGUARD MIGLIORATO"
+    },
+    "testo_colore": {
+     "en": "Upgrading the drive while the ship was in flight was an enormous engineering effort. But with it completed, we can now fly to distant destinations.",
+     "it": "Potenziare il propulsore con la nave in volo è stato un enorme sforzo ingegneristico. Ma ora che è completato, possiamo volare verso destinazioni lontane."
+    },
+    "testo": {
+     "en": "Move the following cards to the \"Awaiting...\" envelope: B02 (Improved Engines) from \"Bridge Upgrades\", A29 (Fusion Boosters) from \"Lander Mods\".",
+     "it": "Sposta le seguenti carte nella busta \"In attesa...\": B02 (Improved Engines) da \"Potenziamenti del Ponte\", A29 (Fusion Boosters) da \"Modifiche del Lander\"."
+    },
+    "movimenti": [
+     {
+      "da": "Bridge Upgrades",
+      "a": "Awaiting...",
+      "carte": [
+       "B02"
+      ]
+     },
+     {
+      "da": "Lander Mods",
+      "a": "Awaiting...",
+      "carte": [
+       "A29"
+      ]
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate (Attrezzature, Modifiche, Lander) lasciati in inglese: traduzione ufficiale italiana non verificata. Termini 'Armory', 'Unavailable Equipment', 'Awaiting...' tradotti in modo non ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c16_15615.webp",
+   "nomi": [
+    "C16"
+   ],
+   "id": "C16",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "DRAGONFLY LANDER",
+    "it": "LANDER DRAGONFLY"
+   },
+   "testo_colore": {
+    "en": "The Recon Section ordered a new, lighter, faster Lander, capable of flight in a wide range of atmospheric conditions.",
+    "it": "Il Reparto Ricognizione ha ordinato un nuovo Lander, più leggero e veloce, capace di volare in un'ampia gamma di condizioni atmosferiche."
+   },
+   "icone_potenziamento": [
+    "scienceDice",
+    "technology"
+   ],
+   "logica_potenziamento": "+",
+   "stadio_iniziale": 1,
+   "concede": [
+    "Lander Mod",
+    "Lander"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED!",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA!"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15615.webp",
+    "titolo": {
+     "en": "DRAGONFLY LANDER",
+     "it": "LANDER DRAGONFLY"
+    },
+    "testo_colore": {
+     "en": "Dragonfly is the perfect solution for landings that require agility and speed.",
+     "it": "Il Dragonfly è la soluzione perfetta per gli atterraggi che richiedono agilità e velocità."
+    },
+    "testo": {
+     "en": "Move the following cards to the \"Awaiting...\" envelope: A13 (Additional Rocket Boosters) from \"Lander Mods\", Dragonfly Lander card.",
+     "it": "Sposta le seguenti carte nella busta \"In attesa...\": A13 (Additional Rocket Boosters) da \"Modifiche del Lander\", carta Lander Dragonfly."
+    },
+    "movimenti": [
+     {
+      "da": "Lander Mods",
+      "a": "Awaiting...",
+      "carte": [
+       "A13"
+      ]
+     },
+     {
+      "da": "",
+      "a": "Awaiting...",
+      "carte": [
+       "Dragonfly Lander"
+      ]
+     }
+    ]
+   },
+   "dubbi": "Origine della carta Lander Dragonfly non indicata sul retro. Nomi delle carte citate (Attrezzature, Modifiche, Lander) lasciati in inglese: traduzione ufficiale italiana non verificata. Termini 'Armory', 'Unavailable Equipment', 'Awaiting...' tradotti in modo non ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c17_15616.webp",
+   "nomi": [
+    "C17"
+   ],
+   "id": "C17",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "FAUSTSCHLAG LANDER",
+    "it": "LANDER FAUSTSCHLAG"
+   },
+   "testo_colore": {
+    "en": "This heavily armored craft will protect the Away Team and their cargo better than any other Lander.",
+    "it": "Questo velivolo pesantemente corazzato proteggerà la Squadra di Sbarco e il suo carico meglio di qualsiasi altro Lander."
+   },
+   "icone_potenziamento": [
+    "defence",
+    "construction"
+   ],
+   "logica_potenziamento": "+",
+   "stadio_iniziale": 1,
+   "concede": [
+    "Lander",
+    "Equipment"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED!",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA!"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15616.webp",
+    "titolo": {
+     "en": "FAUSTSCHLAG LANDER",
+     "it": "LANDER FAUSTSCHLAG"
+    },
+    "testo_colore": {
+     "en": "Faustschlag is almost three times heavier than the Space Ranger, but it outperforms it in almost every way.",
+     "it": "Il Faustschlag è quasi tre volte più pesante dello Space Ranger, ma lo supera quasi sotto ogni aspetto."
+    },
+    "testo": {
+     "en": "Move the following card to the \"Awaiting...\" envelope: Faustschlag Lander card. Move the following card from \"Unavailable Equipment\" to \"Armory\": E61 (Pod Launcher).",
+     "it": "Sposta la seguente carta nella busta \"In attesa...\": carta Lander Faustschlag. Sposta la seguente carta da \"Attrezzatura Non Disponibile\" ad \"Armeria\": E61 (Pod Launcher)."
+    },
+    "movimenti": [
+     {
+      "da": "",
+      "a": "Awaiting...",
+      "carte": [
+       "Faustschlag Lander"
+      ]
+     },
+     {
+      "da": "Unavailable Equipment",
+      "a": "Armory",
+      "carte": [
+       "E61"
+      ]
+     }
+    ]
+   },
+   "dubbi": "Origine della carta Lander Faustschlag non indicata sul retro. Nomi delle carte citate (Attrezzature, Modifiche, Lander) lasciati in inglese: traduzione ufficiale italiana non verificata. Termini 'Armory', 'Unavailable Equipment', 'Awaiting...' tradotti in modo non ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c18_15617.webp",
+   "nomi": [
+    "C18"
+   ],
+   "id": "C18",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "IMPROVED SPACE RANGER",
+    "it": "SPACE RANGER MIGLIORATO"
+   },
+   "testo_colore": {
+    "en": "Our basic Lander is now woefully outdated. Using our newly researched technologies, we could make a new, flexible, and universal baseline landing craft.",
+    "it": "Il nostro Lander di base è ormai tristemente superato. Usando le tecnologie appena studiate, potremmo realizzare un nuovo velivolo d'atterraggio di base, flessibile e universale."
+   },
+   "icone_potenziamento": [
+    "xenology",
+    "technology",
+    "scienceDice"
+   ],
+   "logica_potenziamento": "+",
+   "stadio_iniziale": 1,
+   "concede": [
+    "Lander"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED!",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA!"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15617.webp",
+    "titolo": {
+     "en": "IMPROVED SPACE RANGER",
+     "it": "SPACE RANGER MIGLIORATO"
+    },
+    "testo_colore": {
+     "en": "Our new Void Ranger offers a perfect balance of speed, capacity, and protection.",
+     "it": "Il nostro nuovo Void Ranger offre un equilibrio perfetto tra velocità, capacità e protezione."
+    },
+    "testo": {
+     "en": "Open your Ship Book on page 19 (Hangar cardholder). Remove the Space Ranger Lander card from the game and place the Void Ranger Lander card in the Basic Lander slot. Then, return to your current step of the Production Complex on page 12.",
+     "it": "Apri il Manuale della Nave a pagina 19 (portacarte dell'Hangar). Rimuovi dal gioco la carta Lander Space Ranger e metti la carta Lander Void Ranger nello spazio del Lander di base. Poi torna al passo in corso del Complesso di Produzione a pagina 12."
+    },
+    "movimenti": [
+     {
+      "da": "Hangar (Basic Lander slot)",
+      "a": "removed_from_game",
+      "carte": [
+       "Space Ranger Lander"
+      ]
+     },
+     {
+      "da": "",
+      "a": "Hangar (Basic Lander slot)",
+      "carte": [
+       "Void Ranger Lander"
+      ]
+     }
+    ]
+   },
+   "dubbi": "Tre icone BOOST unite da '+' (xenology+technology+scienceDice). Nomi delle carte citate (Attrezzature, Modifiche, Lander) lasciati in inglese: traduzione ufficiale italiana non verificata. Termini 'Armory', 'Unavailable Equipment', 'Awaiting...' tradotti in modo non ufficiale."
+  }
+ ]
+}

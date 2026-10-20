@@ -53,7 +53,7 @@ func prepara(pagina: String, pianeta: Dictionary, squadra: Array, lander: Dictio
 		"max_scoperte": int(lander.get("scoperte_max", 5))}
 	s["equipaggio"] = []
 	for m in squadra:
-		var c := {"carta": m.get("carta", ""), "file": m.get("file", ""), "reparto": m.get("reparto", ""), "grado": int(m.get("grado", 1)),
+		var c := {"carta": m.get("carta", ""), "file": m.get("file", ""), "nave": int(m.get("nave", -1)), "reparto": m.get("reparto", ""), "grado": int(m.get("grado", 1)),
 			"settore": int(m.get("settore", sett_lander if sett_lander > 0 else 1)), "dadi": [], "dadi_ferita": 0, "ferite": [],
 			"mano": [], "mazzo": (m.get("mazzo", []) as Array).duplicate(), "scarti": [], "cariche": int(m.get("cariche", 0)),
 			"conv": m.get("conv", {}), "turno_fatto": false, "morto": false, "attrezzatura": (m.get("attrezzatura", []) as Array).duplicate()}

@@ -53,6 +53,21 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   - fine del turno con limite di carte e Evento (effetto principale o secondario secondo i biomi),
     annotazioni lette entrando nei settori, carte chieste dal Logbook piazzate nel settore giusto;
   - tutto lo stato dell'esplorazione è salvato nella campagna e si riprende da dove si era rimasti.
+- **Gestione della Nave automatizzata** (pulsante GESTIONE NAVE): il Ship Book una pagina alla volta,
+  con a sinistra i passi e al centro solo quello corrente.
+  - inizio della campagna dopo il tutorial o con l'inizio rapido (reclute a scelta per ogni Reparto);
+  - Ponte: installazione delle carte dalla busta "In attesa…", segnalini Comando ed Energia da Obiettivo
+    e Livello tecnologico, effetti delle Situazioni in sospeso, nuove Situazioni (in base al Morale);
+  - Mappa stellare: rotte con costo in Energia e potenziamenti richiesti, destinazioni, carta Atterraggio
+    nello scanner e scansione delle sue parti (con i Membri in ricognizione);
+  - Strutture (1 Comando ciascuna): Laboratorio (costi in Scoperte, parole chiave, retro dei progetti con
+    gli spostamenti di carte), Complesso produttivo (code a 3 stadi, avvio, potenziamento con le icone di
+    conversione), Caserma (reclute in base al Morale, addestramento, trasferimenti), Sala situazioni;
+  - Hangar e Procedura di lancio: scelta del Lander e delle modifiche, Squadra di Sbarco con i dadi
+    sistemati secondo la plancia del Reparto, attrezzatura, briefing e passaggio all'esplorazione;
+  - rientro: Missione fallita, Scoperte in eccesso, scarico, infermeria (recupero, terapisti, prove di
+    sopravvivenza), Muro della memoria, promozioni, compravendita dei dadi, Punto di salvataggio;
+  - le carte citate dal Logbook si mettono nella busta, nell'Armeria o fra le Situazioni con un clic.
 - **Regolamento** e riassunto delle regole (inglese, dai PDF del modulo) consultabili in gioco.
 
 ## Comandi del tavolo
@@ -89,15 +104,14 @@ tests/foto.gd              ISS_PROVA=1 xvfb-run godot --path . -s res://tests/fo
 tests/prova_dadi.gd        prove del motore dei dadi
 tests/prova_missione.gd    partita simulata a caso dell'esplorazione (-- p.18-19 500)
 tests/foto_missione.gd     screenshot della preparazione e dell'esplorazione
+tests/prova_nave.gd        giro completo della Gestione della Nave (-- foto per gli screenshot)
 tools/unisci_carte.py      trascrizioni delle carte (data/carte) -> data/carte_db.json
 ```
 
 ## Da fare / limiti attuali
 - Le carte sono quelle **inglesi** del modulo TTS: le scansioni italiane si sostituiscono rigenerando
   `web/img/carte` (stessi nomi file) senza toccare il codice.
-- Automatizzati: Logbook ed esplorazione planetaria. Da fare: Gestione della nave (Ship Book),
-  atterraggio, Minacce che si muovono da sole, abilità dei Membri e attrezzatura (oggi da applicare
-  con CORREZIONI), revisione dell'interfaccia a settori anche per la nave.
+- Automatizzati: Logbook, esplorazione planetaria e Gestione della Nave. Vedi sotto cosa resta a mano.
 - Dado Pericolo: "Perdi 1 [testa]" (tabelle F, G, H) resta da applicare a mano, il significato
   dell'icona è da verificare.
 - Deadly Frontier e Lost Fleet: paragrafi completi, componenti solo del gioco base.

@@ -1,0 +1,924 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c19_15618.webp",
+   "nomi": [
+    "C19"
+   ],
+   "id": "C19",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "VISITORS' RIFT",
+    "it": "SQUARCIO DEI VISITATORI"
+   },
+   "testo_colore": {
+    "en": "Reaching the dimension the Visitors disappeared into requires us to repurpose one of their cores as a gateway.",
+    "it": "Raggiungere la dimensione in cui sono scomparsi i Visitatori richiede di riconvertire uno dei loro nuclei in un portale."
+   },
+   "icone_potenziamento": [
+    "xenology"
+   ],
+   "potenziamento_req": "xenology",
+   "stadio_iniziale": 3,
+   "concede": [
+    "Bridge Upgrade"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15618.webp",
+    "titolo": {
+     "en": "VISITORS' RIFT",
+     "it": "SQUARCIO DEI VISITATORI"
+    },
+    "testo_colore": {
+     "en": "The way to another dimension now stands open...",
+     "it": "La via verso un'altra dimensione ora è aperta..."
+    },
+    "testo": {
+     "en": "Move the following card from \"Bridge Upgrades\" to the \"Awaiting...\" envelope:\n• B04 (Visitors' Gateway)",
+     "it": "Sposta la seguente carta da \"Potenziamenti del Ponte\" alla busta \"In attesa...\":\n• B04 (Visitors' Gateway)"
+    },
+    "sposta": [
+     {
+      "carta": "B04",
+      "nome": "Visitors' Gateway",
+      "da": "Bridge Upgrades",
+      "a": "Awaiting..."
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate fra parentesi lasciati in inglese anche nella traduzione (nomi italiani ufficiali non noti)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c20_15619.webp",
+   "nomi": [
+    "C20"
+   ],
+   "id": "C20",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "ADVANCED PLANETARY DROIDS",
+    "it": "DROIDI PLANETARI AVANZATI"
+   },
+   "testo_colore": {
+    "en": "With so many advancements in AI and robotics, it no longer makes sense to send our Away Team to dangerous worlds alone.",
+    "it": "Con così tanti progressi nell'IA e nella robotica, non ha più senso mandare la nostra Squadra di Sbarco da sola su mondi pericolosi."
+   },
+   "icone_potenziamento": [
+    "construction",
+    "gathering"
+   ],
+   "potenziamento_req": "construction+gathering",
+   "stadio_iniziale": 2,
+   "concede": [
+    "Equipment"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15619.webp",
+    "titolo": {
+     "en": "ADVANCED PLANETARY DROIDS",
+     "it": "DROIDI PLANETARI AVANZATI"
+    },
+    "testo_colore": {
+     "en": "A new family of BD-9 exploration droids can be equipped for a variety of tasks. We were even able to use the droid's framework to construct a powerful, automated drilling rig for our outposts!",
+     "it": "Una nuova famiglia di droidi da esplorazione BD-9 può essere equipaggiata per svariati compiti. Siamo persino riusciti a usare la struttura del droide per costruire una potente trivella automatica per i nostri avamposti!"
+    },
+    "testo": {
+     "en": "Move the following cards from \"Unavailable Equipment\" to \"Armory\":\n• E60 (Drill Rig)\n• E65 (Seeker Droid)\n• E66 (Military Droid)\n• E67 (Adaptive Droid)\n• E68 (Repair Droid)\n• E70 (Scout Droid)",
+     "it": "Sposta le seguenti carte da \"Attrezzatura non disponibile\" ad \"Armeria\":\n• E60 (Drill Rig)\n• E65 (Seeker Droid)\n• E66 (Military Droid)\n• E67 (Adaptive Droid)\n• E68 (Repair Droid)\n• E70 (Scout Droid)"
+    },
+    "sposta": [
+     {
+      "carta": "E60",
+      "nome": "Drill Rig",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E65",
+      "nome": "Seeker Droid",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E66",
+      "nome": "Military Droid",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E67",
+      "nome": "Adaptive Droid",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E68",
+      "nome": "Repair Droid",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E70",
+      "nome": "Scout Droid",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     }
+    ]
+   },
+   "dubbi": "E69 non compare nell'elenco (salto da E68 a E70): letto così sulla carta. Nomi delle carte citate fra parentesi lasciati in inglese anche nella traduzione (nomi italiani ufficiali non noti). BOOST con '+': servono tutte le icone (non alternative); campo potenziamento_req aggiunto per distinguerlo da '- OR -'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c21_15620.webp",
+   "nomi": [
+    "C21"
+   ],
+   "id": "C21",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "SUB-SPACE LANDER FACILITIES",
+    "it": "STRUTTURE SUBSPAZIALI PER LANDER"
+   },
+   "testo_colore": {
+    "en": "Now that we know how to bend space itself, we can fit even more into our Landers.",
+    "it": "Ora che sappiamo piegare lo spazio stesso, possiamo far entrare ancora più cose nei nostri Lander."
+   },
+   "icone_potenziamento": [
+    "gathering",
+    "scienceDice"
+   ],
+   "potenziamento_req": "gathering+scienceDice",
+   "stadio_iniziale": 2,
+   "concede": [
+    "Lander Mods"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15620.webp",
+    "titolo": {
+     "en": "SUBSPACE LANDER FACILITIES",
+     "it": "STRUTTURE SUBSPAZIALI PER LANDER"
+    },
+    "testo_colore": {
+     "en": "Small on the outside, large on the inside is now more than just a figure of speech.",
+     "it": "Piccolo fuori, grande dentro: ora è più di un semplice modo di dire."
+    },
+    "testo": {
+     "en": "Move the following cards from \"Lander Mods\" to the \"Awaiting...\" envelope:\n• A28 (Subspace Containers)\n• A30 (Crew Apartments)",
+     "it": "Sposta le seguenti carte da \"Modifiche del Lander\" alla busta \"In attesa...\":\n• A28 (Subspace Containers)\n• A30 (Crew Apartments)"
+    },
+    "sposta": [
+     {
+      "carta": "A28",
+      "nome": "Subspace Containers",
+      "da": "Lander Mods",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "A30",
+      "nome": "Crew Apartments",
+      "da": "Lander Mods",
+      "a": "Awaiting..."
+     }
+    ]
+   },
+   "dubbi": "Titolo scritto 'SUB-SPACE' sul fronte e 'SUBSPACE' sul retro. Nomi delle carte citate fra parentesi lasciati in inglese anche nella traduzione (nomi italiani ufficiali non noti). BOOST con '+': servono tutte le icone (non alternative); campo potenziamento_req aggiunto per distinguerlo da '- OR -'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c22_15621.webp",
+   "nomi": [
+    "C22"
+   ],
+   "id": "C22",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "MINIATURIZED QUANTUM COMPUTERS",
+    "it": "COMPUTER QUANTISTICI MINIATURIZZATI"
+   },
+   "testo_colore": {
+    "en": "We already know how to create a functional quantum computer. But building them small enough to fit drones and robots is another matter entirely.",
+    "it": "Sappiamo già come creare un computer quantistico funzionante. Ma costruirne di abbastanza piccoli da stare in droni e robot è tutta un'altra faccenda."
+   },
+   "icone_potenziamento": [
+    "scienceDice",
+    "technology"
+   ],
+   "potenziamento_req": "scienceDice+technology",
+   "stadio_iniziale": 2,
+   "concede": [
+    "Lander Mods",
+    "Facility Upgrade",
+    "Equipment"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15621.webp",
+    "titolo": {
+     "en": "MINIATURIZED QUANTUM COMPUTERS",
+     "it": "COMPUTER QUANTISTICI MINIATURIZZATI"
+    },
+    "testo_colore": {
+     "en": "We've produced a new generation of versatile robots equipped with quantum computing units.",
+     "it": "Abbiamo prodotto una nuova generazione di robot versatili dotati di unità di calcolo quantistico."
+    },
+    "testo": {
+     "en": "Move the following cards to the \"Awaiting...\" envelope:\n• A23 (Retriever Bot),\n• A27 (AI Pilot Assist) from \"Lander Mods\"\n• F05 (Robotic Assistants) from \"Facility Upgrades\"\nMove the following cards from \"Unavailable Equipment\" to \"Armory\":\n• E29 (Assistant Drones)\n• E44 (Emergency Datalink)",
+     "it": "Sposta le seguenti carte nella busta \"In attesa...\":\n• A23 (Retriever Bot),\n• A27 (AI Pilot Assist) da \"Modifiche del Lander\"\n• F05 (Robotic Assistants) da \"Potenziamenti delle Strutture\"\nSposta le seguenti carte da \"Attrezzatura non disponibile\" ad \"Armeria\":\n• E29 (Assistant Drones)\n• E44 (Emergency Datalink)"
+    },
+    "sposta": [
+     {
+      "carta": "A23",
+      "nome": "Retriever Bot",
+      "da": "Lander Mods",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "A27",
+      "nome": "AI Pilot Assist",
+      "da": "Lander Mods",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "F05",
+      "nome": "Robotic Assistants",
+      "da": "Facility Upgrades",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "E29",
+      "nome": "Assistant Drones",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E44",
+      "nome": "Emergency Datalink",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     }
+    ]
+   },
+   "dubbi": "Per A23 la provenienza non è scritta esplicitamente: dedotta 'Lander Mods' (prefisso A, riga seguente). Nomi delle carte citate fra parentesi lasciati in inglese anche nella traduzione (nomi italiani ufficiali non noti). BOOST con '+': servono tutte le icone (non alternative); campo potenziamento_req aggiunto per distinguerlo da '- OR -'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c23_15622.webp",
+   "nomi": [
+    "C23"
+   ],
+   "id": "C23",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "EXPERT SECTION TOOLS",
+    "it": "ATTREZZI ESPERTI DEI REPARTI"
+   },
+   "testo_colore": {
+    "en": "More tools for the Away Team.",
+    "it": "Più attrezzi per la Squadra di Sbarco."
+   },
+   "icone_potenziamento": [
+    "construction",
+    "gathering"
+   ],
+   "potenziamento_req": "construction+gathering",
+   "stadio_iniziale": 1,
+   "livello_tecnologico_richiesto": 4,
+   "concede": [
+    "Equipment"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15622.webp",
+    "titolo": {
+     "en": "EXPERT SECTION TOOLS",
+     "it": "ATTREZZI ESPERTI DEI REPARTI"
+    },
+    "testo_colore": {
+     "en": "This emergency equipment should help our teams if they find themselves pushed up against a wall.",
+     "it": "Questa attrezzatura d'emergenza dovrebbe aiutare le nostre squadre se si ritrovano con le spalle al muro."
+    },
+    "testo": {
+     "en": "Move the following cards from \"Unavailable Equipment\" to \"Armory\":\n• E49 (Stimulant Injector)\n• E50 (Stimulant Injector)\n• E52 (Stimulant Injector)\n• E53 (Survival Kit)",
+     "it": "Sposta le seguenti carte da \"Attrezzatura non disponibile\" ad \"Armeria\":\n• E49 (Stimulant Injector)\n• E50 (Stimulant Injector)\n• E52 (Stimulant Injector)\n• E53 (Survival Kit)"
+    },
+    "sposta": [
+     {
+      "carta": "E49",
+      "nome": "Stimulant Injector",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E50",
+      "nome": "Stimulant Injector",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E52",
+      "nome": "Stimulant Injector",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E53",
+      "nome": "Survival Kit",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     }
+    ]
+   },
+   "dubbi": "Tre carte diverse tutte chiamate 'Stimulant Injector' (E49, E50, E52) e manca E51: così stampato, forse refuso della carta. Nomi delle carte citate fra parentesi lasciati in inglese anche nella traduzione (nomi italiani ufficiali non noti). BOOST con '+': servono tutte le icone (non alternative); campo potenziamento_req aggiunto per distinguerlo da '- OR -'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c24_15623.webp",
+   "nomi": [
+    "C24"
+   ],
+   "id": "C24",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "WAYGATE LANDER",
+    "it": "LANDER WAYGATE"
+   },
+   "testo_colore": {
+    "en": "Our expertise in sub-space physics allowed us to draft a Lander that works in a completely new way.",
+    "it": "La nostra competenza in fisica subspaziale ci ha permesso di progettare un Lander che funziona in un modo completamente nuovo."
+   },
+   "icone_potenziamento": [
+    "xenology",
+    "construction",
+    "scienceDice"
+   ],
+   "potenziamento_req": "xenology+construction+scienceDice",
+   "stadio_iniziale": 1,
+   "concede": [
+    "Lander"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15623.webp",
+    "titolo": {
+     "en": "WAYGATE LANDER",
+     "it": "LANDER WAYGATE"
+    },
+    "testo_colore": {
+     "en": "The crewless Waygate is perfect for most hazardous missions. The Away Team passes through only after the lander is safely on the ground.",
+     "it": "Il Waygate senza equipaggio è perfetto per le missioni più pericolose. La Squadra di Sbarco lo attraversa solo dopo che il lander è atterrato sano e salvo."
+    },
+    "testo": {
+     "en": "Move the following card to the \"Awaiting...\" envelope:\n• Waygate Lander card",
+     "it": "Sposta la seguente carta nella busta \"In attesa...\":\n• carta Lander Waygate"
+    },
+    "sposta": [
+     {
+      "carta": "",
+      "nome": "Waygate Lander",
+      "da": "",
+      "a": "Awaiting..."
+     }
+    ]
+   },
+   "dubbi": "Provenienza della carta Lander non indicata. Nomi delle carte citate fra parentesi lasciati in inglese anche nella traduzione (nomi italiani ufficiali non noti). BOOST con '+': servono tutte le icone (non alternative); campo potenziamento_req aggiunto per distinguerlo da '- OR -'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c25_15624.webp",
+   "nomi": [
+    "C25"
+   ],
+   "id": "C25",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "FUTURE TOOLS",
+    "it": "STRUMENTI DEL FUTURO"
+   },
+   "testo_colore": {
+    "en": "We could use our spare production capacity to create complex tools and devices that will greatly benefit the people of Earth once we come back from our mission.",
+    "it": "Potremmo usare la nostra capacità produttiva in eccesso per creare strumenti e dispositivi complessi che saranno di grande beneficio per la gente della Terra quando torneremo dalla missione."
+   },
+   "icone_potenziamento": [
+    "gathering",
+    "xenology"
+   ],
+   "potenziamento_req": "gathering+xenology",
+   "stadio_iniziale": 1,
+   "livello_tecnologico_richiesto": 5,
+   "concede": [
+    "[success]"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15624.webp",
+    "titolo": {
+     "en": "FUTURE TOOLS",
+     "it": "STRUMENTI DEL FUTURO"
+    },
+    "testo_colore": {
+     "en": "We can't wait to show our new prototypes to people on Earth.",
+     "it": "Non vediamo l'ora di mostrare i nostri nuovi prototipi alla gente sulla Terra."
+    },
+    "testo": {
+     "en": "Gain 3 [success].\nPlace this Production Project card C25 (Future Tools) in the \"Awaiting...\" envelope.",
+     "it": "Ottieni 3 [success].\nMetti questa carta Progetto di Produzione C25 (Strumenti del Futuro) nella busta \"In attesa...\"."
+    },
+    "sposta": [
+     {
+      "carta": "C25",
+      "nome": "Future Tools",
+      "da": "",
+      "a": "Awaiting..."
+     }
+    ],
+    "guadagna": {
+     "success": 3
+    }
+   },
+   "dubbi": "GRANTS mostra solo l'icona success (nessun testo). Nomi delle carte citate fra parentesi lasciati in inglese anche nella traduzione (nomi italiani ufficiali non noti). BOOST con '+': servono tutte le icone (non alternative); campo potenziamento_req aggiunto per distinguerlo da '- OR -'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c26_15625.webp",
+   "nomi": [
+    "C26"
+   ],
+   "id": "C26",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "NULL FIELD GENERATORS",
+    "it": "GENERATORI DI CAMPO NULLO"
+   },
+   "testo_colore": {
+    "en": "Reaching the Builders' vault will require a null field generator add-on for any Lander we pick, as well as specialized null-field suits that could protect our team.",
+    "it": "Raggiungere la cripta dei Costruttori richiederà un generatore di campo nullo aggiuntivo per qualsiasi Lander sceglieremo, oltre a tute speciali a campo nullo che possano proteggere la nostra squadra."
+   },
+   "icone_potenziamento": [
+    "construction",
+    "scienceDice",
+    "technology"
+   ],
+   "potenziamento_req": "construction+scienceDice+technology",
+   "stadio_iniziale": 1,
+   "concede": [
+    "Bridge Upgrade",
+    "Equipment",
+    "Lander Mod"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15625.webp",
+    "titolo": {
+     "en": "NULL FIELD GENERATORS",
+     "it": "GENERATORI DI CAMPO NULLO"
+    },
+    "testo_colore": {
+     "en": "Instead of resisting the impossible conditions of the Thorne-Zytkov Object, our new null field equipment bypasses them altogether.",
+     "it": "Invece di resistere alle condizioni impossibili dell'Oggetto di Thorne-Żytkow, la nostra nuova attrezzatura a campo nullo le aggira del tutto."
+    },
+    "testo": {
+     "en": "Move the following cards to the \"Awaiting...\" envelope:\n• B06 (Builders' Vault Access) from \"Bridge Upgrades\"\n• A31 (Null Field Shielding) from \"Lander Mods\"\nMove the following cards from \"Unavailable Equipment\" to \"Armory\":\n• E76 (TZO Mechasuit: Observer)\n• E77 (TZO Mechasuit: Guardian)\n• E78 (TZO Mechasuit: Pathfinder)\n• E79 (TZO Mechasuit: Custodian)",
+     "it": "Sposta le seguenti carte nella busta \"In attesa...\":\n• B06 (Builders' Vault Access) da \"Potenziamenti del Ponte\"\n• A31 (Null Field Shielding) da \"Modifiche del Lander\"\nSposta le seguenti carte da \"Attrezzatura non disponibile\" ad \"Armeria\":\n• E76 (TZO Mechasuit: Observer)\n• E77 (TZO Mechasuit: Guardian)\n• E78 (TZO Mechasuit: Pathfinder)\n• E79 (TZO Mechasuit: Custodian)"
+    },
+    "sposta": [
+     {
+      "carta": "B06",
+      "nome": "Builders' Vault Access",
+      "da": "Bridge Upgrades",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "A31",
+      "nome": "Null Field Shielding",
+      "da": "Lander Mods",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "E76",
+      "nome": "TZO Mechasuit: Observer",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E77",
+      "nome": "TZO Mechasuit: Guardian",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E78",
+      "nome": "TZO Mechasuit: Pathfinder",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E79",
+      "nome": "TZO Mechasuit: Custodian",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate fra parentesi lasciati in inglese anche nella traduzione (nomi italiani ufficiali non noti). BOOST con '+': servono tutte le icone (non alternative); campo potenziamento_req aggiunto per distinguerlo da '- OR -'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/c27_15626.webp",
+   "nomi": [
+    "C27"
+   ],
+   "id": "C27",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "OUTPOST IMPROVEMENTS",
+    "it": "MIGLIORIE AGLI AVAMPOSTI"
+   },
+   "testo_colore": {
+    "en": "Our Away Team provided an extensive list of upgrades that would significantly increase the capabilities of our planetside outposts.",
+    "it": "La nostra Squadra di Sbarco ha fornito un lungo elenco di migliorie che aumenterebbero notevolmente le capacità dei nostri avamposti planetari."
+   },
+   "icone_potenziamento": [
+    "construction",
+    "technology"
+   ],
+   "potenziamento_req": "construction+technology",
+   "stadio_iniziale": 2,
+   "livello_tecnologico_richiesto": 4,
+   "concede": [
+    "Equipment"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/production_projects/retro_15626.webp",
+    "titolo": {
+     "en": "OUTPOST IMPROVEMENTS",
+     "it": "MIGLIORIE AGLI AVAMPOSTI"
+    },
+    "testo_colore": {
+     "en": "When installed, this outpost expansion will help our teams rest and regain their strength during tough missions.",
+     "it": "Una volta installata, questa espansione dell'avamposto aiuterà le nostre squadre a riposare e a recuperare le forze durante le missioni difficili."
+    },
+    "testo": {
+     "en": "Move card E58 (Expansion) from \"Unavailable Equipment\" to \"Armory.\"",
+     "it": "Sposta la carta E58 (Expansion) da \"Attrezzatura non disponibile\" ad \"Armeria\"."
+    },
+    "sposta": [
+     {
+      "carta": "E58",
+      "nome": "Expansion",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate fra parentesi lasciati in inglese anche nella traduzione (nomi italiani ufficiali non noti). BOOST con '+': servono tutte le icone (non alternative); campo potenziamento_req aggiunto per distinguerlo da '- OR -'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/c01/c01_15600.webp",
+   "nomi": [
+    "C01"
+   ],
+   "id": "C01",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "SECTION TOOLS",
+    "it": "ATTREZZI DEI REPARTI"
+   },
+   "testo_colore": {
+    "en": "ISS Vanguard was only meant to safely reach the Divine Coordinates and establish first contact. If we're to explore more alien worlds, we need additional equipment for our Away Team.",
+    "it": "La ISS Vanguard doveva solo raggiungere in sicurezza le Coordinate Divine e stabilire il primo contatto. Se vogliamo esplorare altri mondi alieni, ci serve attrezzatura aggiuntiva per la nostra Squadra di Sbarco."
+   },
+   "icone_potenziamento": [
+    "anySameIcons"
+   ],
+   "potenziamento_req": "anySameIcons",
+   "stadio_iniziale": 3,
+   "concede": [
+    "Lander Mods",
+    "Equipment",
+    "Production Projects"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/c01/retro_15600.webp",
+    "titolo": {
+     "en": "SECTION TOOLS",
+     "it": "ATTREZZI DEI REPARTI"
+    },
+    "testo_colore": {
+     "en": "These basic tools should help our Away Team deal with the unexpected. Hopefully, as our knowledge progresses, we will be able to create more of them.",
+     "it": "Questi attrezzi di base dovrebbero aiutare la nostra Squadra di Sbarco ad affrontare l'imprevisto. Speriamo che, con il progredire delle nostre conoscenze, potremo crearne altri."
+    },
+    "testo": {
+     "en": "Move the following cards from \"Lander Mods\" to the \"Awaiting...\" envelope:\n• A01 (Heavy Armor Plating)\n• A02 (Multi-Directional Thrusters)\n• A03 (Nav Console)\nMove the following cards from \"Unavailable Equipment\" to \"Armory\":\n• 2x E01 (Medkit)\n• E02 (Portable AI)\n• E03 (Jetpack)\n• E04 (Construction Arm)\n• E05 (Adrenaline Shot)\nMove the following cards from \"Production Projects\" to the \"Awaiting...\" envelope:\n• C04 (Advanced Section Tools)\n• C05 (Biome Suits)",
+     "it": "Sposta le seguenti carte da \"Modifiche del Lander\" alla busta \"In attesa...\":\n• A01 (Heavy Armor Plating)\n• A02 (Multi-Directional Thrusters)\n• A03 (Nav Console)\nSposta le seguenti carte da \"Attrezzatura non disponibile\" ad \"Armeria\":\n• 2x E01 (Medkit)\n• E02 (Portable AI)\n• E03 (Jetpack)\n• E04 (Construction Arm)\n• E05 (Adrenaline Shot)\nSposta le seguenti carte da \"Progetti di Produzione\" alla busta \"In attesa...\":\n• C04 (Advanced Section Tools)\n• C05 (Biome Suits)"
+    },
+    "sposta": [
+     {
+      "carta": "A01",
+      "nome": "Heavy Armor Plating",
+      "da": "Lander Mods",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "A02",
+      "nome": "Multi-Directional Thrusters",
+      "da": "Lander Mods",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "A03",
+      "nome": "Nav Console",
+      "da": "Lander Mods",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "E01",
+      "nome": "Medkit",
+      "da": "Unavailable Equipment",
+      "a": "Armory",
+      "quantita": 2
+     },
+     {
+      "carta": "E02",
+      "nome": "Portable AI",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E03",
+      "nome": "Jetpack",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E04",
+      "nome": "Construction Arm",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E05",
+      "nome": "Adrenaline Shot",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "C04",
+      "nome": "Advanced Section Tools",
+      "da": "Production Projects",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "C05",
+      "nome": "Biome Suits",
+      "da": "Production Projects",
+      "a": "Awaiting..."
+     }
+    ]
+   },
+   "dubbi": "Il riquadro BOOST riporta il testo 'ANY ICON' (non un'icona): reso come anySameIcons. Nomi delle carte citate fra parentesi lasciati in inglese anche nella traduzione (nomi italiani ufficiali non noti)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/c02/c02_15601.webp",
+   "nomi": [
+    "C02"
+   ],
+   "id": "C02",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "IMPROVED VANGUARD SYSTEMS",
+    "it": "SISTEMI DELLA VANGUARD MIGLIORATI"
+   },
+   "testo_colore": {
+    "en": "Our long trek to the Eye of the Void and our first mission gave us many ideas on how to improve our new home.",
+    "it": "Il nostro lungo viaggio verso l'Occhio del Vuoto e la nostra prima missione ci hanno dato molte idee su come migliorare la nostra nuova casa."
+   },
+   "icone_potenziamento": [
+    "technology",
+    "construction"
+   ],
+   "potenziamento_req": "technology / construction",
+   "stadio_iniziale": 2,
+   "concede": [
+    "Bridge Upgrade",
+    "Lander Mod",
+    "Facility Upgrade"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/c02/retro_15601.webp",
+    "titolo": {
+     "en": "IMPROVED VANGUARD SYSTEMS",
+     "it": "SISTEMI DELLA VANGUARD MIGLIORATI"
+    },
+    "testo_colore": {
+     "en": "Replicating the technology the Builders used in their Dyson Sphere allowed us to vastly improve the output of Vanguard's Solar Panels. We also upgraded our production capabilities and made countless small improvements throughout the ship.",
+     "it": "Replicare la tecnologia usata dai Costruttori nella loro Sfera di Dyson ci ha permesso di aumentare enormemente la resa dei Pannelli Solari della Vanguard. Abbiamo anche potenziato le nostre capacità produttive e apportato innumerevoli piccole migliorie in tutta la nave."
+    },
+    "testo": {
+     "en": "Move the following cards to the \"Awaiting...\" envelope:\n• B09 (Improved Solar Panels) from \"Bridge Upgrades\"\n• A08 (Emergency Broadcast System) from \"Lander Mods\"\n• F04 (Dual Production Lines) from \"Facility Upgrades\"\n• Tech Level 2 card from \"Bridge Cards\"",
+     "it": "Sposta le seguenti carte nella busta \"In attesa...\":\n• B09 (Improved Solar Panels) da \"Potenziamenti del Ponte\"\n• A08 (Emergency Broadcast System) da \"Modifiche del Lander\"\n• F04 (Dual Production Lines) da \"Potenziamenti delle Strutture\"\n• carta Livello Tecnologico 2 da \"Carte del Ponte\""
+    },
+    "sposta": [
+     {
+      "carta": "B09",
+      "nome": "Improved Solar Panels",
+      "da": "Bridge Upgrades",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "A08",
+      "nome": "Emergency Broadcast System",
+      "da": "Lander Mods",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "F04",
+      "nome": "Dual Production Lines",
+      "da": "Facility Upgrades",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "",
+      "nome": "Tech Level 2",
+      "da": "Bridge Cards",
+      "a": "Awaiting..."
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate fra parentesi lasciati in inglese anche nella traduzione (nomi italiani ufficiali non noti)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/c03/c03_15602.webp",
+   "nomi": [
+    "C03"
+   ],
+   "id": "C03",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "HEAVY MISSION EQUIPMENT",
+    "it": "ATTREZZATURA PESANTE DA MISSIONE"
+   },
+   "testo_colore": {
+    "en": "The studies of various planets will likely require us to employ a wide range of heavy mission equipment.",
+    "it": "Lo studio dei vari pianeti richiederà probabilmente l'impiego di un'ampia gamma di attrezzatura pesante da missione."
+   },
+   "icone_potenziamento": [
+    "scouting",
+    "gathering"
+   ],
+   "potenziamento_req": "scouting / gathering",
+   "stadio_iniziale": 2,
+   "concede": [
+    "Production Project",
+    "Equipment"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/c03/retro_15602.webp",
+    "titolo": {
+     "en": "HEAVY MISSION EQUIPMENT",
+     "it": "ATTREZZATURA PESANTE DA MISSIONE"
+    },
+    "testo_colore": {
+     "en": "Modular outposts and heavy tools will be a valuable addition to our planetary missions.",
+     "it": "Avamposti modulari e attrezzi pesanti saranno un'aggiunta preziosa alle nostre missioni planetarie."
+    },
+    "testo": {
+     "en": "Move the following cards from \"Unavailable Equipment\" to \"Armory\":\n• E06 (Portable Lab)\n• E07 (Dehydrated Supplies)\n• E09 (Mining Probe)\n• E10 (Zipline)\n• E11 (Livestreaming Rig)\nMove the following card from \"Production Projects\" to the \"Awaiting...\" envelope:\n• C10 (Planetside Outposts)",
+     "it": "Sposta le seguenti carte da \"Attrezzatura non disponibile\" ad \"Armeria\":\n• E06 (Portable Lab)\n• E07 (Dehydrated Supplies)\n• E09 (Mining Probe)\n• E10 (Zipline)\n• E11 (Livestreaming Rig)\nSposta la seguente carta da \"Progetti di Produzione\" alla busta \"In attesa...\":\n• C10 (Planetside Outposts)"
+    },
+    "sposta": [
+     {
+      "carta": "E06",
+      "nome": "Portable Lab",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E07",
+      "nome": "Dehydrated Supplies",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E09",
+      "nome": "Mining Probe",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E10",
+      "nome": "Zipline",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E11",
+      "nome": "Livestreaming Rig",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "C10",
+      "nome": "Planetside Outposts",
+      "da": "Production Projects",
+      "a": "Awaiting..."
+     }
+    ]
+   },
+   "dubbi": "E08 non compare nell'elenco (salto da E07 a E09). Nomi delle carte citate fra parentesi lasciati in inglese anche nella traduzione (nomi italiani ufficiali non noti)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/c06/c06_15605.webp",
+   "nomi": [
+    "C06"
+   ],
+   "id": "C06",
+   "tipo": "production_project",
+   "titolo": {
+    "en": "PELICAN LANDER",
+    "it": "LANDER PELICAN"
+   },
+   "testo_colore": {
+    "en": "Given our constant need for more cargo space, flight engineers devised a way to turn one of our civilian transport vessels into a full-fledged Lander.",
+    "it": "Dato il nostro costante bisogno di più spazio di carico, gli ingegneri di volo hanno escogitato un modo per trasformare una delle nostre navette da trasporto civili in un Lander a tutti gli effetti."
+   },
+   "icone_potenziamento": [
+    "construction"
+   ],
+   "potenziamento_req": "construction",
+   "stadio_iniziale": 1,
+   "concede": [
+    "Lander"
+   ],
+   "altro": {
+    "en": "DO NOT REVEAL THIS CARD UNTIL MANUFACTURED",
+    "it": "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA PRODOTTA"
+   },
+   "retro": {
+    "file": "/home/claude/iss-vanguard/web/img/carte/c06/retro_15605.webp",
+    "titolo": {
+     "en": "PELICAN LANDER",
+     "it": "LANDER PELICAN"
+    },
+    "testo_colore": {
+     "en": "Compared to Space Ranger, Pelican can deliver more supplies and equipment to the planet. Unfortunately, it is also fragile and less maneuverable.",
+     "it": "Rispetto allo Space Ranger, il Pelican può portare sul pianeta più provviste e attrezzatura. Purtroppo è anche fragile e meno manovrabile."
+    },
+    "testo": {
+     "en": "Move the following card to the \"Awaiting...\" envelope:\n• Pelican Lander\n• C07 (Lander Facilities) from \"Production Projects\"",
+     "it": "Sposta la seguente carta nella busta \"In attesa...\":\n• Lander Pelican\n• C07 (Lander Facilities) da \"Progetti di Produzione\""
+    },
+    "sposta": [
+     {
+      "carta": "",
+      "nome": "Pelican Lander",
+      "da": "",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "C07",
+      "nome": "Lander Facilities",
+      "da": "Production Projects",
+      "a": "Awaiting..."
+     }
+    ]
+   },
+   "dubbi": "Il retro dice 'the following card' (singolare) ma elenca due carte. Nomi delle carte citate fra parentesi lasciati in inglese anche nella traduzione (nomi italiani ufficiali non noti)."
+  }
+ ]
+}

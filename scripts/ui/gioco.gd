@@ -109,6 +109,7 @@ func _costruisci_ui() -> void:
 		h.add_child(b)
 	h.add_child(VSeparator.new())
 	var esp_in_corso: bool = Campagna.dati.get("esplorazione") is Dictionary and not Campagna.dati["esplorazione"].is_empty()
+	h.add_child(Tema.pulsante_primario("GESTIONE NAVE", apri_nave, 14))
 	h.add_child(Tema.pulsante_primario("RIPRENDI ESPLORAZIONE" if esp_in_corso else "ESPLORAZIONE", apri_esplorazione, 14))
 	h.add_child(Tema.pulsante_primario("LOGBOOK", func(): _mostra_logbook(not logbook.visible), 14))
 	var menu := MenuButton.new()
@@ -197,6 +198,43 @@ func _costruisci_ui() -> void:
 	tw.tween_property(hint, "modulate:a", 0.0, 1.5)
 
 var _missione: Missione
+var _nave: GestioneNave
+
+## Gestione della Nave (Ship Book) a schermo intero.
+func apri_nave() -> void:
+	if is_instance_valid(_nave):
+		return
+	var st = Campagna.dati.get("nave")
+	if not st is Dictionary:
+		st = {}
+		Campagna.dati["nave"] = st
+	_nave = GestioneNave.new(st)
+	tavolo.visible = false
+	tavolo.process_mode = Node.PROCESS_MODE_DISABLED
+	logbook.visible = false
+	ui.add_child(_nave)
+	_nave.chiusa.connect(func():
+		_nave.queue_free()
+		tavolo.visible = true
+		tavolo.process_mode = Node.PROCESS_MODE_INHERIT)
+	_nave.esplora.connect(func(cfg: Dictionary):
+		_nave.queue_free()
+		if cfg.is_empty():
+			apri_esplorazione()
+			return
+		var prep := PreparazioneMissione.new()
+		prep.dalla_nave = cfg
+		prep.pagina_iniziale = str(cfg.get("pagina", "p.2-3"))
+		prep.pronta.connect(_avvia_esplorazione)
+		ui.add_child(prep))
+
+func _avvia_esplorazione(cfg: Dictionary) -> void:
+	var e := Esplorazione.new()
+	e.prepara(cfg["pagina"], Carte.pianeta(cfg["pagina"]), cfg["squadra"], cfg["lander"], cfg["mazzi"])
+	Campagna.dati["esplorazione"] = e.s
+	Campagna.annota("Inizia l'esplorazione: %s" % str(Carte.pianeta(cfg["pagina"]).get("pianeta", cfg["pagina"])))
+	Campagna.modificata()
+	_mostra_missione(e.s)
 
 ## Esplorazione planetaria: riprende quella in corso oppure apre la preparazione.
 func apri_esplorazione() -> void:
@@ -208,13 +246,7 @@ func apri_esplorazione() -> void:
 		return
 	var prep := PreparazioneMissione.new()
 	prep.pagina_iniziale = str(Campagna.dati.get("prossimo_pianeta", "p.2-3"))
-	prep.pronta.connect(func(cfg: Dictionary):
-		var e := Esplorazione.new()
-		e.prepara(cfg["pagina"], Carte.pianeta(cfg["pagina"]), cfg["squadra"], cfg["lander"], cfg["mazzi"])
-		Campagna.dati["esplorazione"] = e.s
-		Campagna.annota("Inizia l'esplorazione: %s" % str(Carte.pianeta(cfg["pagina"]).get("pianeta", cfg["pagina"])))
-		Campagna.modificata()
-		_mostra_missione(e.s))
+	prep.pronta.connect(_avvia_esplorazione)
 	ui.add_child(prep)
 
 func _mostra_missione(st: Dictionary) -> void:
@@ -226,7 +258,10 @@ func _mostra_missione(st: Dictionary) -> void:
 	_missione.chiusa.connect(func():
 		_missione.queue_free()
 		tavolo.visible = true
-		tavolo.process_mode = Node.PROCESS_MODE_INHERIT)
+		tavolo.process_mode = Node.PROCESS_MODE_INHERIT
+		# finita l'esplorazione si torna alla Gestione della Nave
+		if not Campagna.dati.has("esplorazione"):
+			apri_nave())
 
 func _voce_menu_barra(id: int) -> void:
 	if id == 0:

@@ -1,0 +1,863 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r15_15514.webp",
+   "nomi": [
+    "R15"
+   ],
+   "lato": "fronte",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15514.webp",
+   "id": "R15",
+   "tipo": "research_project",
+   "parola_chiave": "TECH",
+   "titolo": {
+    "en": "ADVANCED PHYSICS",
+    "it": "FISICA AVANZATA"
+   },
+   "testo_colore": {
+    "en": "We begin to suspect that the Grand Unified Theory, one of the biggest achievements of Earth's physicists and the fundament of Vanguard's technology, was quite far from the truth.",
+    "it": "Cominciamo a sospettare che la Teoria della Grande Unificazione, uno dei massimi traguardi dei fisici terrestri e fondamento della tecnologia della Vanguard, fosse piuttosto lontana dalla verità."
+   },
+   "costo": {
+    "en": "1 Rare Mineral Discovery, 4 Discovery (any)",
+    "it": "1 Scoperta Minerale Rara, 4 Scoperte (qualsiasi)"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "mineral",
+     "n": 1,
+     "rarita": "rare"
+    },
+    {
+     "tipo": "any",
+     "n": 4,
+     "rarita": ""
+    }
+   ],
+   "concede": [
+    "Lander Mod",
+    "Production Project",
+    "Research Projects",
+    "Equipment"
+   ],
+   "retro": {
+    "titolo": {
+     "en": "ADVANCED PHYSICS",
+     "it": "FISICA AVANZATA"
+    },
+    "testo_colore": {
+     "en": "Our knowledge of the fundamental laws of the universe has expanded, leading to many exciting new prospects.",
+     "it": "La nostra conoscenza delle leggi fondamentali dell'universo si è ampliata, aprendo molte nuove ed entusiasmanti prospettive."
+    },
+    "testo": {
+     "en": "Move the following cards to the \"Awaiting...\" envelope: A25 (Atomic Compressor) from \"Lander Mods\"; R16 (Antimatter Generators), R19 (Advanced Biotechnology) from \"Research Projects\"; C18 (Improved Space Ranger) from \"Production Projects\". Move the following cards from \"Unavailable Equipment\" to \"Armory\": E57 (Comms Tower), E71 (Portable Timewarper), E73 (Molecular Reconfigurator).",
+     "it": "Sposta le seguenti carte nella busta \"In attesa...\": A25 (Compressore Atomico) da \"Modifiche del Lander\"; R16 (Generatori di Antimateria), R19 (Biotecnologia Avanzata) da \"Progetti di Ricerca\"; C18 (Space Ranger Migliorato) da \"Progetti di Produzione\". Sposta le seguenti carte da \"Attrezzatura non disponibile\" ad \"Armeria\": E57 (Torre delle Comunicazioni), E71 (Distorsore Temporale Portatile), E73 (Riconfiguratore Molecolare)."
+    },
+    "spostamenti": [
+     {
+      "carta": "A25",
+      "nome": "Atomic Compressor",
+      "da": "Lander Mods",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "R16",
+      "nome": "Antimatter Generators",
+      "da": "Research Projects",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "R19",
+      "nome": "Advanced Biotechnology",
+      "da": "Research Projects",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "C18",
+      "nome": "Improved Space Ranger",
+      "da": "Production Projects",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "E57",
+      "nome": "Comms Tower",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E71",
+      "nome": "Portable Timewarper",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E73",
+      "nome": "Molecular Reconfigurator",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate tradotti liberamente in italiano (nome ufficiale italiano non verificato); fanno fede gli ID. Sul retro la provenienza 'from \"Research Projects\"' è scritta solo dopo R19: interpretata come valida per R16 e R19. GRANTS mescola singolare/plurale ('Lander Mod', 'Research Projects') come stampato."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r16_15515.webp",
+   "nomi": [
+    "R16"
+   ],
+   "lato": "fronte",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15515.webp",
+   "id": "R16",
+   "tipo": "research_project",
+   "parola_chiave": "ADVANCED",
+   "titolo": {
+    "en": "ANTIMATTER GENERATORS",
+    "it": "GENERATORI DI ANTIMATERIA"
+   },
+   "testo_colore": {
+    "en": "This new hypothetical class of engines could far outperform everything humanity has been able to build so far.",
+    "it": "Questa nuova, ipotetica classe di motori potrebbe superare di gran lunga tutto ciò che l'umanità è riuscita a costruire finora."
+   },
+   "costo": {
+    "en": "1 Rare Alien Tech Discovery, 3 Discovery (any)",
+    "it": "1 Scoperta Tecnologia Aliena Rara, 3 Scoperte (qualsiasi)"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "alien_tech",
+     "n": 1,
+     "rarita": "rare"
+    },
+    {
+     "tipo": "any",
+     "n": 3,
+     "rarita": ""
+    }
+   ],
+   "concede": [
+    "Production Projects",
+    "Equipment"
+   ],
+   "retro": {
+    "titolo": {
+     "en": "ANTIMATTER GENERATORS",
+     "it": "GENERATORI DI ANTIMATERIA"
+    },
+    "testo_colore": {
+     "en": "Our work with antimatter not only led to new, breakthrough generators and batteries. It also allowed us to design an improved main drive for ISS Vanguard!",
+     "it": "Il nostro lavoro sull'antimateria non ha portato solo a nuovi, rivoluzionari generatori e batterie. Ci ha anche permesso di progettare un propulsore principale migliorato per la ISS Vanguard!"
+    },
+    "testo": {
+     "en": "Move the following cards from \"Production Projects\" to the \"Awaiting...\" envelope: C15 (Improved Vanguard Drive), C20 (Advanced Planetary Droids). Move card E75 (Small Mission Equipment) from \"Unavailable Equipment\" to \"Armory\".",
+     "it": "Sposta le seguenti carte da \"Progetti di Produzione\" nella busta \"In attesa...\": C15 (Propulsore della Vanguard Migliorato), C20 (Droidi Planetari Avanzati). Sposta la carta E75 (Attrezzatura di Missione Piccola) da \"Attrezzatura non disponibile\" ad \"Armeria\"."
+    },
+    "spostamenti": [
+     {
+      "carta": "C15",
+      "nome": "Improved Vanguard Drive",
+      "da": "Production Projects",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "C20",
+      "nome": "Advanced Planetary Droids",
+      "da": "Production Projects",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "E75",
+      "nome": "Small Mission Equipment",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate tradotti liberamente in italiano (nome ufficiale italiano non verificato); fanno fede gli ID. "
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r17_15516.webp",
+   "nomi": [
+    "R17"
+   ],
+   "lato": "fronte",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15516.webp",
+   "id": "R17",
+   "tipo": "research_project",
+   "parola_chiave": "COMPUTING",
+   "titolo": {
+    "en": "ARROGATOR DATA ANALYSIS",
+    "it": "ANALISI DEI DATI ARROGATOR"
+   },
+   "testo_colore": {
+    "en": "These scraps of data could hold the secret of the lost Arrogators' homewold.",
+    "it": "Questi frammenti di dati potrebbero custodire il segreto del perduto mondo natale degli Arrogator."
+   },
+   "costo": {
+    "en": "Free",
+    "it": "Gratis"
+   },
+   "costo_scoperte": [],
+   "concede": [
+    "Bridge Upgrade"
+   ],
+   "retro": {
+    "titolo": {
+     "en": "ARROGATOR DATA ANALYSIS",
+     "it": "ANALISI DEI DATI ARROGATOR"
+    },
+    "testo_colore": {
+     "en": "Arrogators were too paranoid to live in a system marked on the Builders' map. As soon as they could, they built an entire world-ship and hid it in the vast blackness between the stars.",
+     "it": "Gli Arrogator erano troppo paranoici per vivere in un sistema segnato sulla mappa dei Costruttori. Appena poterono, costruirono un'intera nave-mondo e la nascosero nella vasta oscurità tra le stelle."
+    },
+    "testo": {
+     "en": "Move the following card from \"Bridge Upgrades\" to the \"Awaiting...\" envelope: B05 (Craftworld Coordinates).",
+     "it": "Sposta la seguente carta da \"Potenziamenti del Ponte\" nella busta \"In attesa...\": B05 (Coordinate della Nave-Mondo)."
+    },
+    "spostamenti": [
+     {
+      "carta": "B05",
+      "nome": "Craftworld Coordinates",
+      "da": "Bridge Upgrades",
+      "a": "Awaiting..."
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate tradotti liberamente in italiano (nome ufficiale italiano non verificato); fanno fede gli ID. Refuso sulla carta: 'homewold' (= homeworld), trascritto com'è. 'Arrogator' lasciato invariato (nome proprio di specie aliena)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r18_15517.webp",
+   "nomi": [
+    "R18"
+   ],
+   "lato": "fronte",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15517.webp",
+   "id": "R18",
+   "tipo": "research_project",
+   "parola_chiave": "COMPUTING",
+   "titolo": {
+    "en": "QUANTUM AI",
+    "it": "IA QUANTISTICA"
+   },
+   "testo_colore": {
+    "en": "Quantuum computing opens a road to building a new breed of AI, vastly faster and more intelligent than humans. A terrifying but also tantalizing prospect.",
+    "it": "L'informatica quantistica apre la strada alla costruzione di una nuova generazione di IA, enormemente più veloce e intelligente degli esseri umani. Una prospettiva terrificante ma anche allettante."
+   },
+   "costo": {
+    "en": "1 Rare Alien Tech Discovery, 1 Rare Live Specimen Discovery, 2 Discovery (any)",
+    "it": "1 Scoperta Tecnologia Aliena Rara, 1 Scoperta Esemplare Vivo Raro, 2 Scoperte (qualsiasi)"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "alien_tech",
+     "n": 1,
+     "rarita": "rare"
+    },
+    {
+     "tipo": "live_specimen",
+     "n": 1,
+     "rarita": "rare"
+    },
+    {
+     "tipo": "any",
+     "n": 2,
+     "rarita": ""
+    }
+   ],
+   "concede": [
+    "Bridge Upgrade",
+    "Lander Upgrade"
+   ],
+   "retro": {
+    "titolo": {
+     "en": "QUANTUM AI",
+     "it": "IA QUANTISTICA"
+    },
+    "testo_colore": {
+     "en": "Our new, impressive AI can optimize everything: from day-to-day ship operations to landings on dangerous planets.",
+     "it": "La nostra nuova, impressionante IA è in grado di ottimizzare tutto: dalle operazioni quotidiane della nave agli atterraggi su pianeti pericolosi."
+    },
+    "testo": {
+     "en": "Move the following cards to the \"Awaiting...\" envelope: B08 (Quantum Network) from \"Bridge Upgrades\"; A27 (AI Pilot Assist) from \"Lander Upgrades\".",
+     "it": "Sposta le seguenti carte nella busta \"In attesa...\": B08 (Rete Quantistica) da \"Potenziamenti del Ponte\"; A27 (Assistente di Pilotaggio IA) da \"Potenziamenti del Lander\"."
+    },
+    "spostamenti": [
+     {
+      "carta": "B08",
+      "nome": "Quantum Network",
+      "da": "Bridge Upgrades",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "A27",
+      "nome": "AI Pilot Assist",
+      "da": "Lander Upgrades",
+      "a": "Awaiting..."
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate tradotti liberamente in italiano (nome ufficiale italiano non verificato); fanno fede gli ID. Refuso sulla carta: 'Quantuum', trascritto com'è. Qui la carta dice 'Lander Upgrade(s)' invece del consueto 'Lander Mods' (A27 è comunque una Modifica del Lander)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r19_15518.webp",
+   "nomi": [
+    "R19"
+   ],
+   "lato": "fronte",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15518.webp",
+   "id": "R19",
+   "tipo": "research_project",
+   "parola_chiave": "BIO",
+   "titolo": {
+    "en": "ADVANCED BIOTECHNOLOGY",
+    "it": "BIOTECNOLOGIA AVANZATA"
+   },
+   "testo_colore": {
+    "en": "A careful study of all new species and microorganisms discovered by Vanguard is sure to reveal some interesting biotechnological and medical breakthroughs.",
+    "it": "Uno studio attento di tutte le nuove specie e dei microorganismi scoperti dalla Vanguard rivelerà sicuramente interessanti progressi biotecnologici e medici."
+   },
+   "costo": {
+    "en": "2 Microorganism Discovery, 2 Live Specimen Discovery, 2 Strange Flora Discovery",
+    "it": "2 Scoperte Microorganismo, 2 Scoperte Esemplare Vivo, 2 Scoperte Strana Vegetazione"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "microorganism",
+     "n": 2,
+     "rarita": ""
+    },
+    {
+     "tipo": "live_specimen",
+     "n": 2,
+     "rarita": ""
+    },
+    {
+     "tipo": "strange_flora",
+     "n": 2,
+     "rarita": ""
+    }
+   ],
+   "concede": [
+    "Facility Upgrade",
+    "Lander Mods",
+    "Equipment"
+   ],
+   "retro": {
+    "titolo": {
+     "en": "ADVANCED BIOTECHNOLOGY",
+     "it": "BIOTECNOLOGIA AVANZATA"
+    },
+    "testo_colore": {
+     "en": "We designed new medical tools and pharmaceutical products based on clever adaptations and defensive mechanisms employed by alien life forms.",
+     "it": "Abbiamo progettato nuovi strumenti medici e prodotti farmaceutici basati sugli ingegnosi adattamenti e meccanismi di difesa impiegati dalle forme di vita aliene."
+    },
+    "testo": {
+     "en": "Move the following cards to the \"Awaiting...\" envelope: F03 (Rejuvenation Tank) from \"Facility Upgrades\"; A21 (Rejuvenation Pod), A22 (Healing Nanocloud) from \"Lander Mods\". Move the following card from \"Unavailable Equipment\" to \"Armory\": E59 (Hydrofarm).",
+     "it": "Sposta le seguenti carte nella busta \"In attesa...\": F03 (Vasca di Ringiovanimento) da \"Potenziamenti delle Strutture\"; A21 (Capsula di Ringiovanimento), A22 (Nanonube Curativa) da \"Modifiche del Lander\". Sposta la seguente carta da \"Attrezzatura non disponibile\" ad \"Armeria\": E59 (Idrocoltura)."
+    },
+    "spostamenti": [
+     {
+      "carta": "F03",
+      "nome": "Rejuvenation Tank",
+      "da": "Facility Upgrades",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "A21",
+      "nome": "Rejuvenation Pod",
+      "da": "Lander Mods",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "A22",
+      "nome": "Healing Nanocloud",
+      "da": "Lander Mods",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "E59",
+      "nome": "Hydrofarm",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate tradotti liberamente in italiano (nome ufficiale italiano non verificato); fanno fede gli ID. 'from \"Lander Mods\"' scritto solo dopo A22: interpretato come valido per A21 e A22."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r20_15519.webp",
+   "nomi": [
+    "R20"
+   ],
+   "lato": "fronte",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15519.webp",
+   "id": "R20",
+   "tipo": "research_project",
+   "parola_chiave": "ALIEN",
+   "titolo": {
+    "en": "SUBSPACE PHYSICS",
+    "it": "FISICA DEL SUBSPAZIO"
+   },
+   "testo_colore": {
+    "en": "Researching other dimensions may, at the very least, provide a solution for the constantly diminishing space aboard Vanguard.",
+    "it": "Studiare altre dimensioni potrebbe, come minimo, offrire una soluzione al sempre minore spazio disponibile a bordo della Vanguard."
+   },
+   "costo": {
+    "en": "1 Ultra-Rare Discovery (any), 2 Rare Discoveries (any)",
+    "it": "1 Scoperta Ultra-Rara (qualsiasi), 2 Scoperte Rare (qualsiasi)"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "any",
+     "n": 1,
+     "rarita": "ultra-rare"
+    },
+    {
+     "tipo": "any",
+     "n": 2,
+     "rarita": "rare"
+    }
+   ],
+   "concede": [
+    "Production Projects",
+    "Equipment"
+   ],
+   "retro": {
+    "titolo": {
+     "en": "SUBSPACE PHYSICS",
+     "it": "FISICA DEL SUBSPAZIO"
+    },
+    "testo_colore": {
+     "en": "Some alien species were able to twist space-matter itself, opening pocket dimensions and defying our laws of physics. We are now capable of the same feats. Nothing our galactic siblings have created can now surprise us.",
+     "it": "Alcune specie aliene erano in grado di piegare lo spazio-materia stesso, aprendo dimensioni tascabili e sfidando le nostre leggi della fisica. Ora siamo capaci delle stesse imprese. Nulla di ciò che i nostri fratelli galattici hanno creato può più sorprenderci."
+    },
+    "testo": {
+     "en": "Move the following cards from \"Production Projects\" to the \"Awaiting...\" envelope: C21 (Subspace Lander Facilities), C24 (Waygate Lander). Move the following card from \"Unavailable Equipment\" to \"Armory\": E74 (Subspace Container). Move the Tech Level 5 card from \"Bridge Cards\" to the \"Awaiting...\" envelope.",
+     "it": "Sposta le seguenti carte da \"Progetti di Produzione\" nella busta \"In attesa...\": C21 (Strutture Subspaziali del Lander), C24 (Lander Portale). Sposta la seguente carta da \"Attrezzatura non disponibile\" ad \"Armeria\": E74 (Contenitore Subspaziale). Sposta la carta Livello Tecnologico 5 da \"Carte Ponte\" nella busta \"In attesa...\"."
+    },
+    "spostamenti": [
+     {
+      "carta": "C21",
+      "nome": "Subspace Lander Facilities",
+      "da": "Production Projects",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "C24",
+      "nome": "Waygate Lander",
+      "da": "Production Projects",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "E74",
+      "nome": "Subspace Container",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "Tech Level 5",
+      "nome": "Tech Level 5",
+      "da": "Bridge Cards",
+      "a": "Awaiting..."
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate tradotti liberamente in italiano (nome ufficiale italiano non verificato); fanno fede gli ID. La carta Livello Tecnologico 5 non ha ID stampato sul retro: nello spostamento 'carta' = 'Tech Level 5'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r21_15520.webp",
+   "nomi": [
+    "R21"
+   ],
+   "lato": "fronte",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15520.webp",
+   "id": "R21",
+   "tipo": "research_project",
+   "parola_chiave": "ADVANCED",
+   "titolo": {
+    "en": "NANOTECHNOLOGY",
+    "it": "NANOTECNOLOGIA"
+   },
+   "testo_colore": {
+    "en": "Though first steps into nanotechnology were made well before Vanguard's mission, it was the discovery of alien nanomachines and exotic minerals that allowed us to fulfill the visions of Earth's scientists.",
+    "it": "Sebbene i primi passi nella nanotecnologia fossero stati compiuti ben prima della missione della Vanguard, è stata la scoperta di nanomacchine aliene e di minerali esotici a permetterci di realizzare le visioni degli scienziati terrestri."
+   },
+   "costo": {
+    "en": "2 Mineral Disovery, 2 Alien Tech Discovery",
+    "it": "2 Scoperte Minerale, 2 Scoperte Tecnologia Aliena"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "mineral",
+     "n": 2,
+     "rarita": ""
+    },
+    {
+     "tipo": "alien_tech",
+     "n": 2,
+     "rarita": ""
+    }
+   ],
+   "concede": [
+    "Lander Mod",
+    "Facility Upgrade",
+    "Equipment"
+   ],
+   "retro": {
+    "titolo": {
+     "en": "NANOTECHNOLOGY",
+     "it": "NANOTECNOLOGIA"
+    },
+    "testo_colore": {
+     "en": "Programmable nanobots proved to be a wonderfully universal tool. We can use them for anything from speeding up our production and healing wounds to scouting alien environments.",
+     "it": "I nanobot programmabili si sono rivelati uno strumento meravigliosamente universale. Possiamo usarli per qualsiasi cosa: dall'accelerare la produzione e curare le ferite all'esplorare ambienti alieni."
+    },
+    "testo": {
+     "en": "Move the following cards to the \"Awaiting...\" envelope: A12 (Nanonbot Swarm) from \"Lander Mods\"; F06 (Manufacturing Nanobots) from \"Facility Upgrades\". Move the following cards from \"Unavailable Equipment\" to \"Armory\": E31 (Early Warning System), E36 (Nanomedkit).",
+     "it": "Sposta le seguenti carte nella busta \"In attesa...\": A12 (Sciame di Nanobot) da \"Modifiche del Lander\"; F06 (Nanobot di Produzione) da \"Potenziamenti delle Strutture\". Sposta le seguenti carte da \"Attrezzatura non disponibile\" ad \"Armeria\": E31 (Sistema di Allerta Precoce), E36 (Nanokit Medico)."
+    },
+    "spostamenti": [
+     {
+      "carta": "A12",
+      "nome": "Nanonbot Swarm",
+      "da": "Lander Mods",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "F06",
+      "nome": "Manufacturing Nanobots",
+      "da": "Facility Upgrades",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "E31",
+      "nome": "Early Warning System",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E36",
+      "nome": "Nanomedkit",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate tradotti liberamente in italiano (nome ufficiale italiano non verificato); fanno fede gli ID. Refusi sulla carta trascritti com'è: 'Disovery' (fronte), 'Nanonbot Swarm' (retro, probabilmente 'Nanobot Swarm')."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r22_15521.webp",
+   "nomi": [
+    "R22"
+   ],
+   "lato": "fronte",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15521.webp",
+   "id": "R22",
+   "tipo": "research_project",
+   "parola_chiave": "FUTURE",
+   "titolo": {
+    "en": "FUTURE RESEARCH",
+    "it": "RICERCA FUTURA"
+   },
+   "testo_colore": {
+    "en": "With our research labs slowly running out of things to do, we could instead focus on solving Earth's various problems.",
+    "it": "Dato che i nostri laboratori stanno lentamente esaurendo le cose da fare, potremmo invece concentrarci sulla risoluzione dei vari problemi della Terra."
+   },
+   "costo": {
+    "en": "1 Discovery of each type",
+    "it": "1 Scoperta di ogni tipo"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "mineral",
+     "n": 1,
+     "rarita": ""
+    },
+    {
+     "tipo": "microorganism",
+     "n": 1,
+     "rarita": ""
+    },
+    {
+     "tipo": "live_specimen",
+     "n": 1,
+     "rarita": ""
+    },
+    {
+     "tipo": "strange_flora",
+     "n": 1,
+     "rarita": ""
+    },
+    {
+     "tipo": "alien_tech",
+     "n": 1,
+     "rarita": ""
+    }
+   ],
+   "concede": [
+    "[success]"
+   ],
+   "retro": {
+    "titolo": {
+     "en": "FUTURE RESEARCH",
+     "it": "RICERCA FUTURA"
+    },
+    "testo_colore": {
+     "en": "If we ever return home, this incredible research will be a valuable gift to humanity.",
+     "it": "Se mai torneremo a casa, questa incredibile ricerca sarà un dono prezioso per l'umanità."
+    },
+    "testo": {
+     "en": "Gain 3 [success]. Move this Research Project card (R22, Future Research) to the \"Awaiting...\" envelope.",
+     "it": "Ottieni 3 [success]. Sposta questa carta Progetto di Ricerca (R22, Ricerca Futura) nella busta \"In attesa...\"."
+    },
+    "spostamenti": [
+     {
+      "carta": "R22",
+      "nome": "Future Research",
+      "da": "(this card)",
+      "a": "Awaiting..."
+     }
+    ]
+   },
+   "dubbi": "GRANTS mostra solo l'icona [success] (nessun testo): in 'concede' messo \"[success]\". '1 Discovery of each type' espanso nei 5 tipi (mineral, microorganism, live_specimen, strange_flora, alien_tech): da verificare che i tipi di Scoperta siano esattamente questi. Il retro rimette la carta in 'Awaiting...': progetto ripetibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r23_15522.webp",
+   "nomi": [
+    "R23"
+   ],
+   "lato": "fronte",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/research_projects/retro_15522.webp",
+   "id": "R23",
+   "tipo": "research_project",
+   "parola_chiave": "BUILDERS",
+   "titolo": {
+    "en": "SECRET OF THE STELES",
+    "it": "IL SEGRETO DELLE STELE"
+   },
+   "testo_colore": {
+    "en": "With so many steles gathered and studied, some of our researchers began to notice something very unsettling...",
+    "it": "Con così tante stele raccolte e studiate, alcuni dei nostri ricercatori hanno cominciato a notare qualcosa di molto inquietante..."
+   },
+   "costo": {
+    "en": "Free",
+    "it": "Gratis"
+   },
+   "costo_scoperte": [],
+   "concede": [
+    "Research Project"
+   ],
+   "retro": {
+    "titolo": {
+     "en": "SECRET OF THE STELES",
+     "it": "IL SEGRETO DELLE STELE"
+    },
+    "testo_colore": {
+     "en": "The Builders already hid two messages from us – one in our own DNA and another at the Eye of the Void. Finding another message shouldn't surprise us, but its content did.",
+     "it": "I Costruttori ci avevano già nascosto due messaggi: uno nel nostro stesso DNA e un altro presso l'Occhio del Vuoto. Trovarne un altro non avrebbe dovuto sorprenderci, ma il suo contenuto lo ha fatto."
+    },
+    "testo": {
+     "en": "Go to Log 888.",
+     "it": "Vai all'Annotazione 888."
+    },
+    "spostamenti": [],
+    "log": 888
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/research_projects/r24_35700.webp",
+   "nomi": [
+    "R24"
+   ],
+   "lato": "fronte",
+   "id": "R24",
+   "tipo": "research_project",
+   "parola_chiave": "MATERIALS",
+   "titolo": {
+    "en": "MONOMOLECULAR MATERIALS",
+    "it": "MATERIALI MONOMOLECOLARI"
+   },
+   "testo_colore": {
+    "en": "Some ancient alien species were capable of making ultra-durable materials just one molecule thick. Studying them could allow our structural engineers to reach new heights.",
+    "it": "Alcune antiche specie aliene erano in grado di produrre materiali ultraresistenti spessi appena una molecola. Studiarli potrebbe permettere ai nostri ingegneri strutturali di raggiungere nuove vette."
+   },
+   "costo": {
+    "en": "1 Rare Mineral Discovery, 1 Rare Alien Tech Discovery",
+    "it": "1 Scoperta Minerale Rara, 1 Scoperta Tecnologia Aliena Rara"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "mineral",
+     "n": 1,
+     "rarita": "rare"
+    },
+    {
+     "tipo": "alien_tech",
+     "n": 1,
+     "rarita": "rare"
+    }
+   ],
+   "concede": [
+    "Lander Mods"
+   ],
+   "dubbi": "Nel lotto non c'è l'immagine del retro: effetto al completamento non trascritto."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/r01/r01_15500.webp",
+   "nomi": [
+    "R01"
+   ],
+   "lato": "fronte",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/r01/retro_15500.webp",
+   "id": "R01",
+   "tipo": "research_project",
+   "parola_chiave": "MATERIALS",
+   "titolo": {
+    "en": "ALIEN MATERIALS",
+    "it": "MATERIALI ALIENI"
+   },
+   "testo_colore": {
+    "en": "We've taken samples and scans of the Eye of the Void. What can we learn from them?",
+    "it": "Abbiamo prelevato campioni ed effettuato scansioni dell'Occhio del Vuoto. Che cosa possiamo imparare da essi?"
+   },
+   "costo": {
+    "en": "1 Mineral Discovery",
+    "it": "1 Scoperta Minerale"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "mineral",
+     "n": 1,
+     "rarita": ""
+    }
+   ],
+   "concede": [
+    "Bridge Upgrade",
+    "Research Project"
+   ],
+   "retro": {
+    "titolo": {
+     "en": "ALIEN MATERIALS",
+     "it": "MATERIALI ALIENI"
+    },
+    "testo_colore": {
+     "en": "Exotic carbon allotropes used by the Builders in their Sphere allowed us to create a new family of unique materials.",
+     "it": "Gli esotici allotropi del carbonio usati dai Costruttori nella loro Sfera ci hanno permesso di creare una nuova famiglia di materiali unici."
+    },
+    "testo": {
+     "en": "Move the following cards to the \"Awaiting...\" envelope: B01 (Reinforced Hull) from \"Bridge Upgrades\"; R08 (Improved Landers) from \"Research Projects\".",
+     "it": "Sposta le seguenti carte nella busta \"In attesa...\": B01 (Scafo Rinforzato) da \"Potenziamenti del Ponte\"; R08 (Lander Migliorati) da \"Progetti di Ricerca\"."
+    },
+    "spostamenti": [
+     {
+      "carta": "B01",
+      "nome": "Reinforced Hull",
+      "da": "Bridge Upgrades",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "R08",
+      "nome": "Improved Landers",
+      "da": "Research Projects",
+      "a": "Awaiting..."
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate tradotti liberamente in italiano (nome ufficiale italiano non verificato); fanno fede gli ID."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/r04/r04_15503.webp",
+   "nomi": [
+    "R04"
+   ],
+   "lato": "fronte",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/r04/retro_15503.webp",
+   "id": "R04",
+   "tipo": "research_project",
+   "parola_chiave": "BIO",
+   "titolo": {
+    "en": "BIOMEDICAL ENHANCEMENTS",
+    "it": "POTENZIAMENTI BIOMEDICI"
+   },
+   "testo_colore": {
+    "en": "Studying new microorganisms and exotic life forms can unlock many new medical discoveries.",
+    "it": "Lo studio di nuovi microorganismi e di forme di vita esotiche può portare a molte nuove scoperte mediche."
+   },
+   "costo": {
+    "en": "1 Microorganism Discovery",
+    "it": "1 Scoperta Microorganismo"
+   },
+   "costo_scoperte": [
+    {
+     "tipo": "microorganism",
+     "n": 1,
+     "rarita": ""
+    }
+   ],
+   "concede": [
+    "Facility Upgrade",
+    "Research Project",
+    "Equipment"
+   ],
+   "retro": {
+    "titolo": {
+     "en": "BIOMEDICAL ENHANCEMENTS",
+     "it": "POTENZIAMENTI BIOMEDICI"
+    },
+    "testo_colore": {
+     "en": "These new technologies will help us increase the survivability of our crew – and enhance their capabilities.",
+     "it": "Queste nuove tecnologie ci aiuteranno ad aumentare le probabilità di sopravvivenza del nostro equipaggio, e a potenziarne le capacità."
+    },
+    "testo": {
+     "en": "Move the following cards to the \"Awaiting...\" envelope: F01 (Trauma Center) from \"Facility Upgrade\"; R21 (Nanotechnology) from \"Research Projects\". Move the following cards from \"Unavailable Equipment\" to \"Armory\": E08 (Medevac Drone), E12 (Stimulants), E16 (Blue Nutrient), E17 (Red Nutrient), E18 (Green Nutrient).",
+     "it": "Sposta le seguenti carte nella busta \"In attesa...\": F01 (Centro Traumatologico) da \"Potenziamenti delle Strutture\"; R21 (Nanotecnologia) da \"Progetti di Ricerca\". Sposta le seguenti carte da \"Attrezzatura non disponibile\" ad \"Armeria\": E08 (Drone di Evacuazione Medica), E12 (Stimolanti), E16 (Nutriente Blu), E17 (Nutriente Rosso), E18 (Nutriente Verde)."
+    },
+    "spostamenti": [
+     {
+      "carta": "F01",
+      "nome": "Trauma Center",
+      "da": "Facility Upgrades",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "R21",
+      "nome": "Nanotechnology",
+      "da": "Research Projects",
+      "a": "Awaiting..."
+     },
+     {
+      "carta": "E08",
+      "nome": "Medevac Drone",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E12",
+      "nome": "Stimulants",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E16",
+      "nome": "Blue Nutrient",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E17",
+      "nome": "Red Nutrient",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     },
+     {
+      "carta": "E18",
+      "nome": "Green Nutrient",
+      "da": "Unavailable Equipment",
+      "a": "Armory"
+     }
+    ]
+   },
+   "dubbi": "Nomi delle carte citate tradotti liberamente in italiano (nome ufficiale italiano non verificato); fanno fede gli ID. Il retro scrive 'Facility Upgrade' (singolare) come nome del mazzo; in 'spostamenti' normalizzato a 'Facility Upgrades'."
+  }
+ ]
+}

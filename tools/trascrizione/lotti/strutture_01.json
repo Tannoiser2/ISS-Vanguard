@@ -1,0 +1,201 @@
+{
+ "tipo": "strutture",
+ "immagini": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/facility_upgrades/f01_15000.webp",
+   "nomi": [
+    "F01"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/facility_upgrades/f02_15701.webp",
+   "nomi": [
+    "F02"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/facility_upgrades/f03_15802.webp",
+   "nomi": [
+    "F03"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/facility_upgrades/f04_9703.webp",
+   "nomi": [
+    "F04"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/facility_upgrades/f05_15904.webp",
+   "nomi": [
+    "F05"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/facility_upgrades/f06_16005.webp",
+   "nomi": [
+    "F06"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/research_laboratory_c746de.webp",
+   "nomi": [
+    "research_laboratory"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/medbay_fcd557.webp",
+   "nomi": [
+    "medbay"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/memorial_1d9b4a.webp",
+   "nomi": [
+    "memorial"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/memorial_510e32.webp",
+   "nomi": [
+    "memorial"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/memorial_69a78a.webp",
+   "nomi": [
+    "memorial"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/memorial_dfa53c.webp",
+   "nomi": [
+    "memorial"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/memorial_f7d97c.webp",
+   "nomi": [
+    "memorial"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/engineering_memorial_36a53d.webp",
+   "nomi": [
+    "engineering_memorial"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/recon_memorial_178dcc.webp",
+   "nomi": [
+    "recon_memorial"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/science_memorial_2a1fa8.webp",
+   "nomi": [
+    "science_memorial"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/security_memorial_6e10c5.webp",
+   "nomi": [
+    "security_memorial"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/production_upgrade_94a4e5.webp",
+   "nomi": [
+    "production_upgrade"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/medbay_upgrades_faacf4.webp",
+   "nomi": [
+    "medbay_upgrades"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/armory_767f42.webp",
+   "nomi": [
+    "armory"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/war_room_112a93.webp",
+   "nomi": [
+    "war_room"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/embassy_23e31d.webp",
+   "nomi": [
+    "embassy"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/outpost_48b6ba.webp",
+   "nomi": [
+    "outpost"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/command_64e721.webp",
+   "nomi": [
+    "command"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/energy_38d61f.webp",
+   "nomi": [
+    "energy"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/penalty_35b79b.webp",
+   "nomi": [
+    "penalty"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/planetary_scanner_53a9f5.webp",
+   "nomi": [
+    "planetary_scanner"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/planetary_scanner_e4d3d1.webp",
+   "nomi": [
+    "planetary_scanner"
+   ],
+   "lato": "fronte"
+  }
+ ]
+}

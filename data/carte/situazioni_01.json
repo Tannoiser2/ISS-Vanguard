@@ -1,0 +1,762 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/possible_situations/s01_6200.webp",
+   "nomi": [
+    "S01"
+   ],
+   "id": "S01",
+   "tipo": "situation",
+   "titolo": {
+    "en": "HOMESICK",
+    "it": "NOSTALGIA DI CASA"
+   },
+   "testo_colore": {
+    "en": "It's been a couple of years since Vanguard left Earth – and the ship's new mission seems like a daunting, enormous enterprise. Some crewmembers are only now realizing they may never see Earth again...",
+    "it": "Sono passati un paio d'anni da quando la Vanguard ha lasciato la Terra – e la nuova missione della nave sembra un'impresa enorme e scoraggiante. Alcuni membri dell'equipaggio solo ora si rendono conto che potrebbero non rivedere mai più la Terra..."
+   },
+   "effetto": {
+    "en": "Lose 1 [command] and shuffle this card into \"Possible Situations\". OR Lose 1 [success] and shuffle this card into \"Possible Situations\".",
+    "it": "Perdi 1 [command] e mescola questa carta in \"Situazioni Possibili\". OPPURE Perdi 1 [success] e mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "risolta": {
+    "en": "Remove this card from the game.",
+    "it": "Rimuovi questa carta dal gioco."
+   },
+   "icone_risolta": [
+    "biology",
+    "scienceDice"
+   ],
+   "req_risolta": "biology / scienceDice",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/possible_situations/s02_6201.webp",
+   "nomi": [
+    "S02"
+   ],
+   "id": "S02",
+   "tipo": "situation",
+   "titolo": {
+    "en": "ILLEGAL POWER DIVERSION",
+    "it": "DEVIAZIONE ILLEGALE DI ENERGIA"
+   },
+   "testo_colore": {
+    "en": "Bored crewmembers are diverting power to recreational holodecks and the unofficial manufacturing of luxury wares...",
+    "it": "Membri dell'equipaggio annoiati stanno deviando energia verso ponti ologrammi ricreativi e la produzione non ufficiale di beni di lusso..."
+   },
+   "effetto": {
+    "en": "Lose 1 [energy_token] and shuffle this card into \"Possible Situations\". OR Lower Morale and shuffle this card into \"Possible Situations\".",
+    "it": "Perdi 1 [energy_token] e mescola questa carta in \"Situazioni Possibili\". OPPURE Abbassa il Morale e mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "risolta": {
+    "en": "Shuffle this card into \"Possible Situations\".",
+    "it": "Mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "technology",
+    "construction"
+   ],
+   "req_risolta": "technology / construction",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/possible_situations/s03_6202.webp",
+   "nomi": [
+    "S03"
+   ],
+   "id": "S03",
+   "tipo": "situation",
+   "titolo": {
+    "en": "OUTBREAK",
+    "it": "EPIDEMIA"
+   },
+   "testo_colore": {
+    "en": "Several crewmembers succumb to a strange disease that doesn't seem to pose a serious threat to their life, despite a fever and their sudden problems with eyesight.",
+    "it": "Diversi membri dell'equipaggio soccombono a una strana malattia che non sembra rappresentare una seria minaccia per la loro vita, nonostante la febbre e gli improvvisi problemi di vista."
+   },
+   "effetto": {
+    "en": "Each Section moves 1 Available Crewmember to \"Resting Crew\" and move this card to the \"Awaiting...\" envelope.",
+    "it": "Ogni Reparto sposta 1 Membro dell'Equipaggio Disponibile in \"Equipaggio a Riposo\" e sposta questa carta nella busta \"In attesa...\"."
+   },
+   "risolta": {
+    "en": "You may assign 2 Crewmembers to gain 1 [success] and remove this card from the game. Otherwise, shuffle this card into \"Possible Situations\".",
+    "it": "Puoi assegnare 2 Membri dell'Equipaggio per ottenere 1 [success] e rimuovere questa carta dal gioco. Altrimenti, mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "biology",
+    "xenology"
+   ],
+   "req_risolta": "biology / xenology",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/possible_situations/s04_6203.webp",
+   "nomi": [
+    "S04"
+   ],
+   "id": "S04",
+   "tipo": "situation",
+   "titolo": {
+    "en": "INTERSECTIONAL GAMES",
+    "it": "GIOCHI INTERREPARTO"
+   },
+   "testo_colore": {
+    "en": "We have a chance to turn all the misunderstanding and tension between Sections into a friendly competition.",
+    "it": "Abbiamo l'occasione di trasformare tutte le incomprensioni e le tensioni fra i Reparti in una competizione amichevole."
+   },
+   "effetto": {
+    "en": "Shuffle this card into \"Possible Situations\".",
+    "it": "Mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "risolta": {
+    "en": "Raise Morale in the Bridge cardholder. Shuffle this card into \"Possible Situations\".",
+    "it": "Alza il Morale nel portacarte del Ponte. Mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "physical",
+    "scouting"
+   ],
+   "req_risolta": "physical / scouting",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/possible_situations/s05_6204.webp",
+   "nomi": [
+    "S05"
+   ],
+   "id": "S05",
+   "tipo": "situation",
+   "titolo": {
+    "en": "TORPOR CHAMBER MALFUNCTION",
+    "it": "GUASTO ALLE CAMERE DI TORPORE"
+   },
+   "testo_colore": {
+    "en": "Due to a bug in the software, a large group of people were accidentally awoken during this cycle. It's an opportunity to do more work, but the overcrowding will strain the ship's resources and systems.",
+    "it": "A causa di un bug nel software, un folto gruppo di persone è stato risvegliato per errore durante questo ciclo. È un'opportunità per lavorare di più, ma il sovraffollamento metterà a dura prova le risorse e i sistemi della nave."
+   },
+   "effetto": {
+    "en": "Lose 2 [energy_token] and shuffle this card into \"Possible Situations\". OR Each Section moves 1 Available Crewmember to their \"Resting Crew\" and move this card to the \"Awaiting...\" envelope.",
+    "it": "Perdi 2 [energy_token] e mescola questa carta in \"Situazioni Possibili\". OPPURE Ogni Reparto sposta 1 Membro dell'Equipaggio Disponibile nel proprio \"Equipaggio a Riposo\" e sposta questa carta nella busta \"In attesa...\"."
+   },
+   "risolta": {
+    "en": "Gain 1 [command] and remove this card from the game.",
+    "it": "Ottieni 1 [command] e rimuovi questa carta dal gioco."
+   },
+   "icone_risolta": [
+    "construction",
+    "defence"
+   ],
+   "req_risolta": "construction / defence",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/possible_situations/s06_6205.webp",
+   "nomi": [
+    "S06"
+   ],
+   "id": "S06",
+   "tipo": "situation",
+   "titolo": {
+    "en": "UNFINISHED BUSINESS",
+    "it": "QUESTIONI IN SOSPESO"
+   },
+   "testo_colore": {
+    "en": "Small investigations and cases are accumulating at a frightening pace. Security has to spend a full week solving them all at once.",
+    "it": "Piccole indagini e casi si accumulano a un ritmo spaventoso. La Sicurezza deve passare un'intera settimana a risolverli tutti in una volta."
+   },
+   "effetto": {
+    "en": "Lower Morale and shuffle this card into \"Possible Situations\".",
+    "it": "Abbassa il Morale e mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "risolta": {
+    "en": "If Morale is Medium or High, take 1 Crewmember from \"Resting Crew\" into the corresponding Section player's hand. Otherwise, shuffle this card into \"Possible Situations\".",
+    "it": "Se il Morale è Medio o Alto, prendi 1 Membro dell'Equipaggio da \"Equipaggio a Riposo\" e mettilo nella mano del giocatore del Reparto corrispondente. Altrimenti, mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "technology"
+   ],
+   "req_risolta": "technology",
+   "dubbi": "Stesso titolo e testo di S16 tranne il WHEN SOLVED (qui 'Otherwise, shuffle...', in S16 lo shuffle è sempre)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/possible_situations/s07_6206.webp",
+   "nomi": [
+    "S07"
+   ],
+   "id": "S07",
+   "tipo": "situation",
+   "titolo": {
+    "en": "PROVOCATION",
+    "it": "PROVOCAZIONE"
+   },
+   "testo_colore": {
+    "en": "A group of dissenting crewmembers tries to stir up trouble in order to blame the captain and his section leaders.",
+    "it": "Un gruppo di membri dell'equipaggio dissidenti cerca di creare problemi per dare la colpa al capitano e ai suoi capireparto."
+   },
+   "effetto": {
+    "en": "Draw 1 additional Situation card and move this card to the \"Awaiting...\" envelope.",
+    "it": "Pesca 1 carta Situazione aggiuntiva e sposta questa carta nella busta \"In attesa...\"."
+   },
+   "risolta": {
+    "en": "Shuffle this card into \"Possible Situations\".",
+    "it": "Mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "gathering",
+    "scienceDice"
+   ],
+   "req_risolta": "gathering / scienceDice",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/possible_situations/s08_6207.webp",
+   "nomi": [
+    "S08"
+   ],
+   "id": "S08",
+   "tipo": "situation",
+   "titolo": {
+    "en": "CLAUSTROPHOBIA",
+    "it": "CLAUSTROFOBIA"
+   },
+   "testo_colore": {
+    "en": "Madness creeps into people's minds when they are confined to the narrow corridors of the spaceship for too long.",
+    "it": "La follia si insinua nella mente delle persone quando restano confinate troppo a lungo negli stretti corridoi dell'astronave."
+   },
+   "effetto": {
+    "en": "Lower Morale and shuffle this card into \"Possible Situations\".",
+    "it": "Abbassa il Morale e mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "risolta": {
+    "en": "Shuffle this card into \"Possible Situations\".",
+    "it": "Mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "xenology",
+    "scouting"
+   ],
+   "req_risolta": "xenology / scouting",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/possible_situations/s09_6208.webp",
+   "nomi": [
+    "S09"
+   ],
+   "id": "S09",
+   "tipo": "situation",
+   "titolo": {
+    "en": "VIGILANTE HACKERS",
+    "it": "HACKER JUSTIZIERI"
+   },
+   "testo_colore": {
+    "en": "Vanguard's systems have been breached, but instead of causing malfunctions, mysterious perpetrators improved the efficiency of many systems. Still, people are afraid.",
+    "it": "I sistemi della Vanguard sono stati violati, ma invece di causare guasti, misteriosi responsabili hanno migliorato l'efficienza di molti sistemi. Eppure, la gente ha paura."
+   },
+   "effetto": {
+    "en": "Lower Morale and shuffle this card into \"Possible Situations\".",
+    "it": "Abbassa il Morale e mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "risolta": {
+    "en": "You may assign 1 Crewmember to gain 1 [command] and remove this card from the game. Otherwise, shuffle this card into \"Possible Situations\".",
+    "it": "Puoi assegnare 1 Membro dell'Equipaggio per ottenere 1 [command] e rimuovere questa carta dal gioco. Altrimenti, mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "technology",
+    "gathering"
+   ],
+   "req_risolta": "technology / gathering",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/possible_situations/s10_6209.webp",
+   "nomi": [
+    "S10"
+   ],
+   "id": "S10",
+   "tipo": "situation",
+   "titolo": {
+    "en": "TENSIONS",
+    "it": "TENSIONI"
+   },
+   "testo_colore": {
+    "en": "Small-scale quarrels boil over into heated online discussions.",
+    "it": "Piccoli litigi degenerano in accese discussioni online."
+   },
+   "effetto": {
+    "en": "Lose 1 [success] and move this card to the \"Awaiting...\" envelope. OR Each Section moves 1 Available Crewmember to \"Resting Crew\". Move this card to the \"Awaiting...\" envelope.",
+    "it": "Perdi 1 [success] e sposta questa carta nella busta \"In attesa...\". OPPURE Ogni Reparto sposta 1 Membro dell'Equipaggio Disponibile in \"Equipaggio a Riposo\". Sposta questa carta nella busta \"In attesa...\"."
+   },
+   "risolta": {
+    "en": "You may assign 1 Crewmember to raise Morale. Shuffle this card into \"Possible Situations\".",
+    "it": "Puoi assegnare 1 Membro dell'Equipaggio per alzare il Morale. Mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "physical",
+    "xenology"
+   ],
+   "req_risolta": "physical / xenology",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/future_situations/s11_17600.webp",
+   "nomi": [
+    "S11"
+   ],
+   "id": "S11",
+   "tipo": "situation",
+   "titolo": {
+    "en": "BUILDERS' CULT",
+    "it": "CULTO DEI COSTRUTTORI"
+   },
+   "testo_colore": {
+    "en": "A strange new religion appears – its prophets claim the Builders of the Eye of the Void are the true gods of humanity and denounce the captain as a blasphemer.",
+    "it": "Appare una strana nuova religione – i suoi profeti sostengono che i Costruttori dell'Occhio del Vuoto siano i veri dèi dell'umanità e denunciano il capitano come blasfemo."
+   },
+   "effetto": {
+    "en": "Discard 1 Alien Tech Discovery and move this card to the \"Awaiting...\" envelope. OR Lose 2 [success] and lower Morale. Move this card to the \"Awaiting...\" envelope.",
+    "it": "Scarta 1 Scoperta Tecnologia Aliena e sposta questa carta nella busta \"In attesa...\". OPPURE Perdi 2 [success] e abbassa il Morale. Sposta questa carta nella busta \"In attesa...\"."
+   },
+   "risolta": {
+    "en": "You may discard 1 [command] to remove this card from the game. Otherwise, shuffle this card into \"Possible Situations\".",
+    "it": "Puoi scartare 1 [command] per rimuovere questa carta dal gioco. Altrimenti, mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "defence",
+    "scienceDice"
+   ],
+   "req_risolta": "defence / scienceDice",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/future_situations/s12_17601.webp",
+   "nomi": [
+    "S12"
+   ],
+   "id": "S12",
+   "tipo": "situation",
+   "titolo": {
+    "en": "ILLEGAL DRUGS",
+    "it": "DROGHE ILLEGALI"
+   },
+   "testo_colore": {
+    "en": "A dangerous substance that affects one's respiratory system is now sold as a recreational drug. Initial investigations traced its production to the Science Sections quarters.",
+    "it": "Una sostanza pericolosa che colpisce l'apparato respiratorio viene ora venduta come droga ricreativa. Le prime indagini ne hanno fatto risalire la produzione agli alloggi del Reparto Scienza."
+   },
+   "effetto": {
+    "en": "Lose 1 [command]. Then: Discard 1 Strange Flora Discovery and move this card to the \"Awaiting...\" envelope. OR Discard 1 Live Specimen Discovery and move this card to the \"Awaiting...\" envelope.",
+    "it": "Perdi 1 [command]. Poi: Scarta 1 Scoperta Strana Vegetazione e sposta questa carta nella busta \"In attesa...\". OPPURE Scarta 1 Scoperta Esemplare Vivo e sposta questa carta nella busta \"In attesa...\"."
+   },
+   "risolta": {
+    "en": "Take 2 Crewmembers from \"Resting Crew\" into the corresponding Section players' hands. Shuffle this card into \"Possible Situations\".",
+    "it": "Prendi 2 Membri dell'Equipaggio da \"Equipaggio a Riposo\" e mettili nelle mani dei giocatori dei Reparti corrispondenti. Mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "biology",
+    "scouting"
+   ],
+   "req_risolta": "biology / scouting",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/future_situations/s13_17602.webp",
+   "nomi": [
+    "S13"
+   ],
+   "id": "S13",
+   "tipo": "situation",
+   "titolo": {
+    "en": "FOOD SHORTAGE",
+    "it": "CARENZA DI CIBO"
+   },
+   "testo_colore": {
+    "en": "The biomass fabricators are malfunctioning – a sizable portion of the food they make is inedible. We must redirect some of our manufacturing capacity to repair these machines or reduce our rations.",
+    "it": "I fabbricatori di biomassa sono guasti – una parte consistente del cibo che producono è immangiabile. Dobbiamo dirottare parte della nostra capacità produttiva per ripararli oppure ridurre le razioni."
+   },
+   "effetto": {
+    "en": "Lower Morale and move this card to the \"Awaiting...\" envelope. OR Lose 2 [energy_token] and move this card to the \"Awaiting...\" envelope.",
+    "it": "Abbassa il Morale e sposta questa carta nella busta \"In attesa...\". OPPURE Perdi 2 [energy_token] e sposta questa carta nella busta \"In attesa...\"."
+   },
+   "risolta": {
+    "en": "This Situation cannot be solved.",
+    "it": "Questa Situazione non può essere risolta."
+   },
+   "icone_risolta": [],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/future_situations/s14_17603.webp",
+   "nomi": [
+    "S14"
+   ],
+   "id": "S14",
+   "tipo": "situation",
+   "titolo": {
+    "en": "MUTINY",
+    "it": "AMMUTINAMENTO"
+   },
+   "testo_colore": {
+    "en": "A group of people barricaded themselves in the armory and have stated their demands.",
+    "it": "Un gruppo di persone si è barricato nell'armeria e ha presentato le sue richieste."
+   },
+   "effetto": {
+    "en": "Each Section moves 2 Available Crewmembers to \"Resting Crew\". Lose 2 [success]. Shuffle this card into \"Possible Situations\".",
+    "it": "Ogni Reparto sposta 2 Membri dell'Equipaggio Disponibili in \"Equipaggio a Riposo\". Perdi 2 [success]. Mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "risolta": {
+    "en": "You may discard 2 [command] to gain 1 [success] and remove this card from the game. Otherwise, shuffle this card into \"Possible Situations\".",
+    "it": "Puoi scartare 2 [command] per ottenere 1 [success] e rimuovere questa carta dal gioco. Altrimenti, mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "defence",
+    "physical"
+   ],
+   "req_risolta": "defence+physical",
+   "dubbi": "Icone WHEN SOLVED unite da '+' (servono entrambe), non 'OR'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/future_situations/s15_17604.webp",
+   "nomi": [
+    "S15"
+   ],
+   "id": "S15",
+   "tipo": "situation",
+   "titolo": {
+    "en": "GENERATOR MALFUNCTION",
+    "it": "GUASTO AL GENERATORE"
+   },
+   "testo_colore": {
+    "en": "Something is wrong with the ship's alien generator, but Engineering cannot tell what it is exactly. For now, the Security Section has to decide which part of the ship will have its power cut.",
+    "it": "Qualcosa non va nel generatore alieno della nave, ma l'Ingegneria non riesce a capire esattamente cosa. Per ora, il Reparto Sicurezza deve decidere a quale parte della nave tagliare l'energia."
+   },
+   "effetto": {
+    "en": "Lose 1 [energy_token]. Shuffle this card into \"Possible Situations\".",
+    "it": "Perdi 1 [energy_token]. Mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "risolta": {
+    "en": "This Situation cannot be solved.",
+    "it": "Questa Situazione non può essere risolta."
+   },
+   "icone_risolta": [],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/future_situations/s16_17605.webp",
+   "nomi": [
+    "S16"
+   ],
+   "id": "S16",
+   "tipo": "situation",
+   "titolo": {
+    "en": "UNFINISHED BUSINESS",
+    "it": "QUESTIONI IN SOSPESO"
+   },
+   "testo_colore": {
+    "en": "Small investigations and cases are accumulating at a frightening pace. Security has to spend a full week solving them all at once.",
+    "it": "Piccole indagini e casi si accumulano a un ritmo spaventoso. La Sicurezza deve passare un'intera settimana a risolverli tutti in una volta."
+   },
+   "effetto": {
+    "en": "Lower Morale and shuffle this card into \"Possible Situations\".",
+    "it": "Abbassa il Morale e mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "risolta": {
+    "en": "If Morale is Medium or High, take 1 Crewmember from \"Resting Crew\" into the corresponding Section player's hand. Shuffle this card into \"Possible Situations\".",
+    "it": "Se il Morale è Medio o Alto, prendi 1 Membro dell'Equipaggio da \"Equipaggio a Riposo\" e mettilo nella mano del giocatore del Reparto corrispondente. Mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "technology"
+   ],
+   "req_risolta": "technology",
+   "dubbi": "Quasi identica a S06 (Situazione Futura): qui lo shuffle avviene sempre, non solo 'Otherwise'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/future_situations/s17_17606.webp",
+   "nomi": [
+    "S17"
+   ],
+   "id": "S17",
+   "tipo": "situation",
+   "titolo": {
+    "en": "INTRUSIVE ORGANISM",
+    "it": "ORGANISMO INVASIVO"
+   },
+   "testo_colore": {
+    "en": "Vertigo, hair loss, and a bleeding rash – these are just some results of the Away Team's selfish decision to return aboard with a parasite clinging to their exosuits.",
+    "it": "Vertigini, perdita di capelli e un'eruzione cutanea sanguinante – sono solo alcune conseguenze della decisione egoista della Squadra di Sbarco di tornare a bordo con un parassita aggrappato alle esotute."
+   },
+   "effetto": {
+    "en": "Each Section moves 2 Available Crewmembers to \"Resting Crew\". Move this card to the \"Awaiting...\" envelope.",
+    "it": "Ogni Reparto sposta 2 Membri dell'Equipaggio Disponibili in \"Equipaggio a Riposo\". Sposta questa carta nella busta \"In attesa...\"."
+   },
+   "risolta": {
+    "en": "Shuffle this card into \"Possible Situations\".",
+    "it": "Mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "xenology",
+    "biology"
+   ],
+   "req_risolta": "xenology+biology",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/future_situations/s18_17607.webp",
+   "nomi": [
+    "S18"
+   ],
+   "id": "S18",
+   "tipo": "situation",
+   "titolo": {
+    "en": "MADNESS",
+    "it": "FOLLIA"
+   },
+   "testo_colore": {
+    "en": "Ever since the footage from the Visitors' dimension leaked to the public, a strange mental ailment haunts the crew.",
+    "it": "Da quando le riprese della dimensione dei Visitatori sono trapelate al pubblico, uno strano disturbo mentale perseguita l'equipaggio."
+   },
+   "effetto": {
+    "en": "Lower Morale and move this card to the \"Awaiting...\" envelope. OR Lose 1 [command] and move this card to the \"Awaiting...\" envelope.",
+    "it": "Abbassa il Morale e sposta questa carta nella busta \"In attesa...\". OPPURE Perdi 1 [command] e sposta questa carta nella busta \"In attesa...\"."
+   },
+   "risolta": {
+    "en": "You may discard 1 Discovery of each type to remove this card from the game. Otherwise, lower Morale and shuffle this card into \"Possible Situations\".",
+    "it": "Puoi scartare 1 Scoperta di ogni tipo per rimuovere questa carta dal gioco. Altrimenti, abbassa il Morale e mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "scienceDice"
+   ],
+   "req_risolta": "scienceDice",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/future_situations/s19_17608.webp",
+   "nomi": [
+    "S19"
+   ],
+   "id": "S19",
+   "tipo": "situation",
+   "titolo": {
+    "en": "OBJECTIVISM",
+    "it": "OGGETTIVISMO"
+   },
+   "testo_colore": {
+    "en": "Like most positive and demanding lifestyles, the newly sparked philosophy requires careful cultivation and encouragement, or it will die out quickly.",
+    "it": "Come la maggior parte degli stili di vita positivi ed esigenti, la filosofia appena nata richiede attenta cura e incoraggiamento, o si spegnerà rapidamente."
+   },
+   "effetto": {
+    "en": "Remove this card from the game.",
+    "it": "Rimuovi questa carta dal gioco."
+   },
+   "risolta": {
+    "en": "You may assign 2 Crewmembers to raise Morale. Shuffle this card into \"Possible Situations\".",
+    "it": "Puoi assegnare 2 Membri dell'Equipaggio per alzare il Morale. Mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "xenology",
+    "technology",
+    "biology"
+   ],
+   "req_risolta": "xenology+technology+biology",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/future_situations/s20_17609.webp",
+   "nomi": [
+    "S20"
+   ],
+   "id": "S20",
+   "tipo": "situation",
+   "titolo": {
+    "en": "HOMEWARD",
+    "it": "VERSO CASA"
+   },
+   "testo_colore": {
+    "en": "People are tired and scared. Some of them try to hack into the Vanguard's navigation system and chart a course for Earth.",
+    "it": "La gente è stanca e spaventata. Alcuni cercano di violare il sistema di navigazione della Vanguard e tracciare una rotta verso la Terra."
+   },
+   "effetto": {
+    "en": "Lose all but 1 [energy_token] and move this card to the \"Awaiting...\" envelope. OR Lose 2 [success] and move this card to the \"Awaiting...\" envelope.",
+    "it": "Perdi tutti i [energy_token] tranne 1 e sposta questa carta nella busta \"In attesa...\". OPPURE Perdi 2 [success] e sposta questa carta nella busta \"In attesa...\"."
+   },
+   "risolta": {
+    "en": "Shuffle this card into \"Possible Situations\".",
+    "it": "Mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "physical",
+    "scouting"
+   ],
+   "req_risolta": "physical+scouting",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/future_situations/s21_17610.webp",
+   "nomi": [
+    "S21"
+   ],
+   "id": "S21",
+   "tipo": "situation",
+   "titolo": {
+    "en": "AI MALFUNCTION",
+    "it": "GUASTO DELL'IA"
+   },
+   "testo_colore": {
+    "en": "When anything goes wrong with the AI, it's immediately restored to the previous version. The problem appears when all Vanguard's AIs malfunction at the same time.",
+    "it": "Quando qualcosa va storto con l'IA, questa viene subito ripristinata alla versione precedente. Il problema sorge quando tutte le IA della Vanguard si guastano contemporaneamente."
+   },
+   "effetto": {
+    "en": "Lose 3 [energy_token] and shuffle this card into \"Possible Situations\". OR Each Section moves 2 Available Crewmembers to \"Resting Crew\" and shuffle this card into \"Possible Situations\". OR Lose 4 [success] and shuffle this card into \"Possible Situations\".",
+    "it": "Perdi 3 [energy_token] e mescola questa carta in \"Situazioni Possibili\". OPPURE Ogni Reparto sposta 2 Membri dell'Equipaggio Disponibili in \"Equipaggio a Riposo\" e mescola questa carta in \"Situazioni Possibili\". OPPURE Perdi 4 [success] e mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "risolta": {
+    "en": "This Situation cannot be solved.",
+    "it": "Questa Situazione non può essere risolta."
+   },
+   "icone_risolta": [],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/future_situations/s22_17611.webp",
+   "nomi": [
+    "S22"
+   ],
+   "id": "S22",
+   "tipo": "situation",
+   "titolo": {
+    "en": "PRO-WAR PROTESTERS",
+    "it": "MANIFESTANTI FAVOREVOLI ALLA GUERRA"
+   },
+   "testo_colore": {
+    "en": "Not everyone agrees with the Section leaders' decision to cooperate with aliens. Protests and heated discussions echo through the ship.",
+    "it": "Non tutti sono d'accordo con la decisione dei capireparto di collaborare con gli alieni. Proteste e accese discussioni risuonano per tutta la nave."
+   },
+   "effetto": {
+    "en": "Each Section moves 2 Available Crewmembers to \"Resting Crew\". Move this card to the \"Awaiting...\" envelope. OR Lose all but 1 [command] and move this card to the \"Awaiting...\" envelope.",
+    "it": "Ogni Reparto sposta 2 Membri dell'Equipaggio Disponibili in \"Equipaggio a Riposo\". Sposta questa carta nella busta \"In attesa...\". OPPURE Perdi tutti i [command] tranne 1 e sposta questa carta nella busta \"In attesa...\"."
+   },
+   "risolta": {
+    "en": "Shuffle this card into \"Possible Situations\".",
+    "it": "Mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "physical",
+    "defence"
+   ],
+   "req_risolta": "physical+defence",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/future_situations/s23_17612.webp",
+   "nomi": [
+    "S23"
+   ],
+   "id": "S23",
+   "tipo": "situation",
+   "titolo": {
+    "en": "PRO-ALIEN PROTESTERS",
+    "it": "MANIFESTANTI FILO-ALIENI"
+   },
+   "testo_colore": {
+    "en": "Not everyone agrees with Section leaders' decision to turn Vanguard into a warship. Protests and heated discussions echo through the ship.",
+    "it": "Non tutti sono d'accordo con la decisione dei capireparto di trasformare la Vanguard in una nave da guerra. Proteste e accese discussioni risuonano per tutta la nave."
+   },
+   "effetto": {
+    "en": "Each Section moves 2 Available Crewmembers to \"Resting Crew\". Move this card to the \"Awaiting...\" envelope. OR Lose all but 1 [command] and move this card to the \"Awaiting...\" envelope.",
+    "it": "Ogni Reparto sposta 2 Membri dell'Equipaggio Disponibili in \"Equipaggio a Riposo\". Sposta questa carta nella busta \"In attesa...\". OPPURE Perdi tutti i [command] tranne 1 e sposta questa carta nella busta \"In attesa...\"."
+   },
+   "risolta": {
+    "en": "Shuffle this card into \"Possible Situations\".",
+    "it": "Mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "defence",
+    "xenology"
+   ],
+   "req_risolta": "defence+xenology",
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/future_situations/s24_17613.webp",
+   "nomi": [
+    "S24"
+   ],
+   "id": "S24",
+   "tipo": "situation",
+   "titolo": {
+    "en": "UNDESIRABLE INTERACTION",
+    "it": "INTERAZIONE INDESIDERATA"
+   },
+   "testo_colore": {
+    "en": "We think we know how the individual parts of our ship work, but when the alien technologies start interacting with each other in unpredictable ways, we can only observe and pray.",
+    "it": "Crediamo di sapere come funzionano le singole parti della nostra nave, ma quando le tecnologie aliene iniziano a interagire fra loro in modi imprevedibili, possiamo solo osservare e pregare."
+   },
+   "effetto": {
+    "en": "Roll D10: 0: Gain 1 [energy_token] and 1 [command]. 1-3: Lose 4 [success]. 4-6: Lose 4 [energy_token]. 7-9: Lose 3 [command]. Regardless of the result, move this card to the \"Awaiting...\" envelope.",
+    "it": "Tira un D10: 0: Ottieni 1 [energy_token] e 1 [command]. 1-3: Perdi 4 [success]. 4-6: Perdi 4 [energy_token]. 7-9: Perdi 3 [command]. Indipendentemente dal risultato, sposta questa carta nella busta \"In attesa...\"."
+   },
+   "risolta": {
+    "en": "You may assign 2 Crewmembers to shuffle this card into \"Possible Situations\". If you don't, lower Morale and shuffle this card into \"Possible Situations\".",
+    "it": "Puoi assegnare 2 Membri dell'Equipaggio per mescola questa carta in \"Situazioni Possibili\". Se non lo fai, abbassa il Morale e mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "gathering",
+    "construction"
+   ],
+   "req_risolta": "gathering+construction",
+   "dubbi": "Effetto a tabella D10; per l'automazione: 0 / 1-3 / 4-6 / 7-9."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/future_situations/s25_17614.webp",
+   "nomi": [
+    "S25"
+   ],
+   "id": "S25",
+   "tipo": "situation",
+   "titolo": {
+    "en": "STARSHOAL'S INFECTION",
+    "it": "INFEZIONE DELLO STARSHOAL"
+   },
+   "testo_colore": {
+    "en": "After another generator infestation, we think that only a group effort of all Sections can get rid of those pesky organisms.",
+    "it": "Dopo l'ennesima infestazione del generatore, pensiamo che solo uno sforzo comune di tutti i Reparti possa liberarci di quei fastidiosi organismi."
+   },
+   "effetto": {
+    "en": "Lower Morale and move this card to the \"Awaiting...\" envelope. OR Lose 4 [energy_token] and move this card to the \"Awaiting...\" envelope. OR Each Section moves 2 Available Crewmembers to \"Resting Crew\". Move this card to the \"Awaiting...\" envelope.",
+    "it": "Abbassa il Morale e sposta questa carta nella busta \"In attesa...\". OPPURE Perdi 4 [energy_token] e sposta questa carta nella busta \"In attesa...\". OPPURE Ogni Reparto sposta 2 Membri dell'Equipaggio Disponibili in \"Equipaggio a Riposo\". Sposta questa carta nella busta \"In attesa...\"."
+   },
+   "risolta": {
+    "en": "You may assign 5 Crewmembers to remove this card from the game. Otherwise, shuffle this card into \"Possible Situations\".",
+    "it": "Puoi assegnare 5 Membri dell'Equipaggio per rimuovere questa carta dal gioco. Altrimenti, mescola questa carta in \"Situazioni Possibili\"."
+   },
+   "icone_risolta": [
+    "biology",
+    "biology"
+   ],
+   "req_risolta": "biology+biology",
+   "dubbi": "'Starshoal' lasciato non tradotto (nome proprio, verificare resa ufficiale)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/future_situations/s26_17615.webp",
+   "nomi": [
+    "S26"
+   ],
+   "id": "S26",
+   "tipo": "situation",
+   "titolo": {
+    "en": "MISSING IN ACTION",
+    "it": "DISPERSI IN AZIONE"
+   },
+   "testo_colore": {
+    "en": "Despite the best equipment and training, the Away Team was lost in action when exploring the Thorne-Zytkov Object. We need to immediately equip and send another team after them.",
+    "it": "Nonostante l'equipaggiamento e l'addestramento migliori, la Squadra di Sbarco è dispersa in azione durante l'esplorazione dell'Oggetto di Thorne-Żytkow. Dobbiamo equipaggiare subito un'altra squadra e mandarla a cercarli."
+   },
+   "effetto": {
+    "en": "Go to Log 797.",
+    "it": "Vai all'Annotazione 797."
+   },
+   "icone_risolta": [],
+   "dubbi": "Nessun riquadro WHEN SOLVED sulla carta."
+  }
+ ]
+}

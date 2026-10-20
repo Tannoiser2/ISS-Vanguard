@@ -1,0 +1,1140 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/hr_5730_deb5c1.webp",
+   "nomi": [
+    "HR 5730"
+   ],
+   "tipo": "sistema",
+   "nome": "HR 5730",
+   "pagina": 13,
+   "testo": {
+    "en": "This small system is a galactical jackpot: life on two planets and one burst by the deadly crystal. The dim star radiates with a warm light of almost the same spectrum as the Sun.",
+    "it": "Questo piccolo sistema è un jackpot galattico: vita su due pianeti e uno frantumato dal cristallo letale. La fioca stella irradia una luce calda dallo spettro quasi identico a quello del Sole."
+   },
+   "rotte": [
+    {
+     "verso": "12 Leonis",
+     "pagina": 12,
+     "energia": 2,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow"
+    },
+    {
+     "verso": "Upsilon Borealis",
+     "pagina": 15,
+     "energia": 3,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow"
+    }
+   ],
+   "destinazioni": [
+    {
+     "numero": 1,
+     "nome": "HR 5730 B",
+     "energia": 0,
+     "atterraggio": "",
+     "log": 222,
+     "testo": {
+      "en": "Another dead world. This time, however, the crystal that broke it apart radiates with intense energy. We could try to harvest it. 0[energyCost]: Go to Log 222.",
+      "it": "Un altro mondo morto. Questa volta, però, il cristallo che l'ha frantumato irradia un'intensa energia. Potremmo provare a raccoglierla. 0[energyCost]: Vai all'Annotazione 222."
+     },
+     "opzioni": [
+      {
+       "energia": 0,
+       "en": "Go to Log 222.",
+       "it": "Vai all'Annotazione 222.",
+       "log": 222
+      }
+     ]
+    },
+    {
+     "numero": 2,
+     "nome": "HR 5730 C – \"Cousin\"",
+     "energia": 0,
+     "atterraggio": "L9",
+     "log": null,
+     "testo": {
+      "en": "22% oxygen, 78% nitrogen – this Earth's cousin abounds with jungles and non-hostile fauna. 0[energyCost]: LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L9 in your Planetary Scanner and go to the next Starmap step. 1[energyCost]: MAKE CONTACT (requires Objectives O06 – O11) – Place Planet card HR 5730 C in the \"Awaiting...\" envelope.",
+      "it": "22% di ossigeno, 78% di azoto: questo cugino della Terra abbonda di giungle e fauna non ostile. 0[energyCost]: ATTERRAGGIO – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L9 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare. 1[energyCost]: STABILIRE UN CONTATTO (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta HR 5730 C nella busta \"In attesa...\"."
+     },
+     "opzioni": [
+      {
+       "energia": 0,
+       "en": "LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L9 in your Planetary Scanner and go to the next Starmap step.",
+       "it": "ATTERRAGGIO – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L9 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare.",
+       "log": null
+      },
+      {
+       "energia": 1,
+       "en": "MAKE CONTACT (requires Objectives O06 – O11) – Place Planet card HR 5730 C in the \"Awaiting...\" envelope.",
+       "it": "STABILIRE UN CONTATTO (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta HR 5730 C nella busta \"In attesa...\".",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 3,
+     "nome": "HR 5730 D – \"Earth Prime\"",
+     "energia": 2,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "Humans could colonize this planet without any terraforming, if not for the high concentration of ozone in the atmosphere. 2[energyCost]: Assign 3 Crewmembers to draw 1 Live Specimen and 1 Strange Flora Discoveries and move them to \"Gathered Discoveries\".",
+      "it": "Gli esseri umani potrebbero colonizzare questo pianeta senza alcuna terraformazione, se non fosse per l'alta concentrazione di ozono nell'atmosfera. 2[energyCost]: Assegna 3 Membri dell'Equipaggio per pescare 1 Scoperta Esemplare Vivo e 1 Scoperta Strana Vegetazione e spostale fra le \"Scoperte Raccolte\"."
+     },
+     "opzioni": [
+      {
+       "energia": 2,
+       "en": "Assign 3 Crewmembers to draw 1 Live Specimen and 1 Strange Flora Discoveries and move them to \"Gathered Discoveries\".",
+       "it": "Assegna 3 Membri dell'Equipaggio per pescare 1 Scoperta Esemplare Vivo e 1 Scoperta Strana Vegetazione e spostale fra le \"Scoperte Raccolte\".",
+       "log": null
+      }
+     ]
+    }
+   ],
+   "dubbi": "HR 5730 C e D sono destinazioni con nome tra virgolette; HR 5730 C ha l'icona [lander]. Colore 'yellow' delle rotte = cornice gialla dell'icona energia (richiede B01). Campo 'opzioni' aggiunto per le destinazioni con più azioni (energia: testo); 'energia' = costo della prima opzione; 'N[energyCost]' nel testo = icona costo in energia con il numero N."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/gliese_368_2_5970b1.webp",
+   "nomi": [
+    "Gliese 368-2"
+   ],
+   "tipo": "sistema",
+   "nome": "Gliese 368-2",
+   "pagina": 14,
+   "testo": {
+    "en": "Two stars scourge this system with ruthless radiation. We detect life signatures from one of the planets – how life grew in such a harsh environment, we won't know.",
+    "it": "Due stelle flagellano questo sistema con radiazioni spietate. Rileviamo segni di vita su uno dei pianeti: come la vita sia potuta crescere in un ambiente così ostile, non lo sapremo."
+   },
+   "rotte": [
+    {
+     "verso": "12 Leonis",
+     "pagina": 12,
+     "energia": 4,
+     "log": null,
+     "richiede": "",
+     "colore": ""
+    },
+    {
+     "verso": "LCS-17",
+     "pagina": 9,
+     "energia": 2,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow"
+    },
+    {
+     "verso": "Upsilon Borealis",
+     "pagina": 15,
+     "energia": 4,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red"
+    }
+   ],
+   "destinazioni": [
+    {
+     "numero": 1,
+     "nome": "Gliese 368-2 A – \"Idemian Cabal\"",
+     "energia": 0,
+     "atterraggio": "L10",
+     "log": null,
+     "testo": {
+      "en": "Inhabitants of this world were the first who answered our messages with an attempt at communication. The contact with a sentient, peace-oriented species is a milestone in our journey. 0[energyCost]: LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L10 in your Planetary Scanner and go to the next Starmap step. 1[energyCost]: MAKE CONTACT (requires Objectives O06 – O11) – Place Planet card GLIESE 368-2 A in the \"Awaiting...\" envelope.",
+      "it": "Gli abitanti di questo mondo sono stati i primi a rispondere ai nostri messaggi con un tentativo di comunicazione. Il contatto con una specie senziente e pacifica è una pietra miliare del nostro viaggio. 0[energyCost]: ATTERRAGGIO – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L10 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare. 1[energyCost]: STABILIRE UN CONTATTO (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta GLIESE 368-2 A nella busta \"In attesa...\"."
+     },
+     "opzioni": [
+      {
+       "energia": 0,
+       "en": "LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L10 in your Planetary Scanner and go to the next Starmap step.",
+       "it": "ATTERRAGGIO – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L10 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare.",
+       "log": null
+      },
+      {
+       "energia": 1,
+       "en": "MAKE CONTACT (requires Objectives O06 – O11) – Place Planet card GLIESE 368-2 A in the \"Awaiting...\" envelope.",
+       "it": "STABILIRE UN CONTATTO (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta GLIESE 368-2 A nella busta \"In attesa...\".",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 2,
+     "nome": "Gliese 368-2 B",
+     "energia": 4,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "At first, taken as a barren world, this planet is overgrown with small succulents. 4[energyCost]: Draw 1 Strange Flora Discovery and move it to \"Gathered Discoveries\".",
+      "it": "Inizialmente scambiato per un mondo sterile, questo pianeta è ricoperto di piccole piante grasse. 4[energyCost]: Pesca 1 Scoperta Strana Vegetazione e spostala fra le \"Scoperte Raccolte\"."
+     },
+     "opzioni": [
+      {
+       "energia": 4,
+       "en": "Draw 1 Strange Flora Discovery and move it to \"Gathered Discoveries\".",
+       "it": "Pesca 1 Scoperta Strana Vegetazione e spostala fra le \"Scoperte Raccolte\".",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 3,
+     "nome": "Gliese 368-2 C",
+     "energia": 3,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "Something on the north pole emits a strange signal. It contains odd yet valuable data. 3[energyCost]: Assign 1 Rank 2 Crewmember to draw 1 Alien Tech Discovery and move it to \"Gathered Discoveries\".",
+      "it": "Qualcosa al polo nord emette uno strano segnale. Contiene dati bizzarri ma preziosi. 3[energyCost]: Assegna 1 Membro dell'Equipaggio di Grado 2 per pescare 1 Scoperta Tecnologia Aliena e spostala fra le \"Scoperte Raccolte\"."
+     },
+     "opzioni": [
+      {
+       "energia": 3,
+       "en": "Assign 1 Rank 2 Crewmember to draw 1 Alien Tech Discovery and move it to \"Gathered Discoveries\".",
+       "it": "Assegna 1 Membro dell'Equipaggio di Grado 2 per pescare 1 Scoperta Tecnologia Aliena e spostala fra le \"Scoperte Raccolte\".",
+       "log": null
+      }
+     ]
+    }
+   ],
+   "dubbi": "Campo 'opzioni' aggiunto per le destinazioni con più azioni (energia: testo); 'energia' = costo della prima opzione; 'N[energyCost]' nel testo = icona costo in energia con il numero N."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/upsilon_borealis_c635a7.webp",
+   "nomi": [
+    "Upsilon Borealis"
+   ],
+   "tipo": "sistema",
+   "nome": "Upsilon Borealis",
+   "pagina": 15,
+   "testo": {
+    "en": "A very dim and ancient brown dwarf casts its light on this dying system. However, even here, we can find life. Following the Builders' Starmap can lead to the most curious discoveries.",
+    "it": "Un'antichissima e fioca nana bruna proietta la sua luce su questo sistema morente. Eppure, anche qui, possiamo trovare la vita. Seguire la Mappa Stellare dei Costruttori può condurre alle scoperte più curiose."
+   },
+   "rotte": [
+    {
+     "verso": "HR 5730",
+     "pagina": 13,
+     "energia": 3,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow"
+    },
+    {
+     "verso": "Gliese 368-2",
+     "pagina": 14,
+     "energia": 4,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red"
+    },
+    {
+     "verso": "Mu Librae",
+     "pagina": 16,
+     "energia": 5,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red"
+    }
+   ],
+   "destinazioni": [
+    {
+     "numero": 1,
+     "nome": "P/Upsilon Borealis W 20",
+     "energia": 4,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "The ice of this comet was once full of microorganisms – now, they are all dead from radiation. 4[energyCost]: Draw 1 Microorganism Discovery and move it to \"Gathered Discoveries\".",
+      "it": "Il ghiaccio di questa cometa un tempo brulicava di microorganismi: ora sono tutti morti a causa delle radiazioni. 4[energyCost]: Pesca 1 Scoperta Microorganismo e spostala fra le \"Scoperte Raccolte\"."
+     },
+     "opzioni": [
+      {
+       "energia": 4,
+       "en": "Draw 1 Microorganism Discovery and move it to \"Gathered Discoveries\".",
+       "it": "Pesca 1 Scoperta Microorganismo e spostala fra le \"Scoperte Raccolte\".",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 2,
+     "nome": "Upsilon Borealis A",
+     "energia": 1,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "A small Idemian colony huddles by the south pole, the only place that still has some water. 1[energyCost]: MAKE CONTACT (requires Objectives O06 – O11) – Place Planet card Upsilon Borealis A in the \"Awaiting...\" envelope.",
+      "it": "Una piccola colonia idemiana si raccoglie presso il polo sud, l'unico luogo dove resta ancora un po' d'acqua. 1[energyCost]: STABILIRE UN CONTATTO (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta Upsilon Borealis A nella busta \"In attesa...\"."
+     },
+     "opzioni": [
+      {
+       "energia": 1,
+       "en": "MAKE CONTACT (requires Objectives O06 – O11) – Place Planet card Upsilon Borealis A in the \"Awaiting...\" envelope.",
+       "it": "STABILIRE UN CONTATTO (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta Upsilon Borealis A nella busta \"In attesa...\".",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 3,
+     "nome": "Upsilon Borealis B",
+     "energia": 3,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "The civilization of this world perished because of climate change. We shall pass this knowledge to Earth. 3[energyCost]: Discard 1 [command] to gain 1 [success].",
+      "it": "La civiltà di questo mondo è perita a causa del cambiamento climatico. Trasmetteremo questa conoscenza alla Terra. 3[energyCost]: Scarta 1 [command] per ottenere 1 [success]."
+     },
+     "opzioni": [
+      {
+       "energia": 3,
+       "en": "Discard 1 [command] to gain 1 [success].",
+       "it": "Scarta 1 [command] per ottenere 1 [success].",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 4,
+     "nome": "Upsilon Borealis C",
+     "energia": 1,
+     "atterraggio": "",
+     "log": 46,
+     "testo": {
+      "en": "The only artificial structure on this planet is a magnificent sealed tomb. The markings around its entrance allowed us to connect it to civilization that once thrived on Upsilon Borealis B. No scans could penetrate the tomb - the only way to know what's inside is to unseal it. 1[energyCost]: Go to LOG 46.",
+      "it": "L'unica struttura artificiale su questo pianeta è una magnifica tomba sigillata. I segni attorno all'ingresso ci hanno permesso di collegarla alla civiltà che un tempo prosperava su Upsilon Borealis B. Nessuna scansione è riuscita a penetrare la tomba: l'unico modo per sapere cosa contiene è aprirla. 1[energyCost]: Vai all'Annotazione 46."
+     },
+     "opzioni": [
+      {
+       "energia": 1,
+       "en": "Go to LOG 46.",
+       "it": "Vai all'Annotazione 46.",
+       "log": 46
+      }
+     ]
+    }
+   ],
+   "dubbi": "L'icona scartata (stella in esagono) è resa come [command] (nel foglio icone la stella è senza esagono); l'icona ottenuta (freccia in su in cerchio) è [success]. Nessuna destinazione con icona [lander] in questo sistema. Campo 'opzioni' aggiunto per le destinazioni con più azioni (energia: testo); 'energia' = costo della prima opzione; 'N[energyCost]' nel testo = icona costo in energia con il numero N."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/mu_librae_ed6c28.webp",
+   "nomi": [
+    "Mu Librae"
+   ],
+   "tipo": "sistema",
+   "nome": "Mu Librae",
+   "pagina": 16,
+   "testo": {
+    "en": "Admiring an expanding, dying star is both a terrifying and thrilling experience. To think that our Sun will die in only several billion years...",
+    "it": "Ammirare una stella morente in espansione è un'esperienza al tempo stesso terrificante ed emozionante. Pensare che il nostro Sole morirà tra appena qualche miliardo di anni..."
+   },
+   "rotte": [
+    {
+     "verso": "GJ 1164",
+     "pagina": 17,
+     "energia": 2,
+     "log": null,
+     "richiede": "",
+     "colore": ""
+    },
+    {
+     "verso": "LCS-17",
+     "pagina": 9,
+     "energia": 4,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow"
+    },
+    {
+     "verso": "Kelu-8",
+     "pagina": 18,
+     "energia": 3,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow"
+    },
+    {
+     "verso": "Upsilon Borealis",
+     "pagina": 15,
+     "energia": 5,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red"
+    }
+   ],
+   "destinazioni": [
+    {
+     "numero": 1,
+     "nome": "Mu Librae A – \"Muspelheim\"",
+     "energia": 0,
+     "atterraggio": "L12",
+     "log": null,
+     "testo": {
+      "en": "Something inside this planet, which is slowly devoured by the star, emits a repeated signal. 0[energyCost]: LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L12 in your Planetary Scanner and go to the next Starmap step.",
+      "it": "Qualcosa all'interno di questo pianeta, lentamente divorato dalla stella, emette un segnale ripetuto. 0[energyCost]: ATTERRAGGIO – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L12 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare."
+     },
+     "opzioni": [
+      {
+       "energia": 0,
+       "en": "LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L12 in your Planetary Scanner and go to the next Starmap step.",
+       "it": "ATTERRAGGIO – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L12 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare.",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 2,
+     "nome": "Mu Librae B",
+     "energia": 2,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "A wary civilization doesn't let us anywhere near their planet, although they are interested in exchanging technologies. 2[energyCost]: Discard 1 [command] to draw 1 Alien Tech Discovery and move it to \"Gathered Discovery\". 1[energyCost]: MAKE CONTACT (requires Objectives O06 – O11) – Place Planet card Mu Librae B in the \"Awaiting...\" envelope.",
+      "it": "Una civiltà diffidente non ci lascia avvicinare al suo pianeta, anche se è interessata a scambiare tecnologie. 2[energyCost]: Scarta 1 [command] per pescare 1 Scoperta Tecnologia Aliena e spostala fra le \"Scoperte Raccolte\". 1[energyCost]: STABILIRE UN CONTATTO (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta Mu Librae B nella busta \"In attesa...\"."
+     },
+     "opzioni": [
+      {
+       "energia": 2,
+       "en": "Discard 1 [command] to draw 1 Alien Tech Discovery and move it to \"Gathered Discovery\".",
+       "it": "Scarta 1 [command] per pescare 1 Scoperta Tecnologia Aliena e spostala fra le \"Scoperte Raccolte\".",
+       "log": null
+      },
+      {
+       "energia": 1,
+       "en": "MAKE CONTACT (requires Objectives O06 – O11) – Place Planet card Mu Librae B in the \"Awaiting...\" envelope.",
+       "it": "STABILIRE UN CONTATTO (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta Mu Librae B nella busta \"In attesa...\".",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 3,
+     "nome": "Mu Librae D",
+     "energia": 3,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "The waters of this blue globe are sterile except for small areas surrounding white smokers. 3[energyCost]: Assign 2 Crewmembers to draw 1 Microorganism Discovery and move it to \"Gathered Discoveries\".",
+      "it": "Le acque di questo globo blu sono sterili, salvo piccole zone attorno ai camini idrotermali bianchi. 3[energyCost]: Assegna 2 Membri dell'Equipaggio per pescare 1 Scoperta Microorganismo e spostala fra le \"Scoperte Raccolte\"."
+     },
+     "opzioni": [
+      {
+       "energia": 3,
+       "en": "Assign 2 Crewmembers to draw 1 Microorganism Discovery and move it to \"Gathered Discoveries\".",
+       "it": "Assegna 2 Membri dell'Equipaggio per pescare 1 Scoperta Microorganismo e spostala fra le \"Scoperte Raccolte\".",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 4,
+     "nome": "Mu Librae A – Plasma Plumes",
+     "energia": 0,
+     "atterraggio": "",
+     "log": 207,
+     "testo": {
+      "en": "We could harvest additional power approaching the sun in the shadow of this planet, exposing our solar panels to the furious powers while keeping our hull safely hidden. 0[energyCost]: Go to Log 207.",
+      "it": "Potremmo raccogliere energia aggiuntiva avvicinandoci al sole all'ombra di questo pianeta, esponendo i pannelli solari alle sue forze furiose e tenendo lo scafo al sicuro. 0[energyCost]: Vai all'Annotazione 207."
+     },
+     "opzioni": [
+      {
+       "energia": 0,
+       "en": "Go to Log 207.",
+       "it": "Vai all'Annotazione 207.",
+       "log": 207
+      }
+     ]
+    }
+   ],
+   "dubbi": "Il testo della landing dice 'Landing Card'/'Landing Cards' con maiuscola; trascritto in forma uniforme. Mu Librae B: il testo originale dice \"Gathered Discovery\" (singolare, refuso). Stella in esagono resa come [command]. Campo 'opzioni' aggiunto per le destinazioni con più azioni (energia: testo); 'energia' = costo della prima opzione; 'N[energyCost]' nel testo = icona costo in energia con il numero N."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/gj_1164_064a70.webp",
+   "nomi": [
+    "GJ 1164"
+   ],
+   "tipo": "sistema",
+   "nome": "GJ 1164",
+   "pagina": 17,
+   "testo": {
+    "en": "This system is frequented by Idemians and many unknown races we know nothing about. We should never forget that we aren't alone in this galaxy.",
+    "it": "Questo sistema è frequentato dagli Idemiani e da molte razze sconosciute di cui non sappiamo nulla. Non dovremmo mai dimenticare che non siamo soli in questa galassia."
+   },
+   "rotte": [
+    {
+     "verso": "LCS-17",
+     "pagina": 9,
+     "energia": 2,
+     "log": null,
+     "richiede": "",
+     "colore": ""
+    },
+    {
+     "verso": "Mu Librae",
+     "pagina": 16,
+     "energia": 2,
+     "log": null,
+     "richiede": "",
+     "colore": ""
+    },
+    {
+     "verso": "LF-122",
+     "pagina": 19,
+     "energia": 4,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red"
+    },
+    {
+     "verso": "Hodeus-B",
+     "pagina": 21,
+     "energia": 3,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red"
+    }
+   ],
+   "destinazioni": [
+    {
+     "numero": 1,
+     "nome": "GJ 1164 – Idemian Vessel",
+     "energia": 0,
+     "atterraggio": "",
+     "log": 107,
+     "testo": {
+      "en": "A tiny spaceship bearing Idemian symbols drifts through space. It emits an invitation for contact. 0[energyCost]: Go to Log 107.",
+      "it": "Una minuscola astronave con simboli idemiani va alla deriva nello spazio. Emette un invito al contatto. 0[energyCost]: Vai all'Annotazione 107."
+     },
+     "opzioni": [
+      {
+       "energia": 0,
+       "en": "Go to Log 107.",
+       "it": "Vai all'Annotazione 107.",
+       "log": 107
+      }
+     ]
+    },
+    {
+     "numero": 2,
+     "nome": "GJ 1164 B",
+     "energia": 2,
+     "atterraggio": "",
+     "log": 803,
+     "testo": {
+      "en": "The planet's core is destabilized, raising our suspicions – is the crystalline doom present in this world? 2[energyCost]: Go to Log 803.",
+      "it": "Il nucleo del pianeta è destabilizzato, il che desta i nostri sospetti: la rovina cristallina è presente anche in questo mondo? 2[energyCost]: Vai all'Annotazione 803."
+     },
+     "opzioni": [
+      {
+       "energia": 2,
+       "en": "Go to Log 803.",
+       "it": "Vai all'Annotazione 803.",
+       "log": 803
+      }
+     ]
+    },
+    {
+     "numero": 3,
+     "nome": "GJ 1164 C",
+     "energia": 6,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "The asteroid belt resembles the spine of a giant creature. 6[energyCost]: Draw 2 Mineral Discoveries and move them to \"Gathered Discoveries\".",
+      "it": "La fascia di asteroidi ricorda la spina dorsale di una creatura gigantesca. 6[energyCost]: Pesca 2 Scoperte Minerale e spostale fra le \"Scoperte Raccolte\"."
+     },
+     "opzioni": [
+      {
+       "energia": 6,
+       "en": "Draw 2 Mineral Discoveries and move them to \"Gathered Discoveries\".",
+       "it": "Pesca 2 Scoperte Minerale e spostale fra le \"Scoperte Raccolte\".",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 4,
+     "nome": "GJ 1164 E – \"Ugnir\"",
+     "energia": 0,
+     "atterraggio": "L13",
+     "log": null,
+     "testo": {
+      "en": "The planet is gray, without any distinctive features. However, our scans determine that some life must be present there. 0[energyCost]: LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L13 in your Planetary Scanner and go to the next Starmap step.",
+      "it": "Il pianeta è grigio, privo di caratteristiche distintive. Tuttavia, le nostre scansioni indicano che vi deve essere presente qualche forma di vita. 0[energyCost]: ATTERRAGGIO – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L13 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare."
+     },
+     "opzioni": [
+      {
+       "energia": 0,
+       "en": "LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L13 in your Planetary Scanner and go to the next Starmap step.",
+       "it": "ATTERRAGGIO – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L13 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare.",
+       "log": null
+      }
+     ]
+    }
+   ],
+   "dubbi": "GJ 1164 C: costo letto come 6 energia (verificato ingrandendo; poco comune ma chiaro). Campo 'opzioni' aggiunto per le destinazioni con più azioni (energia: testo); 'energia' = costo della prima opzione; 'N[energyCost]' nel testo = icona costo in energia con il numero N."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/kelu_8_e2e274.webp",
+   "nomi": [
+    "Kelu-8"
+   ],
+   "tipo": "sistema",
+   "nome": "Kelu-8",
+   "pagina": 18,
+   "testo": {
+    "en": "A supergiant star watches over two arid planets. To think that Builders decided to seed life in such a place...",
+    "it": "Una stella supergigante veglia su due pianeti aridi. Pensare che i Costruttori abbiano deciso di seminare la vita in un posto simile..."
+   },
+   "rotte": [
+    {
+     "verso": "K3-569",
+     "pagina": 20,
+     "energia": 2,
+     "log": null,
+     "richiede": "",
+     "colore": ""
+    },
+    {
+     "verso": "Mu Librae",
+     "pagina": 16,
+     "energia": 4,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow"
+    }
+   ],
+   "destinazioni": [
+    {
+     "numero": 1,
+     "nome": "Kelu-8 A",
+     "energia": 1,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "Rains of molten metal and severe winds make the exploration extremely dangerous. 1[energyCost]: Assign 2 Rank 3 Crewmembers to draw 1 Mineral Discovery and move it to \"Gathered Discoveries\".",
+      "it": "Piogge di metallo fuso e venti violenti rendono l'esplorazione estremamente pericolosa. 1[energyCost]: Assegna 2 Membri dell'Equipaggio di Grado 3 per pescare 1 Scoperta Minerale e spostala fra le \"Scoperte Raccolte\"."
+     },
+     "opzioni": [
+      {
+       "energia": 1,
+       "en": "Assign 2 Rank 3 Crewmembers to draw 1 Mineral Discovery and move it to \"Gathered Discoveries\".",
+       "it": "Assegna 2 Membri dell'Equipaggio di Grado 3 per pescare 1 Scoperta Minerale e spostala fra le \"Scoperte Raccolte\".",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 2,
+     "nome": "Kelu-8 B – \"Operation Eternal Sunrise\"",
+     "energia": 0,
+     "atterraggio": "L18",
+     "log": null,
+     "testo": {
+      "en": "Even from its orbit, we can see cities moving along with the line separating night from day. 0[energyCost]: LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L18 in your Planetary Scanner and go to the next Starmap step. 1[energyCost]: MAKE CONTACT (requires Objectives O06 – O11) – Place Planet card Kelu-8 B in the \"Awaiting...\" envelope.",
+      "it": "Anche dall'orbita possiamo vedere città che si spostano seguendo la linea che separa la notte dal giorno. 0[energyCost]: ATTERRAGGIO – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L18 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare. 1[energyCost]: STABILIRE UN CONTATTO (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta Kelu-8 B nella busta \"In attesa...\"."
+     },
+     "opzioni": [
+      {
+       "energia": 0,
+       "en": "LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L18 in your Planetary Scanner and go to the next Starmap step.",
+       "it": "ATTERRAGGIO – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L18 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare.",
+       "log": null
+      },
+      {
+       "energia": 1,
+       "en": "MAKE CONTACT (requires Objectives O06 – O11) – Place Planet card Kelu-8 B in the \"Awaiting...\" envelope.",
+       "it": "STABILIRE UN CONTATTO (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta Kelu-8 B nella busta \"In attesa...\".",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 3,
+     "nome": "Kelu-8 – Organic Cloud",
+     "energia": 1,
+     "atterraggio": "",
+     "log": 138,
+     "testo": {
+      "en": "A strange cloud of organic matter... 1[energyCost]: Go to Log 138.",
+      "it": "Una strana nube di materia organica... 1[energyCost]: Vai all'Annotazione 138."
+     },
+     "opzioni": [
+      {
+       "energia": 1,
+       "en": "Go to Log 138.",
+       "it": "Vai all'Annotazione 138.",
+       "log": 138
+      }
+     ]
+    },
+    {
+     "numero": 4,
+     "nome": "Kelu-8 – \"Obj 73\"",
+     "energia": 2,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "Extracting rotting biomass from these strange twin planetoids isn't a pleasant task, but it's a needed one. 2[energyCost]: Lower the Morale in the Bridge cardholder (Ship Book page 3) to gain 1 [command].",
+      "it": "Estrarre biomassa in decomposizione da questi strani planetoidi gemelli non è un compito piacevole, ma è necessario. 2[energyCost]: Abbassa il Morale nel portacarte del Ponte (Manuale della Nave pagina 3) per ottenere 1 [command]."
+     },
+     "opzioni": [
+      {
+       "energia": 2,
+       "en": "Lower the Morale in the Bridge cardholder (Ship Book page 3) to gain 1 [command].",
+       "it": "Abbassa il Morale nel portacarte del Ponte (Manuale della Nave pagina 3) per ottenere 1 [command].",
+       "log": null
+      }
+     ]
+    }
+   ],
+   "dubbi": "Stella in esagono resa come [command]. Campo 'opzioni' aggiunto per le destinazioni con più azioni (energia: testo); 'energia' = costo della prima opzione; 'N[energyCost]' nel testo = icona costo in energia con il numero N."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/lf_122_dca24f.webp",
+   "nomi": [
+    "LF-122"
+   ],
+   "tipo": "sistema",
+   "nome": "LF-122",
+   "pagina": 19,
+   "testo": {
+    "en": "Seventy-eight Earth-like planets packed around a single star. The Science Section says it's possible with some smart Builders' astroengineering, but no one else wants to believe that system like LF-122 could really exist.",
+    "it": "Settantotto pianeti simili alla Terra ammassati attorno a una sola stella. Il Reparto Scienza dice che è possibile grazie a un'abile astroingegneria dei Costruttori, ma nessun altro vuole credere che un sistema come LF-122 possa davvero esistere."
+   },
+   "rotte": [
+    {
+     "verso": "Hodeus-B",
+     "pagina": 21,
+     "energia": 2,
+     "log": null,
+     "richiede": "",
+     "colore": ""
+    },
+    {
+     "verso": "Beta Tarsoni",
+     "pagina": 22,
+     "energia": 2,
+     "log": null,
+     "richiede": "",
+     "colore": ""
+    },
+    {
+     "verso": "51 Arietis",
+     "pagina": 11,
+     "energia": 3,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red"
+    },
+    {
+     "verso": "GJ 1164",
+     "pagina": 17,
+     "energia": 4,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red"
+    }
+   ],
+   "destinazioni": [
+    {
+     "numero": 1,
+     "nome": "LF-122/2",
+     "energia": 3,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "Under the swirling, dangerous atmosphere hides an ecosystem full of life. 3[energyCost]: Discard 1 [command] to draw 1 Strange Flora OR 1 Live Specimen Discovery and move it to \"Gathered Discoveries\".",
+      "it": "Sotto l'atmosfera turbinante e pericolosa si nasconde un ecosistema pieno di vita. 3[energyCost]: Scarta 1 [command] per pescare 1 Scoperta Strana Vegetazione OPPURE 1 Scoperta Esemplare Vivo e spostala fra le \"Scoperte Raccolte\"."
+     },
+     "opzioni": [
+      {
+       "energia": 3,
+       "en": "Discard 1 [command] to draw 1 Strange Flora OR 1 Live Specimen Discovery and move it to \"Gathered Discoveries\".",
+       "it": "Scarta 1 [command] per pescare 1 Scoperta Strana Vegetazione OPPURE 1 Scoperta Esemplare Vivo e spostala fra le \"Scoperte Raccolte\".",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 2,
+     "nome": "LF-122/32",
+     "energia": 4,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "High ridges covered in colorful lichen. 4[energyCost]: Draw 1 Mineral and 1 Microorganism Discoveries and move them to \"Gathered Discoveries\".",
+      "it": "Alte creste ricoperte di licheni variopinti. 4[energyCost]: Pesca 1 Scoperta Minerale e 1 Scoperta Microorganismo e spostale fra le \"Scoperte Raccolte\"."
+     },
+     "opzioni": [
+      {
+       "energia": 4,
+       "en": "Draw 1 Mineral and 1 Microorganism Discoveries and move them to \"Gathered Discoveries\".",
+       "it": "Pesca 1 Scoperta Minerale e 1 Scoperta Microorganismo e spostale fra le \"Scoperte Raccolte\".",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 3,
+     "nome": "LF-122/45-47 – \"Fetch\"",
+     "energia": 0,
+     "atterraggio": "L15",
+     "log": null,
+     "testo": {
+      "en": "Those three planets: one blackened by pollution, one engulfed by deserts, and another somehow connected to both of them seem like a good place to explore. We intercepted a stele's signal coming from one of them. 0[energyCost]: LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L15 in your Planetary Scanner and go to the next Starmap step.",
+      "it": "Questi tre pianeti, uno annerito dall'inquinamento, uno inghiottito dai deserti e un altro in qualche modo collegato a entrambi, sembrano un buon posto da esplorare. Abbiamo intercettato il segnale di una stele proveniente da uno di essi. 0[energyCost]: ATTERRAGGIO – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L15 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare."
+     },
+     "opzioni": [
+      {
+       "energia": 0,
+       "en": "LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L15 in your Planetary Scanner and go to the next Starmap step.",
+       "it": "ATTERRAGGIO – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L15 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare.",
+       "log": null
+      }
+     ]
+    }
+   ],
+   "dubbi": "Stella in esagono resa come [command]. Campo 'opzioni' aggiunto per le destinazioni con più azioni (energia: testo); 'energia' = costo della prima opzione; 'N[energyCost]' nel testo = icona costo in energia con il numero N."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/k3_569_d18c0e.webp",
+   "nomi": [
+    "K3-569"
+   ],
+   "tipo": "sistema",
+   "nome": "K3-569",
+   "pagina": 20,
+   "testo": {
+    "en": "The system is strewn with remnants after a large-scale space battle between species that are now fortified on their planet and an unknown invader.",
+    "it": "Il sistema è disseminato di relitti dopo una battaglia spaziale su vasta scala tra una specie ora asserragliata sul suo pianeta e un invasore sconosciuto."
+   },
+   "rotte": [
+    {
+     "verso": "Kelu-8",
+     "pagina": 18,
+     "energia": 2,
+     "log": null,
+     "richiede": "",
+     "colore": ""
+    },
+    {
+     "verso": "Hodeus-B",
+     "pagina": 21,
+     "energia": 2,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow"
+    }
+   ],
+   "destinazioni": [
+    {
+     "numero": 1,
+     "nome": "K3-569 C",
+     "energia": 1,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "The native civilization of this planet suffered a lot at the hands of Arrogator raids – they are now fiercely protective. 1[energyCost]: MAKE CONTACT (requires Objectives O06 – O11) – Place Planet card K3-569 C in the \"Awaiting...\" envelope.",
+      "it": "La civiltà nativa di questo pianeta ha sofferto molto per le incursioni degli Arrogator: ora è ferocemente protettiva. 1[energyCost]: STABILIRE UN CONTATTO (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta K3-569 C nella busta \"In attesa...\"."
+     },
+     "opzioni": [
+      {
+       "energia": 1,
+       "en": "MAKE CONTACT (requires Objectives O06 – O11) – Place Planet card K3-569 C in the \"Awaiting...\" envelope.",
+       "it": "STABILIRE UN CONTATTO (richiede gli Obiettivi O06 – O11) – Metti la carta Pianeta K3-569 C nella busta \"In attesa...\".",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 2,
+     "nome": "K3-569 – Abandoned Vessel",
+     "energia": 1,
+     "atterraggio": "",
+     "log": 405,
+     "testo": {
+      "en": "An abandoned vessel uses its dying automatic thrusters to avoid collision inside a dense asteroid belt. 1[energyCost]: Go to Log 405.",
+      "it": "Una nave abbandonata usa i suoi propulsori automatici morenti per evitare collisioni all'interno di una densa fascia di asteroidi. 1[energyCost]: Vai all'Annotazione 405."
+     },
+     "opzioni": [
+      {
+       "energia": 1,
+       "en": "Go to Log 405.",
+       "it": "Vai all'Annotazione 405.",
+       "log": 405
+      }
+     ]
+    },
+    {
+     "numero": 3,
+     "nome": "K3-569 – \"Structure\"",
+     "energia": 2,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "The remains of a system-sized defensive perimeter – we must approach with caution. 2[energyCost]: Assign 1 Rank 3 Crewmember to draw 1 Alien Tech Discovery and move it to \"Gathered Discoveries\".",
+      "it": "I resti di un perimetro difensivo grande quanto il sistema: dobbiamo avvicinarci con cautela. 2[energyCost]: Assegna 1 Membro dell'Equipaggio di Grado 3 per pescare 1 Scoperta Tecnologia Aliena e spostala fra le \"Scoperte Raccolte\"."
+     },
+     "opzioni": [
+      {
+       "energia": 2,
+       "en": "Assign 1 Rank 3 Crewmember to draw 1 Alien Tech Discovery and move it to \"Gathered Discoveries\".",
+       "it": "Assegna 1 Membro dell'Equipaggio di Grado 3 per pescare 1 Scoperta Tecnologia Aliena e spostala fra le \"Scoperte Raccolte\".",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 4,
+     "nome": "Dark Space",
+     "energia": 0,
+     "atterraggio": "L17",
+     "log": null,
+     "testo": {
+      "en": "The K3-569 system lies at the edge of a large quadrant devoid of any stars and systems, and full of dark, signal-absorbing nebulae. 0[energyCost]: FOLLOW THE COORDINATES (requires Ship Upgrade B05) – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L17 in your Planetary Scanner and go to the next Starmap step.",
+      "it": "Il sistema K3-569 si trova ai margini di un vasto quadrante privo di stelle e sistemi, e pieno di nebulose oscure che assorbono i segnali. 0[energyCost]: SEGUIRE LE COORDINATE (richiede il Potenziamento della Nave B05) – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L17 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare."
+     },
+     "opzioni": [
+      {
+       "energia": 0,
+       "en": "FOLLOW THE COORDINATES (requires Ship Upgrade B05) – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L17 in your Planetary Scanner and go to the next Starmap step.",
+       "it": "SEGUIRE LE COORDINATE (richiede il Potenziamento della Nave B05) – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L17 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare.",
+       "log": null
+      }
+     ]
+    }
+   ],
+   "dubbi": "Dark Space: l'atterraggio richiede 'Ship Upgrade B05' (non 'Bridge Upgrade'), probabilmente un potenziamento del Ponte B05; 'Arrogator' lasciato non tradotto. Campo 'opzioni' aggiunto per le destinazioni con più azioni (energia: testo); 'energia' = costo della prima opzione; 'N[energyCost]' nel testo = icona costo in energia con il numero N."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/hodeus_b_2e534e.webp",
+   "nomi": [
+    "Hodeus-B"
+   ],
+   "tipo": "sistema",
+   "nome": "Hodeus-B",
+   "pagina": 21,
+   "testo": {
+    "en": "A distinctive planetary system containing all kinds of colorful, interesting planets. A stele's signal comes from a rocky globe orbited by remnants of a moon.",
+    "it": "Un sistema planetario caratteristico, che contiene ogni genere di pianeti variopinti e interessanti. Il segnale di una stele proviene da un globo roccioso attorno a cui orbitano i resti di una luna."
+   },
+   "rotte": [
+    {
+     "verso": "LF-122",
+     "pagina": 19,
+     "energia": 2,
+     "log": null,
+     "richiede": "",
+     "colore": ""
+    },
+    {
+     "verso": "Beta Tarsoni",
+     "pagina": 22,
+     "energia": 3,
+     "log": null,
+     "richiede": "",
+     "colore": ""
+    },
+    {
+     "verso": "K3-569",
+     "pagina": 20,
+     "energia": 2,
+     "log": null,
+     "richiede": "B01",
+     "colore": "yellow"
+    },
+    {
+     "verso": "GJ 1164",
+     "pagina": 17,
+     "energia": 5,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red"
+    }
+   ],
+   "destinazioni": [
+    {
+     "numero": 1,
+     "nome": "Hodeus-B A",
+     "energia": 3,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "Schools of floating eel-like species live in the middle layer of this gas giant's atmosphere. 3[energyCost]: Draw 1 Live Specimen Discovery and move it to \"Gathered Discoveries\".",
+      "it": "Banchi di specie fluttuanti simili ad anguille vivono nello strato intermedio dell'atmosfera di questo gigante gassoso. 3[energyCost]: Pesca 1 Scoperta Esemplare Vivo e spostala fra le \"Scoperte Raccolte\"."
+     },
+     "opzioni": [
+      {
+       "energia": 3,
+       "en": "Draw 1 Live Specimen Discovery and move it to \"Gathered Discoveries\".",
+       "it": "Pesca 1 Scoperta Esemplare Vivo e spostala fra le \"Scoperte Raccolte\".",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 2,
+     "nome": "S/Hodeus-B C 3",
+     "energia": 4,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "The surface of the moon is strewn with derelicts of an alien fleet. 4[energyCost]: Draw 1 Alien Tech Discovery and move it to \"Gathered Discoveries\".",
+      "it": "La superficie della luna è disseminata dei relitti di una flotta aliena. 4[energyCost]: Pesca 1 Scoperta Tecnologia Aliena e spostala fra le \"Scoperte Raccolte\"."
+     },
+     "opzioni": [
+      {
+       "energia": 4,
+       "en": "Draw 1 Alien Tech Discovery and move it to \"Gathered Discoveries\".",
+       "it": "Pesca 1 Scoperta Tecnologia Aliena e spostala fra le \"Scoperte Raccolte\".",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 3,
+     "nome": "Hodeus-B D – \"Edan\"",
+     "energia": 0,
+     "atterraggio": "L16",
+     "log": null,
+     "testo": {
+      "en": "Dry sea beds make new hills and mountains under the shattered moon's shadow. 0[energyCost]: LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L16 in your Planetary Scanner and go to the next Starmap step.",
+      "it": "Fondali marini prosciugati formano nuove colline e montagne all'ombra della luna frantumata. 0[energyCost]: ATTERRAGGIO – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L16 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare."
+     },
+     "opzioni": [
+      {
+       "energia": 0,
+       "en": "LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L16 in your Planetary Scanner and go to the next Starmap step.",
+       "it": "ATTERRAGGIO – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L16 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare.",
+       "log": null
+      }
+     ]
+    },
+    {
+     "numero": 4,
+     "nome": "Hodeus-B F",
+     "energia": 4,
+     "atterraggio": "",
+     "log": null,
+     "testo": {
+      "en": "A world full of beautiful and useless minerals. 4[energyCost]: Assign 2 Rank 3 Crewmembers to raise the Morale in the Bridge cardholder (Ship Book page 3).",
+      "it": "Un mondo pieno di minerali bellissimi e inutili. 4[energyCost]: Assegna 2 Membri dell'Equipaggio di Grado 3 per alzare il Morale nel portacarte del Ponte (Manuale della Nave pagina 3)."
+     },
+     "opzioni": [
+      {
+       "energia": 4,
+       "en": "Assign 2 Rank 3 Crewmembers to raise the Morale in the Bridge cardholder (Ship Book page 3).",
+       "it": "Assegna 2 Membri dell'Equipaggio di Grado 3 per alzare il Morale nel portacarte del Ponte (Manuale della Nave pagina 3).",
+       "log": null
+      }
+     ]
+    }
+   ],
+   "dubbi": "Campo 'opzioni' aggiunto per le destinazioni con più azioni (energia: testo); 'energia' = costo della prima opzione; 'N[energyCost]' nel testo = icona costo in energia con il numero N."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/beta_tarsoni_555d91.webp",
+   "nomi": [
+    "Beta Tarsoni"
+   ],
+   "tipo": "sistema",
+   "nome": "Beta Tarsoni",
+   "pagina": 22,
+   "testo": {
+    "en": "A microorganism shoal of a cosmic scale surrounds the star and a single ice giant.",
+    "it": "Un banco di microorganismi di scala cosmica circonda la stella e un unico gigante ghiacciato."
+   },
+   "rotte": [
+    {
+     "verso": "Hodeus-B",
+     "pagina": 21,
+     "energia": 3,
+     "log": null,
+     "richiede": "",
+     "colore": ""
+    },
+    {
+     "verso": "LF-122",
+     "pagina": 19,
+     "energia": 2,
+     "log": null,
+     "richiede": "",
+     "colore": ""
+    },
+    {
+     "verso": "Eye of the Void",
+     "pagina": 2,
+     "energia": 6,
+     "log": null,
+     "richiede": "B02",
+     "colore": "red"
+    }
+   ],
+   "destinazioni": [
+    {
+     "numero": 1,
+     "nome": "Beta Tarsoni – \"Entropy Anomaly\"",
+     "energia": 1,
+     "atterraggio": "",
+     "log": 432,
+     "testo": {
+      "en": "The space and time warp around the object that fortunately isn't a small black hole. 1[energyCost]: Go to Log 432.",
+      "it": "Lo spazio e il tempo si deformano attorno all'oggetto, che per fortuna non è un piccolo buco nero. 1[energyCost]: Vai all'Annotazione 432."
+     },
+     "opzioni": [
+      {
+       "energia": 1,
+       "en": "Go to Log 432.",
+       "it": "Vai all'Annotazione 432.",
+       "log": 432
+      }
+     ]
+    },
+    {
+     "numero": 2,
+     "nome": "Beta Tarsoni A",
+     "energia": 1,
+     "atterraggio": "",
+     "log": 194,
+     "testo": {
+      "en": "Extreme pressure makes this ice giant both attractive and repulsive. 1[energyCost]: Go to Log 194.",
+      "it": "La pressione estrema rende questo gigante ghiacciato al tempo stesso attraente e repellente. 1[energyCost]: Vai all'Annotazione 194."
+     },
+     "opzioni": [
+      {
+       "energia": 1,
+       "en": "Go to Log 194.",
+       "it": "Vai all'Annotazione 194.",
+       "log": 194
+      }
+     ]
+    },
+    {
+     "numero": 3,
+     "nome": "Beta Tarsoni – \"Starshoal\"",
+     "energia": 0,
+     "atterraggio": "L7",
+     "log": null,
+     "testo": {
+      "en": "It's hard even to decide how to approach the immense cloud of organisms. 0[energyCost]: LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L7 in your Planetary Scanner and go to the next Starmap step.",
+      "it": "È difficile perfino decidere come avvicinarsi all'immensa nube di organismi. 0[energyCost]: ATTERRAGGIO – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L7 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare."
+     },
+     "opzioni": [
+      {
+       "energia": 0,
+       "en": "LANDING – Return any Landing card currently in the Planetary Scanner to \"Landing cards\". Place Landing card L7 in your Planetary Scanner and go to the next Starmap step.",
+       "it": "ATTERRAGGIO – Rimetti fra le \"Carte Atterraggio\" l'eventuale carta Atterraggio presente nello Scanner Planetario. Metti la carta Atterraggio L7 nel tuo Scanner Planetario e passa alla fase successiva della Mappa Stellare.",
+       "log": null
+      }
+     ]
+    }
+   ],
+   "dubbi": "Rotta verso Eye of the Void a pagina 2 (pagina speciale/iniziale del libretto?). Campo 'opzioni' aggiunto per le destinazioni con più azioni (energia: testo); 'energia' = costo della prima opzione; 'N[energyCost]' nel testo = icona costo in energia con il numero N."
+  }
+ ]
+}

@@ -1,0 +1,669 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o04_9203.webp",
+   "nomi": [
+    "O04"
+   ],
+   "id": "O04",
+   "tipo": "objective",
+   "intestazione": {
+    "en": "CAMPAIGN OBJECTIVE",
+    "it": "OBIETTIVO DELLA CAMPAGNA"
+   },
+   "titolo": {
+    "en": "TREASURE TROVE",
+    "it": "IL TESORO NASCOSTO"
+   },
+   "testo": {
+    "en": "OBJECTIVE: Go to Kepler 831 system and look for the cluster of signals. | 3 [command] | 2 SITUATIONS",
+    "it": "OBIETTIVO: Vai al sistema Kepler 831 e cerca il gruppo di segnali. | 3 [command] | 2 SITUAZIONI"
+   },
+   "testo_colore": {
+    "en": "Our new scanner detects a cluster of stele signatures in a nearby system.",
+    "it": "Il nostro nuovo scanner rileva un gruppo di tracce di stele in un sistema vicino."
+   },
+   "campi": {
+    "obiettivo": {
+     "en": "Go to Kepler 831 system and look for the cluster of signals.",
+     "it": "Vai al sistema Kepler 831 e cerca il gruppo di segnali."
+    },
+    "comando": 3,
+    "situazioni": 2
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o05_9204.webp",
+   "nomi": [
+    "O05"
+   ],
+   "id": "O05",
+   "tipo": "objective",
+   "intestazione": {
+    "en": "CAMPAIGN OBJECTIVE",
+    "it": "OBIETTIVO DELLA CAMPAGNA"
+   },
+   "titolo": {
+    "en": "LIMPING ON",
+    "it": "AVANTI A FATICA"
+   },
+   "testo": {
+    "en": "OBJECTIVE: Find an inhabited planet in any of the systems that the Vanguard is capable of reaching in its current state. | 1 [command] | 2 SITUATIONS",
+    "it": "OBIETTIVO: Trova un pianeta abitato in uno qualsiasi dei sistemi che la Vanguard è in grado di raggiungere nelle sue condizioni attuali. | 1 [command] | 2 SITUAZIONI"
+   },
+   "testo_colore": {
+    "en": "The Vanguard is barely holding together. We must find a place to repair before it's too late.",
+    "it": "La Vanguard sta a malapena insieme. Dobbiamo trovare un posto per ripararla prima che sia troppo tardi."
+   },
+   "campi": {
+    "obiettivo": {
+     "en": "Find an inhabited planet in any of the systems that the Vanguard is capable of reaching in its current state.",
+     "it": "Trova un pianeta abitato in uno qualsiasi dei sistemi che la Vanguard è in grado di raggiungere nelle sue condizioni attuali."
+    },
+    "comando": 1,
+    "situazioni": 2
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o06_9205.webp",
+   "nomi": [
+    "O06"
+   ],
+   "id": "O06",
+   "tipo": "objective",
+   "intestazione": {
+    "en": "CAMPAIGN OBJECTIVE",
+    "it": "OBIETTIVO DELLA CAMPAGNA"
+   },
+   "titolo": {
+    "en": "TRAIL OF THE ANCIENTS",
+    "it": "SULLE TRACCE DEGLI ANTICHI"
+   },
+   "testo": {
+    "en": "OBJECTIVE: Find information about Visitors or Arrogators while exploring nearby worlds: Golfball in LCS-17 system, Musspelheim in Mu Librae system, Cousin in HR 5730 system, or Ugnir in GJ 1164 system. | 3 [command] | 3 SITUATIONS",
+    "it": "OBIETTIVO: Trova informazioni sui Visitatori o sugli Arrogatori esplorando i mondi vicini: Golfball nel sistema LCS-17, Musspelheim nel sistema Mu Librae, Cousin nel sistema HR 5730 o Ugnir nel sistema GJ 1164. | 3 [command] | 3 SITUAZIONI"
+   },
+   "testo_colore": {
+    "en": "Two races sought the steles before us: mysterious Visitors and hostile Arrogators. We must learn more about them.",
+    "it": "Due razze hanno cercato le stele prima di noi: i misteriosi Visitatori e gli ostili Arrogatori. Dobbiamo saperne di più su di loro."
+   },
+   "campi": {
+    "obiettivo": {
+     "en": "Find information about Visitors or Arrogators while exploring nearby worlds: Golfball in LCS-17 system, Musspelheim in Mu Librae system, Cousin in HR 5730 system, or Ugnir in GJ 1164 system.",
+     "it": "Trova informazioni sui Visitatori o sugli Arrogatori esplorando i mondi vicini: Golfball nel sistema LCS-17, Musspelheim nel sistema Mu Librae, Cousin nel sistema HR 5730 o Ugnir nel sistema GJ 1164."
+    },
+    "comando": 3,
+    "situazioni": 3
+   },
+   "dubbi": "Nomi propri alieni (Builders/Visitors/Arrogators) tradotti come Costruttori/Visitatori/Arrogatori: verificare con la terminologia ufficiale italiana."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o07_9206.webp",
+   "nomi": [
+    "O07"
+   ],
+   "id": "O07",
+   "tipo": "objective",
+   "intestazione": {
+    "en": "CAMPAIGN OBJECTIVE",
+    "it": "OBIETTIVO DELLA CAMPAGNA"
+   },
+   "titolo": {
+    "en": "THE LOST WORLD",
+    "it": "IL MONDO PERDUTO"
+   },
+   "testo": {
+    "en": "OBJECTIVE: Complete the R17 Research Project (Arrogator Data Analysis) and follow its directions to reach Arrogator Homeworld from K3-569 system. | 3 [command] | 3 SITUATIONS",
+    "it": "OBIETTIVO: Completa il Progetto di Ricerca R17 (Analisi dei Dati Arrogatori) e segui le sue indicazioni per raggiungere il Pianeta Natale degli Arrogatori dal sistema K3-569. | 3 [command] | 3 SITUAZIONI"
+   },
+   "testo_colore": {
+    "en": "Somewhere in the blackness between the stars, the enormous homeworld of Arrogators awaits us.",
+    "it": "Da qualche parte nell'oscurità tra le stelle, l'enorme pianeta natale degli Arrogatori ci attende."
+   },
+   "campi": {
+    "obiettivo": {
+     "en": "Complete the R17 Research Project (Arrogator Data Analysis) and follow its directions to reach Arrogator Homeworld from K3-569 system.",
+     "it": "Completa il Progetto di Ricerca R17 (Analisi dei Dati Arrogatori) e segui le sue indicazioni per raggiungere il Pianeta Natale degli Arrogatori dal sistema K3-569."
+    },
+    "comando": 3,
+    "situazioni": 3
+   },
+   "dubbi": "Nomi propri alieni (Builders/Visitors/Arrogators) tradotti come Costruttori/Visitatori/Arrogatori: verificare con la terminologia ufficiale italiana. Titolo del progetto R17 tradotto liberamente."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o08_9207.webp",
+   "nomi": [
+    "O08"
+   ],
+   "id": "O08",
+   "tipo": "objective",
+   "intestazione": {
+    "en": "CAMPAIGN OBJECTIVE",
+    "it": "OBIETTIVO DELLA CAMPAGNA"
+   },
+   "titolo": {
+    "en": "PARALLEL UNIVERSE",
+    "it": "UNIVERSO PARALLELO"
+   },
+   "testo": {
+    "en": "OBJECTIVE: Complete the C19 Production Project (Visitors' Rift) and use its results to send an Away Team to the Visitors' Homeworld. | 3 [command] | 3 SITUATIONS",
+    "it": "OBIETTIVO: Completa il Progetto di Produzione C19 (Squarcio dei Visitatori) e usa i suoi risultati per inviare una Squadra di Sbarco sul Pianeta Natale dei Visitatori. | 3 [command] | 3 SITUAZIONI"
+   },
+   "testo_colore": {
+    "en": "The Visitors left this world for an entire pocket universe of their own design. Following them is our only option.",
+    "it": "I Visitatori hanno lasciato questo mondo per un intero universo tascabile da loro stessi progettato. Seguirli è la nostra unica opzione."
+   },
+   "campi": {
+    "obiettivo": {
+     "en": "Complete the C19 Production Project (Visitors' Rift) and use its results to send an Away Team to the Visitors' Homeworld.",
+     "it": "Completa il Progetto di Produzione C19 (Squarcio dei Visitatori) e usa i suoi risultati per inviare una Squadra di Sbarco sul Pianeta Natale dei Visitatori."
+    },
+    "comando": 3,
+    "situazioni": 3
+   },
+   "dubbi": "Nomi propri alieni (Builders/Visitors/Arrogators) tradotti come Costruttori/Visitatori/Arrogatori: verificare con la terminologia ufficiale italiana. Titolo del progetto C19 tradotto liberamente."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o09_9208.webp",
+   "nomi": [
+    "O09"
+   ],
+   "id": "O09",
+   "tipo": "objective",
+   "intestazione": {
+    "en": "CAMPAIGN OBJECTIVE",
+    "it": "OBIETTIVO DELLA CAMPAGNA"
+   },
+   "titolo": {
+    "en": "FARTHEST REACHES",
+    "it": "I CONFINI PIÙ REMOTI"
+   },
+   "testo": {
+    "en": "OBJECTIVE: Find at least one more Builders' stele while exploring any worlds, including: Edan in Hodeus-B system, Starshoal in Beta Tarsoni system, and Fetch in LF-122 system. | 4 [command] | 3 SITUATIONS",
+    "it": "OBIETTIVO: Trova almeno un'altra stele dei Costruttori esplorando qualsiasi mondo, tra cui: Edan nel sistema Hodeus-B, Starshoal nel sistema Beta Tarsoni e Fetch nel sistema LF-122. | 4 [command] | 3 SITUAZIONI"
+   },
+   "testo_colore": {
+    "en": "We only need one more Builders' stele to complete our research!",
+    "it": "Ci serve solo un'altra stele dei Costruttori per completare la nostra ricerca!"
+   },
+   "campi": {
+    "obiettivo": {
+     "en": "Find at least one more Builders' stele while exploring any worlds, including: Edan in Hodeus-B system, Starshoal in Beta Tarsoni system, and Fetch in LF-122 system.",
+     "it": "Trova almeno un'altra stele dei Costruttori esplorando qualsiasi mondo, tra cui: Edan nel sistema Hodeus-B, Starshoal nel sistema Beta Tarsoni e Fetch nel sistema LF-122."
+    },
+    "comando": 4,
+    "situazioni": 3
+   },
+   "dubbi": "Nomi propri alieni (Builders/Visitors/Arrogators) tradotti come Costruttori/Visitatori/Arrogatori: verificare con la terminologia ufficiale italiana."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o10_9209.webp",
+   "nomi": [
+    "O10"
+   ],
+   "id": "O10",
+   "tipo": "objective",
+   "intestazione": {
+    "en": "CAMPAIGN OBJECTIVE",
+    "it": "OBIETTIVO DELLA CAMPAGNA"
+   },
+   "titolo": {
+    "en": "THE FINAL MESSAGE",
+    "it": "IL MESSAGGIO FINALE"
+   },
+   "testo": {
+    "en": "OBJECTIVE: Complete the R23 Research Project (Secret of the Steles) and follow its results to discover the final message of the Builders. | 4 [command] | 4 SITUATIONS",
+    "it": "OBIETTIVO: Completa il Progetto di Ricerca R23 (Il Segreto delle Stele) e segui i suoi risultati per scoprire il messaggio finale dei Costruttori. | 4 [command] | 4 SITUAZIONI"
+   },
+   "campi": {
+    "obiettivo": {
+     "en": "Complete the R23 Research Project (Secret of the Steles) and follow its results to discover the final message of the Builders.",
+     "it": "Completa il Progetto di Ricerca R23 (Il Segreto delle Stele) e segui i suoi risultati per scoprire il messaggio finale dei Costruttori."
+    },
+    "comando": 4,
+    "situazioni": 4
+   },
+   "dubbi": "Nessun testo di colore sulla carta. Nomi propri alieni (Builders/Visitors/Arrogators) tradotti come Costruttori/Visitatori/Arrogatori: verificare con la terminologia ufficiale italiana."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o11_9210.webp",
+   "nomi": [
+    "O11"
+   ],
+   "id": "O11",
+   "tipo": "objective",
+   "intestazione": {
+    "en": "CAMPAIGN OBJECTIVE",
+    "it": "OBIETTIVO DELLA CAMPAGNA"
+   },
+   "titolo": {
+    "en": "ENTER AND CLAIM",
+    "it": "ENTRARE E RIVENDICARE"
+   },
+   "testo": {
+    "en": "OBJECTIVE: Explore the Builders' Vault in the Eye of the Void system, using Bridge Upgrade B06 (Builders' Vault Access), obtained from project C26 (Null Field Generators). | 5 [command] | 4 SITUATIONS",
+    "it": "OBIETTIVO: Esplora la Cripta dei Costruttori nel sistema Occhio del Vuoto, usando il Potenziamento del Ponte B06 (Accesso alla Cripta dei Costruttori), ottenuto dal progetto C26 (Generatori di Campo Nullo). | 5 [command] | 4 SITUAZIONI"
+   },
+   "campi": {
+    "obiettivo": {
+     "en": "Explore the Builders' Vault in the Eye of the Void system, using Bridge Upgrade B06 (Builders' Vault Access), obtained from project C26 (Null Field Generators).",
+     "it": "Esplora la Cripta dei Costruttori nel sistema Occhio del Vuoto, usando il Potenziamento del Ponte B06 (Accesso alla Cripta dei Costruttori), ottenuto dal progetto C26 (Generatori di Campo Nullo)."
+    },
+    "comando": 5,
+    "situazioni": 4
+   },
+   "dubbi": "Nessun testo di colore sulla carta. Nomi propri alieni (Builders/Visitors/Arrogators) tradotti come Costruttori/Visitatori/Arrogatori: verificare con la terminologia ufficiale italiana. Vault/Eye of the Void e titoli B06/C26 tradotti liberamente."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o15_9211.webp",
+   "nomi": [
+    "O15"
+   ],
+   "id": "O15",
+   "tipo": "secondary_objective",
+   "intestazione": {
+    "en": "SECONDARY OBJECTIVE",
+    "it": "OBIETTIVO SECONDARIO"
+   },
+   "titolo": {
+    "en": "BEHIND THE DOOR",
+    "it": "OLTRE LA PORTA"
+   },
+   "testo": {
+    "en": "OBJECTIVE: Unlock the door in Sector 7 of planet Matchstick.",
+    "it": "OBIETTIVO: Apri la porta nel Settore 7 del pianeta Matchstick."
+   },
+   "testo_colore": {
+    "en": "A locked door in the depths under the moss? We need to learn more.",
+    "it": "Una porta chiusa nelle profondità sotto il muschio? Dobbiamo saperne di più."
+   },
+   "campi": {
+    "obiettivo": {
+     "en": "Unlock the door in Sector 7 of planet Matchstick.",
+     "it": "Apri la porta nel Settore 7 del pianeta Matchstick."
+    }
+   },
+   "dubbi": "Obiettivo secondario: nessun valore di [command] né Situazioni stampato."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o16_9212.webp",
+   "nomi": [
+    "O16"
+   ],
+   "id": "O16",
+   "tipo": "secondary_objective",
+   "intestazione": {
+    "en": "SECONDARY OBJECTIVE",
+    "it": "OBIETTIVO SECONDARIO"
+   },
+   "titolo": {
+    "en": "TOPPLING THE TITAN",
+    "it": "ABBATTERE IL TITANO"
+   },
+   "testo": {
+    "en": "OBJECTIVE: Defeat an Arrogator Behemoth.",
+    "it": "OBIETTIVO: Sconfiggi un Behemoth Arrogatore."
+   },
+   "testo_colore": {
+    "en": "This ancient behemoth seems to be a product of the same race that placed sentry cannons around the Eye of The Void.",
+    "it": "Questo antico behemoth sembra essere opera della stessa razza che ha posizionato i cannoni sentinella attorno all'Occhio del Vuoto."
+   },
+   "campi": {
+    "obiettivo": {
+     "en": "Defeat an Arrogator Behemoth.",
+     "it": "Sconfiggi un Behemoth Arrogatore."
+    }
+   },
+   "dubbi": "Obiettivo secondario: nessun valore di [command] né Situazioni stampato. 'Behemoth' lasciato invariato (nome di Minaccia?)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o17_9213.webp",
+   "nomi": [
+    "O17"
+   ],
+   "id": "O17",
+   "tipo": "secondary_objective",
+   "intestazione": {
+    "en": "SECONDARY OBJECTIVE",
+    "it": "OBIETTIVO SECONDARIO"
+   },
+   "titolo": {
+    "en": "INTO THE DEPTHS",
+    "it": "NEGLI ABISSI"
+   },
+   "testo": {
+    "en": "OBJECTIVE: Descend into the water biome on Golfball and find a source of the strange signal.",
+    "it": "OBIETTIVO: Scendi nel bioma acquatico su Golfball e trova la fonte dello strano segnale."
+   },
+   "testo_colore": {
+    "en": "We found an underwater world on Golfball – it's definitely worth exploring.",
+    "it": "Abbiamo trovato un mondo sottomarino su Golfball: merita decisamente di essere esplorato."
+   },
+   "campi": {
+    "obiettivo": {
+     "en": "Descend into the water biome on Golfball and find a source of the strange signal.",
+     "it": "Scendi nel bioma acquatico su Golfball e trova la fonte dello strano segnale."
+    }
+   },
+   "dubbi": "Obiettivo secondario: nessun valore di [command] né Situazioni stampato."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o18_9214.webp",
+   "nomi": [
+    "O18"
+   ],
+   "id": "O18",
+   "tipo": "secondary_objective",
+   "intestazione": {
+    "en": "SECONDARY OBJECTIVE",
+    "it": "OBIETTIVO SECONDARIO"
+   },
+   "titolo": {
+    "en": "OTHERSIDE",
+    "it": "L'ALTRO LATO"
+   },
+   "testo": {
+    "en": "OBJECTIVE: Complete the C19 Production Project (Visitors' Rift) and use its results to send an Away Team to the Visitors' Homeworld.",
+    "it": "OBIETTIVO: Completa il Progetto di Produzione C19 (Squarcio dei Visitatori) e usa i suoi risultati per inviare una Squadra di Sbarco sul Pianeta Natale dei Visitatori."
+   },
+   "testo_colore": {
+    "en": "The Visitors left this world for an entire pocket universe of their own design. Following them is our only option.",
+    "it": "I Visitatori hanno lasciato questo mondo per un intero universo tascabile da loro stessi progettato. Seguirli è la nostra unica opzione."
+   },
+   "campi": {
+    "obiettivo": {
+     "en": "Complete the C19 Production Project (Visitors' Rift) and use its results to send an Away Team to the Visitors' Homeworld.",
+     "it": "Completa il Progetto di Produzione C19 (Squarcio dei Visitatori) e usa i suoi risultati per inviare una Squadra di Sbarco sul Pianeta Natale dei Visitatori."
+    }
+   },
+   "dubbi": "Obiettivo secondario con lo stesso testo di O08. Nessun valore di [command] né Situazioni stampato."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o19_9215.webp",
+   "nomi": [
+    "O19"
+   ],
+   "id": "O19",
+   "tipo": "secondary_objective",
+   "intestazione": {
+    "en": "SECONDARY OBJECTIVE",
+    "it": "OBIETTIVO SECONDARIO"
+   },
+   "titolo": {
+    "en": "LOCATING CRAFTWORLD",
+    "it": "LOCALIZZARE IL MONDO-NAVE"
+   },
+   "testo": {
+    "en": "OBJECTIVE: Complete the R17 Research Project (Arrogator Data Analysis) and follow its directions to set of for Arrogator Homeworld from K3-569 System.",
+    "it": "OBIETTIVO: Completa il Progetto di Ricerca R17 (Analisi dei Dati Arrogatori) e segui le sue indicazioni per partire verso il Pianeta Natale degli Arrogatori dal sistema K3-569."
+   },
+   "testo_colore": {
+    "en": "Somwhere in the blackness between the stars, enormous homeworld of Arrogators waits for us to discover it.",
+    "it": "Da qualche parte nell'oscurità tra le stelle, l'enorme pianeta natale degli Arrogatori attende che lo scopriamo."
+   },
+   "campi": {
+    "obiettivo": {
+     "en": "Complete the R17 Research Project (Arrogator Data Analysis) and follow its directions to set of for Arrogator Homeworld from K3-569 System.",
+     "it": "Completa il Progetto di Ricerca R17 (Analisi dei Dati Arrogatori) e segui le sue indicazioni per partire verso il Pianeta Natale degli Arrogatori dal sistema K3-569."
+    }
+   },
+   "dubbi": "Refusi stampati trascritti fedelmente ('set of' = set off, 'Somwhere'). 'Craftworld' tradotto liberamente. Nessun valore di [command] né Situazioni stampato."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/tech_level_0_9400.webp",
+   "nomi": [
+    "TECH_LEVEL_0"
+   ],
+   "id": "TL0",
+   "tipo": "tech_level",
+   "titolo": {
+    "en": "TECH LEVEL 0",
+    "it": "LIVELLO TECNOLOGICO 0"
+   },
+   "testo": {
+    "en": "2 [energy_token]",
+    "it": "2 [energy_token]"
+   },
+   "testo_colore": {
+    "en": "The ship was almost destroyed in the fighting. Precious few systems are still working correctly.",
+    "it": "La nave è stata quasi distrutta nei combattimenti. Pochissimi sistemi funzionano ancora correttamente."
+   },
+   "campi": {
+    "livello": 0,
+    "energia": 2
+   },
+   "dubbi": "Nessun codice stampato: id 'TL0' assegnato per convenzione."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/tech_level_2_9402.webp",
+   "nomi": [
+    "TECH_LEVEL_2"
+   ],
+   "id": "TL2",
+   "tipo": "tech_level",
+   "titolo": {
+    "en": "TECH LEVEL 2",
+    "it": "LIVELLO TECNOLOGICO 2"
+   },
+   "testo": {
+    "en": "4 [energy_token]",
+    "it": "4 [energy_token]"
+   },
+   "testo_colore": {
+    "en": "We made initial improvements to the Vanguard's systems.",
+    "it": "Abbiamo apportato i primi miglioramenti ai sistemi della Vanguard."
+   },
+   "campi": {
+    "livello": 2,
+    "energia": 4
+   },
+   "dubbi": "Nessun codice stampato: id 'TL2' assegnato per convenzione."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/tech_level_3_9403.webp",
+   "nomi": [
+    "TECH_LEVEL_3"
+   ],
+   "id": "TL3",
+   "tipo": "tech_level",
+   "titolo": {
+    "en": "TECH LEVEL 3",
+    "it": "LIVELLO TECNOLOGICO 3"
+   },
+   "testo": {
+    "en": "5 [energy_token]",
+    "it": "5 [energy_token]"
+   },
+   "testo_colore": {
+    "en": "Incorporating alien technology significantly raised the Vanguard's capabilities.",
+    "it": "L'integrazione della tecnologia aliena ha aumentato notevolmente le capacità della Vanguard."
+   },
+   "campi": {
+    "livello": 3,
+    "energia": 5
+   },
+   "dubbi": "Nessun codice stampato: id 'TL3' assegnato per convenzione."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/tech_level_4_9404.webp",
+   "nomi": [
+    "TECH_LEVEL_4"
+   ],
+   "id": "TL4",
+   "tipo": "tech_level",
+   "titolo": {
+    "en": "TECH LEVEL 4",
+    "it": "LIVELLO TECNOLOGICO 4"
+   },
+   "testo": {
+    "en": "6 [energy_token]",
+    "it": "6 [energy_token]"
+   },
+   "testo_colore": {
+    "en": "From the improved engines, to the ship's quantum AI, almost all of the Vanguard's elements are now vastly superior to its original design.",
+    "it": "Dai motori migliorati all'IA quantistica della nave, quasi tutti gli elementi della Vanguard sono ora di gran lunga superiori al progetto originale."
+   },
+   "campi": {
+    "livello": 4,
+    "energia": 6
+   },
+   "dubbi": "Nessun codice stampato: id 'TL4' assegnato per convenzione."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/tech_level_5_9405.webp",
+   "nomi": [
+    "TECH_LEVEL_5"
+   ],
+   "id": "TL5",
+   "tipo": "tech_level",
+   "titolo": {
+    "en": "TECH LEVEL 5",
+    "it": "LIVELLO TECNOLOGICO 5"
+   },
+   "testo": {
+    "en": "8 [energy_token]",
+    "it": "8 [energy_token]"
+   },
+   "testo_colore": {
+    "en": "A perfect fusion of human resourcefulness and ancient alien knowledge, the ISS Vanguard is now the most formidable vessel in the entire star cluster.",
+    "it": "Perfetta fusione di ingegno umano e antica conoscenza aliena, la ISS Vanguard è ora la nave più formidabile dell'intero ammasso stellare."
+   },
+   "campi": {
+    "livello": 5,
+    "energia": 8
+   },
+   "dubbi": "Nessun codice stampato: id 'TL5' assegnato per convenzione."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/o01/o01_9200.webp",
+   "nomi": [
+    "O01"
+   ],
+   "id": "O01",
+   "tipo": "objective",
+   "intestazione": {
+    "en": "CAMPAIGN OBJECTIVE",
+    "it": "OBIETTIVO DELLA CAMPAGNA"
+   },
+   "titolo": {
+    "en": "THE NEXT STEP",
+    "it": "IL PASSO SUCCESSIVO"
+   },
+   "testo": {
+    "en": "OBJECTIVE: Explore the nearest world marked on the Builders' map: Pellucid in TOI-2 system. | 2 [command] | 1 SITUATION",
+    "it": "OBIETTIVO: Esplora il mondo più vicino segnato sulla mappa dei Costruttori: Pellucid nel sistema TOI-2. | 2 [command] | 1 SITUAZIONE"
+   },
+   "testo_colore": {
+    "en": "The Earth wasn't the only world that received the gift of life. We must find what happened to our siblings.",
+    "it": "La Terra non è stato l'unico mondo a ricevere il dono della vita. Dobbiamo scoprire cosa è successo ai nostri fratelli."
+   },
+   "campi": {
+    "obiettivo": {
+     "en": "Explore the nearest world marked on the Builders' map: Pellucid in TOI-2 system.",
+     "it": "Esplora il mondo più vicino segnato sulla mappa dei Costruttori: Pellucid nel sistema TOI-2."
+    },
+    "comando": 2,
+    "situazioni": 1
+   },
+   "dubbi": "Nomi propri alieni (Builders/Visitors/Arrogators) tradotti come Costruttori/Visitatori/Arrogatori: verificare con la terminologia ufficiale italiana."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/tech_level_1/tech_level_1_11901.webp",
+   "nomi": [
+    "TECH_LEVEL_1"
+   ],
+   "id": "TL1",
+   "tipo": "tech_level",
+   "titolo": {
+    "en": "TECH LEVEL 1",
+    "it": "LIVELLO TECNOLOGICO 1"
+   },
+   "testo": {
+    "en": "3 [energy_token]",
+    "it": "3 [energy_token]"
+   },
+   "testo_colore": {
+    "en": "The ship is new and the crew, inexperienced.",
+    "it": "La nave è nuova e l'equipaggio inesperto."
+   },
+   "campi": {
+    "livello": 1,
+    "energia": 3
+   },
+   "dubbi": "Nessun codice stampato: id 'TL1' assegnato per convenzione."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/morale/morale_206700.webp",
+   "nomi": [
+    "MORALE"
+   ],
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/morale/retro_8607f8.webp",
+   "id": "MORALE",
+   "tipo": "morale",
+   "titolo": {
+    "en": "MORALE",
+    "it": "MORALE"
+   },
+   "testo": {
+    "en": "Front: MEDIUM MORALE (no effect) / HIGH MORALE (upside down): +1 [command]. Back: VERY LOW MORALE: +1 Situation / LOW MORALE (upside down): no effect.",
+    "it": "Fronte: MORALE MEDIO (nessun effetto) / MORALE ALTO (capovolto): +1 [command]. Retro: MORALE MOLTO BASSO: +1 Situazione / MORALE BASSO (capovolto): nessun effetto."
+   },
+   "campi": {},
+   "livelli_morale": [
+    {
+     "livello": "high",
+     "lato": "fronte",
+     "orientamento": "capovolto",
+     "titolo_stampato": "HIGH MORALE",
+     "en": "+1 [command]",
+     "it": "+1 [command]",
+     "modifica_comando": 1,
+     "modifica_situazioni": 0
+    },
+    {
+     "livello": "normal",
+     "lato": "fronte",
+     "orientamento": "dritto",
+     "titolo_stampato": "MEDIUM MORALE",
+     "en": "",
+     "it": "",
+     "modifica_comando": 0,
+     "modifica_situazioni": 0
+    },
+    {
+     "livello": "low",
+     "lato": "retro",
+     "orientamento": "capovolto",
+     "titolo_stampato": "LOW MORALE",
+     "en": "",
+     "it": "",
+     "modifica_comando": 0,
+     "modifica_situazioni": 0
+    },
+    {
+     "livello": "very low",
+     "lato": "retro",
+     "orientamento": "dritto",
+     "titolo_stampato": "VERY LOW MORALE",
+     "en": "+1 Situation",
+     "it": "+1 Situazione",
+     "modifica_comando": 0,
+     "modifica_situazioni": 1
+    }
+   ],
+   "retro": {
+    "titolo": {
+     "en": "VERY LOW MORALE / LOW MORALE",
+     "it": "MORALE MOLTO BASSO / MORALE BASSO"
+    },
+    "testo": {
+     "en": "VERY LOW MORALE: +1 Situation. LOW MORALE (upside down): no effect.",
+     "it": "MORALE MOLTO BASSO: +1 Situazione. MORALE BASSO (capovolto): nessun effetto."
+    }
+   },
+   "dubbi": "Il livello 'MEDIUM MORALE' è mappato su 'normal'. I riquadri di Morale Medio e Basso sono vuoti (nessun effetto). L'orientamento indica quale livello è attivo leggendo la carta dal lato del titolo; si assume che '+1 [command]' (letto capovolto) e '+1 Situation' modifichino i segnalini Comando / le Situazioni pescate dall'Obiettivo."
+  }
+ ]
+}

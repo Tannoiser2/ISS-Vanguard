@@ -1,0 +1,75 @@
+{
+ "tipo": "sistemi",
+ "immagini": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/hr_5730_deb5c1.webp",
+   "nomi": [
+    "HR 5730"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/gliese_368_2_5970b1.webp",
+   "nomi": [
+    "Gliese 368-2"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/upsilon_borealis_c635a7.webp",
+   "nomi": [
+    "Upsilon Borealis"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/mu_librae_ed6c28.webp",
+   "nomi": [
+    "Mu Librae"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/gj_1164_064a70.webp",
+   "nomi": [
+    "GJ 1164"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/kelu_8_e2e274.webp",
+   "nomi": [
+    "Kelu-8"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/lf_122_dca24f.webp",
+   "nomi": [
+    "LF-122"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/k3_569_d18c0e.webp",
+   "nomi": [
+    "K3-569"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/hodeus_b_2e534e.webp",
+   "nomi": [
+    "Hodeus-B"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/beta_tarsoni_555d91.webp",
+   "nomi": [
+    "Beta Tarsoni"
+   ],
+   "lato": "fronte"
+  }
+ ]
+}

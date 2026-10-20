@@ -1,0 +1,153 @@
+{
+ "tipo": "ponte",
+ "immagini": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o04_9203.webp",
+   "nomi": [
+    "O04"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o05_9204.webp",
+   "nomi": [
+    "O05"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o06_9205.webp",
+   "nomi": [
+    "O06"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o07_9206.webp",
+   "nomi": [
+    "O07"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o08_9207.webp",
+   "nomi": [
+    "O08"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o09_9208.webp",
+   "nomi": [
+    "O09"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o10_9209.webp",
+   "nomi": [
+    "O10"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o11_9210.webp",
+   "nomi": [
+    "O11"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o15_9211.webp",
+   "nomi": [
+    "O15"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o16_9212.webp",
+   "nomi": [
+    "O16"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o17_9213.webp",
+   "nomi": [
+    "O17"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o18_9214.webp",
+   "nomi": [
+    "O18"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/o19_9215.webp",
+   "nomi": [
+    "O19"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/tech_level_0_9400.webp",
+   "nomi": [
+    "TECH_LEVEL_0"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/tech_level_2_9402.webp",
+   "nomi": [
+    "TECH_LEVEL_2"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/tech_level_3_9403.webp",
+   "nomi": [
+    "TECH_LEVEL_3"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/tech_level_4_9404.webp",
+   "nomi": [
+    "TECH_LEVEL_4"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bridge_cards/tech_level_5_9405.webp",
+   "nomi": [
+    "TECH_LEVEL_5"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/o01/o01_9200.webp",
+   "nomi": [
+    "O01"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/tech_level_1/tech_level_1_11901.webp",
+   "nomi": [
+    "TECH_LEVEL_1"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/morale/morale_206700.webp",
+   "nomi": [
+    "MORALE"
+   ],
+   "lato": "fronte",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/morale/retro_8607f8.webp"
+  }
+ ]
+}

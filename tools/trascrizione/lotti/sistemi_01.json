@@ -1,0 +1,82 @@
+{
+ "tipo": "sistemi",
+ "immagini": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/eye_of_the_void_f83f76.webp",
+   "nomi": [
+    "Eye of the Void"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/toi_2_efbb1c.webp",
+   "nomi": [
+    "TOI-2"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/inf_d941b3.webp",
+   "nomi": [
+    "81 INF"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/nu4_ceti_25c5c3.webp",
+   "nomi": [
+    "NU4 Ceti"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/gyf_4_6bf669.webp",
+   "nomi": [
+    "GYF-4"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/iota_pegasi_f21c99.webp",
+   "nomi": [
+    "Iota Pegasi"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/mp_212_44a8a8.webp",
+   "nomi": [
+    "MP-212"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/lcs_17_fe70d1.webp",
+   "nomi": [
+    "LCS-17"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/kepler_831_6405d6.webp",
+   "nomi": [
+    "Kepler 831"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/arietis_528f53.webp",
+   "nomi": [
+    "51 Arietis"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/leonis_349d7a.webp",
+   "nomi": [
+    "12 Leonis"
+   ],
+   "lato": "fronte"
+  }
+ ]
+}
