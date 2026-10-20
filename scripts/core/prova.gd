@@ -28,6 +28,8 @@ static func icone(d: Dictionary) -> Array:
 		return D["ferita"]["facce"][f]
 	if t == "pericolo":
 		return D["pericolo"]["facce"][f]
+	if t == "virtuale":
+		return d.get("icone", [])
 	if D["reparto"].has(t):
 		return D["reparto"][t]["facce"][f]
 	return []

@@ -88,6 +88,11 @@ func _modificatori() -> Array:
 		var ce := Carte.per_id(str(e))
 		if str(ce.get("quando", "")) == "during_check":
 			out.append({"tipo": "attrezzatura", "chi": chi, "id": str(e), "titolo": Carte.titolo(ce), "testo": Carte.t(ce.get("effetto", ""))})
+	for k in esp.s["scoperte"].size():
+		var sc := Carte.per_file(str(esp.s["scoperte"][k]["carta"]))
+		var pe = sc.get("campi", {}).get("esplorazione")
+		if pe is Dictionary and Carte.en(pe).to_lower().begins_with("during dice check, you may place this card"):
+			out.append({"tipo": "scoperta", "chi": chi, "id": str(esp.s["scoperte"][k]["carta"]), "titolo": "Scoperta " + Carte.titolo(sc), "testo": Carte.t(pe)})
 	var cm := Carte.per_file(str(m.get("file", "")))
 	var ab = cm.get("abilita", {})
 	if ab is Dictionary and (Carte.en(ab).to_lower().begins_with("during a dice check") or str(ab.get("quando", "")).to_lower().contains("dice check")):
@@ -127,6 +132,20 @@ func _usa_modificatore(x: Dictionary) -> void:
 		"abilita":
 			if str(x["testo"]).to_lower().contains("caric"):
 				esp.membro(j)["cariche"] = max(0, int(esp.membro(j)["cariche"]) - 1)
+		"scoperta":
+			# la Scoperta torna in fondo al suo mazzo e le sue icone si aggiungono alla Riserva del Tiro
+			for k in esp.s["scoperte"].size():
+				if str(esp.s["scoperte"][k]["carta"]) == str(x["id"]):
+					var sc: Dictionary = esp.s["scoperte"][k]
+					esp.s["scoperte"].remove_at(k)
+					esp.s["mazzi_scoperte"].get_or_add(str(sc["tipo"]), []).insert(0, sc["carta"])
+					break
+			var pe = Carte.per_file(str(x["id"])).get("campi", {}).get("esplorazione", {})
+			var ma := RegEx.create_from_string("(?i)add ((?:\\[\\w+\\]\\s*\\+?\\s*)+) to this roll pool").search(Carte.en(pe))
+			if ma:
+				var icone := RegEx.create_from_string("\\[(\\w+)\\]").search_all(ma.get_string(1)).map(func(y): return y.get_string(1))
+				_pool.append({"id": "v%d" % _pool.size(), "tipo": "virtuale", "icone": icone, "faccia": 0, "chi": chi})
+				_resoconto_mod.append("%s: +%s nella Riserva del Tiro" % [x["titolo"], "+".join(icone)])
 	_usati.append(str(x["tipo"]) + str(x["chi"]) + str(x["id"]))
 	_resoconto_mod.append("%s: %s" % [x["titolo"], "usata"])
 	esp.diario("%s usa %s" % [esp.membro(j)["carta"], x["titolo"]])
@@ -140,7 +159,7 @@ func _usa_modificatore(x: Dictionary) -> void:
 	if rr:
 		var col: String = {"die": "", "redDie": "red", "blueDie": "blue", "greenDie": "green"}[rr.get_string(1)]
 		for d in _pool:
-			if d["tipo"] in ["ferita", "pericolo"]:
+			if d["tipo"] in ["ferita", "pericolo", "virtuale"]:
 				continue
 			if (col == "" or Prova.colore(d) == col) and not _utile(d):
 				Prova.tira(d, esp.rng)
@@ -246,7 +265,20 @@ func _tira() -> void:
 				c["chi"] = j
 				Prova.tira(c, esp.rng)
 				_pool.append(c)
-	for k in int(m["dadi_ferita"]):
+	var n_ferita := int(m["dadi_ferita"])
+	var icone_sett := esp.icone_settore(Carte.pianeta(str(esp.s.get("pagina", ""))), int(m["settore"]), {}) if n_ferita > 0 else []
+	for e in m.get("attrezzatura", []):
+		var en := Carte.en(Carte.per_id(str(e)).get("effetto", ""))
+		var mr := RegEx.create_from_string("(?i)roll (\\d+) injury dic?e less in sectors with (.*)").search(en)
+		if mr:
+			var biomi := RegEx.create_from_string("\\[(\\w+)\\]").search_all(mr.get_string(2)).map(func(x): return x.get_string(1))
+			if biomi.any(func(b): return b in icone_sett):
+				n_ferita -= int(mr.get_string(1))
+				_resoconto_mod.append("%s: %s dado Ferita in meno" % [Carte.titolo(Carte.per_id(str(e))), mr.get_string(1)])
+		if en.to_lower().contains("ignore 1 injury die per roll") and n_ferita > 0:
+			n_ferita -= 1
+			_resoconto_mod.append("%s: un dado Ferita ignorato" % Carte.titolo(Carte.per_id(str(e))))
+	for k in max(0, n_ferita):
 		var f := {"id": "f%d" % k, "tipo": "ferita", "faccia": 0, "chi": chi}
 		Prova.tira(f, esp.rng)
 		_pool.append(f)
@@ -386,7 +418,11 @@ func _risolvi() -> void:
 			esp.scarta_carta(chi, str(c))
 			resoconto.append("Combinazione: " + Carte.titolo(carta))
 	# 6. dadi Ferita: ognuno va sulla prima carta Ferita (da sinistra) libera con la sua icona
-	var carte_ferita := (m["ferite"] as Array).map(func(t): return _carta_ferita(str(t)))
+	var ignora := []
+	for e in m.get("attrezzatura", []):
+		if Carte.en(Carte.per_id(str(e)).get("effetto", "")).contains("Ignore all Wounded and Critically Wounded Injury effects"):
+			ignora = ["wounded", "critically_wounded"]
+	var carte_ferita := (m["ferite"] as Array).map(func(t): return {} if str(t) in ignora else _carta_ferita(str(t)))
 	var occupate := {}
 	var ferita_tracce := {}
 	var ferita_esito := ""
@@ -515,7 +551,7 @@ func _risolvi() -> void:
 				testi.append({"en": t4.get("en", ""), "it": t4.get("it", ""), "fonte": "traccia " + sg})
 	# 9. tutti i dadi di Reparto tirati vanno nei Dadi Spesi
 	for d in _pool:
-		if d["tipo"] in ["ferita", "pericolo"]:
+		if d["tipo"] in ["ferita", "pericolo", "virtuale"]:
 			continue
 		var j := int(d["chi"])
 		for dd in esp.membro(j)["dadi"]:

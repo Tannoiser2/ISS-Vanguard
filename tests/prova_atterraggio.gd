@@ -154,5 +154,31 @@ func _run() -> void:
 	var fz := []
 	e.ferita(0, "wounded")
 	ok(mis._salva_con_drone(0, fz) and str(e.s["finita"]) == "", "Drone Medevac: niente evacuazione alla quarta Ferita")
+	# effetti a scatto
+	e.s["finita"] = ""
+	e.s["azioni"] = 2
+	e.membro(1)["file"] = "carte/crewmembers/zaima_32904.webp"
+	e.membro(1)["cariche"] = 1
+	e.s["attivo"] = 1
+	var pv2 := int(e.s["lander"]["provviste"])
+	mis._riposo()
+	await chiudi()
+	ok(int(e.s["lander"]["provviste"]) == pv2 and int(e.membro(1)["cariche"]) == 0, "Zaima riposa senza spendere Provviste (1 Carica)")
+	e.membro(1)["attrezzatura"] = ["E22"]
+	var nf: int = e.membro(1)["ferite"].size()
+	var fz2 := []
+	var man2 := []
+	var lg2 := []
+	mis._op({"op": "ferita", "tipo": "burned"}, 1, int(e.membro(1)["settore"]), fz2, man2, lg2, "prova")
+	await chiudi()
+	ok(e.membro(1)["ferite"].size() == nf and e.membro(1)["attrezzatura"].is_empty(), "la tuta evita l'Ustione e torna all'Armeria")
+	var mano_prima: int = e.membro(0)["mano"].size()
+	var disp0: int = e.dadi_disponibili(0).size()
+	for d in e.membro(0)["dadi"]:
+		d["stato"] = "speso"
+	mis._op({"op": "scoperta_eccezionale", "n": 9}, 0, 1, fz2, man2, lg2, "prova")
+	await chiudi()
+	print("   ", fz2)
+	ok(e.dadi_disponibili(0).size() >= 2, "Scoperta Eccezionale con effetto all'ottenimento: ogni Membro ricarica 2 dadi")
 	print("errori: ", errori)
 	quit()

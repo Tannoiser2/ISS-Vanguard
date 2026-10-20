@@ -77,6 +77,11 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
     gli usi "chi è nel settore può [costo] per…" hanno il loro pulsante, i segnalini sopra la carta si
     scartano con un clic; Avamposto (+2 dadi a Riposo e Sforzo), Teleferica (viaggio gratis da e per il
     Lander) e Drone Medevac (niente evacuazione alla quarta Ferita) funzionano da soli;
+  - **effetti a scatto**: abilità "quando riposi" (niente Provviste, dado e carta in più), attrezzatura
+    che evita una Ferita, tute che ignorano o ritirano il dado Pericolo nei biomi indicati, tute che
+    ignorano un [spendDie] del sentiero, dadi in più a Riposo e Sforzo, meno dadi Ferita nei biomi
+    indicati, Ferite ignorate; Scoperte (anche Eccezionali) con effetto "quando la ottieni", Scoperte da
+    scartare per un effetto (pulsante SCOPERTE) e Scoperte che aggiungono icone alla Prova;
   - **pianeti registrati**: lasciando un pianeta si registrano i PDI rivelati, i settori finiti, le Minacce
     e le Scoperte Eccezionali non ancora prese (le carte con l'icona "non salvare" escluse); tornandoci
     la plancia si ripristina da sola; la Scoperta Eccezionale "in cima" si prende dalla plancia

@@ -55,6 +55,10 @@ static func analizza(en: String) -> Dictionary:
 		["(?i)\\[(spendDie(?:Red|Blue|Green))\\]", func(m): return {"op": "spendi", "n": 1, "colore": m.get_string(1).trim_prefix("spendDie").to_lower()}],
 		["(?i)(?:^|[ .,;])\\[sacrifaceDie\\](?:\\s*\\+\\s*\\[sacrifaceDie\\])*", func(m): return {"op": "sacrifica", "n": m.get_string(0).count("sacrifaceDie"), "colore": ""}],
 		["(?i)nothing happens", func(m): return {"op": "niente"}],
+		["(?i)each crewmember (?:in any sector )?draws? (\\d+|a|an|one|two|three) (?:section )?cards?", func(m): return {"op": "tutti", "sub": {"op": "pesca", "n": _n(m.get_string(1))}}],
+		["(?i)each crewmember refreshes (\\d+|a|an|one|two|three|four) (?:\\[die\\]|dice|die)", func(m): return {"op": "tutti", "sub": {"op": "ricarica", "n": _n(m.get_string(1)), "colore": ""}}],
+		["(?i)each crewmember gains (\\d+|a|an|one|two) charges?", func(m): return {"op": "tutti", "sub": {"op": "cariche", "n": _n(m.get_string(1))}}],
+		["(?i)you may flip an incomplete rank-up card", func(m): return {"op": "grado"}],
 		["(?i)flip this card", func(m): return {"op": "gira_carta"}],
 	]
 	# l'ordine nel testo conta: raccoglie tutte le corrispondenze con la loro posizione

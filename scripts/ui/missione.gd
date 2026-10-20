@@ -21,6 +21,7 @@ var pl: Dictionary = {}
 var _sel := 0
 var _destinazione := 0
 var _occupato := false
+var _scelta := {}
 
 var _plancia: TextureRect
 var _sovra: Control
@@ -334,6 +335,8 @@ func _aggiorna_passo() -> void:
 		if sett == int(esp.s["lander"]["settore"]):
 			_bottone_azione("DECOLLO", _decollo, "Termina l'esplorazione")
 	var mb := MenuButton.new()
+	if not esp.s["scoperte"].is_empty():
+		_bottone_azione("SCOPERTE (%d)" % esp.s["scoperte"].size(), _usa_scoperte, "Scoperte sul Lander con un effetto da usare")
 	mb.text = "⋯"
 	mb.flat = false
 	mb.tooltip_text = "Sforzo e correzioni"
@@ -1220,6 +1223,7 @@ func _viaggio() -> void:
 		return
 	var j: int = indice[scelto]
 	esp.usa_azione(false)
+	_scelta = {}
 	var dest := int(sentieri[j]["a"])
 	_destinazione = dest
 	var testi := []
@@ -1253,6 +1257,8 @@ func _viaggio() -> void:
 				testi.append({"en": alt[max(k, 0)], "it": alt[max(k, 0)], "fonte": "icona Viaggio"})
 			else:
 				testi.append({"en": "", "it": "Risolvi l'icona Viaggio come indicato dalla Condizione Generale.", "fonte": "icona Viaggio"})
+		elif s == "spendDie" and not _scelta.get("ignorato", false) and await _ignora_spendi_sentiero(chi, sett):
+			_scelta["ignorato"] = true
 		elif s == "spendDie" or s.begins_with("spendDie") or s == "sacrifaceDie":
 			testi.append({"en": "[%s]" % s, "it": "[%s]" % s, "fonte": "sentiero"})
 		elif s.begins_with("dangerDie"):
@@ -1294,10 +1300,151 @@ func _riposo() -> void:
 	if not _inizia():
 		return
 	esp.usa_azione(false)
+	var prov_prima := int(esp.s["lander"]["provviste"])
 	esp.riposa(chi)
 	_bonus_avamposto(chi)
+	await _scatti_riposo(chi, prov_prima)
 	await _scarta_eccesso()
 	_finisci()
+
+# ------------------------------------------------------------------ effetti a scatto
+
+func _porta(i: int, id: String) -> bool:
+	return str(id) in esp.membro(i).get("attrezzatura", [])
+
+func _si_no(titolo: String, testo: String, immagine := "") -> bool:
+	var j := await _scegli(titolo.to_upper(), ["SÌ", "NO"], testo, false, immagine)
+	return j == 0
+
+## Riposo: abilità "When Resting" (niente Provviste / 1 dado e 1 carta in più) e attrezzatura per tutti.
+func _scatti_riposo(chi: int, prov_prima: int) -> void:
+	var m := esp.membro(chi)
+	var ab = Carte.per_file(str(m.get("file", ""))).get("abilita", {})
+	var en := Carte.en(ab).to_lower() if ab is Dictionary else ""
+	if en.begins_with("when resting") and int(m["cariche"]) > 0:
+		if await _si_no("Abilità " + str(ab.get("nome", "")), Dati.testo_carta(Carte.t(ab), 20) + "\n\nCariche: %d. Usi l'abilità?" % int(m["cariche"])):
+			m["cariche"] = int(m["cariche"]) - 1
+			if en.contains("not spend supplies"):
+				esp.s["lander"]["provviste"] = prov_prima
+			if en.contains("refresh 1 [die] more"):
+				esp.ricarica(chi, 1, "")
+			if en.contains("draw 1 additional card"):
+				esp.pesca_carta(chi)
+			esp.diario("%s usa l'abilità %s" % [m["carta"], ab.get("nome", "")])
+	for i in esp.vivi():
+		for e in esp.membro(i).get("attrezzatura", []):
+			var ce := Carte.per_id(str(e))
+			if str(ce.get("quando", "")) == "on_rest" and Carte.en(ce.get("effetto", "")).to_lower().contains("refreshes 1 [die] more when resting"):
+				esp.ricarica(chi, 1, "")
+				avviso("%s: 1 dado in più" % Carte.titolo(ce))
+
+## Attrezzatura che evita una Ferita ("you may return this card to the Armory instead of gaining that Injury").
+func _evita_ferita(chi: int, tipo: String, fatti: Array) -> bool:
+	if esp.s.get("tutorial", false):
+		return false
+	var nomi := {"wounded": "wounded", "critically_wounded": "critically wounded", "burned": "burned", "panicked": "panicked", "exhausted": "exhausted", "freezing": "freezing"}
+	for e in esp.membro(chi).get("attrezzatura", []):
+		var ce := Carte.per_id(str(e))
+		var en := Carte.en(ce.get("effetto", "")).to_lower()
+		if not en.contains("instead of gaining that injury"):
+			continue
+		var vale := en.contains("if you would gain an injury")
+		if not vale and en.contains("if you gain the"):
+			var elenco := en.substr(en.find("if you gain the"), en.find("injury") - en.find("if you gain the"))
+			vale = elenco.contains(nomi.get(tipo, tipo)) and not (tipo == "wounded" and not RegEx.create_from_string("(^|[ ,])wounded").search(elenco.replace("critically wounded", "")))
+		if vale and await _si_no(Carte.titolo(ce), "%s sta per subire la Ferita %s.\n%s\n\nRimetti la carta nell'Armeria per evitarla?" % [esp.membro(chi)["carta"], NOMI_FERITE.get(tipo, tipo), Dati.testo_carta(Carte.t(ce.get("effetto", "")), 20)]):
+			(esp.membro(chi)["attrezzatura"] as Array).erase(str(e))
+			fatti.append("%s evita la Ferita %s con %s" % [esp.membro(chi)["carta"], NOMI_FERITE.get(tipo, tipo), Carte.titolo(ce)])
+			return true
+	return false
+
+## Tute contro il dado Pericolo: ignorare l'effetto (nei biomi indicati) pagando dadi, oppure ritirarlo.
+func _pericolo_ignorato(chi: int, sett: int, d: Dictionary, fatti: Array) -> bool:
+	var icone := esp.icone_settore(pl, sett, _carte_pdi())
+	for e in esp.membro(chi).get("attrezzatura", []):
+		var ce := Carte.per_id(str(e))
+		var en := Carte.en(ce.get("effetto", ""))
+		var q := str(ce.get("quando", ""))
+		if not q in ["danger_roll", "on_danger_roll"]:
+			continue
+		var faccia := "+".join(Prova.icone(d)) if not Prova.icone(d).is_empty() else "vuota"
+		if en.to_lower().contains("to ignore that roll's effect"):
+			var biomi := RegEx.create_from_string("\\[(\\w+)\\]").search_all(en.substr(0, en.find(":"))).map(func(m): return m.get_string(1))
+			if not biomi.is_empty() and not biomi.any(func(b): return b in icone):
+				continue
+			var costo := 2 if en.contains("2 [spendDie]") else 1
+			if esp.dadi_disponibili(chi).size() >= costo and await _si_no(Carte.titolo(ce), "Dado Pericolo: %s.\nSpendi %d dado/i per ignorarne l'effetto?" % [faccia, costo]):
+				for k in costo:
+					esp.spendi_dado(chi)
+				fatti.append("%s ignora il dado Pericolo con %s" % [esp.membro(chi)["carta"], Carte.titolo(ce)])
+				return true
+		elif en.to_lower().contains("reroll a danger die"):
+			if esp.dadi_disponibili(chi).size() >= 1 and await _si_no(Carte.titolo(ce), "Dado Pericolo: %s.\nPaghi il costo della tuta per ritirarlo?" % faccia):
+				esp.spendi_dado(chi, "blue") if esp.dadi_disponibili(chi).any(func(x): return Prova.colore(x) == "blue") else esp.spendi_dado(chi)
+				Prova.tira(d, esp.rng)
+				fatti.append("%s ritira il dado Pericolo con %s" % [esp.membro(chi)["carta"], Carte.titolo(ce)])
+	return false
+
+## Tute che permettono di ignorare un [spendDie] del sentiero.
+func _ignora_spendi_sentiero(chi: int, sett: int) -> bool:
+	var icone := esp.icone_settore(pl, sett, _carte_pdi())
+	for e in esp.membro(chi).get("attrezzatura", []):
+		var ce := Carte.per_id(str(e))
+		var en := Carte.en(ce.get("effetto", ""))
+		if str(ce.get("quando", "")) != "travel" or not en.contains("ignore 1 [spendDie]"):
+			continue
+		var m := RegEx.create_from_string("(?i)from sectors with ([^,]*(?:,[^,]*)*?)(?:, add|: add| add)").search(en)
+		if m:
+			var biomi := RegEx.create_from_string("\\[(\\w+)\\]").search_all(m.get_string(1)).map(func(x): return x.get_string(1))
+			if not biomi.any(func(b): return b in icone):
+				continue
+		if await _si_no(Carte.titolo(ce), "Ignori un [img height=20]%s[/img] del sentiero grazie a %s?" % [Dati.icona("spendDie"), Carte.titolo(ce)]):
+			return true
+	return false
+
+## Scoperta appena ottenuta: effetto "quando la ottieni" e attrezzatura che dà Indizi in più.
+func _scoperta_ottenuta(file: String, tipo: String, chi: int, fatti: Array, manuali: Array, logs: Array) -> void:
+	var c := Carte.per_file(file)
+	var pe = c.get("campi", {}).get("esplorazione")
+	if pe is Dictionary and Carte.en(pe).to_lower().begins_with("when you gain this"):
+		var a := Effetti.analizza(Carte.en(pe))
+		for op in a["op"]:
+			await _op(op, chi, int(esp.membro(chi)["settore"]), fatti, manuali, logs, Carte.titolo(c))
+		if str(a["resto"]) != "":
+			manuali.append("%s: %s" % [Carte.titolo(c), Carte.t(pe)])
+	for e in esp.membro(chi).get("attrezzatura", []):
+		var ce := Carte.per_id(str(e))
+		if str(ce.get("quando", "")) == "when_gain_discovery" and esp.dadi_disponibili(chi).size() > 0:
+			if await _si_no(Carte.titolo(ce), "%s\n\nSpendi un dado per ottenere 2 Indizi %s?" % [Dati.testo_carta(Carte.t(ce.get("effetto", "")), 20), NOMI_SCOPERTE.get(tipo, tipo)]):
+				esp.spendi_dado(chi)
+				esp.indizi(tipo, 2)
+				fatti.append("%s: 2 Indizi %s" % [Carte.titolo(ce), NOMI_SCOPERTE.get(tipo, tipo)])
+
+## Scoperte con un'abilità da usare in esplorazione ("You may discard this card to …").
+func _usa_scoperte() -> void:
+	var usabili := []
+	for k in esp.s["scoperte"].size():
+		var c := Carte.per_file(str(esp.s["scoperte"][k]["carta"]))
+		var pe = c.get("campi", {}).get("esplorazione")
+		if pe is Dictionary and Carte.en(pe).to_lower().begins_with("you may discard this card to"):
+			usabili.append([k, c, pe])
+	if usabili.is_empty():
+		avviso("Nessuna Scoperta con un effetto da usare adesso (quelle \"durante una Prova\" si usano dalla Prova)")
+		return
+	var j := await _scegli("SCOPERTE DEL LANDER", usabili.map(func(x): return "%s — %s" % [Carte.titolo(x[1]), _pulito_bb(Carte.t(x[2]))]), "Scartando la Scoperta ne applichi l'effetto (torna in fondo al suo mazzo).")
+	if j < 0 or not _inizia():
+		_finisci()
+		return
+	var sc: Dictionary = esp.s["scoperte"][usabili[j][0]]
+	esp.s["scoperte"].remove_at(usabili[j][0])
+	esp.s["mazzi_scoperte"].get_or_add(str(sc["tipo"]), []).insert(0, sc["carta"])
+	var en := Carte.en(usabili[j][2])
+	en = en.substr(en.to_lower().find(" to ") + 4)
+	await applica([{"en": en, "it": Carte.t(usabili[j][2]), "fonte": Carte.titolo(usabili[j][1])}], int(esp.s["attivo"]), int(esp.membro(int(esp.s["attivo"]))["settore"]))
+	_finisci()
+
+static func _pulito_bb(t: String) -> String:
+	return t.replace("[", "").replace("]", "")
 
 ## Attrezzature di missione piazzate in un settore.
 func _segnalini(n: int) -> Array:
@@ -1372,6 +1519,10 @@ func _sforzo() -> void:
 			esp.sforzo(chi, str(dadi[j]["id"]))
 	if str(esp.s.get("finita", "")) == "":
 		_bonus_avamposto(chi)
+		for e in esp.membro(chi).get("attrezzatura", []):
+			if str(Carte.per_id(str(e)).get("quando", "")) == "on_exert" and Carte.en(Carte.per_id(str(e)).get("effetto", "")).to_lower().contains("refresh 1"):
+				esp.ricarica(chi, 1, "")
+				avviso("%s: ricarichi 1 dado in più" % Carte.titolo(Carte.per_id(str(e))))
 	var fz := []
 	if _salva_con_drone(chi, fz):
 		avviso(fz[0])
@@ -1671,11 +1822,14 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			fatti.append("%d Indizi %s" % [int(op["n"]), NOMI_SCOPERTE.get(op["tipo"], op["tipo"])])
 			for c in sc:
 				fatti.append("[b]Scoperta %s ottenuta![/b] (%s)" % [NOMI_SCOPERTE.get(op["tipo"], op["tipo"]), Carte.titolo(Carte.per_file(str(c)))])
+				await _scoperta_ottenuta(str(c), str(op["tipo"]), chi, fatti, manuali, logs)
 			_controlla_scoperte(manuali)
 		"scoperta":
 			for k in int(op["n"]):
 				var c2 := esp.scoperta(str(op["tipo"]))
 				fatti.append("Scoperta %s%s" % [NOMI_SCOPERTE.get(op["tipo"], op["tipo"]), "" if c2 != "" else " (mazzo vuoto)"])
+				if c2 != "":
+					await _scoperta_ottenuta(c2, str(op["tipo"]), chi, fatti, manuali, logs)
 			_controlla_scoperte(manuali)
 		"scoperta_eccezionale":
 			var ep: Array = esp.s.get_or_add("eccezionali_pianeta", [])
@@ -1694,7 +1848,9 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 				var ue := _eccezionale(num)
 				fatti.append("[b]Scoperta Eccezionale %d[/b]%s" % [num, (": " + Carte.titolo(ue)) if not ue.is_empty() else ""])
 				var pe = ue.get("campi", {}).get("esplorazione")
-				if pe is Dictionary:
+				if pe is Dictionary and Carte.en(pe).to_lower().begins_with("when you gain this"):
+					await _scoperta_ottenuta(str(ue["file"]), "", chi, fatti, manuali, logs)
+				elif pe is Dictionary:
 					manuali.append("Scoperta Eccezionale %d: %s" % [num, Carte.t(pe)])
 		"successi":
 			esp.s["successi"] = int(esp.s["successi"]) + int(op["n"])
@@ -1713,6 +1869,8 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			for k in int(op["n"]):
 				await _tira_pericolo(str(op["lettera"]), chi, sett, fatti, manuali, logs, fonte)
 		"ferita":
+			if await _evita_ferita(chi, str(op["tipo"]), fatti):
+				return
 			var r := esp.ferita(chi, str(op["tipo"]))
 			if r == "evac" and _salva_con_drone(chi, fatti):
 				pass
@@ -1776,6 +1934,13 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			fatti.append("%s sacrifica %d dadi" % [m["carta"], int(op["n"])])
 		"niente":
 			fatti.append("Non succede nulla")
+		"tutti":
+			for i2 in esp.vivi():
+				await _op(op["sub"], i2, int(esp.membro(i2)["settore"]), fatti, manuali, logs, fonte)
+		"grado":
+			if str(esp.s.get("grado_superiore", "")) != "" and not esp.s.get("grado_girato", false):
+				esp.s["grado_girato"] = true
+				fatti.append("[b]Carta Grado Superiore completata![/b]")
 		"gira_carta":
 			if fonte.begins_with("Grado"):
 				esp.s["grado_girato"] = true
@@ -1867,6 +2032,8 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 func _tira_pericolo(lettera: String, chi: int, sett: int, fatti: Array, manuali: Array, logs: Array, fonte: String) -> void:
 	var d := {"tipo": "pericolo", "lettera": lettera, "faccia": 0}
 	Prova.tira(d, esp.rng)
+	if await _pericolo_ignorato(chi, sett, d, fatti):
+		return
 	var ic := Prova.icone(d)
 	var nome := "vuoto" if ic.is_empty() else str(ic[0])
 	var nomi_it := {"vuoto": "faccia vuota", "common": "comune", "uncommon": "non comune", "rare": "raro", "special": "speciale"}
