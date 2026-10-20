@@ -204,5 +204,24 @@ func _run() -> void:
 	ok(int(e.membro(1)["cariche"]) == 0, "abilità di assistenza: 1 Carica")
 	f._risolvi()
 	ok(e.dadi_disponibili(1).size() == e.membro(1)["dadi"].filter(func(d): return d["stato"] != "sacrificato").size(), "i dadi di Joppe tornano disponibili")
+	# tutte le Minacce: tre avanzamenti del Tempo ciascuna
+	var tot_fatti := 0
+	var tot_man := 0
+	for cm in Carte.categoria("minacce"):
+		if str(cm.get("lato", "")) != "fronte":
+			continue
+		e.s["minacce"] = []
+		e.s["finita"] = ""
+		mis._aggiungi_minaccia(cm, int(e.membro(0)["settore"]))
+		var ff := []
+		var mm := []
+		var ll := []
+		mis._minacce_avanzano(3, ff, mm, ll)
+		await chiudi()
+		tot_fatti += ff.size()
+		tot_man += mm.size()
+		if not mm.is_empty():
+			print("   a mano (%s): %s" % [Carte.en(cm.get("titolo", "")), mm])
+	print("   Minacce: %d effetti applicati, %d da fare a mano" % [tot_fatti, tot_man])
 	print("errori: ", errori)
 	quit()

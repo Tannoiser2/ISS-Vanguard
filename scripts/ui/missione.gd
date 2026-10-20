@@ -2135,76 +2135,187 @@ func _effetto_minaccia(m: Dictionary, c: Dictionary, nome_eff: String, fatti: Ar
 		if r.to_lower().begins_with(nome_eff.to_lower() + ":"):
 			testo = r.substr(nome_eff.length() + 1).strip_edges()
 			testo_it = righe_it[k] if k < righe_it.size() else testo
+			# righe di una tabella che continuano l'effetto ("0-4: …", "5-9: …")
+			var k2 := k + 1
+			while k2 < righe.size() and RegEx.create_from_string("^\\d+-\\d+:").search(righe[k2].strip_edges()):
+				testo += " " + righe[k2].strip_edges()
+				k2 += 1
 	if testo == "":
 		manuali.append("Minaccia %s: %s" % [m["nome"], nome_eff])
 		return
-	var en := str(m.get("en", Carte.en(c.get("titolo", ""))))
-	var tl := testo.to_lower()
-	var sett := int(m["settore"])
-	var ok := true
-	# movimento
-	var mv := RegEx.create_from_string("(?i)move .+? (?:by )?(\\d+|one|two) sectors? toward the nearest crewmember").search(testo)
-	if tl.begins_with("if there is no %s on the planet board" % en.to_lower()):
-		fatti.append("%s è già sulla plancia: non succede nulla" % m["nome"])
-	elif tl.begins_with("roll d10 and place"):
+	var sett0 := int(m["settore"])
+	# tabella col D10 sui settori collegati
+	if testo.to_lower().contains("roll d10") and testo.contains("0-4"):
 		var d := esp.rng.randi_range(0, 9)
-		if esp.s["settori"].has(str(d)):
+		var col := esp.collegati(pl, sett0)
+		col.sort()
+		if not col.is_empty():
+			var basso := testo.substr(testo.find("0-4")).to_lower().begins_with("0-4: the lowest")
+			m["settore"] = (col[0] if basso else col[-1]) if d <= 4 else (col[-1] if basso else col[0])
+		fatti.append("%s: D10 = %d → Settore %d" % [m["nome"], d, int(m["settore"])])
+		return
+	# "choose one effect below" con le voci nelle righe successive
+	if testo.to_lower().contains("choose one effect below"):
+		var voci := []
+		var dentro := false
+		for r in righe:
+			var rr := r.strip_edges()
+			if rr.to_lower().begins_with(nome_eff.to_lower() + ":"):
+				dentro = true
+				continue
+			if dentro and rr.begins_with("- "):
+				voci.append(rr.substr(2))
+			elif dentro and rr != "":
+				break
+		if not voci.is_empty():
+			var j := await _scegli("%s — %s" % [str(m["nome"]).to_upper(), nome_eff.to_upper()], voci.map(func(x): return _txt_icone(str(x))), testo_it, false)
+			testo = str(voci[j])
+	# frase per frase
+	var frasi := RegEx.create_from_string("(?<=\\.)\\s+(?=[A-Z])").sub(testo, "§", true).split("§")
+	var nessuno := false
+	for f in frasi:
+		var fr := f.strip_edges()
+		if fr == "" or not m in esp.s["minacce"]:
+			continue
+		var frl := fr.to_lower()
+		var cond_n := RegEx.create_from_string("(?i)^if there (?:is none|are none)[:,]\\s*").search(fr)
+		if cond_n:
+			if nessuno:
+				await _frase_minaccia(m, fr.substr(cond_n.get_end()).strip_edges(), fatti, manuali, logs, testo_it)
+			continue
+		if frl.begins_with("if there is no such sector") or frl.begins_with("if there are no sectors with a higher number"):
+			continue
+		var rag := RegEx.create_from_string("(?i)^if .+? reaches sector (\\d+), go to log (\\d+)").search(fr)
+		if rag:
+			if int(m["settore"]) == int(rag.get_string(1)):
+				logs.append(int(rag.get_string(2)))
+				fatti.append("%s raggiunge il Settore %s: Annotazione %s" % [m["nome"], rag.get_string(1), rag.get_string(2)])
+			continue
+		nessuno = await _frase_minaccia(m, fr, fatti, manuali, logs, testo_it)
+
+## Una frase dell'effetto di una Minaccia; restituisce true se "nessun Membro" era nel suo settore.
+func _frase_minaccia(m: Dictionary, testo: String, fatti: Array, manuali: Array, logs: Array, testo_it: String) -> bool:
+	var en := str(m.get("en", "")).to_lower()
+	var tl := testo.to_lower().trim_prefix("then, ").trim_prefix("then ")
+	var sett := int(m["settore"])
+	var mv := RegEx.create_from_string("(?i)move .+? (?:by )?(\\d+|one|two) sectors? toward the nearest crewmember").search(testo)
+	if en != "" and tl.begins_with("if there is no %s on the planet board" % en):
+		fatti.append("%s è già sulla plancia: non succede nulla" % m["nome"])
+		return false
+	if tl.begins_with("roll d10 and place") or tl.begins_with("roll d10. move"):
+		var d := esp.rng.randi_range(0, 9)
+		if tl.contains("lowest-numbered") or tl.contains("0-4"):
+			var col := esp.collegati(pl, sett)
+			if not col.is_empty():
+				col.sort()
+				m["settore"] = col[0] if d <= 4 else col[-1]
+			fatti.append("%s: D10 = %d → Settore %d" % [m["nome"], d, int(m["settore"])])
+		elif esp.s["settori"].has(str(d)):
 			m["settore"] = d
 			fatti.append("%s: D10 = %d → Settore %d" % [m["nome"], d, d])
 		else:
 			fatti.append("%s: D10 = %d, nessun settore: resta dov'è" % [m["nome"], d])
-	elif mv:
+		return false
+	if mv:
 		if tl.begins_with("if there is no crewmember in the sector") and not esp.nel_settore(sett).is_empty():
 			fatti.append("%s: c'è un Membro nel suo settore, non si muove" % m["nome"])
 		else:
 			esp.muovi_minaccia_verso(pl, m, Effetti._n(mv.get_string(1)))
 			fatti.append("%s si sposta verso il Membro più vicino (Settore %d)" % [m["nome"], int(m["settore"])])
-	elif tl.contains("place") and tl.contains("one number higher"):
+		return false
+	var mv2 := RegEx.create_from_string("(?i)move .+? to the (highest|lowest)-numbered connected sector").search(testo)
+	if mv2:
+		var col := esp.collegati(pl, sett)
+		col.sort()
+		if not col.is_empty():
+			m["settore"] = col[-1] if mv2.get_string(1).to_lower() == "highest" else col[0]
+		fatti.append("%s nel Settore %d" % [m["nome"], int(m["settore"])])
+		return false
+	var mv3 := RegEx.create_from_string("(?i)move .+? (?:by )?(\\d+|one|two) sectors? toward (?:a random crewmember|the crewmember with most injuries)").search(testo)
+	if mv3:
+		var vivi := esp.vivi()
+		if not vivi.is_empty():
+			var bersaglio: int = vivi[esp.rng.randi_range(0, vivi.size() - 1)]
+			if tl.contains("most injuries"):
+				vivi.sort_custom(func(a, b): return (esp.membro(a)["ferite"] as Array).size() > (esp.membro(b)["ferite"] as Array).size())
+				bersaglio = vivi[0]
+			esp.muovi_minaccia_verso(pl, m, Effetti._n(mv3.get_string(1)), int(esp.membro(bersaglio)["settore"]))
+			fatti.append("%s si sposta verso %s (Settore %d)" % [m["nome"], esp.membro(bersaglio)["carta"], int(m["settore"])])
+		return false
+	var pls := RegEx.create_from_string("(?i)^place .+? in sector (\\d+)").search(tl)
+	if pls:
+		m["settore"] = int(pls.get_string(1))
+		fatti.append("%s nel Settore %d" % [m["nome"], int(m["settore"])])
+		if tl.contains("discard 1 marker from this card"):
+			m["marcatori"] = max(0, int(m.get("marcatori", 0)) - 1)
+		return false
+	if tl.begins_with("travel and [outcome"):
+		var c := _carta_minaccia(m)
+		await _effetto_minaccia(m, c, "Travel", fatti, manuali, logs)
+		var pr := RegEx.create_from_string("outcome(Red|Green|Yellow)Progress").search(testo)
+		if pr:
+			var col2 := pr.get_string(1).to_lower()
+			var tr: Array = (c.get("azioni", [{}]) as Array)[0].get("tracce", []) if not (c.get("azioni", []) as Array).is_empty() else []
+			var cas := 3
+			for t in tr:
+				if str(t.get("colore", "")) == col2:
+					cas = int(t.get("caselle", 3))
+			var v := esp.avanza_traccia(-1, "M:%s#0#%s" % [m.get("en", m["nome"]), col2], 1, cas)
+			fatti.append("Traccia %s dell'azione di %s: %d/%d" % [col2, m["nome"], v, cas])
+		return false
+	if tl.contains("place") and tl.contains("one number higher"):
 		var nx := sett + 1
 		if not esp.s["settori"].has(str(nx)):
 			nx = 1
 		m["settore"] = nx
 		fatti.append("%s nel Settore %d" % [m["nome"], nx])
-	elif tl.begins_with("discard") and tl.contains("threat card"):
+		return false
+	if tl.begins_with("discard") and tl.contains("threat card"):
 		esp.s["minacce"].erase(m)
 		esp.s["minaccia_scartata"] = true
 		fatti.append("%s viene scartata" % m["nome"])
-	else:
-		ok = false
-	if ok:
-		return
+		return false
+	if tl.begins_with("travel") or tl == "":
+		return false
 	# effetti sui Membri
 	var bersagli := []
-	var pref := "each crewmember in the sector with " + en.to_lower()
-	var pref2 := "each crewmember in a sector with"
-	if tl.begins_with(pref):
-		bersagli = esp.nel_settore(sett)
-		testo = testo.substr(pref.length()).strip_edges()
-	elif tl.begins_with(pref2):
-		bersagli = esp.nel_settore(sett)
-		testo = testo.substr(testo.find(" ", pref2.length() + 1)).strip_edges()
-	if bersagli.is_empty() and (tl.begins_with(pref) or tl.begins_with(pref2)):
-		fatti.append("%s: nessun Membro nel suo settore" % m["nome"])
-		var altro := testo.find("If there is none:")
-		if altro >= 0:
-			manuali.append("Minaccia %s (%s): %s" % [m["nome"], nome_eff, testo_it])
-		return
+	var resto := testo
+	var tl2 := testo.to_lower()
+	for pref in ["each crewmember in the sector with " + en, "each crewmember in a sector with at least 1 marker", "each crewmember in a sector with"]:
+		if tl2.begins_with(pref):
+			bersagli = esp.nel_settore(sett)
+			resto = testo.substr(pref.length()).strip_edges()
+			break
+	if tl2.begins_with("each other crewmember"):
+		bersagli = esp.vivi().filter(func(i): return int(esp.membro(i)["settore"]) != sett)
+		resto = testo.substr(21).strip_edges()
+	elif tl2.begins_with("1 random crewmember in the sector with"):
+		var qui := esp.nel_settore(sett)
+		bersagli = [qui[esp.rng.randi_range(0, qui.size() - 1)]] if not qui.is_empty() else []
+		resto = testo.substr(testo.find(en.substr(0, 4)) + en.length()) if en != "" else testo
+	elif bersagli.is_empty() and not tl2.begins_with("each "):
+		# effetto generale (Provviste, Scoperte…)
+		var a := Effetti.analizza(testo)
+		for op in a["op"]:
+			await _op(op, int(esp.s["attivo"]), sett, fatti, manuali, logs, "Minaccia " + str(m["nome"]))
+		if a["op"].is_empty() or str(a["resto"]) != "":
+			manuali.append("Minaccia %s: %s" % [m["nome"], testo_it])
+		return false
 	if bersagli.is_empty():
-		manuali.append("Minaccia %s (%s): %s" % [m["nome"], nome_eff, testo_it])
-		return
-	# alternativa "X OR Y": si sceglie per ciascun Membro
+		fatti.append("%s: nessun Membro coinvolto" % m["nome"])
+		return true
 	for i in bersagli:
-		var parte := testo.split(". ")[0]
-		var opzioni := Array(parte.split(" OR ")) if parte.contains(" OR ") else [parte]
+		var opzioni := Array(resto.split(" OR ")) if resto.contains(" OR ") else [resto]
 		var scelta: Variant = opzioni[0]
 		if opzioni.size() > 1:
-			var j := await _scegli("%s — %s" % [m["nome"].to_upper(), esp.membro(i)["carta"]], opzioni.map(func(x): return _txt_icone(str(x))), testo_it, false)
+			var j := await _scegli("%s — %s" % [str(m["nome"]).to_upper(), esp.membro(i)["carta"]], opzioni.map(func(x): return _txt_icone(str(x))), testo_it, false)
 			scelta = opzioni[j]
-		var a := Effetti.analizza(scelta)
-		for op in a["op"]:
+		var a2 := Effetti.analizza(str(scelta))
+		for op in a2["op"]:
 			await _op(op, i, sett, fatti, manuali, logs, "Minaccia " + str(m["nome"]))
-		if str(a["resto"]) != "" or testo.split(". ").size() > 1:
-			manuali.append("Minaccia %s (%s), per %s: %s" % [m["nome"], nome_eff, esp.membro(i)["carta"], testo_it])
+		if a2["op"].is_empty() or str(a2["resto"]).length() > 12:
+			manuali.append("Minaccia %s, per %s: %s" % [m["nome"], esp.membro(i)["carta"], testo_it])
+	return false
 
 # ------------------------------------------------------------------ Lander e atterraggio
 
