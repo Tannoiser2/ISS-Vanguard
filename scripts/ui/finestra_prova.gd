@@ -674,6 +674,20 @@ func _risolvi() -> void:
 				r_n += 1
 		if r_n > 0:
 			resoconto.append("Laser Minerario Pesante: %d dadi rossi ricaricati" % r_n)
+	# Pellegrino Idemiano: tanti segnalini quanti i dadi Reparto tirati nel suo settore; a 5 la carta si gira
+	for mn in esp.s["minacce"]:
+		if str(mn.get("en", "")).to_lower() == "idemian pilgrim" and int(mn.get("settore", 0)) == settore and str(mn.get("file", "")).get_file().begins_with("idemian"):
+			var nd := _pool.filter(func(d): return not d["tipo"] in ["ferita", "pericolo", "virtuale"]).size()
+			mn["marcatori"] = int(mn.get("marcatori", 0)) + nd
+			resoconto.append("Pellegrino Idemiano: +%d segnalini (%d)" % [nd, int(mn["marcatori"])])
+			if int(mn["marcatori"]) >= 5:
+				mn["marcatori"] = 0
+				for x in Carte.categoria("minacce"):
+					if x.get("nomi", []) == ["Idemian Pilgrim"] and str(x.get("file", "")) != str(mn["file"]):
+						mn["file"] = str(x["file"])
+						mn["tempo"] = 0
+						resoconto.append("[b]Il Pellegrino Idemiano si infuria: la carta si gira![/b]")
+						break
 	resoconto = _resoconto_mod + resoconto
 	esp.diario("%s: %s" % [m["carta"], "; ".join(resoconto)])
 	_mostra_riepilogo(resoconto, testi)

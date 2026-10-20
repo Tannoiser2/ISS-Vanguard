@@ -781,6 +781,14 @@ func _sezione_settore() -> void:
 			voci.append({"azione": am[k], "chiave": "M:%s#%d" % [mn.get("en", mn["nome"]), k], "fonte": "Minaccia " + str(mn["nome"]), "n": -1})
 	if int(st.get("segni", 0)) > 0:
 		_testo("[color=#ffb347]Segnalini Minaccia in questo settore: %d[/color]" % int(st["segni"]), 14)
+	if int(st.get("droni", 0)) > 0:
+		_testo("[color=#ffb347]Droni dello Sciame Arrogatore: %d[/color]" % int(st["droni"]), 14)
+	var pila_b := []
+	for mn2 in esp.s["minacce"]:
+		if int(mn2.get("settore", 0)) == n and not (mn2.get("pila", []) as Array).is_empty():
+			pila_b = mn2["pila"]
+	if not pila_b.is_empty():
+		_testo("[color=#9fbbd6]Pila di PDI del Biomebot: %d carte (in cima %s)[/color]" % [pila_b.size(), pila_b[0]], 14)
 	for tk in _segnalini(n):
 		var ce := Carte.per_id(str(tk["id"]))
 		var en_t := Carte.en(ce.get("effetto", ""))
@@ -2429,6 +2437,144 @@ func _gira_minaccia(m: Dictionary, fatti: Array) -> void:
 			fatti.append("La carta Minaccia %s si gira" % m["nome"])
 			return
 
+## Minacce con regole tutte loro. true se l'effetto è stato risolto qui.
+func _minaccia_speciale(m: Dictionary, c: Dictionary, eff: String, testo: String, fatti: Array, manuali: Array, logs: Array) -> bool:
+	var nomi: Array = c.get("nomi", []) if c.get("nomi") is Array else []
+	var en := str(nomi[0]) if not nomi.is_empty() else str(m.get("en", ""))
+	var sett := int(m["settore"])
+	match [en, eff]:
+		["Re-Origination Beam", "travel"]:
+			if not m.has("viaggio"):
+				var j := await _scegli("RAGGIO DI RI-ORIGINAZIONE", ["Viaggio (lento)", "Viaggio (veloce)"], "Quale regola di Viaggio è contrassegnata da un segnalino sulla carta?", false)
+				m["viaggio"] = "veloce" if j == 1 else "lento"
+			var meta := 8
+			if m["viaggio"] == "lento":
+				if (sett - 1) in esp.collegati(pl, sett):
+					meta = sett - 1
+			elif esp.s["settori"].has(str(sett - 2)) and esp.distanza(pl, sett, sett - 2) > 0:
+				meta = sett - 2
+			if _minaccia_in("Builder's Biomebot", meta):
+				fatti.append("%s: nel Settore %d c'è il Biomebot, il Viaggio si annulla" % [m["nome"], meta])
+			else:
+				m["settore"] = meta
+				fatti.append("%s nel Settore %d" % [m["nome"], meta])
+			return true
+		["Builder's Biomebot", "travel"]:
+			var meta2 := sett + 1 if (sett + 1) in esp.collegati(pl, sett) else 2
+			if _minaccia_in("Re-Origination Beam", meta2):
+				fatti.append("%s: nel Settore %d c'è il Raggio, il Viaggio si annulla" % [m["nome"], meta2])
+				return true
+			_biomebot_prende(m, sett, fatti)
+			m["settore"] = meta2
+			fatti.append("%s nel Settore %d" % [m["nome"], meta2])
+			return true
+		["Builder's Biomebot", "biome change"]:
+			_biomebot_prende(m, sett, fatti)
+			var pila: Array = m.get_or_add("pila", [])
+			if pila.is_empty():
+				manuali.append("Biomebot del Costruttore: la sua pila di PDI è vuota — se ce l'hai sul tavolo, piazza la prima carta nel Settore %d" % sett)
+			else:
+				var top: String = pila.pop_front()
+				esp.s["settori"][str(sett)]["pdi"].append(top)
+				fatti.append("Settore %d: il Biomebot piazza %s" % [sett, top])
+			return true
+		["Idemian Pilgrim", "procession"]:
+			var incenso := []
+			for k in esp.s["settori"]:
+				if "incenseBurner" in esp.icone_settore(pl, int(k), _carte_pdi()):
+					incenso.append(int(k))
+			incenso.sort()
+			if incenso.is_empty():
+				manuali.append("Pellegrino Idemiano: nessun settore con il Bruciaincenso visibile")
+			else:
+				var piu := incenso.filter(func(x): return x > sett)
+				m["settore"] = piu[0] if not piu.is_empty() else incenso[0]
+				fatti.append("%s nel Settore %d" % [m["nome"], int(m["settore"])])
+			m["marcatori"] = max(0, int(m.get("marcatori", 0)) - 2)
+			return true
+		["Hunters Become Prey", "travel"]:
+			var nuovi := {}
+			for k in esp.s["settori"]:
+				for t in int(esp.s["settori"][k].get("segni", 0)):
+					var d := esp.rng.randi_range(0, 9)
+					var tmp := {"settore": int(k)}
+					esp.muovi_minaccia_verso(pl, tmp, 2, d if d > 0 and esp.s["settori"].has(str(d)) else 1)
+					nuovi[int(tmp["settore"])] = int(nuovi.get(int(tmp["settore"]), 0)) + 1
+			for k in esp.s["settori"]:
+				esp.s["settori"][k]["segni"] = int(nuovi.get(int(k), 0))
+			fatti.append("Segnalini spostati: %s" % ", ".join(nuovi.keys().map(func(x): return "Settore %d ×%d" % [x, nuovi[x]])))
+			return true
+		["Enraptured Visitor", "travel"]:
+			var j2 := await _scegli("VISITATORE RAPITO", ["Settore 1", "Settore 2", "Settore 3"], "Il Visitatore Rapito va nel Settore 1, 2 o 3 (a scelta dei giocatori).", false)
+			m["settore"] = max(0, j2) + 1
+			fatti.append("%s nel Settore %d" % [m["nome"], int(m["settore"])])
+			return true
+		["Enraptured Visitor", "impulse"]:
+			await _frase_minaccia(m, "Each Crewmember in the Sector with Enraptured Visitor [spendDie]+[spendDie].", fatti, manuali, logs, "")
+			if sett in [1, 2, 3]:
+				manuali.append("Visitatore Rapito: nel Settore %d metti in cima alla pila il PDI con la parola chiave uguale al nome della Condizione Generale" % sett)
+			return true
+		["Enraptured Visitor", "stimulus"]:
+			m["settore"] = 7
+			fatti.append("%s nel Settore 7" % m["nome"])
+			manuali.append("Visitatore Rapito: metti in cima alla pila delle Condizioni Generali quella che preferite")
+			return true
+		["Arrogator Warswarm", "hack drone"]:
+			var con: Variant = esp.s["settori"].keys().filter(func(k): return int(esp.s["settori"][k].get("droni", 0)) > 0)
+			if con.is_empty():
+				fatti.append("Nessun Drone sulla plancia")
+			else:
+				var j3 := 0
+				if con.size() > 1:
+					j3 = await _scegli("DA DOVE TOGLI IL DRONE?", con.map(func(k): return "Settore %s (%d)" % [k, int(esp.s["settori"][k]["droni"])]), "", false)
+				esp.s["settori"][con[j3]]["droni"] = int(esp.s["settori"][con[j3]]["droni"]) - 1
+				fatti.append("Un Drone in meno nel Settore %s" % con[j3])
+			return true
+		["Arrogator Warswarm", "swarm"]:
+			if not m.has("droni_totali"):
+				var j4 := await _scegli("SCIAME DA GUERRA ARROGATORE", ["3", "4", "5", "6", "7", "8"], "Quanti Droni ci sono in tutto (sulla plancia e nella riserva)?", false)
+				m["droni_totali"] = max(0, j4) + 3
+			var sul := 0
+			for k in esp.s["settori"]:
+				sul += int(esp.s["settori"][k].get("droni", 0))
+			var riserva: int = max(0, int(m["droni_totali"]) - sul)
+			var con_m := []
+			for i in esp.vivi():
+				var si := int(esp.membro(i)["settore"])
+				if not si in con_m:
+					con_m.append(si)
+			con_m.sort()
+			for si in con_m:
+				if riserva <= 0:
+					break
+				esp.s["settori"][str(si)]["droni"] = int(esp.s["settori"][str(si)].get("droni", 0)) + 1
+				riserva -= 1
+			if riserva > 0:
+				esp.s["settori"][str(sett)]["droni"] = int(esp.s["settori"][str(sett)].get("droni", 0)) + riserva
+			var el := []
+			for k in esp.s["settori"]:
+				if int(esp.s["settori"][k].get("droni", 0)) > 0:
+					el.append("Settore %s ×%d" % [k, int(esp.s["settori"][k]["droni"])])
+			fatti.append("Droni: " + ", ".join(el))
+			return true
+		["Maw", "feeding"]:
+			pass
+	if testo.to_lower().begins_with("discard 1 non-unique discovery"):
+		return false
+	return false
+
+func _minaccia_in(nome_en: String, n: int) -> bool:
+	return esp.s["minacce"].any(func(x): return str(x.get("en", "")).to_lower() == nome_en.to_lower() and int(x.get("settore", 0)) == n)
+
+## Il Biomebot lascia il settore: il PDI in cima va in fondo alla sua pila.
+func _biomebot_prende(m: Dictionary, n: int, fatti: Array) -> void:
+	var p: Array = esp.s["settori"].get(str(n), {}).get("pdi", [])
+	if p.is_empty() or str(p[-1]) == "P000":
+		return
+	var c: String = p.pop_back()
+	m.get_or_add("pila", []).append(c)
+	fatti.append("Il Biomebot prende %s dal Settore %d" % [c, n])
+
 ## Effetto con nome (es. "Travel", "Scintillation") dal testo delle regole della Minaccia.
 func _effetto_minaccia(m: Dictionary, c: Dictionary, nome_eff: String, fatti: Array, manuali: Array, logs: Array) -> void:
 	var regole_en := Carte.en(c.get("regole", ""))
@@ -2454,6 +2600,8 @@ func _effetto_minaccia(m: Dictionary, c: Dictionary, nome_eff: String, fatti: Ar
 	_regole_minaccia = regole_en.to_lower()
 	if int(m["settore"]) <= 0 and _eff_nome == "travel" and _regole_minaccia.contains("its travel is ignored"):
 		fatti.append("%s è fuori dalla plancia: il Viaggio si ignora" % m["nome"])
+		return
+	if await _minaccia_speciale(m, c, _eff_nome, testo, fatti, manuali, logs):
 		return
 	var sett0 := int(m["settore"])
 	# tabella col D10 sui settori collegati
@@ -2483,13 +2631,21 @@ func _effetto_minaccia(m: Dictionary, c: Dictionary, nome_eff: String, fatti: Ar
 			var j := await _scegli("%s — %s" % [str(m["nome"]).to_upper(), nome_eff.to_upper()], voci.map(func(x): return _txt_icone(str(x))), testo_it, false)
 			testo = str(voci[j])
 	# frase per frase
-	var frasi := RegEx.create_from_string("(?<=\\.)\\s+(?=[A-Z])").sub(testo, "§", true).split("§")
+	var frasi0 := RegEx.create_from_string("(?<=\\.)\\s+(?=[A-Z])").sub(testo, "§", true).split("§")
+	# "Any of these Crewmembers may X to roll Y instead." diventa un'alternativa della frase precedente
+	var frasi := []
+	for f0 in frasi0:
+		var alt := RegEx.create_from_string("(?i)^any of these crewmembers may (.+?) to roll (\\[\\w+\\]) instead\\.?$").search(f0.strip_edges())
+		if alt and not frasi.is_empty():
+			frasi[-1] = str(frasi[-1]).trim_suffix(".") + " OR " + alt.get_string(1) + " and roll " + alt.get_string(2)
+		else:
+			frasi.append(f0)
 	var nessuno := false
 	for f in frasi:
-		var fr := f.strip_edges()
+		var fr: Variant = f.strip_edges()
 		if fr == "" or not m in esp.s["minacce"]:
 			continue
-		var frl := fr.to_lower()
+		var frl: Variant = fr.to_lower()
 		var cond_n := RegEx.create_from_string("(?i)^if there (?:is none|are none)[:,]\\s*").search(fr)
 		if cond_n:
 			if nessuno:
@@ -2588,17 +2744,33 @@ func _frase_minaccia(m: Dictionary, testo: String, fatti: Array, manuali: Array,
 		if tl.contains("discard 1 marker from this card"):
 			m["marcatori"] = max(0, int(m.get("marcatori", 0)) - 1)
 		return false
+	if tl.begins_with("discard 1 non-unique discovery"):
+		var sc: Array = esp.s["scoperte"]
+		var nu := []
+		for k in sc.size():
+			if not Carte.en(Carte.per_file(str(sc[k]["carta"])).get("campi", {}).get("esplorazione", {})).to_lower().contains("unique"):
+				nu.append(k)
+		if nu.is_empty():
+			fatti.append("Nessuna Scoperta non Unica da scartare")
+		else:
+			var j := await _scegli("SCARTA UNA SCOPERTA", nu.map(func(k): return "%s — %s" % [NOMI_SCOPERTE.get(sc[k]["tipo"], sc[k]["tipo"]), Carte.titolo(Carte.per_file(str(sc[k]["carta"])))]), "", false)
+			var v: Dictionary = sc[nu[max(0, j)]]
+			sc.erase(v)
+			esp.s["mazzi_scoperte"].get_or_add(str(v["tipo"]), []).insert(0, v["carta"])
+			fatti.append("Scartata la Scoperta %s" % Carte.titolo(Carte.per_file(str(v["carta"]))))
+		return false
 	var glog := RegEx.create_from_string("(?i)^go to log (\\d+)").search(tl)
 	if glog:
 		logs.append(int(glog.get_string(1)))
 		fatti.append("%s: Annotazione %s" % [m["nome"], glog.get_string(1)])
 		return false
-	var rmk := RegEx.create_from_string("(?i)^(?:remove|discard) (?:1|a) markers? from (?:this card|the .+? threat card)\\.?(?: and (.+))?$").search(testo)
+	var rmk := RegEx.create_from_string("(?i)^(?:remove|discard) (1|2|3|a|1 chosen) markers? from (?:this card|the .+? threat card|the edge of this threat card)\\.?(?: and (.+))?$").search(testo)
 	if rmk:
-		m["marcatori"] = max(0, int(m.get("marcatori", 0)) - 1)
+		var nrm := 1 if not rmk.get_string(1).is_valid_int() else int(rmk.get_string(1))
+		m["marcatori"] = max(0, int(m.get("marcatori", 0)) - nrm)
 		fatti.append("%s: un segnalino in meno sulla carta (%d)" % [m["nome"], int(m["marcatori"])])
-		if rmk.get_string(1) != "":
-			return await _frase_minaccia(m, rmk.get_string(1), fatti, manuali, logs, testo_it)
+		if rmk.get_string(2) != "":
+			return await _frase_minaccia(m, rmk.get_string(2), fatti, manuali, logs, testo_it)
 		return false
 	if tl.begins_with("place 1 marker there") or tl.begins_with("place 1 marker on this card"):
 		m["marcatori"] = int(m.get("marcatori", 0)) + 1
@@ -2692,11 +2864,34 @@ func _frase_minaccia(m: Dictionary, testo: String, fatti: Array, manuali: Array,
 	var bersagli := []
 	var resto := testo
 	var tl2 := testo.to_lower()
-	for pref in ["each crewmember in the sector with " + en, "each crewmember in a sector with at least 1 marker", "each crewmember in a sector with"]:
-		if tl2.begins_with(pref):
-			bersagli = esp.nel_settore(sett)
-			resto = testo.substr(pref.length()).strip_edges()
-			break
+	var bs := RegEx.create_from_string("(?i)^each crewmember in the sector with (?:the )?[\\w' .-]+?( or (?:in )?a (?:sector )?connected(?: sector)?(?: \\(ignore the path's arrowheads\\))?(?: to the sector with (?:the )?[\\w' .-]+?)?)?\\s+(?=rolls|gains|moves|loses|discards|draws|\\[)").search(testo)
+	var bs2 := RegEx.create_from_string("(?i)^each crewmember in a sector with at least 1 (marker|drone)\\s+").search(testo)
+	var bs3 := RegEx.create_from_string("(?i)^each crewmember who is not in the lander sector\\s+").search(testo)
+	if bs:
+		var setts := [sett]
+		if bs.get_string(1) != "":
+			for k in esp.s["settori"]:
+				var kk := int(k)
+				if kk != sett and (kk in esp.collegati(pl, sett) or sett in esp.collegati(pl, kk)):
+					setts.append(kk)
+		bersagli = esp.vivi().filter(func(i): return int(esp.membro(i)["settore"]) in setts)
+		resto = testo.substr(bs.get_end()).strip_edges()
+	elif bs2:
+		var campo := "segni" if bs2.get_string(1).to_lower() == "marker" else "droni"
+		bersagli = esp.vivi().filter(func(i): return int(esp.s["settori"].get(str(int(esp.membro(i)["settore"])), {}).get(campo, 0)) > 0)
+		resto = testo.substr(bs2.get_end()).strip_edges()
+		if bersagli.is_empty():
+			fatti.append("%s: nessun Membro coinvolto" % m["nome"])
+			return true
+	elif bs3:
+		bersagli = esp.vivi().filter(func(i): return int(esp.membro(i)["settore"]) != int(esp.s["lander"]["settore"]))
+		resto = testo.substr(bs3.get_end()).strip_edges()
+		if bersagli.is_empty():
+			fatti.append("%s: tutti sono nel settore del Lander" % m["nome"])
+			return true
+	elif tl2.begins_with("each crewmember in the sector with"):
+		bersagli = esp.nel_settore(sett)
+		resto = testo.substr(testo.find(" ", 36)).strip_edges()
 	if tl2.begins_with("each crewmember in that sector"):
 		bersagli = esp.nel_settore(sett)
 		resto = testo.substr(30).strip_edges()
@@ -2734,6 +2929,16 @@ func _frase_minaccia(m: Dictionary, testo: String, fatti: Array, manuali: Array,
 		if opzioni.size() > 1:
 			var j := await _scegli("%s — %s" % [str(m["nome"]).to_upper(), esp.membro(i)["carta"]], opzioni.map(func(x): return _txt_icone(str(x))), testo_it, false)
 			scelta = opzioni[j]
+		if str(scelta).to_lower().begins_with("moves all dice of a chosen color to the spent pool"):
+			var cols := ["red", "blue", "green"]
+			var jc := await _scegli("%s — %s" % [str(m["nome"]).to_upper(), esp.membro(i)["carta"]], ["Dadi rossi", "Dadi blu", "Dadi verdi"], "Quale colore va nei Dadi Spesi?", false)
+			var nsp := 0
+			for d in esp.membro(i)["dadi"]:
+				if d["stato"] == "disponibile" and Prova.colore(d) == cols[max(0, jc)]:
+					d["stato"] = "speso"
+					nsp += 1
+			fatti.append("%s spende %d dadi" % [esp.membro(i)["carta"], nsp])
+			continue
 		var a2 := Effetti.analizza(str(scelta))
 		for op in a2["op"]:
 			await _op(op, i, sett, fatti, manuali, logs, "Minaccia " + str(m["nome"]))

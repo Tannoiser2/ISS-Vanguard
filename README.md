@@ -89,8 +89,11 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
     al momento giusto;
   - **Ustione**: se un dado Ferita cade sull'Ustione, i [basic] della Prova contano davvero come [accident];
   - **Minacce**: le regole si leggono frase per frase (spostamenti verso i Membri, tabelle col D10,
-    "se non c'è…", effetti su chi è nel settore, scelta tra più effetti); restano a mano solo i casi
-    più particolari, segnalati nel riepilogo;
+    "se non c'è…", effetti su chi è nel settore, scelta tra più effetti). Anche le Minacce speciali:
+    Biomebot del Costruttore (pila di PDI) e Raggio di Ri-originazione, Droni dello Sciame Arrogatore,
+    segnalini dei Cacciatori Diventano Prede, Pellegrino Idemiano (segnalini dai dadi tirati, carta
+    che si gira, Processione tra i Bruciaincenso), Visitatore Rapito, Boscaglia Carnivora, Fauci.
+    Restano a mano solo le parole chiave dei PDI e la pila delle Condizioni Generali (Visitatore Rapito);
   - **effetti a scatto**: abilità "quando riposi" (niente Provviste, dado e carta in più), attrezzatura
     che evita una Ferita, tute che ignorano o ritirano il dado Pericolo nei biomi indicati, tute che
     ignorano un [spendDie] del sentiero, dadi in più a Riposo e Sforzo, meno dadi Ferita nei biomi
