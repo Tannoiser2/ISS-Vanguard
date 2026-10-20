@@ -1,0 +1,264 @@
+{
+ "tipo": "lander",
+ "immagini": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a01_13300.webp",
+   "nomi": [
+    "A01"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a02_13401.webp",
+   "nomi": [
+    "A02"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a03_13502.webp",
+   "nomi": [
+    "A03"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a04_16103.webp",
+   "nomi": [
+    "A04"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a05_16104.webp",
+   "nomi": [
+    "A05"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a06_16105.webp",
+   "nomi": [
+    "A06"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a07_16106.webp",
+   "nomi": [
+    "A07"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a08_13707.webp",
+   "nomi": [
+    "A08"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a09_16108.webp",
+   "nomi": [
+    "A09"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a10_16109.webp",
+   "nomi": [
+    "A10"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a11_16110.webp",
+   "nomi": [
+    "A11"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a12_16111.webp",
+   "nomi": [
+    "A12"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a13_16112.webp",
+   "nomi": [
+    "A13"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a14_16113.webp",
+   "nomi": [
+    "A14"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a15_16114.webp",
+   "nomi": [
+    "A15"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a16_16115.webp",
+   "nomi": [
+    "A16"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a17_16116.webp",
+   "nomi": [
+    "A17"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a18_16117.webp",
+   "nomi": [
+    "A18"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a19_16118.webp",
+   "nomi": [
+    "A19"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a20_16119.webp",
+   "nomi": [
+    "A20"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a21_16120.webp",
+   "nomi": [
+    "A21"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a22_16121.webp",
+   "nomi": [
+    "A22"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a23_16122.webp",
+   "nomi": [
+    "A23"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a24_16123.webp",
+   "nomi": [
+    "A24"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a25_16124.webp",
+   "nomi": [
+    "A25"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a26_16125.webp",
+   "nomi": [
+    "A26"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a27_16126.webp",
+   "nomi": [
+    "A27"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a28_16127.webp",
+   "nomi": [
+    "A28"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a29_16128.webp",
+   "nomi": [
+    "A29"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a30_16129.webp",
+   "nomi": [
+    "A30"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a31_16130.webp",
+   "nomi": [
+    "A31"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/waygate/waygate_33003.webp",
+   "nomi": [
+    "Waygate"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/void_ranger/void_ranger_33004.webp",
+   "nomi": [
+    "Void Ranger"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/dragonfly/dragonfly_33002.webp",
+   "nomi": [
+    "Dragonfly"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/faustschlag/faustschlag_33005.webp",
+   "nomi": [
+    "Faustschlag"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/pelican/pelican_33001.webp",
+   "nomi": [
+    "Pelican"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/space_ranger/space_ranger_33000.webp",
+   "nomi": [
+    "Space Ranger"
+   ],
+   "lato": "fronte"
+  }
+ ]
+}

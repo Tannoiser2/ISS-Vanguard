@@ -1,0 +1,911 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2273822614890588456DCFC24B59B67F527249BE3E6C68507852A1EC55B.jpg",
+   "nome_tts": "p.6-7",
+   "pagine": "6-7",
+   "pianeta": "MATCHSTICK",
+   "nome_in_codice": "NU4 Ceti B",
+   "decollo_log": 440,
+   "evac_log": 410,
+   "descrizione": {
+    "en": "Most of this planet is overgrown with a thick quilt of moss troubled by raging flash fires resulting from an oxygen-saturated atmosphere. Preliminary scans indicate interesting finds underground.",
+    "it": "Gran parte di questo pianeta è ricoperta da uno spesso tappeto di muschio, tormentato da violenti incendi improvvisi dovuti a un'atmosfera satura di ossigeno. Le scansioni preliminari indicano ritrovamenti interessanti nel sottosuolo."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.1225,
+     "y": 0.178,
+     "w": 0.199,
+     "h": 0.255,
+     "icone": [
+      "lander"
+     ],
+     "stampato": {
+      "titolo": "MOSS QUILT",
+      "titolo_it": "TAPPETO DI MUSCHIO",
+      "icone": [
+       "vegetation"
+      ],
+      "testo_colore": {
+       "en": "Lush, wet moss covers everything. Anything can hide behind this greenery.",
+       "it": "Un muschio rigoglioso e umido ricopre ogni cosa. Qualsiasi cosa può nascondersi dietro questa vegetazione."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "MAP THE SURROUNDINGS",
+         "it": "MAPPARE I DINTORNI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [
+         "dangerDieB"
+        ],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "physical",
+          "effetto": "outcomeRedProgress"
+         },
+         {
+          "req": "scouting / redDie+greenDie",
+          "effetto": "outcomeGreenProgress"
+         }
+        ],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 3,
+          "en": "Gain 2 Strange Flora Leads, replace with a random card P131.",
+          "it": "Ottieni 2 Indizi Strana Vegetazione, sostituisci con una carta casuale P131."
+         },
+         {
+          "colore": "red",
+          "caselle": 1,
+          "en": "[sacrifaceDie]",
+          "it": "[sacrifaceDie]"
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 8,
+     "x": 0.363,
+     "y": 0.178,
+     "w": 0.089,
+     "h": 0.254,
+     "icone": [
+      "vegetation",
+      "finalPOI"
+     ]
+    },
+    {
+     "n": 2,
+     "x": 0.646,
+     "y": 0.178,
+     "w": 0.199,
+     "h": 0.255,
+     "icone": [
+      "lander"
+     ],
+     "stampato": {
+      "titolo": "MOSS QUILT",
+      "titolo_it": "TAPPETO DI MUSCHIO",
+      "icone": [
+       "vegetation"
+      ],
+      "testo_colore": {
+       "en": "Lush, wet moss covers everything. Anything can hide behind this greenery.",
+       "it": "Un muschio rigoglioso e umido ricopre ogni cosa. Qualsiasi cosa può nascondersi dietro questa vegetazione."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "MAP THE SURROUNDINGS",
+         "it": "MAPPARE I DINTORNI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [
+         "dangerDieB"
+        ],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "physical",
+          "effetto": "outcomeRedProgress"
+         },
+         {
+          "req": "scouting / redDie+greenDie",
+          "effetto": "outcomeGreenProgress"
+         }
+        ],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 3,
+          "en": "Gain 2 Strange Flora Leads, replace with a random card P131.",
+          "it": "Ottieni 2 Indizi Strana Vegetazione, sostituisci con una carta casuale P131."
+         },
+         {
+          "colore": "red",
+          "caselle": 1,
+          "en": "[sacrifaceDie]",
+          "it": "[sacrifaceDie]"
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "x": 0.1225,
+     "y": 0.499,
+     "w": 0.199,
+     "h": 0.252,
+     "icone": [],
+     "stampato": {
+      "titolo": "DANGLING ROOTS",
+      "titolo_it": "RADICI PENDENTI",
+      "icone": [
+       "water",
+       "crystalline",
+       "vegetation"
+      ],
+      "testo_colore": {
+       "en": "Thick roots, dripping with water, hang from the ceiling, making it nearly impossible to move.",
+       "it": "Spesse radici gocciolanti d'acqua pendono dal soffitto, rendendo quasi impossibile muoversi."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "CLEAR THE AREA",
+         "it": "SGOMBRARE L'AREA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [
+         "dangerDieD"
+        ],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "scouting / redDie+redDie",
+          "en": "Go to Log 285.",
+          "it": "Vai all'Annotazione 285."
+         }
+        ]
+       },
+       {
+        "nome": {
+         "en": "EXTRACT WATER",
+         "it": "ESTRARRE ACQUA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [
+         "dangerDieD"
+        ],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "biology / blueDie+greenDie",
+          "en": "Go to Log 304.",
+          "it": "Vai all'Annotazione 304."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 5,
+     "x": 0.355,
+     "y": 0.5,
+     "w": 0.198,
+     "h": 0.253,
+     "icone": [
+      "crystalline",
+      "vegetation"
+     ],
+     "log": 245
+    },
+    {
+     "n": 4,
+     "x": 0.646,
+     "y": 0.501,
+     "w": 0.198,
+     "h": 0.255,
+     "icone": [
+      "vegetation",
+      "crystalline"
+     ],
+     "log": 245
+    },
+    {
+     "n": 7,
+     "x": 0.355,
+     "y": 0.826,
+     "w": 0.198,
+     "h": 0.253,
+     "icone": [
+      "crystalline",
+      "rocky",
+      "important"
+     ],
+     "log": 289
+    },
+    {
+     "n": 6,
+     "x": 0.666,
+     "y": 0.826,
+     "w": 0.09,
+     "h": 0.253,
+     "icone": [
+      "crystalline",
+      "rocky"
+     ]
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 1,
+     "a": 8,
+     "senso": "doppio",
+     "icone": [
+      "dangerDieB"
+     ]
+    },
+    {
+     "da": 8,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "dangerDieB"
+     ]
+    },
+    {
+     "da": 1,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "spendDie",
+      "spendDie"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "spendDie",
+      "spendDie"
+     ]
+    },
+    {
+     "da": 2,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "spendDie",
+      "spendDie"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 5,
+     "senso": "da->a",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 6,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 7,
+     "a": 6,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 4,
+     "a": 6,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "7, 10",
+    "missione": "",
+    "missione_opzionale": "",
+    "condizione": {
+     "en": "If there are no Global Conditions, take two random G03 cards, shuffle them with both G07 cards, and place them here in a face up stack.",
+     "it": "Se non ci sono Condizioni Generali, prendi due carte G03 casuali, mescolale con entrambe le carte G07 e mettile qui in una pila a faccia in su."
+    }
+   },
+   "altro": {
+    "en": "Top row slots: DISCOVERY x5, THREAT x3. Right edge: MISSION slot.",
+    "it": "Spazi in alto: SCOPERTA x5, MINACCIA x3. Bordo destro: spazio MISSIONE."
+   },
+   "dubbi": "Sentiero 3-5: dal lato del settore 5 c'è un simbolo cerchio con trattino (⊖) invece della freccia: interpretato come senso unico 3->5 (non si può uscire da 5 verso 3). Settori 1 e 2 hanno la stessa carta stampata MOSS QUILT (nessun codice PDI). Il sentiero 2-4 corre lungo il bordo destro con 2 icone spendDie; idem 1-3 e 5-4. Traccia verde di Moss Quilt letta come 3 caselle."
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2467479934984159757E08C512EF6E060543F9E623F679AC43887B8D2CE.jpg",
+   "nome_tts": "p.20-21",
+   "pagine": "20-21",
+   "pianeta": "ISS VANGUARD",
+   "nome_in_codice": "",
+   "decollo_log": null,
+   "evac_log": 876,
+   "descrizione": {
+    "en": "The crew of ISS Vanguard scrambles to their battle stations as alien forces assault their home. From officers and specialists to maintenance staff – everyone is ready to do their part, as there is no place to retreat.",
+    "it": "L'equipaggio della ISS Vanguard corre ai posti di combattimento mentre forze aliene assaltano la loro casa. Dagli ufficiali agli specialisti fino al personale di manutenzione: tutti sono pronti a fare la loro parte, perché non c'è un posto dove ritirarsi."
+   },
+   "settori": [
+    {
+     "n": 7,
+     "x": 0.355,
+     "y": 0.178,
+     "w": 0.199,
+     "h": 0.255,
+     "icone": [
+      "hostile"
+     ],
+     "log": 710
+    },
+    {
+     "n": 6,
+     "x": 0.677,
+     "y": 0.178,
+     "w": 0.199,
+     "h": 0.255,
+     "icone": []
+    },
+    {
+     "n": 1,
+     "x": 0.123,
+     "y": 0.502,
+     "w": 0.199,
+     "h": 0.254,
+     "icone": []
+    },
+    {
+     "n": 2,
+     "x": 0.355,
+     "y": 0.502,
+     "w": 0.199,
+     "h": 0.254,
+     "icone": [
+      "important"
+     ],
+     "log": 402
+    },
+    {
+     "n": 5,
+     "x": 0.677,
+     "y": 0.502,
+     "w": 0.199,
+     "h": 0.254,
+     "icone": [
+      "important"
+     ]
+    },
+    {
+     "n": 8,
+     "x": 0.123,
+     "y": 0.826,
+     "w": 0.199,
+     "h": 0.253,
+     "icone": [],
+     "log": 378
+    },
+    {
+     "n": 3,
+     "x": 0.355,
+     "y": 0.826,
+     "w": 0.199,
+     "h": 0.253,
+     "icone": [
+      "hostile"
+     ],
+     "log": 710
+    },
+    {
+     "n": 4,
+     "x": 0.677,
+     "y": 0.826,
+     "w": 0.199,
+     "h": 0.253,
+     "icone": [],
+     "log": 599
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 1,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "spendDie"
+     ]
+    },
+    {
+     "da": 7,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 7,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 7,
+     "a": 6,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 2,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "8, 11",
+    "missione": "",
+    "missione_opzionale": "",
+    "condizione": {
+     "en": "When the cards run out, go to Log 312.",
+     "it": "Quando le carte finiscono, vai all'Annotazione 312."
+    },
+    "vantaggio_nemico": {
+     "en": "ENEMY ADVANTAGE: If there are 10 or more markers in this slot, go to Log 147.",
+     "it": "VANTAGGIO NEMICO: Se in questo spazio ci sono 10 o più segnalini, vai all'Annotazione 147.",
+     "azioni": [
+      {
+       "nome": {
+        "en": "REDUCE ENEMY ADVANTAGE",
+        "it": "RIDURRE IL VANTAGGIO NEMICO"
+       },
+       "icona": "diceCheck",
+       "pericolo": [],
+       "prova": true,
+       "costo": "",
+       "condizione": {
+        "en": "May be performed in [important] Sector.",
+        "it": "Può essere eseguita in un Settore [important]."
+       },
+       "speciali": [
+        {
+         "req": "accident+accident",
+         "effetto": "outcomeRed"
+        }
+       ],
+       "esiti": [
+        {
+         "colore": "green",
+         "req": "technology+defence",
+         "en": "Go to Log 396.",
+         "it": "Vai all'Annotazione 396."
+        },
+        {
+         "colore": "red",
+         "req": "",
+         "en": "Add 1 marker to the Enemy Advantage slot.",
+         "it": "Aggiungi 1 segnalino allo spazio Vantaggio Nemico."
+        }
+       ]
+      }
+     ]
+    },
+    "traccia_provviste": [
+     8,
+     7,
+     6,
+     5,
+     4,
+     3,
+     2,
+     1
+    ]
+   },
+   "altro": {
+    "en": "Top slots: DISCOVERY x5, THREAT x3. Left edge: CASUALTIES, FOUND DISCOVERIES, SUCCESS TOKENS. Bottom: RECON / SECURITY / ENGINEERING / SCIENCE AVAILABLE CREW. Right edge: MISSION x2. SUPPLIES TRACK 8→1.",
+    "it": "Spazi in alto: SCOPERTA x5, MINACCIA x3. Bordo sinistro: PERDITE, SCOPERTE TROVATE, SEGNALINI SUCCESSO. In basso: EQUIPAGGIO DISPONIBILE RICOGNIZIONE / SICUREZZA / INGEGNERIA / SCIENZA. Bordo destro: MISSIONE x2. TRACCIA DELLE PROVVISTE 8→1."
+   },
+   "dubbi": "Plancia della battaglia sulla nave (nessun LIFT-OFF stampato, decollo_log null). Settore 8 (Log 378) appare più scuro e senza sentieri: isolato, probabilmente raggiunto solo via Annotazione. Settori 1, 4, 6 senza icone. Sentiero 7-5 va dal basso a destra di 7 alla parte alta di 5 (passa sopra la rilegatura). Nomi italiani delle etichette (Casualties = Perdite) non verificati sul glossario."
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2504637799911081709A741C4501C88C2F8EEF86927F359263E28C81F97.jpg",
+   "nome_tts": "p.34-35",
+   "pagine": "34-35",
+   "pianeta": "VISITORS' WORLD",
+   "nome_in_codice": "",
+   "decollo_log": null,
+   "evac_log": 388,
+   "descrizione": {
+    "en": "An impossible world with impossible spaces. Dimensions unknown to the human eye are visible and physically sensible. It's hell for the sane mind and pain for the body – to survive here, the Away Team must conquer their fears and prepare for the worst.",
+    "it": "Un mondo impossibile con spazi impossibili. Dimensioni sconosciute all'occhio umano sono visibili e fisicamente percepibili. È un inferno per una mente sana e una sofferenza per il corpo: per sopravvivere qui, la Squadra di Sbarco deve vincere le proprie paure e prepararsi al peggio."
+   },
+   "settori": [
+    {
+     "n": 8,
+     "x": 0.1225,
+     "y": 0.176,
+     "w": 0.2,
+     "h": 0.252,
+     "icone": [
+      "important"
+     ],
+     "log": 219,
+     "stampato": {
+      "titolo": "STELES COLLECTION",
+      "titolo_it": "COLLEZIONE DI STELE",
+      "testo_colore": {
+       "en": "Steles shine in the distance – they seem to be really close and infinitely far away at the same time.",
+       "it": "Delle stele brillano in lontananza: sembrano vicinissime e infinitamente lontane allo stesso tempo."
+      },
+      "azioni": [],
+      "testo": {
+       "en": "Go to Log 219",
+       "it": "Vai all'Annotazione 219"
+      }
+     }
+    },
+    {
+     "n": 6,
+     "x": 0.355,
+     "y": 0.176,
+     "w": 0.2,
+     "h": 0.252,
+     "icone": [],
+     "stampato": {
+      "titolo": "BASALT CAVERNS",
+      "titolo_it": "CAVERNE DI BASALTO",
+      "icone": [
+       "rocky"
+      ],
+      "testo_colore": {
+       "en": "A confined space that doesn't fit this place at all. It's weirdly normal, save for one thing: although closed from each side, we can somehow enter and leave it without issues.",
+       "it": "Uno spazio chiuso che non c'entra nulla con questo luogo. È stranamente normale, tranne per una cosa: benché chiuso da ogni lato, in qualche modo possiamo entrarvi e uscirne senza problemi."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "FIND A WAY FORWARD",
+         "it": "TROVARE UNA VIA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [
+         "dangerDieC"
+        ],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "scouting / scienceDice",
+          "en": "Go to Log 225.",
+          "it": "Vai all'Annotazione 225."
+         }
+        ]
+       },
+       {
+        "nome": {
+         "en": "MINE MINERALS",
+         "it": "ESTRARRE MINERALI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "gathering",
+          "en": "Gain 2 Mineral Leads.",
+          "it": "Ottieni 2 Indizi Minerale."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieA].",
+          "it": "Tira [dangerDieA]."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 5,
+     "x": 0.6656,
+     "y": 0.178,
+     "w": 0.2,
+     "h": 0.255,
+     "icone": [
+      "void"
+     ],
+     "stampato": {
+      "titolo": "COLORFUL PODS",
+      "titolo_it": "BACCELLI COLORATI",
+      "icone": [
+       "vegetation"
+      ],
+      "testo_colore": {
+       "en": "We almost feel Visitor's focusing their senses on us as they hide in these colorful cocoons.",
+       "it": "Sentiamo quasi i Visitatori concentrare i loro sensi su di noi mentre si nascondono in questi bozzoli colorati."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "MAKE CONTACT",
+         "it": "STABILIRE UN CONTATTO"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "xenology+technology",
+          "en": "Gain 1 [success].",
+          "it": "Ottieni 1 [success]."
+         },
+         {
+          "colore": "green",
+          "req": "redDie+greenDie+greenDie+blueDie+blueDie",
+          "en": "Go to Log 313.",
+          "it": "Vai all'Annotazione 313."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "[sacrifaceDie]",
+          "it": "[sacrifaceDie]"
+         }
+        ],
+        "frecce": "Freccia dall'esito giallo a quello verde: ottenendo il giallo si applica anche il verde? (freccia gialla verso il basso fra le due righe)"
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "x": 0.1225,
+     "y": 0.501,
+     "w": 0.2,
+     "h": 0.252,
+     "icone": []
+    },
+    {
+     "n": 2,
+     "x": 0.355,
+     "y": 0.501,
+     "w": 0.2,
+     "h": 0.252,
+     "icone": []
+    },
+    {
+     "n": 4,
+     "x": 0.6656,
+     "y": 0.501,
+     "w": 0.2,
+     "h": 0.252,
+     "icone": [
+      "void"
+     ],
+     "log": 209
+    },
+    {
+     "n": 1,
+     "x": 0.239,
+     "y": 0.826,
+     "w": 0.2,
+     "h": 0.253,
+     "icone": []
+    },
+    {
+     "n": 7,
+     "x": 0.6656,
+     "y": 0.826,
+     "w": 0.2,
+     "h": 0.253,
+     "icone": [
+      "void",
+      "deadly"
+     ],
+     "stampato": {
+      "titolo": "TANGLED NEURONS",
+      "titolo_it": "NEURONI INTRECCIATI",
+      "testo_colore": {
+       "en": "Elongated structures with a white-yellow hue protrude from the rocky ground and pulsating tissue. Visitors frequent this place before the conditions in this dimension change.",
+       "it": "Strutture allungate di colore bianco-giallo sporgono dal terreno roccioso e dal tessuto pulsante. I Visitatori frequentano questo luogo prima che le condizioni di questa dimensione cambino."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "TRY TO COMPREHEND",
+         "it": "CERCARE DI COMPRENDERE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [
+         "dangerDieG"
+        ],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "biology / xenology / scienceDice",
+          "effetto": "outcomeGreenProgress"
+         },
+         {
+          "req": "accident",
+          "effetto": "outcomeRedProgress"
+         }
+        ],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 4,
+          "en": "Gain 1 [success], go to Log 270.",
+          "it": "Ottieni 1 [success], vai all'Annotazione 270."
+         },
+         {
+          "colore": "red",
+          "caselle": 1,
+          "en": "Roll [dangerDieG].",
+          "it": "Tira [dangerDieG]."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 6,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 6,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 2,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 4,
+     "a": 7,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 1,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 2,
+     "a": 1,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "18, 35, 38",
+    "missione": "",
+    "missione_opzionale": "",
+    "condizione": "",
+    "traccia_provviste": [
+     8,
+     7,
+     6,
+     5,
+     4,
+     3,
+     2,
+     1
+    ]
+   },
+   "altro": {
+    "en": "Top slots: DISCOVERY x5, FOUND DISCOVERIES (MAX. 6), SUCCESS POOL, THREAT. Left edge: RANK-UP CARD. Right edge: MISSION x2. GLOBAL CONDITIONS slot (no text). SUPPLIES TRACK 8→1.",
+    "it": "Spazi in alto: SCOPERTA x5, SCOPERTE TROVATE (MAX. 6), RISERVA SUCCESSI, MINACCIA. Bordo sinistro: carta GRADO SUPERIORE. Bordo destro: MISSIONE x2. Spazio CONDIZIONI GENERALI (senza testo). TRACCIA DELLE PROVVISTE 8→1."
+   },
+   "dubbi": "Nessun LIFT-OFF stampato (decollo_log null). Settore 8 (Steles Collection) non ha sentieri: isolato. Icona di Colorful Pods (sulla carta) letta come vegetation ma ha un aspetto alterato; icona sul settore 5 = void. 'Gain 1 [success]': icona freccia in cerchio = success. In Make Contact c'è una freccia gialla dalla riga gialla alla verde (vedi frecce). Settori 1, 2, 3 vuoti senza icone."
+  }
+ ]
+}

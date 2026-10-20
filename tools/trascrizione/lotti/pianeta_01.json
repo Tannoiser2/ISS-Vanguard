@@ -1,0 +1,264 @@
+{
+ "tipo": "pianeta",
+ "immagini": [
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2504639067865634549B4F4A9A34AF4F2DC6C98B3DA8F2396CC55AE9EB2.jpg",
+   "nomi": [
+    "p.2-3"
+   ],
+   "lato": "fronte",
+   "snap_tts": [
+    [
+     1.567,
+     0.001,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     1.567,
+     0.661,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     0.613,
+     0.661,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     0.61,
+     0.003,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     1.089,
+     -0.659,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.612,
+     -0.658,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.617,
+     0.001,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.616,
+     0.659,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -1.632,
+     0.696,
+     [
+      "Global Condition"
+     ]
+    ],
+    [
+     -1.633,
+     0.174,
+     [
+      "Mission"
+     ]
+    ],
+    [
+     -1.633,
+     -0.27,
+     [
+      "Unique Discovery"
+     ]
+    ]
+   ]
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc24911232942528198917122E572DB3855417B306EB90284850C26E77D70.jpg",
+   "nomi": [
+    "p.14-15"
+   ],
+   "lato": "fronte",
+   "snap_tts": [
+    [
+     -1.602,
+     0.685,
+     [
+      "Global Condition"
+     ]
+    ],
+    [
+     -1.602,
+     0.173,
+     [
+      "Mission"
+     ]
+    ],
+    [
+     -1.602,
+     -0.263,
+     [
+      "Unique Discovery"
+     ]
+    ],
+    [
+     1.572,
+     0.654,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     1.574,
+     0.004,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     1.576,
+     -0.643,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     0.638,
+     -0.65,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     0.633,
+     0.007,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     0.637,
+     0.654,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.527,
+     0.656,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.52,
+     -0.002,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.517,
+     -0.647,
+     [
+      "Point of Interest"
+     ]
+    ]
+   ]
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc24483418006722217104AA54FC3EBFD1EF3116C0C66273A57C672ED8385.jpg",
+   "nomi": [
+    "p.28-29"
+   ],
+   "lato": "fronte",
+   "snap_tts": [
+    [
+     -1.606,
+     -0.259,
+     [
+      "Unique Discovery"
+     ]
+    ],
+    [
+     -1.608,
+     0.18,
+     [
+      "Mission"
+     ]
+    ],
+    [
+     -1.61,
+     0.691,
+     [
+      "Global Condition"
+     ]
+    ],
+    [
+     -0.672,
+     0.372,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     0.633,
+     0.651,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     1.569,
+     0.652,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     1.103,
+     0.005,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     1.109,
+     -0.646,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.68,
+     -0.362,
+     [
+      "Point of Interest"
+     ]
+    ]
+   ]
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2504637799905617651B6243D1A628C31252276D136664FEBE6AE8C91B7.jpg",
+   "nomi": [
+    "Back Cover"
+   ],
+   "lato": "fronte",
+   "snap_tts": []
+  }
+ ]
+}

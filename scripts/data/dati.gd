@@ -69,6 +69,22 @@ func testo_bb(t: String, dim := 22) -> String:
 		k = m.get_end()
 	return out + t.substr(k)
 
+## Testo di una carta trascritta: le icone sono scritte "[nome]". Restituisce BBCode con le immagini.
+func testo_carta(t: String, dim := 22) -> String:
+	var rx := RegEx.create_from_string("\\[([A-Za-z_0-9]+)\\]")
+	var out := ""
+	var k := 0
+	for m in rx.search_all(t):
+		out += t.substr(k, m.get_start() - k).replace("[", "[lb]")
+		var n := m.get_string(1)
+		var alias := {"travel": "", "time": "", "marker": "", "die": "die", "defense": "defence"}
+		if alias.has(n) and alias[n] != "":
+			n = alias[n]
+		var p := icona(n)
+		out += ("[img height=%d]%s[/img]" % [dim, p]) if p != "" else "[color=#ffb347]⟨%s⟩[/color]" % Traduzioni.icona(m.get_string(1))
+		k = m.get_end()
+	return out + t.substr(k).replace("[", "[lb]")
+
 ## Elenco piatto di tutte le carte del catalogo: {nome -> [voci]} per cercarle per numero (P107, M02...).
 var _carte_per_nome := {}
 func carte_per_nome() -> Dictionary:

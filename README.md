@@ -32,6 +32,24 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   il contenuto di scatole e sacchetti, i flag e la cronologia del Logbook, il diario e le note.
   Ogni campagna ha un **codice di 6 caratteri** (in alto e nel registro): dal menu *Riprendi con un
   codice* la si riapre da qualunque dispositivo.
+- **Esplorazione planetaria automatizzata** (pulsante ESPLORAZIONE): durante la missione si vede solo
+  la plancia del pianeta, divisa in settori cliccabili, senza l'astronave.
+  - preparazione guidata: pianeta del Planetopedia, Squadra di Sbarco (Membro, Reparto, Grado),
+    Lander, Missioni e Condizione Generale, mazzi Reparto/Eventi/Scoperte e sacchetto degli Indizi;
+    con il tutorial è già tutto pronto (Amir nel Settore 1, Provviste illimitate, solo "Solo un graffio!",
+    niente Eventi finché non arriva la Missione M02);
+  - turni e round, due azioni per turno: Viaggio (icone del sentiero e azione Viaggio della Condizione
+    Generale), Riposo, Preparazione, Azione Speciale (una per turno), Decollo; Sforzo in ogni momento;
+  - **prove di dadi** complete: scelta dei dadi e assistenza, tiro, ritiri e modifiche, Combinazioni
+    delle carte Reparto, dadi Ferita e Pericolo (tutte le tabelle A–I e T), effetti speciali,
+    esiti collegati dalle frecce, tracce di avanzamento salvate nel settore;
+  - gli **effetti delle carte** si applicano da soli (Indizi e Scoperte, Successi, Provviste, ricariche,
+    dadi spesi/sacrificati, Ferite, sostituzione dei PDI, carte pescate, tracce del Tempo, movimento,
+    annotazioni del Logbook); quello che il programma non riconosce viene elencato da fare a mano,
+    con il pulsante CORREZIONI per sistemare qualunque cosa;
+  - fine del turno con limite di carte e Evento (effetto principale o secondario secondo i biomi),
+    annotazioni lette entrando nei settori, carte chieste dal Logbook piazzate nel settore giusto;
+  - tutto lo stato dell'esplorazione è salvato nella campagna e si riprende da dove si era rimasti.
 - **Regolamento** e riassunto delle regole (inglese, dai PDF del modulo) consultabili in gioco.
 
 ## Comandi del tavolo
@@ -65,11 +83,18 @@ assets/                    icone e immagini dell'app, miniature 3D, font (Orbitr
 tests/prova_logbook.gd     godot --headless --path . -s res://tests/prova_logbook.gd
 tests/prova_tavolo.gd      godot --headless --path . -s res://tests/prova_tavolo.gd
 tests/foto.gd              ISS_PROVA=1 xvfb-run godot --path . -s res://tests/foto.gd
+tests/prova_dadi.gd        prove del motore dei dadi
+tests/prova_missione.gd    partita simulata a caso dell'esplorazione (-- p.18-19 500)
+tests/foto_missione.gd     screenshot della preparazione e dell'esplorazione
+tools/unisci_carte.py      trascrizioni delle carte (data/carte) -> data/carte_db.json
 ```
 
 ## Da fare / limiti attuali
 - Le carte sono quelle **inglesi** del modulo TTS: le scansioni italiane si sostituiscono rigenerando
   `web/img/carte` (stessi nomi file) senza toccare il codice.
-- Le regole del gioco (esplorazione, prove di dado, fase della nave) per ora non sono automatizzate:
-  il tavolo funziona come in TTS, mentre il Logbook è completamente automatico.
+- Automatizzati: Logbook ed esplorazione planetaria. Da fare: Gestione della nave (Ship Book),
+  atterraggio, Minacce che si muovono da sole, abilità dei Membri e attrezzatura (oggi da applicare
+  con CORREZIONI), revisione dell'interfaccia a settori anche per la nave.
+- Dado Pericolo: "Perdi 1 [testa]" (tabelle F, G, H) resta da applicare a mano, il significato
+  dell'icona è da verificare.
 - Deadly Frontier e Lost Fleet: paragrafi completi, componenti solo del gioco base.

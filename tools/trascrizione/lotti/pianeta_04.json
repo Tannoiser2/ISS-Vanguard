@@ -1,0 +1,354 @@
+{
+ "tipo": "pianeta",
+ "immagini": [
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2273822614890588456DCFC24B59B67F527249BE3E6C68507852A1EC55B.jpg",
+   "nomi": [
+    "p.6-7"
+   ],
+   "lato": "fronte",
+   "snap_tts": [
+    [
+     -1.614,
+     0.683,
+     [
+      "Global Condition"
+     ]
+    ],
+    [
+     -1.614,
+     0.173,
+     [
+      "Mission"
+     ]
+    ],
+    [
+     -1.614,
+     -0.263,
+     [
+      "Unique Discovery"
+     ]
+    ],
+    [
+     1.562,
+     0.647,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     1.576,
+     0.001,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     1.575,
+     -0.65,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     0.634,
+     0.0,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     0.635,
+     0.652,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.538,
+     -0.0,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.536,
+     -0.649,
+     [
+      "Point of Interest"
+     ]
+    ]
+   ]
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2467479934984159757E08C512EF6E060543F9E623F679AC43887B8D2CE.jpg",
+   "nomi": [
+    "p.20-21"
+   ],
+   "lato": "fronte",
+   "snap_tts": [
+    [
+     -1.393,
+     0.734,
+     [
+      "Universal"
+     ]
+    ],
+    [
+     -1.393,
+     0.834,
+     [
+      "Universal"
+     ]
+    ],
+    [
+     -1.536,
+     0.834,
+     [
+      "Universal"
+     ]
+    ],
+    [
+     -1.535,
+     0.735,
+     [
+      "Universal"
+     ]
+    ],
+    [
+     -1.678,
+     0.735,
+     [
+      "Universal"
+     ]
+    ],
+    [
+     -1.678,
+     0.834,
+     [
+      "Universal"
+     ]
+    ],
+    [
+     -1.82,
+     0.834,
+     [
+      "Universal"
+     ]
+    ],
+    [
+     -1.82,
+     0.735,
+     [
+      "Universal"
+     ]
+    ],
+    [
+     0.644,
+     -0.641,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     0.638,
+     0.006,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     1.577,
+     0.004,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     1.579,
+     0.656,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     0.64,
+     0.657,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.659,
+     0.654,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.662,
+     0.004,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.659,
+     -0.645,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -1.605,
+     0.295,
+     [
+      "Global Condition"
+     ]
+    ],
+    [
+     -1.602,
+     -0.715,
+     [
+      "Unique Discovery"
+     ]
+    ]
+   ]
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2504637799911081709A741C4501C88C2F8EEF86927F359263E28C81F97.jpg",
+   "nomi": [
+    "p.34-35"
+   ],
+   "lato": "fronte",
+   "snap_tts": [
+    [
+     -1.388,
+     0.852,
+     [
+      "Universal"
+     ]
+    ],
+    [
+     -1.388,
+     0.752,
+     [
+      "Universal"
+     ]
+    ],
+    [
+     -1.531,
+     0.751,
+     [
+      "Universal"
+     ]
+    ],
+    [
+     -1.531,
+     0.851,
+     [
+      "Universal"
+     ]
+    ],
+    [
+     -1.674,
+     0.851,
+     [
+      "Universal"
+     ]
+    ],
+    [
+     -1.674,
+     0.751,
+     [
+      "Universal"
+     ]
+    ],
+    [
+     -1.816,
+     0.752,
+     [
+      "Universal"
+     ]
+    ],
+    [
+     -1.816,
+     0.85,
+     [
+      "Universal"
+     ]
+    ],
+    [
+     -1.607,
+     0.353,
+     [
+      "Global Condition"
+     ]
+    ],
+    [
+     -1.604,
+     -0.057,
+     [
+      "Unique Discovery"
+     ]
+    ],
+    [
+     -0.616,
+     0.655,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.619,
+     0.008,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.619,
+     -0.647,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     0.64,
+     -0.648,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     1.578,
+     -0.643,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     1.111,
+     0.647,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     0.646,
+     -0.002,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     1.573,
+     -0.003,
+     [
+      "Point of Interest"
+     ]
+    ]
+   ]
+  }
+ ]
+}

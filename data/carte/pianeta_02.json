@@ -1,0 +1,627 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc25046377999056119520C2FA9A67B27874F2B2373E4E7C9ABF8C6F79123.jpg",
+   "tipo": "altro",
+   "pagine": "copertina",
+   "descrizione": {
+    "en": "Cover of the Planetopedia: the lander Dragonfly flying over an icy crystal landscape, two crewmembers in the foreground. Title: PLANETOPEDIA.",
+    "it": "Copertina del Planetopedia: il lander Dragonfly in volo su un paesaggio di cristalli ghiacciati, due membri dell'equipaggio in primo piano. Titolo: PLANETOPEDIA."
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2491123294252821434FE0194DA669D307641491827981C5B1974116C18.jpg",
+   "pagine": "16-17",
+   "pianeta": "GOLFBALL",
+   "nome_in_codice": "LCS-17 A",
+   "decollo_log": 223,
+   "evac_log": 520,
+   "descrizione": {
+    "en": "The barren planet, lashed with ice storms and merciless radiation, might hide the Builders' secrets – a stele's signal comes from two craters that are shaded from the system's star. Thick layers of ice can serve as an efficient fuel source.",
+    "it": "Il pianeta desolato, sferzato da tempeste di ghiaccio e da radiazioni spietate, potrebbe nascondere i segreti dei Costruttori: il segnale di una stele proviene da due crateri riparati dalla stella del sistema. Spessi strati di ghiaccio possono fungere da efficiente fonte di carburante."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.209,
+     "y": 0.177,
+     "w": 0.199,
+     "h": 0.254,
+     "icone": [
+      "lander",
+      "frigid",
+      "rocky"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "LICHEN FIELD",
+       "it": "CAMPO DI LICHENI"
+      },
+      "testo_colore": {
+       "en": "Orange lichen covers the area, scaling rocks and ice.",
+       "it": "Licheni arancioni ricoprono la zona, arrampicandosi su rocce e ghiaccio."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "STUDY THE LICHEN",
+         "it": "STUDIARE I LICHENI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRedProgress"
+         },
+         {
+          "req": "biology+basic",
+          "effetto": "outcomeGreenProgress"
+         }
+        ],
+        "esiti": [],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 3,
+          "en": "Go to Log 255.",
+          "it": "Vai all'Annotazione 255."
+         },
+         {
+          "colore": "red",
+          "caselle": 1,
+          "en": "Roll [dangerDieE].",
+          "it": "Tira [dangerDieE]."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 2,
+     "x": 0.209,
+     "y": 0.825,
+     "w": 0.199,
+     "h": 0.252,
+     "icone": [
+      "frigid",
+      "rocky"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "SHADOWS UNDER THE ICE",
+       "it": "OMBRE SOTTO IL GHIACCIO"
+      },
+      "testo_colore": {
+       "en": "The shapes under the ice seem too regular to be a natural rock formation.",
+       "it": "Le forme sotto il ghiaccio sembrano troppo regolari per essere una formazione rocciosa naturale."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "INVESTIGATE",
+         "it": "INDAGARE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "scouting",
+          "en": "Gain 1 [success].",
+          "it": "Ottieni 1 [success]."
+         },
+         {
+          "colore": "green",
+          "req": "greenDie+blueDie",
+          "en": "Go to Log 275.",
+          "it": "Vai all'Annotazione 275."
+         }
+        ],
+        "frecce": "Freccia dal risultato giallo al verde: ottenendo il giallo si applica anche il verde (Gain 1 [success] + Go to Log 275)."
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "x": 0.645,
+     "y": 0.285,
+     "w": 0.199,
+     "h": 0.255,
+     "icone": [
+      "important",
+      "frigid",
+      "rocky"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "ICE RIMAE",
+       "it": "SOLCHI DI GHIACCIO"
+      },
+      "testo_colore": {
+       "en": "A deep fissure in the ice lures us with unknown secrets.",
+       "it": "Una profonda fenditura nel ghiaccio ci attira con segreti sconosciuti."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "EXPLORE",
+         "it": "ESPLORARE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "physical+defence+scouting",
+          "en": "Go to Log 321.",
+          "it": "Vai all'Annotazione 321."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Gain a Critically Wounded Injury.",
+          "it": "Subisci una Ferita Lesione Grave."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "x": 0.645,
+     "y": 0.717,
+     "w": 0.199,
+     "h": 0.253,
+     "icone": [
+      "important",
+      "frigid"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "FRIGID EXPANSE",
+       "it": "DISTESA GELIDA"
+      },
+      "testo_colore": {
+       "en": "The field appears to be endless, but it's just an illusion – towering walls of dark stone surround the ice from three sides.",
+       "it": "La distesa sembra infinita, ma è solo un'illusione: imponenti pareti di pietra scura circondano il ghiaccio su tre lati."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "SCOUT THE AREA",
+         "it": "PERLUSTRARE LA ZONA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "scouting+technology",
+          "en": "Gain 1 [success], go to Log 343.",
+          "it": "Ottieni 1 [success], vai all'Annotazione 343."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieG].",
+          "it": "Tira [dangerDieG]."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 5,
+     "x": 0.339,
+     "y": 0.502,
+     "w": 0.199,
+     "h": 0.255,
+     "icone": [
+      "frigid",
+      "rocky",
+      "void"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "SPHYRNA MENSA",
+       "it": "SPHYRNA MENSA"
+      },
+      "testo_colore": {
+       "en": "A flat highland – lashed by merciless radiation and winds – acts as a wall between two craters.",
+       "it": "Un altopiano piatto, sferzato da radiazioni e venti spietati, fa da muro fra due crateri."
+      },
+      "testo": {
+       "en": "Each Crewmwmber who ends their turn in this Sector rolls [dangerDieG].",
+       "it": "Ogni Membro dell'Equipaggio che termina il proprio turno in questo Settore tira [dangerDieG]."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "MINE",
+         "it": "ESTRARRE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "gathering / redDie+greenDie",
+          "en": "Gain 1 Mineral Lead.",
+          "it": "Ottieni 1 Indizio Minerale."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 1,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 1,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "dangerDieE"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "spendDie",
+      "spendDie"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "dangerDieE"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "spendDie",
+      "spendDie"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "9",
+    "missione": "M80",
+    "missione_opzionale": "",
+    "condizione": {
+     "titolo": {
+      "en": "ZERO VISIBILITY",
+      "it": "VISIBILITÀ ZERO"
+     },
+     "testo_colore": {
+      "en": "Large snowflakes swirl around, reducing the visibility.",
+      "it": "Grossi fiocchi di neve turbinano tutt'intorno, riducendo la visibilità."
+     },
+     "testo": {
+      "en": "[defence] → Refresh 1 [die].",
+      "it": "[defence] → Ricarica 1 [die]."
+     },
+     "viaggio": {
+      "nome": {
+       "en": "TRAVEL",
+       "it": "VIAGGIO"
+      },
+      "icona": "diceCheck",
+      "pericolo": [],
+      "prova": true,
+      "costo": "",
+      "speciali": [
+       {
+        "req": "scouting",
+        "effetto": {
+         "en": "move all [accident] to Spent Pool",
+         "it": "sposta tutti i [accident] nella Riserva dei Dadi Spesi"
+        }
+       },
+       {
+        "req": "accident",
+        "effetto": "outcomeRed"
+       }
+      ],
+      "esiti": [
+       {
+        "colore": "green",
+        "req": "die+die",
+        "en": "Move to a connected Sector.",
+        "it": "Muoviti in un Settore collegato."
+       },
+       {
+        "colore": "red",
+        "req": "",
+        "en": "[spendDie]",
+        "it": "[spendDie]"
+       }
+      ]
+     },
+     "tempo": {
+      "caselle": 3,
+      "en": "Replace with card G08.",
+      "it": "Sostituiscila con la carta G08."
+     }
+    }
+   },
+   "altro": {
+    "en": "Top edge: 5 DISCOVERY slots (left page) and 3 THREAT slots (right page). Every sector shows a printed POI card (no empty slots).",
+    "it": "Bordo superiore: 5 spazi SCOPERTA (pagina sinistra) e 3 spazi MINACCIA (pagina destra). Ogni settore mostra una carta PDI stampata (nessuno spazio vuoto)."
+   },
+   "dubbi": "Il dado Pericolo di Frigid Expanse (rosso) e del testo di Sphyrna Mensa sembra 'G' (C con trattino) ma potrebbe essere 'C'; sui sentieri e su Lichen Field è chiaramente 'E'. La riga in alto di Zero Visibility ([defence] sopra 'Refresh 1 [die]', in una barra rossa con parentesi) è stata resa come effetto [defence] → Ricarica 1 dado: forse va intesa come riga speciale della prova di Viaggio o come regola sempre attiva. Il dado da ricaricare è disegnato con faccia verde/blu/rossa (die generico). Tutti i sentieri hanno chevron in uscita a entrambe le estremità: considerati a doppio senso. Settori 3 e 4 hanno l'icona important (V) sotto i biomi. Il refuso 'Crewmwmber' è nell'originale. Icona delle azioni (cubo) resa come diceCheck."
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc244834180067222341215995B450FBE102C69E6FD3A6638B798B0D7BB3D.jpg",
+   "pagine": "30-31",
+   "pianeta": "ARROGATOR CRAFTWORLD – INNER CORE",
+   "nome_in_codice": "",
+   "decollo_log": 700,
+   "evac_log": 754,
+   "descrizione": {
+    "en": "Under the thickly armored outer shell lies the vast ruin of the metropolis. As it spans an area comparable to one of the Earth's continents, finding the way to the steles' signal won't be easy.",
+    "it": "Sotto lo spesso guscio corazzato esterno si stendono le vaste rovine della metropoli. Poiché si estende su un'area paragonabile a uno dei continenti della Terra, trovare la strada verso il segnale delle steli non sarà facile."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.177,
+     "y": 0.177,
+     "w": 0.091,
+     "h": 0.254,
+     "icone": [
+      "lander",
+      "ruins"
+     ],
+     "nota": "Riquadro stretto (solo atterraggio/segnalini), nessuna carta PDI."
+    },
+    {
+     "n": 2,
+     "x": 0.143,
+     "y": 0.536,
+     "w": 0.199,
+     "h": 0.33,
+     "icone": [
+      "ruins",
+      "void"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "",
+       "it": ""
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "USE THE GRAVITATIONAL ENGINE",
+         "it": "USARE IL MOTORE GRAVITAZIONALE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "nota": {
+         "en": "This counts as an Action.",
+         "it": "Conta come un'Azione."
+        },
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "scienceDice+scienceDice+technology",
+          "en": "Go to Log 773.",
+          "it": "Vai all'Annotazione 773."
+         }
+        ]
+       }
+      ]
+     },
+     "nota": "Spazio PDI vuoto; sotto il riquadro è stampata l'azione USE THE GRAVITATIONAL ENGINE (y,h includono il pannello)."
+    },
+    {
+     "n": 3,
+     "x": 0.355,
+     "y": 0.177,
+     "w": 0.199,
+     "h": 0.254,
+     "icone": [
+      "ruins",
+      "void"
+     ],
+     "log": 790
+    },
+    {
+     "n": 4,
+     "x": 0.645,
+     "y": 0.465,
+     "w": 0.199,
+     "h": 0.253,
+     "icone": [
+      "ruins",
+      "void"
+     ]
+    },
+    {
+     "n": 5,
+     "x": 0.645,
+     "y": 0.177,
+     "w": 0.199,
+     "h": 0.254,
+     "icone": [
+      "important",
+      "ruins",
+      "void"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "GRAVITATIONAL ANOMALY",
+       "it": "ANOMALIA GRAVITAZIONALE"
+      },
+      "testo_colore": {
+       "en": "This is the center of the anomaly showing on Vanguard's sensors.",
+       "it": "Questo è il centro dell'anomalia che appare sui sensori della Vanguard."
+      },
+      "azioni": []
+     }
+    },
+    {
+     "n": 6,
+     "x": 0.355,
+     "y": 0.826,
+     "w": 0.199,
+     "h": 0.254,
+     "icone": [
+      "ruins",
+      "void"
+     ]
+    },
+    {
+     "n": 7,
+     "x": 0.645,
+     "y": 0.788,
+     "w": 0.199,
+     "h": 0.33,
+     "icone": [
+      "ruins",
+      "void"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "",
+       "it": ""
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "USE THE GRAVITATIONAL ENGINE",
+         "it": "USARE IL MOTORE GRAVITAZIONALE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "nota": {
+         "en": "This counts as an Action.",
+         "it": "Conta come un'Azione."
+        },
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "scienceDice+scienceDice+technology",
+          "en": "Go to Log 773.",
+          "it": "Vai all'Annotazione 773."
+         }
+        ]
+       }
+      ]
+     },
+     "nota": "Spazio PDI vuoto; sotto il riquadro è stampata l'azione USE THE GRAVITATIONAL ENGINE (y,h includono il pannello)."
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 1,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "spendDie"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "14, 26",
+    "missione": "M141",
+    "missione_opzionale": "",
+    "missione_nota": {
+     "en": "If there's no M141 card left, draw card M142 instead.",
+     "it": "Se non è rimasta alcuna carta M141, pesca invece la carta M142."
+    },
+    "condizione": {
+     "titolo": {
+      "en": "GRAVITATIONAL ENGINE OFF",
+      "it": "MOTORE GRAVITAZIONALE SPENTO"
+     },
+     "testo_colore": {
+      "en": "Due to an anomaly in the heart of the Craftworld, the inner core suffers from variable and nigh unpredictable changes in gravity.",
+      "it": "A causa di un'anomalia nel cuore del Mondo-Nave, il nucleo interno subisce variazioni di gravità mutevoli e quasi imprevedibili."
+     },
+     "azioni": [
+      {
+       "nome": {
+        "en": "GO FURTHER",
+        "it": "ANDARE OLTRE"
+       },
+       "icona": "diceCheck",
+       "pericolo": [],
+       "prova": true,
+       "costo": "",
+       "nota": {
+        "en": "You may perform this Dice Check in any Sector with [void] – this counts as an Action.",
+        "it": "Puoi effettuare questa Prova in qualsiasi Settore con [void]; conta come un'Azione."
+       },
+       "speciali": [],
+       "esiti": [
+        {
+         "colore": "green",
+         "req": "scouting / redDie+greenDie",
+         "en": "Go to Log 703.",
+         "it": "Vai all'Annotazione 703."
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "altro": {
+    "en": "Top edge: 5 DISCOVERY slots and 3 THREAT slots. Only sector 1 is connected (to sector 2); the other sectors have no printed paths (movement presumably via the Gravitational Engine / Logs). Sector 3 reads 'Go to Log 790'.",
+    "it": "Bordo superiore: 5 spazi SCOPERTA e 3 spazi MINACCIA. Solo il settore 1 è collegato (al settore 2); gli altri settori non hanno sentieri stampati (movimento presumibilmente tramite il Motore Gravitazionale / Annotazioni). Il settore 3 riporta 'Go to Log 790'."
+   },
+   "dubbi": "Nessun sentiero stampato fra i settori 2-7: probabilmente la connessione avviene via Annotazioni (773, 703), da verificare. Il settore 3 non ha carta PDI ma la scritta 'Go to Log 790' (quando? presumibilmente all'ingresso). Nessun codice nome stampato (manca CODE NAME). La condizione generale non ha traccia del Tempo visibile. Sui settori 2 e 7 il riquadro PDI è vuoto: le coordinate y/h includono il pannello dell'azione stampata sotto. 'Craftworld' tradotto 'Mondo-Nave' (non nel glossario)."
+  }
+ ]
+}

@@ -1,0 +1,2056 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l18_9517.webp",
+   "nomi": [
+    "L18"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L18 - ETERNAL SUNRISE",
+    "it": "L18 - ETERNAL SUNRISE"
+   },
+   "testo": {
+    "en": "<1[energyCost]> <2[energyCost]> <2[energyCost]>",
+    "it": "<1[energyCost]> <2[energyCost]> <2[energyCost]>"
+   },
+   "campi": {
+    "id": "L18",
+    "pianeta": "ETERNAL SUNRISE",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     },
+     {
+      "n": 2,
+      "costo": "2[energyCost]",
+      "costo_energia": 2
+     },
+     {
+      "n": 3,
+      "costo": "2[energyCost]",
+      "costo_energia": 2
+     }
+    ]
+   },
+   "dubbi": "Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9517.webp",
+   "nomi": [
+    "L18"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L18 - ETERNAL SUNRISE",
+    "it": "L18 - ETERNAL SUNRISE"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 1050 LANDING: Possible attacks of the indigenous population – High [landerArmor] and [landerAgility] advised. DANGERS: Conditions on the planet worsen as the time passes. BIOMES: [vegetation] [rocky] [deadly] FREQUENT CHECKS: [physical] [gathering] [defence] [scouting] [xenology] THREATS: Mobile Threat.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 1050 ATTERRAGGIO: Possibili attacchi della popolazione indigena – Consigliati [landerArmor] e [landerAgility] elevati. PERICOLI: Le condizioni sul pianeta peggiorano con il passare del tempo. BIOMI: [vegetation] [rocky] [deadly] PROVE FREQUENTI: [physical] [gathering] [defence] [scouting] [xenology] MINACCE: Minaccia mobile."
+   },
+   "campi": {
+    "id": "L18",
+    "pianeta": "ETERNAL SUNRISE",
+    "annotazione_briefing": 1050,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "LANDING:",
+         "it": "ATTERRAGGIO:"
+        },
+        "testo": {
+         "en": "Possible attacks of the indigenous population – High [landerArmor] and [landerAgility] advised.",
+         "it": "Possibili attacchi della popolazione indigena – Consigliati [landerArmor] e [landerAgility] elevati."
+        }
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "costo_energia": 2,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "DANGERS:",
+         "it": "PERICOLI:"
+        },
+        "testo": {
+         "en": "Conditions on the planet worsen as the time passes.",
+         "it": "Le condizioni sul pianeta peggiorano con il passare del tempo."
+        }
+       },
+       {
+        "titolo": {
+         "en": "BIOMES:",
+         "it": "BIOMI:"
+        },
+        "icone": [
+         "vegetation",
+         "rocky",
+         "deadly"
+        ]
+       }
+      ]
+     },
+     {
+      "n": 3,
+      "costo_energia": 2,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "FREQUENT CHECKS:",
+         "it": "PROVE FREQUENTI:"
+        },
+        "icone": [
+         "physical",
+         "gathering",
+         "defence",
+         "scouting",
+         "xenology"
+        ]
+       },
+       {
+        "titolo": {
+         "en": "THREATS:",
+         "it": "MINACCE:"
+        },
+        "testo": {
+         "en": "Mobile Threat.",
+         "it": "Minaccia mobile."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l17_9516.webp",
+   "nomi": [
+    "L17"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L17 - ARROGATOR CRAFTWORLD",
+    "it": "L17 - ARROGATOR CRAFTWORLD"
+   },
+   "testo": {
+    "en": "<1[energyCost]> <3[energyCost]> <3[energyCost]>",
+    "it": "<1[energyCost]> <3[energyCost]> <3[energyCost]>"
+   },
+   "campi": {
+    "id": "L17",
+    "pianeta": "ARROGATOR CRAFTWORLD",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     },
+     {
+      "n": 2,
+      "costo": "3[energyCost]",
+      "costo_energia": 3
+     },
+     {
+      "n": 3,
+      "costo": "3[energyCost]",
+      "costo_energia": 3
+     }
+    ]
+   },
+   "dubbi": "Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9516.webp",
+   "nomi": [
+    "L17"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L17 - ARROGATOR CRAFTWORLD",
+    "it": "L17 - ARROGATOR CRAFTWORLD"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 572 LANDING: Defensive perimeter – Very high [landerArmor] or high [landerAgility] and [landerSensors] advised. FREQUENT CHECKS: [construction] [scienceDice] [technology] BIOMES: [ruins] [void] DANGER: High possibility of aggressive Threats and hostile environment.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 572 ATTERRAGGIO: Perimetro difensivo – Consigliati [landerArmor] molto elevata oppure [landerAgility] e [landerSensors] elevati. PROVE FREQUENTI: [construction] [scienceDice] [technology] BIOMI: [ruins] [void] PERICOLO: Alta probabilità di Minacce aggressive e ambiente ostile."
+   },
+   "campi": {
+    "id": "L17",
+    "pianeta": "ARROGATOR CRAFTWORLD",
+    "annotazione_briefing": 572,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "LANDING:",
+         "it": "ATTERRAGGIO:"
+        },
+        "testo": {
+         "en": "Defensive perimeter – Very high [landerArmor] or high [landerAgility] and [landerSensors] advised.",
+         "it": "Perimetro difensivo – Consigliati [landerArmor] molto elevata oppure [landerAgility] e [landerSensors] elevati."
+        }
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "costo_energia": 3,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "FREQUENT CHECKS:",
+         "it": "PROVE FREQUENTI:"
+        },
+        "icone": [
+         "construction",
+         "scienceDice",
+         "technology"
+        ]
+       },
+       {
+        "titolo": {
+         "en": "BIOMES:",
+         "it": "BIOMI:"
+        },
+        "icone": [
+         "ruins",
+         "void"
+        ]
+       }
+      ]
+     },
+     {
+      "n": 3,
+      "costo_energia": 3,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "DANGER:",
+         "it": "PERICOLO:"
+        },
+        "testo": {
+         "en": "High possibility of aggressive Threats and hostile environment.",
+         "it": "Alta probabilità di Minacce aggressive e ambiente ostile."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l16_9515.webp",
+   "nomi": [
+    "L16"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L16 - EDAN",
+    "it": "L16 - EDAN"
+   },
+   "testo": {
+    "en": "<1[energyCost]> <2[energyCost]> <3[energyCost]>",
+    "it": "<1[energyCost]> <2[energyCost]> <3[energyCost]>"
+   },
+   "campi": {
+    "id": "L16",
+    "pianeta": "EDAN",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     },
+     {
+      "n": 2,
+      "costo": "2[energyCost]",
+      "costo_energia": 2
+     },
+     {
+      "n": 3,
+      "costo": "3[energyCost]",
+      "costo_energia": 3
+     }
+    ]
+   },
+   "dubbi": "Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9515.webp",
+   "nomi": [
+    "L16"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L16 - EDAN",
+    "it": "L16 - EDAN"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 585 LANDING: Space debris – [landerArmor] advised. FREQUENT CHECKS: [technology] [gathering] BIOMES: [desert] [ruins] [caves] DANGERS: Robotic sentries detected. Prepare for a difficult, aggressive Threat.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 585 ATTERRAGGIO: Detriti spaziali – Consigliata [landerArmor]. PROVE FREQUENTI: [technology] [gathering] BIOMI: [desert] [ruins] [caves] PERICOLI: Rilevate sentinelle robotiche. Preparatevi a una Minaccia difficile e aggressiva."
+   },
+   "campi": {
+    "id": "L16",
+    "pianeta": "EDAN",
+    "annotazione_briefing": 585,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "LANDING:",
+         "it": "ATTERRAGGIO:"
+        },
+        "testo": {
+         "en": "Space debris – [landerArmor] advised.",
+         "it": "Detriti spaziali – Consigliata [landerArmor]."
+        }
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "costo_energia": 2,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "FREQUENT CHECKS:",
+         "it": "PROVE FREQUENTI:"
+        },
+        "icone": [
+         "technology",
+         "gathering"
+        ]
+       },
+       {
+        "titolo": {
+         "en": "BIOMES:",
+         "it": "BIOMI:"
+        },
+        "icone": [
+         "desert",
+         "ruins",
+         "caves"
+        ]
+       }
+      ]
+     },
+     {
+      "n": 3,
+      "costo_energia": 3,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "DANGERS:",
+         "it": "PERICOLI:"
+        },
+        "testo": {
+         "en": "Robotic sentries detected. Prepare for a difficult, aggressive Threat.",
+         "it": "Rilevate sentinelle robotiche. Preparatevi a una Minaccia difficile e aggressiva."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l15_9514.webp",
+   "nomi": [
+    "L15"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L15 - FETCH",
+    "it": "L15 - FETCH"
+   },
+   "testo": {
+    "en": "<1[energyCost]> <2[energyCost]> <4[energyCost]>",
+    "it": "<1[energyCost]> <2[energyCost]> <4[energyCost]>"
+   },
+   "campi": {
+    "id": "L15",
+    "pianeta": "FETCH",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     },
+     {
+      "n": 2,
+      "costo": "2[energyCost]",
+      "costo_energia": 2
+     },
+     {
+      "n": 3,
+      "costo": "4[energyCost]",
+      "costo_energia": 4
+     }
+    ]
+   },
+   "dubbi": "Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9514.webp",
+   "nomi": [
+    "L15"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L15 - FETCH",
+    "it": "L15 - FETCH"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 579 LANDING: Extreme turbulence – Very high [landerSensors] and [landerAgility] advised. FREQUENT CHECKS: [technology] [defence] BIOMES: [rocky] [desert] [volvanic] DANGERS: High chance of Injury. DIVERSE ENVIRONMENT: High mobility advised.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 579 ATTERRAGGIO: Turbolenza estrema – Consigliati [landerSensors] e [landerAgility] molto elevati. PROVE FREQUENTI: [technology] [defence] BIOMI: [rocky] [desert] [volvanic] PERICOLI: Alta probabilità di Ferite. AMBIENTE VARIO: Consigliata un'elevata mobilità."
+   },
+   "campi": {
+    "id": "L15",
+    "pianeta": "FETCH",
+    "annotazione_briefing": 579,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "LANDING:",
+         "it": "ATTERRAGGIO:"
+        },
+        "testo": {
+         "en": "Extreme turbulence – Very high [landerSensors] and [landerAgility] advised.",
+         "it": "Turbolenza estrema – Consigliati [landerSensors] e [landerAgility] molto elevati."
+        }
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "costo_energia": 2,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "FREQUENT CHECKS:",
+         "it": "PROVE FREQUENTI:"
+        },
+        "icone": [
+         "technology",
+         "defence"
+        ]
+       },
+       {
+        "titolo": {
+         "en": "BIOMES:",
+         "it": "BIOMI:"
+        },
+        "icone": [
+         "rocky",
+         "desert",
+         "volvanic"
+        ]
+       }
+      ]
+     },
+     {
+      "n": 3,
+      "costo_energia": 4,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "DANGERS:",
+         "it": "PERICOLI:"
+        },
+        "testo": {
+         "en": "High chance of Injury.",
+         "it": "Alta probabilità di Ferite."
+        }
+       },
+       {
+        "titolo": {
+         "en": "DIVERSE ENVIRONMENT:",
+         "it": "AMBIENTE VARIO:"
+        },
+        "testo": {
+         "en": "High mobility advised.",
+         "it": "Consigliata un'elevata mobilità."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l14_9513.webp",
+   "nomi": [
+    "L14"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L14 - THORNE-ZHYTKOV OBJECT",
+    "it": "L14 - THORNE-ZHYTKOV OBJECT"
+   },
+   "testo": {
+    "en": "<1[energyCost]> <2[energyCost]> <2[energyCost]>",
+    "it": "<1[energyCost]> <2[energyCost]> <2[energyCost]>"
+   },
+   "campi": {
+    "id": "L14",
+    "pianeta": "THORNE-ZYTKOV OBJECT",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     },
+     {
+      "n": 2,
+      "costo": "2[energyCost]",
+      "costo_energia": 2
+     },
+     {
+      "n": 3,
+      "costo": "2[energyCost]",
+      "costo_energia": 2
+     }
+    ]
+   },
+   "dubbi": "Il titolo sul fronte è 'THORNE-ZHYTKOV OBJECT', sul retro 'THORNE-ZYTKOV OBJECT': refuso della carta; uso la grafia del retro. Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9513.webp",
+   "nomi": [
+    "L14"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L14 - THORNE-ZYTKOV OBJECT",
+    "it": "L14 - THORNE-ZYTKOV OBJECT"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 575 LANDING: Extreme forces and superheated plasma clouds – Very high [landerArmor] and [landerAgility] advised. DIFFICULTY: A long, dangerous mission with many Injuring effects and rules. BIOMES: [deadly] FREQUENT CHECKS: [scienceDice] [technology] [scouting] [physical] THREATS: Several aggressive or wandering Threats.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 575 ATTERRAGGIO: Forze estreme e nubi di plasma surriscaldato – Consigliati [landerArmor] e [landerAgility] molto elevati. DIFFICOLTÀ: Una missione lunga e pericolosa, con molti effetti e regole che causano Ferite. BIOMI: [deadly] PROVE FREQUENTI: [scienceDice] [technology] [scouting] [physical] MINACCE: Diverse Minacce aggressive o erranti."
+   },
+   "campi": {
+    "id": "L14",
+    "pianeta": "THORNE-ZYTKOV OBJECT",
+    "annotazione_briefing": 575,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "LANDING:",
+         "it": "ATTERRAGGIO:"
+        },
+        "testo": {
+         "en": "Extreme forces and superheated plasma clouds – Very high [landerArmor] and [landerAgility] advised.",
+         "it": "Forze estreme e nubi di plasma surriscaldato – Consigliati [landerArmor] e [landerAgility] molto elevati."
+        }
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "costo_energia": 2,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "DIFFICULTY:",
+         "it": "DIFFICOLTÀ:"
+        },
+        "testo": {
+         "en": "A long, dangerous mission with many Injuring effects and rules.",
+         "it": "Una missione lunga e pericolosa, con molti effetti e regole che causano Ferite."
+        }
+       },
+       {
+        "titolo": {
+         "en": "BIOMES:",
+         "it": "BIOMI:"
+        },
+        "icone": [
+         "deadly"
+        ]
+       }
+      ]
+     },
+     {
+      "n": 3,
+      "costo_energia": 2,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "FREQUENT CHECKS:",
+         "it": "PROVE FREQUENTI:"
+        },
+        "icone": [
+         "scienceDice",
+         "technology",
+         "scouting",
+         "physical"
+        ]
+       },
+       {
+        "titolo": {
+         "en": "THREATS:",
+         "it": "MINACCE:"
+        },
+        "testo": {
+         "en": "Several aggressive or wandering Threats.",
+         "it": "Diverse Minacce aggressive o erranti."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "Il titolo sul fronte è 'THORNE-ZHYTKOV OBJECT', sul retro 'THORNE-ZYTKOV OBJECT': refuso della carta; uso la grafia del retro. costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l13_9512.webp",
+   "nomi": [
+    "L13"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L13 - UGNIR",
+    "it": "L13 - UGNIR"
+   },
+   "testo": {
+    "en": "<0[energyCost]> <2[energyCost]>",
+    "it": "<0[energyCost]> <2[energyCost]>"
+   },
+   "campi": {
+    "id": "L13",
+    "pianeta": "UGNIR",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "0[energyCost]",
+      "costo_energia": 0
+     },
+     {
+      "n": 2,
+      "costo": "2[energyCost]",
+      "costo_energia": 2
+     }
+    ]
+   },
+   "dubbi": "Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9512.webp",
+   "nomi": [
+    "L13"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L13 - UGNIR",
+    "it": "L13 - UGNIR"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 625 MISSION TYPE: Apart from a single interesting biosignature, the planet is barren and mineral-poor. Full ground exploration is unlikely. Lander, Lander Mods and Equipment won't have any effect. DANGER: Confrontation with an aggressive Threat is possible.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 625 TIPO DI MISSIONE: A parte una singola biosegnatura interessante, il pianeta è sterile e povero di minerali. Un'esplorazione completa del suolo è improbabile. Lander, Modifiche del Lander e Attrezzatura non avranno alcun effetto. PERICOLO: È possibile uno scontro con una Minaccia aggressiva."
+   },
+   "campi": {
+    "id": "L13",
+    "pianeta": "UGNIR",
+    "annotazione_briefing": 625,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 0,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "MISSION TYPE:",
+         "it": "TIPO DI MISSIONE:"
+        },
+        "testo": {
+         "en": "Apart from a single interesting biosignature, the planet is barren and mineral-poor. Full ground exploration is unlikely. Lander, Lander Mods and Equipment won't have any effect.",
+         "it": "A parte una singola biosegnatura interessante, il pianeta è sterile e povero di minerali. Un'esplorazione completa del suolo è improbabile. Lander, Modifiche del Lander e Attrezzatura non avranno alcun effetto."
+        }
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "costo_energia": 2,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "DANGER:",
+         "it": "PERICOLO:"
+        },
+        "testo": {
+         "en": "Confrontation with an aggressive Threat is possible.",
+         "it": "È possibile uno scontro con una Minaccia aggressiva."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l12_9511.webp",
+   "nomi": [
+    "L12"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L12 - MUSPELHEIM",
+    "it": "L12 - MUSPELHEIM"
+   },
+   "testo": {
+    "en": "<1[energyCost]> <2[energyCost]> <2[energyCost]>",
+    "it": "<1[energyCost]> <2[energyCost]> <2[energyCost]>"
+   },
+   "campi": {
+    "id": "L12",
+    "pianeta": "MUSPELHEIM",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     },
+     {
+      "n": 2,
+      "costo": "2[energyCost]",
+      "costo_energia": 2
+     },
+     {
+      "n": 3,
+      "costo": "2[energyCost]",
+      "costo_energia": 2
+     }
+    ]
+   },
+   "dubbi": "Tra le prove importanti compare l'icona 'basic' (quattro frecce convergenti), insolita in questo elenco. Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9511.webp",
+   "nomi": [
+    "L12"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L12 - MUSPELHEIM",
+    "it": "L12 - MUSPELHEIM"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 477 LANDING: Very dangerous landing – High Lander Attributes advised. IMPORTANT CHECKS: [technology] [xenology] [defence] [basic] BIOMES: [ruins] [deadly] DANGERS: Be prepared for [dangerDieB] and [dangerDieG] rolls. High mobility advised. THREATS: Aggressive Threats are possible. Be prepared.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 477 ATTERRAGGIO: Atterraggio molto pericoloso – Consigliati Attributi del Lander elevati. PROVE IMPORTANTI: [technology] [xenology] [defence] [basic] BIOMI: [ruins] [deadly] PERICOLI: Preparatevi a tiri di [dangerDieB] e [dangerDieG]. Consigliata un'elevata mobilità. MINACCE: Sono possibili Minacce aggressive. Siate preparati."
+   },
+   "campi": {
+    "id": "L12",
+    "pianeta": "MUSPELHEIM",
+    "annotazione_briefing": 477,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "LANDING:",
+         "it": "ATTERRAGGIO:"
+        },
+        "testo": {
+         "en": "Very dangerous landing – High Lander Attributes advised.",
+         "it": "Atterraggio molto pericoloso – Consigliati Attributi del Lander elevati."
+        }
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "costo_energia": 2,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "IMPORTANT CHECKS:",
+         "it": "PROVE IMPORTANTI:"
+        },
+        "icone": [
+         "technology",
+         "xenology",
+         "defence",
+         "basic"
+        ]
+       },
+       {
+        "titolo": {
+         "en": "BIOMES:",
+         "it": "BIOMI:"
+        },
+        "icone": [
+         "ruins",
+         "deadly"
+        ]
+       }
+      ]
+     },
+     {
+      "n": 3,
+      "costo_energia": 2,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "DANGERS:",
+         "it": "PERICOLI:"
+        },
+        "testo": {
+         "en": "Be prepared for [dangerDieB] and [dangerDieG] rolls. High mobility advised.",
+         "it": "Preparatevi a tiri di [dangerDieB] e [dangerDieG]. Consigliata un'elevata mobilità."
+        }
+       },
+       {
+        "titolo": {
+         "en": "THREATS:",
+         "it": "MINACCE:"
+        },
+        "testo": {
+         "en": "Aggressive Threats are possible. Be prepared.",
+         "it": "Sono possibili Minacce aggressive. Siate preparati."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "Tra le prove importanti compare l'icona 'basic' (quattro frecce convergenti), insolita in questo elenco. costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l11_9510.webp",
+   "nomi": [
+    "L11"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L11 - LONE WOLF",
+    "it": "L11 - LONE WOLF"
+   },
+   "testo": {
+    "en": "<0[energyCost]> <0[energyCost]>",
+    "it": "<0[energyCost]> <0[energyCost]>"
+   },
+   "campi": {
+    "id": "L11",
+    "pianeta": "LONE WOLF",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "0[energyCost]",
+      "costo_energia": 0
+     },
+     {
+      "n": 2,
+      "costo": "0[energyCost]",
+      "costo_energia": 0
+     }
+    ]
+   },
+   "dubbi": "Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9510.webp",
+   "nomi": [
+    "L11"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L11 - LONE WOLF",
+    "it": "L11 - LONE WOLF"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 1000 MISSION TYPE: A challenging Operation for 1 Crewmember. It doesn't have to be completed to finish the campaign. Lander and Lander Mods won't have any effect in this mission. In Mission Launch Procedure, skip step 2 and 3. DIFFICULTY: Dangerous mission with limited supplies. Your Crewmember may die.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 1000 TIPO DI MISSIONE: Un'Operazione impegnativa per 1 Membro dell'Equipaggio. Non è necessario completarla per terminare la campagna. Il Lander e le Modifiche del Lander non avranno alcun effetto in questa missione. Nella Procedura di Lancio della Missione, saltate i passi 2 e 3. DIFFICOLTÀ: Missione pericolosa con Provviste limitate. Il vostro Membro dell'Equipaggio potrebbe morire."
+   },
+   "campi": {
+    "id": "L11",
+    "pianeta": "LONE WOLF",
+    "annotazione_briefing": 1000,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 0,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "MISSION TYPE:",
+         "it": "TIPO DI MISSIONE:"
+        },
+        "testo": {
+         "en": "A challenging Operation for 1 Crewmember. It doesn't have to be completed to finish the campaign. Lander and Lander Mods won't have any effect in this mission. In Mission Launch Procedure, skip step 2 and 3.",
+         "it": "Un'Operazione impegnativa per 1 Membro dell'Equipaggio. Non è necessario completarla per terminare la campagna. Il Lander e le Modifiche del Lander non avranno alcun effetto in questa missione. Nella Procedura di Lancio della Missione, saltate i passi 2 e 3."
+        }
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "costo_energia": 0,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "DIFFICULTY:",
+         "it": "DIFFICOLTÀ:"
+        },
+        "testo": {
+         "en": "Dangerous mission with limited supplies. Your Crewmember may die.",
+         "it": "Missione pericolosa con Provviste limitate. Il vostro Membro dell'Equipaggio potrebbe morire."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l10_9509.webp",
+   "nomi": [
+    "L10"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L10 - IDEMIAN CABAL",
+    "it": "L10 - IDEMIAN CABAL"
+   },
+   "testo": {
+    "en": "<1[energyCost]> <1[energyCost]> <2[energyCost]>",
+    "it": "<1[energyCost]> <1[energyCost]> <2[energyCost]>"
+   },
+   "campi": {
+    "id": "L10",
+    "pianeta": "IDEMIAN CABAL",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     },
+     {
+      "n": 2,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     },
+     {
+      "n": 3,
+      "costo": "2[energyCost]",
+      "costo_energia": 2
+     }
+    ]
+   },
+   "dubbi": "Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9509.webp",
+   "nomi": [
+    "L10"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L10 - IDEMIAN CABAL",
+    "it": "L10 - IDEMIAN CABAL"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 875 LANDING: Turbulence and solar flares. Moderate difficulty, but [landerAgility] and [landerSensors] advised. FREQUENT CHECKS: [xenology] [scouting] [physical] BIOMES: [vegetation] [desert] [water] DANGER: Extreme weather patterns – prepare for [dangerDieC] and [dangerDieE] rolls. THREATS: Wandering Threat.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 875 ATTERRAGGIO: Turbolenze e brillamenti solari. Difficoltà moderata, ma consigliati [landerAgility] e [landerSensors]. PROVE FREQUENTI: [xenology] [scouting] [physical] BIOMI: [vegetation] [desert] [water] PERICOLO: Fenomeni meteorologici estremi – preparatevi a tiri di [dangerDieC] e [dangerDieE]. MINACCE: Minaccia errante."
+   },
+   "campi": {
+    "id": "L10",
+    "pianeta": "IDEMIAN CABAL",
+    "annotazione_briefing": 875,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "LANDING:",
+         "it": "ATTERRAGGIO:"
+        },
+        "testo": {
+         "en": "Turbulence and solar flares. Moderate difficulty, but [landerAgility] and [landerSensors] advised.",
+         "it": "Turbolenze e brillamenti solari. Difficoltà moderata, ma consigliati [landerAgility] e [landerSensors]."
+        }
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "FREQUENT CHECKS:",
+         "it": "PROVE FREQUENTI:"
+        },
+        "icone": [
+         "xenology",
+         "scouting",
+         "physical"
+        ]
+       },
+       {
+        "titolo": {
+         "en": "BIOMES:",
+         "it": "BIOMI:"
+        },
+        "icone": [
+         "vegetation",
+         "desert",
+         "water"
+        ]
+       }
+      ]
+     },
+     {
+      "n": 3,
+      "costo_energia": 2,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "DANGER:",
+         "it": "PERICOLO:"
+        },
+        "testo": {
+         "en": "Extreme weather patterns – prepare for [dangerDieC] and [dangerDieE] rolls.",
+         "it": "Fenomeni meteorologici estremi – preparatevi a tiri di [dangerDieC] e [dangerDieE]."
+        }
+       },
+       {
+        "titolo": {
+         "en": "THREATS:",
+         "it": "MINACCE:"
+        },
+        "testo": {
+         "en": "Wandering Threat.",
+         "it": "Minaccia errante."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l9_9508.webp",
+   "nomi": [
+    "L9"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L9 - COUSIN",
+    "it": "L9 - COUSIN"
+   },
+   "testo": {
+    "en": "<1[energyCost]> <3[energyCost]> <1[energyCost]>",
+    "it": "<1[energyCost]> <3[energyCost]> <1[energyCost]>"
+   },
+   "campi": {
+    "id": "L9",
+    "pianeta": "COUSIN",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     },
+     {
+      "n": 2,
+      "costo": "3[energyCost]",
+      "costo_energia": 3
+     },
+     {
+      "n": 3,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     }
+    ]
+   },
+   "dubbi": "Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9508.webp",
+   "nomi": [
+    "L9"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L9 - COUSIN",
+    "it": "L9 - COUSIN"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 354 LANDING: Good conditions. Rare gravitational anomalies – [landerSensors] advised. FREQUENT CHECKS: [xenology] [scouting] BIOMES: [vegetation] IMPORTANT CHECKS: [scienceDice] [technology]",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 354 ATTERRAGGIO: Buone condizioni. Rare anomalie gravitazionali – Consigliati [landerSensors]. PROVE FREQUENTI: [xenology] [scouting] BIOMI: [vegetation] PROVE IMPORTANTI: [scienceDice] [technology]"
+   },
+   "campi": {
+    "id": "L9",
+    "pianeta": "COUSIN",
+    "annotazione_briefing": 354,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "LANDING:",
+         "it": "ATTERRAGGIO:"
+        },
+        "testo": {
+         "en": "Good conditions. Rare gravitational anomalies – [landerSensors] advised.",
+         "it": "Buone condizioni. Rare anomalie gravitazionali – Consigliati [landerSensors]."
+        }
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "costo_energia": 3,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "FREQUENT CHECKS:",
+         "it": "PROVE FREQUENTI:"
+        },
+        "icone": [
+         "xenology",
+         "scouting"
+        ]
+       },
+       {
+        "titolo": {
+         "en": "BIOMES:",
+         "it": "BIOMI:"
+        },
+        "icone": [
+         "vegetation"
+        ]
+       }
+      ]
+     },
+     {
+      "n": 3,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "IMPORTANT CHECKS:",
+         "it": "PROVE IMPORTANTI:"
+        },
+        "icone": [
+         "scienceDice",
+         "technology"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l8_9507.webp",
+   "nomi": [
+    "L8"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L8 - GOLFBALL",
+    "it": "L8 - GOLFBALL"
+   },
+   "testo": {
+    "en": "<1[energyCost]> <2[energyCost]> <3[energyCost]>",
+    "it": "<1[energyCost]> <2[energyCost]> <3[energyCost]>"
+   },
+   "campi": {
+    "id": "L8",
+    "pianeta": "GOLFBALL",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     },
+     {
+      "n": 2,
+      "costo": "2[energyCost]",
+      "costo_energia": 2
+     },
+     {
+      "n": 3,
+      "costo": "3[energyCost]",
+      "costo_energia": 3
+     }
+    ]
+   },
+   "dubbi": "Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9507.webp",
+   "nomi": [
+    "L8"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L8 - GOLFBALL",
+    "it": "L8 - GOLFBALL"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 208 LANDING: Extreme weather conditions. The ship should be versatile, although [landerAgility] is most important. FREQUENT CHECKS: [gathering] BIOMES: [frigid] [rocky] PREDATORS DETECTED: Prepare for facing aggressive Threats. Healing or preventing Injuries is advised. DIFFICULT TERRAIN: High Travel costs.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 208 ATTERRAGGIO: Condizioni meteorologiche estreme. La nave dovrebbe essere versatile, anche se [landerAgility] è la più importante. PROVE FREQUENTI: [gathering] BIOMI: [frigid] [rocky] PREDATORI RILEVATI: Preparatevi ad affrontare Minacce aggressive. È consigliato curare o prevenire le Ferite. TERRENO DIFFICILE: Costi di Viaggio elevati."
+   },
+   "campi": {
+    "id": "L8",
+    "pianeta": "GOLFBALL",
+    "annotazione_briefing": 208,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "LANDING:",
+         "it": "ATTERRAGGIO:"
+        },
+        "testo": {
+         "en": "Extreme weather conditions. The ship should be versatile, although [landerAgility] is most important.",
+         "it": "Condizioni meteorologiche estreme. La nave dovrebbe essere versatile, anche se [landerAgility] è la più importante."
+        }
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "costo_energia": 2,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "FREQUENT CHECKS:",
+         "it": "PROVE FREQUENTI:"
+        },
+        "icone": [
+         "gathering"
+        ]
+       },
+       {
+        "titolo": {
+         "en": "BIOMES:",
+         "it": "BIOMI:"
+        },
+        "icone": [
+         "frigid",
+         "rocky"
+        ]
+       }
+      ]
+     },
+     {
+      "n": 3,
+      "costo_energia": 3,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "PREDATORS DETECTED:",
+         "it": "PREDATORI RILEVATI:"
+        },
+        "testo": {
+         "en": "Prepare for facing aggressive Threats. Healing or preventing Injuries is advised.",
+         "it": "Preparatevi ad affrontare Minacce aggressive. È consigliato curare o prevenire le Ferite."
+        }
+       },
+       {
+        "titolo": {
+         "en": "DIFFICULT TERRAIN:",
+         "it": "TERRENO DIFFICILE:"
+        },
+        "testo": {
+         "en": "High Travel costs.",
+         "it": "Costi di Viaggio elevati."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l7_9506.webp",
+   "nomi": [
+    "L7"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L7 - STARSHOAL",
+    "it": "L7 - STARSHOAL"
+   },
+   "testo": {
+    "en": "<0[energyCost]>",
+    "it": "<0[energyCost]>"
+   },
+   "campi": {
+    "id": "L7",
+    "pianeta": "STARSHOAL",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "0[energyCost]",
+      "costo_energia": 0
+     }
+    ]
+   },
+   "dubbi": "Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9506.webp",
+   "nomi": [
+    "L7"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L7 - STARSHOAL",
+    "it": "L7 - STARSHOAL"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 550 MISSION TYPE: There's no ground to explore in the nebula. It's unlikely we'll set foot out of the Lander. Section cards and Equipment won't have any effect in this mission.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 550 TIPO DI MISSIONE: Nella nebulosa non c'è suolo da esplorare. È improbabile che metteremo piede fuori dal Lander. Le carte Reparto e l'Attrezzatura non avranno alcun effetto in questa missione."
+   },
+   "campi": {
+    "id": "L7",
+    "pianeta": "STARSHOAL",
+    "annotazione_briefing": 550,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 0,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "MISSION TYPE:",
+         "it": "TIPO DI MISSIONE:"
+        },
+        "testo": {
+         "en": "There's no ground to explore in the nebula. It's unlikely we'll set foot out of the Lander. Section cards and Equipment won't have any effect in this mission.",
+         "it": "Nella nebulosa non c'è suolo da esplorare. È improbabile che metteremo piede fuori dal Lander. Le carte Reparto e l'Attrezzatura non avranno alcun effetto in questa missione."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l6_9505.webp",
+   "nomi": [
+    "L6"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L6 - VISITORS' WORLD",
+    "it": "L6 - VISITORS' WORLD"
+   },
+   "testo": {
+    "en": "<0[energyCost]>",
+    "it": "<0[energyCost]>"
+   },
+   "campi": {
+    "id": "L6",
+    "pianeta": "VISITORS' WORLD",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "0[energyCost]",
+      "costo_energia": 0
+     }
+    ]
+   },
+   "dubbi": "Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9505.webp",
+   "nomi": [
+    "L6"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L6 - VISITORS' WORLD",
+    "it": "L6 - VISITORS' WORLD"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 85 ESSENTIAL INFORMATION: The mission takes place in another dimension – not all cards and components will be useful. Lander and Lander Mods won't have any effect in this mission. The mission will limit you to 5 Personal Equipment and 2 Mission Equipment cards.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 85 INFORMAZIONI ESSENZIALI: La missione si svolge in un'altra dimensione – non tutte le carte e i componenti saranno utili. Il Lander e le Modifiche del Lander non avranno alcun effetto in questa missione. La missione vi limiterà a 5 carte Attrezzatura Personale e 2 carte Attrezzatura da Missione."
+   },
+   "campi": {
+    "id": "L6",
+    "pianeta": "VISITORS' WORLD",
+    "annotazione_briefing": 85,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 0,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "ESSENTIAL INFORMATION:",
+         "it": "INFORMAZIONI ESSENZIALI:"
+        },
+        "testo": {
+         "en": "The mission takes place in another dimension – not all cards and components will be useful. Lander and Lander Mods won't have any effect in this mission. The mission will limit you to 5 Personal Equipment and 2 Mission Equipment cards.",
+         "it": "La missione si svolge in un'altra dimensione – non tutte le carte e i componenti saranno utili. Il Lander e le Modifiche del Lander non avranno alcun effetto in questa missione. La missione vi limiterà a 5 carte Attrezzatura Personale e 2 carte Attrezzatura da Missione."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l5_9504.webp",
+   "nomi": [
+    "L5"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L5 - ATROPOS",
+    "it": "L5 - ATROPOS"
+   },
+   "testo": {
+    "en": "<0[energyCost]> <0[energyCost]>",
+    "it": "<0[energyCost]> <0[energyCost]>"
+   },
+   "campi": {
+    "id": "L5",
+    "pianeta": "ATROPOS",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "0[energyCost]",
+      "costo_energia": 0
+     },
+     {
+      "n": 2,
+      "costo": "0[energyCost]",
+      "costo_energia": 0
+     }
+    ]
+   },
+   "dubbi": "Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9504.webp",
+   "nomi": [
+    "L5"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L5 - ATROPOS",
+    "it": "L5 - ATROPOS"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 65 MISSION TYPE: Though potentially profitable, this mission won't include ground-based exploration. Section dice, Section cards, and Equipment won't have any effect in this mission. LANDING: Spinning magnetic field and extreme radiation. Very high Lander Attributes advised.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 65 TIPO DI MISSIONE: Per quanto potenzialmente redditizia, questa missione non includerà l'esplorazione del suolo. I dadi Reparto, le carte Reparto e l'Attrezzatura non avranno alcun effetto in questa missione. ATTERRAGGIO: Campo magnetico rotante e radiazioni estreme. Consigliati Attributi del Lander molto elevati."
+   },
+   "campi": {
+    "id": "L5",
+    "pianeta": "ATROPOS",
+    "annotazione_briefing": 65,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 0,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "MISSION TYPE:",
+         "it": "TIPO DI MISSIONE:"
+        },
+        "testo": {
+         "en": "Though potentially profitable, this mission won't include ground-based exploration. Section dice, Section cards, and Equipment won't have any effect in this mission.",
+         "it": "Per quanto potenzialmente redditizia, questa missione non includerà l'esplorazione del suolo. I dadi Reparto, le carte Reparto e l'Attrezzatura non avranno alcun effetto in questa missione."
+        }
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "costo_energia": 0,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "LANDING:",
+         "it": "ATTERRAGGIO:"
+        },
+        "testo": {
+         "en": "Spinning magnetic field and extreme radiation. Very high Lander Attributes advised.",
+         "it": "Campo magnetico rotante e radiazioni estreme. Consigliati Attributi del Lander molto elevati."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l4_9503.webp",
+   "nomi": [
+    "L4"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L4 - EVERSTORM",
+    "it": "L4 - EVERSTORM"
+   },
+   "testo": {
+    "en": "<0[energyCost]> <1[energyCost]> <1[energyCost]>",
+    "it": "<0[energyCost]> <1[energyCost]> <1[energyCost]>"
+   },
+   "campi": {
+    "id": "L4",
+    "pianeta": "EVERSTORM",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "0[energyCost]",
+      "costo_energia": 0
+     },
+     {
+      "n": 2,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     },
+     {
+      "n": 3,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     }
+    ]
+   },
+   "dubbi": "Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9503.webp",
+   "nomi": [
+    "L4"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L4 - EVERSTORM",
+    "it": "L4 - EVERSTORM"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 60 LANDING: Hurricane winds and energy storms – [landerAgility] and [landerSensors] advised. FREQUENT CHECKS: [xenology] [physical] BIOMES: [rocky] [void] GLOBAL CONDITIONS: Unpredictable weather – Prepare for an extended stay on the surface. Prepare for [dangerDieA] rolls.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 60 ATTERRAGGIO: Venti di uragano e tempeste di energia – Consigliati [landerAgility] e [landerSensors]. PROVE FREQUENTI: [xenology] [physical] BIOMI: [rocky] [void] CONDIZIONI GENERALI: Meteo imprevedibile – Preparatevi a una permanenza prolungata sulla superficie. Preparatevi a tiri di [dangerDieA]."
+   },
+   "campi": {
+    "id": "L4",
+    "pianeta": "EVERSTORM",
+    "annotazione_briefing": 60,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 0,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "LANDING:",
+         "it": "ATTERRAGGIO:"
+        },
+        "testo": {
+         "en": "Hurricane winds and energy storms – [landerAgility] and [landerSensors] advised.",
+         "it": "Venti di uragano e tempeste di energia – Consigliati [landerAgility] e [landerSensors]."
+        }
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "FREQUENT CHECKS:",
+         "it": "PROVE FREQUENTI:"
+        },
+        "icone": [
+         "xenology",
+         "physical"
+        ]
+       },
+       {
+        "titolo": {
+         "en": "BIOMES:",
+         "it": "BIOMI:"
+        },
+        "icone": [
+         "rocky",
+         "void"
+        ]
+       }
+      ]
+     },
+     {
+      "n": 3,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "GLOBAL CONDITIONS:",
+         "it": "CONDIZIONI GENERALI:"
+        },
+        "testo": {
+         "en": "Unpredictable weather – Prepare for an extended stay on the surface. Prepare for [dangerDieA] rolls.",
+         "it": "Meteo imprevedibile – Preparatevi a una permanenza prolungata sulla superficie. Preparatevi a tiri di [dangerDieA]."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l3_12102.webp",
+   "nomi": [
+    "L3"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L3 - BRIMSTONE",
+    "it": "L3 - BRIMSTONE"
+   },
+   "testo": {
+    "en": "<0[energyCost]> <1[energyCost]> <1[energyCost]>",
+    "it": "<0[energyCost]> <1[energyCost]> <1[energyCost]>"
+   },
+   "campi": {
+    "id": "L3",
+    "pianeta": "BRIMSTONE",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "0[energyCost]",
+      "costo_energia": 0
+     },
+     {
+      "n": 2,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     },
+     {
+      "n": 3,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     }
+    ]
+   },
+   "dubbi": "La sezione 'WEATHER' dice solo 'Wandering Threat.' (trascritto fedelmente, sembra un'associazione titolo/testo strana ma è così sulla carta). Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_12102.webp",
+   "nomi": [
+    "L3"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L3 - BRIMSTONE",
+    "it": "L3 - BRIMSTONE"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 267 LANDING: Orbital debris – [landerArmor] advised. FREQUENT CHECKS: [scouting] [gathering] BIOMES: [desert] [volvanic] WEATHER: Wandering Threat. BIOLOGICAL CURIO: [biology] and [xenology] advised.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 267 ATTERRAGGIO: Detriti orbitali – Consigliata [landerArmor]. PROVE FREQUENTI: [scouting] [gathering] BIOMI: [desert] [volvanic] METEO: Minaccia errante. CURIOSITÀ BIOLOGICA: Consigliati [biology] e [xenology]."
+   },
+   "campi": {
+    "id": "L3",
+    "pianeta": "BRIMSTONE",
+    "annotazione_briefing": 267,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 0,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "LANDING:",
+         "it": "ATTERRAGGIO:"
+        },
+        "testo": {
+         "en": "Orbital debris – [landerArmor] advised.",
+         "it": "Detriti orbitali – Consigliata [landerArmor]."
+        }
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "FREQUENT CHECKS:",
+         "it": "PROVE FREQUENTI:"
+        },
+        "icone": [
+         "scouting",
+         "gathering"
+        ]
+       },
+       {
+        "titolo": {
+         "en": "BIOMES:",
+         "it": "BIOMI:"
+        },
+        "icone": [
+         "desert",
+         "volvanic"
+        ]
+       }
+      ]
+     },
+     {
+      "n": 3,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "WEATHER:",
+         "it": "METEO:"
+        },
+        "testo": {
+         "en": "Wandering Threat.",
+         "it": "Minaccia errante."
+        }
+       },
+       {
+        "titolo": {
+         "en": "BIOLOGICAL CURIO:",
+         "it": "CURIOSITÀ BIOLOGICA:"
+        },
+        "testo": {
+         "en": "[biology] and [xenology] advised.",
+         "it": "Consigliati [biology] e [xenology]."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "La sezione 'WEATHER' dice solo 'Wandering Threat.' (trascritto fedelmente, sembra un'associazione titolo/testo strana ma è così sulla carta). costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l2_9501.webp",
+   "nomi": [
+    "L2"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L2 - MATCHSTICK",
+    "it": "L2 - MATCHSTICK"
+   },
+   "testo": {
+    "en": "<0[energyCost]> <1[energyCost]> <1[energyCost]>",
+    "it": "<0[energyCost]> <1[energyCost]> <1[energyCost]>"
+   },
+   "campi": {
+    "id": "L2",
+    "pianeta": "MATCHSTICK",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "0[energyCost]",
+      "costo_energia": 0
+     },
+     {
+      "n": 2,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     },
+     {
+      "n": 3,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     }
+    ]
+   },
+   "dubbi": "Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9501.webp",
+   "nomi": [
+    "L2"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L2 - MATCHSTICK",
+    "it": "L2 - MATCHSTICK"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 417 LANDING: Turbulence and thick smoke – [landerAgility] and [landerSensors] advised. FREQUENT CHECKS: [biology] BIOMES: [vegetation] [caves] SIGNIFICANT ROLLS: [technology] [xenology] DANGER: Be prepared for [dangerDieB] rolls. Aggressive Threats detected.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 417 ATTERRAGGIO: Turbolenze e fumo denso – Consigliati [landerAgility] e [landerSensors]. PROVE FREQUENTI: [biology] BIOMI: [vegetation] [caves] TIRI SIGNIFICATIVI: [technology] [xenology] PERICOLO: Preparatevi a tiri di [dangerDieB]. Rilevate Minacce aggressive."
+   },
+   "campi": {
+    "id": "L2",
+    "pianeta": "MATCHSTICK",
+    "annotazione_briefing": 417,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 0,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "LANDING:",
+         "it": "ATTERRAGGIO:"
+        },
+        "testo": {
+         "en": "Turbulence and thick smoke – [landerAgility] and [landerSensors] advised.",
+         "it": "Turbolenze e fumo denso – Consigliati [landerAgility] e [landerSensors]."
+        }
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "FREQUENT CHECKS:",
+         "it": "PROVE FREQUENTI:"
+        },
+        "icone": [
+         "biology"
+        ]
+       },
+       {
+        "titolo": {
+         "en": "BIOMES:",
+         "it": "BIOMI:"
+        },
+        "icone": [
+         "vegetation",
+         "caves"
+        ]
+       }
+      ]
+     },
+     {
+      "n": 3,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "SIGNIFICANT ROLLS:",
+         "it": "TIRI SIGNIFICATIVI:"
+        },
+        "icone": [
+         "technology",
+         "xenology"
+        ]
+       },
+       {
+        "titolo": {
+         "en": "DANGER:",
+         "it": "PERICOLO:"
+        },
+        "testo": {
+         "en": "Be prepared for [dangerDieB] rolls. Aggressive Threats detected.",
+         "it": "Preparatevi a tiri di [dangerDieB]. Rilevate Minacce aggressive."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l1_9500.webp",
+   "nomi": [
+    "L1"
+   ],
+   "lato": "fronte",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L1 - PELLUCID",
+    "it": "L1 - PELLUCID"
+   },
+   "testo": {
+    "en": "<0[energyCost]> <1[energyCost]> <1[energyCost]>",
+    "it": "<0[energyCost]> <1[energyCost]> <1[energyCost]>"
+   },
+   "campi": {
+    "id": "L1",
+    "pianeta": "PELLUCID",
+    "parti": [
+     {
+      "n": 1,
+      "costo": "0[energyCost]",
+      "costo_energia": 0
+     },
+     {
+      "n": 2,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     },
+     {
+      "n": 3,
+      "costo": "1[energyCost]",
+      "costo_energia": 1
+     }
+    ]
+   },
+   "dubbi": "Il fronte mostra solo le caselle coperte con il costo in energia [energyCost] per rivelare con lo scanner ciascuna parte; il contenuto delle parti è sul retro (stessa posizione dall'alto in basso)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9500.webp",
+   "nomi": [
+    "L1"
+   ],
+   "lato": "retro",
+   "tipo": "landing",
+   "titolo": {
+    "en": "L1 - PELLUCID",
+    "it": "L1 - PELLUCID"
+   },
+   "testo": {
+    "en": "Briefing (do not read until instructed): 315 LANDING: Orbital debris detected – [landerArmor] advised. FREQUENT CHECKS: [physical] [gathering] BIOMES: [ruins] [void] DANGER: Solar Flares – [defence] and [scouting] advised. Prepare for [dangerDieA] rolls.",
+    "it": "Briefing (non leggere finché non viene indicato): Annotazione 315 ATTERRAGGIO: Rilevati detriti orbitali – Consigliata [landerArmor]. PROVE FREQUENTI: [physical] [gathering] BIOMI: [ruins] [void] PERICOLO: Brillamenti solari – Consigliati [defence] e [scouting]. Preparatevi a tiri di [dangerDieA]."
+   },
+   "campi": {
+    "id": "L1",
+    "pianeta": "PELLUCID",
+    "annotazione_briefing": 315,
+    "parti": [
+     {
+      "n": 1,
+      "costo_energia": 0,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "LANDING:",
+         "it": "ATTERRAGGIO:"
+        },
+        "testo": {
+         "en": "Orbital debris detected – [landerArmor] advised.",
+         "it": "Rilevati detriti orbitali – Consigliata [landerArmor]."
+        }
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "FREQUENT CHECKS:",
+         "it": "PROVE FREQUENTI:"
+        },
+        "icone": [
+         "physical",
+         "gathering"
+        ]
+       },
+       {
+        "titolo": {
+         "en": "BIOMES:",
+         "it": "BIOMI:"
+        },
+        "icone": [
+         "ruins",
+         "void"
+        ]
+       }
+      ]
+     },
+     {
+      "n": 3,
+      "costo_energia": 1,
+      "sezioni": [
+       {
+        "titolo": {
+         "en": "DANGER:",
+         "it": "PERICOLO:"
+        },
+        "testo": {
+         "en": "Solar Flares – [defence] and [scouting] advised. Prepare for [dangerDieA] rolls.",
+         "it": "Brillamenti solari – Consigliati [defence] e [scouting]. Preparatevi a tiri di [dangerDieA]."
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "dubbi": "costo_energia di ogni parte ricavato dal fronte (corrispondenza per posizione). Nessuna pagina del Planetopedia indicata sulla carta."
+  }
+ ]
+}

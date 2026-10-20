@@ -1,0 +1,143 @@
+{
+ "tipo": "reparto",
+ "immagini": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_iii_engineering/32409.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_iii_engineering/32410.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_engineering/8618.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_engineering/1306.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_engineering/8515.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_engineering/1308.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_iii_recon/32800.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_recon/17412.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_recon/17409.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_recon/1414.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_recon/17508.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_iii_science/32614.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_science/8425.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_science/8426.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_science/8422.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_science/1500.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_iii_security/32907.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_iii_security/32904.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_security/17605.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_security/17701.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_security/1619.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_security/1618.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/delaying_tactics/delaying_tactics_35410.webp",
+   "nomi": [
+    "Delaying Tactics"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/calculated_risk/calculated_risk_35100.webp",
+   "nomi": [
+    "Calculated Risk"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/dash/dash_35006.webp",
+   "nomi": [
+    "Dash"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/guiding_beacon/guiding_beacon_34903.webp",
+   "nomi": [
+    "Guiding Beacon"
+   ],
+   "lato": "fronte"
+  }
+ ]
+}

@@ -1,0 +1,1167 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g02_9901.webp",
+   "nomi": [
+    "G02"
+   ],
+   "id": "G02",
+   "titolo": {
+    "en": "GAMMA FLASHES",
+    "it": "LAMPI GAMMA"
+   },
+   "testo_colore": {
+    "en": "The crystalline structure begins to emit sudden gamma flashes. Should we take shelter?",
+    "it": "La struttura cristallina inizia a emettere improvvisi lampi gamma. Dovremmo metterci al riparo?"
+   },
+   "testo": {
+    "en": "All Dice Checks gain the following Special Effect: [accident] + [accident] = roll [dangerDieA].",
+    "it": "Tutte le Prove ottengono il seguente Effetto Speciale: [accident] + [accident] = tira [dangerDieA]."
+   },
+   "effetto_speciale": {
+    "req": "accident+accident",
+    "effetto": {
+     "en": "Roll [dangerDieA].",
+     "it": "Tira [dangerDieA]."
+    }
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "diceCheck",
+    "pericolo": [],
+    "prova": true,
+    "costo": "",
+    "speciali": [],
+    "esiti": [
+     {
+      "colore": "green",
+      "req": "redDie / blueDie",
+      "en": "Move to a connected Sector.",
+      "it": "Muoviti in un Settore collegato."
+     },
+     {
+      "colore": "red",
+      "req": "",
+      "en": "[spendDie] + [spendDie]",
+      "it": "[spendDie] + [spendDie]"
+     }
+    ],
+    "frecce": "Il triangolo rosso sopra la riga rossa la collega alla riga verde: con l'esito rosso si applica anche quello verde (ci si muove comunque)."
+   },
+   "tempo": {
+    "caselle": 5,
+    "en": "Go to Log 500.",
+    "it": "Vai all'Annotazione 500."
+   },
+   "dubbi": "Il riquadro TRAVEL non ha la riga speciale accident=outcomeRed."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g03_9904.webp",
+   "nomi": [
+    "G03"
+   ],
+   "id": "G03",
+   "titolo": {
+    "en": "GEOTHERMAL ERUPTIONS",
+    "it": "ERUZIONI GEOTERMICHE"
+   },
+   "effetto_speciale": {
+    "req": "gathering",
+    "effetto": {
+     "en": "Gain 1 Mineral Lead.",
+     "it": "Ottieni 1 Indizio Minerale."
+    }
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "diceCheck",
+    "pericolo": [],
+    "prova": true,
+    "costo": "",
+    "speciali": [
+     {
+      "req": "accident",
+      "effetto": "outcomeRed"
+     }
+    ],
+    "esiti": [
+     {
+      "colore": "green",
+      "req": "die",
+      "en": "Move to a connected Sector.",
+      "it": "Muoviti in un Settore collegato."
+     },
+     {
+      "colore": "red",
+      "req": "",
+      "en": "Roll [dangerDieB].",
+      "it": "Tira [dangerDieB]."
+     }
+    ],
+    "frecce": "Il triangolo rosso sopra la riga rossa la collega alla riga verde: con l'esito rosso si applica anche quello verde (ci si muove comunque)."
+   },
+   "tempo": {
+    "caselle": 2,
+    "en": "Discard this Condition.",
+    "it": "Scarta questa Condizione."
+   },
+   "dubbi": "Nessun testo di colore. Il riquadro in alto (icone = effetto, con parentesi bianche) è un Effetto Speciale grafico senza testo; trascritto in 'effetto_speciale' (presumibilmente aggiunto a tutte le Prove, come in G02)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g03_9905.webp",
+   "nomi": [
+    "G03"
+   ],
+   "id": "G03",
+   "titolo": {
+    "en": "LOW VISIBILITY",
+    "it": "SCARSA VISIBILITÀ"
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "diceCheck",
+    "pericolo": [],
+    "prova": true,
+    "costo": "",
+    "speciali": [],
+    "esiti": [
+     {
+      "colore": "green",
+      "req": "scouting / die+die",
+      "en": "Move to a connected Sector.",
+      "it": "Muoviti in un Settore collegato."
+     },
+     {
+      "colore": "red",
+      "req": "",
+      "en": "[spendDie]",
+      "it": "[spendDie]"
+     }
+    ]
+   },
+   "tempo": {
+    "caselle": 3,
+    "en": "Discard this Condition.",
+    "it": "Scarta questa Condizione."
+   },
+   "dubbi": "Nessun testo di colore né testo di regole; solo TRAVEL e traccia. Stesso codice G03 di Geothermal Eruptions (varianti alternative)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g05_9907.webp",
+   "nomi": [
+    "G05"
+   ],
+   "id": "G05",
+   "titolo": {
+    "en": "THE DIVIDE",
+    "it": "LO SPARTIACQUE"
+   },
+   "testo_colore": {
+    "en": "Half of the zone still basks in the sunlight. A new, strange world emerges from its slumber in the other half.",
+    "it": "Metà della zona si crogiola ancora alla luce del sole. Nell'altra metà un mondo nuovo e strano si risveglia dal suo torpore."
+   },
+   "viaggio": {
+    "nome": {
+     "en": "BRIGHT SIDE TRAVEL",
+     "it": "VIAGGIO SUL LATO LUMINOSO"
+    },
+    "sentiero": "travel",
+    "icona": "",
+    "pericolo": [],
+    "prova": false,
+    "costo": "spendDie",
+    "testo": {
+     "en": "[spendDie] to move to a connected Sector.",
+     "it": "[spendDie] per muoverti in un Settore collegato."
+    },
+    "speciali": [],
+    "esiti": []
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "DARK SIDE TRAVEL",
+      "it": "VIAGGIO SUL LATO OSCURO"
+     },
+     "sentiero": [
+      "travel2",
+      "travel3"
+     ],
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [
+      {
+       "req": "accident",
+       "effetto": "outcomeRed"
+      }
+     ],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "defence / xenology",
+       "en": "Move to a connected Sector.",
+       "it": "Muoviti in un Settore collegato."
+      },
+      {
+       "colore": "red",
+       "req": "",
+       "en": "Roll [dangerDieI].",
+       "it": "Tira [dangerDieI]."
+      }
+     ]
+    }
+   ],
+   "tempo": {
+    "caselle": 5,
+    "en": "Go to Log 1086.",
+    "it": "Vai all'Annotazione 1086."
+   },
+   "dubbi": "Due riquadri di viaggio: BRIGHT SIDE (icona travel semplice) e DARK SIDE (icone travel con II e III barre, nomi inventati 'travel2'/'travel3': probabilmente sentieri di tipo II e III). Ho messo il Bright Side in 'viaggio' e il Dark Side in 'azioni'. Lettera del dado rosso letta come I."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g07_9910.webp",
+   "nomi": [
+    "G07"
+   ],
+   "id": "G07",
+   "titolo": {
+    "en": "SWARM",
+    "it": "SCIAME"
+   },
+   "testo_colore": {
+    "en": "With fires dwindling, swarms of plant-devouring insects appear in the area.",
+    "it": "Con gli incendi che si affievoliscono, sciami di insetti divoratori di piante compaiono nella zona."
+   },
+   "effetto_speciale": {
+    "req": "biology",
+    "effetto": {
+     "en": "Gain 2 Live Specimen Leads, roll [dangerDieC], and add it to your Roll Pool.",
+     "it": "Ottieni 2 Indizi Esemplare Vivo, tira [dangerDieC] e aggiungilo alla tua Riserva del Tiro."
+    }
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "",
+    "pericolo": [],
+    "prova": false,
+    "costo": "spendDie+spendDie / dangerDieG",
+    "testo": {
+     "en": "[spendDie] + [spendDie] or roll [dangerDieG] to move to a connected Sector.",
+     "it": "[spendDie] + [spendDie] oppure tira [dangerDieG] per muoverti in un Settore collegato."
+    },
+    "speciali": [],
+    "esiti": []
+   },
+   "tempo": {
+    "caselle": 2,
+    "en": "Discard this Condition.",
+    "it": "Scarta questa Condizione."
+   },
+   "dubbi": "Il riquadro in alto (icone = effetto, con parentesi bianche) è un Effetto Speciale grafico senza testo; trascritto in 'effetto_speciale' (presumibilmente aggiunto a tutte le Prove, come in G02). Nel 'costo' del viaggio la ' / dangerDieG' indica l'alternativa 'tira il dado G'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g08_9911.webp",
+   "nomi": [
+    "G08"
+   ],
+   "id": "G08",
+   "titolo": {
+    "en": "FREEZING WIND",
+    "it": "VENTO GELIDO"
+   },
+   "testo_colore": {
+    "en": "Vicious gales test the insulation of the exosuits – it seems they could have been designed better.",
+    "it": "Raffiche violente mettono alla prova l'isolamento delle esotute: a quanto pare potevano essere progettate meglio."
+   },
+   "effetto_speciale": {
+    "req": "vanguard+gathering",
+    "effetto": {
+     "en": "Gain 1 Supplies, roll [dangerDieE], and add it to your Roll Pool.",
+     "it": "Ottieni 1 Provviste, tira [dangerDieE] e aggiungilo alla tua Riserva del Tiro."
+    }
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "diceCheck",
+    "pericolo": [],
+    "prova": true,
+    "costo": "",
+    "speciali": [
+     {
+      "req": "accident",
+      "effetto": "outcomeRed"
+     }
+    ],
+    "esiti": [
+     {
+      "colore": "green",
+      "req": "die",
+      "en": "Move to a connected Sector.",
+      "it": "Muoviti in un Settore collegato."
+     },
+     {
+      "colore": "red",
+      "req": "",
+      "en": "[spendDie], roll [dangerDieE].",
+      "it": "[spendDie], tira [dangerDieE]."
+     }
+    ],
+    "frecce": "Il triangolo rosso sopra la riga rossa la collega alla riga verde: con l'esito rosso si applica anche quello verde (ci si muove comunque)."
+   },
+   "tempo": {
+    "caselle": 3,
+    "en": "Discard this Condition.",
+    "it": "Scarta questa Condizione."
+   },
+   "dubbi": "Il riquadro in alto (icone = effetto, con parentesi bianche) è un Effetto Speciale grafico senza testo; trascritto in 'effetto_speciale' (presumibilmente aggiunto a tutte le Prove, come in G02)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g11_9913.webp",
+   "nomi": [
+    "G11"
+   ],
+   "id": "G11",
+   "titolo": {
+    "en": "SUDDEN TREMORS",
+    "it": "SCOSSE IMPROVVISE"
+   },
+   "testo_colore": {
+    "en": "A wave of explosions shakes the entire ship, throwing us around like ragdolls.",
+    "it": "Un'ondata di esplosioni scuote l'intera nave, sballottandoci come bambole di pezza."
+   },
+   "testo": {
+    "en": "Whenever you Rest or Exert, Refresh 1 [die] fewer.",
+    "it": "Ogni volta che effettui un Riposo o uno Sforzo, Ricarica 1 [die] in meno."
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "diceCheck",
+    "pericolo": [],
+    "prova": true,
+    "costo": "",
+    "speciali": [
+     {
+      "req": "accident",
+      "effetto": "outcomeRed"
+     }
+    ],
+    "esiti": [
+     {
+      "colore": "green",
+      "req": "redDie / blueDie",
+      "en": "Move to a connected Sector.",
+      "it": "Muoviti in un Settore collegato."
+     },
+     {
+      "colore": "red",
+      "req": "",
+      "en": "Roll [dangerDieA].",
+      "it": "Tira [dangerDieA]."
+     }
+    ]
+   },
+   "tempo": {
+    "caselle": 1,
+    "en": "Add 1 marker to the Enemy Advantage Slot. Discard this Condition.",
+    "it": "Aggiungi 1 segnalino nello Spazio Vantaggio Nemico. Scarta questa Condizione."
+   },
+   "dubbi": "'Enemy Advantage Slot' tradotto come 'Spazio Vantaggio Nemico' (termine ufficiale non nel glossario)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g11_9914.webp",
+   "nomi": [
+    "G11"
+   ],
+   "id": "G11",
+   "titolo": {
+    "en": "DECOMPRESSION",
+    "it": "DECOMPRESSIONE"
+   },
+   "testo_colore": {
+    "en": "Hull damage causes the air to vent into space with the force of a hurricane.",
+    "it": "I danni allo scafo fanno fuoriuscire l'aria nello spazio con la forza di un uragano."
+   },
+   "testo": {
+    "en": "Each Sector on the Planet board additionally has the [void] icon.",
+    "it": "Ogni Settore sulla plancia del Pianeta ha in aggiunta l'icona [void]."
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "diceCheck",
+    "pericolo": [],
+    "prova": true,
+    "costo": "",
+    "speciali": [
+     {
+      "req": "accident",
+      "effetto": "outcomeRed"
+     }
+    ],
+    "esiti": [
+     {
+      "colore": "green",
+      "req": "die",
+      "en": "Move to a connected Sector.",
+      "it": "Muoviti in un Settore collegato."
+     },
+     {
+      "colore": "red",
+      "req": "",
+      "en": "Roll [dangerDieA].",
+      "it": "Tira [dangerDieA]."
+     }
+    ],
+    "frecce": "Il triangolo rosso sopra la riga rossa la collega alla riga verde: con l'esito rosso si applica anche quello verde (ci si muove comunque)."
+   },
+   "tempo": {
+    "caselle": 2,
+    "en": "Add 1 marker to the Enemy Advantage Slot. Discard this Condition.",
+    "it": "Aggiungi 1 segnalino nello Spazio Vantaggio Nemico. Scarta questa Condizione."
+   },
+   "dubbi": "'Enemy Advantage Slot' tradotto come 'Spazio Vantaggio Nemico'. Icona nel testo letta come void (spirale)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g13_10002.webp",
+   "nomi": [
+    "G13"
+   ],
+   "id": "G13",
+   "titolo": {
+    "en": "TWILIGHT",
+    "it": "CREPUSCOLO"
+   },
+   "testo_colore": {
+    "en": "One of the suns sets – and for a brief moment, this place is a temperate, welcoming place.",
+    "it": "Uno dei soli tramonta e, per un breve momento, questo luogo è temperato e accogliente."
+   },
+   "effetto_speciale": {
+    "req": "anySameIcons+anySameIcons",
+    "effetto": {
+     "en": "Refresh 1 [die].",
+     "it": "Ricarica 1 [die]."
+    }
+   },
+   "testo": {
+    "en": "Whenever you Rest, draw 1 additional Section card and Refresh 1 [die] more.",
+    "it": "Ogni volta che effettui un Riposo, pesca 1 carta Reparto aggiuntiva e Ricarica 1 [die] in più."
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "",
+    "pericolo": [],
+    "prova": false,
+    "costo": "spendDie / dangerDieA",
+    "testo": {
+     "en": "[spendDie] or roll [dangerDieA] to move to a connected Sector.",
+     "it": "[spendDie] oppure tira [dangerDieA] per muoverti in un Settore collegato."
+    },
+    "speciali": [],
+    "esiti": []
+   },
+   "tempo": {
+    "caselle": 2,
+    "en": "Discard this Condition.",
+    "it": "Scarta questa Condizione."
+   },
+   "dubbi": "Il riquadro in alto (icone = effetto, con parentesi bianche) è un Effetto Speciale grafico senza testo; trascritto in 'effetto_speciale' (presumibilmente aggiunto a tutte le Prove, come in G02)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g15_10004.webp",
+   "nomi": [
+    "G15"
+   ],
+   "id": "G15",
+   "titolo": {
+    "en": "DEEPEST NIGHT",
+    "it": "NOTTE PROFONDA"
+   },
+   "testo_colore": {
+    "en": "With both suns down, the temperatures plummet. All life clings to the safety and warmth of their shelters.",
+    "it": "Con entrambi i soli tramontati, le temperature precipitano. Ogni forma di vita si aggrappa alla sicurezza e al calore dei propri rifugi."
+   },
+   "testo": {
+    "en": "Each Crewmember who starts their turn with 2 or fewer available dice, rolls [dangerDieE].",
+    "it": "Ogni Membro dell'Equipaggio che inizia il proprio turno con 2 o meno dadi disponibili tira [dangerDieE]."
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "",
+    "pericolo": [],
+    "prova": false,
+    "costo": "spendDie+spendDie / dangerDieE",
+    "testo": {
+     "en": "[spendDie] + [spendDie] or roll [dangerDieE] to move to a connected Sector.",
+     "it": "[spendDie] + [spendDie] oppure tira [dangerDieE] per muoverti in un Settore collegato."
+    },
+    "speciali": [],
+    "esiti": []
+   },
+   "tempo": {
+    "caselle": 2,
+    "en": "Discard this Condition.",
+    "it": "Scarta questa Condizione."
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g17_10006.webp",
+   "nomi": [
+    "G17"
+   ],
+   "id": "G17",
+   "titolo": {
+    "en": "ACTIVE SHIELD",
+    "it": "SCUDO ATTIVO"
+   },
+   "testo_colore": {
+    "en": "We're temporarily safe. Let's make use of it.",
+    "it": "Per ora siamo al sicuro. Approfittiamone."
+   },
+   "effetto_speciale": {
+    "req": "defence",
+    "effetto": {
+     "en": "Refresh 1 [die].",
+     "it": "Ricarica 1 [die]."
+    }
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "",
+    "pericolo": [],
+    "prova": false,
+    "costo": "",
+    "testo": {
+     "en": "Move to a connected Sector.",
+     "it": "Muoviti in un Settore collegato."
+    },
+    "speciali": [],
+    "esiti": []
+   },
+   "tempo": {
+    "caselle": 2,
+    "en": "Discard this Condition.",
+    "it": "Scarta questa Condizione."
+   },
+   "dubbi": "Il riquadro in alto (icone = effetto, con parentesi bianche) è un Effetto Speciale grafico senza testo; trascritto in 'effetto_speciale' (presumibilmente aggiunto a tutte le Prove, come in G02). Viaggio senza costo."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g18_10008.webp",
+   "nomi": [
+    "G18"
+   ],
+   "id": "G18",
+   "titolo": {
+    "en": "METEORIC ACTIVITY",
+    "it": "ATTIVITÀ METEORICA"
+   },
+   "testo_colore": {
+    "en": "Shards of rock that survive the fall through the atmosphere prove to be extremely dangerous.",
+    "it": "Le schegge di roccia che sopravvivono alla caduta attraverso l'atmosfera si rivelano estremamente pericolose."
+   },
+   "effetto_speciale": {
+    "req": "defence",
+    "effetto": {
+     "en": "Draw 2 Section cards.",
+     "it": "Pesca 2 carte Reparto."
+    }
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "diceCheck",
+    "pericolo": [],
+    "prova": true,
+    "costo": "",
+    "speciali": [
+     {
+      "req": "accident",
+      "effetto": "outcomeRed"
+     }
+    ],
+    "esiti": [
+     {
+      "colore": "green",
+      "req": "die",
+      "en": "Move to a connected Sector.",
+      "it": "Muoviti in un Settore collegato."
+     },
+     {
+      "colore": "red",
+      "req": "",
+      "en": "Roll [dangerDieA].",
+      "it": "Tira [dangerDieA]."
+     }
+    ],
+    "frecce": "Il triangolo rosso sopra la riga rossa la collega alla riga verde: con l'esito rosso si applica anche quello verde (ci si muove comunque)."
+   },
+   "tempo": {
+    "caselle": 3,
+    "en": "Each Crewmember rolls [dangerDieA]. Discard this Condition.",
+    "it": "Ogni Membro dell'Equipaggio tira [dangerDieA]. Scarta questa Condizione."
+   },
+   "dubbi": "Il riquadro in alto (icone = effetto, con parentesi bianche) è un Effetto Speciale grafico senza testo; trascritto in 'effetto_speciale' (presumibilmente aggiunto a tutte le Prove, come in G02)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g20_10010.webp",
+   "nomi": [
+    "G20"
+   ],
+   "id": "G20",
+   "titolo": {
+    "en": "EERIE VOICES",
+    "it": "VOCI INQUIETANTI"
+   },
+   "testo_colore": {
+    "en": "No sound should penetrate the null field, yet the inside of our mechasuits vibrate with unnerving voices.",
+    "it": "Nessun suono dovrebbe penetrare il campo nullo, eppure l'interno delle nostre mechatute vibra di voci snervanti."
+   },
+   "effetto_speciale": {
+    "req": "biology",
+    "effetto": {
+     "en": "Draw 1 Section cards.",
+     "it": "Pesca 1 carta Reparto."
+    }
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "diceCheck",
+    "pericolo": [],
+    "prova": true,
+    "costo": "",
+    "speciali": [
+     {
+      "req": "accident",
+      "effetto": "outcomeRed"
+     }
+    ],
+    "esiti": [
+     {
+      "colore": "green",
+      "req": "die+die",
+      "en": "Move to a connected Sector.",
+      "it": "Muoviti in un Settore collegato."
+     },
+     {
+      "colore": "red",
+      "req": "",
+      "en": "Roll [dangerDieI].",
+      "it": "Tira [dangerDieI]."
+     }
+    ],
+    "frecce": "Il triangolo rosso sopra la riga rossa la collega alla riga verde: con l'esito rosso si applica anche quello verde (ci si muove comunque)."
+   },
+   "tempo": {
+    "caselle": 2,
+    "en": "Discard this Condition.",
+    "it": "Scarta questa Condizione."
+   },
+   "dubbi": "Il riquadro in alto (icone = effetto, con parentesi bianche) è un Effetto Speciale grafico senza testo; trascritto in 'effetto_speciale' (presumibilmente aggiunto a tutte le Prove, come in G02). Refuso sulla carta: 'Draw 1 Section cards'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g20_10012.webp",
+   "nomi": [
+    "G20"
+   ],
+   "id": "G20",
+   "titolo": {
+    "en": "MECHASUIT GLITCHES",
+    "it": "MALFUNZIONAMENTI DELLE MECHATUTE"
+   },
+   "testo_colore": {
+    "en": "A flood of warnings flash across our mechasuits as they struggle to cope with spikes in radiation.",
+    "it": "Una marea di avvisi lampeggia sulle nostre mechatute mentre faticano a reggere i picchi di radiazioni."
+   },
+   "testo": {
+    "en": "When this Global Condition is revealed, flip all TZO Mechasuit cards and all Mission Equipment cards face down. You may not use them for now.",
+    "it": "Quando questa Condizione Generale viene rivelata, gira a faccia in giù tutte le carte Mechatuta TZO e tutte le carte Attrezzatura da Missione. Per ora non puoi usarle."
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "diceCheck",
+    "pericolo": [],
+    "prova": true,
+    "costo": "",
+    "speciali": [
+     {
+      "req": "accident",
+      "effetto": "outcomeRed"
+     }
+    ],
+    "esiti": [
+     {
+      "colore": "green",
+      "req": "die+die",
+      "en": "Move to a connected Sector.",
+      "it": "Muoviti in un Settore collegato."
+     },
+     {
+      "colore": "red",
+      "req": "",
+      "en": "Roll [dangerDieA].",
+      "it": "Tira [dangerDieA]."
+     }
+    ]
+   },
+   "tempo": {
+    "caselle": 2,
+    "en": "Flip all TZO Mechasuit cards and Mission Equipment cards face up. Discard this Condition.",
+    "it": "Gira a faccia in su tutte le carte Mechatuta TZO e Attrezzatura da Missione. Scarta questa Condizione."
+   },
+   "dubbi": "'Mechasuit' tradotto 'Mechatuta' (termine ufficiale non nel glossario)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/10100.webp",
+   "nomi": [],
+   "id": "G23",
+   "titolo": {
+    "en": "IONIC WATERFALLS",
+    "it": "CASCATE IONICHE"
+   },
+   "testo_colore": {
+    "en": "Entire columns and waterfalls of heavily ionized particles come from the ceiling, overpowering the null field.",
+    "it": "Intere colonne e cascate di particelle fortemente ionizzate scendono dal soffitto, sopraffacendo il campo nullo."
+   },
+   "testo": {
+    "en": "Each Crewmember who starts their turn in a Sector with a [lightning] and without the Builder's Biomebot, immediately rolls [dangerDieF].",
+    "it": "Ogni Membro dell'Equipaggio che inizia il proprio turno in un Settore con un [lightning] e senza il Biomebot del Costruttore tira immediatamente [dangerDieF]."
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "diceCheck",
+    "pericolo": [],
+    "prova": true,
+    "costo": "",
+    "speciali": [
+     {
+      "req": "accident / construction / technology",
+      "effetto": "outcomeRed"
+     }
+    ],
+    "esiti": [
+     {
+      "colore": "green",
+      "req": "die+die",
+      "en": "Move to a connected Sector.",
+      "it": "Muoviti in un Settore collegato."
+     },
+     {
+      "colore": "red",
+      "req": "",
+      "en": "Roll [dangerDieA].",
+      "it": "Tira [dangerDieA]."
+     }
+    ]
+   },
+   "tempo": {
+    "caselle": 2,
+    "en": "Discard this Condition.",
+    "it": "Scarta questa Condizione."
+   },
+   "dubbi": "Il lotto non dava il nome (file 10100): ID letto sulla carta G23. Icona fulmine non nel foglio: nome inventato 'lightning'. Dado del testo letto come F (lo schema d'esempio diceva E). 'Builder's Biomebot' tradotto liberamente."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/10102.webp",
+   "nomi": [],
+   "id": "G25",
+   "titolo": {
+    "en": "HUNTED!",
+    "it": "BRACCATI!"
+   },
+   "testo_colore": {
+    "en": "It was better to be alone...",
+    "it": "Era meglio essere soli..."
+   },
+   "effetto_speciale": {
+    "req": "basic",
+    "effetto": {
+     "en": "Refresh 1 [die].",
+     "it": "Ricarica 1 [die]."
+    }
+   },
+   "testo": {
+    "en": "Crewmembers may perform 2 Special Actions in a single turn.",
+    "it": "I Membri dell'Equipaggio possono eseguire 2 Azioni Speciali in un singolo turno."
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "",
+    "pericolo": [],
+    "prova": false,
+    "costo": "spendDie / dangerDieA",
+    "testo": {
+     "en": "[spendDie] or roll [dangerDieA] to move to a connected Sector.",
+     "it": "[spendDie] oppure tira [dangerDieA] per muoverti in un Settore collegato."
+    },
+    "speciali": [],
+    "esiti": []
+   },
+   "tempo": {
+    "caselle": 1,
+    "en": "Move card P513 (Hunting Party) by 3 Sectors toward the Crewmember (placing it on top of other cards in those Sectors). Go to Log 1019 (after resolving Log 1022 if needed).",
+    "it": "Muovi la carta P513 (Battuta di Caccia) di 3 Settori verso il Membro dell'Equipaggio (mettendola sopra le altre carte in quei Settori). Vai all'Annotazione 1019 (dopo aver risolto l'Annotazione 1022, se necessario)."
+   },
+   "dubbi": "Il lotto non dava il nome (file 10102): ID letto sulla carta G25. Il riquadro in alto (icone = effetto, con parentesi bianche) è un Effetto Speciale grafico senza testo; trascritto in 'effetto_speciale' (presumibilmente aggiunto a tutte le Prove, come in G02). 'Hunting Party' tradotto liberamente."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g26_10103.webp",
+   "nomi": [
+    "G26"
+   ],
+   "id": "G26",
+   "titolo": {
+    "en": "DEATH INCARNATE",
+    "it": "MORTE INCARNATA"
+   },
+   "testo_colore": {
+    "en": "It was all an opportunity to escape...",
+    "it": "Era tutto un'occasione per fuggire..."
+   },
+   "effetto_speciale": {
+    "req": "basic",
+    "effetto": {
+     "en": "Refresh 1 [die].",
+     "it": "Ricarica 1 [die]."
+    }
+   },
+   "testo": {
+    "en": "Crewmembers may perform 2 Special Actions in a single turn.",
+    "it": "I Membri dell'Equipaggio possono eseguire 2 Azioni Speciali in un singolo turno."
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "",
+    "pericolo": [],
+    "prova": false,
+    "costo": "spendDie / dangerDieA",
+    "testo": {
+     "en": "[spendDie] or roll [dangerDieA] to move to a connected Sector.",
+     "it": "[spendDie] oppure tira [dangerDieA] per muoverti in un Settore collegato."
+    },
+    "speciali": [],
+    "esiti": []
+   },
+   "tempo": {
+    "caselle": 2,
+    "en": "Each Crewmember rolls [dangerDieC]. Reset this Track.",
+    "it": "Ogni Membro dell'Equipaggio tira [dangerDieC]. Azzera questa Traccia."
+   },
+   "dubbi": "Il riquadro in alto (icone = effetto, con parentesi bianche) è un Effetto Speciale grafico senza testo; trascritto in 'effetto_speciale' (presumibilmente aggiunto a tutte le Prove, come in G02). La traccia si azzera (ciclica), non scarta la Condizione."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g28_10105.webp",
+   "nomi": [
+    "G28"
+   ],
+   "id": "G28",
+   "titolo": {
+    "en": "LOST IN OTHERWORLD",
+    "it": "PERSI NELL'ALTROMONDO"
+   },
+   "testo_colore": {
+    "en": "Incomprehensible space affects the bodies and minds of those unprepared. And no one could be prepared for something like this.",
+    "it": "Uno spazio incomprensibile colpisce i corpi e le menti di chi non è preparato. E nessuno potrebbe essere preparato a qualcosa del genere."
+   },
+   "testo": {
+    "en": "Crewmembers may perform 2 Special Actions in a single turn.",
+    "it": "I Membri dell'Equipaggio possono eseguire 2 Azioni Speciali in un singolo turno."
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "",
+    "pericolo": [],
+    "prova": false,
+    "costo": "spendDie",
+    "testo": {
+     "en": "[spendDie] to move to a connected Sector.",
+     "it": "[spendDie] per muoverti in un Settore collegato."
+    },
+    "speciali": [],
+    "esiti": []
+   },
+   "tempo": {
+    "caselle": 3,
+    "en": "Each Crewmember [spendDie]+[spendDie]+[spendDie]+[spendDie] and rolls [dangerDieA]. Reset this Track.",
+    "it": "Ogni Membro dell'Equipaggio [spendDie]+[spendDie]+[spendDie]+[spendDie] e tira [dangerDieA]. Azzera questa Traccia."
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g29_10108.webp",
+   "nomi": [
+    "G29"
+   ],
+   "id": "G29",
+   "titolo": {
+    "en": "WARP",
+    "it": "DISTORSIONE"
+   },
+   "testo_colore": {
+    "en": "It shouldn't be possible, but everything looks even more unreal. One can catch glimpses of distant places out of the corner of their eye.",
+    "it": "Non dovrebbe essere possibile, ma tutto sembra ancora più irreale. Con la coda dell'occhio si intravedono luoghi lontani."
+   },
+   "effetto_speciale": {
+    "req": "scienceDice+scienceDice",
+    "effetto": {
+     "en": "Gain 2 Leads of any type.",
+     "it": "Ottieni 2 Indizi di qualsiasi tipo."
+    }
+   },
+   "testo": {
+    "en": "You may always browse POI and Global Conditions stacks on the Planet board.",
+    "it": "Puoi sempre consultare le pile di PDI e di Condizioni Generali sulla plancia del Pianeta."
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "diceCheck",
+    "pericolo": [],
+    "prova": true,
+    "costo": "",
+    "speciali": [],
+    "esiti": [
+     {
+      "colore": "green",
+      "req": "scienceDice / blueDie+blueDie",
+      "en": "Place your Crewmember in any Sector except Sector 8.",
+      "it": "Piazza il tuo Membro dell'Equipaggio in qualsiasi Settore tranne il Settore 8."
+     },
+     {
+      "colore": "red",
+      "req": "",
+      "en": "Roll [dangerDieI].",
+      "it": "Tira [dangerDieI]."
+     }
+    ],
+    "frecce": "Il triangolo rosso sopra la riga rossa la collega alla riga verde: con l'esito rosso si applica anche quello verde (ci si muove comunque)."
+   },
+   "dubbi": "Il riquadro in alto (icone = effetto, con parentesi bianche) è un Effetto Speciale grafico senza testo; trascritto in 'effetto_speciale' (presumibilmente aggiunto a tutte le Prove, come in G02). Nessuna traccia del Tempo sulla carta. Nessuna riga speciale accident nel TRAVEL. Freccia rossa: col rosso si applica anche il verde (piazzamento)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g33_10109.webp",
+   "nomi": [
+    "G33"
+   ],
+   "id": "G33",
+   "titolo": {
+    "en": "POWER REDIRECTED",
+    "it": "ENERGIA DEVIATA"
+   },
+   "testo_colore": {
+    "en": "We've rerouted power from the power field to other subsystems.",
+    "it": "Abbiamo deviato l'energia dal campo energetico ad altri sottosistemi."
+   },
+   "effetto_speciale": {
+    "req": "xenology+defence",
+    "effetto": {
+     "en": "Gain 2 Alien Tech Leads.",
+     "it": "Ottieni 2 Indizi Tecnologia Aliena."
+    }
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "",
+    "pericolo": [],
+    "prova": false,
+    "costo": "spendDie",
+    "testo": {
+     "en": "[spendDie] to move to a connected Sector.",
+     "it": "[spendDie] per muoverti in un Settore collegato."
+    },
+    "speciali": [],
+    "esiti": []
+   },
+   "tempo": {
+    "caselle": 2,
+    "en": "Go to Log 709.",
+    "it": "Vai all'Annotazione 709."
+   },
+   "dubbi": "Il riquadro in alto (icone = effetto, con parentesi bianche) è un Effetto Speciale grafico senza testo; trascritto in 'effetto_speciale' (presumibilmente aggiunto a tutte le Prove, come in G02)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/global_conditions/g35_10111.webp",
+   "nomi": [
+    "G35"
+   ],
+   "id": "G35",
+   "titolo": {
+    "en": "DEFENSE AND ISOLATION SYSTEM",
+    "it": "SISTEMA DI DIFESA E ISOLAMENTO"
+   },
+   "testo_colore": {
+    "en": "It's a system that separates the various sectors of the ship and the first line of defense during an internal attack!",
+    "it": "È un sistema che separa i vari settori della nave ed è la prima linea di difesa durante un attacco interno!"
+   },
+   "testo": {
+    "en": "When moving, Crewmembers and Threats can't use paths with markers. New EVAC: Log 578.",
+    "it": "Durante il movimento, i Membri dell'Equipaggio e le Minacce non possono usare sentieri con segnalini. Nuova EVAC: Annotazione 578."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "CLOSE/OPEN THE DOOR",
+      "it": "CHIUDI/APRI LA PORTA"
+     },
+     "tipo": "specialAction",
+     "icona": "diceCheck",
+     "pericolo": [
+      "dangerDieI"
+     ],
+     "prova": true,
+     "costo": "",
+     "condizione": {
+      "en": "You may perform this Action in any Sector with [important] or [hostile].",
+      "it": "Puoi eseguire questa Azione in qualsiasi Settore con [important] o [hostile]."
+     },
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "technology+scouting / greenDie+greenDie+redDie+redDie",
+       "en": "Place a marker on (or discard a marker from) a connected Path with a [travel].",
+       "it": "Piazza un segnalino su (o scarta un segnalino da) un Sentiero collegato con un [travel]."
+      },
+      {
+       "colore": "red",
+       "req": "",
+       "en": "Progress all Time Tracks by 1.",
+       "it": "Fai avanzare tutte le tracce del Tempo di 1."
+      }
+     ]
+    }
+   ],
+   "dubbi": "Nessun riquadro TRAVEL e nessuna traccia del Tempo. Testo regole in due riquadri separati (uniti in 'testo'). Dado Pericolo dell'azione letto come I. Seconda icona della condizione letta come hostile (mirino)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/g01/g01_9900.webp",
+   "nomi": [
+    "G01"
+   ],
+   "id": "G01",
+   "titolo": {
+    "en": "FLICKERING LIGHTS",
+    "it": "LUCI TREMOLANTI"
+   },
+   "testo_colore": {
+    "en": "The power ebbs through the structure, its ancient terminals flickering. The light makes travel a little easier.",
+    "it": "L'energia scorre a fiotti nella struttura e i suoi antichi terminali tremolano. La luce rende il viaggio un po' più facile."
+   },
+   "testo": {
+    "en": "You have unlimited Supplies in this Tutorial.",
+    "it": "In questo Tutorial hai Provviste illimitate."
+   },
+   "viaggio": {
+    "nome": {
+     "en": "TRAVEL",
+     "it": "VIAGGIO"
+    },
+    "sentiero": "travel",
+    "icona": "diceCheck",
+    "pericolo": [],
+    "prova": true,
+    "costo": "",
+    "speciali": [
+     {
+      "req": "accident",
+      "effetto": "outcomeRed"
+     }
+    ],
+    "esiti": [
+     {
+      "colore": "green",
+      "req": "scouting",
+      "en": "Refresh 2 [die], move to a connected Sector.",
+      "it": "Ricarica 2 [die], muoviti in un Settore collegato."
+     },
+     {
+      "colore": "red",
+      "req": "",
+      "en": "Move to a connected Sector.",
+      "it": "Muoviti in un Settore collegato."
+     }
+    ]
+   },
+   "tempo": {
+    "caselle": 3,
+    "en": "Go to Log 505.",
+    "it": "Vai all'Annotazione 505."
+   },
+   "dubbi": "Carta del Tutorial."
+  }
+ ]
+}

@@ -1,0 +1,576 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e03_206606.webp",
+   "nomi": [
+    "E03"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "JETPACK",
+    "it": "JETPACK"
+   },
+   "tipo": "personalEquipment",
+   "reparto": "recon",
+   "quando": "action",
+   "effetto": {
+    "en": "[spendDieRed]: Move to another connected Sector ignoring the Path icons – this counts as an Action.",
+    "it": "[spendDieRed]: Muoviti in un altro Settore collegato ignorando le icone del Sentiero – questo conta come un'Azione."
+   },
+   "costo": "spendDieRed",
+   "segnalino": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e06_206601.webp",
+   "nomi": [
+    "E06"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "PORTABLE LAB",
+    "it": "LABORATORIO PORTATILE"
+   },
+   "tipo": "personalEquipment",
+   "reparto": "science",
+   "quando": "passive",
+   "effetto": {
+    "en": "Crewmembers in your Sector may Assist using any number of cards.",
+    "it": "I Membri dell'Equipaggio nel tuo Settore possono Assistere usando un numero qualsiasi di carte."
+   },
+   "dubbi": "Titolo italiano non ufficiale.",
+   "segnalino": false
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e09_16600.webp",
+   "nomi": [
+    "E09"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "MINING PROBE",
+    "it": "SONDA MINERARIA"
+   },
+   "tipo": "missionEquipment",
+   "reparto": "engineering",
+   "quando": "action",
+   "effetto": {
+    "en": "[spendDieRed] / [spendDieBlue]: Place a Mining Probe token in your Sector – this counts as an Action.",
+    "it": "[spendDieRed] / [spendDieBlue]: Piazza un segnalino Sonda Mineraria nel tuo Settore – questo conta come un'Azione."
+   },
+   "costo": "spendDieRed / spendDieBlue",
+   "traccia": {
+    "caselle": 3,
+    "en": "Gain 2 Mineral Leads and reset this track.",
+    "it": "Ottieni 2 Indizi Minerale e azzera questa traccia."
+   },
+   "segnalino": true,
+   "dubbi": "Traccia di 3 caselle (») in basso: il momento in cui avanza non è stampato sulla carta (probabilmente come le tracce del Tempo). Titolo italiano non ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e12_15103.webp",
+   "nomi": [
+    "E12"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "STIMULANTS",
+    "it": "STIMOLANTI"
+   },
+   "tipo": "personalEquipment",
+   "quando": "anytime",
+   "effetto": {
+    "en": "Roll [dangerDieA]. Then, each Crewmember in your Sector Refreshes 3 [die]. Return this card to the Armory.",
+    "it": "Tira [dangerDieA]. Poi, ogni Membro dell'Equipaggio nel tuo Settore Ricarica 3 [die]. Rimetti questa carta nell'Armeria."
+   },
+   "dubbi": "Nessun momento d'uso stampato: messo 'anytime'. Nessuna icona di reparto (carta grigia).",
+   "segnalino": false
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e15_13606.webp",
+   "nomi": [
+    "E15"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "JETPACK",
+    "it": "JETPACK"
+   },
+   "tipo": "personalEquipment",
+   "quando": "action",
+   "effetto": {
+    "en": "[spendDieRed]: Move to another connected Sector ignoring the Path icons – this counts as an Action.",
+    "it": "[spendDieRed]: Muoviti in un altro Settore collegato ignorando le icone del Sentiero – questo conta come un'Azione."
+   },
+   "costo": "spendDieRed",
+   "dubbi": "Stesso testo della carta E03 ma senza icona di reparto (carta grigia).",
+   "segnalino": false
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e18_7901.webp",
+   "nomi": [
+    "E18"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "GREEN NUTRIENT",
+    "it": "NUTRIENTE VERDE"
+   },
+   "tipo": "smallEquipment",
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check, you may return this card to the Armory and reroll any number of [greenDie].",
+    "it": "Durante una Prova, puoi rimettere questa carta nell'Armeria e ritirare un numero qualsiasi di [greenDie]."
+   },
+   "dubbi": "Titolo italiano non ufficiale.",
+   "segnalino": false
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e21_30504.webp",
+   "nomi": [
+    "E21"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "PROTECTIVE SUIT MK1",
+    "it": "TUTA PROTETTIVA MK1"
+   },
+   "tipo": "personalEquipment",
+   "quando": "on_danger_roll",
+   "effetto": {
+    "en": "You may only carry 1 Suit. Whenever you roll a Danger die in Sectors with [volvanic], [void], [crystalline], or [hostile]: you may 2 [spendDie] to ignore that roll's effect.",
+    "it": "Puoi portare solo 1 Tuta. Ogni volta che tiri un dado Pericolo in Settori con [volvanic], [void], [crystalline] o [hostile]: puoi spendere 2 [spendDie] per ignorare l'effetto di quel tiro."
+   },
+   "biomi": [
+    "volvanic",
+    "void",
+    "crystalline",
+    "hostile"
+   ],
+   "dubbi": "Terza icona bioma letta come crystalline (schegge appuntite), non vegetation. Il testo dice letteralmente 'you may 2 [spendDie]'.",
+   "segnalino": false
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e24_7907.webp",
+   "nomi": [
+    "E24"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "HAZMAT SUIT",
+    "it": "TUTA ANTI-CONTAMINAZIONE"
+   },
+   "tipo": "personalEquipment",
+   "reparto": "engineering",
+   "quando": "on_danger_roll",
+   "effetto": {
+    "en": "You may only carry 1 Suit. [spendDieBlue] / [spendDie] + [spendDie]: Reroll a Danger die in your roll (once per roll).",
+    "it": "Puoi portare solo 1 Tuta. [spendDieBlue] / [spendDie] + [spendDie]: Ritira un dado Pericolo nel tuo tiro (una volta per tiro)."
+   },
+   "costo": "spendDieBlue / spendDie+spendDie",
+   "dubbi": "Titolo italiano non ufficiale.",
+   "segnalino": false
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e27_7910.webp",
+   "nomi": [
+    "E27"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "SENSOR SUIT",
+    "it": "TUTA SENSORIALE"
+   },
+   "tipo": "personalEquipment",
+   "reparto": "science",
+   "quando": "passive",
+   "effetto": {
+    "en": "You may only carry 1 Suit. Whenever you gain a Lead during a Dice Check, gain 1 additional Lead of the same type.",
+    "it": "Puoi portare solo 1 Tuta. Ogni volta che ottieni un Indizio durante una Prova, ottieni 1 Indizio aggiuntivo dello stesso tipo."
+   },
+   "dubbi": "Titolo italiano non ufficiale.",
+   "segnalino": false
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e30_7913.webp",
+   "nomi": [
+    "E30"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "STILLSUIT",
+    "it": "TUTA DISTILLANTE"
+   },
+   "tipo": "personalEquipment",
+   "reparto": "recon",
+   "quando": "on_exert",
+   "effetto": {
+    "en": "You may only carry 1 Suit. Whenever you Exert, Refresh 1 [die] more.",
+    "it": "Puoi portare solo 1 Tuta. Ogni volta che fai uno Sforzo, Ricarica 1 [die] in più."
+   },
+   "dubbi": "Titolo italiano non ufficiale.",
+   "segnalino": false
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e34_7916.webp",
+   "nomi": [
+    "E34"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "ANDROID BODYGUARD",
+    "it": "GUARDIA DEL CORPO ANDROIDE"
+   },
+   "tipo": "personalEquipment",
+   "reparto": "security",
+   "quando": "passive",
+   "effetto": {
+    "en": "Convert Ability: [redDie basic] = [physical] or [redDie basic] = [defence]",
+    "it": "Abilità di Conversione: [redDie basic] = [physical] oppure [redDie basic] = [defence]"
+   },
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "physical / defence"
+   },
+   "dubbi": "Conversione con due alternative (physical o defence).",
+   "segnalino": false
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e37_7919.webp",
+   "nomi": [
+    "E37"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "ENERGY SHIELD",
+    "it": "SCUDO ENERGETICO"
+   },
+   "tipo": "smallEquipment",
+   "reparto": "security",
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [physical] + [defence] / [redDie] to this Roll Pool. After the Dice Check, return this card to the Armory.",
+    "it": "Durante una Prova, puoi piazzare questa carta nella Riserva del Tiro di un qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [physical] + [defence] / [redDie] a questa Riserva del Tiro. Dopo la Prova, rimetti questa carta nell'Armeria."
+   },
+   "aggiungi": "physical+defence / redDie",
+   "segnalino": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e40_17102.webp",
+   "nomi": [
+    "E40"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "MAPPING MINIDRONES",
+    "it": "MINIDRONI CARTOGRAFICI"
+   },
+   "tipo": "smallEquipment",
+   "reparto": "recon",
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [scouting] + [biology] / [greenDie] to this Roll Pool. After the Dice Check, return this card to the Armory.",
+    "it": "Durante una Prova, puoi piazzare questa carta nella Riserva del Tiro di un qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [scouting] + [biology] / [greenDie] a questa Riserva del Tiro. Dopo la Prova, rimetti questa carta nell'Armeria."
+   },
+   "aggiungi": "scouting+biology / greenDie",
+   "segnalino": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e43_17105.webp",
+   "nomi": [
+    "E43"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "MULTITOOL",
+    "it": "MULTIUTENSILE"
+   },
+   "tipo": "smallEquipment",
+   "reparto": "engineering",
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [construction] + [technology] / [blueDie] to this Roll Pool. After the Dice Check, return this card to the Armory.",
+    "it": "Durante una Prova, puoi piazzare questa carta nella Riserva del Tiro di un qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [construction] + [technology] / [blueDie] a questa Riserva del Tiro. Dopo la Prova, rimetti questa carta nell'Armeria."
+   },
+   "aggiungi": "construction+technology / blueDie",
+   "segnalino": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e46_18300.webp",
+   "nomi": [
+    "E46"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "ORGANIC ACTUATOR",
+    "it": "ATTUATORE ORGANICO"
+   },
+   "tipo": "smallEquipment",
+   "reparto": "recon",
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [physical] + [scouting] / [blueDie] to this Roll Pool. After the Dice Check, return this card to the Armory.",
+    "it": "Durante una Prova, puoi piazzare questa carta nella Riserva del Tiro di un qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [physical] + [scouting] / [blueDie] a questa Riserva del Tiro. Dopo la Prova, rimetti questa carta nell'Armeria."
+   },
+   "aggiungi": "physical+scouting / blueDie",
+   "dubbi": "L'alternativa è un dado blu (verificato ingrandendo), anche se physical è rosso e scouting verde.",
+   "segnalino": false
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e49_18303.webp",
+   "nomi": [
+    "E49"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "STIMULANT INJECTOR",
+    "it": "INIETTORE DI STIMOLANTI"
+   },
+   "tipo": "smallEquipment",
+   "reparto": "security",
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check, you may return this card to the Armory and reroll up to 5 [die].",
+    "it": "Durante una Prova, puoi rimettere questa carta nell'Armeria e ritirare fino a 5 [die]."
+   },
+   "segnalino": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e52_18306.webp",
+   "nomi": [
+    "E52"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "STIMULANT INJECTOR",
+    "it": "INIETTORE DI STIMOLANTI"
+   },
+   "tipo": "smallEquipment",
+   "reparto": "recon",
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check, you may return this card to the Armory and reroll up to 5 [die].",
+    "it": "Durante una Prova, puoi rimettere questa carta nell'Armeria e ritirare fino a 5 [die]."
+   },
+   "dubbi": "Stessa carta di E49 ma con reparto recon.",
+   "segnalino": false
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e55_18309.webp",
+   "nomi": [
+    "E55"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "STASIS SUIT MK2",
+    "it": "TUTA STASI MK2"
+   },
+   "tipo": "personalEquipment",
+   "quando": "passive",
+   "effetto": {
+    "en": "You may only carry 1 Suit. Roll 2 Injury dice less in Sectors with [vegetation], [desert], [water], [frigid] or [void].",
+    "it": "Puoi portare solo 1 Tuta. Tira 2 dadi Ferita in meno nei Settori con [vegetation], [desert], [water], [frigid] o [void]."
+   },
+   "biomi": [
+    "vegetation",
+    "desert",
+    "water",
+    "frigid",
+    "void"
+   ],
+   "dubbi": "Titolo italiano non ufficiale.",
+   "segnalino": false
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e58_18312.webp",
+   "nomi": [
+    "E58"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "EXPANSION (OUTPOST UPGRADE)",
+    "it": "ESPANSIONE (POTENZIAMENTO AVAMPOSTO)"
+   },
+   "tipo": "missionEquipmentUpgrades",
+   "reparto": "engineering",
+   "quando": "action",
+   "effetto": {
+    "en": "[spendDieRed] + [spendDieBlue]: If there is an Outpost token in your Sector, place the Expansion token in your Sector – this counts as an Action. Attach this card to the Outpost card so that the bottom part is visible. It expands the Outpost card rules. The Outpost effect also applies to connected Sectors.",
+    "it": "[spendDieRed] + [spendDieBlue]: Se c'è un segnalino Avamposto nel tuo Settore, piazza il segnalino Espansione nel tuo Settore – questo conta come un'Azione. Attacca questa carta alla carta Avamposto in modo che la parte inferiore sia visibile. Espande le regole della carta Avamposto. L'effetto dell'Avamposto si applica anche ai Settori collegati."
+   },
+   "costo": "spendDieRed+spendDieBlue",
+   "potenzia": "Outpost",
+   "segnalino": true,
+   "dubbi": "Chevron ai lati (^ in alto, v in basso) per l'incastro con la carta Avamposto. La parte che resta visibile dopo l'aggancio è l'ultima frase."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e61_18400.webp",
+   "nomi": [
+    "E61"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "POD LAUNCHER",
+    "it": "LANCIATORE DI CAPSULE"
+   },
+   "tipo": "missionEquipment",
+   "reparto": "recon",
+   "quando": "action",
+   "effetto": {
+    "en": "[spendDieRed] + [spendDieGreen]: Place a Launcher token and Pod token in your Sector – this counts as an Action. Crewmembers in a Sector with both the Launcher and Pod tokens are considered to be in the Lander Sector for the purpose of any rules. They may also [spendDie], discard the Pod token, and flip this card to place 1 non-unique Discovery from the Lander board in Gathered Discoveries.",
+    "it": "[spendDieRed] + [spendDieGreen]: Piazza un segnalino Lanciatore e un segnalino Capsula nel tuo Settore – questo conta come un'Azione. I Membri dell'Equipaggio in un Settore con entrambi i segnalini Lanciatore e Capsula sono considerati nel Settore del Lander ai fini di tutte le regole. Possono anche [spendDie], scartare il segnalino Capsula e girare questa carta per piazzare 1 Scoperta non eccezionale dalla plancia del Lander nelle Scoperte Raccolte."
+   },
+   "costo": "spendDieRed+spendDieGreen",
+   "segnalino": true,
+   "dubbi": "'non-unique Discovery' tradotto 'Scoperta non eccezionale'; la carta ha un retro (flip) non incluso nel lotto."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e64_18317.webp",
+   "nomi": [
+    "E64"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "CANNON UNIT (MODULAR TURRET UPGRADE)",
+    "it": "UNITÀ CANNONE (POTENZIAMENTO TORRETTA MODULARE)"
+   },
+   "tipo": "missionEquipmentUpgrades",
+   "reparto": "security",
+   "quando": "action",
+   "effetto": {
+    "en": "[spendDieRed] (If there is a Modular Turret token in your Sector, but no Shield Unit token): Place the Cannon Unit token in your Sector – this counts as an Action. Attach this card to the Modular Turret card so that the bottom part is visible. It expands the Modular Turret card rules. Once per Threat's Dice Check: Crewmembers in a Sector with a Modular Turret token or connected Sectors may discard 1 of its markers to [outcomeGreenProgress].",
+    "it": "[spendDieRed] (Se c'è un segnalino Torretta Modulare nel tuo Settore, ma nessun segnalino Unità Scudo): Piazza il segnalino Unità Cannone nel tuo Settore – questo conta come un'Azione. Attacca questa carta alla carta Torretta Modulare in modo che la parte inferiore sia visibile. Espande le regole della carta Torretta Modulare. Una volta per Prova di una Minaccia: i Membri dell'Equipaggio in un Settore con un segnalino Torretta Modulare o nei Settori collegati possono scartare 1 dei suoi segnalini per [outcomeGreenProgress]."
+   },
+   "costo": "spendDieRed",
+   "potenzia": "Modular Turret",
+   "segnalino": true,
+   "dubbi": "Chevron ^ ai lati per l'incastro con la carta Torretta Modulare. 'its markers' = i segnalini sulla Torretta (ambiguo)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e67_18320.webp",
+   "nomi": [
+    "E67"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "ADAPTIVE DROID",
+    "it": "DROIDE ADATTIVO"
+   },
+   "tipo": "smallEquipment",
+   "reparto": "recon",
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [vanguard] + [vanguard] to this Roll Pool. After the Dice Check, return this card to the Armory.",
+    "it": "Durante una Prova, puoi piazzare questa carta nella Riserva del Tiro di un qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [vanguard] + [vanguard] a questa Riserva del Tiro. Dopo la Prova, rimetti questa carta nell'Armeria."
+   },
+   "aggiungi": "vanguard+vanguard",
+   "segnalino": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e71_18323.webp",
+   "nomi": [
+    "E71"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "PORTABLE TIMEWARPER",
+    "it": "DISTORSORE TEMPORALE PORTATILE"
+   },
+   "tipo": "personalEquipment",
+   "reparto": "security",
+   "quando": "anytime",
+   "effetto": {
+    "en": "Discard any number of Time tokens from any tracks. Then, return this card to the Armory.",
+    "it": "Scarta un numero qualsiasi di segnalini Tempo da qualsiasi traccia. Poi, rimetti questa carta nell'Armeria."
+   },
+   "dubbi": "Nessun momento d'uso stampato: messo 'anytime'.",
+   "segnalino": false
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e74_18326.webp",
+   "nomi": [
+    "E74"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "SUBSPACE CONTAINER",
+    "it": "CONTENITORE SUBSPAZIALE"
+   },
+   "tipo": "personalEquipment",
+   "reparto": "engineering",
+   "quando": "anytime",
+   "effetto": {
+    "en": "[spendDieBlue] + [spendDieBlue] + [spendDieBlue]: Take up to 2 Personal Engineering Equipment cards or 1 Mission Engineering Equipment card from the Armory and place them near your Crew board. Then, return this card to the Armory.",
+    "it": "[spendDieBlue] + [spendDieBlue] + [spendDieBlue]: Prendi fino a 2 carte Attrezzatura Personale di Ingegneria o 1 carta Attrezzatura da Missione di Ingegneria dall'Armeria e piazzale vicino alla tua plancia dell'Equipaggio. Poi, rimetti questa carta nell'Armeria."
+   },
+   "costo": "3*spendDieBlue",
+   "dubbi": "Non dice 'counts as an Action': messo 'anytime'.",
+   "segnalino": false
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e77_18329.webp",
+   "nomi": [
+    "E77"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "TZO MECHASUIT: GUARDIAN",
+    "it": "MECHATUTA TZO: GUARDIANO"
+   },
+   "tipo": "missionEquipment",
+   "quando": "on_danger_roll",
+   "effetto": {
+    "en": "You may only carry 1 Suit. No effect can force you to return this card to the Armory. You cannot give this card to another Crewmember. If there's no marker on this card, you may place a marker here to reroll your Danger die (or one rolled by any other Crewmember in your Sector). At the start of your turn, remove a marker from this card.",
+    "it": "Puoi portare solo 1 Tuta. Nessun effetto può costringerti a rimettere questa carta nell'Armeria. Non puoi dare questa carta a un altro Membro dell'Equipaggio. Se non c'è nessun segnalino su questa carta, puoi piazzarne uno qui per ritirare il tuo dado Pericolo (o uno tirato da un qualsiasi altro Membro dell'Equipaggio nel tuo Settore). All'inizio del tuo turno, rimuovi un segnalino da questa carta."
+   },
+   "segnalino": false,
+   "marker_su_carta": true,
+   "dubbi": "Tipo missionEquipment (icona rover) pur essendo una Tuta. Usa un marker sulla carta stessa, non sulla plancia: segnalino=false."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e101_18332.webp",
+   "nomi": [
+    "E101"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "IMPROVISED OUTPOST",
+    "it": "AVAMPOSTO IMPROVVISATO"
+   },
+   "tipo": "missionEquipment",
+   "quando": "passive",
+   "effetto": {
+    "en": "You may ignore Flower Bug's Poison and Weaken attacks in the Sector with this Outpost.",
+    "it": "Puoi ignorare gli attacchi Veleno e Indebolimento dell'Insetto Fiore nel Settore con questo Avamposto."
+   },
+   "dubbi": "Carta Avamposto di missione specifica (Flower Bug = Minaccia; nomi italiani 'Insetto Fiore', 'Veleno', 'Indebolimento' non ufficiali). Chevron v in basso ai lati per agganciare i potenziamenti. Non è stampato come si piazza il segnalino Avamposto.",
+   "segnalino": false
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e104_18335.webp",
+   "nomi": [
+    "E104"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "IMPROVISED OXYGEN FARM (FINAL OUTPOST UPGRADE)",
+    "it": "FATTORIA DI OSSIGENO IMPROVVISATA (POTENZIAMENTO FINALE DELL'AVAMPOSTO)"
+   },
+   "tipo": "missionEquipmentUpgrades",
+   "quando": "on_rest",
+   "effetto": {
+    "en": "Each Crewmember in any Sector Refreshes 1 [die] more when Resting.",
+    "it": "Ogni Membro dell'Equipaggio in qualsiasi Settore Ricarica 1 [die] in più quando fa Riposo."
+   },
+   "potenzia": "Outpost",
+   "dubbi": "Mostra solo la parte inferiore/effetto: nessun costo o istruzione di piazzamento visibile. Chevron ^ ai lati.",
+   "segnalino": false
+  }
+ ]
+}

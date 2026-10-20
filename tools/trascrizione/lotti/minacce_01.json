@@ -1,0 +1,166 @@
+{
+ "tipo": "minacce",
+ "immagini": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/scintillating_shardfly/scintillating_shardfly_7900.webp",
+   "nomi": [
+    "Scintillating Shardfly"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/re_origination_beam/re_origination_beam_7810.webp",
+   "nomi": [
+    "Re-Origination Beam"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/ophthalmoid/ophthalmoid_7811.webp",
+   "nomi": [
+    "Ophthalmoid"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/maw/maw_7801.webp",
+   "nomi": [
+    "Maw"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/magnacereb/magnacereb_7808.webp",
+   "nomi": [
+    "Magnacereb"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/idemian_pilgrim/idemian_pilgrim_19304.webp",
+   "nomi": [
+    "Idemian Pilgrim"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/hunters_become_prey/hunters_become_prey_7902.webp",
+   "nomi": [
+    "Hunters Become Prey"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/guardian_metahedron/guardian_metahedron_7807.webp",
+   "nomi": [
+    "Guardian Metahedron"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/gravity_rift/gravity_rift_7805.webp",
+   "nomi": [
+    "Gravity Rift"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/flower_bug/flower_bug_7901.webp",
+   "nomi": [
+    "Flower Bug"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/enraptured_visitor/enraptured_visitor_7800.webp",
+   "nomi": [
+    "Enraptured Visitor"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/dust_storm/dust_storm_7906.webp",
+   "nomi": [
+    "Dust Storm"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/converted_arrogator_behemoth/converted_arrogator_behemoth_7802.webp",
+   "nomi": [
+    "Converted Arrogator Behemoth"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/carnivorous_thicket/carnivorous_thicket_17907.webp",
+   "nomi": [
+    "Carnivorous Thicket"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/builder_s_biomebot/builder_s_biomebot_7806.webp",
+   "nomi": [
+    "Builder's Biomebot"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bombardment/bombardment_19103.webp",
+   "nomi": [
+    "Bombardment"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/arrogator_warswarm/arrogator_warswarm_19105.webp",
+   "nomi": [
+    "Arrogator Warswarm"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/arrogator_guardian/arrogator_guardian_7809.webp",
+   "nomi": [
+    "Arrogator Guardian"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/arrogator_behemoth/arrogator_behemoth_17308.webp",
+   "nomi": [
+    "Arrogator Behemoth"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/aerugon_saboteur/aerugon_saboteur_7804.webp",
+   "nomi": [
+    "Aerugon Saboteur"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/adaptive_shield/adaptive_shield_33403.webp",
+   "nomi": [
+    "Adaptive Shield"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/kurma/kurma_33309.webp",
+   "nomi": [
+    "Kurma"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/apex_predator/apex_predator_33110.webp",
+   "nomi": [
+    "Apex Predator"
+   ],
+   "lato": "fronte"
+  }
+ ]
+}

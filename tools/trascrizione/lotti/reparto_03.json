@@ -1,0 +1,138 @@
+{
+ "tipo": "reparto",
+ "immagini": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_iii_engineering/32408.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_engineering/8620.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_engineering/8617.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_engineering/8514.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_engineering/1305.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_iii_recon/32802.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_recon/17413.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_recon/17410.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_recon/1411.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_recon/1412.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_iii_science/32615.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_iii_science/32612.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_science/8423.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_science/1501.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_science/8421.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_science/1503.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_iii_security/32906.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_security/17602.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_security/17603.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_security/1616.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_security/1617.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/backup_plan/backup_plan_35409.webp",
+   "nomi": [
+    "Backup Plan"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/improvised_treatment/improvised_treatment_35102.webp",
+   "nomi": [
+    "Improvised Treatment"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/born_lucky/born_lucky_35007.webp",
+   "nomi": [
+    "Born Lucky"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/emergency_shelter/emergency_shelter_34904.webp",
+   "nomi": [
+    "Emergency Shelter"
+   ],
+   "lato": "fronte"
+  }
+ ]
+}

@@ -1,0 +1,215 @@
+{
+ "tipo": "missioni",
+ "immagini": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m10_12403.webp",
+   "nomi": [
+    "M10"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m10_12305.webp",
+   "nomi": [
+    "M10"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m22_12407.webp",
+   "nomi": [
+    "M22"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m31_12709.webp",
+   "nomi": [
+    "M31"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m33_12411.webp",
+   "nomi": [
+    "M33"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m35_12413.webp",
+   "nomi": [
+    "M35"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m41_12500.webp",
+   "nomi": [
+    "M41"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m50_12502.webp",
+   "nomi": [
+    "M50"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m52_12504.webp",
+   "nomi": [
+    "M52"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m72_12506.webp",
+   "nomi": [
+    "M72"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m74_12508.webp",
+   "nomi": [
+    "M74"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m90_12510.webp",
+   "nomi": [
+    "M90"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m91_12512.webp",
+   "nomi": [
+    "M91"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m101_12514.webp",
+   "nomi": [
+    "M101"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m103_18701.webp",
+   "nomi": [
+    "M103"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m111_18703.webp",
+   "nomi": [
+    "M111"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m113_18705.webp",
+   "nomi": [
+    "M113"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m120_18707.webp",
+   "nomi": [
+    "M120"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m122_18709.webp",
+   "nomi": [
+    "M122"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m130_18711.webp",
+   "nomi": [
+    "M130"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m132_18713.webp",
+   "nomi": [
+    "M132"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m134_18715.webp",
+   "nomi": [
+    "M134"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m141_18717.webp",
+   "nomi": [
+    "M141"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m161_18719.webp",
+   "nomi": [
+    "M161"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m170_18721.webp",
+   "nomi": [
+    "M170"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m172_18723.webp",
+   "nomi": [
+    "M172"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m181_18725.webp",
+   "nomi": [
+    "M181"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m201_18727.webp",
+   "nomi": [
+    "M201"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m210_18729.webp",
+   "nomi": [
+    "M210"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions_from_tutorial_deck_a/m03_12402.webp",
+   "nomi": [
+    "M03"
+   ],
+   "lato": "fronte"
+  }
+ ]
+}

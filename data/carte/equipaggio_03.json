@@ -1,0 +1,664 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/owen_34410.webp",
+   "nomi": [
+    "Owen"
+   ],
+   "lato": "fronte",
+   "nome": "OWEN CAMPBELL",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "scouting"
+   },
+   "abilita": {
+    "nome": "FORECAST",
+    "en": "Anytime: Spend 1 Charge to discard an Event card you just drew without resolving its text.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per scartare una carta Evento che hai appena pescato senza risolverne il testo."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Dado rosso convertito in scouting (faccia normalmente verde): trascritto come stampato. Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/klara_32935.webp",
+   "nomi": [
+    "Klara"
+   ],
+   "lato": "fronte",
+   "nome": "KLARA ATLADÓTTIR",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "construction"
+   },
+   "abilita": {
+    "nome": "SYSTEMATIC",
+    "en": "Anytime: Spend 1 Charge to Refresh all [greenDie].",
+    "it": "In qualsiasi momento: Spendi 1 Carica per Ricaricare tutti i [greenDie]."
+   },
+   "cariche": 1,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Conversione da dado blu, ma l'abilità Ricarica i [greenDie] (verificato ingrandendo): trascritto come stampato. Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/maeda_32903.webp",
+   "nomi": [
+    "Maeda"
+   ],
+   "lato": "fronte",
+   "nome": "MAEDA AYUMI",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "scienceDice"
+   },
+   "abilita": {
+    "nome": "SELFLESS",
+    "en": "When Assisting: Spend 1 Charge to Assist with any number of [die] instead of 1. After the Dice Check, return those [die] to your Available dice.",
+    "it": "Quando Assisti: Spendi 1 Carica per Assistere con un numero qualsiasi di [die] invece di 1. Dopo la Prova, riporta quei [die] tra i tuoi dadi Disponibili."
+   },
+   "cariche": 1,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Il dado da convertire è rosso ma l'icona risultante è scienceDice (faccia normalmente blu): trascritto come stampato. Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/ewald_32923.webp",
+   "nomi": [
+    "Ewald"
+   ],
+   "lato": "fronte",
+   "nome": "EWALD MAAL",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "defence"
+   },
+   "abilita": {
+    "nome": "TEAM PLAYER",
+    "en": "When Assisting: Spend 1 Charge to Assist with 2 [die] instead of 1. After the Dice Check, return those [die] to your Available dice.",
+    "it": "Quando Assisti: Spendi 1 Carica per Assistere con 2 [die] invece di 1. Dopo la Prova, riporta quei [die] tra i tuoi dadi Disponibili."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/masika_34603.webp",
+   "nomi": [
+    "Masika"
+   ],
+   "lato": "fronte",
+   "nome": "MASIKA SALAH",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "xenology"
+   },
+   "abilita": {
+    "nome": "BRUTE FORCE",
+    "en": "Anytime: Spend 1 Charge, then discard any number of cards. Refresh 1 [die] for every discarded card.",
+    "it": "In qualsiasi momento: Spendi 1 Carica, poi scarta un numero qualsiasi di carte. Ricarica 1 [die] per ogni carta scartata."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/betty_32804.webp",
+   "nomi": [
+    "Betty"
+   ],
+   "lato": "fronte",
+   "nome": "BETTY CONVILLE",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "biology"
+   },
+   "abilita": {
+    "nome": "SEARCHER",
+    "en": "Anytime: Spend 1 Charge to gain a Discovery from a deck with any 3 Lead tokens.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per ottenere una Scoperta da un mazzo con 3 segnalini Indizio qualsiasi."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/yut_34601.webp",
+   "nomi": [
+    "Yut"
+   ],
+   "lato": "fronte",
+   "nome": "YUT NIMAWAN",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "scouting"
+   },
+   "abilita": {
+    "nome": "PROTECTOR",
+    "en": "Anytime: When any Crewmember in your Sector would gain an Injury, spend 1 Charge to discard it (with an Injury die) instead.",
+    "it": "In qualsiasi momento: Quando un qualsiasi Membro dell'Equipaggio nel tuo Settore subirebbe una Ferita, spendi 1 Carica per scartarla (con un dado Ferita) invece."
+   },
+   "cariche": 1,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Traduzione di 'discard it (with an Injury die) instead' da verificare con la terminologia ufficiale. Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/rica_32933.webp",
+   "nomi": [
+    "Rica"
+   ],
+   "lato": "fronte",
+   "nome": "RICA DE GRAAF",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "gathering"
+   },
+   "abilita": {
+    "nome": "WELL-TRAINED",
+    "en": "Anytime: Spend 1 Charge to draw 2 cards from your Section deck.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per pescare 2 carte dal tuo mazzo Reparto."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/raven_34600.webp",
+   "nomi": [
+    "Raven"
+   ],
+   "lato": "fronte",
+   "nome": "RAVEN TYSON",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "gathering"
+   },
+   "abilita": {
+    "nome": "ALERTNESS",
+    "en": "Anytime: Spend 1 Charge to ignore the result of 1 Danger die.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per ignorare il risultato di 1 dado Pericolo."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/jaromir_32936.webp",
+   "nomi": [
+    "Jaromir"
+   ],
+   "lato": "fronte",
+   "nome": "JAROMIR GOLUBOV",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "technology"
+   },
+   "abilita": {
+    "nome": "TEAM PLAYER",
+    "en": "When Assisting: Spend 1 Charge to Assist with 2 [die] instead of 1. After the Dice Check, return those [die] to your Available dice.",
+    "it": "Quando Assisti: Spendi 1 Carica per Assistere con 2 [die] invece di 1. Dopo la Prova, riporta quei [die] tra i tuoi dadi Disponibili."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/samarth_32808.webp",
+   "nomi": [
+    "Samarth"
+   ],
+   "lato": "fronte",
+   "nome": "SAMARTH RAMPRAKASH",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "physical"
+   },
+   "abilita": {
+    "nome": "ADAPTIVE",
+    "en": "During a Dice Check: Spend 1 Charge to turn 1 [die] to a chosen side.",
+    "it": "Durante una Prova: Spendi 1 Carica per girare 1 [die] su una faccia a scelta."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/a_ssata_34411.webp",
+   "nomi": [
+    "Aïssata"
+   ],
+   "lato": "fronte",
+   "nome": "AÏSSATA SAMA",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "defence"
+   },
+   "abilita": {
+    "nome": "SYSTEMATIC",
+    "en": "Anytime: Spend 1 Charge to Refresh all [greenDie].",
+    "it": "In qualsiasi momento: Spendi 1 Carica per Ricaricare tutti i [greenDie]."
+   },
+   "cariche": 1,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/sabah_32922.webp",
+   "nomi": [
+    "Sabah"
+   ],
+   "lato": "fronte",
+   "nome": "SABAH ALKAABI",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "xenology"
+   },
+   "abilita": {
+    "nome": "ADVISOR",
+    "en": "When Assisting: Spend 1 Charge to Assist a Crewmember in any Sector.",
+    "it": "Quando Assisti: Spendi 1 Carica per Assistere un Membro dell'Equipaggio in qualsiasi Settore."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/qamil_32912.webp",
+   "nomi": [
+    "Qamil"
+   ],
+   "lato": "fronte",
+   "nome": "QAMIL NAJJAR",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "scouting"
+   },
+   "abilita": {
+    "nome": "ENERGETIC",
+    "en": "When Resting: Spend 1 Charge to Refresh 1 [die] more and draw 1 additional card.",
+    "it": "Durante il Riposo: Spendi 1 Carica per Ricaricare 1 [die] in più e pescare 1 carta aggiuntiva."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/sheryl_34504.webp",
+   "nomi": [
+    "Sheryl"
+   ],
+   "lato": "fronte",
+   "nome": "SHERYL HAYES",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "defence"
+   },
+   "abilita": {
+    "nome": "ADAPTIVE",
+    "en": "During a Dice Check: Spend 1 Charge to turn 1 [die] to a chosen side.",
+    "it": "Durante una Prova: Spendi 1 Carica per girare 1 [die] su una faccia a scelta."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/giovanna_32806.webp",
+   "nomi": [
+    "Giovanna"
+   ],
+   "lato": "fronte",
+   "nome": "GIOVANNA NELLI",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "biology"
+   },
+   "abilita": {
+    "nome": "GRIT",
+    "en": "During a Dice Check: Spend 1 Charge to ignore the results of all your Injury dice.",
+    "it": "Durante una Prova: Spendi 1 Carica per ignorare i risultati di tutti i tuoi dadi Ferita."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/millie_32930.webp",
+   "nomi": [
+    "Millie"
+   ],
+   "lato": "fronte",
+   "nome": "MILLIE PETERS",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "physical"
+   },
+   "abilita": {
+    "nome": "ALPHA",
+    "en": "During a Dice Check: Spend 1 Charge to choose a Crewmember Assisting you and turn 1 [die] in their Roll Pool to any result.",
+    "it": "Durante una Prova: Spendi 1 Carica per scegliere un Membro dell'Equipaggio che ti sta Assistendo e girare 1 [die] nella sua Riserva del Tiro su un risultato qualsiasi."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/meghan_32914.webp",
+   "nomi": [
+    "Meghan"
+   ],
+   "lato": "fronte",
+   "nome": "MEGHAN CLARKE",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "construction"
+   },
+   "abilita": {
+    "nome": "METHODICAL",
+    "en": "Anytime: Spend 1 Charge to Refresh all [blueDie].",
+    "it": "In qualsiasi momento: Spendi 1 Carica per Ricaricare tutti i [blueDie]."
+   },
+   "cariche": 1,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/carles_34503.webp",
+   "nomi": [
+    "Carles"
+   ],
+   "lato": "fronte",
+   "nome": "CARLES PORRA",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "technology"
+   },
+   "abilita": {
+    "nome": "TRUMP CARD",
+    "en": "Anytime: Spend 1 Charge to take 1 card of any Rank from your Section Compartment to your hand.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per prendere in mano 1 carta di qualsiasi Grado dal tuo Compartimento del Reparto."
+   },
+   "cariche": 1,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "'Section Compartment' tradotto 'Compartimento del Reparto' (termine non nel glossario). Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/elizabeth_32927.webp",
+   "nomi": [
+    "Elizabeth"
+   ],
+   "lato": "fronte",
+   "nome": "ELIZABETH LOGUE",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "xenology"
+   },
+   "abilita": {
+    "nome": "COMPETENT",
+    "en": "Anytime: Spend 1 Charge to draw a chosen card from your discard pile.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per pescare una carta a scelta dalla tua pila degli scarti."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/waylon_32921.webp",
+   "nomi": [
+    "Waylon"
+   ],
+   "lato": "fronte",
+   "nome": "WAYLON COLLEY",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "gathering"
+   },
+   "abilita": {
+    "nome": "LOADER",
+    "en": "Anytime: Spend 1 Charge to take a chosen Small or Personal Equipment card from the Armory.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per prendere una carta Attrezzatura Piccola o Personale a scelta dall'Armeria."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "'Armory' = Armeria; 'Small/Personal Equipment' = Attrezzatura Piccola/Personale (termini non nel glossario). Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/l_nh_34502.webp",
+   "nomi": [
+    "Lành"
+   ],
+   "lato": "fronte",
+   "nome": "LÀNH PHAN",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "technology"
+   },
+   "abilita": {
+    "nome": "FOLLOWER",
+    "en": "Anytime: When another Crewmember Travels from your Sector, spend 1 Charge to move with them, ignoring Path icons.",
+    "it": "In qualsiasi momento: Quando un altro Membro dell'Equipaggio effettua un Viaggio dal tuo Settore, spendi 1 Carica per muoverti con lui, ignorando le icone dei Sentieri."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "'Travels' tradotto come 'effettua un Viaggio'; 'Path icons' = icone dei Sentieri (termine non nel glossario). Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/jessie_32812.webp",
+   "nomi": [
+    "Jessie"
+   ],
+   "lato": "fronte",
+   "nome": "JESSIE BENNET",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "biology"
+   },
+   "abilita": {
+    "nome": "FOLLOWER",
+    "en": "Anytime: When another Crewmember Travels from your Sector, spend 1 Charge to move with them, ignoring Path icons.",
+    "it": "In qualsiasi momento: Quando un altro Membro dell'Equipaggio effettua un Viaggio dal tuo Settore, spendi 1 Carica per muoverti con lui, ignorando le icone dei Sentieri."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "'Path icons' = icone dei Sentieri (termine non nel glossario). Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/gal_34606.webp",
+   "nomi": [
+    "Gal"
+   ],
+   "lato": "fronte",
+   "nome": "GAL YADIN",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "construction"
+   },
+   "abilita": {
+    "nome": "SEARCHER",
+    "en": "Anytime: Spend 1 Charge to gain a Discovery from a deck with any 3 Lead tokens.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per ottenere una Scoperta da un mazzo con 3 segnalini Indizio qualsiasi."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/abby_34607.webp",
+   "nomi": [
+    "Abby"
+   ],
+   "lato": "fronte",
+   "nome": "ABBY KNIGHT",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "xenology"
+   },
+   "abilita": {
+    "nome": "ALPHA",
+    "en": "During a Dice Check: Spend 1 Charge to choose a Crewmember Assisting you and turn 1 [die] in their Roll Pool to any result.",
+    "it": "Durante una Prova: Spendi 1 Carica per scegliere un Membro dell'Equipaggio che ti sta Assistendo e girare 1 [die] nella sua Riserva del Tiro su un risultato qualsiasi."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/stjepan_32810.webp",
+   "nomi": [
+    "Stjepan"
+   ],
+   "lato": "fronte",
+   "nome": "STJEPAN BELIĆ",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "construction"
+   },
+   "abilita": {
+    "nome": "BRUTE FORCE",
+    "en": "Anytime: Spend 1 Charge, then discard any number of cards. Refresh 1 [die] for every discarded card.",
+    "it": "In qualsiasi momento: Spendi 1 Carica, poi scarta un numero qualsiasi di carte. Ricarica 1 [die] per ogni carta scartata."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/sofia_32928.webp",
+   "nomi": [
+    "Sofia"
+   ],
+   "lato": "fronte",
+   "nome": "SOFIA BENN",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "technology"
+   },
+   "abilita": {
+    "nome": "INSIGHT",
+    "en": "Anytime: Spend 1 Charge to gain a Discovery from a deck with Lead tokens of a total value of 2.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per ottenere una Scoperta da un mazzo con segnalini Indizio di valore totale 2."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/konstantin_34506.webp",
+   "nomi": [
+    "Konstantin"
+   ],
+   "lato": "fronte",
+   "nome": "KONSTANTIN PLANK",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "scienceDice"
+   },
+   "abilita": {
+    "nome": "ENDURANCE",
+    "en": "During a Dice Check: Spend 1 Charge to ignore the result of 1 Injury die.",
+    "it": "Durante una Prova: Spendi 1 Carica per ignorare il risultato di 1 dado Ferita."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/riku/riku_34407.webp",
+   "nomi": [
+    "Riku"
+   ],
+   "lato": "fronte",
+   "nome": "RIKU HASHIMURA",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "construction"
+   },
+   "abilita": {
+    "nome": "COMPETENT",
+    "en": "Anytime: Spend 1 Charge to draw a chosen card from your discard pile.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per pescare una carta a scelta dalla tua pila degli scarti."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/cho/cho_34405.webp",
+   "nomi": [
+    "Cho"
+   ],
+   "lato": "fronte",
+   "nome": "CHO JAE-YONG",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "scouting"
+   },
+   "abilita": {
+    "nome": "ENERGETIC",
+    "en": "When Resting: Spend 1 Charge to Refresh 1 [die] more and draw 1 additional card.",
+    "it": "Durante il Riposo: Spendi 1 Carica per Ricaricare 1 [die] in più e pescare 1 carta aggiuntiva."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "3 chevron bianchi (vuoti)",
+   "dubbi": "Reparto non indicato sul fronte (nessuna striscia/icona di reparto visibile): '?'. Grado: tre chevron bianchi vuoti accanto alle Cariche."
+  }
+ ]
+}

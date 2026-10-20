@@ -1,0 +1,1410 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2330118244079998250CF78092A4A0D0D90D9852DEB90993897CA3AB1C1.jpg",
+   "pagine": "8-9",
+   "pianeta": "BRIMSTONE",
+   "nome_in_codice": "81 INF B",
+   "decollo_log": 440,
+   "evac_log": 448,
+   "descrizione": {
+    "en": "A very young, violent planet characterized by heavy seismic and geothermal activity. Its acidic atmosphere is rich in corrosive sulfides. Scans also reveal rich mineral deposits, vast cave systems, and liquid water pools.",
+    "it": "Un pianeta molto giovane e violento, caratterizzato da un'intensa attività sismica e geotermica. La sua atmosfera acida è ricca di solfuri corrosivi. Le scansioni rivelano anche ricchi giacimenti minerali, vasti sistemi di caverne e pozze di acqua liquida."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.355,
+     "y": 0.82,
+     "w": 0.188,
+     "h": 0.24,
+     "icone": [
+      "desert",
+      "rocky",
+      "lander"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "FRACTURED PLAIN",
+       "it": "PIANURA FRATTURATA"
+      },
+      "icone": [
+       "noMovement"
+      ],
+      "testo_colore": {
+       "en": "Finding a way off this plateau will take time. What hides within its deep, dark ravines?",
+       "it": "Trovare una via per lasciare questo altopiano richiederà tempo. Cosa si nasconde nelle sue gole profonde e oscure?"
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "SURVEY THE SURFACE",
+         "it": "ISPEZIONARE LA SUPERFICIE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "redDie+greenDie",
+          "en": "Replace with card P085.",
+          "it": "Sostituisci con la carta P085."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Go to Log 42.",
+          "it": "Vai all'Annotazione 42."
+         }
+        ]
+       },
+       {
+        "nome": {
+         "en": "SURVEY THE RAVINES",
+         "it": "ISPEZIONARE LE GOLE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [
+         "dangerDieA"
+        ],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "scouting+scouting",
+          "en": "Gain a Unique Discovery.",
+          "it": "Ottieni una Scoperta Eccezionale."
+         },
+         {
+          "colore": "green",
+          "req": "redDie+redDie",
+          "en": "Gain 2 Microorganism Leads, replace with a random P160 card.",
+          "it": "Ottieni 2 Indizi Microorganismo, sostituisci con una carta P160 casuale."
+         }
+        ],
+        "frecce": "La riga gialla ha una freccia verso la riga verde: ottenendo il Risultato giallo si applica anche quello verde."
+       }
+      ]
+     }
+    },
+    {
+     "n": 2,
+     "x": 0.356,
+     "y": 0.5,
+     "w": 0.199,
+     "h": 0.233,
+     "icone": [
+      "desert",
+      "rocky"
+     ],
+     "pdi": "",
+     "log": 25
+    },
+    {
+     "n": 3,
+     "x": 0.123,
+     "y": 0.498,
+     "w": 0.197,
+     "h": 0.248,
+     "icone": [
+      "desert"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "THERMAL VENTS",
+       "it": "SORGENTI TERMALI"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "Scans indicate vigorous biochemical activity.",
+       "it": "Le scansioni indicano un'intensa attività biochimica."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "EXPLORE THE VENTS",
+         "it": "ESPLORARE LE SORGENTI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "scouting+basic",
+          "en": "Gain 2 Microorganism Leads.",
+          "it": "Ottieni 2 Indizi Microorganismo."
+         },
+         {
+          "colore": "green",
+          "req": "redDie+greenDie+blueDie",
+          "en": "Gain 1 [success], replace with card P162.",
+          "it": "Ottieni 1 [success], sostituisci con la carta P162."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Go to Log 31.",
+          "it": "Vai all'Annotazione 31."
+         }
+        ],
+        "frecce": "La riga gialla ha una freccia verso la riga verde: ottenendo il Risultato giallo si applica anche quello verde."
+       }
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "x": 0.413,
+     "y": 0.171,
+     "w": 0.079,
+     "h": 0.242,
+     "icone": [
+      "desert",
+      "finalPOI"
+     ],
+     "pdi": ""
+    },
+    {
+     "n": 5,
+     "x": 0.666,
+     "y": 0.5,
+     "w": 0.195,
+     "h": 0.245,
+     "icone": [
+      "rocky"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "VOLCANIC SURFACE",
+       "it": "SUPERFICIE VULCANICA"
+      },
+      "icone": [
+       "volvanic",
+       "noMovement"
+      ],
+      "testo_colore": {
+       "en": "An active lava zone with temperatures in excess of 1200 Kelvin.",
+       "it": "Una zona di lava attiva con temperature superiori a 1200 Kelvin."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "SCOUT THE LAVA ZONE",
+         "it": "PERLUSTRARE LA ZONA LAVICA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "physical / scouting",
+          "en": "Gain a Unique Discovery.",
+          "it": "Ottieni una Scoperta Eccezionale."
+         },
+         {
+          "colore": "green",
+          "req": "redDie+redDie+blueDie",
+          "en": "Gain 2 Mineral Leads, replace with card P075.",
+          "it": "Ottieni 2 Indizi Minerale, sostituisci con la carta P075."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieB].",
+          "it": "Tira [dangerDieB]."
+         }
+        ],
+        "frecce": "La riga gialla ha una freccia verso la riga verde: ottenendo il Risultato giallo si applica anche quello verde."
+       }
+      ]
+     }
+    },
+    {
+     "n": 6,
+     "x": 0.666,
+     "y": 0.827,
+     "w": 0.195,
+     "h": 0.245,
+     "icone": [
+      "rocky"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "RICH DEPOSITS",
+       "it": "GIACIMENTI RICCHI"
+      },
+      "icone": [
+       "volvanic"
+      ],
+      "testo_colore": {
+       "en": "Long-range scans indicate an unusual concentration of heavy elements.",
+       "it": "Le scansioni a lungo raggio indicano una concentrazione insolita di elementi pesanti."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "MINE THE MINERALS",
+         "it": "ESTRARRE I MINERALI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "gathering+construction",
+          "en": "Gain 2 Mineral Leads.",
+          "it": "Ottieni 2 Indizi Minerale."
+         },
+         {
+          "colore": "green",
+          "req": "redDie+die+die",
+          "en": "Gain 2 Mineral Leads, go to Log 140.",
+          "it": "Ottieni 2 Indizi Minerale, vai all'Annotazione 140."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieC].",
+          "it": "Tira [dangerDieC]."
+         }
+        ],
+        "frecce": "La riga gialla ha una freccia verso la riga verde: ottenendo il Risultato giallo si applica anche quello verde."
+       }
+      ]
+     }
+    },
+    {
+     "n": 7,
+     "x": 0.666,
+     "y": 0.179,
+     "w": 0.198,
+     "h": 0.247,
+     "icone": [
+      "volvanic",
+      "important"
+     ],
+     "pdi": "",
+     "log": 6
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 3,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "spendDie"
+     ]
+    },
+    {
+     "da": 4,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "spendDie"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 1,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 2,
+     "a": 1,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 2,
+     "a": 5,
+     "senso": "da->a",
+     "icone": [
+      "spendDie",
+      "pathBlockI"
+     ]
+    },
+    {
+     "da": 7,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 6,
+     "senso": "doppio",
+     "icone": [
+      "dangerDieA"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "4, 6",
+    "missione": "Random M10 card. / Carta M10 casuale.",
+    "missione_opzionale": "",
+    "condizione": {
+     "titolo": {
+      "en": "VOLCANIC FUMES",
+      "it": "FUMI VULCANICI"
+     },
+     "testo_colore": {
+      "en": "The hot springs and corrosive fumes make this ground hazardous to tread.",
+      "it": "Le sorgenti calde e i fumi corrosivi rendono pericoloso camminare su questo terreno."
+     },
+     "testo": {
+      "en": "[xenology]: Gain 1 Microorganism Lead.",
+      "it": "[xenology]: Ottieni 1 Indizio Microorganismo."
+     },
+     "viaggio": {
+      "nome": {
+       "en": "TRAVEL",
+       "it": "VIAGGIO"
+      },
+      "icona": "diceCheck",
+      "pericolo": [],
+      "prova": true,
+      "costo": "",
+      "speciali": [
+       {
+        "req": "accident",
+        "effetto": "outcomeRed"
+       }
+      ],
+      "esiti": [
+       {
+        "colore": "green",
+        "req": "die",
+        "en": "Move to a connected Sector.",
+        "it": "Muoviti in un Settore collegato."
+       },
+       {
+        "colore": "red",
+        "req": "",
+        "en": "Roll [dangerDieA].",
+        "it": "Tira [dangerDieA]."
+       }
+      ]
+     },
+     "tempo": {
+      "caselle": 4,
+      "en": "Replace with a random card G03.",
+      "it": "Sostituisci con una carta G03 casuale."
+     }
+    }
+   },
+   "altro": {
+    "en": "Unique Discovery box: If you gain a Unique Discovery and there's no card left here, gain 1 [success] instead.",
+    "it": "Riquadro Scoperta Eccezionale: Se ottieni una Scoperta Eccezionale e qui non sono rimaste carte, ottieni invece 1 [success]."
+   },
+   "dubbi": "Sentiero 2-5: all'estremità verso il Settore 5 c'è un cerchio con barra verticale (icona non nel foglio, chiamata 'pathBlockI') al posto della freccetta: interpretato come senso unico 2->5. Condizione Volcanic Fumes: riga [xenology] sopra una barra rossa 'Gain 1 Microorganism Lead.' — non è chiaro quando si applica (forse una riga speciale/abilità di esplorazione). Settore 7: il riquadro ha icona important ma nessuna carta, solo 'Go to Log 6'. Le carte stampate nei settori non hanno id PDI visibile (campo pdi vuoto). Colori delle righe giallo/verde dedotti dalla barra laterale (giallo in alto)."
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc25046390678656548511F926B1DC659078911A1F4AB74F97A1551236A23.jpg",
+   "pagine": "22-23",
+   "pianeta": "OPERATION LONE WOLF",
+   "nome_in_codice": "51 Arietis A",
+   "decollo_log": null,
+   "evac_log": 1006,
+   "descrizione": {
+    "en": "51 Arietis A is as breathtaking as deadly. Vibrant flora distracts from various dangers, including treacherous swamps and agile carnivorous plants. Despite the planet's similarity to Earth, the air isn't suitable to breathe; what's more – it's deadly to humans.",
+    "it": "51 Arietis A è tanto mozzafiato quanto letale. La vegetazione vivace distrae da vari pericoli, tra cui paludi insidiose e agili piante carnivore. Nonostante la somiglianza del pianeta con la Terra, l'aria non è respirabile; anzi, è letale per gli esseri umani."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.1125,
+     "y": 0.501,
+     "w": 0.198,
+     "h": 0.243,
+     "icone": [
+      "water"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "THE CRATER",
+       "it": "IL CRATERE"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "If only you got there faster... Only junk is left after the lander lifted off.",
+       "it": "Se solo foste arrivati prima... Dopo il decollo del lander sono rimasti solo rottami."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "COLLECT JUNK",
+         "it": "RACCOGLIERE ROTTAMI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "gathering / redDie+die",
+          "effetto": "outcomeGreenProgress"
+         }
+        ],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 2,
+          "en": "Gain 1 Alien Tech Discovery, replace with card P001.",
+          "it": "Ottieni 1 Scoperta Tecnologia Aliena, sostituisci con la carta P001."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 2,
+     "x": 0.1125,
+     "y": 0.176,
+     "w": 0.198,
+     "h": 0.247,
+     "icone": [
+      "vegetation",
+      "caves"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "LUSH CAVES",
+       "it": "CAVERNE RIGOGLIOSE"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "Sensors detect oxygen. Eyes see possible proteins and fructose.",
+       "it": "I sensori rilevano ossigeno. Gli occhi vedono possibili proteine e fruttosio."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "STUDY THE AREA",
+         "it": "STUDIARE L'AREA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "biology / greenDie+blueDie",
+          "effetto": "outcomeGreenProgress"
+         }
+        ],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 2,
+          "en": "Go to Log 1010.",
+          "it": "Vai all'Annotazione 1010."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "x": 0.381,
+     "y": 0.501,
+     "w": 0.198,
+     "h": 0.243,
+     "icone": [
+      "caves"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "DRY GROTTO",
+       "it": "GROTTA ASCIUTTA"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "An island of dryness in the sea of swamps. It should be easy to defend.",
+       "it": "Un'isola asciutta in un mare di paludi. Dovrebbe essere facile da difendere."
+      },
+      "azioni": []
+     },
+     "log": 1015
+    },
+    {
+     "n": 4,
+     "x": 0.381,
+     "y": 0.176,
+     "w": 0.198,
+     "h": 0.247,
+     "icone": [
+      "vegetation",
+      "water"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "CADAVER SWAMP",
+       "it": "PALUDE DEI CADAVERI"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "Bloated animal corpses are cradles for colorful plants. A perfect place for harvesting flora samples.",
+       "it": "Carcasse di animali gonfie fanno da culla a piante colorate. Un luogo perfetto per raccogliere campioni di flora."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "STUDY PLANTS' REPRODUCTION CYCLE",
+         "it": "STUDIARE IL CICLO RIPRODUTTIVO DELLE PIANTE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "biology+scienceDice",
+          "en": "Gain 2 Live Specimen Leads.",
+          "it": "Ottieni 2 Indizi Esemplare Vivo."
+         },
+         {
+          "colore": "green",
+          "req": "redDie+greenDie+greenDie+blueDie",
+          "en": "Go to Log 1033.",
+          "it": "Vai all'Annotazione 1033."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieD].",
+          "it": "Tira [dangerDieD]."
+         }
+        ],
+        "frecce": "La riga gialla ha una freccia verso la riga verde: ottenendo il Risultato giallo si applica anche quello verde."
+       }
+      ]
+     }
+    },
+    {
+     "n": 5,
+     "x": 0.381,
+     "y": 0.825,
+     "w": 0.198,
+     "h": 0.242,
+     "icone": [
+      "vegetation",
+      "water"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "PUTRID MARSH",
+       "it": "ACQUITRINO PUTRIDO"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "Microorganisms reign over these waters without any competition.",
+       "it": "I microorganismi regnano su queste acque senza alcuna concorrenza."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "STUDY BACTERIAL COLONIES",
+         "it": "STUDIARE LE COLONIE BATTERICHE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "biology+basic",
+          "en": "Go to Log 1007.",
+          "it": "Vai all'Annotazione 1007."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 6,
+     "x": 0.1125,
+     "y": 0.825,
+     "w": 0.198,
+     "h": 0.242,
+     "icone": [
+      "vegetation",
+      "ruins"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "WRECKAGE",
+       "it": "RELITTO"
+      },
+      "icone": [
+       "finalPOI"
+      ],
+      "testo_colore": {
+       "en": "A destroyed lander module slowly sinks in damp ground.",
+       "it": "Un modulo lander distrutto affonda lentamente nel terreno umido."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "HARVEST USABLE COMPONENTS",
+         "it": "RECUPERARE COMPONENTI UTILIZZABILI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "gathering / redDie+die+die",
+          "en": "Gain 3 Alien Tech Leads.",
+          "it": "Ottieni 3 Indizi Tecnologia Aliena."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 7,
+     "x": 0.644,
+     "y": 0.176,
+     "w": 0.198,
+     "h": 0.247,
+     "icone": [
+      "caves"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "DAMP TUNNEL",
+       "it": "GALLERIA UMIDA"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "Water trickles down walls, leaving mineral residue behind.",
+       "it": "L'acqua gocciola lungo le pareti, lasciando residui minerali."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "COLLECT MINERALS",
+         "it": "RACCOGLIERE MINERALI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "gathering",
+          "en": "Refresh 1 [die].",
+          "it": "Ricarica 1 [die]."
+         },
+         {
+          "colore": "green",
+          "req": "redDie+greenDie+die",
+          "en": "Gain 1 Mineral Discovery, replace with card P505.",
+          "it": "Ottieni 1 Scoperta Minerale, sostituisci con la carta P505."
+         }
+        ],
+        "frecce": "La riga gialla ha una freccia verso la riga verde: ottenendo il Risultato giallo si applica anche quello verde."
+       }
+      ]
+     }
+    },
+    {
+     "n": 8,
+     "x": 0.644,
+     "y": 0.501,
+     "w": 0.198,
+     "h": 0.243,
+     "icone": [
+      "caves",
+      "volvanic"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "MINERAL RICH HILLSIDE",
+       "it": "PENDIO RICCO DI MINERALI"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "Scanners detect a high concentration of useful minerals.",
+       "it": "Gli scanner rilevano un'alta concentrazione di minerali utili."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "CONSTRUCT A MINERAL EXTRACTING SYSTEM",
+         "it": "COSTRUIRE UN SISTEMA DI ESTRAZIONE MINERARIA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "testo": {
+         "en": "You may discard 1 Alien Tech Discovery to [outcomeYellow] instead of performing this Dice Check.",
+         "it": "Puoi scartare 1 Scoperta Tecnologia Aliena per ottenere [outcomeYellow] invece di effettuare questa Prova."
+        },
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "construction+technology",
+          "en": "Gain 2 Mineral Leads.",
+          "it": "Ottieni 2 Indizi Minerale."
+         },
+         {
+          "colore": "green",
+          "req": "redDie+redDie+greenDie+blueDie+die",
+          "en": "Return any 2 discarded Leads to the Lead Bag, replace with P510.",
+          "it": "Rimetti 2 Indizi scartati qualsiasi nel sacchetto degli Indizi, sostituisci con P510."
+         }
+        ],
+        "frecce": "La riga gialla ha una freccia verso la riga verde: ottenendo il Risultato giallo si applica anche quello verde."
+       }
+      ]
+     }
+    },
+    {
+     "n": 9,
+     "x": 0.644,
+     "y": 0.825,
+     "w": 0.198,
+     "h": 0.242,
+     "icone": [
+      "volvanic",
+      "vegetation"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "EMERGENCY BROADCAST MODULE",
+       "it": "MODULO DI TRASMISSIONE D'EMERGENZA"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "The Vanguard's loss appears to be your only way to salvation.",
+       "it": "La perdita della Vanguard sembra essere la vostra unica via di salvezza."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "RECOVER RESOURCES",
+         "it": "RECUPERARE RISORSE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "physical+technology",
+          "en": "Gain 1 Alien Tech Lead.",
+          "it": "Ottieni 1 Indizio Tecnologia Aliena."
+         },
+         {
+          "colore": "green",
+          "req": "die+die+die+die+die",
+          "en": "Go to Log 1011.",
+          "it": "Vai all'Annotazione 1011."
+         }
+        ],
+        "frecce": "La riga gialla ha una freccia verso la riga verde: ottenendo il Risultato giallo si applica anche quello verde."
+       }
+      ]
+     }
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 4,
+     "a": 2,
+     "senso": "da->a",
+     "icone": [
+      "spendDie",
+      "pathBlockI"
+     ]
+    },
+    {
+     "da": 2,
+     "a": 1,
+     "senso": "doppio",
+     "icone": [
+      "spendDie"
+     ]
+    },
+    {
+     "da": 4,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "spendDie"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 7,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 1,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "spendDie"
+     ]
+    },
+    {
+     "da": 9,
+     "a": 3,
+     "senso": "da->a",
+     "icone": [
+      "travel",
+      "pathBlockMinus"
+     ]
+    },
+    {
+     "da": 6,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "spendDie"
+     ]
+    },
+    {
+     "da": 7,
+     "a": 8,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 8,
+     "a": 9,
+     "senso": "doppio",
+     "icone": [
+      "dangerDieA"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "36, 37",
+    "missione": "",
+    "missione_opzionale": "",
+    "condizione": {
+     "titolo": {
+      "en": "BRINK OF DEATH",
+      "it": "SULL'ORLO DELLA MORTE"
+     },
+     "testo_colore": {
+      "en": "Your lifespan can be counted in hours.",
+      "it": "La vostra aspettativa di vita si conta in ore."
+     },
+     "testo": {
+      "en": "[basic]: Refresh 1 [die]. Crewmembers may perform 2 Special Actions in a single turn.",
+      "it": "[basic]: Ricarica 1 [die]. I Membri dell'Equipaggio possono effettuare 2 Azioni Speciali in un singolo turno."
+     },
+     "viaggio": {
+      "nome": {
+       "en": "TRAVEL",
+       "it": "VIAGGIO"
+      },
+      "icona": "diceCheck",
+      "pericolo": [],
+      "prova": false,
+      "costo": "1 Supplies / sacrifaceDie+sacrifaceDie+sacrifaceDie",
+      "speciali": [],
+      "testo": {
+       "en": "Spend 1 Supplies or [sacrifaceDie]+[sacrifaceDie]+[sacrifaceDie] to move to a connected Sector.",
+       "it": "Spendi 1 Provviste oppure [sacrifaceDie]+[sacrifaceDie]+[sacrifaceDie] per muoverti in un Settore collegato."
+      }
+     },
+     "tempo": {
+      "caselle": 2,
+      "en": "Each Crewmember [spendDie]. Reset this track.",
+      "it": "Ogni Membro dell'Equipaggio [spendDie]. Azzera questa traccia."
+     }
+    }
+   },
+   "altro": {
+    "en": "No LIFT-OFF Log (only EVAC). Supplies Track printed in the right column: boxes 7 > 6 > 5 > 4 > 3 > 2 > 1 > 0. Right edge tabs: FOUND DISCOVERIES, MISSION.",
+    "it": "Nessuna Annotazione di DECOLLO (solo EVAC). Traccia delle Provviste stampata nella colonna destra: caselle 7 > 6 > 5 > 4 > 3 > 2 > 1 > 0. Linguette sul bordo destro: SCOPERTE TROVATE, MISSIONE."
+   },
+   "dubbi": "Pianeta-scenario speciale (Operation Lone Wolf), senza decollo e senza icona lander visibile in alcun settore. Sentiero 2-4: cerchio con barra verticale all'estremità del Settore 2 (icona 'pathBlockI', non nel foglio) => interpretato senso unico 4->2. Sentiero 3-9: cerchio con barra orizzontale all'estremità del Settore 3 (icona 'pathBlockMinus', non nel foglio) => interpretato senso unico 9->3; significato delle due varianti incerto. Brink of Death: riga [basic] sopra la barra 'Refresh 1 [die]' — modo di attivazione incerto. Nel Travel il dado barrato è stato letto come sacrifaceDie (multicolore). Settore 4: lettera del dado Pericolo nella riga rossa letta come D (poco nitida)."
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2504637799911084341CE6A00BB086C59EDC96735A5E31DF6FF82DAB229.jpg",
+   "pagine": "36-37",
+   "pianeta": "EDAN",
+   "nome_in_codice": "Hodeus-B D",
+   "decollo_log": 362,
+   "evac_log": 711,
+   "descrizione": {
+    "en": "The arid climate, lack of significant vegetation, and near-constant meteoric activity make Edan unsuitable for sustained travel on the surface. Establishing an outpost here, despite its breathable atmosphere and Earth-like gravity, is not advised. Meteorites impact the surface of Edan at a rate of one per square kilometer every 20 hours, and lead time is often less than two minutes.",
+    "it": "Il clima arido, la mancanza di vegetazione significativa e l'attività meteorica quasi costante rendono Edan inadatto a spostamenti prolungati sulla superficie. Stabilire qui un avamposto, nonostante l'atmosfera respirabile e la gravità simile a quella terrestre, è sconsigliato. I meteoriti colpiscono la superficie di Edan al ritmo di uno per chilometro quadrato ogni 20 ore, e il preavviso è spesso inferiore a due minuti."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.122,
+     "y": 0.5,
+     "w": 0.196,
+     "h": 0.245,
+     "icone": [
+      "rocky",
+      "lander"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "SEDIMENT RIDGE",
+       "it": "CRESTA SEDIMENTARIA"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "A half-collapsed rocky ridge, dislodged by meteoric impact, provides a glimpse of Edan's rich, multi-colored sediment layers.",
+       "it": "Una cresta rocciosa semicrollata, smossa dall'impatto di un meteorite, offre uno scorcio dei ricchi strati sedimentari multicolori di Edan."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "TAKE SURFACE SAMPLES",
+         "it": "PRELEVARE CAMPIONI DI SUPERFICIE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident / physical / construction",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "gathering+gathering+scienceDice",
+          "en": "Go to Log 472.",
+          "it": "Vai all'Annotazione 472."
+         },
+         {
+          "colore": "green",
+          "req": "gathering",
+          "en": "Gain 1 Mineral Lead.",
+          "it": "Ottieni 1 Indizio Minerale."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Replace with card P396.",
+          "it": "Sostituisci con la carta P396."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 2,
+     "x": 0.356,
+     "y": 0.177,
+     "w": 0.199,
+     "h": 0.249,
+     "icone": [
+      "desert"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "ANCIENT SEABED",
+       "it": "ANTICO FONDALE"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "Soaring pillars of salt, remnants of bleached bone, and ridges of petrified coral hint at a once sprawling sea. The air feels unnaturally still.",
+       "it": "Svettanti pilastri di sale, resti di ossa sbiancate e creste di corallo pietrificato fanno intuire un mare un tempo sconfinato. L'aria è innaturalmente immobile."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "EXAMINE FOSSILS",
+         "it": "ESAMINARE I FOSSILI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "biology+gathering",
+          "en": "Gain 2 Microorganism Leads, go to Log 530.",
+          "it": "Ottieni 2 Indizi Microorganismo, vai all'Annotazione 530."
+         }
+        ]
+       },
+       {
+        "nome": {
+         "en": "CROSS THE SEABED",
+         "it": "ATTRAVERSARE IL FONDALE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "scouting / greenDie+greenDie",
+          "en": "Place your Crewmember in Sector 5.",
+          "it": "Piazza il tuo Membro dell'Equipaggio nel Settore 5."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "x": 0.697,
+     "y": 0.503,
+     "w": 0.196,
+     "h": 0.252,
+     "icone": [
+      "desert"
+     ],
+     "pdi": ""
+    },
+    {
+     "n": 4,
+     "x": 0.122,
+     "y": 0.827,
+     "w": 0.196,
+     "h": 0.245,
+     "icone": [
+      "desert",
+      "rocky"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "IMPACT CRATER",
+       "it": "CRATERE D'IMPATTO"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "A fragment of the shattered moon high above made landfall here, carving a blasted crater several kilometers across.",
+       "it": "Un frammento della luna frantumata lassù è precipitato qui, scavando un cratere devastato largo diversi chilometri."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "CROSS THE CRATER",
+         "it": "ATTRAVERSARE IL CRATERE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "physical+gathering+basic",
+          "effetto": "outcomeYellowProgress"
+         },
+         {
+          "req": "physical+scouting",
+          "effetto": "outcomeGreenProgress"
+         }
+        ],
+        "tracce": [
+         {
+          "colore": "yellow",
+          "caselle": 3,
+          "en": "Gain 3 Mineral Leads.",
+          "it": "Ottieni 3 Indizi Minerale."
+         },
+         {
+          "colore": "green",
+          "caselle": 3,
+          "en": "Gain 1 [success], replace with card P403.",
+          "it": "Ottieni 1 [success], sostituisci con la carta P403."
+         }
+        ],
+        "frecce": "La traccia gialla ha una freccia verso la traccia verde: completando la gialla si applica anche il Risultato verde."
+       }
+      ]
+     }
+    },
+    {
+     "n": 5,
+     "x": 0.356,
+     "y": 0.5,
+     "w": 0.199,
+     "h": 0.245,
+     "icone": [
+      "ruins"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "RUINED GATEWAY",
+       "it": "PORTALE IN ROVINA"
+      },
+      "icone": [
+       "noMovement"
+      ],
+      "testo_colore": {
+       "en": "A doorway, long ago toppled by the perils of Edan, extends no invitation into the crumbling ruins beyond.",
+       "it": "Un portale, abbattuto molto tempo fa dai pericoli di Edan, non invita affatto a entrare nelle rovine fatiscenti al di là."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "CLEAR THE RUBBLE",
+         "it": "SGOMBERARE LE MACERIE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRedProgress"
+         },
+         {
+          "req": "physical+physical / redDie+greenDie+greenDie",
+          "effetto": "outcomeGreenProgress"
+         }
+        ],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 3,
+          "en": "Gain 1 [success], replace with card P402.",
+          "it": "Ottieni 1 [success], sostituisci con la carta P402."
+         },
+         {
+          "colore": "red",
+          "caselle": 1,
+          "en": "Roll [dangerDieF].",
+          "it": "Tira [dangerDieF]."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 6,
+     "x": 0.356,
+     "y": 0.827,
+     "w": 0.199,
+     "h": 0.245,
+     "icone": [
+      "ruins"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "LONE SPIRE",
+       "it": "GUGLIA SOLITARIA"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "Much of the city lies in ruin, but at its heart stands a single, resilient monolith – a beacon, perhaps?",
+       "it": "Gran parte della città giace in rovina, ma al suo centro si erge un unico, resistente monolite: forse un faro?"
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "INVESTIGATE THE SPIRE",
+         "it": "INDAGARE SULLA GUGLIA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "scienceDice+scienceDice+technology",
+          "en": "Gain 2 Alien Tech Leads.",
+          "it": "Ottieni 2 Indizi Tecnologia Aliena."
+         },
+         {
+          "colore": "green",
+          "req": "greenDie+blueDie+blueDie",
+          "en": "Go to Log 564.",
+          "it": "Vai all'Annotazione 564."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Progress all Time Tracks by 1.",
+          "it": "Fai avanzare di 1 tutte le tracce del Tempo."
+         }
+        ],
+        "frecce": "La riga gialla ha una freccia verso la riga verde: ottenendo il Risultato giallo si applica anche quello verde."
+       }
+      ]
+     }
+    },
+    {
+     "n": 7,
+     "x": 0.697,
+     "y": 0.827,
+     "w": 0.196,
+     "h": 0.245,
+     "icone": [
+      "ruins",
+      "important"
+     ],
+     "pdi": "",
+     "log": 660
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 1,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "spendDie"
+     ]
+    },
+    {
+     "da": 2,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 1,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 6,
+     "senso": "doppio",
+     "icone": [
+      "spendDie"
+     ]
+    },
+    {
+     "da": 6,
+     "a": 7,
+     "senso": "doppio",
+     "icone": [
+      "spendDie",
+      "spendDie"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "25, 29",
+    "missione": "",
+    "missione_opzionale": "",
+    "condizione": ""
+   },
+   "altro": {
+    "en": "Right column also has: GLOBAL CONDITIONS DISCARD PILE – Use for discarded Global Condition cards. Place them face down. GLOBAL CONDITIONS – If there are no Global Conditions, take all cards from the Global Conditions Discard Pile, shuffle them, and place them here in a face up pile. MISSION box is empty.",
+    "it": "Nella colonna destra anche: PILA DEGLI SCARTI DELLE CONDIZIONI GENERALI – Usala per le carte Condizione Generale scartate. Mettile a faccia in giù. CONDIZIONI GENERALI – Se non ci sono Condizioni Generali, prendi tutte le carte dalla pila degli scarti delle Condizioni Generali, mescolale e mettile qui in una pila a faccia in su. Il riquadro MISSIONE è vuoto."
+   },
+   "dubbi": "Settore 5 (Ruined Gateway): la riga speciale 'accident = traccia rossa' è stata letta come outcomeRedProgress (bordo rosso con triangolo). Settore 2: entrambe le azioni hanno solo una riga verde. Settore 3 vuoto (solo icona desert), nessun sentiero collegato visibile oltre a quello da 2; i Settori 3 e 7 non risultano collegati fra loro, e 5 non è collegato a 1/2/4 (verificare). Colori giallo/verde delle righe dedotti dalle barre laterali. Lettera dado Pericolo nel Settore 5 letta come F."
+  }
+ ]
+}

@@ -65,3 +65,9 @@ static func nome(n: String) -> String:
 	if n.begins_with("Rank "):
 		return n.replace("Rank III", "Grado III").replace("Rank II", "Grado II").replace("Rank I", "Grado I").replace("Cards", "").replace("Engineering", "Ingegneria").replace("Recon", "Ricognizione").replace("Science", "Scienza").replace("Security", "Sicurezza").replace("/ 6 ", "").strip_edges()
 	return n.trim_prefix("/ ").strip_edges()
+
+const ICONE := {"travel": "viaggio", "time": "tempo", "marker": "segnalino", "lightning": "fulmine",
+	"travelII": "viaggio II", "travelIII": "viaggio III", "travel2": "viaggio II", "travel3": "viaggio III"}
+
+static func icona(n: String) -> String:
+	return ICONE.get(n, n)

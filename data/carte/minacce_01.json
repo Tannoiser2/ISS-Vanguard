@@ -1,0 +1,1513 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/scintillating_shardfly/scintillating_shardfly_7900.webp",
+   "nomi": [
+    "Scintillating Shardfly"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "SCINTILLATING SHARDFLY",
+    "it": "LUCCIOLA DI SCHEGGE SCINTILLANTE"
+   },
+   "testo_colore": {
+    "en": "Radiation coming from scintillating crystal shards constituting the creature harms the surrounding environment.",
+    "it": "Le radiazioni emesse dalle schegge di cristallo scintillanti che compongono la creatura danneggiano l'ambiente circostante."
+   },
+   "icone": [
+    "noSave"
+   ],
+   "regole": {
+    "en": "Scintillation: Each Crewmember in the Sector with Scintillating Shardfly [spendDieBlue] OR gains a Burned Injury.\nTravel: Roll D10 and place Scintillating Shardfly in the corresponding Sector. If there is no such Sector, nothing happens.",
+    "it": "Scintillazione: Ogni Membro dell'Equipaggio nel Settore con la Lucciola di Schegge Scintillante [spendDieBlue] OPPURE subisce una Ferita Ustione.\nViaggio: Tira un D10 e piazza la Lucciola di Schegge Scintillante nel Settore corrispondente. Se tale Settore non esiste, non accade nulla."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Travel, Scintillation",
+     "it": "Viaggio, Scintillazione"
+    },
+    {
+     "casella": 2,
+     "en": "Travel, Scintillation",
+     "it": "Viaggio, Scintillazione"
+    },
+    {
+     "casella": 3,
+     "en": "Travel, reset this track",
+     "it": "Viaggio, azzera questa traccia"
+    }
+   ],
+   "azioni": [
+    {
+     "nome": {
+      "en": "DISASSEMBLE",
+      "it": "SMONTARE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [
+      {
+       "req": "defence / scienceDice",
+       "effetto": "outcomeGreenProgress"
+      },
+      {
+       "req": "die",
+       "effetto": "outcomeRedProgress"
+      }
+     ],
+     "esiti": [],
+     "tracce": [
+      {
+       "colore": "green",
+       "caselle": 4,
+       "en": "Gain 5 Mineral Leads. Go to Log 435.",
+       "it": "Ottieni 5 Indizi Minerale. Vai all'Annotazione 435."
+      },
+      {
+       "colore": "red",
+       "caselle": 2,
+       "en": "Roll [dangerDieG], reset this track.",
+       "it": "Tira [dangerDieG], azzera questa traccia."
+      }
+     ],
+     "frecce": ""
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/re_origination_beam/re_origination_beam_7810.webp",
+   "nomi": [
+    "Re-Origination Beam"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "RE-ORIGINATION BEAM",
+    "it": "RAGGIO DI RI-ORIGINAZIONE"
+   },
+   "icone": [
+    "noSave"
+   ],
+   "regole": {
+    "en": "Travel: Resolve the rule below that's marked with a marker.\n[marker] Travel (slow): Move the Re-Origination Beam to the connected Sector that's one number lower. If there is no such Sector, place it in Sector 8 instead. If Builder's Biomebot is present in the Sector Re-Origination Beam would Travel to, cancel that Travel instead.\n[marker] Travel (fast): Place the Re-Origination Beam in Sector that's two numbers lower and may be reached with Travel Paths. If there is no such Sector, place it in Sector 8 instead. If Builder's Biomebot is present in the Sector Re-Origination Beam would Travel to, cancel that Travel instead.",
+    "it": "Viaggio: Risolvi la regola sottostante contrassegnata da un segnalino.\n[marker] Viaggio (lento): Muovi il Raggio di Ri-originazione nel Settore collegato con il numero inferiore di uno. Se tale Settore non esiste, piazzalo invece nel Settore 8. Se il Biomebot del Costruttore è presente nel Settore in cui il Raggio di Ri-originazione dovrebbe Viaggiare, annulla invece quel Viaggio.\n[marker] Viaggio (veloce): Piazza il Raggio di Ri-originazione nel Settore con il numero inferiore di due che può essere raggiunto tramite i Sentieri di Viaggio. Se tale Settore non esiste, piazzalo invece nel Settore 8. Se il Biomebot del Costruttore è presente nel Settore in cui il Raggio di Ri-originazione dovrebbe Viaggiare, annulla invece quel Viaggio."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Travel",
+     "it": "Viaggio"
+    },
+    {
+     "casella": 2,
+     "en": "Travel",
+     "it": "Viaggio"
+    },
+    {
+     "casella": 3,
+     "en": "Travel",
+     "it": "Viaggio"
+    },
+    {
+     "casella": 4,
+     "en": "Travel, reset this track",
+     "it": "Viaggio, azzera questa traccia"
+    }
+   ],
+   "azioni": [],
+   "dubbi": "Nessun testo descrittivo in corsivo. Le due regole Travel (slow/fast) hanno ciascuna una casella vuota a sinistra dove va posto il segnalino (resa come [marker])."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/ophthalmoid/ophthalmoid_7811.webp",
+   "nomi": [
+    "Ophthalmoid"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "OPHTHALMOID",
+    "it": "OFTALMOIDE"
+   },
+   "testo_colore": {
+    "en": "Once its pupil spots you, it follows your movement forever.",
+    "it": "Una volta che la sua pupilla ti individua, segue i tuoi movimenti per sempre."
+   },
+   "icone": [],
+   "regole": {
+    "en": "Focus: If there is a Crewmember in the Sector with Ophthalmoid, Thrash. Otherwise, place a marker on a Crew board of a Crewmember in the highest-numbered Sector (in case of a tie, Security player chooses).\nSnipe: If there is a Crewmember in the Sector with Ophthalmoid, Thrash. Otherwise, each player with a marker on their Crew board discards 1 marker from their Crew board and rolls [dangerDieF] (if no player has a marker, Focus instead).\nThrash: Each Crewmember in the Sector with Ophthalmoid [spendDie]+[spendDie].",
+    "it": "Mira: Se c'è un Membro dell'Equipaggio nel Settore con l'Oftalmoide, Sferzata. Altrimenti, piazza un segnalino sulla plancia Equipaggio di un Membro dell'Equipaggio nel Settore con il numero più alto (in caso di parità, sceglie il giocatore della Sicurezza).\nColpo di precisione: Se c'è un Membro dell'Equipaggio nel Settore con l'Oftalmoide, Sferzata. Altrimenti, ogni giocatore con un segnalino sulla propria plancia Equipaggio scarta 1 segnalino dalla propria plancia Equipaggio e tira [dangerDieF] (se nessun giocatore ha un segnalino, invece Mira).\nSferzata: Ogni Membro dell'Equipaggio nel Settore con l'Oftalmoide [spendDie]+[spendDie]."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Focus",
+     "it": "Mira"
+    },
+    {
+     "casella": 2,
+     "en": "Snipe, reset this track",
+     "it": "Colpo di precisione, azzera questa traccia"
+    }
+   ],
+   "azioni": [
+    {
+     "nome": {
+      "en": "DISABLE",
+      "it": "DISATTIVARE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [
+      {
+       "req": "accident / scienceDice",
+       "effetto": "outcomeRedProgress"
+      },
+      {
+       "req": "construction+technology / redDie+blueDie+blueDie",
+       "effetto": "outcomeGreenProgress"
+      }
+     ],
+     "esiti": [],
+     "tracce": [
+      {
+       "colore": "green",
+       "caselle": 4,
+       "en": "Go to Log 463.",
+       "it": "Vai all'Annotazione 463."
+      },
+      {
+       "colore": "red",
+       "caselle": 1,
+       "en": "Roll [dangerDieI] and [sacrifaceDie], reset this track.",
+       "it": "Tira [dangerDieI] e [sacrifaceDie], azzera questa traccia."
+      }
+     ],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Nessuna icona in alto a destra. Nomi delle regole (Focus/Snipe/Thrash) tradotti liberamente (Mira/Colpo di precisione/Sferzata): non conosco la resa ufficiale. Nella riga rossa 'Roll [dangerDieI] and [sacrifaceDie]': il secondo simbolo è il cubo tricolore barrato (sacrifaceDie), lettura certa ma 'tira un dado sacrificato' è insolito."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/maw/maw_7801.webp",
+   "nomi": [
+    "Maw"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "MAW",
+    "it": "FAUCI"
+   },
+   "testo_colore": {
+    "en": "Under the influence of pollution, one of the native species of this planet evolved into super-beasts.",
+    "it": "Sotto l'influenza dell'inquinamento, una delle specie native di questo pianeta si è evoluta in super-bestie."
+   },
+   "icone": [
+    "noSave"
+   ],
+   "regole": {
+    "en": "This Threat cannot be moved in any way!\nTerror: Each Crewmember in the Sector with Maw rolls [dangerDieH]. Each other Crewmember [spendDie].\nFeeding: choose one effect below:\n- Discard 1 non-Unique Discovery.\n- Lose 1 Supplies.\n- 1 random Crewmember in the Sector with Maw rolls [dangerDieH]. Then, discard Maw and its Threat card.",
+    "it": "Questa Minaccia non può essere mossa in alcun modo!\nTerrore: Ogni Membro dell'Equipaggio nel Settore con le Fauci tira [dangerDieH]. Ogni altro Membro dell'Equipaggio [spendDie].\nPasto: scegli uno degli effetti sottostanti:\n- Scarta 1 Scoperta non Eccezionale.\n- Perdi 1 Provviste.\n- 1 Membro dell'Equipaggio casuale nel Settore con le Fauci tira [dangerDieH]. Poi, scarta le Fauci e la relativa carta Minaccia."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Terror",
+     "it": "Terrore"
+    },
+    {
+     "casella": 2,
+     "en": "Terror",
+     "it": "Terrore"
+    },
+    {
+     "casella": 3,
+     "en": "Feeding, reset this track",
+     "it": "Pasto, azzera questa traccia"
+    }
+   ],
+   "azioni": [],
+   "dubbi": "Nessuna Azione Speciale sulla carta. 'non-Unique Discovery' reso come 'Scoperta non Eccezionale' (glossario: Unique Discovery = Scoperta Eccezionale)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/magnacereb/magnacereb_7808.webp",
+   "nomi": [
+    "Magnacereb"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "MAGNACEREB",
+    "it": "MAGNACEREB"
+   },
+   "testo_colore": {
+    "en": "The powerful mind waves of this creature affect not only living organisms but also technology.",
+    "it": "Le potenti onde mentali di questa creatura influenzano non solo gli organismi viventi, ma anche la tecnologia."
+   },
+   "icone": [
+    "noSave"
+   ],
+   "regole": {
+    "en": "Crawl: Move Magnacereb to the highest-numbered connected Sector. If Magnacereb reaches Sector 6, go to Log 893.\nTelepathy: Each Crewmember in the Sector with Magnacereb [sacrifaceDie] and rolls [dangerDieH]. Each other Crewmember [spendDie]+[spendDie] and rolls [dangerDieA].\nRetreat: Place Magnacereb in Sector 1 and discard 1 marker from this card.",
+    "it": "Strisciare: Muovi il Magnacereb nel Settore collegato con il numero più alto. Se il Magnacereb raggiunge il Settore 6, vai all'Annotazione 893.\nTelepatia: Ogni Membro dell'Equipaggio nel Settore con il Magnacereb [sacrifaceDie] e tira [dangerDieH]. Ogni altro Membro dell'Equipaggio [spendDie]+[spendDie] e tira [dangerDieA].\nRitirata: Piazza il Magnacereb nel Settore 1 e scarta 1 segnalino da questa carta."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Crawl, Telepathy",
+     "it": "Strisciare, Telepatia"
+    },
+    {
+     "casella": 2,
+     "en": "Crawl",
+     "it": "Strisciare"
+    },
+    {
+     "casella": 3,
+     "en": "Crawl, Telepathy",
+     "it": "Strisciare, Telepatia"
+    },
+    {
+     "casella": 4,
+     "en": "Retreat, reset this track",
+     "it": "Ritirata, azzera questa traccia"
+    }
+   ],
+   "azioni": [
+    {
+     "nome": {
+      "en": "USE DEFENSE SYSTEM",
+      "it": "USARE IL SISTEMA DI DIFESA"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "condizione": {
+      "en": "You may perform this Action only in a [vanguard] or [hostile] Sector with Magnacereb.",
+      "it": "Puoi eseguire questa Azione solo in un Settore [vanguard] o [hostile] con il Magnacereb."
+     },
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "yellow",
+       "req": "technology+xenology+physical",
+       "en": "Place a marker on this card.",
+       "it": "Piazza un segnalino su questa carta.",
+       "segue": ""
+      },
+      {
+       "colore": "green",
+       "req": "blueDie+blueDie+redDie+redDie",
+       "en": "Crawl. Then, place a marker on this card.",
+       "it": "Strisciare. Poi, piazza un segnalino su questa carta.",
+       "segue": ""
+      }
+     ],
+     "tracce": [],
+     "frecce": "Freccia dalla riga gialla alla riga verde: con il risultato verde si applica anche quello giallo."
+    }
+   ],
+   "dubbi": "Aggiunto campo 'condizione' all'azione per la restrizione stampata sotto il nome. Le due righe di risultato non hanno riga rossa. Icona 'vanguard' nella restrizione: V bianca su scudo, potrebbe essere un bioma/settore Vanguard. Lettura della freccia gialla->verde: interpretata secondo lo schema (si applicano entrambi)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/idemian_pilgrim/idemian_pilgrim_19304.webp",
+   "nomi": [
+    "Idemian Pilgrim"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "IDEMIAN PILGRIM",
+    "it": "PELLEGRINO IDEMIANO"
+   },
+   "testo_colore": {
+    "en": "Long meditation in a cloud of choking, toxic incense allowed this Idemian to reach the deepest state of focus. We must be careful not to disturb them.",
+    "it": "Una lunga meditazione in una nube di incenso tossico e soffocante ha permesso a questo Idemiano di raggiungere il più profondo stato di concentrazione. Dobbiamo fare attenzione a non disturbarlo."
+   },
+   "icone": [],
+   "regole": {
+    "en": "Whenever you roll any Section dice in the Sector with the Idemian Pilgrim, place the same number of markers on the Idemian Pilgrim card.\nWhenever there are 5 or more markers here, remove them all and flip this card to the other side.\nCleansing Ritual: Remove 1 marker from this card. Each Crewmember in the Sector with the Idemian Pilgrim rolls [dangerDieD]. Any of these Crewmembers may [spendDieRed]+[spendDieRed] to roll [dangerDieA] instead.\nProcession: Place the Idemian Pilgrim in a Sector with a [incenseBurner] icon that's one number higher. If all [incenseBurner] Sector numbers are lower than the current one, place the Idemian Pilgrim in the lowest-numbered [incenseBurner] Sector. Then, remove 2 markers from this card.",
+    "it": "Ogni volta che tiri dei dadi Reparto nel Settore con il Pellegrino Idemiano, piazza lo stesso numero di segnalini sulla carta del Pellegrino Idemiano.\nOgni volta che qui ci sono 5 o più segnalini, rimuovili tutti e gira questa carta sull'altro lato.\nRituale di Purificazione: Rimuovi 1 segnalino da questa carta. Ogni Membro dell'Equipaggio nel Settore con il Pellegrino Idemiano tira [dangerDieD]. Ognuno di questi Membri dell'Equipaggio può [spendDieRed]+[spendDieRed] per tirare invece [dangerDieA].\nProcessione: Piazza il Pellegrino Idemiano in un Settore con l'icona [incenseBurner] con il numero superiore di uno. Se tutti i Settori [incenseBurner] hanno numeri inferiori a quello attuale, piazza il Pellegrino Idemiano nel Settore [incenseBurner] con il numero più basso. Poi, rimuovi 2 segnalini da questa carta."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Cleansing Ritual",
+     "it": "Rituale di Purificazione"
+    },
+    {
+     "casella": 2,
+     "en": "Cleansing Ritual",
+     "it": "Rituale di Purificazione"
+    },
+    {
+     "casella": 3,
+     "en": "Procession, reset this track",
+     "it": "Processione, azzera questa traccia"
+    }
+   ],
+   "azioni": [],
+   "dubbi": "Icona del Settore (braciere/incensiere bianco con gocce) non presente nel foglio icone: chiamata 'incenseBurner'. Nessuna icona noSave in alto a destra. Dado in 'rolls [dangerDieD]' letto come D (piccolo, abbastanza sicuro)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/hunters_become_prey/hunters_become_prey_7902.webp",
+   "nomi": [
+    "Hunters Become Prey"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "HUNTERS BECOME PREY",
+    "it": "I CACCIATORI DIVENTANO PREDE"
+   },
+   "testo_colore": {
+    "en": "They are slow, their weapons are non-lethal, with scanners lacking precision.",
+    "it": "Sono lenti, le loro armi non sono letali e i loro scanner mancano di precisione."
+   },
+   "icone": [
+    "noSave"
+   ],
+   "regole": {
+    "en": "Travel: Roll D10 for each marker on the Planet board. Move each of them by 2 Sectors toward the Sector matching their roll. If you rolled 0, move it toward Sector 1 instead.\nPanic Fire: Each Crewmember in a Sector with at least 1 marker rolls [dangerDieA] and [spendDie].",
+    "it": "Viaggio: Tira un D10 per ogni segnalino sulla plancia del Pianeta. Muovi ciascuno di essi di 2 Settori verso il Settore corrispondente al suo tiro. Se hai ottenuto 0, muovilo invece verso il Settore 1.\nFuoco nel Panico: Ogni Membro dell'Equipaggio in un Settore con almeno 1 segnalino tira [dangerDieA] e [spendDie]."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Panic Fire, Travel",
+     "it": "Fuoco nel Panico, Viaggio"
+    },
+    {
+     "casella": 2,
+     "en": "Travel, Panic Fire",
+     "it": "Viaggio, Fuoco nel Panico"
+    },
+    {
+     "casella": 3,
+     "en": "Panic fire, reset this track",
+     "it": "Fuoco nel Panico, azzera questa traccia"
+    }
+   ],
+   "azioni": [
+    {
+     "nome": {
+      "en": "HUNT THEM!",
+      "it": "DAGLI LA CACCIA!"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "condizione": {
+      "en": "If there is a Flower Bug in this Sector, [outcomeGreen].",
+      "it": "Se in questo Settore c'è un Insetto Fiore, [outcomeGreen]."
+     },
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "physical+scouting",
+       "en": "Remove all markers from this Sector and Refresh 3 [die].",
+       "it": "Rimuovi tutti i segnalini da questo Settore e Ricarica 3 [die].",
+       "segue": ""
+      }
+     ],
+     "tracce": [],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Riga sotto il nome dell'azione ('If there is a Flower Bug in this Sector, [outcomeGreen]') messa nel campo aggiuntivo 'condizione': significa che con un Flower Bug nel Settore si ottiene direttamente il risultato verde. Unica riga di esito (verde), nessuna gialla/rossa. 'Flower Bug' tradotto 'Insetto Fiore' (resa non ufficiale)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/guardian_metahedron/guardian_metahedron_7807.webp",
+   "nomi": [
+    "Guardian Metahedron"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "GUARDIAN METAHEDRON",
+    "it": "METAEDRO GUARDIANO"
+   },
+   "icone": [],
+   "regole": {
+    "en": "Charge: Move Guardian Metahedron by 1 Sector toward a random Crewmember. Then, each Crewmember in the Sector with Guardian Metahedron rolls [dangerDieI].\nAnnihilating Blast: Each Crewmember in the Sector with Guardian Metahedron rolls [dangerDieC].",
+    "it": "Carica: Muovi il Metaedro Guardiano di 1 Settore verso un Membro dell'Equipaggio casuale. Poi, ogni Membro dell'Equipaggio nel Settore con il Metaedro Guardiano tira [dangerDieI].\nRaffica Annientatrice: Ogni Membro dell'Equipaggio nel Settore con il Metaedro Guardiano tira [dangerDieC]."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Charge",
+     "it": "Carica"
+    },
+    {
+     "casella": 2,
+     "en": "Annihilating Blast",
+     "it": "Raffica Annientatrice"
+    },
+    {
+     "casella": 3,
+     "en": "Charge",
+     "it": "Carica"
+    },
+    {
+     "casella": 4,
+     "en": "Reset this track",
+     "it": "Azzera questa traccia"
+    }
+   ],
+   "azioni": [
+    {
+     "nome": {
+      "en": "FIGHT THE METAHEDRON",
+      "it": "COMBATTERE IL METAEDRO"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "condizione": {
+      "en": "Find the most common icon in the Roll Pool. Place a marker on this icon on the edge of the Adaptive Shield Threat card. If several icons occur the same number of times, choose any of them. Remove all dice with icons marked on the Adaptive Shield Threat card from the Roll Pool.",
+      "it": "Trova l'icona più frequente nella Riserva del Tiro. Piazza un segnalino su questa icona sul bordo della carta Minaccia Scudo Adattivo. Se più icone compaiono lo stesso numero di volte, scegline una qualsiasi. Rimuovi dalla Riserva del Tiro tutti i dadi con icone contrassegnate sulla carta Minaccia Scudo Adattivo."
+     },
+     "speciali": [
+      {
+       "req": "accident",
+       "effetto": "outcomeRed"
+      },
+      {
+       "req": "anySameIcons+anySameIcons",
+       "effetto": "outcomeGreenProgress"
+      }
+     ],
+     "esiti": [
+      {
+       "colore": "red",
+       "req": "",
+       "en": "Roll [dangerDieG].",
+       "it": "Tira [dangerDieG].",
+       "segue": ""
+      }
+     ],
+     "tracce": [
+      {
+       "colore": "green",
+       "caselle": 3,
+       "en": "Go to Log 588.",
+       "it": "Vai all'Annotazione 588."
+      }
+     ],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Nessun testo in corsivo e nessuna icona in alto a destra. Il testo sotto il nome dell'azione è messo in 'condizione' (procedura prima della prova). Riga rossa senza caselle (si raggiunge con accident = outcomeRed) messa in 'esiti'. Lettere dei dadi piccole: riga rossa letta G (potrebbe essere C), Charge = I, Annihilating Blast = C (potrebbe essere G)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/gravity_rift/gravity_rift_7805.webp",
+   "nomi": [
+    "Gravity Rift"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "GRAVITY RIFT",
+    "it": "SQUARCIO GRAVITAZIONALE"
+   },
+   "testo_colore": {
+    "en": "Shifting and unpredictable, this rift in gravity is extremely dangerous!",
+    "it": "Mutevole e imprevedibile, questo squarcio nella gravità è estremamente pericoloso!"
+   },
+   "icone": [
+    "noSave"
+   ],
+   "regole": {
+    "en": "Repulsion: Place the Gravity Rift in the lowest-numbered Sector with the fewest markers. Add 1 marker to that Sector.\nAttraction: Place the Gravity Rift in the lowest-numbered Sector with the fewest markers. Remove 1 marker from that Sector.\nHigh-G: Add 1 marker to Sector with the Gravity Rift. Each Crewmember in that Sector rolls [dangerDieC].",
+    "it": "Repulsione: Piazza lo Squarcio Gravitazionale nel Settore con il numero più basso tra quelli con meno segnalini. Aggiungi 1 segnalino a quel Settore.\nAttrazione: Piazza lo Squarcio Gravitazionale nel Settore con il numero più basso tra quelli con meno segnalini. Rimuovi 1 segnalino da quel Settore.\nAlta Gravità: Aggiungi 1 segnalino al Settore con lo Squarcio Gravitazionale. Ogni Membro dell'Equipaggio in quel Settore tira [dangerDieC]."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Repulsion, High-G",
+     "it": "Repulsione, Alta Gravità"
+    },
+    {
+     "casella": 2,
+     "en": "Repulsion",
+     "it": "Repulsione"
+    },
+    {
+     "casella": 3,
+     "en": "Attraction, High-G",
+     "it": "Attrazione, Alta Gravità"
+    },
+    {
+     "casella": 4,
+     "en": "Reset this track",
+     "it": "Azzera questa traccia"
+    }
+   ],
+   "azioni": [],
+   "dubbi": "Nessuna Azione Speciale. Dado di High-G letto C (potrebbe essere G). Attraction: il testo stampato dice anch'esso 'fewest markers' (trascritto fedelmente, anche se ci si aspetterebbe 'most')."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/flower_bug/flower_bug_7901.webp",
+   "nomi": [
+    "Flower Bug"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "FLOWER BUG",
+    "it": "INSETTO FIORE"
+   },
+   "testo_colore": {
+    "en": "It plans to turn you into fertilizer for its seeds.",
+    "it": "Ha intenzione di trasformarti in fertilizzante per i suoi semi."
+   },
+   "icone": [],
+   "regole": {
+    "en": "Travel: If there is no Crewmember in the Sector with Flower Bug, move Flower Bug by 1 Sector toward the nearest Crewmember.\nPoison: Each Crewmember in the Sector with Flower Bug rolls [dangerDieD].\nWeaken: Each Crewmember in the Sector with Flower Bug [spendDie].\nSpawn: If there is no Flower Bug on the Planet board, place it in any Sector with a Crewmember.",
+    "it": "Viaggio: Se non c'è alcun Membro dell'Equipaggio nel Settore con l'Insetto Fiore, muovi l'Insetto Fiore di 1 Settore verso il Membro dell'Equipaggio più vicino.\nVeleno: Ogni Membro dell'Equipaggio nel Settore con l'Insetto Fiore tira [dangerDieD].\nIndebolimento: Ogni Membro dell'Equipaggio nel Settore con l'Insetto Fiore [spendDie].\nGenerazione: Se non c'è alcun Insetto Fiore sulla plancia del Pianeta, piazzalo in un qualsiasi Settore con un Membro dell'Equipaggio."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Travel, Spawn",
+     "it": "Viaggio, Generazione"
+    },
+    {
+     "casella": 2,
+     "en": "Travel, Poison",
+     "it": "Viaggio, Veleno"
+    },
+    {
+     "casella": 3,
+     "en": "Travel, Weaken, reset this track",
+     "it": "Viaggio, Indebolimento, azzera questa traccia"
+    }
+   ],
+   "azioni": [
+    {
+     "nome": {
+      "en": "ERADICATE",
+      "it": "ESTIRPARE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [
+      {
+       "req": "biology / redDie+greenDie+blueDie",
+       "effetto": "outcomeGreenProgress"
+      }
+     ],
+     "esiti": [],
+     "tracce": [
+      {
+       "colore": "green",
+       "caselle": 3,
+       "en": "Go to Log 1013.",
+       "it": "Vai all'Annotazione 1013."
+      }
+     ],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Nessuna icona noSave in alto a destra. Solo traccia verde, nessuna rossa."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/enraptured_visitor/enraptured_visitor_7800.webp",
+   "nomi": [
+    "Enraptured Visitor"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "ENRAPTURED VISITOR",
+    "it": "VISITATORE RAPITO"
+   },
+   "testo_colore": {
+    "en": "It doesn't make any redundant moves — it has some mysterious goals programmed into its mind. It should be easy to manipulate.",
+    "it": "Non compie alcuna mossa superflua: ha degli scopi misteriosi programmati nella mente. Dovrebbe essere facile da manipolare."
+   },
+   "icone": [],
+   "regole": {
+    "en": "Travel: Place the Enraptured Visitor in Sector 1, 2, or 3 (players' choice).\nImpulse: Each Crewmember in the Sector with Enraptured Visitor [spendDie]+[spendDie]. If it is in Sector 1, 2, or 3, move POI with keyword matching the Global Condition name from the POI pile in this Sector to the top of this pile.\nStimulus: Place the Enraptured Visitor in Sector 7 and move any chosen Global Condition from the pile to the top of the Global Condition pile.",
+    "it": "Viaggio: Piazza il Visitatore Rapito nel Settore 1, 2 o 3 (a scelta dei giocatori).\nImpulso: Ogni Membro dell'Equipaggio nel Settore con il Visitatore Rapito [spendDie]+[spendDie]. Se si trova nel Settore 1, 2 o 3, sposta il PDI con la parola chiave corrispondente al nome della Condizione Generale dalla pila dei PDI di questo Settore in cima a questa pila.\nStimolo: Piazza il Visitatore Rapito nel Settore 7 e sposta una qualsiasi Condizione Generale a scelta dalla pila in cima alla pila delle Condizioni Generali."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Impulse, Travel",
+     "it": "Impulso, Viaggio"
+    },
+    {
+     "casella": 2,
+     "en": "Impulse, Travel",
+     "it": "Impulso, Viaggio"
+    },
+    {
+     "casella": 3,
+     "en": "Stimulus, reset this track",
+     "it": "Stimolo, azzera questa traccia"
+    }
+   ],
+   "azioni": [
+    {
+     "nome": {
+      "en": "IRRITATE",
+      "it": "IRRITARE"
+     },
+     "icona": "",
+     "pericolo": [],
+     "prova": false,
+     "costo": "spendDie",
+     "speciali": [
+      {
+       "req": "spendDie",
+       "effetto": {
+        "en": "to resolve Impulse.",
+        "it": "per risolvere Impulso."
+       }
+      }
+     ],
+     "esiti": [],
+     "tracce": [],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "IRRITATE non ha l'icona della prova (solo la freccia Special Action): azione senza tiro, costo [spendDie] = risolvi Impulse. Nessuna icona noSave."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/dust_storm/dust_storm_7906.webp",
+   "nomi": [
+    "Dust Storm"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "DUST STORM",
+    "it": "TEMPESTA DI POLVERE"
+   },
+   "testo_colore": {
+    "en": "Shifting and unpredictable, this storm will try to catch us by surprise.",
+    "it": "Mutevole e imprevedibile, questa tempesta cercherà di coglierci di sorpresa."
+   },
+   "icone": [
+    "noSave"
+   ],
+   "regole": {
+    "en": "Counter Spin: Move Dust Storm to the lowest-numbered connected Sector.\nClockwise Spin: Move Dust Storm to the highest-numbered connected Sector.\nGale: Each Crewmember in the Sector with Dust Storm [spendDie]+[spendDie]+[spendDie].",
+    "it": "Rotazione Antioraria: Muovi la Tempesta di Polvere nel Settore collegato con il numero più basso.\nRotazione Oraria: Muovi la Tempesta di Polvere nel Settore collegato con il numero più alto.\nBufera: Ogni Membro dell'Equipaggio nel Settore con la Tempesta di Polvere [spendDie]+[spendDie]+[spendDie]."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Counter Spin",
+     "it": "Rotazione Antioraria"
+    },
+    {
+     "casella": 2,
+     "en": "Gale, Clockwise Spin, Gale",
+     "it": "Bufera, Rotazione Oraria, Bufera"
+    },
+    {
+     "casella": 3,
+     "en": "Clockwise Spin, Gale",
+     "it": "Rotazione Oraria, Bufera"
+    },
+    {
+     "casella": 4,
+     "en": "Gale, Counter Spin, Gale, reset this track",
+     "it": "Bufera, Rotazione Antioraria, Bufera, azzera questa traccia"
+    }
+   ],
+   "azioni": [],
+   "dubbi": "Nessuna Azione Speciale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/converted_arrogator_behemoth/converted_arrogator_behemoth_7802.webp",
+   "nomi": [
+    "Converted Arrogator Behemoth"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "CONVERTED ARROGATOR BEHEMOTH",
+    "it": "BEHEMOTH ARROGATORE CONVERTITO"
+   },
+   "testo_colore": {
+    "en": "Extremely long range reworked Arrogator technology. It was to provide peace to the chosen ones living in Paradise.",
+    "it": "Tecnologia Arrogatore rielaborata a lunghissimo raggio. Doveva garantire la pace ai prescelti che vivevano in Paradiso."
+   },
+   "icone": [
+    "noSave"
+   ],
+   "regole": {
+    "en": "This Threat cannot be moved in any way!\nSpark: Each Crewmember in the Sector with Converted Arrogator Behemoth [spendDie]+[spendDie].\nDischarged: Discard Converted Arrogator Behemoth and its Threat card.",
+    "it": "Questa Minaccia non può essere mossa in alcun modo!\nScintilla: Ogni Membro dell'Equipaggio nel Settore con il Behemoth Arrogatore Convertito [spendDie]+[spendDie].\nScarico: Scarta il Behemoth Arrogatore Convertito e la relativa carta Minaccia."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Spark",
+     "it": "Scintilla"
+    },
+    {
+     "casella": 2,
+     "en": "Spark",
+     "it": "Scintilla"
+    },
+    {
+     "casella": 3,
+     "en": "Spark, Discharged",
+     "it": "Scintilla, Scarico"
+    }
+   ],
+   "azioni": [
+    {
+     "nome": {
+      "en": "SHOOT TOWARD THE MAW!",
+      "it": "SPARARE VERSO LE FAUCI!"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "condizione": {
+      "en": "You may perform this Action only if Maw is in the Sector 1.",
+      "it": "Puoi eseguire questa Azione solo se le Fauci sono nel Settore 1."
+     },
+     "speciali": [
+      {
+       "req": "accident",
+       "effetto": "outcomeRedProgress"
+      },
+      {
+       "req": "physical+technology / blueDie+greenDie+greenDie",
+       "effetto": "outcomeGreenProgress"
+      }
+     ],
+     "esiti": [],
+     "tracce": [
+      {
+       "colore": "green",
+       "caselle": 4,
+       "en": "Go to Log 829.",
+       "it": "Vai all'Annotazione 829."
+      },
+      {
+       "colore": "red",
+       "caselle": 2,
+       "en": "Spark, reset this track.",
+       "it": "Scintilla, azzera questa traccia."
+      }
+     ],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Restrizione sotto il nome dell'azione nel campo 'condizione'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/carnivorous_thicket/carnivorous_thicket_17907.webp",
+   "nomi": [
+    "Carnivorous Thicket"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "CARNIVOROUS THICKET",
+    "it": "BOSCAGLIA CARNIVORA"
+   },
+   "testo_colore": {
+    "en": "Long tendrils hover above the ground, dripping with thick sap and poison. Using brute force isn't an option here.",
+    "it": "Lunghi viticci si librano sopra il terreno, grondanti di linfa densa e veleno. Qui la forza bruta non è un'opzione."
+   },
+   "icone": [],
+   "regole": {
+    "en": "This Threat cannot be moved in any way!\nCorrosive Spores: Each Crewmember who is not in the Lander Sector rolls [dangerDieD] OR [sacrifaceDie].\nVicious Tendrils: Each Crewmember in the Sector with Carnivorous Thicket or in a Sector connected (ignore the Path's arrowheads) to the Sector with Carnivorous Thicket rolls [dangerDieA] and [spendDie].",
+    "it": "Questa Minaccia non può essere mossa in alcun modo!\nSpore Corrosive: Ogni Membro dell'Equipaggio che non si trova nel Settore del Lander tira [dangerDieD] OPPURE [sacrifaceDie].\nViticci Feroci: Ogni Membro dell'Equipaggio nel Settore con la Boscaglia Carnivora o in un Settore collegato (ignora le punte di freccia del Sentiero) al Settore con la Boscaglia Carnivora tira [dangerDieA] e [spendDie]."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Vicious Tendrils",
+     "it": "Viticci Feroci"
+    },
+    {
+     "casella": 2,
+     "en": "Vicious Tendrils",
+     "it": "Viticci Feroci"
+    },
+    {
+     "casella": 3,
+     "en": "Corrosive Spores, reset this track",
+     "it": "Spore Corrosive, azzera questa traccia"
+    }
+   ],
+   "azioni": [
+    {
+     "nome": {
+      "en": "WITHER",
+      "it": "FAR APPASSIRE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [
+      {
+       "req": "accident / physical",
+       "effetto": "outcomeRedProgress"
+      },
+      {
+       "req": "biology / xenology / redDie+redDie+redDie",
+       "effetto": "outcomeGreenProgress"
+      }
+     ],
+     "esiti": [],
+     "tracce": [
+      {
+       "colore": "green",
+       "caselle": 4,
+       "en": "Go to Log 201.",
+       "it": "Vai all'Annotazione 201."
+      },
+      {
+       "colore": "red",
+       "caselle": 2,
+       "en": "Vicious tendrils, reset this track.",
+       "it": "Viticci Feroci, azzera questa traccia."
+      }
+     ],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Nessuna icona noSave in alto a destra."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/builder_s_biomebot/builder_s_biomebot_7806.webp",
+   "nomi": [
+    "Builder's Biomebot"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "BUILDER'S BIOMEBOT",
+    "it": "BIOMEBOT DEL COSTRUTTORE"
+   },
+   "testo_colore": {
+    "en": "This hulking creature roams the dead landscape, carrying a piece of different reality under its protective bubble.",
+    "it": "Questa creatura massiccia vaga per il paesaggio morto, portando un frammento di una realtà diversa sotto la sua bolla protettiva."
+   },
+   "icone": [
+    "noSave"
+   ],
+   "regole": {
+    "en": "Whenever Builder's Biomebot would leave Sector, place the POI card from that Sector at the bottom of Biomebot's POIs pile first.\nTravel: Place the POI card from the Sector with Builder's Biomebot at the bottom of Biomebot's POIs pile. Move the Builder's Biomebot to the connected Sector that's one number higher. If there is no such Sector, place it in Sector 2 instead.\nImportant! Builder's Biomebot will never itself enter the Sector where Re-Origination Beam is present. If Re-Origination Beam is present in the Sector Builder's Biomebot would Travel to, cancel that Travel instead.\nBiome Change: Place the POI card from the Sector with Builder's Biomebot at the bottom of Biomebot's POIs pile. Then, take the top card from the Biomebot's POIs pile and place it on top of any cards in the Sector with Builder's Biomebot.",
+    "it": "Ogni volta che il Biomebot del Costruttore dovrebbe lasciare un Settore, prima piazza la carta PDI di quel Settore in fondo alla pila dei PDI del Biomebot.\nViaggio: Piazza la carta PDI del Settore con il Biomebot del Costruttore in fondo alla pila dei PDI del Biomebot. Muovi il Biomebot del Costruttore nel Settore collegato con il numero superiore di uno. Se tale Settore non esiste, piazzalo invece nel Settore 2.\nImportante! Il Biomebot del Costruttore non entrerà mai di sua iniziativa nel Settore in cui è presente il Raggio di Ri-originazione. Se il Raggio di Ri-originazione è presente nel Settore in cui il Biomebot del Costruttore dovrebbe Viaggiare, annulla invece quel Viaggio.\nCambio di Bioma: Piazza la carta PDI del Settore con il Biomebot del Costruttore in fondo alla pila dei PDI del Biomebot. Poi, prendi la prima carta della pila dei PDI del Biomebot e piazzala sopra le eventuali carte nel Settore con il Biomebot del Costruttore."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Travel, Biome Change",
+     "it": "Viaggio, Cambio di Bioma"
+    },
+    {
+     "casella": 2,
+     "en": "Reset this track",
+     "it": "Azzera questa traccia"
+    }
+   ],
+   "azioni": [],
+   "altro": {
+    "en": "Left edge: area labelled \"BIOMEBOT'S POIS\" (space for the Biomebot's POIs pile).",
+    "it": "Bordo sinistro: area con la scritta \"PDI DEL BIOMEBOT\" (spazio per la pila dei PDI del Biomebot)."
+   },
+   "dubbi": "Nessuna Azione Speciale. Sul bordo sinistro c'è un riquadro verticale 'BIOMEBOT'S POIS' (messo in 'altro')."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bombardment/bombardment_19103.webp",
+   "nomi": [
+    "Bombardment"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "BOMBARDMENT",
+    "it": "BOMBARDAMENTO"
+   },
+   "testo_colore": {
+    "en": "A methodical wave of destruction sweeps through the area.",
+    "it": "Un'ondata metodica di distruzione spazza l'area."
+   },
+   "icone": [],
+   "regole": {
+    "en": "Salvo: Each Crewmember in the Sector with Bombardment [spendDie]+[spendDie]+[spendDie] OR rolls [dangerDieC]. Then, place the Bombardment in the Sector one number higher. If there are no Sectors with a higher number, place it in Sector 1.\nReload: Place the Bombardment in the Sector one number higher. If there are no Sectors with a higher number, place it Sector 1.",
+    "it": "Salva: Ogni Membro dell'Equipaggio nel Settore con il Bombardamento [spendDie]+[spendDie]+[spendDie] OPPURE tira [dangerDieC]. Poi, piazza il Bombardamento nel Settore con il numero superiore di uno. Se non ci sono Settori con un numero superiore, piazzalo nel Settore 1.\nRicarica: Piazza il Bombardamento nel Settore con il numero superiore di uno. Se non ci sono Settori con un numero superiore, piazzalo nel Settore 1."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Salvo",
+     "it": "Salva"
+    },
+    {
+     "casella": 2,
+     "en": "Salvo",
+     "it": "Salva"
+    },
+    {
+     "casella": 3,
+     "en": "Reload, reset this track",
+     "it": "Ricarica, azzera questa traccia"
+    }
+   ],
+   "azioni": [],
+   "dubbi": "Nessuna Azione Speciale, nessuna icona in alto a destra. 'Reload' tradotto 'Ricarica' come nome di regola (non è il Refresh del glossario). Dado di Salvo letto C (potrebbe essere G)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/arrogator_warswarm/arrogator_warswarm_19105.webp",
+   "nomi": [
+    "Arrogator Warswarm"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "ARROGATOR WARSWARM",
+    "it": "SCIAME DA GUERRA ARROGATORE"
+   },
+   "testo_colore": {
+    "en": "A hulking war machine that spews aggressive drones.",
+    "it": "Una massiccia macchina da guerra che rigurgita droni aggressivi."
+   },
+   "icone": [],
+   "regole": {
+    "en": "Hack Drone: Remove 1 Drone from the Planet board.\nSwarm: Place 1 Drone in each Sector with a Crewmember. If there are more Sectors than Drones, choose the lowest-numbered Sectors. Place remaining Drones in the Sector with the Arrogator Warswarm.\nDrones: Each Crewmember in a Sector with at least 1 Drone [spendDieGreen]/[spendDieBlue] OR rolls [dangerDieI].\nEradication Blast: Each Crewmember in the Sector with the Arrogator Warswarm gains a Wounded Injury. Then, each Crewmember in a Sector with at least 1 Drone [spendDieGreen]+[spendDieBlue] OR rolls [dangerDieC].",
+    "it": "Hackerare un Drone: Rimuovi 1 Drone dalla plancia del Pianeta.\nSciame: Piazza 1 Drone in ogni Settore con un Membro dell'Equipaggio. Se ci sono più Settori che Droni, scegli i Settori con il numero più basso. Piazza i Droni rimanenti nel Settore con lo Sciame da Guerra Arrogatore.\nDroni: Ogni Membro dell'Equipaggio in un Settore con almeno 1 Drone [spendDieGreen]/[spendDieBlue] OPPURE tira [dangerDieI].\nRaffica di Eradicazione: Ogni Membro dell'Equipaggio nel Settore con lo Sciame da Guerra Arrogatore subisce una Ferita Ferito. Poi, ogni Membro dell'Equipaggio in un Settore con almeno 1 Drone [spendDieGreen]+[spendDieBlue] OPPURE tira [dangerDieC]."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Swarm",
+     "it": "Sciame"
+    },
+    {
+     "casella": 2,
+     "en": "Drones",
+     "it": "Droni"
+    },
+    {
+     "casella": 3,
+     "en": "Eradication Blast",
+     "it": "Raffica di Eradicazione"
+    },
+    {
+     "casella": 4,
+     "en": "Reset this track",
+     "it": "Azzera questa traccia"
+    }
+   ],
+   "azioni": [
+    {
+     "nome": {
+      "en": "FIGHT THE WARSWARM",
+      "it": "COMBATTERE LO SCIAME DA GUERRA"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [
+      {
+       "req": "accident",
+       "effetto": "spendDie"
+      },
+      {
+       "req": "scienceDice / technology",
+       "effetto": "outcomeYellowProgress"
+      },
+      {
+       "req": "physical+defence / redDie+blueDie+blueDie",
+       "effetto": "outcomeGreenProgress"
+      }
+     ],
+     "esiti": [],
+     "tracce": [
+      {
+       "colore": "yellow",
+       "caselle": 1,
+       "en": "Hack Drone, reset this track.",
+       "it": "Hackerare un Drone, azzera questa traccia."
+      },
+      {
+       "colore": "green",
+       "caselle": 3,
+       "en": "Go to Log 813.",
+       "it": "Vai all'Annotazione 813."
+      }
+     ],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Speciale 'accident = [spendDie]': ogni accident costa un dado speso (icona effetto non di esito). Traccia gialla (1 casella) sopra quella verde (3 caselle). Dado di Eradication Blast letto C (potrebbe essere G). 'Wounded Injury' = Ferita Ferito (glossario)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/arrogator_guardian/arrogator_guardian_7809.webp",
+   "nomi": [
+    "Arrogator Guardian"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "ARROGATOR GUARDIAN",
+    "it": "GUARDIANO ARROGATORE"
+   },
+   "testo_colore": {
+    "en": "A defender of Craftworld.",
+    "it": "Un difensore di Craftworld."
+   },
+   "icone": [],
+   "regole": {
+    "en": "Travel: If there is no Crewmember in Sector with Arrogator Guardian, move Arrogator Guardian by 1 Sector toward the nearest Crewmember.\nAttack: Each Crewmember in the Sector with Arrogator Guardian rolls [dangerDieI]. If there are none, Travel and [outcomeRedProgress].\nEradication Ray: Each Crewmember in the Sector with Arrogator Guardian rolls [dangerDieF].",
+    "it": "Viaggio: Se non c'è alcun Membro dell'Equipaggio nel Settore con il Guardiano Arrogatore, muovi il Guardiano Arrogatore di 1 Settore verso il Membro dell'Equipaggio più vicino.\nAttacco: Ogni Membro dell'Equipaggio nel Settore con il Guardiano Arrogatore tira [dangerDieI]. Se non ce ne sono, Viaggio e [outcomeRedProgress].\nRaggio di Eradicazione: Ogni Membro dell'Equipaggio nel Settore con il Guardiano Arrogatore tira [dangerDieF]."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Travel, Attack",
+     "it": "Viaggio, Attacco"
+    },
+    {
+     "casella": 2,
+     "en": "Travel",
+     "it": "Viaggio"
+    },
+    {
+     "casella": 3,
+     "en": "Attack, Attack, reset this track",
+     "it": "Attacco, Attacco, azzera questa traccia"
+    }
+   ],
+   "azioni": [
+    {
+     "nome": {
+      "en": "DEFEAT",
+      "it": "SCONFIGGERE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [
+      {
+       "req": "physical+defence / defence+technology",
+       "effetto": "outcomeGreenProgress"
+      },
+      {
+       "req": "accident / physical / technology",
+       "effetto": "outcomeRedProgress"
+      }
+     ],
+     "esiti": [],
+     "tracce": [
+      {
+       "colore": "green",
+       "caselle": 4,
+       "en": "Flip this card.",
+       "it": "Gira questa carta."
+      },
+      {
+       "colore": "red",
+       "caselle": 2,
+       "en": "Eradication Ray, reset this track.",
+       "it": "Raggio di Eradicazione, azzera questa traccia."
+      }
+     ],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Nessuna icona noSave. Nella seconda riga speciale 'physical' (singolo) dà avanzamento rosso mentre nella prima 'physical+defence' dà verde: trascritto così com'è. In Attack, '[outcomeRedProgress]' fa avanzare la traccia rossa dell'azione DEFEAT."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/arrogator_behemoth/arrogator_behemoth_17308.webp",
+   "nomi": [
+    "Arrogator Behemoth"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "ARROGATOR BEHEMOTH",
+    "it": "BEHEMOTH ARROGATORE"
+   },
+   "testo_colore": {
+    "en": "An eye of void atop biomechanical carapace.",
+    "it": "Un occhio di vuoto in cima a un carapace biomeccanico."
+   },
+   "icone": [],
+   "regole": {
+    "en": "Travel: If there is no Crewmember in the Sector with Arrogator Behemoth, move Arrogator Behemoth 2 Sectors toward the nearest Crewmember.\nAttack: Each Crewmember in the Sector with Arrogator Behemoth [spendDie]. If there is none: Travel and [outcomeRedProgress].\nEradication Beam: Each Crewmember in the Sector with Arrogator Behemoth [sacrifaceDie] and gains a Wounded Injury.",
+    "it": "Viaggio: Se non c'è alcun Membro dell'Equipaggio nel Settore con il Behemoth Arrogatore, muovi il Behemoth Arrogatore di 2 Settori verso il Membro dell'Equipaggio più vicino.\nAttacco: Ogni Membro dell'Equipaggio nel Settore con il Behemoth Arrogatore [spendDie]. Se non ce n'è nessuno: Viaggio e [outcomeRedProgress].\nRaggio di Eradicazione: Ogni Membro dell'Equipaggio nel Settore con il Behemoth Arrogatore [sacrifaceDie] e subisce una Ferita Ferito."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Travel, Attack",
+     "it": "Viaggio, Attacco"
+    },
+    {
+     "casella": 2,
+     "en": "Travel",
+     "it": "Viaggio"
+    },
+    {
+     "casella": 3,
+     "en": "Attack, Attack, reset this track",
+     "it": "Attacco, Attacco, azzera questa traccia"
+    }
+   ],
+   "azioni": [
+    {
+     "nome": {
+      "en": "DEFEAT",
+      "it": "SCONFIGGERE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [
+      {
+       "req": "accident / technology",
+       "effetto": "outcomeRedProgress"
+      },
+      {
+       "req": "physical+defence / redDie+blueDie+blueDie",
+       "effetto": "outcomeGreenProgress"
+      }
+     ],
+     "esiti": [],
+     "tracce": [
+      {
+       "colore": "green",
+       "caselle": 4,
+       "en": "Go to Log 40.",
+       "it": "Vai all'Annotazione 40."
+      },
+      {
+       "colore": "red",
+       "caselle": 3,
+       "en": "Eradication Beam, reset this track.",
+       "it": "Raggio di Eradicazione, azzera questa traccia."
+      }
+     ],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Nessuna icona noSave. Eradication Beam e Eradication Ray (Guardian) resi entrambi 'Raggio di Eradicazione'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/aerugon_saboteur/aerugon_saboteur_7804.webp",
+   "nomi": [
+    "Aerugon Saboteur"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "AERUGON SABOTEUR",
+    "it": "SABOTATORE AERUGON"
+   },
+   "testo_colore": {
+    "en": "This Aerugon spy is equipped with reflex and speed boosters that make him impossible to catch -- as long as they work.",
+    "it": "Questa spia Aerugon è dotata di potenziatori di riflessi e velocità che la rendono impossibile da catturare, almeno finché funzionano."
+   },
+   "icone": [
+    "noSave"
+   ],
+   "regole": {
+    "en": "Emergency Booster: If there's no marker on the Aerugon Saboteur Threat card, go to Log 1073. Otherwise, remove a marker from the Aerugon Saboteur Threat card and move Aerugon Saboteur to a random connected Sector.\nGas Bomb: Each Crewmember in Sector with Aerugon Saboteur rolls [dangerDieD].\nBooster Refresh: If there is no marker on the Aerugon Saboteur Threat card, place 1 marker there.",
+    "it": "Potenziatore di Emergenza: Se non c'è alcun segnalino sulla carta Minaccia del Sabotatore Aerugon, vai all'Annotazione 1073. Altrimenti, rimuovi un segnalino dalla carta Minaccia del Sabotatore Aerugon e muovi il Sabotatore Aerugon in un Settore collegato casuale.\nBomba a Gas: Ogni Membro dell'Equipaggio nel Settore con il Sabotatore Aerugon tira [dangerDieD].\nRicarica del Potenziatore: Se non c'è alcun segnalino sulla carta Minaccia del Sabotatore Aerugon, piazzane 1."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Gas Bomb",
+     "it": "Bomba a Gas"
+    },
+    {
+     "casella": 2,
+     "en": "Booster Refresh, reset this track",
+     "it": "Ricarica del Potenziatore, azzera questa traccia"
+    }
+   ],
+   "azioni": [
+    {
+     "nome": {
+      "en": "AMBUSH THE SABOTEUR",
+      "it": "TENDERE UN'IMBOSCATA AL SABOTATORE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [
+      "dangerDieA"
+     ],
+     "prova": true,
+     "costo": "",
+     "speciali": [
+      {
+       "req": "basic / accident",
+       "effetto": "outcomeRed"
+      }
+     ],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "defence+scouting",
+       "en": "Emergency Booster.",
+       "it": "Potenziatore di Emergenza.",
+       "segue": ""
+      },
+      {
+       "colore": "red",
+       "req": "",
+       "en": "Gas Bomb.",
+       "it": "Bomba a Gas.",
+       "segue": ""
+      }
+     ],
+     "tracce": [],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Dado Pericolo A raffigurato accanto al nome dell'azione (aggiunto alla prova). Il testo inglese usa 'him' per la spia."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/adaptive_shield/adaptive_shield_33403.webp",
+   "nomi": [
+    "Adaptive Shield"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "ADAPTIVE SHIELD",
+    "it": "SCUDO ADATTIVO"
+   },
+   "testo_colore": {
+    "en": "This shapeshifting shell reconfigures itself in the blink of an eye, protecting against any known hazards.",
+    "it": "Questo guscio mutaforma si riconfigura in un battito di ciglia, proteggendo da qualsiasi pericolo conosciuto."
+   },
+   "icone": [],
+   "regole": {
+    "en": "Reconfiguration: Remove 1 chosen marker from the edge of this Threat card.",
+    "it": "Riconfigurazione: Rimuovi 1 segnalino a scelta dal bordo di questa carta Minaccia."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "",
+     "it": ""
+    },
+    {
+     "casella": 2,
+     "en": "Reconfiguration, reset this track.",
+     "it": "Riconfigurazione, azzera questa traccia."
+    }
+   ],
+   "azioni": [],
+   "altro": {
+    "en": "Right edge: column of marker spaces with icons (top to bottom): [basic] [physical] [gathering] [defence] [scouting] [biology] [xenology] [construction] [scienceDice] [technology] [vanguard].",
+    "it": "Bordo destro: colonna di spazi per segnalini con icone (dall'alto in basso): [basic] [physical] [gathering] [defence] [scouting] [biology] [xenology] [construction] [scienceDice] [technology] [vanguard]."
+   },
+   "edge_icone": [
+    "basic",
+    "physical",
+    "gathering",
+    "defence",
+    "scouting",
+    "biology",
+    "xenology",
+    "construction",
+    "scienceDice",
+    "technology",
+    "vanguard"
+   ],
+   "dubbi": "Traccia del Tempo in formato orizzontale con 2 caselle affiancate e un solo testo a destra (assegnato all'ultima casella; la prima casella non ha effetto). Campo aggiuntivo 'edge_icone' con le 11 icone sul bordo destro (usate da 'Fight the Metahedron' del Guardian Metahedron)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/kurma/kurma_33309.webp",
+   "nomi": [
+    "Kurma"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "KURMA",
+    "it": "KURMA"
+   },
+   "testo_colore": {
+    "en": "A harmless monstrosity ruling the hidden underwater realm. It seems interested in Luminescent Caves.",
+    "it": "Una mostruosità innocua che regna sul regno sottomarino nascosto. Sembra interessata alle Grotte Luminescenti."
+   },
+   "icone": [
+    "noSave"
+   ],
+   "regole": {
+    "en": "Thrash: Each Crewmember in the Sector with Kurma rolls [dangerDieA] OR [spendDieRed].\nSwim: Roll D10. Move Kurma to:\n0-4: the lowest-numbered connected Sector.\n5-9: the highest-numbered connected Sector.",
+    "it": "Sferzata: Ogni Membro dell'Equipaggio nel Settore con Kurma tira [dangerDieA] OPPURE [spendDieRed].\nNuotare: Tira un D10. Muovi Kurma:\n0-4: nel Settore collegato con il numero più basso.\n5-9: nel Settore collegato con il numero più alto."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Thrash",
+     "it": "Sferzata"
+    },
+    {
+     "casella": 2,
+     "en": "Swim, Thrash",
+     "it": "Nuotare, Sferzata"
+    },
+    {
+     "casella": 3,
+     "en": "Swim",
+     "it": "Nuotare"
+    },
+    {
+     "casella": 4,
+     "en": "Swim, Thrash, reset this track",
+     "it": "Nuotare, Sferzata, azzera questa traccia"
+    }
+   ],
+   "azioni": [
+    {
+     "nome": {
+      "en": "INTERACT WITH KURMA",
+      "it": "INTERAGIRE CON KURMA"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "greenDie+redDie / xenology",
+       "en": "Go to Log 335.",
+       "it": "Vai all'Annotazione 335.",
+       "segue": ""
+      }
+     ],
+     "tracce": [],
+     "frecce": ""
+    },
+    {
+     "nome": {
+      "en": "LURE",
+      "it": "ATTIRARE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "condizione": {
+      "en": "You may perform this Action in any Sector.",
+      "it": "Puoi eseguire questa Azione in qualsiasi Settore."
+     },
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "greenDie+blueDie / xenology",
+       "en": "Move Kurma by 1 Sector.",
+       "it": "Muovi Kurma di 1 Settore.",
+       "segue": ""
+      }
+     ],
+     "tracce": [],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Due Azioni Speciali con una sola riga verde ciascuna. 'Luminescent Caves' tradotto 'Grotte Luminescenti' (nome di PDI/luogo, resa non verificata)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/apex_predator/apex_predator_33110.webp",
+   "nomi": [
+    "Apex Predator"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "APEX PREDATOR",
+    "it": "PREDATORE ALFA"
+   },
+   "testo_colore": {
+    "en": "Intangible death prowling wastelands and abandoned facilities.",
+    "it": "Una morte intangibile che si aggira per le terre desolate e le strutture abbandonate."
+   },
+   "icone": [
+    "noSave"
+   ],
+   "regole": {
+    "en": "When Apex Predator is off the Planet board, its Travel is ignored and Attack affects 1 random Crewmember in any Sector.\nWhen Apex Predator is on the Planet board, Attack affects all Crewmembers in the Sector with Apex Predator.\nAttack: Roll [dangerDieF] OR [spendDieRed] and roll [dangerDieA].\nTravel: Move Apex Predator 2 Sectors toward the Crewmember with most Injuries. In case of a tie – pick at random.\nCamouflage: Remove Apex Predator from the Planet board and [outcomeGreenReduction].",
+    "it": "Quando il Predatore Alfa è fuori dalla plancia del Pianeta, il suo Viaggio viene ignorato e l'Attacco colpisce 1 Membro dell'Equipaggio casuale in qualsiasi Settore.\nQuando il Predatore Alfa è sulla plancia del Pianeta, l'Attacco colpisce tutti i Membri dell'Equipaggio nel Settore con il Predatore Alfa.\nAttacco: Tira [dangerDieF] OPPURE [spendDieRed] e tira [dangerDieA].\nViaggio: Muovi il Predatore Alfa di 2 Settori verso il Membro dell'Equipaggio con più Ferite. In caso di parità, scegli a caso.\nMimetismo: Rimuovi il Predatore Alfa dalla plancia del Pianeta e [outcomeGreenReduction]."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Travel, Attack",
+     "it": "Viaggio, Attacco"
+    },
+    {
+     "casella": 2,
+     "en": "Camouflage, Attack",
+     "it": "Mimetismo, Attacco"
+    },
+    {
+     "casella": 3,
+     "en": "Travel, Attack, reset this track",
+     "it": "Viaggio, Attacco, azzera questa traccia"
+    }
+   ],
+   "azioni": [
+    {
+     "nome": {
+      "en": "TRACK",
+      "it": "SEGUIRE LE TRACCE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "condizione": {
+      "en": "You may perform this Action in any Sector.",
+      "it": "Puoi eseguire questa Azione in qualsiasi Settore."
+     },
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "scouting+xenology",
+       "en": "Place Apex Predator in your Sector.",
+       "it": "Piazza il Predatore Alfa nel tuo Settore.",
+       "segue": ""
+      }
+     ],
+     "tracce": [],
+     "frecce": ""
+    },
+    {
+     "nome": {
+      "en": "HUNT",
+      "it": "CACCIARE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [
+      {
+       "req": "defence+xenology / physical+physical+basic",
+       "effetto": "outcomeGreenProgress"
+      }
+     ],
+     "esiti": [],
+     "tracce": [
+      {
+       "colore": "green",
+       "caselle": 3,
+       "en": "Go to Log 438.",
+       "it": "Vai all'Annotazione 438."
+      }
+     ],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Attack: lettura 'Roll [dangerDieF] OR [spendDieRed] and roll [dangerDieA]' (la F è piccola, potrebbe essere E). Camouflage fa arretrare la traccia verde di HUNT ([outcomeGreenReduction])."
+  }
+ ]
+}

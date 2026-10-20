@@ -40,6 +40,10 @@ func _ready() -> void:
 	Campagna.cambiata.connect(_salva_tavolo_differito)
 	Campagna.salvata.connect(_su_salvata)
 	var modo := str(Campagna.dati.get("modo", ""))
+	if Campagna.dati.get("esplorazione") is Dictionary and not Campagna.dati["esplorazione"].is_empty():
+		# un'esplorazione in corso: si riprende direttamente dalla plancia del pianeta
+		apri_esplorazione.call_deferred()
+		return
 	if Campagna.motore.posizione().is_empty() and Campagna.dati["registro"].get("eventi", []).size() <= 1:
 		# prima apertura: il Logbook propone l'annotazione iniziale
 		_mostra_logbook(true)
@@ -98,6 +102,7 @@ func _costruisci_ui() -> void:
 		b.tooltip_text = "Vista: %s" % Tavolo.VISTE[k]["nome"]
 		h.add_child(b)
 	h.add_child(VSeparator.new())
+	h.add_child(Tema.pulsante_primario("ESPLORAZIONE", apri_esplorazione, 14))
 	h.add_child(Tema.pulsante_primario("LOGBOOK", func(): _mostra_logbook(not logbook.visible), 14))
 	h.add_child(Tema.pulsante("REGOLE", func(): ui.add_child(VisoreRegole.new()), 12))
 	h.add_child(Tema.pulsante("?", _mostra_aiuto, 14))
@@ -177,6 +182,38 @@ func _costruisci_ui() -> void:
 	hint.add_theme_color_override("font_color", Color(0.6, 0.72, 0.85, 0.85))
 	hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	ui.add_child(hint)
+
+var _missione: Missione
+
+## Esplorazione planetaria: riprende quella in corso oppure apre la preparazione.
+func apri_esplorazione() -> void:
+	if is_instance_valid(_missione):
+		return
+	var st = Campagna.dati.get("esplorazione")
+	if st is Dictionary and not st.is_empty():
+		_mostra_missione(st)
+		return
+	var prep := PreparazioneMissione.new()
+	prep.pagina_iniziale = str(Campagna.dati.get("prossimo_pianeta", "p.2-3"))
+	prep.pronta.connect(func(cfg: Dictionary):
+		var e := Esplorazione.new()
+		e.prepara(cfg["pagina"], Carte.pianeta(cfg["pagina"]), cfg["squadra"], cfg["lander"], cfg["mazzi"])
+		Campagna.dati["esplorazione"] = e.s
+		Campagna.annota("Inizia l'esplorazione: %s" % str(Carte.pianeta(cfg["pagina"]).get("pianeta", cfg["pagina"])))
+		Campagna.modificata()
+		_mostra_missione(e.s))
+	ui.add_child(prep)
+
+func _mostra_missione(st: Dictionary) -> void:
+	_missione = Missione.new(st)
+	tavolo.visible = false
+	tavolo.process_mode = Node.PROCESS_MODE_DISABLED
+	logbook.visible = false
+	ui.add_child(_missione)
+	_missione.chiusa.connect(func():
+		_missione.queue_free()
+		tavolo.visible = true
+		tavolo.process_mode = Node.PROCESS_MODE_INHERIT)
 
 func _mostra_logbook(v: bool) -> void:
 	logbook.visible = v

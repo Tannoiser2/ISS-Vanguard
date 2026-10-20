@@ -1,0 +1,201 @@
+{
+ "tipo": "attrezzatura",
+ "immagini": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e01_206607.webp",
+   "nomi": [
+    "E01"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e04_206602.webp",
+   "nomi": [
+    "E04"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e07_206600.webp",
+   "nomi": [
+    "E07"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e10_16701.webp",
+   "nomi": [
+    "E10"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e13_16904.webp",
+   "nomi": [
+    "E13"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e16_15207.webp",
+   "nomi": [
+    "E16"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e19_14102.webp",
+   "nomi": [
+    "E19"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e22_7905.webp",
+   "nomi": [
+    "E22"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e25_7908.webp",
+   "nomi": [
+    "E25"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e28_7911.webp",
+   "nomi": [
+    "E28"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e31_7914.webp",
+   "nomi": [
+    "E31"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e35_7917.webp",
+   "nomi": [
+    "E35"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e38_17100.webp",
+   "nomi": [
+    "E38"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e41_17103.webp",
+   "nomi": [
+    "E41"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e44_17106.webp",
+   "nomi": [
+    "E44"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e47_18301.webp",
+   "nomi": [
+    "E47"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e50_18304.webp",
+   "nomi": [
+    "E50"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e53_18307.webp",
+   "nomi": [
+    "E53"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e56_18310.webp",
+   "nomi": [
+    "E56"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e59_18313.webp",
+   "nomi": [
+    "E59"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e62_18315.webp",
+   "nomi": [
+    "E62"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e65_18318.webp",
+   "nomi": [
+    "E65"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e68_18321.webp",
+   "nomi": [
+    "E68"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e72_18324.webp",
+   "nomi": [
+    "E72"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e75_18327.webp",
+   "nomi": [
+    "E75"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e78_18330.webp",
+   "nomi": [
+    "E78"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e102_18333.webp",
+   "nomi": [
+    "E102"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unavailable_equipment/e105_18336.webp",
+   "nomi": [
+    "E105"
+   ],
+   "lato": "fronte"
+  }
+ ]
+}

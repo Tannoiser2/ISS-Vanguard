@@ -1,0 +1,1213 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc24911232942528089832A9720AC71D446CA689007077C7D7B890054A0AC.jpg",
+   "pagine": "12-13",
+   "pianeta": "EVERSTORM, STAGE 2",
+   "nome_in_codice": "GYF-4 B",
+   "decollo_log": null,
+   "evac_log": 555,
+   "descrizione": {
+    "en": "The storm dissipated, revealing the remains of the planet's previous, dead ecosystem – as well as swarms of mound mites that now cover the surface, and the enormous machine the Builders used to control the weather of this world.",
+    "it": "La tempesta si è dissolta, rivelando i resti del precedente ecosistema morto del pianeta, oltre a sciami di acari dei tumuli che ora ricoprono la superficie, e l'enorme macchina che i Costruttori usavano per controllare il clima di questo mondo."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.121,
+     "y": 0.5,
+     "w": 0.198,
+     "h": 0.251,
+     "icone": [
+      "rocky",
+      "lander"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "DECONSTRUCTION",
+       "it": "DECOSTRUZIONE"
+      },
+      "testo_colore": {
+       "en": "With the wind stopped, a scene of destruction unravels before our eyes: the lander meticulously cut to pieces by the mound mites.",
+       "it": "Con il vento fermo, una scena di distruzione si dipana davanti ai nostri occhi: il lander meticolosamente fatto a pezzi dagli acari dei tumuli."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "SALVAGE YOUR CARGO",
+         "it": "RECUPERARE IL CARICO"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "scouting+technology",
+          "en": "Gain 1 Live Specimen Discovery, Refresh up to 2 [die] used in this Dice Check.",
+          "it": "Ottieni 1 Scoperta Esemplare Vivo, Ricarica fino a 2 [die] usati in questa Prova.",
+          "segue": "green"
+         },
+         {
+          "colore": "green",
+          "req": "defence+biology",
+          "en": "Gain 2 [success], place all Lost Discoveries next to your Crew board, replace with card P000.",
+          "it": "Ottieni 2 [success], metti tutte le Scoperte Perdute accanto alla tua plancia dell'Equipaggio, sostituisci con la carta P000."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Go to Log 148.",
+          "it": "Vai all'Annotazione 148."
+         }
+        ],
+        "frecce": "freccia dal giallo al verde: con il verde si applica anche il giallo"
+       }
+      ]
+     }
+    },
+    {
+     "n": 2,
+     "x": 0.374,
+     "y": 0.501,
+     "w": 0.09,
+     "h": 0.254,
+     "icone": [
+      "rocky",
+      "finalPOI"
+     ]
+    },
+    {
+     "n": 3,
+     "x": 0.67,
+     "y": 0.5,
+     "w": 0.199,
+     "h": 0.251,
+     "icone": [
+      "noMovement"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "TEEMING PLATEAU",
+       "it": "ALTOPIANO BRULICANTE"
+      },
+      "testo_colore": {
+       "en": "Rivers of mound mites now cut through the once-quiet plateau...",
+       "it": "Fiumi di acari dei tumuli ora attraversano l'altopiano un tempo tranquillo..."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "NAVIGATE BETWEEN THE MITES",
+         "it": "ORIENTARSI FRA GLI ACARI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "xenology",
+          "en": "Gain 1 Live Specimen Lead, Refresh 1 [die] used in this Dice Check.",
+          "it": "Ottieni 1 Indizio Esemplare Vivo, Ricarica 1 [die] usato in questa Prova.",
+          "segue": "green"
+         },
+         {
+          "colore": "green",
+          "req": "redDie+greenDie",
+          "en": "Place your Crewmember in Sector: 2, 4, 5, 6, or 9.",
+          "it": "Metti il tuo Membro dell'Equipaggio nel Settore: 2, 4, 5, 6 o 9."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Place your Crewmember in Sector: 2, 4, 5, 6, or 9, and go to Log 148.",
+          "it": "Metti il tuo Membro dell'Equipaggio nel Settore: 2, 4, 5, 6 o 9, e vai all'Annotazione 148."
+         }
+        ],
+        "frecce": "freccia dal giallo al verde"
+       }
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "x": 0.121,
+     "y": 0.826,
+     "w": 0.198,
+     "h": 0.255,
+     "icone": [
+      "rocky"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "DEAD FOREST",
+       "it": "FORESTA MORTA"
+      },
+      "testo_colore": {
+       "en": "Previously shrouded by the storms, this area of the surface reveals the remains of another long-lost world.",
+       "it": "Prima avvolta dalle tempeste, quest'area della superficie rivela i resti di un altro mondo perduto da tempo."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "STUDY THE ECOSYSTEM",
+         "it": "STUDIARE L'ECOSISTEMA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "gathering+scienceDice",
+          "en": "Gain 3 Strange Flora Leads.",
+          "it": "Ottieni 3 Indizi Strana Vegetazione.",
+          "segue": "green"
+         },
+         {
+          "colore": "green",
+          "req": "greenDie+greenDie",
+          "en": "Replace with a random card P171.",
+          "it": "Sostituisci con una carta P171 casuale."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieA].",
+          "it": "Tira [dangerDieA].",
+          "segue": "green"
+         }
+        ],
+        "frecce": "freccia dal giallo al verde e freccia dal rosso al verde (con il verde si applicano anche giallo e rosso)"
+       }
+      ]
+     }
+    },
+    {
+     "n": 5,
+     "x": 0.354,
+     "y": 0.826,
+     "w": 0.197,
+     "h": 0.255,
+     "icone": [
+      "rocky"
+     ],
+     "log": 416
+    },
+    {
+     "n": 6,
+     "x": 0.354,
+     "y": 0.176,
+     "w": 0.197,
+     "h": 0.251,
+     "icone": [
+      "rocky"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "LONE CLAW",
+       "it": "ARTIGLIO SOLITARIO"
+      },
+      "testo_colore": {
+       "en": "Without the storm that shrouds its base, the claw-like mound seems even taller than before. If we start scaling it, there will be no coming back!",
+       "it": "Senza la tempesta che ne avvolge la base, il tumulo a forma di artiglio sembra ancora più alto di prima. Se iniziamo a scalarlo, non si potrà tornare indietro!"
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "BEGIN THE CLIMB",
+         "it": "INIZIARE LA SCALATA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "physical+scouting",
+          "en": "Refresh 1 [die].",
+          "it": "Ricarica 1 [die].",
+          "segue": "green"
+         },
+         {
+          "colore": "green",
+          "req": "die+die",
+          "en": "Gain 1 [success], replace with card P172.",
+          "it": "Ottieni 1 [success], sostituisci con la carta P172."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Gain a Wounded Injury.",
+          "it": "Subisci una Ferita Ferito."
+         }
+        ],
+        "frecce": "freccia dal giallo al verde",
+        "testo": {
+         "en": "You may perform this Dice Check only if all Crewmembers are in this Sector.",
+         "it": "Puoi effettuare questa Prova solo se tutti i Membri dell'Equipaggio sono in questo Settore."
+        }
+       }
+      ]
+     }
+    },
+    {
+     "n": 7,
+     "x": 0.724,
+     "y": 0.826,
+     "w": 0.091,
+     "h": 0.255,
+     "icone": [
+      "caves",
+      "rocky",
+      "finalPOI"
+     ],
+     "log": 114
+    },
+    {
+     "n": 9,
+     "x": 0.724,
+     "y": 0.177,
+     "w": 0.091,
+     "h": 0.254,
+     "icone": [
+      "rocky",
+      "finalPOI"
+     ]
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 1,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 6,
+     "a": 3,
+     "senso": "da->a",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 2,
+     "a": 3,
+     "senso": "da->a",
+     "icone": [
+      "spendDie"
+     ]
+    },
+    {
+     "da": 9,
+     "a": 3,
+     "senso": "da->a",
+     "icone": [
+      "spendDie"
+     ]
+    },
+    {
+     "da": 4,
+     "a": 3,
+     "senso": "da->a",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 3,
+     "senso": "da->a",
+     "icone": [
+      "spendDie"
+     ]
+    },
+    {
+     "da": 9,
+     "a": 7,
+     "senso": "doppio",
+     "icone": [
+      "spendDie",
+      "spendDie"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "33",
+    "missione": "M52",
+    "missione_opzionale": "",
+    "condizione": {
+     "stampata": true,
+     "titolo": {
+      "en": "CLOSE ENCOUNTER",
+      "it": "INCONTRO RAVVICINATO"
+     },
+     "testo_colore": {
+      "en": "Mound mites crawl nearby and watch us suspiciously.",
+      "it": "Gli acari dei tumuli strisciano qui vicino e ci osservano con sospetto."
+     },
+     "azioni": [
+      {
+       "nome": {
+        "en": "CLOSE ENCOUNTER",
+        "it": "INCONTRO RAVVICINATO"
+       },
+       "icona": "",
+       "pericolo": [],
+       "prova": false,
+       "costo": "",
+       "speciali": [],
+       "esiti": [
+        {
+         "colore": "red",
+         "req": "biology+xenology",
+         "en": "Gain 2 Live Specimen Leads.",
+         "it": "Ottieni 2 Indizi Esemplare Vivo."
+        }
+       ]
+      }
+     ],
+     "viaggio": {
+      "nome": {
+       "en": "TRAVEL",
+       "it": "VIAGGIO"
+      },
+      "icona": "diceCheck",
+      "pericolo": [],
+      "prova": true,
+      "costo": "",
+      "speciali": [
+       {
+        "req": "accident",
+        "effetto": "outcomeRed"
+       }
+      ],
+      "esiti": [
+       {
+        "colore": "green",
+        "req": "die",
+        "en": "Move to a connected Sector.",
+        "it": "Muoviti in un Settore collegato.",
+        "segue": "red"
+       },
+       {
+        "colore": "red",
+        "req": "",
+        "en": "Go to Log 148.",
+        "it": "Vai all'Annotazione 148."
+       }
+      ],
+      "frecce": "freccia dal verde al rosso? (marcatore fra le righe)"
+     },
+     "tempo": {
+      "caselle": 6,
+      "en": "Go to Log 148.",
+      "it": "Vai all'Annotazione 148."
+     }
+    }
+   },
+   "altro": {
+    "en": "Header slots: 5x DISCOVERY, 2x THREAT, 1x RANK-UP. Side labels: LOST DISCOVERIES, SUCCESS TOKENS.",
+    "it": "Spazi in alto: 5 SCOPERTA, 2 MINACCIA, 1 GRADO SUPERIORE. Etichette laterali: SCOPERTE PERDUTE, SEGNALINI SUCCESSO."
+   },
+   "dubbi": "Nessun LIFT-OFF stampato (solo EVAC). Verso dei sentieri dedotto: chevron a entrambe le estremità = doppio; estremità con cerchio barrato (⊖) o cerchio con barra verticale (sul sentiero 2-3) = non si esce da lì, quindi senso unico verso il Settore 3 (che ha noMovement). Nella Condizione stampata 'Close Encounter' la riga biology+xenology sembra un effetto speciale senza Prova (barra rossa/arancio) e c'è un piccolo segnalino arancio prima del testo di colore; nella sua riga TRAVEL la freccia fra verde e rosso non è chiara. 'replace with card P000' letto così (P000)."
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2504639067865624342A141883F2A2F75350422EB745563F1BB232E4B17.jpg",
+   "pagine": "26-27",
+   "pianeta": "MUSPELHEIM",
+   "nome_in_codice": "Mu Librae A",
+   "decollo_log": 793,
+   "evac_log": 377,
+   "descrizione": {
+    "en": "The only planet left in the scorched solar system – this gas giant is in such close proximity to its star that the outer atmosphere is being blown out into space.",
+    "it": "L'unico pianeta rimasto nel sistema solare bruciato: questo gigante gassoso è così vicino alla sua stella che l'atmosfera esterna viene soffiata via nello spazio."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.337,
+     "y": 0.827,
+     "w": 0.198,
+     "h": 0.253,
+     "icone": [
+      "ruins",
+      "lander",
+      "noMovement"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "SEALED DERELICT",
+       "it": "RELITTO SIGILLATO"
+      },
+      "testo_colore": {
+       "en": "Clouds made of boiling metal and solar winds hid this derelict from Vanguard's scanners. Strange rotund wreckage rests by its gate.",
+       "it": "Nubi di metallo bollente e venti solari hanno nascosto questo relitto agli scanner della Vanguard. Strani rottami tondeggianti giacciono presso il suo portale."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "INSPECT THE WRECKAGE",
+         "it": "ISPEZIONARE I ROTTAMI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [
+         "dangerDieA"
+        ],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "xenology+technology+technology",
+          "en": "Go to Log 521.",
+          "it": "Vai all'Annotazione 521."
+         }
+        ]
+       },
+       {
+        "nome": {
+         "en": "OPEN THE DERELICT'S GATE",
+         "it": "APRIRE IL PORTALE DEL RELITTO"
+        },
+        "icona": "diceCheck",
+        "pericolo": [
+         "dangerDieA"
+        ],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "redDie+redDie+redDie+redDie",
+          "effetto": "outcomeGreenProgress"
+         },
+         {
+          "req": "construction+technology",
+          "effetto": "outcomeGreenProgress"
+         }
+        ],
+        "esiti": [],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 2,
+          "en": "Gain 1 [success], replace this card with P293.",
+          "it": "Ottieni 1 [success], sostituisci questa carta con P293."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 2,
+     "x": 0.355,
+     "y": 0.502,
+     "w": 0.198,
+     "h": 0.251,
+     "icone": [
+      "ruins"
+     ],
+     "log": 453
+    },
+    {
+     "n": 3,
+     "x": 0.121,
+     "y": 0.502,
+     "w": 0.198,
+     "h": 0.251,
+     "icone": [
+      "ruins",
+      "deadly"
+     ],
+     "log": 560
+    },
+    {
+     "n": 4,
+     "x": 0.337,
+     "y": 0.177,
+     "w": 0.198,
+     "h": 0.254,
+     "icone": [
+      "ruins",
+      "deadly",
+      "important"
+     ],
+     "log": 591
+    },
+    {
+     "n": 5,
+     "x": 0.689,
+     "y": 0.502,
+     "w": 0.199,
+     "h": 0.251,
+     "icone": [
+      "ruins"
+     ],
+     "log": 584
+    },
+    {
+     "n": 6,
+     "x": 0.689,
+     "y": 0.827,
+     "w": 0.199,
+     "h": 0.253,
+     "icone": []
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 4,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 4,
+     "a": 2,
+     "senso": "da->a",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 4,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 2,
+     "senso": "da->a",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 1,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 1,
+     "a": 6,
+     "senso": "doppio",
+     "icone": [
+      "spendDie"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "19, 20, 21",
+    "missione": "M130",
+    "missione_opzionale": "",
+    "condizione": {
+     "stampata": true,
+     "titolo": {
+      "en": "SOLAR FLARE",
+      "it": "BRILLAMENTO SOLARE"
+     },
+     "testo_colore": {
+      "en": "The radiation level has risen above any bearable threshold.",
+      "it": "Il livello di radiazioni è salito oltre ogni soglia sopportabile."
+     },
+     "viaggio": {
+      "nome": {
+       "en": "TRAVEL",
+       "it": "VIAGGIO"
+      },
+      "icona": "",
+      "pericolo": [],
+      "prova": false,
+      "costo": "spendDie",
+      "speciali": [],
+      "esiti": [],
+      "testo": {
+       "en": "[spendDie] to move to a connected Sector.",
+       "it": "[spendDie] per muoverti in un Settore collegato."
+      }
+     },
+     "tempo": {
+      "caselle": 2,
+      "en": "Each Crewmember rolls [dangerDieG]. Replace with card G16.",
+      "it": "Ogni Membro dell'Equipaggio tira [dangerDieG]. Sostituisci con la carta G16."
+     }
+    }
+   },
+   "altro": {
+    "en": "Header slots: 5x DISCOVERY, 3x THREAT. Side label: OPTIONAL MISSION.",
+    "it": "Spazi in alto: 5 SCOPERTA, 3 MINACCIA. Etichetta laterale: MISSIONE OPZIONALE."
+   },
+   "dubbi": "Il Settore 6 è sbiadito, senza icone né testo (forse inaccessibile o rivelato da un'Annotazione). Sentieri: chevron alle due estremità = doppio; il cerchio barrato all'ingresso del Settore 2 (da 4) e il cerchio con barra (da 5) li ho letti come senso unico verso 2. Icona bioma letta come ruins. 'OPEN THE DERELICT'S GATE': due righe di combinazioni che fanno avanzare la traccia verde da 2 caselle, senza esiti colorati; nessuna riga rossa."
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2504639067865658644BAB8B7B98205AA62EFFB1616FF1051BCDC333BAF.jpg",
+   "pagine": "40-41",
+   "pianeta": "BUILDERS' VAULT",
+   "nome_in_codice": "TZO",
+   "decollo_log": null,
+   "evac_log": 780,
+   "descrizione": {
+    "en": "Our Mecha Suits are barely holding together, just like we are, but success is now in clear view. The labyrinth led us to an enormous cavern with a central vault. We only need to find a way to unlock it before unimaginable forces unleashed around us claim our lives.",
+    "it": "Le nostre Mecha Suit reggono a malapena, proprio come noi, ma il successo è ormai in vista. Il labirinto ci ha condotti in un'enorme caverna con una cripta centrale. Dobbiamo solo trovare il modo di aprirla prima che forze inimmaginabili scatenate attorno a noi ci tolgano la vita."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.356,
+     "y": 0.172,
+     "w": 0.199,
+     "h": 0.242,
+     "icone": [
+      "ruins"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "THE LIGHTNING TOWER",
+       "it": "LA TORRE DEI FULMINI"
+      },
+      "testo_colore": {
+       "en": "The highest point of the area seems to draw in violent lightning strikes.",
+       "it": "Il punto più alto dell'area sembra attirare violente scariche di fulmini."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "ENABLE THE TOWER",
+         "it": "ATTIVARE LA TORRE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident / basic",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "xenology+construction+technology",
+          "en": "Go to Log 897.",
+          "it": "Vai all'Annotazione 897."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Each Crewmember in this Sector rolls [dangerDieI].",
+          "it": "Ogni Membro dell'Equipaggio in questo Settore tira [dangerDieI]."
+         }
+        ]
+       },
+       {
+        "nome": {
+         "en": "TRAVEL TO THE PLATEAU",
+         "it": "VIAGGIARE VERSO L'ALTOPIANO"
+        },
+        "icona": "",
+        "pericolo": [],
+        "prova": false,
+        "costo": "spendDie",
+        "speciali": [],
+        "esiti": [],
+        "testo": {
+         "en": "[spendDie] and place your Crewmember in Sector 3 or 7.",
+         "it": "[spendDie] e metti il tuo Membro dell'Equipaggio nel Settore 3 o 7."
+        }
+       }
+      ]
+     }
+    },
+    {
+     "n": 2,
+     "x": 0.124,
+     "y": 0.176,
+     "w": 0.197,
+     "h": 0.251,
+     "icone": [
+      "deadly",
+      "lightning"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "MALFUNCTIONING PEDESTAL",
+       "it": "PIEDISTALLO MALFUNZIONANTE"
+      },
+      "slot_dado": "S1",
+      "testo_colore": {
+       "en": "This pedestal looks damaged – many cables and wires of the interface are frayed and shower the top with sparks.",
+       "it": "Questo piedistallo sembra danneggiato: molti cavi e fili dell'interfaccia sono sfilacciati e coprono la sommità di scintille."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "CONNECT TO THE INTERFACE",
+         "it": "CONNETTERSI ALL'INTERFACCIA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "xenology+construction+technology",
+          "en": "Go to Log 733.",
+          "it": "Vai all'Annotazione 733."
+         }
+        ],
+        "testo": {
+         "en": "If the Dice Check is made by the [engineering] Section Crewmember (or with their Assistance): the Crewmember performing this Dice Check may spend any [basic] results as [vanguard].",
+         "it": "Se la Prova è effettuata dal Membro dell'Equipaggio del Reparto [engineering] (o con la sua Assistenza): il Membro dell'Equipaggio che effettua questa Prova può spendere qualsiasi risultato [basic] come [vanguard]."
+        }
+       },
+       {
+        "nome": {
+         "en": "INSPECT THE RELIEFS",
+         "it": "ISPEZIONARE I RILIEVI"
+        },
+        "icona": "",
+        "pericolo": [],
+        "prova": false,
+        "costo": "spendDie",
+        "speciali": [],
+        "esiti": [],
+        "testo": {
+         "en": "[spendDie] to go to Log 429.",
+         "it": "[spendDie] per andare all'Annotazione 429."
+        }
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "x": 0.124,
+     "y": 0.503,
+     "w": 0.197,
+     "h": 0.251,
+     "icone": [
+      "deadly"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "",
+       "it": ""
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "RETURN TO THE TOWER",
+         "it": "TORNARE ALLA TORRE"
+        },
+        "icona": "",
+        "pericolo": [],
+        "prova": false,
+        "costo": "spendDie",
+        "speciali": [],
+        "esiti": [],
+        "testo": {
+         "en": "[spendDie] and place your Crewmember in Sector 1.",
+         "it": "[spendDie] e metti il tuo Membro dell'Equipaggio nel Settore 1."
+        }
+       }
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "x": 0.124,
+     "y": 0.827,
+     "w": 0.197,
+     "h": 0.251,
+     "icone": [
+      "deadly",
+      "lightning"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "SPACE-WARPING PEDESTAL",
+       "it": "PIEDISTALLO DISTORCI-SPAZIO"
+      },
+      "slot_dado": "S2",
+      "testo_colore": {
+       "en": "This pedestal is surrounded by strange anomalies. The wires atop it flow in all directions and bend into strange figures.",
+       "it": "Questo piedistallo è circondato da strane anomalie. I cavi sulla sua sommità scorrono in tutte le direzioni e si piegano in strane figure."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "CONNECT TO THE INTERFACE",
+         "it": "CONNETTERSI ALL'INTERFACCIA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "gathering+scouting+scienceDice",
+          "en": "Go to Log 733.",
+          "it": "Vai all'Annotazione 733."
+         }
+        ],
+        "testo": {
+         "en": "If the Dice Check is made by the [science] Section Crewmember (or with their Assistance): the Crewmember performing this Dice Check may spend any [basic] results as [vanguard].",
+         "it": "Se la Prova è effettuata dal Membro dell'Equipaggio del Reparto [science] (o con la sua Assistenza): il Membro dell'Equipaggio che effettua questa Prova può spendere qualsiasi risultato [basic] come [vanguard]."
+        }
+       },
+       {
+        "nome": {
+         "en": "INSPECT THE RELIEFS",
+         "it": "ISPEZIONARE I RILIEVI"
+        },
+        "icona": "",
+        "pericolo": [],
+        "prova": false,
+        "costo": "spendDie",
+        "speciali": [],
+        "esiti": [],
+        "testo": {
+         "en": "[spendDie] to go to Log 488.",
+         "it": "[spendDie] per andare all'Annotazione 488."
+        }
+       }
+      ]
+     }
+    },
+    {
+     "n": 5,
+     "x": 0.356,
+     "y": 0.827,
+     "w": 0.199,
+     "h": 0.253,
+     "icone": [
+      "deadly"
+     ]
+    },
+    {
+     "n": 6,
+     "x": 0.645,
+     "y": 0.827,
+     "w": 0.199,
+     "h": 0.251,
+     "icone": [
+      "deadly",
+      "lightning"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "CRAWLING PEDESTAL",
+       "it": "PIEDISTALLO BRULICANTE"
+      },
+      "slot_dado": "S3",
+      "testo_colore": {
+       "en": "The small, fractal shards that remind you of the defeated Metahedron crawl all over the pedestal like a swarm of angry insects.",
+       "it": "Piccole schegge frattali che ricordano il Metaedro sconfitto strisciano su tutto il piedistallo come uno sciame di insetti infuriati."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "CONNECT TO THE INTERFACE",
+         "it": "CONNETTERSI ALL'INTERFACCIA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "physical+defence+biology",
+          "en": "Go to Log 733.",
+          "it": "Vai all'Annotazione 733."
+         }
+        ],
+        "testo": {
+         "en": "If the Dice Check is made by the [security] Section Crewmember (or with their Assistance): the Crewmember performing this Dice Check may spend any [basic] results as [vanguard].",
+         "it": "Se la Prova è effettuata dal Membro dell'Equipaggio del Reparto [security] (o con la sua Assistenza): il Membro dell'Equipaggio che effettua questa Prova può spendere qualsiasi risultato [basic] come [vanguard]."
+        }
+       },
+       {
+        "nome": {
+         "en": "INSPECT THE RELIEFS",
+         "it": "ISPEZIONARE I RILIEVI"
+        },
+        "icona": "",
+        "pericolo": [],
+        "prova": false,
+        "costo": "spendDie",
+        "speciali": [],
+        "esiti": [],
+        "testo": {
+         "en": "[spendDie] to go to Log 563.",
+         "it": "[spendDie] per andare all'Annotazione 563."
+        }
+       }
+      ]
+     }
+    },
+    {
+     "n": 7,
+     "x": 0.645,
+     "y": 0.503,
+     "w": 0.199,
+     "h": 0.251,
+     "icone": [
+      "deadly"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "",
+       "it": ""
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "RETURN TO THE TOWER",
+         "it": "TORNARE ALLA TORRE"
+        },
+        "icona": "",
+        "pericolo": [],
+        "prova": false,
+        "costo": "spendDie",
+        "speciali": [],
+        "esiti": [],
+        "testo": {
+         "en": "[spendDie] and place your Crewmember in Sector 1.",
+         "it": "[spendDie] e metti il tuo Membro dell'Equipaggio nel Settore 1."
+        }
+       }
+      ]
+     }
+    },
+    {
+     "n": 8,
+     "x": 0.645,
+     "y": 0.176,
+     "w": 0.199,
+     "h": 0.251,
+     "icone": [
+      "deadly",
+      "lightning"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "HALF-COLLAPSED PEDESTAL",
+       "it": "PIEDISTALLO SEMICROLLATO"
+      },
+      "slot_dado": "S4",
+      "testo_colore": {
+       "en": "This pedestal is cracked and leaks strange energies. Reaching its top will be a challenge.",
+       "it": "Questo piedistallo è crepato e disperde strane energie. Raggiungerne la sommità sarà una sfida."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "CONNECT TO THE INTERFACE",
+         "it": "CONNETTERSI ALL'INTERFACCIA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "physical+scouting+construction",
+          "en": "Go to Log 733.",
+          "it": "Vai all'Annotazione 733."
+         }
+        ],
+        "testo": {
+         "en": "If the Dice Check is made by the [recon] Section Crewmember (or with their Assistance): the Crewmember performing this Dice Check may spend any [basic] results as [vanguard].",
+         "it": "Se la Prova è effettuata dal Membro dell'Equipaggio del Reparto [recon] (o con la sua Assistenza): il Membro dell'Equipaggio che effettua questa Prova può spendere qualsiasi risultato [basic] come [vanguard]."
+        }
+       },
+       {
+        "nome": {
+         "en": "INSPECT THE RELIEFS",
+         "it": "ISPEZIONARE I RILIEVI"
+        },
+        "icona": "",
+        "pericolo": [],
+        "prova": false,
+        "costo": "spendDie",
+        "speciali": [],
+        "esiti": [],
+        "testo": {
+         "en": "[spendDie] to go to Log 614.",
+         "it": "[spendDie] per andare all'Annotazione 614."
+        }
+       }
+      ]
+     }
+    },
+    {
+     "n": 9,
+     "x": 0.356,
+     "y": 0.503,
+     "w": 0.199,
+     "h": 0.251,
+     "icone": [
+      "ruins"
+     ],
+     "stampato": {
+      "titolo": {
+       "en": "VAULT LOCK",
+       "it": "SERRATURA DELLA CRIPTA"
+      },
+      "testo_colore": {
+       "en": "Complex panels and manipulators surrounding the entrance seem to ebb and change, just like the body of the Metahedron you've fought before. Four thick cables connect the vault door with four pedestals surrounding the pyramid.",
+       "it": "Complessi pannelli e manipolatori attorno all'ingresso sembrano fluttuare e mutare, proprio come il corpo del Metaedro che avete combattuto. Quattro spessi cavi collegano la porta della cripta a quattro piedistalli attorno alla piramide."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "OPEN THE LOCK",
+         "it": "APRIRE LA SERRATURA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "S1+S2+S3+S4",
+          "effetto": "outcomeGreenProgress"
+         }
+        ],
+        "esiti": [],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 3,
+          "en": "Go to Log 758.",
+          "it": "Vai all'Annotazione 758."
+         }
+        ],
+        "testo": {
+         "en": "In this roll, [S1], [S2] [S3] and [S4] represent icons on Section dice placed on pedestals in Sectors 2, 4, 6, and 8.",
+         "it": "In questo tiro, [S1], [S2], [S3] e [S4] rappresentano le icone dei dadi Reparto posti sui piedistalli nei Settori 2, 4, 6 e 8."
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 2,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 4,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 6,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 8,
+     "a": 7,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 7,
+     "a": 6,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 1,
+     "a": 9,
+     "senso": "doppio",
+     "icone": [
+      "dangerDieA"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "31, 32",
+    "missione": "M202",
+    "missione_opzionale": "",
+    "condizione": {
+     "en": "GLOBAL CONDITIONS: If there are no cards in this slot, place the following cards here in a face up stack: G23 (bottom), G22, G21 (top).",
+     "it": "CONDIZIONI GENERALI: Se non ci sono carte in questo spazio, metti qui le seguenti carte in una pila a faccia in su: G23 (in fondo), G22, G21 (in cima)."
+    }
+   },
+   "altro": {
+    "en": "Header slots: 5x DISCOVERY, 3x THREAT. Sectors 2, 4, 6, 8 have die slots S1, S2, S3, S4 (pedestals) where Section dice are placed.",
+    "it": "Spazi in alto: 5 SCOPERTA, 3 MINACCIA. I Settori 2, 4, 6, 8 hanno gli spazi dado S1, S2, S3, S4 (piedistalli) dove si pongono i dadi Reparto."
+   },
+   "dubbi": "Icona a fulmine nei Settori 2, 4, 6, 8 non presente nel foglio: chiamata 'lightning'. Le carte stampate dei settori 3 e 7 non hanno titolo, solo l'azione 'RETURN TO THE TOWER'. Il Settore 1 è collegato via sentiero solo al 9 (sentiero con dado Pericolo, letto come dangerDieA); per il resto si raggiunge con le azioni 'Travel to the Plateau'/'Return to the Tower'. Dado Pericolo nella riga rossa di Enable the Tower letto come I. Riga speciale di Enable the Tower: '[accident] / [basic] = outcomeRed'. Sentieri tutti doppi (chevron su entrambe le estremità). Sulla carta Vault Lock la traccia verde ha 3 caselle; Lightning Tower non mostra icone del settore fuori dalla carta (solo ruins sulla carta). Nessun LIFT-OFF stampato."
+  }
+ ]
+}

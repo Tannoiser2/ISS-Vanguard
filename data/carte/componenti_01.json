@@ -1,0 +1,1132 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_tile_971299.webp",
+   "nomi": [
+    "Lead token",
+    "copie: 2"
+   ],
+   "tipo": "lead_token",
+   "titolo": {
+    "en": "Lead token",
+    "it": "Segnalino Indizio"
+   },
+   "testo": {
+    "en": "0 +1 Charge",
+    "it": "0 +1 Carica"
+   },
+   "campi": {
+    "v": 0,
+    "riciclo": false,
+    "carta": false,
+    "carica": true,
+    "copie": 2
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_tile_401465.webp",
+   "nomi": [
+    "Lead token",
+    "copie: 5"
+   ],
+   "tipo": "lead_token",
+   "titolo": {
+    "en": "Lead token",
+    "it": "Segnalino Indizio"
+   },
+   "testo": {
+    "en": "0 [leadRecycle]",
+    "it": "0 [leadRecycle]"
+   },
+   "campi": {
+    "v": 0,
+    "riciclo": true,
+    "carta": false,
+    "carica": false,
+    "copie": 5
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_tile_94a995.webp",
+   "nomi": [
+    "Lead token",
+    "copie: 2"
+   ],
+   "tipo": "lead_token",
+   "titolo": {
+    "en": "Lead token",
+    "it": "Segnalino Indizio"
+   },
+   "testo": {
+    "en": "0 +1 Card",
+    "it": "0 +1 Carta"
+   },
+   "campi": {
+    "v": 0,
+    "riciclo": false,
+    "carta": true,
+    "carica": false,
+    "copie": 2
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_tile_805684.webp",
+   "nomi": [
+    "Lead token",
+    "copie: 3"
+   ],
+   "tipo": "lead_token",
+   "titolo": {
+    "en": "Lead token",
+    "it": "Segnalino Indizio"
+   },
+   "testo": {
+    "en": "2",
+    "it": "2"
+   },
+   "campi": {
+    "v": 2,
+    "riciclo": false,
+    "carta": false,
+    "carica": false,
+    "copie": 3
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_tile_a4a3df.webp",
+   "nomi": [
+    "Lead token",
+    "copie: 5"
+   ],
+   "tipo": "lead_token",
+   "titolo": {
+    "en": "Lead token",
+    "it": "Segnalino Indizio"
+   },
+   "testo": {
+    "en": "1",
+    "it": "1"
+   },
+   "campi": {
+    "v": 1,
+    "riciclo": false,
+    "carta": false,
+    "carica": false,
+    "copie": 5
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_tile_f8a85f.webp",
+   "nomi": [
+    "Lead token",
+    "copie: 2"
+   ],
+   "tipo": "lead_token",
+   "titolo": {
+    "en": "Lead token",
+    "it": "Segnalino Indizio"
+   },
+   "testo": {
+    "en": "1 [leadRecycle]",
+    "it": "1 [leadRecycle]"
+   },
+   "campi": {
+    "v": 1,
+    "riciclo": true,
+    "carta": false,
+    "carica": false,
+    "copie": 2
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_tile_3e0634.webp",
+   "nomi": [
+    "Lead token",
+    "copie: 1"
+   ],
+   "tipo": "lead_token",
+   "titolo": {
+    "en": "Lead token",
+    "it": "Segnalino Indizio"
+   },
+   "testo": {
+    "en": "3",
+    "it": "3"
+   },
+   "campi": {
+    "v": 3,
+    "riciclo": false,
+    "carta": false,
+    "carica": false,
+    "copie": 1
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/dragonfly_f4bbd2.webp",
+   "nomi": [
+    "Dragonfly"
+   ],
+   "tipo": "lander_board",
+   "titolo": {
+    "en": "DRAGONFLY",
+    "it": "DRAGONFLY"
+   },
+   "testo": {
+    "en": "LOAD: [personalEquipment] 5 + [missionEquipment] 2. [landerArmor] 0 [landerSensors] 4 [landerAgility] 4. Landing track: 5 spaces (start S on space 4) -> LANDING SUCCESSFUL. SUPPLIES track 1-12 (starting value 6 highlighted). Slots: EQUIPMENT CARDS, RANK-UP CARD, STRUCTURAL MOD, UTILITY MOD, OTHER TOKENS AND MARKERS. DISCOVERIES - MAXIMUM: 4",
+    "it": "CARICO: [personalEquipment] 5 + [missionEquipment] 2. [landerArmor] 0 [landerSensors] 4 [landerAgility] 4. Traccia d'atterraggio: 5 caselle (partenza S sulla casella 4) -> ATTERRAGGIO RIUSCITO. Traccia PROVVISTE 1-12 (valore iniziale 6 evidenziato). Spazi: CARTE ATTREZZATURA, CARTA GRADO SUPERIORE, MODIFICA STRUTTURALE, MODIFICA DI UTILITÀ, ALTRI SEGNALINI E MARKER. SCOPERTE - MASSIMO: 4"
+   },
+   "campi": {
+    "nome": "DRAGONFLY",
+    "carico": {
+     "personali": 5,
+     "missione": 2
+    },
+    "provviste": {
+     "base": 6,
+     "massimo": 12
+    },
+    "modifiche": {
+     "structural": 1,
+     "utility": 1
+    },
+    "scoperte_max": 4,
+    "corazza": 0,
+    "sensori": 4,
+    "agilita": 4,
+    "traccia_atterraggio": {
+     "caselle": 5,
+     "partenza": 4,
+     "passi_al_successo": 2,
+     "fine": "LANDING SUCCESSFUL"
+    }
+   },
+   "dubbi": "Disponibile solo il fronte. 'massimo' provviste = 12 è la lunghezza della traccia stampata (non un limite esplicito)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/waygate_1385b2.webp",
+   "nomi": [
+    "Waygate"
+   ],
+   "tipo": "lander_board",
+   "titolo": {
+    "en": "WAYGATE",
+    "it": "WAYGATE"
+   },
+   "testo": {
+    "en": "LOAD: [personalEquipment] 5 + [missionEquipment] 3. To choose this Lander you must discard 1 Alien Tech or 1 Mineral Discovery from \"Gathered Discoveries\". During the Landing Procedure, you immediately land successfully. SUPPLIES track 1-12 (starting value 5 highlighted). Slots: EQUIPMENT CARDS, RANK-UP CARD, UTILITY MOD, UTILITY MOD, UTILITY MOD, OTHER TOKENS AND MARKERS. DISCOVERIES - MAXIMUM: 5",
+    "it": "CARICO: [personalEquipment] 5 + [missionEquipment] 3. Per scegliere questo Lander devi scartare 1 Scoperta Tecnologia Aliena o 1 Scoperta Minerale dalle \"Scoperte Raccolte\". Durante la Procedura di Atterraggio, atterri immediatamente con successo. Traccia PROVVISTE 1-12 (valore iniziale 5 evidenziato). Spazi: CARTE ATTREZZATURA, CARTA GRADO SUPERIORE, MODIFICA DI UTILITÀ, MODIFICA DI UTILITÀ, MODIFICA DI UTILITÀ, ALTRI SEGNALINI E MARKER. SCOPERTE - MASSIMO: 5"
+   },
+   "campi": {
+    "nome": "WAYGATE",
+    "carico": {
+     "personali": 5,
+     "missione": 3
+    },
+    "provviste": {
+     "base": 5,
+     "massimo": 12
+    },
+    "modifiche": {
+     "structural": 0,
+     "utility": 3
+    },
+    "scoperte_max": 5,
+    "corazza": null,
+    "sensori": null,
+    "agilita": null,
+    "traccia_atterraggio": null,
+    "atterraggio_immediato": true,
+    "costo_scelta": {
+     "scarta_scoperta": [
+      "Alien Tech",
+      "Mineral"
+     ],
+     "quantita": 1,
+     "da": "Gathered Discoveries"
+    }
+   },
+   "dubbi": "Il Waygate non ha statistiche armatura/sensori/agilità né traccia d'atterraggio: al loro posto c'è il testo di regola. Disponibile solo il fronte. 'massimo' provviste = 12 è la lunghezza della traccia stampata (non un limite esplicito)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/void_ranger_da1b99.webp",
+   "nomi": [
+    "Void Ranger"
+   ],
+   "tipo": "lander_board",
+   "titolo": {
+    "en": "VOID RANGER",
+    "it": "VOID RANGER"
+   },
+   "testo": {
+    "en": "LOAD: [personalEquipment] 5 + [missionEquipment] 3. [landerArmor] 3 [landerSensors] 2 [landerAgility] 3. Landing track: 5 spaces (start S on space 2) -> LANDING SUCCESSFUL. SUPPLIES track 1-12 (starting value 7 highlighted). Slots: EQUIPMENT CARDS, RANK-UP CARD, STRUCTURAL MOD, UTILITY MOD, UTILITY MOD, OTHER TOKENS AND MARKERS. DISCOVERIES - MAXIMUM: 5",
+    "it": "CARICO: [personalEquipment] 5 + [missionEquipment] 3. [landerArmor] 3 [landerSensors] 2 [landerAgility] 3. Traccia d'atterraggio: 5 caselle (partenza S sulla casella 2) -> ATTERRAGGIO RIUSCITO. Traccia PROVVISTE 1-12 (valore iniziale 7 evidenziato). Spazi: CARTE ATTREZZATURA, CARTA GRADO SUPERIORE, MODIFICA STRUTTURALE, MODIFICA DI UTILITÀ, MODIFICA DI UTILITÀ, ALTRI SEGNALINI E MARKER. SCOPERTE - MASSIMO: 5"
+   },
+   "campi": {
+    "nome": "VOID RANGER",
+    "carico": {
+     "personali": 5,
+     "missione": 3
+    },
+    "provviste": {
+     "base": 7,
+     "massimo": 12
+    },
+    "modifiche": {
+     "structural": 1,
+     "utility": 2
+    },
+    "scoperte_max": 5,
+    "corazza": 3,
+    "sensori": 2,
+    "agilita": 3,
+    "traccia_atterraggio": {
+     "caselle": 5,
+     "partenza": 2,
+     "passi_al_successo": 4,
+     "fine": "LANDING SUCCESSFUL"
+    }
+   },
+   "dubbi": "Disponibile solo il fronte. 'massimo' provviste = 12 è la lunghezza della traccia stampata (non un limite esplicito)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/pelican_d2daf9.webp",
+   "nomi": [
+    "Pelican"
+   ],
+   "tipo": "lander_board",
+   "titolo": {
+    "en": "PELICAN",
+    "it": "PELICAN"
+   },
+   "testo": {
+    "en": "LOAD: [personalEquipment] 5 + [missionEquipment] 3. [landerArmor] 0 [landerSensors] 1 [landerAgility] 0. Landing track: 5 spaces (start S on space 1) -> LANDING SUCCESSFUL. SUPPLIES track 1-12 (starting value 9 highlighted). Slots: EQUIPMENT CARDS, RANK-UP CARD, STRUCTURAL MOD, UTILITY MOD, UTILITY MOD, OTHER TOKENS AND MARKERS. DISCOVERIES - MAXIMUM: 7",
+    "it": "CARICO: [personalEquipment] 5 + [missionEquipment] 3. [landerArmor] 0 [landerSensors] 1 [landerAgility] 0. Traccia d'atterraggio: 5 caselle (partenza S sulla casella 1) -> ATTERRAGGIO RIUSCITO. Traccia PROVVISTE 1-12 (valore iniziale 9 evidenziato). Spazi: CARTE ATTREZZATURA, CARTA GRADO SUPERIORE, MODIFICA STRUTTURALE, MODIFICA DI UTILITÀ, MODIFICA DI UTILITÀ, ALTRI SEGNALINI E MARKER. SCOPERTE - MASSIMO: 7"
+   },
+   "campi": {
+    "nome": "PELICAN",
+    "carico": {
+     "personali": 5,
+     "missione": 3
+    },
+    "provviste": {
+     "base": 9,
+     "massimo": 12
+    },
+    "modifiche": {
+     "structural": 1,
+     "utility": 2
+    },
+    "scoperte_max": 7,
+    "corazza": 0,
+    "sensori": 1,
+    "agilita": 0,
+    "traccia_atterraggio": {
+     "caselle": 5,
+     "partenza": 1,
+     "passi_al_successo": 5,
+     "fine": "LANDING SUCCESSFUL"
+    }
+   },
+   "dubbi": "Disponibile solo il fronte. 'massimo' provviste = 12 è la lunghezza della traccia stampata (non un limite esplicito)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/faustschlag_89191d.webp",
+   "nomi": [
+    "Faustschlag"
+   ],
+   "tipo": "lander_board",
+   "titolo": {
+    "en": "FAUSTSCHLAG",
+    "it": "FAUSTSCHLAG"
+   },
+   "testo": {
+    "en": "LOAD: [personalEquipment] 4 + [missionEquipment] 2. [landerArmor] 5 [landerSensors] 1 [landerAgility] 1. Landing track: 5 spaces (start S on space 1) -> LANDING SUCCESSFUL. SUPPLIES track 1-12 (starting value 7 highlighted). Slots: EQUIPMENT CARDS, RANK-UP CARD, STRUCTURAL MOD, STRUCTURAL MOD, UTILITY MOD, OTHER TOKENS AND MARKERS. DISCOVERIES - MAXIMUM: 5",
+    "it": "CARICO: [personalEquipment] 4 + [missionEquipment] 2. [landerArmor] 5 [landerSensors] 1 [landerAgility] 1. Traccia d'atterraggio: 5 caselle (partenza S sulla casella 1) -> ATTERRAGGIO RIUSCITO. Traccia PROVVISTE 1-12 (valore iniziale 7 evidenziato). Spazi: CARTE ATTREZZATURA, CARTA GRADO SUPERIORE, MODIFICA STRUTTURALE, MODIFICA STRUTTURALE, MODIFICA DI UTILITÀ, ALTRI SEGNALINI E MARKER. SCOPERTE - MASSIMO: 5"
+   },
+   "campi": {
+    "nome": "FAUSTSCHLAG",
+    "carico": {
+     "personali": 4,
+     "missione": 2
+    },
+    "provviste": {
+     "base": 7,
+     "massimo": 12
+    },
+    "modifiche": {
+     "structural": 2,
+     "utility": 1
+    },
+    "scoperte_max": 5,
+    "corazza": 5,
+    "sensori": 1,
+    "agilita": 1,
+    "traccia_atterraggio": {
+     "caselle": 5,
+     "partenza": 1,
+     "passi_al_successo": 5,
+     "fine": "LANDING SUCCESSFUL"
+    }
+   },
+   "dubbi": "Disponibile solo il fronte. 'massimo' provviste = 12 è la lunghezza della traccia stampata (non un limite esplicito)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/space_ranger_c99459.webp",
+   "nomi": [
+    "Space Ranger"
+   ],
+   "tipo": "lander_board",
+   "titolo": {
+    "en": "SPACE RANGER",
+    "it": "SPACE RANGER"
+   },
+   "testo": {
+    "en": "LOAD: [personalEquipment] 4 + [missionEquipment] 2. [landerArmor] 2 [landerSensors] 1 [landerAgility] 2. Landing track: 5 spaces (start S on space 3) -> LANDING SUCCESSFUL. SUPPLIES track 1-12 (starting value 6 highlighted). Slots: EQUIPMENT CARDS, RANK-UP CARD, STRUCTURAL MOD, UTILITY MOD, OTHER TOKENS AND MARKERS. DISCOVERIES - MAXIMUM: 5",
+    "it": "CARICO: [personalEquipment] 4 + [missionEquipment] 2. [landerArmor] 2 [landerSensors] 1 [landerAgility] 2. Traccia d'atterraggio: 5 caselle (partenza S sulla casella 3) -> ATTERRAGGIO RIUSCITO. Traccia PROVVISTE 1-12 (valore iniziale 6 evidenziato). Spazi: CARTE ATTREZZATURA, CARTA GRADO SUPERIORE, MODIFICA STRUTTURALE, MODIFICA DI UTILITÀ, ALTRI SEGNALINI E MARKER. SCOPERTE - MASSIMO: 5"
+   },
+   "campi": {
+    "nome": "SPACE RANGER",
+    "carico": {
+     "personali": 4,
+     "missione": 2
+    },
+    "provviste": {
+     "base": 6,
+     "massimo": 12
+    },
+    "modifiche": {
+     "structural": 1,
+     "utility": 1
+    },
+    "scoperte_max": 5,
+    "corazza": 2,
+    "sensori": 1,
+    "agilita": 2,
+    "traccia_atterraggio": {
+     "caselle": 5,
+     "partenza": 3,
+     "passi_al_successo": 3,
+     "fine": "LANDING SUCCESSFUL"
+    }
+   },
+   "dubbi": "Disponibile solo il fronte. 'massimo' provviste = 12 è la lunghezza della traccia stampata (non un limite esplicito)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/biome_icons_1634a7.webp",
+   "nomi": [
+    "Biome Icons"
+   ],
+   "tipo": "riferimento",
+   "titolo": {
+    "en": "BIOME ICONS",
+    "it": "ICONE DEI BIOMI"
+   },
+   "testo": {
+    "en": "[caves] Caves – Caves, underground tunnels, and structures. [crystalline] Crystalline – Areas affected by the scintillating crystalline anomaly. [deadly] Deadly – Used in toxic / corrosive / extremely high-pressure or radioactive environments, where a minor suit malfunction would cause death. [desert] Desert – Arid plains and deserts. [frigid] Frigid – Extremely low-temperature conditions, with water or methane ice, and snow / ice impeding travel. [hostile] Hostile – Unfriendly locals are a problem in this Sector. [rocky] Rocky – Areas dominated by sharp rocks and / or steep mountains. [ruins] Ruins – Planets covered in ruins / structures of alien civilizations or with ancient mechanisms. [tutorial] Tutorial – This special Biome is used only during the Tutorial. It is used when resolving an Event during the Events step at the end of the turn. [vegetation] Vegetation – Forests, jungles, tundra, lush fields of plants. [void] Void – A special icon used when exploring space-based zero-g locations or when the Crewmembers are in near-void conditions, with little to no gravity. [volvanic] Volcanic – High-temperature locations with lava and / or seismic activity. [water] Water – Used in coastal or underwater conditions – and sometimes in very thick, water-like atmosphere.",
+    "it": "[caves] Grotte – Grotte, gallerie sotterranee e strutture. [crystalline] Cristallino – Aree colpite dalla scintillante anomalia cristallina. [deadly] Letale – Usato in ambienti tossici / corrosivi / a pressione estremamente alta o radioattivi, dove un minimo malfunzionamento della tuta causerebbe la morte. [desert] Deserto – Pianure aride e deserti. [frigid] Gelido – Condizioni di temperatura estremamente bassa, con ghiaccio d'acqua o di metano, e neve / ghiaccio che ostacolano il viaggio. [hostile] Ostile – Gli abitanti ostili sono un problema in questo Settore. [rocky] Roccioso – Aree dominate da rocce taglienti e / o montagne ripide. [ruins] Rovine – Pianeti coperti di rovine / strutture di civiltà aliene o con antichi meccanismi. [tutorial] Tutorial – Questo Bioma speciale è usato solo durante il Tutorial. Si usa quando si risolve un Evento durante la fase Eventi alla fine del turno. [vegetation] Vegetazione – Foreste, giungle, tundra, rigogliose distese di piante. [void] Vuoto – Un'icona speciale usata quando si esplorano luoghi spaziali a gravità zero o quando i Membri dell'Equipaggio sono in condizioni di quasi vuoto, con gravità scarsa o nulla. [volvanic] Vulcanico – Luoghi ad alta temperatura con lava e / o attività sismica. [water] Acqua – Usato in condizioni costiere o subacquee – e talvolta in atmosfere molto dense, simili all'acqua."
+   },
+   "campi": {
+    "biomi": [
+     {
+      "icona": "caves",
+      "nome": {
+       "en": "Caves",
+       "it": "Grotte"
+      },
+      "descrizione": {
+       "en": "Caves, underground tunnels, and structures.",
+       "it": "Grotte, gallerie sotterranee e strutture."
+      }
+     },
+     {
+      "icona": "crystalline",
+      "nome": {
+       "en": "Crystalline",
+       "it": "Cristallino"
+      },
+      "descrizione": {
+       "en": "Areas affected by the scintillating crystalline anomaly.",
+       "it": "Aree colpite dalla scintillante anomalia cristallina."
+      }
+     },
+     {
+      "icona": "deadly",
+      "nome": {
+       "en": "Deadly",
+       "it": "Letale"
+      },
+      "descrizione": {
+       "en": "Used in toxic / corrosive / extremely high-pressure or radioactive environments, where a minor suit malfunction would cause death.",
+       "it": "Usato in ambienti tossici / corrosivi / a pressione estremamente alta o radioattivi, dove un minimo malfunzionamento della tuta causerebbe la morte."
+      }
+     },
+     {
+      "icona": "desert",
+      "nome": {
+       "en": "Desert",
+       "it": "Deserto"
+      },
+      "descrizione": {
+       "en": "Arid plains and deserts.",
+       "it": "Pianure aride e deserti."
+      }
+     },
+     {
+      "icona": "frigid",
+      "nome": {
+       "en": "Frigid",
+       "it": "Gelido"
+      },
+      "descrizione": {
+       "en": "Extremely low-temperature conditions, with water or methane ice, and snow / ice impeding travel.",
+       "it": "Condizioni di temperatura estremamente bassa, con ghiaccio d'acqua o di metano, e neve / ghiaccio che ostacolano il viaggio."
+      }
+     },
+     {
+      "icona": "hostile",
+      "nome": {
+       "en": "Hostile",
+       "it": "Ostile"
+      },
+      "descrizione": {
+       "en": "Unfriendly locals are a problem in this Sector.",
+       "it": "Gli abitanti ostili sono un problema in questo Settore."
+      }
+     },
+     {
+      "icona": "rocky",
+      "nome": {
+       "en": "Rocky",
+       "it": "Roccioso"
+      },
+      "descrizione": {
+       "en": "Areas dominated by sharp rocks and / or steep mountains.",
+       "it": "Aree dominate da rocce taglienti e / o montagne ripide."
+      }
+     },
+     {
+      "icona": "ruins",
+      "nome": {
+       "en": "Ruins",
+       "it": "Rovine"
+      },
+      "descrizione": {
+       "en": "Planets covered in ruins / structures of alien civilizations or with ancient mechanisms.",
+       "it": "Pianeti coperti di rovine / strutture di civiltà aliene o con antichi meccanismi."
+      }
+     },
+     {
+      "icona": "tutorial",
+      "nome": {
+       "en": "Tutorial",
+       "it": "Tutorial"
+      },
+      "descrizione": {
+       "en": "This special Biome is used only during the Tutorial. It is used when resolving an Event during the Events step at the end of the turn.",
+       "it": "Questo Bioma speciale è usato solo durante il Tutorial. Si usa quando si risolve un Evento durante la fase Eventi alla fine del turno."
+      }
+     },
+     {
+      "icona": "vegetation",
+      "nome": {
+       "en": "Vegetation",
+       "it": "Vegetazione"
+      },
+      "descrizione": {
+       "en": "Forests, jungles, tundra, lush fields of plants.",
+       "it": "Foreste, giungle, tundra, rigogliose distese di piante."
+      }
+     },
+     {
+      "icona": "void",
+      "nome": {
+       "en": "Void",
+       "it": "Vuoto"
+      },
+      "descrizione": {
+       "en": "A special icon used when exploring space-based zero-g locations or when the Crewmembers are in near-void conditions, with little to no gravity.",
+       "it": "Un'icona speciale usata quando si esplorano luoghi spaziali a gravità zero o quando i Membri dell'Equipaggio sono in condizioni di quasi vuoto, con gravità scarsa o nulla."
+      }
+     },
+     {
+      "icona": "volvanic",
+      "nome": {
+       "en": "Volcanic",
+       "it": "Vulcanico"
+      },
+      "descrizione": {
+       "en": "High-temperature locations with lava and / or seismic activity.",
+       "it": "Luoghi ad alta temperatura con lava e / o attività sismica."
+      }
+     },
+     {
+      "icona": "water",
+      "nome": {
+       "en": "Water",
+       "it": "Acqua"
+      },
+      "descrizione": {
+       "en": "Used in coastal or underwater conditions – and sometimes in very thick, water-like atmosphere.",
+       "it": "Usato in condizioni costiere o subacquee – e talvolta in atmosfere molto dense, simili all'acqua."
+      }
+     }
+    ]
+   },
+   "dubbi": "I nomi italiani dei biomi non sono nel glossario (proposti: Grotte, Cristallino, Letale, Deserto, Gelido, Ostile, Roccioso, Rovine, Vegetazione, Vuoto, Vulcanico, Acqua): verificare con la terminologia ufficiale. Icona 'tutorial' presa dal foglio icone (non è nella lista biomi delle istruzioni). Il nome del vocabolario per Volcanic è 'volvanic' (refuso mantenuto)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/planetary_scanner_53a9f5.webp",
+   "nomi": [
+    "Planetary Scanner"
+   ],
+   "tipo": "riferimento",
+   "titolo": {
+    "en": "PLANETARY SCANNER",
+    "it": "SCANNER PLANETARIO"
+   },
+   "testo": {
+    "en": "PLANETARY SCANNER – ISS VANGUARD",
+    "it": "SCANNER PLANETARIO – ISS VANGUARD"
+   },
+   "campi": {
+    "solo_grafica": true
+   },
+   "dubbi": "L'immagine mostra solo il titolo 'PLANETARY SCANNER' e il logo ISS Vanguard su uno schermo illustrato: nessun testo di regole né funzionamento stampato. Probabilmente è il dorso/copertina del mazzo o del vassoio dello Scanner Planetario (carte Sistema/Pianeta); il funzionamento va preso dal regolamento."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_token_8029d8.webp",
+   "nomi": [
+    "Crew board"
+   ],
+   "tipo": "crew_board",
+   "titolo": {
+    "en": "ENGINEERING – DO THE UNDOABLE",
+    "it": "ENGINEERING – FARE L'IMPOSSIBILE"
+   },
+   "testo": {
+    "en": "ENGINEERING – DO THE UNDOABLE. As the Engineering Section, you develop simple solutions to complicated problems. You also set up and manage many valuable pieces of equipment on hostile planets. AVAILABLE DICE (columns: red 5 slots, green 4 slots, blue 6 slots; slots marked [rank2]/[rank3] are unlocked at that Rank). SECTION DECK. CHARGES. SPENT POOL. DISCARD PILE. Exertion: [sacrifaceDie] to Refresh 5 dice. Section card limit: [rank1]:2 [rank2]:3 [rank3]:4. INJURY. INJURY. INJURY CARD – CAUTION! High probability of dying!",
+    "it": "ENGINEERING – FARE L'IMPOSSIBILE. In qualità di Reparto Ingegneria, sviluppi soluzioni semplici a problemi complicati. Inoltre installi e gestisci molte preziose attrezzature su pianeti ostili. DADI DISPONIBILI (colonne: rossi 5 spazi, verdi 4 spazi, blu 6 spazi; gli spazi con [rank2]/[rank3] si sbloccano a quel Grado). MAZZO DEL REPARTO. CARICHE. RISERVA DEI DADI SPESI. PILA DEGLI SCARTI. Sforzo: [sacrifaceDie] per Ricaricare 5 dadi. Limite di carte Reparto: [rank1]:2 [rank2]:3 [rank3]:4. FERITA. FERITA. CARTA FERITA – ATTENZIONE! Alta probabilità di morire!"
+   },
+   "campi": {
+    "reparto": "engineering",
+    "motto": {
+     "en": "DO THE UNDOABLE",
+     "it": "FARE L'IMPOSSIBILE"
+    },
+    "colonne_dadi": [
+     {
+      "colore": "red",
+      "dado": "redDie",
+      "slot": 5,
+      "slot_grado": [
+       {
+        "slot": 3,
+        "grado": 2,
+        "icona": "rank2"
+       },
+       {
+        "slot": 4,
+        "grado": 3,
+        "icona": "rank3"
+       },
+       {
+        "slot": 5,
+        "grado": 3,
+        "icona": "rank3"
+       }
+      ],
+      "dadi_per_grado": {
+       "1": 2,
+       "2": 3,
+       "3": 5
+      }
+     },
+     {
+      "colore": "green",
+      "dado": "greenDie",
+      "slot": 4,
+      "slot_grado": [
+       {
+        "slot": 3,
+        "grado": 2,
+        "icona": "rank2"
+       },
+       {
+        "slot": 4,
+        "grado": 3,
+        "icona": "rank3"
+       }
+      ],
+      "dadi_per_grado": {
+       "1": 2,
+       "2": 3,
+       "3": 4
+      }
+     },
+     {
+      "colore": "blue",
+      "dado": "blueDie",
+      "slot": 6,
+      "slot_grado": [
+       {
+        "slot": 5,
+        "grado": 2,
+        "icona": "rank2"
+       },
+       {
+        "slot": 6,
+        "grado": 3,
+        "icona": "rank3"
+       }
+      ],
+      "dadi_per_grado": {
+       "1": 4,
+       "2": 5,
+       "3": 6
+      }
+     }
+    ],
+    "dadi_totali_per_grado": {
+     "1": 8,
+     "2": 11,
+     "3": 15
+    },
+    "carte_iniziali": null,
+    "limite_carte_reparto": {
+     "rank1": 2,
+     "rank2": 3,
+     "rank3": 4
+    },
+    "sforzo": {
+     "costo": "sacrifaceDie",
+     "effetto": {
+      "en": "Refresh 5 dice.",
+      "it": "Ricarica 5 dadi."
+     }
+    },
+    "spazi_ferita": {
+     "ferite": 2,
+     "carta_ferita_critica": {
+      "en": "INJURY CARD – CAUTION! High probability of dying!",
+      "it": "CARTA FERITA – ATTENZIONE! Alta probabilità di morire!"
+     }
+    },
+    "aree": [
+     "AVAILABLE DICE",
+     "SECTION DECK",
+     "CHARGES",
+     "SPENT POOL",
+     "DISCARD PILE"
+    ],
+    "testo_colore": {
+     "en": "As the Engineering Section, you develop simple solutions to complicated problems. You also set up and manage many valuable pieces of equipment on hostile planets.",
+     "it": "In qualità di Reparto Ingegneria, sviluppi soluzioni semplici a problemi complicati. Inoltre installi e gestisci molte preziose attrezzature su pianeti ostili."
+    }
+   },
+   "dubbi": "Il numero di carte da pescare all'inizio NON è stampato sulla plancia (carte_iniziali = null): va preso dal regolamento. Interpretazione degli slot: quelli senza icona sono disponibili dal Grado I, quelli con icona rank2/rank3 si sbloccano a quel Grado (la prima icona di ogni colonna è rank2, le successive rank3). Il titolo/motto italiano è una mia traduzione."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_token_4e1b78.webp",
+   "nomi": [
+    "Crew board"
+   ],
+   "tipo": "crew_board",
+   "titolo": {
+    "en": "RECON – BEYOND NEW HORIZONS",
+    "it": "RECON – OLTRE NUOVI ORIZZONTI"
+   },
+   "testo": {
+    "en": "RECON – BEYOND NEW HORIZONS. As the Recon Section, you are tasked with leading people into the unknown and spotting dangers. Your assistance allows other team members to move faster and use paths they couldn't find on their own. AVAILABLE DICE (columns: red 5 slots, green 6 slots, blue 4 slots; slots marked [rank2]/[rank3] are unlocked at that Rank). SECTION DECK. CHARGES. SPENT POOL. DISCARD PILE. Exertion: [sacrifaceDie] to Refresh 5 dice. Section card limit: [rank1]:2 [rank2]:3 [rank3]:4. INJURY. INJURY. INJURY CARD – CAUTION! High probability of dying!",
+    "it": "RECON – OLTRE NUOVI ORIZZONTI. In qualità di Reparto Ricognizione, hai il compito di guidare le persone nell'ignoto e individuare i pericoli. La tua assistenza permette agli altri membri della squadra di muoversi più velocemente e di usare sentieri che non troverebbero da soli. DADI DISPONIBILI (colonne: rossi 5 spazi, verdi 6 spazi, blu 4 spazi; gli spazi con [rank2]/[rank3] si sbloccano a quel Grado). MAZZO DEL REPARTO. CARICHE. RISERVA DEI DADI SPESI. PILA DEGLI SCARTI. Sforzo: [sacrifaceDie] per Ricaricare 5 dadi. Limite di carte Reparto: [rank1]:2 [rank2]:3 [rank3]:4. FERITA. FERITA. CARTA FERITA – ATTENZIONE! Alta probabilità di morire!"
+   },
+   "campi": {
+    "reparto": "recon",
+    "motto": {
+     "en": "BEYOND NEW HORIZONS",
+     "it": "OLTRE NUOVI ORIZZONTI"
+    },
+    "colonne_dadi": [
+     {
+      "colore": "red",
+      "dado": "redDie",
+      "slot": 5,
+      "slot_grado": [
+       {
+        "slot": 3,
+        "grado": 2,
+        "icona": "rank2"
+       },
+       {
+        "slot": 4,
+        "grado": 3,
+        "icona": "rank3"
+       },
+       {
+        "slot": 5,
+        "grado": 3,
+        "icona": "rank3"
+       }
+      ],
+      "dadi_per_grado": {
+       "1": 2,
+       "2": 3,
+       "3": 5
+      }
+     },
+     {
+      "colore": "green",
+      "dado": "greenDie",
+      "slot": 6,
+      "slot_grado": [
+       {
+        "slot": 5,
+        "grado": 2,
+        "icona": "rank2"
+       },
+       {
+        "slot": 6,
+        "grado": 3,
+        "icona": "rank3"
+       }
+      ],
+      "dadi_per_grado": {
+       "1": 4,
+       "2": 5,
+       "3": 6
+      }
+     },
+     {
+      "colore": "blue",
+      "dado": "blueDie",
+      "slot": 4,
+      "slot_grado": [
+       {
+        "slot": 3,
+        "grado": 2,
+        "icona": "rank2"
+       },
+       {
+        "slot": 4,
+        "grado": 3,
+        "icona": "rank3"
+       }
+      ],
+      "dadi_per_grado": {
+       "1": 2,
+       "2": 3,
+       "3": 4
+      }
+     }
+    ],
+    "dadi_totali_per_grado": {
+     "1": 8,
+     "2": 11,
+     "3": 15
+    },
+    "carte_iniziali": null,
+    "limite_carte_reparto": {
+     "rank1": 2,
+     "rank2": 3,
+     "rank3": 4
+    },
+    "sforzo": {
+     "costo": "sacrifaceDie",
+     "effetto": {
+      "en": "Refresh 5 dice.",
+      "it": "Ricarica 5 dadi."
+     }
+    },
+    "spazi_ferita": {
+     "ferite": 2,
+     "carta_ferita_critica": {
+      "en": "INJURY CARD – CAUTION! High probability of dying!",
+      "it": "CARTA FERITA – ATTENZIONE! Alta probabilità di morire!"
+     }
+    },
+    "aree": [
+     "AVAILABLE DICE",
+     "SECTION DECK",
+     "CHARGES",
+     "SPENT POOL",
+     "DISCARD PILE"
+    ],
+    "testo_colore": {
+     "en": "As the Recon Section, you are tasked with leading people into the unknown and spotting dangers. Your assistance allows other team members to move faster and use paths they couldn't find on their own.",
+     "it": "In qualità di Reparto Ricognizione, hai il compito di guidare le persone nell'ignoto e individuare i pericoli. La tua assistenza permette agli altri membri della squadra di muoversi più velocemente e di usare sentieri che non troverebbero da soli."
+    }
+   },
+   "dubbi": "Il numero di carte da pescare all'inizio NON è stampato sulla plancia (carte_iniziali = null): va preso dal regolamento. Interpretazione degli slot: quelli senza icona sono disponibili dal Grado I, quelli con icona rank2/rank3 si sbloccano a quel Grado (la prima icona di ogni colonna è rank2, le successive rank3). Il titolo/motto italiano è una mia traduzione."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_token_fc838c.webp",
+   "nomi": [
+    "Crew board"
+   ],
+   "tipo": "crew_board",
+   "titolo": {
+    "en": "SCIENCE – SEARCHING FOR QUESTIONS",
+    "it": "SCIENCE – IN CERCA DI DOMANDE"
+   },
+   "testo": {
+    "en": "SCIENCE – SEARCHING FOR QUESTIONS. As the Science Section, you are prepared to challenge the unknown armed with just your knowledge and careful analysis. Your keen mind and attention to detail ensure nothing of interest is left behind. AVAILABLE DICE (columns: red 4 slots, green 6 slots, blue 5 slots; slots marked [rank2]/[rank3] are unlocked at that Rank). SECTION DECK. CHARGES. SPENT POOL. DISCARD PILE. Exertion: [sacrifaceDie] to Refresh 5 dice. Section card limit: [rank1]:2 [rank2]:3 [rank3]:4. INJURY. INJURY. INJURY CARD – CAUTION! High probability of dying!",
+    "it": "SCIENCE – IN CERCA DI DOMANDE. In qualità di Reparto Scienze, sei pronto a sfidare l'ignoto armato solo della tua conoscenza e di un'attenta analisi. La tua mente acuta e l'attenzione ai dettagli assicurano che nulla di interessante venga tralasciato. DADI DISPONIBILI (colonne: rossi 4 spazi, verdi 6 spazi, blu 5 spazi; gli spazi con [rank2]/[rank3] si sbloccano a quel Grado). MAZZO DEL REPARTO. CARICHE. RISERVA DEI DADI SPESI. PILA DEGLI SCARTI. Sforzo: [sacrifaceDie] per Ricaricare 5 dadi. Limite di carte Reparto: [rank1]:2 [rank2]:3 [rank3]:4. FERITA. FERITA. CARTA FERITA – ATTENZIONE! Alta probabilità di morire!"
+   },
+   "campi": {
+    "reparto": "science",
+    "motto": {
+     "en": "SEARCHING FOR QUESTIONS",
+     "it": "IN CERCA DI DOMANDE"
+    },
+    "colonne_dadi": [
+     {
+      "colore": "red",
+      "dado": "redDie",
+      "slot": 4,
+      "slot_grado": [
+       {
+        "slot": 3,
+        "grado": 2,
+        "icona": "rank2"
+       },
+       {
+        "slot": 4,
+        "grado": 3,
+        "icona": "rank3"
+       }
+      ],
+      "dadi_per_grado": {
+       "1": 2,
+       "2": 3,
+       "3": 4
+      }
+     },
+     {
+      "colore": "green",
+      "dado": "greenDie",
+      "slot": 6,
+      "slot_grado": [
+       {
+        "slot": 4,
+        "grado": 2,
+        "icona": "rank2"
+       },
+       {
+        "slot": 5,
+        "grado": 3,
+        "icona": "rank3"
+       },
+       {
+        "slot": 6,
+        "grado": 3,
+        "icona": "rank3"
+       }
+      ],
+      "dadi_per_grado": {
+       "1": 3,
+       "2": 4,
+       "3": 6
+      }
+     },
+     {
+      "colore": "blue",
+      "dado": "blueDie",
+      "slot": 5,
+      "slot_grado": [
+       {
+        "slot": 4,
+        "grado": 2,
+        "icona": "rank2"
+       },
+       {
+        "slot": 5,
+        "grado": 3,
+        "icona": "rank3"
+       }
+      ],
+      "dadi_per_grado": {
+       "1": 3,
+       "2": 4,
+       "3": 5
+      }
+     }
+    ],
+    "dadi_totali_per_grado": {
+     "1": 8,
+     "2": 11,
+     "3": 15
+    },
+    "carte_iniziali": null,
+    "limite_carte_reparto": {
+     "rank1": 2,
+     "rank2": 3,
+     "rank3": 4
+    },
+    "sforzo": {
+     "costo": "sacrifaceDie",
+     "effetto": {
+      "en": "Refresh 5 dice.",
+      "it": "Ricarica 5 dadi."
+     }
+    },
+    "spazi_ferita": {
+     "ferite": 2,
+     "carta_ferita_critica": {
+      "en": "INJURY CARD – CAUTION! High probability of dying!",
+      "it": "CARTA FERITA – ATTENZIONE! Alta probabilità di morire!"
+     }
+    },
+    "aree": [
+     "AVAILABLE DICE",
+     "SECTION DECK",
+     "CHARGES",
+     "SPENT POOL",
+     "DISCARD PILE"
+    ],
+    "testo_colore": {
+     "en": "As the Science Section, you are prepared to challenge the unknown armed with just your knowledge and careful analysis. Your keen mind and attention to detail ensure nothing of interest is left behind.",
+     "it": "In qualità di Reparto Scienze, sei pronto a sfidare l'ignoto armato solo della tua conoscenza e di un'attenta analisi. La tua mente acuta e l'attenzione ai dettagli assicurano che nulla di interessante venga tralasciato."
+    }
+   },
+   "dubbi": "Il numero di carte da pescare all'inizio NON è stampato sulla plancia (carte_iniziali = null): va preso dal regolamento. Interpretazione degli slot: quelli senza icona sono disponibili dal Grado I, quelli con icona rank2/rank3 si sbloccano a quel Grado (la prima icona di ogni colonna è rank2, le successive rank3). Il titolo/motto italiano è una mia traduzione."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_token_bbde62.webp",
+   "nomi": [
+    "Crew board"
+   ],
+   "tipo": "crew_board",
+   "titolo": {
+    "en": "SECURITY – ALWAYS FIRST IN LINE",
+    "it": "SECURITY – SEMPRE IN PRIMA LINEA"
+   },
+   "testo": {
+    "en": "SECURITY – ALWAYS FIRST IN LINE. As the Security Section, you protect others in the unknown, hostile environments and aboard ISS Vanguard. Your skills help your team get back safe even from the deadliest adventures. AVAILABLE DICE (columns: red 6 slots, green 4 slots, blue 5 slots; slots marked [rank2]/[rank3] are unlocked at that Rank). SECTION DECK. CHARGES. SPENT POOL. DISCARD PILE. Exertion: [sacrifaceDie] to Refresh 5 dice. Section card limit: [rank1]:2 [rank2]:3 [rank3]:4. INJURY. INJURY. INJURY CARD – CAUTION! High probability of dying!",
+    "it": "SECURITY – SEMPRE IN PRIMA LINEA. In qualità di Reparto Sicurezza, proteggi gli altri negli ambienti ignoti e ostili e a bordo della ISS Vanguard. Le tue abilità aiutano la tua squadra a tornare sana e salva anche dalle avventure più letali. DADI DISPONIBILI (colonne: rossi 6 spazi, verdi 4 spazi, blu 5 spazi; gli spazi con [rank2]/[rank3] si sbloccano a quel Grado). MAZZO DEL REPARTO. CARICHE. RISERVA DEI DADI SPESI. PILA DEGLI SCARTI. Sforzo: [sacrifaceDie] per Ricaricare 5 dadi. Limite di carte Reparto: [rank1]:2 [rank2]:3 [rank3]:4. FERITA. FERITA. CARTA FERITA – ATTENZIONE! Alta probabilità di morire!"
+   },
+   "campi": {
+    "reparto": "security",
+    "motto": {
+     "en": "ALWAYS FIRST IN LINE",
+     "it": "SEMPRE IN PRIMA LINEA"
+    },
+    "colonne_dadi": [
+     {
+      "colore": "red",
+      "dado": "redDie",
+      "slot": 6,
+      "slot_grado": [
+       {
+        "slot": 5,
+        "grado": 2,
+        "icona": "rank2"
+       },
+       {
+        "slot": 6,
+        "grado": 3,
+        "icona": "rank3"
+       }
+      ],
+      "dadi_per_grado": {
+       "1": 4,
+       "2": 5,
+       "3": 6
+      }
+     },
+     {
+      "colore": "green",
+      "dado": "greenDie",
+      "slot": 4,
+      "slot_grado": [
+       {
+        "slot": 3,
+        "grado": 2,
+        "icona": "rank2"
+       },
+       {
+        "slot": 4,
+        "grado": 3,
+        "icona": "rank3"
+       }
+      ],
+      "dadi_per_grado": {
+       "1": 2,
+       "2": 3,
+       "3": 4
+      }
+     },
+     {
+      "colore": "blue",
+      "dado": "blueDie",
+      "slot": 5,
+      "slot_grado": [
+       {
+        "slot": 3,
+        "grado": 2,
+        "icona": "rank2"
+       },
+       {
+        "slot": 4,
+        "grado": 3,
+        "icona": "rank3"
+       },
+       {
+        "slot": 5,
+        "grado": 3,
+        "icona": "rank3"
+       }
+      ],
+      "dadi_per_grado": {
+       "1": 2,
+       "2": 3,
+       "3": 5
+      }
+     }
+    ],
+    "dadi_totali_per_grado": {
+     "1": 8,
+     "2": 11,
+     "3": 15
+    },
+    "carte_iniziali": null,
+    "limite_carte_reparto": {
+     "rank1": 2,
+     "rank2": 3,
+     "rank3": 4
+    },
+    "sforzo": {
+     "costo": "sacrifaceDie",
+     "effetto": {
+      "en": "Refresh 5 dice.",
+      "it": "Ricarica 5 dadi."
+     }
+    },
+    "spazi_ferita": {
+     "ferite": 2,
+     "carta_ferita_critica": {
+      "en": "INJURY CARD – CAUTION! High probability of dying!",
+      "it": "CARTA FERITA – ATTENZIONE! Alta probabilità di morire!"
+     }
+    },
+    "aree": [
+     "AVAILABLE DICE",
+     "SECTION DECK",
+     "CHARGES",
+     "SPENT POOL",
+     "DISCARD PILE"
+    ],
+    "testo_colore": {
+     "en": "As the Security Section, you protect others in the unknown, hostile environments and aboard ISS Vanguard. Your skills help your team get back safe even from the deadliest adventures.",
+     "it": "In qualità di Reparto Sicurezza, proteggi gli altri negli ambienti ignoti e ostili e a bordo della ISS Vanguard. Le tue abilità aiutano la tua squadra a tornare sana e salva anche dalle avventure più letali."
+    }
+   },
+   "dubbi": "Il numero di carte da pescare all'inizio NON è stampato sulla plancia (carte_iniziali = null): va preso dal regolamento. Interpretazione degli slot: quelli senza icona sono disponibili dal Grado I, quelli con icona rank2/rank3 si sbloccano a quel Grado (la prima icona di ogni colonna è rank2, le successive rank3). Il titolo/motto italiano è una mia traduzione."
+  }
+ ]
+}

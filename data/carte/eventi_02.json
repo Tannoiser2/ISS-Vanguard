@@ -1,0 +1,862 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/events/5233.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "FRIENDLY WILDLIFE",
+    "it": "FAUNA AMICHEVOLE"
+   },
+   "biomi": [
+    "vegetation",
+    "ruins"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "You may roll [dangerDieD] to Refresh 3 [die].",
+    "it": "Puoi tirare [dangerDieD] per Ricaricare 3 [die]."
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/events/5200.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "MALFUNCTION",
+    "it": "GUASTO"
+   },
+   "biomi": [
+    "deadly",
+    "desert",
+    "ruins",
+    "void",
+    "water",
+    "frigid"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "Lose 1 Supplies - OR - Roll [dangerDieG].",
+    "it": "Perdi 1 Provviste - OPPURE - Tira [dangerDieG]."
+   },
+   "scelta": [
+    {
+     "en": "Lose 1 Supplies",
+     "it": "Perdi 1 Provviste"
+    },
+    {
+     "en": "Roll [dangerDieG]",
+     "it": "Tira [dangerDieG]"
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/events/5234.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "DETACHED!",
+    "it": "ISOLATO!"
+   },
+   "biomi": [
+    "void"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "[sacrifaceDie] - OR - Roll [dangerDieE], then roll [dangerDieG].",
+    "it": "[sacrifaceDie] - OPPURE - Tira [dangerDieE], poi tira [dangerDieG]."
+   },
+   "scelta": [
+    {
+     "en": "[sacrifaceDie]",
+     "it": "[sacrifaceDie]"
+    },
+    {
+     "en": "Roll [dangerDieE], then roll [dangerDieG]",
+     "it": "Tira [dangerDieE], poi tira [dangerDieG]"
+    }
+   ],
+   "dubbi": "Lettera del primo dado Pericolo letta come E (bassa risoluzione)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/events/5214.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "IMPOSSIBLE STRUCTURE",
+    "it": "STRUTTURA IMPOSSIBILE"
+   },
+   "biomi": [
+    "ruins"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "Roll [dangerDieC]. If this roll has no effect, Refresh all [blueDie].",
+    "it": "Tira [dangerDieC]. Se questo tiro non ha alcun effetto, Ricarica tutti i [blueDie]."
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/events/5207.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "THIEVING CREATURE",
+    "it": "CREATURA LADRA"
+   },
+   "biomi": [
+    "desert",
+    "hostile",
+    "rocky",
+    "vegetation",
+    "water"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "[sacrifaceDie] to gain 3 Live Specimen Leads - OR - Lose 1 Supplies.",
+    "it": "[sacrifaceDie] per ottenere 3 Indizi Esemplare Vivo - OPPURE - Perdi 1 Provviste."
+   },
+   "scelta": [
+    {
+     "en": "[sacrifaceDie] to gain 3 Live Specimen Leads",
+     "it": "[sacrifaceDie] per ottenere 3 Indizi Esemplare Vivo"
+    },
+    {
+     "en": "Lose 1 Supplies",
+     "it": "Perdi 1 Provviste"
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/events/5237.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "SECRET TUNNELS",
+    "it": "GALLERIE SEGRETE"
+   },
+   "biomi": [
+    "ruins",
+    "caves",
+    "desert"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "You may: [sacrifaceDie] to move to a chosen connected Sector - OR - Roll [dangerDieC] to move to a chosen connected Sector.",
+    "it": "Puoi: [sacrifaceDie] per muoverti in un Settore collegato a scelta - OPPURE - Tirare [dangerDieC] per muoverti in un Settore collegato a scelta."
+   },
+   "scelta": [
+    {
+     "en": "[sacrifaceDie] to move to a chosen connected Sector",
+     "it": "[sacrifaceDie] per muoverti in un Settore collegato a scelta"
+    },
+    {
+     "en": "Roll [dangerDieC] to move to a chosen connected Sector",
+     "it": "Tira [dangerDieC] per muoverti in un Settore collegato a scelta"
+    }
+   ],
+   "dubbi": "Lettera del dado Pericolo letta come C (poco nitida, potrebbe essere G). Scelta facoltativa ('You may')."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/events/5220.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "ENTICING VISTA",
+    "it": "PANORAMA ALLETTANTE"
+   },
+   "biomi": [
+    "crystalline",
+    "rocky",
+    "vegetation",
+    "desert",
+    "frigid",
+    "water"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "You may [spendDie]+[spendDie] to draw 2 cards - OR - You may discard 2 cards to Refresh 2 [die].",
+    "it": "Puoi [spendDie]+[spendDie] per pescare 2 carte - OPPURE - Puoi scartare 2 carte per Ricaricare 2 [die]."
+   },
+   "scelta": [
+    {
+     "en": "You may [spendDie]+[spendDie] to draw 2 cards",
+     "it": "Puoi [spendDie]+[spendDie] per pescare 2 carte"
+    },
+    {
+     "en": "You may discard 2 cards to Refresh 2 [die]",
+     "it": "Puoi scartare 2 carte per Ricaricare 2 [die]"
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/events/5209.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "VERTIGO",
+    "it": "VERTIGINE"
+   },
+   "biomi": [
+    "rocky",
+    "void",
+    "water"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "[spendDieGreen] - OR - Roll [dangerDieC].",
+    "it": "[spendDieGreen] - OPPURE - Tira [dangerDieC]."
+   },
+   "scelta": [
+    {
+     "en": "[spendDieGreen]",
+     "it": "[spendDieGreen]"
+    },
+    {
+     "en": "Roll [dangerDieC]",
+     "it": "Tira [dangerDieC]"
+    }
+   ],
+   "dubbi": "Lettera del dado Pericolo letta come C (poco nitida)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/events/5223.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "DEEP FRACTURE",
+    "it": "FRATTURA PROFONDA"
+   },
+   "biomi": [
+    "rocky",
+    "ruins",
+    "volvanic",
+    "caves"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "[sacrifaceDie] to gain 3 Mineral Leads - OR - Roll [dangerDieA].",
+    "it": "[sacrifaceDie] per ottenere 3 Indizi Minerale - OPPURE - Tira [dangerDieA]."
+   },
+   "scelta": [
+    {
+     "en": "[sacrifaceDie] to gain 3 Mineral Leads",
+     "it": "[sacrifaceDie] per ottenere 3 Indizi Minerale"
+    },
+    {
+     "en": "Roll [dangerDieA]",
+     "it": "Tira [dangerDieA]"
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/events/5228.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "HEATING MALFUNCTION",
+    "it": "GUASTO AL RISCALDAMENTO"
+   },
+   "biomi": [
+    "frigid",
+    "deadly",
+    "void"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "[spendDieBlue]+[spendDieRed] - OR - Roll [dangerDieG].",
+    "it": "[spendDieBlue]+[spendDieRed] - OPPURE - Tira [dangerDieG]."
+   },
+   "scelta": [
+    {
+     "en": "[spendDieBlue]+[spendDieRed]",
+     "it": "[spendDieBlue]+[spendDieRed]"
+    },
+    {
+     "en": "Roll [dangerDieG]",
+     "it": "Tira [dangerDieG]"
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/events/5205.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "SUIT PUNCTURE",
+    "it": "TUTA FORATA"
+   },
+   "biomi": [
+    "deadly",
+    "vegetation",
+    "void",
+    "water"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "[spendDieBlue]+[spendDieGreen] - OR - Gain a Wounded Injury.",
+    "it": "[spendDieBlue]+[spendDieGreen] - OPPURE - Ottieni una Ferita Ferito."
+   },
+   "scelta": [
+    {
+     "en": "[spendDieBlue]+[spendDieGreen]",
+     "it": "[spendDieBlue]+[spendDieGreen]"
+    },
+    {
+     "en": "Gain a Wounded Injury",
+     "it": "Ottieni una Ferita Ferito"
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/events/5225.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "HURRICANE",
+    "it": "URAGANO"
+   },
+   "biomi": [
+    "desert",
+    "rocky",
+    "vegetation",
+    "deadly",
+    "frigid"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "Discard every Lead token from Discovery decks. Each Crewmember may roll [dangerDieA] any number of times to save one chosen Lead token from being discarded.",
+    "it": "Scarta tutti i segnalini Indizio dai mazzi Scoperta. Ogni Membro dell'Equipaggio può tirare [dangerDieA] un numero qualsiasi di volte per salvare dallo scarto un segnalino Indizio a scelta."
+   },
+   "dubbi": "Interpretazione: ogni tiro di [dangerDieA] salva un segnalino Indizio."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/events/5210.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "AVALANCHE",
+    "it": "VALANGA"
+   },
+   "biomi": [
+    "frigid",
+    "rocky",
+    "ruins",
+    "caves"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "[sacrifaceDie] - OR - Each Crewmember in your Sector (including you) rolls [dangerDieA]. Then, gain 1 Mineral Lead.",
+    "it": "[sacrifaceDie] - OPPURE - Ogni Membro dell'Equipaggio nel tuo Settore (te compreso) tira [dangerDieA]. Poi ottieni 1 Indizio Minerale."
+   },
+   "scelta": [
+    {
+     "en": "[sacrifaceDie]",
+     "it": "[sacrifaceDie]"
+    },
+    {
+     "en": "Each Crewmember in your Sector (including you) rolls [dangerDieA]. Then, gain 1 Mineral Lead",
+     "it": "Ogni Membro dell'Equipaggio nel tuo Settore (te compreso) tira [dangerDieA]. Poi ottieni 1 Indizio Minerale"
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/advanced_events/19726.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "FLOATING DEBRIS",
+    "it": "DETRITI GALLEGGIANTI"
+   },
+   "biomi": [
+    "void",
+    "water"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "You may [spendDie]+[spendDie] to roll D10 and gain 4 Leads of the following type: 1-2 Microorganism, 3-4 Mineral, 5-6 Strange Flora, 7-8 Live Specimen, 9-0 Alien Tech.",
+    "it": "Puoi [spendDie]+[spendDie] per tirare un D10 e ottenere 4 Indizi del tipo seguente: 1-2 Microorganismo, 3-4 Minerale, 5-6 Strana Vegetazione, 7-8 Esemplare Vivo, 9-0 Tecnologia Aliena."
+   },
+   "dubbi": "Tabella D10 aggiunta anche come campo 'tabella_d10' (non previsto dallo schema) per comodità del motore.",
+   "tabella_d10": [
+    {
+     "tiro": "1-2",
+     "en": "Microorganism",
+     "it": "Microorganismo"
+    },
+    {
+     "tiro": "3-4",
+     "en": "Mineral",
+     "it": "Minerale"
+    },
+    {
+     "tiro": "5-6",
+     "en": "Strange Flora",
+     "it": "Strana Vegetazione"
+    },
+    {
+     "tiro": "7-8",
+     "en": "Live Specimen",
+     "it": "Esemplare Vivo"
+    },
+    {
+     "tiro": "9-0",
+     "en": "Alien Tech",
+     "it": "Tecnologia Aliena"
+    }
+   ]
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/advanced_events/19729.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "STRANGE MICROBIOME",
+    "it": "STRANO MICROBIOMA"
+   },
+   "biomi": [
+    "rocky",
+    "caves",
+    "water"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "You may [sacrifaceDie]+[sacrifaceDie] and roll [dangerDieD] to gain 5 Supplies.",
+    "it": "Puoi [sacrifaceDie]+[sacrifaceDie] e tirare [dangerDieD] per ottenere 5 Provviste."
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/advanced_events/19732.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "VIOLENT ERUPTION",
+    "it": "ERUZIONE VIOLENTA"
+   },
+   "biomi": [
+    "hostile",
+    "volvanic"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "[sacrifaceDieGreen] - OR - [sacrifaceDie] and roll [dangerDieB].",
+    "it": "[sacrifaceDieGreen] - OPPURE - [sacrifaceDie] e tira [dangerDieB]."
+   },
+   "scelta": [
+    {
+     "en": "[sacrifaceDieGreen]",
+     "it": "[sacrifaceDieGreen]"
+    },
+    {
+     "en": "[sacrifaceDie] and roll [dangerDieB]",
+     "it": "[sacrifaceDie] e tira [dangerDieB]"
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/advanced_events/19735.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "SECRET TUNNELS",
+    "it": "GALLERIE SEGRETE"
+   },
+   "biomi": [
+    "desert",
+    "ruins",
+    "caves"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "You may: [sacrifaceDie] to move to a chosen connected Sector - OR - Roll [dangerDieH] to move to a chosen connected Sector.",
+    "it": "Puoi: [sacrifaceDie] per muoverti in un Settore collegato a scelta - OPPURE - Tirare [dangerDieH] per muoverti in un Settore collegato a scelta."
+   },
+   "scelta": [
+    {
+     "en": "[sacrifaceDie] to move to a chosen connected Sector",
+     "it": "[sacrifaceDie] per muoverti in un Settore collegato a scelta"
+    },
+    {
+     "en": "Roll [dangerDieH] to move to a chosen connected Sector",
+     "it": "Tira [dangerDieH] per muoverti in un Settore collegato a scelta"
+    }
+   ],
+   "dubbi": "Scelta facoltativa ('You may')."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/advanced_events/19738.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "THIEVING CREATURE",
+    "it": "CREATURA LADRA"
+   },
+   "biomi": [
+    "hostile",
+    "vegetation",
+    "water"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "[sacrifaceDie]+[sacrifaceDie] to gain 1 Live Specimen Discovery - OR - Lose 1 Supplies.",
+    "it": "[sacrifaceDie]+[sacrifaceDie] per ottenere 1 Scoperta Esemplare Vivo - OPPURE - Perdi 1 Provviste."
+   },
+   "scelta": [
+    {
+     "en": "[sacrifaceDie]+[sacrifaceDie] to gain 1 Live Specimen Discovery",
+     "it": "[sacrifaceDie]+[sacrifaceDie] per ottenere 1 Scoperta Esemplare Vivo"
+    },
+    {
+     "en": "Lose 1 Supplies",
+     "it": "Perdi 1 Provviste"
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/advanced_events/19725.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "VERTIGO",
+    "it": "VERTIGINE"
+   },
+   "biomi": [
+    "void"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "[sacrifaceDieGreen] - OR - Roll [dangerDieH].",
+    "it": "[sacrifaceDieGreen] - OPPURE - Tira [dangerDieH]."
+   },
+   "scelta": [
+    {
+     "en": "[sacrifaceDieGreen]",
+     "it": "[sacrifaceDieGreen]"
+    },
+    {
+     "en": "Roll [dangerDieH]",
+     "it": "Tira [dangerDieH]"
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/advanced_events/19720.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "BURIED OBJECT",
+    "it": "OGGETTO SEPOLTO"
+   },
+   "biomi": [
+    "desert",
+    "frigid",
+    "ruins",
+    "water"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "You may [sacrifaceDie] and roll [dangerDieI] to draw 2 Leads of each type.",
+    "it": "Puoi [sacrifaceDie] e tirare [dangerDieI] per pescare 2 Indizi di ogni tipo."
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/advanced_events/19719.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "FAINT CLUES",
+    "it": "TRACCE DEBOLI"
+   },
+   "biomi": [
+    "hostile",
+    "ruins",
+    "vegetation"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "[spendDie]. Then, you may [sacrifaceDie]+[sacrifaceDie] to gain 1 Strange Flora or 1 Live Specimen Discovery.",
+    "it": "[spendDie]. Poi puoi [sacrifaceDie]+[sacrifaceDie] per ottenere 1 Scoperta Strana Vegetazione o 1 Scoperta Esemplare Vivo."
+   },
+   "dubbi": "Il [spendDie] iniziale è obbligatorio; la seconda parte è facoltativa."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/advanced_events/19716.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "USEFUL VEGETATION",
+    "it": "VEGETAZIONE UTILE"
+   },
+   "biomi": [
+    "vegetation"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "You may [sacrifaceDie] to gain 2 Supplies and roll [dangerDieD].",
+    "it": "Puoi [sacrifaceDie] per ottenere 2 Provviste e tirare [dangerDieD]."
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/advanced_events/19712.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "DETACHED!",
+    "it": "ISOLATO!"
+   },
+   "biomi": [
+    "void"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "[sacrifaceDie]+[sacrifaceDie]+[sacrifaceDie] - OR - Roll [dangerDieG], then roll [dangerDieH].",
+    "it": "[sacrifaceDie]+[sacrifaceDie]+[sacrifaceDie] - OPPURE - Tira [dangerDieG], poi tira [dangerDieH]."
+   },
+   "scelta": [
+    {
+     "en": "[sacrifaceDie]+[sacrifaceDie]+[sacrifaceDie]",
+     "it": "[sacrifaceDie]+[sacrifaceDie]+[sacrifaceDie]"
+    },
+    {
+     "en": "Roll [dangerDieG], then roll [dangerDieH]",
+     "it": "Tira [dangerDieG], poi tira [dangerDieH]"
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/advanced_events/19709.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "DEEP FRACTURE",
+    "it": "FRATTURA PROFONDA"
+   },
+   "biomi": [
+    "crystalline",
+    "rocky",
+    "ruins"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "[sacrifaceDie]+[sacrifaceDie] to gain 1 Mineral Discovery - OR - Roll [dangerDieI].",
+    "it": "[sacrifaceDie]+[sacrifaceDie] per ottenere 1 Scoperta Minerale - OPPURE - Tira [dangerDieI]."
+   },
+   "scelta": [
+    {
+     "en": "[sacrifaceDie]+[sacrifaceDie] to gain 1 Mineral Discovery",
+     "it": "[sacrifaceDie]+[sacrifaceDie] per ottenere 1 Scoperta Minerale"
+    },
+    {
+     "en": "Roll [dangerDieI]",
+     "it": "Tira [dangerDieI]"
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/advanced_events/19705.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "TRACKERS",
+    "it": "INSEGUITORI"
+   },
+   "biomi": [
+    "hostile"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "[sacrifaceDie] - OR - Roll [dangerDieH].",
+    "it": "[sacrifaceDie] - OPPURE - Tira [dangerDieH]."
+   },
+   "scelta": [
+    {
+     "en": "[sacrifaceDie]",
+     "it": "[sacrifaceDie]"
+    },
+    {
+     "en": "Roll [dangerDieH]",
+     "it": "Tira [dangerDieH]"
+    }
+   ],
+   "dubbi": "Traduzione del titolo non ufficiale (Trackers = inseguitori/segugi)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/advanced_events/19703.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "VIOLENT CURRENT",
+    "it": "CORRENTE VIOLENTA"
+   },
+   "biomi": [
+    "water"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "[sacrifaceDie] - OR - Roll [dangerDieI].",
+    "it": "[sacrifaceDie] - OPPURE - Tira [dangerDieI]."
+   },
+   "scelta": [
+    {
+     "en": "[sacrifaceDie]",
+     "it": "[sacrifaceDie]"
+    },
+    {
+     "en": "Roll [dangerDieI]",
+     "it": "Tira [dangerDieI]"
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/advanced_events/19700.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "IMPOSSIBLE STRUCTURE",
+    "it": "STRUTTURA IMPOSSIBILE"
+   },
+   "biomi": [
+    "ruins"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "principale": {
+    "en": "Roll [dangerDieH] - OR - [spendDieBlue] and roll [dangerDieC].",
+    "it": "Tira [dangerDieH] - OPPURE - [spendDieBlue] e tira [dangerDieC]."
+   },
+   "scelta": [
+    {
+     "en": "Roll [dangerDieH]",
+     "it": "Tira [dangerDieH]"
+    },
+    {
+     "en": "[spendDieBlue] and roll [dangerDieC]",
+     "it": "[spendDieBlue] e tira [dangerDieC]"
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/tutorial_events/900.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "titolo": {
+    "en": "EERIE VOICES",
+    "it": "VOCI INQUIETANTI"
+   },
+   "biomi": [
+    "tutorial"
+   ],
+   "secondario": {
+    "en": "If no icons match, discard this card and progress all Time Tracks by 1.",
+    "it": "Se nessuna icona corrisponde, scarta questa carta e fai avanzare di 1 tutte le tracce del Tempo."
+   },
+   "testo_colore": {
+    "en": "A strong radio disruption comes from the other side of the sphere. Within the deafening white noise we seem to hear some human words.",
+    "it": "Un forte disturbo radio proviene dall'altro lato della sfera. Nel rumore bianco assordante ci sembra di udire alcune parole umane."
+   },
+   "principale": {
+    "en": "[spendDie]",
+    "it": "[spendDie]"
+   },
+   "dubbi": "Icona in alto 'T' = tutorial (non è un bioma, nome dal foglio icone). Il testo corsivo è riportato in 'testo_colore' (campo non previsto dallo schema Eventi)."
+  }
+ ]
+}

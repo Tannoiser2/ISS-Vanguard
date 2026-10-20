@@ -1,0 +1,1359 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2330118748606047797236B067F7E69387FA88892FA9380F5D7B854703B.jpg",
+   "nome_tts": "p.10-11",
+   "pagine": "10-11",
+   "pianeta": "EVERSTORM",
+   "nome_in_codice": "GYF-4 B",
+   "decollo_log": 495,
+   "evac_log": 555,
+   "descrizione": {
+    "en": "The thick, hyper-rotating atmosphere of this planet is in constant turmoil, carrying obsidian and glass shards with extreme velocities. Gargantuan mounds protrude from this storm, reaching high into the stratosphere.",
+    "it": "La densa atmosfera iper-rotante di questo pianeta è in costante tumulto e trasporta schegge di ossidiana e vetro a velocità estreme. Colossali rilievi emergono da questa tempesta, spingendosi in alto fino alla stratosfera."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.125,
+     "y": 0.503,
+     "w": 0.198,
+     "h": 0.252,
+     "icone": [
+      "void",
+      "rocky",
+      "lander"
+     ],
+     "pdi": "JAGGED CREST",
+     "stampato": {
+      "titolo": {
+       "en": "JAGGED CREST",
+       "it": "CRESTA FRASTAGLIATA"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "It's far from the most interesting site, but it offers the safest landing zone.",
+       "it": "È tutt'altro che il sito più interessante, ma offre la zona di atterraggio più sicura."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "LOOK FOR LIFE",
+         "it": "CERCARE FORME DI VITA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "biology",
+          "en": "Gain 2 Live Specimen Leads.",
+          "it": "Ottieni 2 Indizi Esemplare Vivo."
+         },
+         {
+          "colore": "green",
+          "req": "greenDie+redDie",
+          "en": "Gain 1 [success] and 1 Live Specimen Lead, replace with card P000.",
+          "it": "Ottieni 1 [success] e 1 Indizio Esemplare Vivo, sostituisci con la carta P000."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "End your turn and draw 2 Event cards instead of 1.",
+          "it": "Termina il tuo turno e pesca 2 carte Evento invece di 1."
+         }
+        ],
+        "frecce": "Freccia dalla riga gialla verso la verde sottostante: se si risolve la riga gialla si risolve anche la verde."
+       }
+      ]
+     }
+    },
+    {
+     "n": 2,
+     "x": 0.371,
+     "y": 0.5,
+     "w": 0.09,
+     "h": 0.254,
+     "icone": [
+      "void",
+      "rocky",
+      "deadly",
+      "finalPOI"
+     ]
+    },
+    {
+     "n": 3,
+     "x": 0.648,
+     "y": 0.502,
+     "w": 0.198,
+     "h": 0.254,
+     "icone": [],
+     "pdi": "SHELTERED PLATEAU",
+     "stampato": {
+      "titolo": {
+       "en": "SHELTERED PLATEAU",
+       "it": "ALTOPIANO RIPARATO"
+      },
+      "icone": [
+       "finalPOI"
+      ],
+      "testo_colore": {
+       "en": "The wind is barely noticeable in the shade of the structure, making it a perfect place to set up camp. The holes are too regular to be natural.",
+       "it": "All'ombra della struttura il vento si avverte appena: è il posto perfetto per accamparsi. I fori sono troppo regolari per essere naturali."
+      },
+      "testo": {
+       "en": "Each Crewmember who performs a Dice Check in this Sector adds [defence] to their Roll Pool. Whenever you Refresh any dice in this Sector, Refresh 1 [die] more. Whenever you draw any Section cards in this Sector, draw 1 additional card.",
+       "it": "Ogni Membro dell'Equipaggio che effettua una Prova in questo Settore aggiunge [defence] alla propria Riserva del Tiro. Ogni volta che Ricarichi dei dadi in questo Settore, Ricarica 1 [die] in più. Ogni volta che peschi carte Reparto in questo Settore, pesca 1 carta aggiuntiva."
+      },
+      "azioni": []
+     }
+    },
+    {
+     "n": 4,
+     "x": 0.125,
+     "y": 0.826,
+     "w": 0.198,
+     "h": 0.25,
+     "icone": [
+      "void",
+      "deadly"
+     ],
+     "log": 212
+    },
+    {
+     "n": 5,
+     "x": 0.357,
+     "y": 0.826,
+     "w": 0.198,
+     "h": 0.25,
+     "icone": [
+      "rocky"
+     ],
+     "pdi": "PERFORATED MOUNTAINSIDE",
+     "stampato": {
+      "titolo": {
+       "en": "PERFORATED MOUNTAINSIDE",
+       "it": "PARETE MONTUOSA PERFORATA"
+      },
+      "icone": [
+       "caves"
+      ],
+      "testo_colore": {
+       "en": "The holes are too regular to be a work of this planet's chaotic forces.",
+       "it": "I fori sono troppo regolari per essere opera delle forze caotiche di questo pianeta."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "DESCEND INTO THE HOLE",
+         "it": "SCENDERE NEL FORO"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRedProgress"
+         },
+         {
+          "req": "physical / scouting",
+          "effetto": "outcomeGreenProgress"
+         }
+        ],
+        "esiti": [],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 3,
+          "en": "Go to Log 28.",
+          "it": "Vai all'Annotazione 28."
+         },
+         {
+          "colore": "red",
+          "caselle": 1,
+          "en": "Go to Log 30.",
+          "it": "Vai all'Annotazione 30."
+         }
+        ],
+        "testo": {
+         "en": "You may perform this Dice Check only if another Crewmember Assists you.",
+         "it": "Puoi effettuare questa Prova solo se un altro Membro dell'Equipaggio ti Assiste."
+        }
+       }
+      ]
+     }
+    },
+    {
+     "n": 6,
+     "x": 0.624,
+     "y": 0.177,
+     "w": 0.09,
+     "h": 0.25,
+     "icone": [
+      "rocky",
+      "finalPOI"
+     ],
+     "log": 38
+    },
+    {
+     "n": 7,
+     "x": 0.7,
+     "y": 0.826,
+     "w": 0.197,
+     "h": 0.25,
+     "icone": [
+      "rocky"
+     ],
+     "pdi": "BROKEN FANG",
+     "stampato": {
+      "titolo": {
+       "en": "BROKEN FANG",
+       "it": "ZANNA SPEZZATA"
+      },
+      "icone": [
+       "finalPOI",
+       "caves"
+      ],
+      "testo_colore": {
+       "en": "One of the megastructures yielded before the power of the storm, offering us a tantalizing glimpse inside.",
+       "it": "Una delle megastrutture ha ceduto alla potenza della tempesta, offrendoci un'allettante occhiata al suo interno."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "ENTER THE STRUCTURE",
+         "it": "ENTRARE NELLA STRUTTURA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "physical",
+          "en": "Refresh up to 2 [die] used in this Dice Check.",
+          "it": "Ricarica fino a 2 [die] usati in questa Prova."
+         },
+         {
+          "colore": "green",
+          "req": "redDie+greenDie",
+          "en": "Gain 1 Live Specimen Lead, go to Log 247.",
+          "it": "Ottieni 1 Indizio Esemplare Vivo, vai all'Annotazione 247."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Gain a Wounded Injury.",
+          "it": "Subisci una Ferita Ferito."
+         }
+        ],
+        "frecce": "Freccia dalla riga gialla verso la verde sottostante: se si risolve la riga gialla si risolve anche la verde."
+       }
+      ]
+     }
+    },
+    {
+     "n": 8,
+     "x": 0.318,
+     "y": 0.176,
+     "w": 0.195,
+     "h": 0.252,
+     "icone": [
+      "void"
+     ],
+     "pdi": "SUN-EATER",
+     "stampato": {
+      "titolo": {
+       "en": "SUN-EATER",
+       "it": "DIVORASOLE"
+      },
+      "icone": [
+       "ruins"
+      ],
+      "testo_colore": {
+       "en": "The gaping mouth of this metallic starfish aims toward the smallsun above, as if about to swallow it.",
+       "it": "La bocca spalancata di questa stella marina metallica punta verso il piccolo sole in alto, come se stesse per inghiottirlo."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "STUDY THE SUN-EATER",
+         "it": "STUDIARE IL DIVORASOLE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [
+         "dangerDieA"
+        ],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "blueDie+blueDie",
+          "en": "Place 1 marker in this Sector, go to Log 288.",
+          "it": "Piazza 1 segnalino in questo Settore, vai all'Annotazione 288."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 9,
+     "x": 0.754,
+     "y": 0.177,
+     "w": 0.088,
+     "h": 0.25,
+     "icone": [
+      "void",
+      "finalPOI"
+     ]
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 1,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 2,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "spendDie"
+     ]
+    },
+    {
+     "da": 8,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "dangerDieA"
+     ]
+    },
+    {
+     "da": 6,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "dangerDieA"
+     ]
+    },
+    {
+     "da": 9,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "spendDie",
+      "spendDie"
+     ]
+    },
+    {
+     "da": 9,
+     "a": 7,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "spendDie",
+      "spendDie"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "LOST DISCOVERIES - This slot will be used by the planet's special rules. (Questo spazio sarà usato dalle regole speciali del pianeta.)",
+    "missione": "M50",
+    "missione_opzionale": "",
+    "condizione": {
+     "stampata": true,
+     "titolo": {
+      "en": "SQUALL",
+      "it": "RAFFICA"
+     },
+     "testo_colore": {
+      "en": "Gusts of wind pelt us with razor-sharp shards!",
+      "it": "Raffiche di vento ci bersagliano di schegge affilate come rasoi!"
+     },
+     "azioni": [
+      {
+       "nome": {
+        "en": "",
+        "it": ""
+       },
+       "icona": "",
+       "pericolo": [],
+       "prova": false,
+       "costo": "",
+       "speciali": [],
+       "esiti": [
+        {
+         "colore": "red",
+         "req": "defence",
+         "en": "Move all [accident] to your Spent Pool.",
+         "it": "Sposta tutti i [accident] nella tua Riserva dei Dadi Spesi."
+        }
+       ]
+      }
+     ],
+     "testo": {
+      "en": "All Dice Checks gain the following Special Effect: [accident] = Roll [dangerDieA].",
+      "it": "Tutte le Prove ottengono il seguente Effetto Speciale: [accident] = Tira [dangerDieA]."
+     },
+     "viaggio": {
+      "nome": {
+       "en": "TRAVEL",
+       "it": "VIAGGIO"
+      },
+      "icona": "travel",
+      "pericolo": [],
+      "prova": false,
+      "costo": "",
+      "speciali": [],
+      "esiti": [],
+      "testo": {
+       "en": "[spendDieRed] or roll [dangerDieA] to move to a connected Sector.",
+       "it": "[spendDieRed] o tira [dangerDieA] per muoverti in un Settore collegato."
+      }
+     }
+    }
+   },
+   "altro": {
+    "en": "Top header slots: DISCOVERY x5, THREAT x2, RANK-UP. Right edge vertical label: SUCCESS TOKENS.",
+    "it": "Spazi in alto: SCOPERTA x5, MINACCIA x2, GRADO SUPERIORE. Etichetta verticale sul bordo destro: SEGNALINI SUCCESSO."
+   },
+   "dubbi": "Squall: la riga con [defence] e freccia verso il riquadro rosso 'Move all [accident]...' è resa come esito rosso con req defence (forse è un effetto speciale: se nel tiro c'è defence, sposta gli accident). Le punte (chevron) sono presenti a entrambe le estremità di ogni sentiero: tutti considerati a doppio senso. Settore 3 non ha icone bioma sulla cornice (solo finalPOI sulla carta stampata). 'P000' su Jagged Crest letto così com'è stampato. Snap TTS dei PDI su settori 1,3,4,5,7,8 (non 2,6,9)."
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2458473371664644716024F73F0A5FC9E547EE3B7B6376C8E022EEDB6F1.jpg",
+   "nome_tts": "p.24-25",
+   "pagine": "24-25",
+   "pianeta": "IDEMIAN CABAL",
+   "nome_in_codice": "Gliese 368-2 A",
+   "decollo_log": 476,
+   "evac_log": 885,
+   "descrizione": {
+    "en": "Though civilized and populated by non-hostile aliens, this large, arid planet may still be dangerous to explorers unfamiliar with its biomes. Two suns relentlessly scorch the surface during the day, and at night temperatures plummet to minus 100 degrees F.",
+    "it": "Pur essendo civilizzato e popolato da alieni non ostili, questo grande pianeta arido può comunque essere pericoloso per gli esploratori che non conoscono i suoi biomi. Di giorno due soli bruciano senza tregua la superficie, e di notte le temperature precipitano a meno 100 gradi F."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.572,
+     "y": 0.177,
+     "w": 0.067,
+     "h": 0.25,
+     "icone": [
+      "vegetation",
+      "finalPOI",
+      "lander"
+     ],
+     "log": 370
+    },
+    {
+     "n": 2,
+     "x": 0.121,
+     "y": 0.178,
+     "w": 0.198,
+     "h": 0.252,
+     "icone": [
+      "water"
+     ],
+     "pdi": "SLEEPING GIANTS",
+     "stampato": {
+      "titolo": {
+       "en": "SLEEPING GIANTS",
+       "it": "GIGANTI DORMIENTI"
+      },
+      "icone": [
+       "noMovement"
+      ],
+      "testo_colore": {
+       "en": "Scores of tentacled creatures slumber in the warmth of the sun seeping down from the surface.",
+       "it": "Decine di creature tentacolate sonnecchiano nel tepore del sole che filtra dalla superficie."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "SQUEEZE PAST THEM",
+         "it": "SGUSCIARE OLTRE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "physical+scouting / 4*die",
+          "en": "Take your Crewmember and any number of Assisting Crewmembers from this Sector and place them in Sector 3 or Sector 1.",
+          "it": "Prendi il tuo Membro dell'Equipaggio e un qualsiasi numero di Membri dell'Equipaggio che ti Assistono da questo Settore e piazzali nel Settore 3 o nel Settore 1."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Replace with card P287.",
+          "it": "Sostituisci con la carta P287."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "x": 0.121,
+     "y": 0.502,
+     "w": 0.198,
+     "h": 0.252,
+     "icone": [
+      "water"
+     ],
+     "pdi": "LUMINESCENT PORIFERA",
+     "stampato": {
+      "titolo": {
+       "en": "LUMINESCENT PORIFERA",
+       "it": "PORIFERI LUMINESCENTI"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "The stele signal seems to originate far below the sea-bottom, crawling with exotic, luminescent creatures.",
+       "it": "Il segnale della stele sembra provenire da molto sotto il fondale marino, brulicante di creature esotiche e luminescenti."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "TICKLE THE PORIFERA",
+         "it": "SOLLETICARE I PORIFERI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "die",
+          "en": "Replace with card P280.",
+          "it": "Sostituisci con la carta P280."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieA].",
+          "it": "Tira [dangerDieA]."
+         }
+        ]
+       },
+       {
+        "nome": {
+         "en": "HARVEST THE REEFS",
+         "it": "RACCOGLIERE DALLE BARRIERE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "gathering+xenology",
+          "en": "Gain 2 Live Specimen Leads.",
+          "it": "Ottieni 2 Indizi Esemplare Vivo."
+         },
+         {
+          "colore": "green",
+          "req": "gathering",
+          "en": "Gain 2 Strange Flora Leads.",
+          "it": "Ottieni 2 Indizi Strana Vegetazione."
+         }
+        ],
+        "frecce": "Freccia dalla riga gialla verso la verde sottostante: se si risolve la riga gialla si risolve anche la verde."
+       }
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "x": 0.121,
+     "y": 0.826,
+     "w": 0.198,
+     "h": 0.252,
+     "icone": [
+      "important"
+     ]
+    },
+    {
+     "n": 5,
+     "x": 0.329,
+     "y": 0.234,
+     "w": 0.198,
+     "h": 0.252,
+     "icone": [],
+     "pdi": "OUTER WALLS",
+     "stampato": {
+      "titolo": {
+       "en": "OUTER WALLS",
+       "it": "MURA ESTERNE"
+      },
+      "icone": [
+       "noMovement"
+      ],
+      "testo_colore": {
+       "en": "The irregular walls are covered with tiles that form mind-spinning patterns.",
+       "it": "Le mura irregolari sono ricoperte di piastrelle che formano motivi vertiginosi."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "FIND THE ENTRANCE",
+         "it": "TROVARE L'INGRESSO"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "scouting+scouting",
+          "en": "Refresh 1 [die].",
+          "it": "Ricarica 1 [die]."
+         },
+         {
+          "colore": "green",
+          "req": "4*die",
+          "en": "Gain 1 [success], go to Log 344.",
+          "it": "Ottieni 1 [success], vai all'Annotazione 344."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Replace with card P270.",
+          "it": "Sostituisci con la carta P270."
+         }
+        ],
+        "frecce": "Freccia dalla riga gialla verso la verde sottostante: se si risolve la riga gialla si risolve anche la verde."
+       }
+      ]
+     }
+    },
+    {
+     "n": 6,
+     "x": 0.329,
+     "y": 0.502,
+     "w": 0.198,
+     "h": 0.252,
+     "icone": [],
+     "log": 451
+    },
+    {
+     "n": 7,
+     "x": 0.354,
+     "y": 0.826,
+     "w": 0.198,
+     "h": 0.252,
+     "icone": [
+      "deadly",
+      "idemianSettlement"
+     ],
+     "log": 545
+    },
+    {
+     "n": 8,
+     "x": 0.708,
+     "y": 0.178,
+     "w": 0.197,
+     "h": 0.252,
+     "icone": [
+      "vegetation",
+      "idemianSettlement"
+     ],
+     "pdi": "ARID FLATS",
+     "stampato": {
+      "titolo": {
+       "en": "ARID FLATS",
+       "it": "DISTESE ARIDE"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "There seems to be very little life here – for a planet that managed to evolve complex organisms.",
+       "it": "Qui sembra esserci pochissima vita, per un pianeta che è riuscito a evolvere organismi complessi."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "SURVEY THE AREA",
+         "it": "ESPLORARE L'AREA"
+        },
+        "icona": "specialAction",
+        "pericolo": [],
+        "prova": false,
+        "costo": "",
+        "speciali": [],
+        "esiti": [],
+        "testo": {
+         "en": "Roll any number of available Section dice + any required Injury dice and go to Log 516.",
+         "it": "Tira un qualsiasi numero di dadi Reparto disponibili + gli eventuali dadi Ferita richiesti e vai all'Annotazione 516."
+        }
+       }
+      ]
+     }
+    },
+    {
+     "n": 9,
+     "x": 0.668,
+     "y": 0.502,
+     "w": 0.197,
+     "h": 0.252,
+     "icone": [
+      "vegetation",
+      "idemianSettlement"
+     ],
+     "pdi": "BOTTLE TREES",
+     "stampato": {
+      "titolo": {
+       "en": "BOTTLE TREES",
+       "it": "ALBERI A BOTTIGLIA"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "Thick trunks seem to be covered in paintings of various creatures – far too lifelike and detailed for your liking.",
+       "it": "I tronchi spessi sembrano ricoperti di dipinti di varie creature, fin troppo realistici e dettagliati per i tuoi gusti."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "EXAMINE THE PAINTINGS",
+         "it": "ESAMINARE I DIPINTI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident / basic / xenology",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "biology+scouting",
+          "en": "Go to Log 608.",
+          "it": "Vai all'Annotazione 608."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Replace with card P283.",
+          "it": "Sostituisci con la carta P283."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 10,
+     "x": 0.668,
+     "y": 0.826,
+     "w": 0.197,
+     "h": 0.252,
+     "icone": [
+      "deadly",
+      "idemianSettlement"
+     ],
+     "pdi": "STANDING STONES",
+     "stampato": {
+      "titolo": {
+       "en": "STANDING STONES",
+       "it": "PIETRE ERETTE"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "A forest of irregular, standing stones eroded at the bottom. We're not sure whether it's a natural formation or an alien structure.",
+       "it": "Una foresta di pietre erette e irregolari, erose alla base. Non siamo sicuri che si tratti di una formazione naturale o di una struttura aliena."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "SURVEY THE AREA",
+         "it": "ESPLORARE L'AREA"
+        },
+        "icona": "specialAction",
+        "pericolo": [],
+        "prova": false,
+        "costo": "",
+        "speciali": [],
+        "esiti": [],
+        "testo": {
+         "en": "Roll any number of available Section dice + any required Injury dice and go to Log 516.",
+         "it": "Tira un qualsiasi numero di dadi Reparto disponibili + gli eventuali dadi Ferita richiesti e vai all'Annotazione 516."
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 2,
+     "a": 1,
+     "senso": "doppio",
+     "icone": [
+      "travel",
+      "pathMarkerI"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 1,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 6,
+     "senso": "doppio",
+     "icone": [
+      "spendDie"
+     ]
+    },
+    {
+     "da": 2,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "dangerDieA",
+      "pathMarkerMinus"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "dangerDieA"
+     ]
+    },
+    {
+     "da": 1,
+     "a": 7,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 1,
+     "a": 8,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 8,
+     "a": 9,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 9,
+     "a": 10,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 7,
+     "a": 10,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "12, 13, 16",
+    "missione": "",
+    "missione_opzionale": "(etichetta verticale OPTIONAL MISSION sul bordo destro)",
+    "condizione": {
+     "en": "GLOBAL CONDITIONS - If there are no cards in this slot, place the following cards here in a face up stack: G15 (bottom), G13, G14, G13 (TOP)",
+     "it": "CONDIZIONI GENERALI - Se in questo spazio non ci sono carte, piazza qui le seguenti carte in una pila a faccia in su: G15 (in fondo), G13, G14, G13 (IN CIMA)"
+    }
+   },
+   "altro": {
+    "en": "Top header slots: DISCOVERY x5, THREAT x3.",
+    "it": "Spazi in alto: SCOPERTA x5, MINACCIA x3."
+   },
+   "dubbi": "Icona a 'coppa/fiore con gocce' sui settori 7,8,9,10 non presente nel foglio icone: chiamata 'idemianSettlement' (probabile insediamento/presenza Idemiana). Sui sentieri 2-1 e 2-3, vicino al settore 2, ci sono due cerchietti con 'I' e '−' (forse indicatori di sentiero aperto/chiuso o slot per segnalini): chiamati 'pathMarkerI' e 'pathMarkerMinus'. Il sentiero 5-6 con spendDie è una parentesi che unisce i due settori (non va verso 1). La lista Condizioni riporta G13 due volte (stampato così). Il settore 5 non ha icone bioma sulla cornice. Chevron a entrambe le estremità: tutti i sentieri considerati doppi."
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2504639067865657433E049FAC9E3FDB16DDF2F192A969007E0AA9039C9.jpg",
+   "nome_tts": "p.38-39",
+   "pagine": "38-39",
+   "pianeta": "THORNE-ZYTKOV OBJECT",
+   "nome_in_codice": "TZO",
+   "decollo_log": null,
+   "evac_log": 780,
+   "descrizione": {
+    "en": "This mysterious labyrinth was carved in the hardest and densest matter known to humans, in the most inaccessible place we could have imagined. Short of putting their vault in the middle of a black hole, the Builders couldn't make this any harder.",
+    "it": "Questo misterioso labirinto è stato scavato nella materia più dura e densa conosciuta dall'uomo, nel luogo più inaccessibile che potessimo immaginare. A meno di mettere la loro cripta al centro di un buco nero, i Costruttori non avrebbero potuto renderla più difficile da raggiungere."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.123,
+     "y": 0.176,
+     "w": 0.199,
+     "h": 0.252,
+     "icone": [
+      "deadly",
+      "lander"
+     ],
+     "pdi": "THE IRIS",
+     "stampato": {
+      "titolo": {
+       "en": "THE IRIS",
+       "it": "L'IRIDE"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "The identical petals of this hundred-meter tall metallic rosette remind you of a camera shutter.",
+       "it": "I petali identici di questa rosetta metallica alta cento metri ti ricordano l'otturatore di una fotocamera."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "OPEN THE SHUTTER",
+         "it": "APRIRE L'OTTURATORE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "construction+scienceDice+technology",
+          "effetto": "outcomeYellowProgress"
+         },
+         {
+          "req": "construction / scienceDice / technology",
+          "effetto": "outcomeGreenProgress"
+         },
+         {
+          "req": "accident",
+          "effetto": "outcomeRedProgress"
+         }
+        ],
+        "esiti": [],
+        "tracce": [
+         {
+          "colore": "yellow",
+          "caselle": 1,
+          "en": "Go to Log 742.",
+          "it": "Vai all'Annotazione 742."
+         },
+         {
+          "colore": "green",
+          "caselle": 2,
+          "en": "Replace with card P431.",
+          "it": "Sostituisci con la carta P431."
+         },
+         {
+          "colore": "red",
+          "caselle": 2,
+          "en": "Go to Log 729.",
+          "it": "Vai all'Annotazione 729."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 2,
+     "x": 0.356,
+     "y": 0.176,
+     "w": 0.199,
+     "h": 0.252,
+     "icone": [
+      "deadly"
+     ],
+     "pdi": "TOWERING KEYSTONE",
+     "stampato": {
+      "titolo": {
+       "en": "TOWERING KEYSTONE",
+       "it": "CHIAVE DI VOLTA TORREGGIANTE"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "Within a large circle, a massive obelisk looms – it's front adorned with a faintly familiar glyph.",
+       "it": "All'interno di un grande cerchio incombe un enorme obelisco, la cui facciata è adornata da un glifo vagamente familiare."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "STUDY THE CIRCLE",
+         "it": "STUDIARE IL CERCHIO"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "scouting+scienceDice / 4*die",
+          "en": "Go to Log 839.",
+          "it": "Vai all'Annotazione 839."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Go to Log 845.",
+          "it": "Vai all'Annotazione 845."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "x": 0.644,
+     "y": 0.176,
+     "w": 0.199,
+     "h": 0.252,
+     "icone": [
+      "deadly"
+     ],
+     "pdi": "INNER VAULT DOOR",
+     "stampato": {
+      "titolo": {
+       "en": "INNER VAULT DOOR",
+       "it": "PORTA DELLA CRIPTA INTERNA"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "The towering doors are almost enough to fly your lander through. The closer you are to them, the higher the piles of ash and scorched remains are.",
+       "it": "Le porte torreggianti sono quasi abbastanza grandi da farci passare il lander. Più ti avvicini, più alti sono i cumuli di cenere e di resti carbonizzati."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "OPEN THE DOOR",
+         "it": "APRIRE LA PORTA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "scienceDice+technology / 4*blueDie",
+          "en": "Go to Log 860.",
+          "it": "Vai all'Annotazione 860."
+         }
+        ]
+       },
+       {
+        "nome": {
+         "en": "INSPECT THE ASHEN FIELD",
+         "it": "ISPEZIONARE IL CAMPO DI CENERE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "gathering+xenology / redDie+redDie+greenDie+blueDie",
+          "en": "Go to Log 872.",
+          "it": "Vai all'Annotazione 872."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "x": 0.356,
+     "y": 0.501,
+     "w": 0.199,
+     "h": 0.252,
+     "icone": []
+    },
+    {
+     "n": 5,
+     "x": 0.644,
+     "y": 0.501,
+     "w": 0.199,
+     "h": 0.252,
+     "icone": [
+      "deadly"
+     ],
+     "pdi": "FRACTAL ARCHWAYS",
+     "stampato": {
+      "titolo": {
+       "en": "FRACTAL ARCHWAYS",
+       "it": "ARCHI FRATTALI"
+      },
+      "icone": [
+       "noMovement"
+      ],
+      "testo_colore": {
+       "en": "This giant area reminds you of a confusing, multidimensional beehive – it wasn't designed for creatures who walk the ground.",
+       "it": "Questa zona gigantesca ti ricorda un alveare multidimensionale e disorientante: non è stata progettata per creature che camminano sul terreno."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "RETURN TO THE TOP LEVEL",
+         "it": "TORNARE AL LIVELLO SUPERIORE"
+        },
+        "icona": "",
+        "pericolo": [],
+        "prova": false,
+        "costo": "spendDie+spendDie",
+        "speciali": [],
+        "esiti": [],
+        "testo": {
+         "en": "[spendDie]+[spendDie] to place your Crewmember in Sector 3 – this counts as an Action.",
+         "it": "[spendDie]+[spendDie] per piazzare il tuo Membro dell'Equipaggio nel Settore 3: conta come un'Azione."
+        }
+       },
+       {
+        "nome": {
+         "en": "MAP THE AREA",
+         "it": "MAPPARE L'AREA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [
+         "dangerDieA"
+        ],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "scouting+scouting+scienceDice",
+          "en": "Go to Log 128.",
+          "it": "Vai all'Annotazione 128."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieD].",
+          "it": "Tira [dangerDieD]."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 6,
+     "x": 0.644,
+     "y": 0.826,
+     "w": 0.199,
+     "h": 0.252,
+     "icone": [
+      "deadly"
+     ],
+     "pdi": "THE FIRST GUARDIAN",
+     "stampato": {
+      "titolo": {
+       "en": "THE FIRST GUARDIAN",
+       "it": "IL PRIMO GUARDIANO"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "You're not sure whether this statue was meant to represent the builders of this place – but if it did, they were very different to any life form you have encountered so far...",
+       "it": "Non sei sicuro che questa statua volesse rappresentare i costruttori di questo luogo, ma se così fosse, erano molto diversi da qualsiasi forma di vita incontrata finora..."
+      },
+      "azioni": []
+     }
+    },
+    {
+     "n": 7,
+     "x": 0.356,
+     "y": 0.826,
+     "w": 0.199,
+     "h": 0.252,
+     "icone": [
+      "deadly"
+     ],
+     "pdi": "THE SECOND GUARDIAN",
+     "stampato": {
+      "titolo": {
+       "en": "THE SECOND GUARDIAN",
+       "it": "IL SECONDO GUARDIANO"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "One more disturbing statue – this time different to the one you've seen before.",
+       "it": "Un'altra statua inquietante, questa volta diversa da quella che hai visto prima."
+      },
+      "azioni": []
+     }
+    },
+    {
+     "n": 8,
+     "x": 0.123,
+     "y": 0.826,
+     "w": 0.199,
+     "h": 0.252,
+     "icone": [
+      "deadly"
+     ]
+    },
+    {
+     "n": 9,
+     "x": 0.123,
+     "y": 0.501,
+     "w": 0.199,
+     "h": 0.252,
+     "icone": [],
+     "log": 565
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 1,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 2,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 8,
+     "a": 7,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 7,
+     "a": 6,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 6,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "30",
+    "missione": "M201",
+    "missione_opzionale": "",
+    "condizione": {
+     "stampata": true,
+     "titolo": {
+      "en": "GRAVITATIONAL DISTURBANCE",
+      "it": "PERTURBAZIONE GRAVITAZIONALE"
+     },
+     "testo_colore": {
+      "en": "The superheavy gravity and crushing magnetic fields cause anomalies never before observed by science.",
+      "it": "La gravità superpesante e i campi magnetici schiaccianti causano anomalie mai osservate prima dalla scienza."
+     },
+     "testo": {
+      "en": "When the last G20 card is discarded and this Global Condition becomes revealed, each Crewmember rolls [dangerDieI], in any order. Then, shuffle all three G20 cards, and place them face up in one stack on top of this card.",
+      "it": "Quando l'ultima carta G20 viene scartata e questa Condizione Generale viene rivelata, ogni Membro dell'Equipaggio tira [dangerDieI], in qualsiasi ordine. Poi mescola tutte e tre le carte G20 e piazzale a faccia in su in un'unica pila sopra questa carta."
+     }
+    }
+   },
+   "altro": {
+    "en": "No LIFT-OFF Log printed (only EVAC). Top header slots: DISCOVERY x5, THREAT x3.",
+    "it": "Nessuna Annotazione di DECOLLO stampata (solo EVAC). Spazi in alto: SCOPERTA x5, MINACCIA x3."
+   },
+   "dubbi": "Settori 4 e 9 non hanno sentieri disegnati (isolati; si raggiungono probabilmente tramite Annotazioni/regole speciali, es. Fractal Archways porta al Settore 3). Settori 6 e 7 (statue Guardiani) stampati senza azioni. Inner Vault Door: le due azioni hanno solo la riga verde, nessuna riga rossa. 'it's front' trascritto come stampato (refuso per 'its'). Nessun Log di decollo: decollo_log = null."
+  }
+ ]
+}

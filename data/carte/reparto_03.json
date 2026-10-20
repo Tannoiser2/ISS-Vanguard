@@ -1,0 +1,658 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_iii_engineering/32408.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "TIRELESS",
+    "it": "INSTANCABILE"
+   },
+   "reparto": "engineering",
+   "grado": 3,
+   "quando": "anytime",
+   "effetto": {
+    "en": "Anytime: If you are in a Sector with Mission Equipment, discard 1 additional card to Refresh a total of 4 dice – either [blueDie] or [redDie].",
+    "it": "In qualsiasi momento: se sei in un Settore con un'Attrezzatura da Missione, scarta 1 carta aggiuntiva per Ricaricare un totale di 4 dadi – [blueDie] o [redDie]."
+   },
+   "icone_sx": [
+    "engineering",
+    "rank3"
+   ],
+   "combo": {
+    "req": "construction+construction+gathering",
+    "en": "Sacrifice this card to take 1 chosen Mission Equipment card of any Section from the Armory. Then place its token (if it has one) in your Sector for free.",
+    "it": "Sacrifica questa carta per prendere dall'Armeria 1 carta Attrezzatura da Missione a scelta di qualsiasi Reparto. Poi piazza gratuitamente il suo segnalino (se ne ha uno) nel tuo Settore."
+   },
+   "barra_bianca": false,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_engineering/8620.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "FOCUS",
+    "it": "CONCENTRAZIONE"
+   },
+   "reparto": "engineering",
+   "grado": 2,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Move 2 [die] from the Roll Pool to their owner's Spent Pool to turn 1 other [die] to the [vanguard] result.",
+    "it": "Durante una Prova: sposta 2 [die] dalla Riserva del Tiro alla Riserva dei Dadi Spesi del loro proprietario per girare 1 altro [die] sul risultato [vanguard]."
+   },
+   "icone_sx": [
+    "engineering",
+    "rank2"
+   ],
+   "combo": {
+    "req": "basic",
+    "en": "Draw 3 cards.",
+    "it": "Pesca 3 carte."
+   },
+   "barra_bianca": false,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_engineering/8617.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "SAFETY PROTOCOL",
+    "it": "PROTOCOLLO DI SICUREZZA"
+   },
+   "reparto": "engineering",
+   "grado": 2,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Move 1 [die] with a [accident] result from the Roll Pool to their owner's Spent Pool.",
+    "it": "Durante una Prova: sposta 1 [die] con un risultato [accident] dalla Riserva del Tiro alla Riserva dei Dadi Spesi del suo proprietario."
+   },
+   "icone_sx": [
+    "engineering",
+    "rank2"
+   ],
+   "combo": {
+    "req": "vanguard",
+    "en": "Use the Dice Combination effect from a chosen card in your hand. Discard that card as normal.",
+    "it": "Usa l'effetto della Combinazione di Dadi di una carta a scelta nella tua mano. Scarta quella carta normalmente."
+   },
+   "barra_bianca": false,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_engineering/8514.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "OVERDRIVE",
+    "it": "SOVRACCARICO"
+   },
+   "reparto": "engineering",
+   "grado": 1,
+   "quando": "anytime",
+   "effetto": {
+    "en": "Anytime: If you are in a Sector with Mission Equipment, Refresh 1 [blueDie].",
+    "it": "In qualsiasi momento: se sei in un Settore con un'Attrezzatura da Missione, Ricarica 1 [blueDie]."
+   },
+   "icone_sx": [
+    "engineering",
+    "rank1"
+   ],
+   "combo": {
+    "req": "construction",
+    "en": "If you have no Small Equipment card, take 1 chosen Small Equipment card from the Armory.",
+    "it": "Se non hai carte Attrezzatura Piccola, prendi dall'Armeria 1 carta Attrezzatura Piccola a scelta."
+   },
+   "barra_bianca": false,
+   "dubbi": "Nessuna barra bianca accanto al grado (verificato con ingrandimento): carta di grado I non del mazzo iniziale. Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_engineering/1305.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "SPECIALIZED TOOLS",
+    "it": "ATTREZZI SPECIALIZZATI"
+   },
+   "reparto": "engineering",
+   "grado": 1,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: You have the Convert Ability: [basic] = [gathering].",
+    "it": "Durante una Prova: hai l'Abilità Converti: [basic] = [gathering]."
+   },
+   "icone_sx": [
+    "engineering",
+    "rank1"
+   ],
+   "combo": {
+    "req": "gathering",
+    "en": "Refresh 2 [blueDie].",
+    "it": "Ricarica 2 [blueDie]."
+   },
+   "barra_bianca": true,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_iii_recon/32802.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "LAY OF THE LAND",
+    "it": "CONOSCERE IL TERRENO"
+   },
+   "reparto": "recon",
+   "grado": 3,
+   "quando": "anytime",
+   "effetto": {
+    "en": "Anytime: If you are in a Sector with no [finalPOI], discard 1 additional card to Refresh 3 [greenDie].",
+    "it": "In qualsiasi momento: se sei in un Settore senza [finalPOI], scarta 1 carta aggiuntiva per Ricaricare 3 [greenDie]."
+   },
+   "icone_sx": [
+    "recon",
+    "rank3"
+   ],
+   "combo": {
+    "req": "scouting+physical",
+    "en": "Each Crewmember in your Sector may Refresh 1 [die].",
+    "it": "Ogni Membro dell'Equipaggio nel tuo Settore può Ricaricare 1 [die]."
+   },
+   "barra_bianca": false,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_recon/17413.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "SECOND CHANCE",
+    "it": "SECONDA POSSIBILITÀ"
+   },
+   "reparto": "recon",
+   "grado": 2,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Reroll any number of [greenDie].",
+    "it": "Durante una Prova: ritira un numero qualsiasi di [greenDie]."
+   },
+   "icone_sx": [
+    "recon",
+    "rank2"
+   ],
+   "combo": {
+    "req": "physical / scouting",
+    "en": "Draw 3 cards.",
+    "it": "Pesca 3 carte."
+   },
+   "barra_bianca": false,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_recon/17410.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "FOCUS",
+    "it": "CONCENTRAZIONE"
+   },
+   "reparto": "recon",
+   "grado": 2,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Move 2 [die] from the Roll Pool to their owner's Spent Pool to turn 1 other [die] to the [vanguard] result.",
+    "it": "Durante una Prova: sposta 2 [die] dalla Riserva del Tiro alla Riserva dei Dadi Spesi del loro proprietario per girare 1 altro [die] sul risultato [vanguard]."
+   },
+   "icone_sx": [
+    "recon",
+    "rank2"
+   ],
+   "combo": {
+    "req": "basic",
+    "en": "Draw 3 cards.",
+    "it": "Pesca 3 carte."
+   },
+   "barra_bianca": false,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_recon/1411.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "CATCH A BREATH",
+    "it": "RIPRENDERE FIATO"
+   },
+   "reparto": "recon",
+   "grado": 1,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Reroll 1 [redDie].",
+    "it": "Durante una Prova: ritira 1 [redDie]."
+   },
+   "icone_sx": [
+    "recon",
+    "rank1"
+   ],
+   "combo": {
+    "req": "anySameIcons",
+    "en": "Draw 2 cards.",
+    "it": "Pesca 2 carte."
+   },
+   "barra_bianca": true,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_recon/1412.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "RESPITE",
+    "it": "TREGUA"
+   },
+   "reparto": "recon",
+   "grado": 1,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Reroll 1 [die].",
+    "it": "Durante una Prova: ritira 1 [die]."
+   },
+   "icone_sx": [
+    "recon",
+    "rank1"
+   ],
+   "combo": {
+    "req": "basic",
+    "en": "Refresh 1 [die].",
+    "it": "Ricarica 1 [die]."
+   },
+   "barra_bianca": true,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_iii_science/32615.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "STUBBORN",
+    "it": "TESTARDO"
+   },
+   "reparto": "science",
+   "grado": 3,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Move 2 [die] from the Roll Pool to their owner's Spent Pool to turn 1 other [die] to the result with brackets.",
+    "it": "Durante una Prova: sposta 2 [die] dalla Riserva del Tiro alla Riserva dei Dadi Spesi del loro proprietario per girare 1 altro [die] sul risultato con le parentesi."
+   },
+   "icone_sx": [
+    "science",
+    "rank3"
+   ],
+   "combo": {
+    "req": "anySameIcons+anySameIcons",
+    "en": "Sacrifice this card to gain your starting number of Charges (you may exceed your starting number of Charges).",
+    "it": "Sacrifica questa carta per ottenere il tuo numero iniziale di Cariche (puoi superare il tuo numero iniziale di Cariche)."
+   },
+   "barra_bianca": false,
+   "dubbi": "'the result with brackets' = la faccia del dado con le parentesi (risultato raro/speciale del dado Reparto); traduzione letterale. Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_iii_science/32612.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "SEARCHING FOR QUESTIONS",
+    "it": "IN CERCA DI DOMANDE"
+   },
+   "reparto": "science",
+   "grado": 3,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Sacrifice this card to turn any number of dice with [accident] results to chosen results.",
+    "it": "Durante una Prova: Sacrifica questa carta per girare un numero qualsiasi di dadi con risultato [accident] su risultati a scelta."
+   },
+   "icone_sx": [
+    "science",
+    "rank3"
+   ],
+   "combo": {
+    "req": "scienceDice+biology+anySameIcons",
+    "en": "Sacrifice this card to add any number of discarded Lead tokens to the Lead bag.",
+    "it": "Sacrifica questa carta per aggiungere al sacchetto degli Indizi un numero qualsiasi di segnalini Indizio scartati."
+   },
+   "barra_bianca": false,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_science/8423.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "FOLLOW-UP",
+    "it": "APPROFONDIMENTO"
+   },
+   "reparto": "science",
+   "grado": 2,
+   "quando": "before_after_action",
+   "effetto": {
+    "en": "Before or after an Action: Discard 1 Lead token from any Discovery deck to draw a card.",
+    "it": "Prima o dopo un'Azione: scarta 1 segnalino Indizio da un qualsiasi mazzo Scoperte per pescare una carta."
+   },
+   "icone_sx": [
+    "science",
+    "rank2"
+   ],
+   "combo": {
+    "req": "biology+anySameIcons",
+    "en": "Discard 1 Discovery to gain 2 Supplies.",
+    "it": "Scarta 1 Scoperta per ottenere 2 Provviste."
+   },
+   "barra_bianca": false,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_science/1501.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "CATCH A BREATH",
+    "it": "RIPRENDERE FIATO"
+   },
+   "reparto": "science",
+   "grado": 1,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Reroll 1 [redDie].",
+    "it": "Durante una Prova: ritira 1 [redDie]."
+   },
+   "icone_sx": [
+    "science",
+    "rank1"
+   ],
+   "combo": {
+    "req": "anySameIcons",
+    "en": "Draw 2 cards.",
+    "it": "Pesca 2 carte."
+   },
+   "barra_bianca": true,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_science/8421.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "EXPLORER",
+    "it": "ESPLORATORE"
+   },
+   "reparto": "science",
+   "grado": 1,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: If your Sector has at least 2 Biome icons, reroll 2 [die].",
+    "it": "Durante una Prova: se il tuo Settore ha almeno 2 icone Bioma, ritira 2 [die]."
+   },
+   "icone_sx": [
+    "science",
+    "rank1"
+   ],
+   "combo": {
+    "req": "scienceDice",
+    "en": "Move up to 3 Lead tokens from any Discovery decks to any other Discovery decks.",
+    "it": "Sposta fino a 3 segnalini Indizio da qualsiasi mazzo Scoperte a qualsiasi altro mazzo Scoperte."
+   },
+   "barra_bianca": false,
+   "dubbi": "Nessuna barra bianca accanto al grado (verificato con ingrandimento). Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_science/1503.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "STROKE OF INSPIRATION",
+    "it": "COLPO DI GENIO"
+   },
+   "reparto": "science",
+   "grado": 1,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Reroll 1 [blueDie].",
+    "it": "Durante una Prova: ritira 1 [blueDie]."
+   },
+   "icone_sx": [
+    "science",
+    "rank1"
+   ],
+   "combo": {
+    "req": "anySameIcons",
+    "en": "Roll 1 [die] from your Spent Pool and add it to your Roll Pool.",
+    "it": "Tira 1 [die] dalla tua Riserva dei Dadi Spesi e aggiungilo alla tua Riserva del Tiro."
+   },
+   "barra_bianca": true,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_iii_security/32906.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "ADRENALINE RUSH",
+    "it": "SCARICA DI ADRENALINA"
+   },
+   "reparto": "security",
+   "grado": 3,
+   "quando": "anytime",
+   "effetto": {
+    "en": "Anytime: If you are in a Sector with a Threat, Refresh 3 [redDie].",
+    "it": "In qualsiasi momento: se sei in un Settore con una Minaccia, Ricarica 3 [redDie]."
+   },
+   "icone_sx": [
+    "security",
+    "rank3"
+   ],
+   "combo": {
+    "req": "physical+physical",
+    "en": "Sacrifice this card to move all [die] from the Roll Pool to their owner's Spent Pool, then Refresh all [die]. Immediately go to the Spend Dice step of this Dice Check.",
+    "it": "Sacrifica questa carta per spostare tutti i [die] dalla Riserva del Tiro alla Riserva dei Dadi Spesi del loro proprietario, poi Ricarica tutti i [die]. Passa immediatamente alla fase Spendere i Dadi di questa Prova."
+   },
+   "barra_bianca": false,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_security/17602.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "FOCUS",
+    "it": "CONCENTRAZIONE"
+   },
+   "reparto": "security",
+   "grado": 2,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Move 2 [die] from the Roll Pool to their owner's Spent Pool to turn 1 other [die] to the [vanguard] result.",
+    "it": "Durante una Prova: sposta 2 [die] dalla Riserva del Tiro alla Riserva dei Dadi Spesi del loro proprietario per girare 1 altro [die] sul risultato [vanguard]."
+   },
+   "icone_sx": [
+    "security",
+    "rank2"
+   ],
+   "combo": {
+    "req": "basic",
+    "en": "Draw 3 cards.",
+    "it": "Pesca 3 carte."
+   },
+   "barra_bianca": false,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ii_security/17603.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "SAFETY PROTOCOL",
+    "it": "PROTOCOLLO DI SICUREZZA"
+   },
+   "reparto": "security",
+   "grado": 2,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Move 1 [die] with a [accident] result from the Roll Pool to their owner's Spent Pool.",
+    "it": "Durante una Prova: sposta 1 [die] con un risultato [accident] dalla Riserva del Tiro alla Riserva dei Dadi Spesi del suo proprietario."
+   },
+   "icone_sx": [
+    "security",
+    "rank2"
+   ],
+   "combo": {
+    "req": "vanguard",
+    "en": "Use the Dice Combination effect from a chosen card in your hand. Discard that card as normal.",
+    "it": "Usa l'effetto della Combinazione di Dadi di una carta a scelta nella tua mano. Scarta quella carta normalmente."
+   },
+   "barra_bianca": false,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_security/1616.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "CATCH A BREATH",
+    "it": "RIPRENDERE FIATO"
+   },
+   "reparto": "security",
+   "grado": 1,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Reroll 1 [redDie].",
+    "it": "Durante una Prova: ritira 1 [redDie]."
+   },
+   "icone_sx": [
+    "security",
+    "rank1"
+   ],
+   "combo": {
+    "req": "anySameIcons",
+    "en": "Draw 2 cards.",
+    "it": "Pesca 2 carte."
+   },
+   "barra_bianca": true,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_i_security/1617.webp",
+   "nomi": [],
+   "titolo": {
+    "en": "RESPITE",
+    "it": "TREGUA"
+   },
+   "reparto": "security",
+   "grado": 1,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Reroll 1 [die].",
+    "it": "Durante una Prova: ritira 1 [die]."
+   },
+   "icone_sx": [
+    "security",
+    "rank1"
+   ],
+   "combo": {
+    "req": "basic",
+    "en": "Refresh 1 [die].",
+    "it": "Ricarica 1 [die]."
+   },
+   "barra_bianca": true,
+   "dubbi": "Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/backup_plan/backup_plan_35409.webp",
+   "nomi": [
+    "Backup Plan"
+   ],
+   "titolo": {
+    "en": "BACKUP PLAN",
+    "it": "PIANO DI RISERVA"
+   },
+   "reparto": "security",
+   "grado": null,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Turn 1 [redDie] to the chosen result.",
+    "it": "Durante una Prova: gira 1 [redDie] sul risultato a scelta."
+   },
+   "icone_sx": [
+    "security"
+   ],
+   "combo": {
+    "req": "anySameIcons+anySameIcons",
+    "en": "Refresh 1 [die].",
+    "it": "Ricarica 1 [die]."
+   },
+   "barra_bianca": false,
+   "dubbi": "Carta senza icona di grado (carta del tutorial/speciale): grado null, solo icona reparto sul bordo sinistro. Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/improvised_treatment/improvised_treatment_35102.webp",
+   "nomi": [
+    "Improvised Treatment"
+   ],
+   "titolo": {
+    "en": "IMPROVISED TREATMENT",
+    "it": "CURA IMPROVVISATA"
+   },
+   "reparto": "science",
+   "grado": null,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Reroll 1 [die].",
+    "it": "Durante una Prova: ritira 1 [die]."
+   },
+   "icone_sx": [
+    "science"
+   ],
+   "combo": {
+    "req": "anySameIcons+anySameIcons",
+    "en": "Discard 1 Injury card and die of any Crewmember in your Sector.",
+    "it": "Scarta 1 carta Ferita e il relativo dado di un qualsiasi Membro dell'Equipaggio nel tuo Settore."
+   },
+   "barra_bianca": false,
+   "dubbi": "Carta senza icona di grado (carta del tutorial/speciale): grado null, solo icona reparto sul bordo sinistro. Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/born_lucky/born_lucky_35007.webp",
+   "nomi": [
+    "Born Lucky"
+   ],
+   "titolo": {
+    "en": "BORN LUCKY",
+    "it": "NATO FORTUNATO"
+   },
+   "reparto": "recon",
+   "grado": null,
+   "quando": "anytime",
+   "effetto": {
+    "en": "Anytime: After rolling a Danger die, turn it to the chosen result.",
+    "it": "In qualsiasi momento: dopo aver tirato un dado Pericolo, giralo sul risultato a scelta."
+   },
+   "icone_sx": [
+    "recon"
+   ],
+   "combo": {
+    "req": "anySameIcons+anySameIcons",
+    "en": "Refresh 1 [die].",
+    "it": "Ricarica 1 [die]."
+   },
+   "barra_bianca": false,
+   "dubbi": "Carta senza icona di grado (carta del tutorial/speciale): grado null, solo icona reparto sul bordo sinistro. Titolo italiano non ufficiale (traduzione propria)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/emergency_shelter/emergency_shelter_34904.webp",
+   "nomi": [
+    "Emergency Shelter"
+   ],
+   "titolo": {
+    "en": "EMERGENCY SHELTER",
+    "it": "RIFUGIO DI EMERGENZA"
+   },
+   "reparto": "engineering",
+   "grado": null,
+   "quando": "during_check",
+   "effetto": {
+    "en": "During a Dice Check: Reroll 1 [die].",
+    "it": "Durante una Prova: ritira 1 [die]."
+   },
+   "icone_sx": [
+    "engineering"
+   ],
+   "combo": {
+    "req": "anySameIcons+anySameIcons",
+    "en": "Each Crewmember in your Sector may discard 1 Injury card and 1 Injury die, Refresh 3 [die] and draw 1 Section card.",
+    "it": "Ogni Membro dell'Equipaggio nel tuo Settore può scartare 1 carta Ferita e 1 dado Ferita, Ricaricare 3 [die] e pescare 1 carta Reparto."
+   },
+   "barra_bianca": false,
+   "dubbi": "Carta senza icona di grado (carta del tutorial/speciale): grado null, solo icona reparto sul bordo sinistro. Titolo italiano non ufficiale (traduzione propria)."
+  }
+ ]
+}

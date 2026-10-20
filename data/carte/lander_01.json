@@ -1,0 +1,937 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a01_13300.webp",
+   "nomi": [
+    "A01"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "HEAVY ARMOR PLATING",
+    "it": "CORAZZATURA PESANTE"
+   },
+   "testo": {
+    "en": "+2 [landerArmor]",
+    "it": "+2 [landerArmor]"
+   },
+   "campi": {
+    "codice": "A01",
+    "modifica": "structural",
+    "corazza": 2
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a02_13401.webp",
+   "nomi": [
+    "A02"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "MULTI-DIRECTIONAL THRUSTERS",
+    "it": "PROPULSORI MULTIDIREZIONALI"
+   },
+   "testo": {
+    "en": "+2 [landerAgility]",
+    "it": "+2 [landerAgility]"
+   },
+   "campi": {
+    "codice": "A02",
+    "modifica": "structural",
+    "agilita": 2
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a03_13502.webp",
+   "nomi": [
+    "A03"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "NAV CONSOLE",
+    "it": "CONSOLE DI NAVIGAZIONE"
+   },
+   "testo": {
+    "en": "+2 [landerSensors]",
+    "it": "+2 [landerSensors]"
+   },
+   "campi": {
+    "codice": "A03",
+    "modifica": "structural",
+    "sensori": 2
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a04_16103.webp",
+   "nomi": [
+    "A04"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "EXPANDED STORAGE",
+    "it": "STIVA AMPLIATA"
+   },
+   "testo": {
+    "en": "+1 [personalEquipment]",
+    "it": "+1 [personalEquipment]"
+   },
+   "campi": {
+    "codice": "A04",
+    "modifica": "utility",
+    "carico": {
+     "personali": 1
+    }
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a05_16104.webp",
+   "nomi": [
+    "A05"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "RELAXATION OCULUS",
+    "it": "OCULUS DI RILASSAMENTO"
+   },
+   "testo": {
+    "en": "Crewmembers in Sectors connected to the Lander Sector or in the Lander Sector may draw 1 additional card while Resting or Preparing.",
+    "it": "I Membri dell'Equipaggio nei Settori collegati al Settore del Lander o nel Settore del Lander possono pescare 1 carta aggiuntiva durante il Riposo o la Preparazione."
+   },
+   "campi": {
+    "codice": "A05",
+    "modifica": "utility",
+    "effetto": "carta_extra_riposo_preparazione",
+    "area": "lander_e_adiacenti"
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a06_16105.webp",
+   "nomi": [
+    "A06"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "MED-BOTS",
+    "it": "MED-BOT"
+   },
+   "testo": {
+    "en": "Move this Mod to the \"Awaiting...\" envelope: Crewmembers in Sectors connected to the Lander Sector or in the Lander Sector discard 1 Injury die each.",
+    "it": "Sposta questa Modifica nella busta \"In attesa...\": i Membri dell'Equipaggio nei Settori collegati al Settore del Lander o nel Settore del Lander scartano 1 dado Ferita ciascuno."
+   },
+   "campi": {
+    "codice": "A06",
+    "modifica": "utility",
+    "monouso": true,
+    "effetto": "scarta_dado_ferita",
+    "quantita": 1,
+    "area": "lander_e_adiacenti"
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a07_16106.webp",
+   "nomi": [
+    "A07"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "EVAC SHUTTLE",
+    "it": "NAVETTA DI EVACUAZIONE"
+   },
+   "testo": {
+    "en": "Move this Mod to the \"Awaiting...\" envelope: Place 1 Crewmember in the Lander Sector. This Crewmember flips 1 Injury card.",
+    "it": "Sposta questa Modifica nella busta \"In attesa...\": piazza 1 Membro dell'Equipaggio nel Settore del Lander. Questo Membro dell'Equipaggio gira 1 carta Ferita."
+   },
+   "campi": {
+    "codice": "A07",
+    "modifica": "utility",
+    "monouso": true,
+    "effetto": "teletrasporto_al_lander+gira_carta_ferita"
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a08_13707.webp",
+   "nomi": [
+    "A08"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "EMERGENCY BROADCAST SYSTEM",
+    "it": "SISTEMA DI TRASMISSIONE D'EMERGENZA"
+   },
+   "testo": {
+    "en": "Crewmembers may discard 1 Charge each and move this Mod to the \"Awaiting...\" envelope: Gain 2 Supplies.",
+    "it": "I Membri dell'Equipaggio possono scartare 1 Carica ciascuno e spostare questa Modifica nella busta \"In attesa...\": ottieni 2 Provviste."
+   },
+   "campi": {
+    "codice": "A08",
+    "modifica": "utility",
+    "monouso": true,
+    "costo": "1 Carica per ogni Membro dell'Equipaggio",
+    "effetto": "ottieni_provviste",
+    "provviste_ottenute": 2
+   },
+   "azioni": [],
+   "dubbi": "Non chiaro se 'discard 1 Charge each' richieda che TUTTI i Membri scartino 1 Carica (interpretato così). La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a09_16108.webp",
+   "nomi": [
+    "A09"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "SECURE CONTAINERS",
+    "it": "CONTENITORI SICURI"
+   },
+   "testo": {
+    "en": "+1 Lander Discoveries limit\n+1 Supplies",
+    "it": "+1 al limite di Scoperte del Lander\n+1 Provviste"
+   },
+   "campi": {
+    "codice": "A09",
+    "modifica": "utility",
+    "scoperte_max": 1,
+    "provviste": 1
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a10_16109.webp",
+   "nomi": [
+    "A10"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "EXTERNAL CARGO PODS",
+    "it": "CAPSULE DI CARICO ESTERNE"
+   },
+   "testo": {
+    "en": "+1 Supplies\n+1 [missionEquipment]",
+    "it": "+1 Provviste\n+1 [missionEquipment]"
+   },
+   "campi": {
+    "codice": "A10",
+    "modifica": "utility",
+    "provviste": 1,
+    "carico": {
+     "missione": 1
+    }
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a11_16110.webp",
+   "nomi": [
+    "A11"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "AUTOMATED PILOT ASSIST",
+    "it": "ASSISTENZA AL PILOTA AUTOMATIZZATA"
+   },
+   "testo": {
+    "en": "+1 [landerArmor]\n+1 [landerSensors]\n+1 [landerAgility]",
+    "it": "+1 [landerArmor]\n+1 [landerSensors]\n+1 [landerAgility]"
+   },
+   "campi": {
+    "codice": "A11",
+    "modifica": "structural",
+    "corazza": 1,
+    "sensori": 1,
+    "agilita": 1
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a12_16111.webp",
+   "nomi": [
+    "A12"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "NANOBOT SWARM",
+    "it": "SCIAME DI NANOBOT"
+   },
+   "testo": {
+    "en": "Crewmembers in Sectors connected to the Lander Sector or in the Lander Sector may Refresh 1 die from their Dice Check at the end of this Dice Check.",
+    "it": "I Membri dell'Equipaggio nei Settori collegati al Settore del Lander o nel Settore del Lander possono Ricaricare 1 dado della loro Prova al termine di quella Prova."
+   },
+   "campi": {
+    "codice": "A12",
+    "modifica": "utility",
+    "effetto": "ricarica_dado_dopo_prova",
+    "quantita": 1,
+    "area": "lander_e_adiacenti"
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a13_16112.webp",
+   "nomi": [
+    "A13"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "ADDITIONAL ROCKET BOOSTERS",
+    "it": "RAZZI AUSILIARI AGGIUNTIVI"
+   },
+   "testo": {
+    "en": "After step 1 of the Landing Procedure, progress the Landing track (move the marker 1 space to the right).",
+    "it": "Dopo il passo 1 della Procedura di Atterraggio, fai avanzare la traccia di Atterraggio (sposta il segnalino di 1 casella verso destra)."
+   },
+   "campi": {
+    "codice": "A13",
+    "modifica": "utility",
+    "avanzamento_atterraggio": 1
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a14_16113.webp",
+   "nomi": [
+    "A14"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "CREW QUARTERS",
+    "it": "ALLOGGI DELL'EQUIPAGGIO"
+   },
+   "testo": {
+    "en": "Move this Mod to the \"Awaiting...\" envelope: Crewmembers in Sectors connected to the Lander Sector or in the Lander Sector Refresh all of their dice.",
+    "it": "Sposta questa Modifica nella busta \"In attesa...\": i Membri dell'Equipaggio nei Settori collegati al Settore del Lander o nel Settore del Lander Ricaricano tutti i loro dadi."
+   },
+   "campi": {
+    "codice": "A14",
+    "modifica": "utility",
+    "monouso": true,
+    "effetto": "ricarica_tutti_i_dadi",
+    "area": "lander_e_adiacenti"
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a15_16114.webp",
+   "nomi": [
+    "A15"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "WARNING SYSTEM",
+    "it": "SISTEMA DI ALLARME"
+   },
+   "testo": {
+    "en": "Crewmembers may [spendDie] to reroll 1 Danger die once per roll.",
+    "it": "I Membri dell'Equipaggio possono [spendDie] per ritirare 1 dado Pericolo, una volta per tiro."
+   },
+   "campi": {
+    "codice": "A15",
+    "modifica": "utility",
+    "costo": "spendDie",
+    "effetto": "ritira_dado_pericolo",
+    "limite": "una_volta_per_tiro"
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a16_16115.webp",
+   "nomi": [
+    "A16"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "NEUTRONIUM PLATING",
+    "it": "CORAZZATURA IN NEUTRONIO"
+   },
+   "testo": {
+    "en": "+3 [landerArmor]\n+1 [landerSensors]",
+    "it": "+3 [landerArmor]\n+1 [landerSensors]"
+   },
+   "campi": {
+    "codice": "A16",
+    "modifica": "structural",
+    "corazza": 3,
+    "sensori": 1
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a17_16116.webp",
+   "nomi": [
+    "A17"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "ADAPTIVE THRUSTERS",
+    "it": "PROPULSORI ADATTIVI"
+   },
+   "testo": {
+    "en": "+1 [landerArmor]\n+3 [landerAgility]",
+    "it": "+1 [landerArmor]\n+3 [landerAgility]"
+   },
+   "campi": {
+    "codice": "A17",
+    "modifica": "structural",
+    "corazza": 1,
+    "agilita": 3
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a18_16117.webp",
+   "nomi": [
+    "A18"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "ALIEN NAV CONSOLE",
+    "it": "CONSOLE DI NAVIGAZIONE ALIENA"
+   },
+   "testo": {
+    "en": "+3 [landerSensors]\n+1 [landerAgility]",
+    "it": "+3 [landerSensors]\n+1 [landerAgility]"
+   },
+   "campi": {
+    "codice": "A18",
+    "modifica": "structural",
+    "sensori": 3,
+    "agilita": 1
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a19_16118.webp",
+   "nomi": [
+    "A19"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "MULTISPECTRAL SCANNER",
+    "it": "SCANNER MULTISPETTRALE"
+   },
+   "testo": {
+    "en": "+1 [landerArmor]\n+2 [landerSensors]\n+1 [landerAgility]",
+    "it": "+1 [landerArmor]\n+2 [landerSensors]\n+1 [landerAgility]"
+   },
+   "campi": {
+    "codice": "A19",
+    "modifica": "structural",
+    "corazza": 1,
+    "sensori": 2,
+    "agilita": 1
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a20_16119.webp",
+   "nomi": [
+    "A20"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "INFLATABLE STORAGE",
+    "it": "STIVA GONFIABILE"
+   },
+   "testo": {
+    "en": "+1 [personalEquipment]\n+1 [missionEquipment]",
+    "it": "+1 [personalEquipment]\n+1 [missionEquipment]"
+   },
+   "campi": {
+    "codice": "A20",
+    "modifica": "utility",
+    "carico": {
+     "personali": 1,
+     "missione": 1
+    }
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a21_16120.webp",
+   "nomi": [
+    "A21"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "REJUVENATION POD",
+    "it": "CAPSULA DI RIGENERAZIONE"
+   },
+   "testo": {
+    "en": "Crewmembers may draw 1 additional card while Resting or Preparing.",
+    "it": "I Membri dell'Equipaggio possono pescare 1 carta aggiuntiva durante il Riposo o la Preparazione."
+   },
+   "campi": {
+    "codice": "A21",
+    "modifica": "utility",
+    "effetto": "carta_extra_riposo_preparazione",
+    "area": "ovunque"
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a22_16121.webp",
+   "nomi": [
+    "A22"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "HEALING NANOCLOUD",
+    "it": "NANONUBE CURATIVA"
+   },
+   "testo": {
+    "en": "Move this Mod to the \"Awaiting...\" envelope: Crewmembers in Sectors connected to the Lander Sector or in the Lander Sector discard 1 Injury card and 1 Injury die each.",
+    "it": "Sposta questa Modifica nella busta \"In attesa...\": i Membri dell'Equipaggio nei Settori collegati al Settore del Lander o nel Settore del Lander scartano 1 carta Ferita e 1 dado Ferita ciascuno."
+   },
+   "campi": {
+    "codice": "A22",
+    "modifica": "utility",
+    "monouso": true,
+    "effetto": "scarta_carta_ferita+scarta_dado_ferita",
+    "area": "lander_e_adiacenti"
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a23_16122.webp",
+   "nomi": [
+    "A23"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "RETRIEVER BOT",
+    "it": "ROBOT DI RECUPERO"
+   },
+   "testo": {
+    "en": "Don't lose any Discoveries during Evac.\nMove this Mod to the \"Awaiting...\" envelope: Immediately go to the Lift-Off Log. Crewmembers outside the Lander Sector don't die.",
+    "it": "Non perdi nessuna Scoperta durante l'Evacuazione.\nSposta questa Modifica nella busta \"In attesa...\": vai immediatamente all'Annotazione di Decollo. I Membri dell'Equipaggio fuori dal Settore del Lander non muoiono."
+   },
+   "campi": {
+    "codice": "A23",
+    "modifica": "utility",
+    "effetto_passivo": "nessuna_scoperta_persa_in_evacuazione",
+    "monouso": true,
+    "effetto": "vai_annotazione_decollo_senza_morti"
+   },
+   "azioni": [],
+   "dubbi": "'Evac' tradotto Evacuazione (termine ufficiale non nel glossario). La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a24_16123.webp",
+   "nomi": [
+    "A24"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "ORBITAL NANOWIRE",
+    "it": "NANOCAVO ORBITALE"
+   },
+   "testo": {
+    "en": "Crewmembers may discard 1 Charge each and move this Mod to the \"Awaiting...\" envelope: Gain 4 Supplies.",
+    "it": "I Membri dell'Equipaggio possono scartare 1 Carica ciascuno e spostare questa Modifica nella busta \"In attesa...\": ottieni 4 Provviste."
+   },
+   "campi": {
+    "codice": "A24",
+    "modifica": "utility",
+    "monouso": true,
+    "costo": "1 Carica per ogni Membro dell'Equipaggio",
+    "effetto": "ottieni_provviste",
+    "provviste_ottenute": 4
+   },
+   "azioni": [],
+   "dubbi": "Come A08: interpretato che ogni Membro scarti 1 Carica. La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a25_16124.webp",
+   "nomi": [
+    "A25"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "ATOMIC COMPRESSOR",
+    "it": "COMPRESSORE ATOMICO"
+   },
+   "testo": {
+    "en": "Each Crewmember may take 1 additional [smallEquipment].",
+    "it": "Ogni Membro dell'Equipaggio può portare 1 [smallEquipment] aggiuntiva."
+   },
+   "campi": {
+    "codice": "A25",
+    "modifica": "utility",
+    "carico": {
+     "piccola_per_membro": 1
+    }
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a26_16125.webp",
+   "nomi": [
+    "A26"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "BIOFABRICATOR",
+    "it": "BIOFABBRICATORE"
+   },
+   "testo": {
+    "en": "+2 Supplies\n+2 [personalEquipment]",
+    "it": "+2 Provviste\n+2 [personalEquipment]"
+   },
+   "campi": {
+    "codice": "A26",
+    "modifica": "utility",
+    "provviste": 2,
+    "carico": {
+     "personali": 2
+    }
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a27_16126.webp",
+   "nomi": [
+    "A27"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "AI PILOT ASSIST",
+    "it": "ASSISTENZA AL PILOTA IA"
+   },
+   "testo": {
+    "en": "+2 [landerArmor]\n+1 [landerSensors]\n+2 [landerAgility]",
+    "it": "+2 [landerArmor]\n+1 [landerSensors]\n+2 [landerAgility]"
+   },
+   "campi": {
+    "codice": "A27",
+    "modifica": "structural",
+    "corazza": 2,
+    "sensori": 1,
+    "agilita": 2
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a28_16127.webp",
+   "nomi": [
+    "A28"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "SUBSPACE CONTAINTERS",
+    "it": "CONTENITORI SUBSPAZIALI"
+   },
+   "testo": {
+    "en": "+2 [personalEquipment]\n+2 [missionEquipment]",
+    "it": "+2 [personalEquipment]\n+2 [missionEquipment]"
+   },
+   "campi": {
+    "codice": "A28",
+    "modifica": "utility",
+    "carico": {
+     "personali": 2,
+     "missione": 2
+    }
+   },
+   "azioni": [],
+   "dubbi": "Il titolo stampato contiene il refuso 'CONTAINTERS' (trascritto fedelmente). La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a29_16128.webp",
+   "nomi": [
+    "A29"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "FUSION BOOSTERS",
+    "it": "RAZZI AUSILIARI A FUSIONE"
+   },
+   "testo": {
+    "en": "After step 1 of the Landing Procedure, progress the Landing track twice (move the marker 2 spaces to the right).",
+    "it": "Dopo il passo 1 della Procedura di Atterraggio, fai avanzare due volte la traccia di Atterraggio (sposta il segnalino di 2 caselle verso destra)."
+   },
+   "campi": {
+    "codice": "A29",
+    "modifica": "utility",
+    "avanzamento_atterraggio": 2
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a30_16129.webp",
+   "nomi": [
+    "A30"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "CREW APARTMENTS",
+    "it": "APPARTAMENTI DELL'EQUIPAGGIO"
+   },
+   "testo": {
+    "en": "Move this Mod to the \"Awaiting...\" envelope: All Crewmembers Refresh all of their dice.",
+    "it": "Sposta questa Modifica nella busta \"In attesa...\": tutti i Membri dell'Equipaggio Ricaricano tutti i loro dadi."
+   },
+   "campi": {
+    "codice": "A30",
+    "modifica": "utility",
+    "monouso": true,
+    "effetto": "ricarica_tutti_i_dadi",
+    "area": "ovunque"
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/lander_mods/a31_16130.webp",
+   "nomi": [
+    "A31"
+   ],
+   "tipo": "lander_mod",
+   "titolo": {
+    "en": "NULL FIELD SHIELDING",
+    "it": "SCHERMATURA A CAMPO NULLO"
+   },
+   "testo": {
+    "en": "This Mod is required for landing on the Thorne-Zhytkov Object.",
+    "it": "Questa Modifica è necessaria per atterrare sull'Oggetto di Thorne-Zhytkov."
+   },
+   "campi": {
+    "codice": "A31",
+    "modifica": "utility",
+    "requisito_atterraggio": "Thorne-Zhytkov Object"
+   },
+   "azioni": [],
+   "dubbi": "La parte bassa della carta (riquadro rosa sotto il tipo) è vuota/tagliata nella scansione: nessun costo o requisito visibile."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/waygate/waygate_33003.webp",
+   "nomi": [
+    "Waygate"
+   ],
+   "tipo": "lander",
+   "titolo": {
+    "en": "WAYGATE",
+    "it": "WAYGATE"
+   },
+   "testo": {
+    "en": "LOAD: [personalEquipment] 5 + [missionEquipment] 3. SUPPLIES 5. STRUCTURAL MOD 0. UTILITY MOD 3. DISCOVERIES - MAXIMUM: 5. To choose this Lander you must discard 1 Alien Tech or 1 Mineral Discovery from \"Gathered Discoveries\". During the Landing Procedure, you immediately land successfully.",
+    "it": "CARICO: [personalEquipment] 5 + [missionEquipment] 3. PROVVISTE 5. MODIFICHE STRUTTURALI 0. MODIFICHE DI UTILITÀ 3. SCOPERTE - MASSIMO: 5. Per scegliere questo Lander devi scartare 1 Scoperta Tecnologia Aliena o 1 Scoperta Minerale dalle \"Scoperte Raccolte\". Durante la Procedura di Atterraggio, atterri immediatamente con successo."
+   },
+   "campi": {
+    "provviste": 5,
+    "carico": {
+     "personali": 5,
+     "missione": 3
+    },
+    "slot_modifiche": {
+     "structural": 0,
+     "utility": 3
+    },
+    "scoperte_max": 5,
+    "atterraggio_automatico": true,
+    "costo_scelta": "scarta 1 Scoperta Alien Tech o Mineral da Gathered Discoveries"
+   },
+   "azioni": [],
+   "dubbi": "Nessun riquadro di statistiche (corazza/sensori/agilità) e nessuna traccia di atterraggio sulla carta: atterraggio automatico. 'Gathered Discoveries' tradotto 'Scoperte Raccolte' (termine ufficiale da verificare). Nessun costo di riparazione visibile; il riquadro bianco in basso è vuoto/tagliato nella scansione."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/void_ranger/void_ranger_33004.webp",
+   "nomi": [
+    "Void Ranger"
+   ],
+   "tipo": "lander",
+   "titolo": {
+    "en": "VOID RANGER",
+    "it": "VOID RANGER"
+   },
+   "testo": {
+    "en": "[landerArmor] 3 [landerSensors] 2 [landerAgility] 3. LOAD: [personalEquipment] 5 + [missionEquipment] 3. SUPPLIES 7. STRUCTURAL MOD 1. UTILITY MOD 2. DISCOVERIES - MAXIMUM: 5. Landing track: 5 spaces, start on space 2 (S) > LANDING SUCCESSFUL.",
+    "it": "[landerArmor] 3 [landerSensors] 2 [landerAgility] 3. CARICO: [personalEquipment] 5 + [missionEquipment] 3. PROVVISTE 7. MODIFICHE STRUTTURALI 1. MODIFICHE DI UTILITÀ 2. SCOPERTE - MASSIMO: 5. Traccia di Atterraggio: 5 caselle, partenza sulla casella 2 (S) > ATTERRAGGIO RIUSCITO."
+   },
+   "campi": {
+    "corazza": 3,
+    "sensori": 2,
+    "agilita": 3,
+    "provviste": 7,
+    "carico": {
+     "personali": 5,
+     "missione": 3
+    },
+    "slot_modifiche": {
+     "structural": 1,
+     "utility": 2
+    },
+    "scoperte_max": 5,
+    "traccia_atterraggio_caselle": 5,
+    "partenza_atterraggio": 2
+   },
+   "azioni": [],
+   "dubbi": "Nessun costo di riparazione visibile; il riquadro bianco in basso è vuoto/tagliato nella scansione."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/dragonfly/dragonfly_33002.webp",
+   "nomi": [
+    "Dragonfly"
+   ],
+   "tipo": "lander",
+   "titolo": {
+    "en": "DRAGONFLY",
+    "it": "DRAGONFLY"
+   },
+   "testo": {
+    "en": "[landerArmor] 0 [landerSensors] 4 [landerAgility] 4. LOAD: [personalEquipment] 5 + [missionEquipment] 2. SUPPLIES 6. STRUCTURAL MOD 1. UTILITY MOD 1. DISCOVERIES - MAXIMUM: 4. Landing track: 5 spaces, start on space 4 (S) > LANDING SUCCESSFUL.",
+    "it": "[landerArmor] 0 [landerSensors] 4 [landerAgility] 4. CARICO: [personalEquipment] 5 + [missionEquipment] 2. PROVVISTE 6. MODIFICHE STRUTTURALI 1. MODIFICHE DI UTILITÀ 1. SCOPERTE - MASSIMO: 4. Traccia di Atterraggio: 5 caselle, partenza sulla casella 4 (S) > ATTERRAGGIO RIUSCITO."
+   },
+   "campi": {
+    "corazza": 0,
+    "sensori": 4,
+    "agilita": 4,
+    "provviste": 6,
+    "carico": {
+     "personali": 5,
+     "missione": 2
+    },
+    "slot_modifiche": {
+     "structural": 1,
+     "utility": 1
+    },
+    "scoperte_max": 4,
+    "traccia_atterraggio_caselle": 5,
+    "partenza_atterraggio": 4
+   },
+   "azioni": [],
+   "dubbi": "Nessun costo di riparazione visibile; il riquadro bianco in basso è vuoto/tagliato nella scansione."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/faustschlag/faustschlag_33005.webp",
+   "nomi": [
+    "Faustschlag"
+   ],
+   "tipo": "lander",
+   "titolo": {
+    "en": "FAUSTSCHLAG",
+    "it": "FAUSTSCHLAG"
+   },
+   "testo": {
+    "en": "[landerArmor] 5 [landerSensors] 1 [landerAgility] 1. LOAD: [personalEquipment] 4 + [missionEquipment] 2. SUPPLIES 7. STRUCTURAL MOD 2. UTILITY MOD 1. DISCOVERIES - MAXIMUM: 5. Landing track: 5 spaces, start on space 1 (S) > LANDING SUCCESSFUL.",
+    "it": "[landerArmor] 5 [landerSensors] 1 [landerAgility] 1. CARICO: [personalEquipment] 4 + [missionEquipment] 2. PROVVISTE 7. MODIFICHE STRUTTURALI 2. MODIFICHE DI UTILITÀ 1. SCOPERTE - MASSIMO: 5. Traccia di Atterraggio: 5 caselle, partenza sulla casella 1 (S) > ATTERRAGGIO RIUSCITO."
+   },
+   "campi": {
+    "corazza": 5,
+    "sensori": 1,
+    "agilita": 1,
+    "provviste": 7,
+    "carico": {
+     "personali": 4,
+     "missione": 2
+    },
+    "slot_modifiche": {
+     "structural": 2,
+     "utility": 1
+    },
+    "scoperte_max": 5,
+    "traccia_atterraggio_caselle": 5,
+    "partenza_atterraggio": 1
+   },
+   "azioni": [],
+   "dubbi": "Nessun costo di riparazione visibile; il riquadro bianco in basso è vuoto/tagliato nella scansione."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/pelican/pelican_33001.webp",
+   "nomi": [
+    "Pelican"
+   ],
+   "tipo": "lander",
+   "titolo": {
+    "en": "PELICAN",
+    "it": "PELICAN"
+   },
+   "testo": {
+    "en": "[landerArmor] 0 [landerSensors] 1 [landerAgility] 0. LOAD: [personalEquipment] 5 + [missionEquipment] 3. SUPPLIES 9. STRUCTURAL MOD 1. UTILITY MOD 2. DISCOVERIES - MAXIMUM: 7. Landing track: 5 spaces, start on space 1 (S) > LANDING SUCCESSFUL.",
+    "it": "[landerArmor] 0 [landerSensors] 1 [landerAgility] 0. CARICO: [personalEquipment] 5 + [missionEquipment] 3. PROVVISTE 9. MODIFICHE STRUTTURALI 1. MODIFICHE DI UTILITÀ 2. SCOPERTE - MASSIMO: 7. Traccia di Atterraggio: 5 caselle, partenza sulla casella 1 (S) > ATTERRAGGIO RIUSCITO."
+   },
+   "campi": {
+    "corazza": 0,
+    "sensori": 1,
+    "agilita": 0,
+    "provviste": 9,
+    "carico": {
+     "personali": 5,
+     "missione": 3
+    },
+    "slot_modifiche": {
+     "structural": 1,
+     "utility": 2
+    },
+    "scoperte_max": 7,
+    "traccia_atterraggio_caselle": 5,
+    "partenza_atterraggio": 1
+   },
+   "azioni": [],
+   "dubbi": "Nessun costo di riparazione visibile; il riquadro bianco in basso è vuoto/tagliato nella scansione."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/space_ranger/space_ranger_33000.webp",
+   "nomi": [
+    "Space Ranger"
+   ],
+   "tipo": "lander",
+   "titolo": {
+    "en": "SPACE RANGER",
+    "it": "SPACE RANGER"
+   },
+   "testo": {
+    "en": "[landerArmor] 2 [landerSensors] 1 [landerAgility] 2. LOAD: [personalEquipment] 4 + [missionEquipment] 2. SUPPLIES 6. STRUCTURAL MOD 1. UTILITY MOD 1. DISCOVERIES - MAXIMUM: 5. Landing track: 5 spaces, start on space 3 (S) > LANDING SUCCESSFUL.",
+    "it": "[landerArmor] 2 [landerSensors] 1 [landerAgility] 2. CARICO: [personalEquipment] 4 + [missionEquipment] 2. PROVVISTE 6. MODIFICHE STRUTTURALI 1. MODIFICHE DI UTILITÀ 1. SCOPERTE - MASSIMO: 5. Traccia di Atterraggio: 5 caselle, partenza sulla casella 3 (S) > ATTERRAGGIO RIUSCITO."
+   },
+   "campi": {
+    "corazza": 2,
+    "sensori": 1,
+    "agilita": 2,
+    "provviste": 6,
+    "carico": {
+     "personali": 4,
+     "missione": 2
+    },
+    "slot_modifiche": {
+     "structural": 1,
+     "utility": 1
+    },
+    "scoperte_max": 5,
+    "traccia_atterraggio_caselle": 5,
+    "partenza_atterraggio": 3
+   },
+   "azioni": [],
+   "dubbi": "Nessun costo di riparazione visibile; il riquadro bianco in basso è vuoto/tagliato nella scansione."
+  }
+ ]
+}

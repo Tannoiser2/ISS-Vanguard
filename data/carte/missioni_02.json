@@ -1,0 +1,920 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m10_12404.webp",
+   "nomi": [
+    "M10"
+   ],
+   "id": "M10",
+   "titolo": {
+    "en": "PLANETARY RECON",
+    "it": "RICOGNIZIONE PLANETARIA"
+   },
+   "testo_colore": {
+    "en": "The conditions on this planet are not fit for long-term exploration. We must map and survey as much of the surface as possible and return to the ship while there's still time.",
+    "it": "Le condizioni di questo pianeta non sono adatte a un'esplorazione prolungata. Dobbiamo mappare e rilevare quanta più superficie possibile e tornare alla nave finché c'è ancora tempo."
+   },
+   "obiettivo": {
+    "en": "Reach the highest numbered Sector of the planet.",
+    "it": "Raggiungi il Settore con il numero più alto del pianeta."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m21_12406.webp",
+   "nomi": [
+    "M21"
+   ],
+   "id": "M21",
+   "titolo": {
+    "en": "AMONG THE ASHES",
+    "it": "TRA LE CENERI"
+   },
+   "testo_colore": {
+    "en": "This broken world offers few surviving landmarks, but a large cluster of potentially interesting structures stands not far from the landing zone. We must comb this area inch by inch.",
+    "it": "Questo mondo in frantumi offre pochi punti di riferimento sopravvissuti, ma un grande gruppo di strutture potenzialmente interessanti si trova non lontano dalla zona di atterraggio. Dobbiamo setacciare quest'area palmo a palmo."
+   },
+   "obiettivo": {
+    "en": "Fully explore the Sector with [important].",
+    "it": "Esplora completamente il Settore con [important]."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m23_12408.webp",
+   "nomi": [
+    "M23"
+   ],
+   "id": "M23",
+   "titolo": {
+    "en": "LEARNING MORE",
+    "it": "SAPERNE DI PIÙ"
+   },
+   "testo_colore": {
+    "en": "Vanguard's AI thinks the ruined shelters are our best chance of learning more about the denizens of this world. However, military advisors believe we must focus on the crystal instead.",
+    "it": "L'IA della Vanguard ritiene che i rifugi in rovina siano la nostra migliore occasione per saperne di più sugli abitanti di questo mondo. I consiglieri militari, però, credono che dovremmo concentrarci sul cristallo."
+   },
+   "obiettivo": {
+    "en": "Learn more about the crystal in Sector 2 and / or learn more about the people of this world in Sector 3.",
+    "it": "Scopri di più sul cristallo nel Settore 2 e/o scopri di più sul popolo di questo mondo nel Settore 3."
+   },
+   "completamento": {
+    "en": "When you have Unique Discovery 2 and 3, discard this Mission and gain 1 [success].",
+    "it": "Quando hai le Scoperte Eccezionali 2 e 3, scarta questa Missione e ottieni 1 [success]."
+   },
+   "azioni": [],
+   "opzionale": true,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m32_12410.webp",
+   "nomi": [
+    "M32"
+   ],
+   "id": "M32",
+   "titolo": {
+    "en": "QUARANTINED",
+    "it": "IN QUARANTENA"
+   },
+   "testo_colore": {
+    "en": "The infection keeps spreading! If we can't find a way to stop it, we won't be able to escape this planet.",
+    "it": "L'infezione continua a diffondersi! Se non troviamo un modo per fermarla, non riusciremo a fuggire da questo pianeta."
+   },
+   "obiettivo": {
+    "en": "Use Biolab to cure your condition.",
+    "it": "Usa il Biolab per curare la tua condizione."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "tempo": {
+    "caselle": 3,
+    "en": "Replace this card with card M33.",
+    "it": "Sostituisci questa carta con la carta M33."
+   },
+   "opzionale": false,
+   "dubbi": "'Biolab' lasciato invariato (nome proprio, traduzione ufficiale non verificata)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m34_12412.webp",
+   "nomi": [
+    "M34"
+   ],
+   "id": "M34",
+   "titolo": {
+    "en": "ESCAPE THE PLANET!",
+    "it": "FUGGI DAL PIANETA!"
+   },
+   "testo_colore": {
+    "en": "Eruption imminent – please evacuate!",
+    "it": "Eruzione imminente – evacuare!"
+   },
+   "obiettivo": {
+    "en": "Leave the planet before the supervolcano erupts!",
+    "it": "Lascia il pianeta prima che il supervulcano erutti!"
+   },
+   "completamento": {
+    "en": "Discard this Mission when you leave the planet.",
+    "it": "Scarta questa Missione quando lasci il pianeta."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m40_12414.webp",
+   "nomi": [
+    "M40"
+   ],
+   "id": "M40",
+   "titolo": {
+    "en": "RESEARCH MISSION",
+    "it": "MISSIONE DI RICERCA"
+   },
+   "testo_colore": {
+    "en": "This should be a short mission – land, gather some discoveries, get back to Vanguard. It shouldn't be difficult to find plants on this moss-covered planet.",
+    "it": "Dovrebbe essere una missione breve: atterrare, raccogliere qualche scoperta, tornare alla Vanguard. Non dovrebbe essere difficile trovare piante su questo pianeta coperto di muschio."
+   },
+   "obiettivo": {
+    "en": "Have at least 3 Discoveries on your Lander board.",
+    "it": "Abbi almeno 3 Scoperte sulla tua plancia del Lander."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, go to Log 351.",
+    "it": "Quando completi l'Obiettivo, vai all'Annotazione 351."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m42_12501.webp",
+   "nomi": [
+    "M42"
+   ],
+   "id": "M42",
+   "titolo": {
+    "en": "COWERING SPROUTS",
+    "it": "GERMOGLI TIMOROSI"
+   },
+   "testo_colore": {
+    "en": "Shy saplings surfaced recently, but they immediately reacted to our landing and began to submerge again. Vanguard wants us to intercept.",
+    "it": "Dei timidi arboscelli sono emersi di recente, ma hanno reagito subito al nostro atterraggio e hanno cominciato a reimmergersi. La Vanguard vuole che li intercettiamo."
+   },
+   "obiettivo": {
+    "en": "Catch the Sprouts.",
+    "it": "Cattura i Germogli."
+   },
+   "completamento": {
+    "en": "When there are no Sprouts on the Planet board, go to Log 234.",
+    "it": "Quando non ci sono più Germogli sulla plancia del Pianeta, vai all'Annotazione 234."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "CATCH THE SPROUT",
+      "it": "CATTURARE IL GERMOGLIO"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "condizione": {
+      "en": "You may perform this Action only in a Sector with a Sprout.",
+      "it": "Puoi eseguire questa Azione solo in un Settore con un Germoglio."
+     },
+     "speciali": [
+      {
+       "req": "accident",
+       "effetto": "outcomeRed"
+      }
+     ],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "biology / blueDie+greenDie+greenDie",
+       "en": "Place this Sprout on this card.",
+       "it": "Metti questo Germoglio su questa carta."
+      },
+      {
+       "colore": "red",
+       "req": "",
+       "en": "Progress all Time Tracks by 1.",
+       "it": "Fai avanzare tutte le tracce del Tempo di 1."
+      }
+     ]
+    }
+   ],
+   "tempo": {
+    "caselle": 2,
+    "en": "Go to Log 202.",
+    "it": "Vai all'Annotazione 202."
+   },
+   "opzionale": false,
+   "dubbi": "Azione speciale con icone [specialAction]+[diceCheck] prima del nome; la frase di restrizione è messa nel campo aggiuntivo 'condizione' (non previsto dallo schema). 'Sprout' tradotto 'Germoglio' (termine ufficiale non verificato)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m51_12503.webp",
+   "nomi": [
+    "M51"
+   ],
+   "id": "M51",
+   "titolo": {
+    "en": "CASTAWAY",
+    "it": "NAUFRAGHI"
+   },
+   "testo_colore": {
+    "en": "The Lander was engulfed by the raging storm, trapping us on this strange world. We must find a place where a rescue mission could pick us up – and a way to signal our position!",
+    "it": "Il Lander è stato inghiottito dalla tempesta furiosa, intrappolandoci su questo strano mondo. Dobbiamo trovare un luogo dove una missione di soccorso possa recuperarci, e un modo per segnalare la nostra posizione!"
+   },
+   "obiettivo": {
+    "en": "Find a way off the planet!",
+    "it": "Trova un modo per lasciare il pianeta!"
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m71_12505.webp",
+   "nomi": [
+    "M71"
+   ],
+   "id": "M71",
+   "titolo": {
+    "en": "BEYOND THE DUSKLINE",
+    "it": "OLTRE LA LINEA DEL CREPUSCOLO"
+   },
+   "testo_colore": {
+    "en": "The titan of the Balacra clan straggled behind and eventually got lost on the dark side of the planet. Aerugons asked us to help them in the search.",
+    "it": "Il titano del clan Balacra è rimasto indietro e alla fine si è perso sul lato oscuro del pianeta. Gli Aerugon ci hanno chiesto di aiutarli nella ricerca."
+   },
+   "obiettivo": {
+    "en": "Fly beyond the line of dusk from Sector 5 and find the lost titan before it's too late.",
+    "it": "Vola oltre la linea del crepuscolo dal Settore 5 e trova il titano perduto prima che sia troppo tardi."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m73_12507.webp",
+   "nomi": [
+    "M73"
+   ],
+   "id": "M73",
+   "titolo": {
+    "en": "LIGHT IN THE DARK",
+    "it": "LUCE NELL'OSCURITÀ"
+   },
+   "testo_colore": {
+    "en": "We cannot evacuate the Balacra survivors with our lander. The only other option is to reinstall the infrared emergency beacon, stolen by the saboteur.",
+    "it": "Non possiamo evacuare i sopravvissuti Balacra con il nostro lander. L'unica altra opzione è reinstallare il radiofaro di emergenza a infrarossi, rubato dal sabotatore."
+   },
+   "obiettivo": {
+    "en": "Find and reinstall the emergency beacon while defending the survivors.",
+    "it": "Trova e reinstalla il radiofaro di emergenza difendendo i sopravvissuti."
+   },
+   "suggerimento": {
+    "en": "The saboteur carrying the beacon fled far north.",
+    "it": "Il sabotatore che porta il radiofaro è fuggito lontano a nord."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m80_12509.webp",
+   "nomi": [
+    "M80"
+   ],
+   "id": "M80",
+   "titolo": {
+    "en": "HARVEST WATER",
+    "it": "RACCOGLIERE ACQUA"
+   },
+   "testo_colore": {
+    "en": "While there's probably another stele somewhere on this planet, our most important mission is to gather water and transport it back to Vanguard. The ice won't do – it's contaminated. We need pure, liquid H2O.",
+    "it": "Anche se probabilmente c'è un'altra stele da qualche parte su questo pianeta, la nostra missione più importante è raccogliere acqua e trasportarla alla Vanguard. Il ghiaccio non va bene: è contaminato. Ci serve H2O puro e liquido."
+   },
+   "obiettivo": {
+    "en": "Find a water source and haul it to the Vanguard – search for it somewhere in Sectors with [important].",
+    "it": "Trova una fonte d'acqua e trasportala alla Vanguard: cercala da qualche parte nei Settori con [important]."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "HARVEST WATER",
+      "it": "RACCOGLIERE ACQUA"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "condizione": {
+      "en": "You may perform this Action only in a Sector with [water].",
+      "it": "Puoi eseguire questa Azione solo in un Settore con [water]."
+     },
+     "speciali": [
+      {
+       "req": "gathering / redDie+greenDie+blueDie",
+       "effetto": "outcomeGreenProgress"
+      }
+     ],
+     "esiti": [],
+     "tracce": [
+      {
+       "colore": "green",
+       "caselle": 3,
+       "en": "Gain 1 [success]. The Mission is accomplished – discard this Mission card.",
+       "it": "Ottieni 1 [success]. La Missione è compiuta: scarta questa carta Missione."
+      }
+     ]
+    }
+   ],
+   "opzionale": false,
+   "dubbi": "Nessun riquadro COMPLETION: il completamento è nella traccia verde dell'azione. Azione con [specialAction]+[diceCheck]; restrizione nel campo aggiuntivo 'condizione'. Nessuna riga rossa: solo la riga speciale che avanza la traccia."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m91_12511.webp",
+   "nomi": [
+    "M91"
+   ],
+   "id": "M91",
+   "titolo": {
+    "en": "CRYSTAL RESEARCH",
+    "it": "RICERCA SUI CRISTALLI"
+   },
+   "testo_colore": {
+    "en": "Our homeworld is threatened by the crystalline weapon which destroyed Pellucid. We need to take every opportunity to research this phenomenon.",
+    "it": "Il nostro pianeta natale è minacciato dall'arma cristallina che ha distrutto Pellucid. Dobbiamo cogliere ogni occasione per studiare questo fenomeno."
+   },
+   "obiettivo": {
+    "en": "Find a Sector with [crystalline] and harvest enough minerals for research.",
+    "it": "Trova un Settore con [crystalline] e raccogli abbastanza minerali per la ricerca."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "TAKE SAMPLES",
+      "it": "PRELEVARE CAMPIONI"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "condizione": {
+      "en": "You may perform this Action only in a Sector with [crystalline].",
+      "it": "Puoi eseguire questa Azione solo in un Settore con [crystalline]."
+     },
+     "speciali": [
+      {
+       "req": "gathering+scienceDice / redDie+greenDie+blueDie",
+       "effetto": "outcomeGreenProgress"
+      }
+     ],
+     "esiti": [],
+     "tracce": [
+      {
+       "colore": "green",
+       "caselle": 3,
+       "en": "Gain 1 [success]. The Mission is accomplished – discard this Mission card.",
+       "it": "Ottieni 1 [success]. La Missione è compiuta: scarta questa carta Missione."
+      }
+     ]
+    }
+   ],
+   "opzionale": false,
+   "dubbi": "Nessun riquadro COMPLETION: il completamento è nella traccia verde. Azione con [specialAction]+[diceCheck]; restrizione nel campo aggiuntivo 'condizione'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m92_12513.webp",
+   "nomi": [
+    "M92"
+   ],
+   "id": "M92",
+   "titolo": {
+    "en": "SCINTILLATING SHARDFLY",
+    "it": "SCHEGGIOMOSCA SCINTILLANTE"
+   },
+   "testo_colore": {
+    "en": "A crystalline creature rampages through the Recliners' habitat. We must take the creature out to protect the species.",
+    "it": "Una creatura cristallina imperversa nell'habitat dei Recliner. Dobbiamo eliminarla per proteggere la specie."
+   },
+   "obiettivo": {
+    "en": "Destroy the Scintillating Shardfly.",
+    "it": "Distruggi la Scheggiomosca Scintillante."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": true,
+   "dubbi": "Nomi 'Scintillating Shardfly' e 'Recliners' tradotti/lasciati a senso: verificare la resa ufficiale italiana."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m102_18700.webp",
+   "nomi": [
+    "M102"
+   ],
+   "id": "M102",
+   "titolo": {
+    "en": "A STRIKE AT THE HEART",
+    "it": "UN COLPO AL CUORE"
+   },
+   "testo_colore": {
+    "en": "The true objective of the Arrogator invaders was the ancient, alien core of ISS Vanguard. It must survive!",
+    "it": "Il vero obiettivo degli invasori Arrogator era l'antico nucleo alieno della ISS Vanguard. Deve sopravvivere!"
+   },
+   "obiettivo": {
+    "en": "Defend the Vanguard Core in Sector 2.",
+    "it": "Difendi il Nucleo della Vanguard nel Settore 2."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m110_18702.webp",
+   "nomi": [
+    "M110"
+   ],
+   "id": "M110",
+   "titolo": {
+    "en": "SURVIVE!",
+    "it": "SOPRAVVIVI!"
+   },
+   "testo_colore": {
+    "en": "Your humble supplies are dwindling. Move quick or die.",
+    "it": "Le tue misere provviste si stanno esaurendo. Muoviti in fretta o muori."
+   },
+   "obiettivo": {
+    "en": "Reach Sector 3 and build a shelter there.",
+    "it": "Raggiungi il Settore 3 e costruisci lì un rifugio."
+   },
+   "suggerimento": {
+    "en": "You may need to find Supplies to travel.",
+    "it": "Potresti dover trovare Provviste per viaggiare."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m112_18704.webp",
+   "nomi": [
+    "M112"
+   ],
+   "id": "M112",
+   "titolo": {
+    "en": "A NEW – TEMPORARY – HOME",
+    "it": "UNA NUOVA CASA – TEMPORANEA"
+   },
+   "testo_colore": {
+    "en": "Your shelter needs attention. And you need your shelter to survive.",
+    "it": "Il tuo rifugio ha bisogno di cure. E a te serve il rifugio per sopravvivere."
+   },
+   "obiettivo": {
+    "en": "OPTIONAL OBJECTIVES: • Repair P.E.T. in your shelter. • Expand your outpost. • Learn more about the environment and Flower Bugs.",
+    "it": "OBIETTIVI OPZIONALI: • Ripara P.E.T. nel tuo rifugio. • Espandi il tuo avamposto. • Scopri di più sull'ambiente e sugli Insetti Fiore."
+   },
+   "suggerimento": {
+    "en": "The better you're prepared, the higher chances of your survival. However, spending too much time on side tasks may lead to your failure.",
+    "it": "Più sei preparato, maggiori sono le probabilità di sopravvivere. Tuttavia, dedicare troppo tempo a compiti secondari può portarti al fallimento."
+   },
+   "azioni": [],
+   "opzionale": true,
+   "dubbi": "Nessun riquadro COMPLETION sulla carta. Obiettivi in elenco puntato uniti in un'unica stringa. 'Flower Bugs' tradotto 'Insetti Fiore' (non verificato)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m114_18706.webp",
+   "nomi": [
+    "M114"
+   ],
+   "id": "M114",
+   "titolo": {
+    "en": "BECOMING THE HUNTER",
+    "it": "DIVENTARE IL CACCIATORE"
+   },
+   "testo_colore": {
+    "en": "They aren't as tough or as capable as you thought. It's time to turn the tide.",
+    "it": "Non sono così forti o capaci come pensavi. È ora di ribaltare la situazione."
+   },
+   "obiettivo": {
+    "en": "OBJECTIVES: • Learn about alien technology by studying your captured base. • Escape from the planet using the alien invaders' Lander.",
+    "it": "OBIETTIVI: • Scopri la tecnologia aliena studiando la tua base catturata. • Fuggi dal pianeta usando il Lander degli invasori alieni."
+   },
+   "suggerimento": {
+    "en": "You'll need to eliminate those too close to the landing area.",
+    "it": "Dovrai eliminare quelli troppo vicini all'area di atterraggio."
+   },
+   "completamento": {
+    "en": "When you fulfill all of the Objectives, you will be asked to discard this Mission.",
+    "it": "Quando completi tutti gli Obiettivi, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m121_18708.webp",
+   "nomi": [
+    "M121"
+   ],
+   "id": "M121",
+   "titolo": {
+    "en": "DEEPER TRUTH",
+    "it": "UNA VERITÀ PIÙ PROFONDA"
+   },
+   "testo_colore": {
+    "en": "Reaching the depths where the local stele is buried will not only boost our knowledge about the Builders – it will also prove to our Idemian hosts our fearlessness and resourcefulness.",
+    "it": "Raggiungere le profondità dove è sepolta la stele locale non solo accrescerà le nostre conoscenze sui Costruttori: dimostrerà anche ai nostri ospiti Idemiani il nostro coraggio e la nostra intraprendenza."
+   },
+   "obiettivo": {
+    "en": "Fully explore the Sector with [important].",
+    "it": "Esplora completamente il Settore con [important]."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m123_18710.webp",
+   "nomi": [
+    "M123"
+   ],
+   "id": "M123",
+   "titolo": {
+    "en": "UNDERSTANDING",
+    "it": "COMPRENSIONE"
+   },
+   "testo_colore": {
+    "en": "The Idemian who welcomed us to this planet is willing to speak with us again once we learn more about each other.",
+    "it": "L'Idemiano che ci ha accolti su questo pianeta è disposto a parlarci di nuovo quando ci conosceremo meglio."
+   },
+   "obiettivo": {
+    "en": "Learn enough about your Idemian Hosts by exploring their planet.",
+    "it": "Scopri abbastanza sui tuoi Ospiti Idemiani esplorando il loro pianeta."
+   },
+   "suggerimento": {
+    "en": "Return to Sector 1 to check if you fulfilled the Objective.",
+    "it": "Torna al Settore 1 per verificare se hai completato l'Obiettivo."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": true,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m131_18712.webp",
+   "nomi": [
+    "M131"
+   ],
+   "id": "M131",
+   "titolo": {
+    "en": "THAT'S NOT ENOUGH",
+    "it": "NON BASTA"
+   },
+   "testo_colore": {
+    "en": "The scrap of knowledge we've just learned is not enough. We must learn more about the mysterious species.",
+    "it": "Il frammento di conoscenza appena acquisito non basta. Dobbiamo scoprire di più sulla misteriosa specie."
+   },
+   "obiettivo": {
+    "en": "Find clues about the derelict's history – have all 3 Unique Discoveries on your Lander board.",
+    "it": "Trova indizi sulla storia del relitto: abbi tutte e 3 le Scoperte Eccezionali sulla tua plancia del Lander."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, gain 1 [success] and go to Log 170.",
+    "it": "Quando completi l'Obiettivo, ottieni 1 [success] e vai all'Annotazione 170."
+   },
+   "azioni": [],
+   "tempo": {
+    "caselle": 4,
+    "en": "Go to Log 257.",
+    "it": "Vai all'Annotazione 257."
+   },
+   "opzionale": false,
+   "dubbi": "'clues' reso con 'indizi' in senso generico (non sono segnalini Indizio/Lead)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m133_18714.webp",
+   "nomi": [
+    "M133"
+   ],
+   "id": "M133",
+   "titolo": {
+    "en": "RETREAT!",
+    "it": "RITIRATA!"
+   },
+   "testo_colore": {
+    "en": "The derelict is sinking too fast! We must escape – even if that means we won't explore it thoroughly.",
+    "it": "Il relitto sta affondando troppo in fretta! Dobbiamo fuggire, anche se significa non esplorarlo a fondo."
+   },
+   "obiettivo": {
+    "en": "Escape! All Crewmembers must be in the Lander Sector.",
+    "it": "Fuggite! Tutti i Membri dell'Equipaggio devono trovarsi nel Settore del Lander."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, gain 1 [success] and go to Log 276.",
+    "it": "Quando completi l'Obiettivo, ottieni 1 [success] e vai all'Annotazione 276."
+   },
+   "azioni": [],
+   "tempo": {
+    "caselle": 3,
+    "en": "Go to Log 309.",
+    "it": "Vai all'Annotazione 309."
+   },
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m140_18716.webp",
+   "nomi": [
+    "M140"
+   ],
+   "id": "M140",
+   "titolo": {
+    "en": "GET INSIDE",
+    "it": "ENTRARE"
+   },
+   "testo_colore": {
+    "en": "You must cross the frozen scrapyard that serves as the outer shell of the Craftworld. Be careful.",
+    "it": "Devi attraversare il cimitero di rottami ghiacciato che fa da guscio esterno al Craftworld. Fai attenzione."
+   },
+   "obiettivo": {
+    "en": "Find ingress into the Craftworld.",
+    "it": "Trova un accesso al Craftworld."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": "'Craftworld' lasciato in inglese (nome proprio)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m142_18718.webp",
+   "nomi": [
+    "M142"
+   ],
+   "id": "M142",
+   "titolo": {
+    "en": "EXPLORING THE CITY",
+    "it": "ESPLORARE LA CITTÀ"
+   },
+   "testo_colore": {
+    "en": "Inside the forlorn city, we may find a hint on how to deal with Arrogators in case of any future encounters.",
+    "it": "Nella città desolata potremmo trovare un indizio su come affrontare gli Arrogator in caso di incontri futuri."
+   },
+   "obiettivo": {
+    "en": "Have at least 3 Discoveries on your Lander board.",
+    "it": "Abbi almeno 3 Scoperte sulla tua plancia del Lander."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, discard this Mission and gain 1 [success].",
+    "it": "Quando completi l'Obiettivo, scarta questa Missione e ottieni 1 [success]."
+   },
+   "azioni": [],
+   "tempo": {
+    "caselle": 3,
+    "en": "Reset this Track and go to Log 556.",
+    "it": "Azzera questa Traccia e vai all'Annotazione 556."
+   },
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m162_18720.webp",
+   "nomi": [
+    "M162"
+   ],
+   "id": "M162",
+   "titolo": {
+    "en": "LEARN THE SECRETS OF THE BUNKERS",
+    "it": "SCOPRIRE I SEGRETI DEI BUNKER"
+   },
+   "testo_colore": {
+    "en": "The shelters probably belong to the representatives of the same race that inhabited the nearby planets.",
+    "it": "I rifugi appartengono probabilmente a rappresentanti della stessa razza che abitava i pianeti vicini."
+   },
+   "obiettivo": {
+    "en": "Explore 3 bunkers.",
+    "it": "Esplora 3 bunker."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": true,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m171_18722.webp",
+   "nomi": [
+    "M171"
+   ],
+   "id": "M171",
+   "titolo": {
+    "en": "BUILD A SHELTER",
+    "it": "COSTRUIRE UN RIFUGIO"
+   },
+   "testo_colore": {
+    "en": "Finally, space that behaves as it should. We can set up equipment that will protect us from the influence of shrinking dimensions and allow us to escape.",
+    "it": "Finalmente uno spazio che si comporta come dovrebbe. Possiamo installare l'attrezzatura che ci proteggerà dall'influsso delle dimensioni che si restringono e ci permetterà di fuggire."
+   },
+   "obiettivo": {
+    "en": "Build a shelter in Sector 4.",
+    "it": "Costruisci un rifugio nel Settore 4."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m180_18724.webp",
+   "nomi": [
+    "M180"
+   ],
+   "id": "M180",
+   "titolo": {
+    "en": "TAKE THE SAMPLES",
+    "it": "PRELEVARE I CAMPIONI"
+   },
+   "testo_colore": {
+    "en": "Edan's secrets are long buried, but the meteorites reveal all.",
+    "it": "I segreti di Edan sono sepolti da tempo, ma i meteoriti rivelano tutto."
+   },
+   "obiettivo": {
+    "en": "Have at least 3 Discoveries on your Lander board and there are no more Unique Discoveries on the Planet board.",
+    "it": "Abbi almeno 3 Scoperte sulla tua plancia del Lander e nessuna Scoperta Eccezionale rimasta sulla plancia del Pianeta."
+   },
+   "suggerimento": {
+    "en": "Try exploring the Impact Crater in Sector 4.",
+    "it": "Prova a esplorare il Cratere d'Impatto nel Settore 4."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, go to Log 589.",
+    "it": "Quando completi l'Obiettivo, vai all'Annotazione 589."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m182_18726.webp",
+   "nomi": [
+    "M182"
+   ],
+   "id": "M182",
+   "titolo": {
+    "en": "LEAVE THE PLANET QUICKLY",
+    "it": "LASCIARE IN FRETTA IL PIANETA"
+   },
+   "testo_colore": {
+    "en": "We have but one priority — leave this planet before our oxygen tanks run out.",
+    "it": "Abbiamo una sola priorità: lasciare questo pianeta prima che le bombole d'ossigeno si esauriscano."
+   },
+   "obiettivo": {
+    "en": "Prepare a safe landing zone and escape from this planet.",
+    "it": "Prepara una zona di atterraggio sicura e fuggi da questo pianeta."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions/m202_18728.webp",
+   "nomi": [
+    "M202"
+   ],
+   "id": "M202",
+   "titolo": {
+    "en": "OPENING THE VAULT",
+    "it": "APRIRE LA CRIPTA"
+   },
+   "testo_colore": {
+    "en": "Chaotic energies and electrical discharges in the air are too much even for our mechasuits to handle. Fortunately, the objective is almost within our grasp. We must find a way to open the door of this ancient vault...",
+    "it": "Le energie caotiche e le scariche elettriche nell'aria sono troppo persino per le nostre mechatute. Per fortuna l'obiettivo è quasi a portata di mano. Dobbiamo trovare un modo per aprire la porta di questa antica cripta..."
+   },
+   "obiettivo": {
+    "en": "Fully explore the Builders' Vault (Sector 9).",
+    "it": "Esplora completamente la Cripta dei Costruttori (Settore 9)."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": "'Vault' reso 'Cripta' e 'Builders' 'Costruttori': verificare i termini ufficiali."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/missions_from_tutorial_deck_a/m02_12401.webp",
+   "nomi": [
+    "M02"
+   ],
+   "id": "M02",
+   "titolo": {
+    "en": "SECURE THE CRASH SITE",
+    "it": "METTERE IN SICUREZZA IL LUOGO DELLO SCHIANTO"
+   },
+   "testo_colore": {
+    "en": "The Vanguard knows our last coordinates and will surely send a second team to investigate. Unless we find a way to silence the cannon that brought us down, they are in grave danger!",
+    "it": "La Vanguard conosce le nostre ultime coordinate e manderà sicuramente una seconda squadra a indagare. Se non troviamo un modo per far tacere il cannone che ci ha abbattuti, saranno in grave pericolo!"
+   },
+   "obiettivo": {
+    "en": "Find a way to neutralize the cannon in Sector 3.",
+    "it": "Trova un modo per neutralizzare il cannone nel Settore 3."
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/m01/m01_12400.webp",
+   "nomi": [
+    "M01"
+   ],
+   "id": "M01",
+   "titolo": {
+    "en": "REGROUP",
+    "it": "RIUNIRSI"
+   },
+   "testo_colore": {
+    "en": "Scattered across disparate sections of an enormous alien sphere, we must find a way to regroup...",
+    "it": "Dispersi in sezioni distanti di un'enorme sfera aliena, dobbiamo trovare un modo per riunirci..."
+   },
+   "obiettivo": {
+    "en": "Regroup in Sector 4 – all Crewmembers need to be present in this Sector at the same time.",
+    "it": "Riunitevi nel Settore 4: tutti i Membri dell'Equipaggio devono trovarsi in questo Settore contemporaneamente."
+   },
+   "suggerimento": {
+    "en": "Whenever someone enters Sector 4, don't forget to go to the Log listed there!",
+    "it": "Ogni volta che qualcuno entra nel Settore 4, non dimenticate di andare all'Annotazione indicata lì!"
+   },
+   "completamento": {
+    "en": "When you fulfill the Objective, you will be asked to discard this Mission.",
+    "it": "Quando completi l'Obiettivo, ti verrà chiesto di scartare questa Missione."
+   },
+   "azioni": [],
+   "opzionale": false,
+   "dubbi": ""
+  }
+ ]
+}

@@ -1,0 +1,796 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/mineral_discoveries/6109.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "RADIATING CRYSTAL",
+    "it": "CRISTALLO RADIANTE"
+   },
+   "testo": {
+    "en": "MINERAL — PLANETARY EXPLORATION: During Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [biology]+[scienceDice] to this Roll Pool. After the Dice Check, discard this card.",
+    "it": "MINERALE — ESPLORAZIONE PLANETARIA: Durante una Prova, puoi collocare questa carta nella Riserva del Tiro di qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [biology]+[scienceDice] a questa Riserva del Tiro. Dopo la Prova, scarta questa carta."
+   },
+   "campi": {
+    "categoria": "mineral",
+    "rarita": "common",
+    "esplorazione": {
+     "en": "During Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [biology]+[scienceDice] to this Roll Pool. After the Dice Check, discard this card.",
+     "it": "Durante una Prova, puoi collocare questa carta nella Riserva del Tiro di qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [biology]+[scienceDice] a questa Riserva del Tiro. Dopo la Prova, scarta questa carta."
+    }
+   },
+   "dubbi": "Rarità common dedotta dall'assenza del rombo in alto e della dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/mineral_discoveries/6101.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "NON-NEWTONIAN FLUID",
+    "it": "FLUIDO NON NEWTONIANO"
+   },
+   "testo": {
+    "en": "RARE MINERAL — PLANETARY EXPLORATION: During Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [vanguard]+[vanguard] to this Roll Pool. After the Dice Check, discard this card.",
+    "it": "MINERALE RARA — ESPLORAZIONE PLANETARIA: Durante una Prova, puoi collocare questa carta nella Riserva del Tiro di qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [vanguard]+[vanguard] a questa Riserva del Tiro. Dopo la Prova, scarta questa carta."
+   },
+   "campi": {
+    "categoria": "mineral",
+    "rarita": "rare",
+    "esplorazione": {
+     "en": "During Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [vanguard]+[vanguard] to this Roll Pool. After the Dice Check, discard this card.",
+     "it": "Durante una Prova, puoi collocare questa carta nella Riserva del Tiro di qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [vanguard]+[vanguard] a questa Riserva del Tiro. Dopo la Prova, scarta questa carta."
+    }
+   },
+   "dubbi": "Rarità rare: rombo singolo in alto + dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/mineral_discoveries/6107.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "SUPERCONDUCTING COMPOUND",
+    "it": "COMPOSTO SUPERCONDUTTORE"
+   },
+   "testo": {
+    "en": "MINERAL — SHIP MANAGEMENT: When unloaded, you may discard this card to place 2 [energy_token] in the Energy Pool.",
+    "it": "MINERALE — GESTIONE DELLA NAVE: Quando viene scaricata, puoi scartare questa carta per collocare 2 [energy_token] nella Riserva di Energia."
+   },
+   "campi": {
+    "categoria": "mineral",
+    "rarita": "common",
+    "scaricata": {
+     "en": "When unloaded, you may discard this card to place 2 [energy_token] in the Energy Pool.",
+     "it": "Quando viene scaricata, puoi scartare questa carta per collocare 2 [energy_token] nella Riserva di Energia."
+    }
+   },
+   "dubbi": "Icona esagonale con fulmine letta come energy_token (segnalino Energia). Rarità common dedotta dall'assenza del rombo in alto e della dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/mineral_discoveries/6106.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "UNSTABLE ISOTOPE",
+    "it": "ISOTOPO INSTABILE"
+   },
+   "testo": {
+    "en": "RARE MINERAL — PLANETARY EXPLORATION: You may discard this card to reset any number of Time Tracks.",
+    "it": "MINERALE RARA — ESPLORAZIONE PLANETARIA: Puoi scartare questa carta per azzerare un numero qualsiasi di tracce del Tempo."
+   },
+   "campi": {
+    "categoria": "mineral",
+    "rarita": "rare",
+    "esplorazione": {
+     "en": "You may discard this card to reset any number of Time Tracks.",
+     "it": "Puoi scartare questa carta per azzerare un numero qualsiasi di tracce del Tempo."
+    }
+   },
+   "dubbi": "Rarità rare: rombo singolo in alto + dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/mineral_discoveries/6108.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "UNSTABLE NITRATE",
+    "it": "NITRATO INSTABILE"
+   },
+   "testo": {
+    "en": "MINERAL — PLANETARY EXPLORATION: You may discard this card to gain Charges up to your starting number.",
+    "it": "MINERALE — ESPLORAZIONE PLANETARIA: Puoi scartare questa carta per ottenere Cariche fino al tuo numero iniziale."
+   },
+   "campi": {
+    "categoria": "mineral",
+    "rarita": "common",
+    "esplorazione": {
+     "en": "You may discard this card to gain Charges up to your starting number.",
+     "it": "Puoi scartare questa carta per ottenere Cariche fino al tuo numero iniziale."
+    }
+   },
+   "dubbi": "Rarità common dedotta dall'assenza del rombo in alto e della dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/microorganism_discoveries/6006.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "PROTEIN SLUDGE",
+    "it": "FANGHIGLIA PROTEICA"
+   },
+   "testo": {
+    "en": "MICROORGANISM — PLANETARY EXPLORATION: You may discard this card to gain 2 Supplies.",
+    "it": "MICROORGANISMO — ESPLORAZIONE PLANETARIA: Puoi scartare questa carta per ottenere 2 Provviste."
+   },
+   "campi": {
+    "categoria": "microorganism",
+    "rarita": "common",
+    "esplorazione": {
+     "en": "You may discard this card to gain 2 Supplies.",
+     "it": "Puoi scartare questa carta per ottenere 2 Provviste."
+    }
+   },
+   "dubbi": "Rarità common dedotta dall'assenza del rombo in alto e della dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/microorganism_discoveries/6000.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "CORROSIVE ENZYME",
+    "it": "ENZIMA CORROSIVO"
+   },
+   "testo": {
+    "en": "MICROORGANISM — PLANETARY EXPLORATION: During Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [redDie]+[greenDie]+[blueDie] to this Roll Pool. After the Dice Check, discard this card.",
+    "it": "MICROORGANISMO — ESPLORAZIONE PLANETARIA: Durante una Prova, puoi collocare questa carta nella Riserva del Tiro di qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [redDie]+[greenDie]+[blueDie] a questa Riserva del Tiro. Dopo la Prova, scarta questa carta."
+   },
+   "campi": {
+    "categoria": "microorganism",
+    "rarita": "common",
+    "esplorazione": {
+     "en": "During Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [redDie]+[greenDie]+[blueDie] to this Roll Pool. After the Dice Check, discard this card.",
+     "it": "Durante una Prova, puoi collocare questa carta nella Riserva del Tiro di qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [redDie]+[greenDie]+[blueDie] a questa Riserva del Tiro. Dopo la Prova, scarta questa carta."
+    }
+   },
+   "dubbi": "Aggiunge un dado rosso, uno verde e uno blu (cubi colorati senza faccia specifica): interpretati come dadi da tirare/aggiungere alla Riserva del Tiro. Rarità common dedotta dall'assenza del rombo in alto e della dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/microorganism_discoveries/6009.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "MOLD-COVERED OBJECT",
+    "it": "OGGETTO RICOPERTO DI MUFFA"
+   },
+   "testo": {
+    "en": "RARE MICROORGANISM — SHIP MANAGEMENT: When unloaded, you may discard this card to draw 1 random Discovery of any type.",
+    "it": "MICROORGANISMO RARA — GESTIONE DELLA NAVE: Quando viene scaricata, puoi scartare questa carta per pescare 1 Scoperta casuale di qualsiasi tipo."
+   },
+   "campi": {
+    "categoria": "microorganism",
+    "rarita": "rare",
+    "scaricata": {
+     "en": "When unloaded, you may discard this card to draw 1 random Discovery of any type.",
+     "it": "Quando viene scaricata, puoi scartare questa carta per pescare 1 Scoperta casuale di qualsiasi tipo."
+    }
+   },
+   "dubbi": "Rarità rare: rombo singolo in alto + dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/microorganism_discoveries/6007.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "LIVING MINERAL",
+    "it": "MINERALE VIVENTE"
+   },
+   "testo": {
+    "en": "MICROORGANISM — SHIP MANAGEMENT: When unloaded, you may discard this card to draw 1 random Mineral Discovery.",
+    "it": "MICROORGANISMO — GESTIONE DELLA NAVE: Quando viene scaricata, puoi scartare questa carta per pescare 1 Scoperta Minerale casuale."
+   },
+   "campi": {
+    "categoria": "microorganism",
+    "rarita": "common",
+    "scaricata": {
+     "en": "When unloaded, you may discard this card to draw 1 random Mineral Discovery.",
+     "it": "Quando viene scaricata, puoi scartare questa carta per pescare 1 Scoperta Minerale casuale."
+    }
+   },
+   "dubbi": "Rarità common dedotta dall'assenza del rombo in alto e della dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/live_specimen_discoveries/5901.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "GLOSSY-EYED CLUSTER",
+    "it": "AMMASSO DAGLI OCCHI LUCIDI"
+   },
+   "testo": {
+    "en": "RARE LIVE SPECIMEN — PLANETARY EXPLORATION: You may discard this card to gain 3 Supplies.",
+    "it": "ESEMPLARE VIVO RARA — ESPLORAZIONE PLANETARIA: Puoi scartare questa carta per ottenere 3 Provviste."
+   },
+   "campi": {
+    "categoria": "live_specimen",
+    "rarita": "rare",
+    "esplorazione": {
+     "en": "You may discard this card to gain 3 Supplies.",
+     "it": "Puoi scartare questa carta per ottenere 3 Provviste."
+    }
+   },
+   "dubbi": "Rarità rare: rombo singolo in alto + dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/live_specimen_discoveries/5900.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "FORAGING AMONITE",
+    "it": "AMMONITE FORAGGIATRICE"
+   },
+   "testo": {
+    "en": "RARE LIVE SPECIMEN — PLANETARY EXPLORATION: During Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [vanguard]+[gathering] to this Roll Pool. After the Dice Check, discard this card.",
+    "it": "ESEMPLARE VIVO RARA — ESPLORAZIONE PLANETARIA: Durante una Prova, puoi collocare questa carta nella Riserva del Tiro di qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [vanguard]+[gathering] a questa Riserva del Tiro. Dopo la Prova, scarta questa carta."
+   },
+   "campi": {
+    "categoria": "live_specimen",
+    "rarita": "rare",
+    "esplorazione": {
+     "en": "During Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [vanguard]+[gathering] to this Roll Pool. After the Dice Check, discard this card.",
+     "it": "Durante una Prova, puoi collocare questa carta nella Riserva del Tiro di qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [vanguard]+[gathering] a questa Riserva del Tiro. Dopo la Prova, scarta questa carta."
+    }
+   },
+   "dubbi": "Titolo stampato 'AMONITE' (con una sola M), trascritto così. Rarità rare: rombo singolo in alto + dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/live_specimen_discoveries/5905.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "SQUIRMING HELIOCYSTIS",
+    "it": "HELIOCYSTIS CONTORTA"
+   },
+   "testo": {
+    "en": "LIVE SPECIMEN — PLANETARY EXPLORATION: You may discard this card to gain Charges up to your starting number.",
+    "it": "ESEMPLARE VIVO — ESPLORAZIONE PLANETARIA: Puoi scartare questa carta per ottenere Cariche fino al tuo numero iniziale."
+   },
+   "campi": {
+    "categoria": "live_specimen",
+    "rarita": "common",
+    "esplorazione": {
+     "en": "You may discard this card to gain Charges up to your starting number.",
+     "it": "Puoi scartare questa carta per ottenere Cariche fino al tuo numero iniziale."
+    }
+   },
+   "dubbi": "Rarità common dedotta dall'assenza del rombo in alto e della dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/live_specimen_discoveries/5911.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "UNDULATING CNIDARIA",
+    "it": "CNIDARIO ONDULANTE"
+   },
+   "testo": {
+    "en": "LIVE SPECIMEN — PLANETARY EXPLORATION: During Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [xenology] / [greenDie]+[blueDie] to this Roll Pool. After the Dice Check, discard this card.",
+    "it": "ESEMPLARE VIVO — ESPLORAZIONE PLANETARIA: Durante una Prova, puoi collocare questa carta nella Riserva del Tiro di qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [xenology] / [greenDie]+[blueDie] a questa Riserva del Tiro. Dopo la Prova, scarta questa carta."
+   },
+   "campi": {
+    "categoria": "live_specimen",
+    "rarita": "common",
+    "esplorazione": {
+     "en": "During Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [xenology] / [greenDie]+[blueDie] to this Roll Pool. After the Dice Check, discard this card.",
+     "it": "Durante una Prova, puoi collocare questa carta nella Riserva del Tiro di qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [xenology] / [greenDie]+[blueDie] a questa Riserva del Tiro. Dopo la Prova, scarta questa carta."
+    }
+   },
+   "dubbi": "Alternativa: aggiungi 1 faccia xenology OPPURE un dado verde + un dado blu. Rarità common dedotta dall'assenza del rombo in alto e della dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/strange_flora_discoveries/30803.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "ROOTBOUND OBJECT",
+    "it": "OGGETTO AVVOLTO DALLE RADICI"
+   },
+   "testo": {
+    "en": "RARE STRANGE FLORA — SHIP MANAGEMENT: When unloaded, you may discard this card to draw 1 random Discovery of any type.",
+    "it": "STRANA VEGETAZIONE RARA — GESTIONE DELLA NAVE: Quando viene scaricata, puoi scartare questa carta per pescare 1 Scoperta casuale di qualsiasi tipo."
+   },
+   "campi": {
+    "categoria": "strange_flora",
+    "rarita": "rare",
+    "scaricata": {
+     "en": "When unloaded, you may discard this card to draw 1 random Discovery of any type.",
+     "it": "Quando viene scaricata, puoi scartare questa carta per pescare 1 Scoperta casuale di qualsiasi tipo."
+    }
+   },
+   "dubbi": "Rarità rare: rombo singolo in alto + dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/strange_flora_discoveries/30807.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "SENTIENT MYCELIUM",
+    "it": "MICELIO SENZIENTE"
+   },
+   "testo": {
+    "en": "STRANGE FLORA — SHIP MANAGEMENT: When unloaded, you may discard this card to place 1 [command] in the Command Pool.",
+    "it": "STRANA VEGETAZIONE — GESTIONE DELLA NAVE: Quando viene scaricata, puoi scartare questa carta per collocare 1 [command] nella Riserva di Comando."
+   },
+   "campi": {
+    "categoria": "strange_flora",
+    "rarita": "common",
+    "scaricata": {
+     "en": "When unloaded, you may discard this card to place 1 [command] in the Command Pool.",
+     "it": "Quando viene scaricata, puoi scartare questa carta per collocare 1 [command] nella Riserva di Comando."
+    }
+   },
+   "dubbi": "Icona: stella in un esagono, letta come command (segnalino Comando). Rarità common dedotta dall'assenza del rombo in alto e della dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/strange_flora_discoveries/31706.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "PHEROMONE GLAND",
+    "it": "GHIANDOLA DEI FEROMONI"
+   },
+   "testo": {
+    "en": "RARE STRANGE FLORA — PLANETARY EXPLORATION: You may discard this card to discard up to 2 Injury cards and 2 Injury dice from 1 Crewmember.",
+    "it": "STRANA VEGETAZIONE RARA — ESPLORAZIONE PLANETARIA: Puoi scartare questa carta per scartare fino a 2 carte Ferita e 2 dadi Ferita da 1 Membro dell'Equipaggio."
+   },
+   "campi": {
+    "categoria": "strange_flora",
+    "rarita": "rare",
+    "esplorazione": {
+     "en": "You may discard this card to discard up to 2 Injury cards and 2 Injury dice from 1 Crewmember.",
+     "it": "Puoi scartare questa carta per scartare fino a 2 carte Ferita e 2 dadi Ferita da 1 Membro dell'Equipaggio."
+    }
+   },
+   "dubbi": "Rarità rare: rombo singolo in alto + dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/strange_flora_discoveries/30811.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "SUPERFLUID SLIME",
+    "it": "MELMA SUPERFLUIDA"
+   },
+   "testo_colore": {
+    "en": "Notoriously tricky to contain.",
+    "it": "Notoriamente difficile da contenere."
+   },
+   "testo": {
+    "en": "STRANGE FLORA — Notoriously tricky to contain.",
+    "it": "STRANA VEGETAZIONE — Notoriamente difficile da contenere."
+   },
+   "campi": {
+    "categoria": "strange_flora",
+    "rarita": "common"
+   },
+   "dubbi": "Nessuna abilità: solo testo di colore (carta senza effetti). Rarità common dedotta dall'assenza del rombo in alto e della dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/strange_flora_discoveries/31700.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "SWOLLEN FLYTRAP",
+    "it": "DIONEA RIGONFIA"
+   },
+   "testo": {
+    "en": "STRANGE FLORA — SHIP MANAGEMENT: When unloaded, you may discard this card to draw 1 random Live Specimen Discovery.",
+    "it": "STRANA VEGETAZIONE — GESTIONE DELLA NAVE: Quando viene scaricata, puoi scartare questa carta per pescare 1 Scoperta Esemplare Vivo casuale."
+   },
+   "campi": {
+    "categoria": "strange_flora",
+    "rarita": "common",
+    "scaricata": {
+     "en": "When unloaded, you may discard this card to draw 1 random Live Specimen Discovery.",
+     "it": "Quando viene scaricata, puoi scartare questa carta per pescare 1 Scoperta Esemplare Vivo casuale."
+    }
+   },
+   "dubbi": "Rarità common dedotta dall'assenza del rombo in alto e della dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/alien_tech_discoveries/5800.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "LOCKED CONTAINER",
+    "it": "CONTENITORE SIGILLATO"
+   },
+   "testo": {
+    "en": "RARE ALIEN TECH — SHIP MANAGEMENT: When unloaded, you may discard this card to draw 1 random Discovery of any type.",
+    "it": "TECNOLOGIA ALIENA RARA — GESTIONE DELLA NAVE: Quando viene scaricata, puoi scartare questa carta per pescare 1 Scoperta casuale di qualsiasi tipo."
+   },
+   "campi": {
+    "categoria": "alien_tech",
+    "rarita": "rare",
+    "scaricata": {
+     "en": "When unloaded, you may discard this card to draw 1 random Discovery of any type.",
+     "it": "Quando viene scaricata, puoi scartare questa carta per pescare 1 Scoperta casuale di qualsiasi tipo."
+    }
+   },
+   "dubbi": "Rarità rare: rombo singolo in alto + dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/alien_tech_discoveries/5811.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "FRACTURED CASING",
+    "it": "INVOLUCRO INCRINATO"
+   },
+   "testo_colore": {
+    "en": "Its original function remains a mystery.",
+    "it": "La sua funzione originale resta un mistero."
+   },
+   "testo": {
+    "en": "ALIEN TECH — Its original function remains a mystery.",
+    "it": "TECNOLOGIA ALIENA — La sua funzione originale resta un mistero."
+   },
+   "campi": {
+    "categoria": "alien_tech",
+    "rarita": "common"
+   },
+   "dubbi": "Nessuna abilità: solo testo di colore (carta senza effetti). Rarità common dedotta dall'assenza del rombo in alto e della dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/alien_tech_discoveries/5801.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "FUNCTIONAL CORE",
+    "it": "NUCLEO FUNZIONANTE"
+   },
+   "testo": {
+    "en": "RARE ALIEN TECH — PLANETARY EXPLORATION: You may discard this card to place your Crewmember in the Lander Sector.",
+    "it": "TECNOLOGIA ALIENA RARA — ESPLORAZIONE PLANETARIA: Puoi scartare questa carta per collocare il tuo Membro dell'Equipaggio nel Settore del Lander."
+   },
+   "campi": {
+    "categoria": "alien_tech",
+    "rarita": "rare",
+    "esplorazione": {
+     "en": "You may discard this card to place your Crewmember in the Lander Sector.",
+     "it": "Puoi scartare questa carta per collocare il tuo Membro dell'Equipaggio nel Settore del Lander."
+    }
+   },
+   "dubbi": "Rarità rare: rombo singolo in alto + dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/alien_tech_discoveries/5808.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "discovery",
+   "titolo": {
+    "en": "FUNCTIONAL NANODUST",
+    "it": "NANOPOLVERE FUNZIONANTE"
+   },
+   "testo": {
+    "en": "RARE ALIEN TECH — PLANETARY EXPLORATION: During Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [construction] / [redDie]+[blueDie] to this Roll Pool. After the Dice Check, discard this card.",
+    "it": "TECNOLOGIA ALIENA RARA — ESPLORAZIONE PLANETARIA: Durante una Prova, puoi collocare questa carta nella Riserva del Tiro di qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [construction] / [redDie]+[blueDie] a questa Riserva del Tiro. Dopo la Prova, scarta questa carta."
+   },
+   "campi": {
+    "categoria": "alien_tech",
+    "rarita": "rare",
+    "esplorazione": {
+     "en": "During Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [construction] / [redDie]+[blueDie] to this Roll Pool. After the Dice Check, discard this card.",
+     "it": "Durante una Prova, puoi collocare questa carta nella Riserva del Tiro di qualsiasi Membro dell'Equipaggio nel tuo Settore, incluso te stesso. Aggiungi [construction] / [redDie]+[blueDie] a questa Riserva del Tiro. Dopo la Prova, scarta questa carta."
+    }
+   },
+   "dubbi": "Alternativa: aggiungi 1 faccia construction OPPURE un dado rosso + un dado blu. Rarità rare: rombo singolo in alto + dicitura RARE."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17802.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "SCORCHED RECORDS",
+    "it": "DOCUMENTI BRUCIACCHIATI"
+   },
+   "testo": {
+    "en": "3 — PLANETARY EXPLORATION: When you gain this card, each Crewmember draws 1 card.",
+    "it": "3 — ESPLORAZIONE PLANETARIA: Quando ottieni questa carta, ogni Membro dell'Equipaggio pesca 1 carta."
+   },
+   "campi": {
+    "numero": 3,
+    "esplorazione": {
+     "en": "When you gain this card, each Crewmember draws 1 card.",
+     "it": "Quando ottieni questa carta, ogni Membro dell'Equipaggio pesca 1 carta."
+    }
+   },
+   "dubbi": "Scoperta Eccezionale: nessuna categoria/rarità stampata (bordo bianco)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17805.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "PROTEIN SOUP",
+    "it": "ZUPPA PROTEICA"
+   },
+   "testo": {
+    "en": "6 — PLANETARY EXPLORATION: When you gain this card, gain 2 Supplies.",
+    "it": "6 — ESPLORAZIONE PLANETARIA: Quando ottieni questa carta, ottieni 2 Provviste."
+   },
+   "campi": {
+    "numero": 6,
+    "esplorazione": {
+     "en": "When you gain this card, gain 2 Supplies.",
+     "it": "Quando ottieni questa carta, ottieni 2 Provviste."
+    }
+   },
+   "dubbi": "Scoperta Eccezionale: nessuna categoria/rarità stampata (bordo bianco)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17808.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "KURMA'S GASTROZOOID",
+    "it": "GASTROZOOIDE DI KURMA"
+   },
+   "testo": {
+    "en": "9 — PLANETARY EXPLORATION: When you gain this card, each Crewmember Refreshes 2 dice.",
+    "it": "9 — ESPLORAZIONE PLANETARIA: Quando ottieni questa carta, ogni Membro dell'Equipaggio Ricarica 2 dadi."
+   },
+   "campi": {
+    "numero": 9,
+    "esplorazione": {
+     "en": "When you gain this card, each Crewmember Refreshes 2 dice.",
+     "it": "Quando ottieni questa carta, ogni Membro dell'Equipaggio Ricarica 2 dadi."
+    }
+   },
+   "dubbi": "Scoperta Eccezionale: nessuna categoria/rarità stampata (bordo bianco)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17811.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "STARCHY IDEMIAN FRUIT",
+    "it": "FRUTTO IDEMIANO AMIDACEO"
+   },
+   "testo": {
+    "en": "12 — PLANETARY EXPLORATION: When you gain this card, gain 2 Supplies.",
+    "it": "12 — ESPLORAZIONE PLANETARIA: Quando ottieni questa carta, ottieni 2 Provviste."
+   },
+   "campi": {
+    "numero": 12,
+    "esplorazione": {
+     "en": "When you gain this card, gain 2 Supplies.",
+     "it": "Quando ottieni questa carta, ottieni 2 Provviste."
+    }
+   },
+   "dubbi": "Scoperta Eccezionale: nessuna categoria/rarità stampata (bordo bianco)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17814.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "VEHICLE SCRAP",
+    "it": "ROTTAMI DI VEICOLO"
+   },
+   "testo": {
+    "en": "15 — PLANETARY EXPLORATION: When you gain this card, each Crewmember Refreshes 4 dice.",
+    "it": "15 — ESPLORAZIONE PLANETARIA: Quando ottieni questa carta, ogni Membro dell'Equipaggio Ricarica 4 dadi."
+   },
+   "campi": {
+    "numero": 15,
+    "esplorazione": {
+     "en": "When you gain this card, each Crewmember Refreshes 4 dice.",
+     "it": "Quando ottieni questa carta, ogni Membro dell'Equipaggio Ricarica 4 dadi."
+    }
+   },
+   "dubbi": "Scoperta Eccezionale: nessuna categoria/rarità stampata (bordo bianco)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17817.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "MÖBIUS STRIP",
+    "it": "NASTRO DI MÖBIUS"
+   },
+   "testo": {
+    "en": "18 — PLANETARY EXPLORATION: When you gain this card, each Crewmember draws 1 card.",
+    "it": "18 — ESPLORAZIONE PLANETARIA: Quando ottieni questa carta, ogni Membro dell'Equipaggio pesca 1 carta."
+   },
+   "campi": {
+    "numero": 18,
+    "esplorazione": {
+     "en": "When you gain this card, each Crewmember draws 1 card.",
+     "it": "Quando ottieni questa carta, ogni Membro dell'Equipaggio pesca 1 carta."
+    }
+   },
+   "dubbi": "Scoperta Eccezionale: nessuna categoria/rarità stampata (bordo bianco)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17820.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "FRACTAL STONE #3",
+    "it": "PIETRA FRATTALE #3"
+   },
+   "testo": {
+    "en": "21 — SHIP MANAGEMENT: When unloaded, go to Log 749.",
+    "it": "21 — GESTIONE DELLA NAVE: Quando viene scaricata, vai all'Annotazione 749."
+   },
+   "campi": {
+    "numero": 21,
+    "scaricata": {
+     "en": "When unloaded, go to Log 749.",
+     "it": "Quando viene scaricata, vai all'Annotazione 749."
+    }
+   },
+   "dubbi": "Scoperta Eccezionale: nessuna categoria/rarità stampata (bordo bianco)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17823.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "XENO SUPPLIES",
+    "it": "XENOPROVVISTE"
+   },
+   "testo": {
+    "en": "24 — PLANETARY EXPLORATION: When you gain this card, gain 2 Supplies.",
+    "it": "24 — ESPLORAZIONE PLANETARIA: Quando ottieni questa carta, ottieni 2 Provviste."
+   },
+   "campi": {
+    "numero": 24,
+    "esplorazione": {
+     "en": "When you gain this card, gain 2 Supplies.",
+     "it": "Quando ottieni questa carta, ottieni 2 Provviste."
+    }
+   },
+   "dubbi": "Scoperta Eccezionale: nessuna categoria/rarità stampata (bordo bianco)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17826.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "STARSHOAL SAMPLES",
+    "it": "CAMPIONI DI BANCO STELLARE"
+   },
+   "testo": {
+    "en": "27 — SHIP MANAGEMENT: When unloaded, go to Log 55.",
+    "it": "27 — GESTIONE DELLA NAVE: Quando viene scaricata, vai all'Annotazione 55."
+   },
+   "campi": {
+    "numero": 27,
+    "scaricata": {
+     "en": "When unloaded, go to Log 55.",
+     "it": "Quando viene scaricata, vai all'Annotazione 55."
+    }
+   },
+   "dubbi": "Scoperta Eccezionale: nessuna categoria/rarità stampata (bordo bianco)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17829.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "METAHEDRON'S LYMPH",
+    "it": "LINFA DEL METAEDRO"
+   },
+   "testo": {
+    "en": "30 — PLANETARY EXPLORATION: When you gain this card, gain 1 Supplies.",
+    "it": "30 — ESPLORAZIONE PLANETARIA: Quando ottieni questa carta, ottieni 1 Provviste."
+   },
+   "campi": {
+    "numero": 30,
+    "esplorazione": {
+     "en": "When you gain this card, gain 1 Supplies.",
+     "it": "Quando ottieni questa carta, ottieni 1 Provviste."
+    }
+   },
+   "dubbi": "Scoperta Eccezionale: nessuna categoria/rarità stampata (bordo bianco)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17832.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "ROYAL JELLY",
+    "it": "PAPPA REALE"
+   },
+   "testo": {
+    "en": "33 — PLANETARY EXPLORATION: When you gain this card, each Crewmember Refreshes 2 dice.",
+    "it": "33 — ESPLORAZIONE PLANETARIA: Quando ottieni questa carta, ogni Membro dell'Equipaggio Ricarica 2 dadi."
+   },
+   "campi": {
+    "numero": 33,
+    "esplorazione": {
+     "en": "When you gain this card, each Crewmember Refreshes 2 dice.",
+     "it": "Quando ottieni questa carta, ogni Membro dell'Equipaggio Ricarica 2 dadi."
+    }
+   },
+   "dubbi": "Scoperta Eccezionale: nessuna categoria/rarità stampata (bordo bianco)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17835.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "FLOWER BUG'S ROOTSTALK",
+    "it": "RIZOMA DEL FLOWER BUG"
+   },
+   "testo": {
+    "en": "36 — PLANETARY EXPLORATION: You may reroll [dangerDieD] from the Flower Bug's Poison attack once per roll.",
+    "it": "36 — ESPLORAZIONE PLANETARIA: Puoi ritirare [dangerDieD] dell'attacco Veleno del Flower Bug una volta per tiro."
+   },
+   "campi": {
+    "numero": 36,
+    "esplorazione": {
+     "en": "You may reroll [dangerDieD] from the Flower Bug's Poison attack once per roll.",
+     "it": "Puoi ritirare [dangerDieD] dell'attacco Veleno del Flower Bug una volta per tiro."
+    }
+   },
+   "dubbi": "Icona: dado Pericolo D (esagono arancio con D). 'Flower Bug' lasciato in inglese (nome di Minaccia, traduzione ufficiale non nota). Scoperta Eccezionale: nessuna categoria/rarità stampata (bordo bianco)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17838.webp",
+   "nomi": [],
+   "lato": "fronte",
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "INFRARED BEACON",
+    "it": "FARO A INFRAROSSI"
+   },
+   "testo": {
+    "en": "39 — PLANETARY EXPLORATION: When you gain this card, each Crewmember Refreshes 3 dice.",
+    "it": "39 — ESPLORAZIONE PLANETARIA: Quando ottieni questa carta, ogni Membro dell'Equipaggio Ricarica 3 dadi."
+   },
+   "campi": {
+    "numero": 39,
+    "esplorazione": {
+     "en": "When you gain this card, each Crewmember Refreshes 3 dice.",
+     "it": "Quando ottieni questa carta, ogni Membro dell'Equipaggio Ricarica 3 dadi."
+    }
+   },
+   "dubbi": "Scoperta Eccezionale: nessuna categoria/rarità stampata (bordo bianco)."
+  }
+ ]
+}

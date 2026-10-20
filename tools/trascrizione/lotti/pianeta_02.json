@@ -1,0 +1,171 @@
+{
+ "tipo": "pianeta",
+ "immagini": [
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc25046377999056119520C2FA9A67B27874F2B2373E4E7C9ABF8C6F79123.jpg",
+   "nomi": [
+    "Planetopedia"
+   ],
+   "lato": "fronte",
+   "snap_tts": []
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2491123294252821434FE0194DA669D307641491827981C5B1974116C18.jpg",
+   "nomi": [
+    "p.16-17"
+   ],
+   "lato": "fronte",
+   "snap_tts": [
+    [
+     1.226,
+     -0.646,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     0.704,
+     0.005,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     1.224,
+     0.651,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.527,
+     0.428,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.529,
+     -0.432,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -1.603,
+     -0.256,
+     [
+      "Unique Discovery"
+     ]
+    ],
+    [
+     -1.601,
+     0.18,
+     [
+      "Mission"
+     ]
+    ],
+    [
+     -1.6,
+     0.69,
+     [
+      "Global Condition"
+     ]
+    ],
+    [
+     -1.367,
+     0.909,
+     [
+      "Token"
+     ]
+    ],
+    [
+     -1.437,
+     0.903,
+     [
+      "Token"
+     ]
+    ],
+    [
+     -1.499,
+     0.903,
+     [
+      "Token"
+     ]
+    ]
+   ]
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc244834180067222341215995B450FBE102C69E6FD3A6638B798B0D7BB3D.jpg",
+   "nomi": [
+    "p.30-31"
+   ],
+   "lato": "fronte",
+   "snap_tts": [
+    [
+     1.493,
+     0.004,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     0.637,
+     0.651,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     0.632,
+     -0.65,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.531,
+     -0.647,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.531,
+     -0.071,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -0.529,
+     0.504,
+     [
+      "Point of Interest"
+     ]
+    ],
+    [
+     -1.602,
+     0.175,
+     [
+      "Mission"
+     ]
+    ],
+    [
+     -1.602,
+     0.686,
+     [
+      "Global Condition"
+     ]
+    ],
+    [
+     -1.602,
+     -0.261,
+     [
+      "Unique Discovery"
+     ]
+    ]
+   ]
+  }
+ ]
+}

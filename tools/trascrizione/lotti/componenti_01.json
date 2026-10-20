@@ -1,0 +1,145 @@
+{
+ "tipo": "componenti",
+ "immagini": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_tile_971299.webp",
+   "nomi": [
+    "Lead token",
+    "copie: 2"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_tile_401465.webp",
+   "nomi": [
+    "Lead token",
+    "copie: 5"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_tile_94a995.webp",
+   "nomi": [
+    "Lead token",
+    "copie: 2"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_tile_805684.webp",
+   "nomi": [
+    "Lead token",
+    "copie: 3"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_tile_a4a3df.webp",
+   "nomi": [
+    "Lead token",
+    "copie: 5"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_tile_f8a85f.webp",
+   "nomi": [
+    "Lead token",
+    "copie: 2"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_tile_3e0634.webp",
+   "nomi": [
+    "Lead token",
+    "copie: 1"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/dragonfly_f4bbd2.webp",
+   "nomi": [
+    "Dragonfly"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/waygate_1385b2.webp",
+   "nomi": [
+    "Waygate"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/void_ranger_da1b99.webp",
+   "nomi": [
+    "Void Ranger"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/pelican_d2daf9.webp",
+   "nomi": [
+    "Pelican"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/faustschlag_89191d.webp",
+   "nomi": [
+    "Faustschlag"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/space_ranger_c99459.webp",
+   "nomi": [
+    "Space Ranger"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/biome_icons_1634a7.webp",
+   "nomi": [
+    "Biome Icons"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/planetary_scanner_53a9f5.webp",
+   "nomi": [
+    "Planetary Scanner"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_token_8029d8.webp",
+   "nomi": [
+    "Crew board"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_token_4e1b78.webp",
+   "nomi": [
+    "Crew board"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_token_fc838c.webp",
+   "nomi": [
+    "Crew board"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/oggetti/custom_token_bbde62.webp",
+   "nomi": [
+    "Crew board"
+   ],
+   "lato": "fronte"
+  }
+ ]
+}

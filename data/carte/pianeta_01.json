@@ -1,0 +1,1181 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2504639067865634549B4F4A9A34AF4F2DC6C98B3DA8F2396CC55AE9EB2.jpg",
+   "pagine": "2-3",
+   "pianeta": "EYE OF THE VOID",
+   "nome_in_codice": "EOTV",
+   "decollo_log": null,
+   "evac_log": null,
+   "descrizione": {
+    "en": "The coordinates found in our oldest genetic code led us here – to a system-sized, cloaked, black sphere. What will we find inside?",
+    "it": "Le coordinate trovate nel nostro più antico codice genetico ci hanno condotti qui: a una sfera nera, occultata, grande quanto un sistema. Cosa troveremo al suo interno?"
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.125,
+     "y": 0.842,
+     "w": 0.202,
+     "h": 0.257,
+     "icone": [
+      "noMovement"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "TWISTED WRECKAGE",
+       "it": "RELITTO CONTORTO"
+      },
+      "icone": [
+       "noMovement"
+      ],
+      "testo_colore": {
+       "en": "The only way out of the tail part of the lander is blocked by a heavy, buckled bulkhead.",
+       "it": "L'unica via d'uscita dalla parte di coda del lander è bloccata da una pesante paratia deformata."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "FORCE THE BULKHEAD OPEN",
+         "it": "FORZARE LA PARATIA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "physical / defence / scouting",
+          "en": "Gain 1 [success], replace with card P101.",
+          "it": "Ottieni 1 [success], sostituisci con la carta P101."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieT].",
+          "it": "Tira [dangerDieT]."
+         }
+        ],
+        "tracce": [],
+        "frecce": "Triangolo arancione fra la riga rossa e la riga verde, che punta verso la verde."
+       }
+      ]
+     }
+    },
+    {
+     "n": 2,
+     "x": 0.125,
+     "y": 0.502,
+     "w": 0.202,
+     "h": 0.257,
+     "icone": [
+      "noMovement"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "CRASH SITE",
+       "it": "LUOGO DELL'IMPATTO"
+      },
+      "icone": [
+       "noMovement"
+      ],
+      "testo_colore": {
+       "en": "The lander's front is half-buried in the delicate carbon surface. The plasma from the salvo still melts through the hull.",
+       "it": "La parte anteriore del lander è semisepolta nella delicata superficie di carbonio. Il plasma della salva sta ancora fondendo lo scafo."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "SAVE THE SUPPLIES!",
+         "it": "SALVARE LE PROVVISTE!"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRedProgress"
+         },
+         {
+          "req": "die",
+          "effetto": "outcomeGreenProgress"
+         }
+        ],
+        "esiti": [],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 3,
+          "en": "Gain 1 [success], replace with card P102.",
+          "it": "Ottieni 1 [success], sostituisci con la carta P102."
+         },
+         {
+          "colore": "red",
+          "caselle": 3,
+          "en": "[spendDie], roll [dangerDieT].",
+          "it": "[spendDie], tira [dangerDieT]."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "x": 0.243,
+     "y": 0.171,
+     "w": 0.202,
+     "h": 0.257,
+     "icone": [],
+     "pdi": "",
+     "log": null
+    },
+    {
+     "n": 4,
+     "x": 0.36,
+     "y": 0.502,
+     "w": 0.202,
+     "h": 0.257,
+     "icone": [],
+     "pdi": "",
+     "log": 311
+    },
+    {
+     "n": 5,
+     "x": 0.36,
+     "y": 0.842,
+     "w": 0.202,
+     "h": 0.257,
+     "icone": [],
+     "pdi": "",
+     "log": 227
+    },
+    {
+     "n": 6,
+     "x": 0.666,
+     "y": 0.842,
+     "w": 0.202,
+     "h": 0.257,
+     "icone": [
+      "tutorial"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "CONTROL ROOM",
+       "it": "SALA DI CONTROLLO"
+      },
+      "testo_colore": {
+       "en": "Many corridors converge in this room, but the machinery here is dead and without power...",
+       "it": "Molti corridoi convergono in questa sala, ma i macchinari qui sono spenti e senza energia..."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "HARVEST ALIEN COMPONENTS",
+         "it": "RECUPERARE COMPONENTI ALIENI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "gathering / construction",
+          "en": "Refresh 1 [die].",
+          "it": "Ricarica 1 [die]."
+         },
+         {
+          "colore": "green",
+          "req": "2*redDie+2*blueDie",
+          "en": "Go to Log 230.",
+          "it": "Vai all'Annotazione 230."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieT].",
+          "it": "Tira [dangerDieT]."
+         }
+        ],
+        "tracce": [],
+        "frecce": "Triangolo giallo dalla riga gialla verso la riga verde."
+       }
+      ]
+     }
+    },
+    {
+     "n": 7,
+     "x": 0.666,
+     "y": 0.171,
+     "w": 0.202,
+     "h": 0.257,
+     "icone": [
+      "tutorial"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "CONVEX PANELS",
+       "it": "PANNELLI CONVESSI"
+      },
+      "testo_colore": {
+       "en": "A cluster of solar panels, that once powered this section of the Sphere, no longer appears functional.",
+       "it": "Un gruppo di pannelli solari, che un tempo alimentava questa sezione della Sfera, non sembra più funzionante."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "INSTALL A POWER COUPLING",
+         "it": "INSTALLARE UN ACCOPPIATORE DI ENERGIA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "construction",
+          "en": "Refresh 1 [die].",
+          "it": "Ricarica 1 [die]."
+         },
+         {
+          "colore": "green",
+          "req": "2*greenDie+blueDie",
+          "en": "Go to Log 424.",
+          "it": "Vai all'Annotazione 424."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Gain a Just a Scratch! Injury.",
+          "it": "Subisci una Ferita \"Just a Scratch!\"."
+         }
+        ],
+        "tracce": [],
+        "frecce": "Triangolo giallo dalla riga gialla verso la riga verde."
+       }
+      ]
+     }
+    },
+    {
+     "n": 8,
+     "x": 0.666,
+     "y": 0.502,
+     "w": 0.202,
+     "h": 0.257,
+     "icone": [
+      "tutorial"
+     ],
+     "pdi": "",
+     "log": 130
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 2,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "spendDie"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "dangerDieT"
+     ]
+    },
+    {
+     "da": 4,
+     "a": 8,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 1,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 4,
+     "a": 6,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 6,
+     "a": 5,
+     "senso": "6->5",
+     "icone": [
+      "spendDie"
+     ]
+    },
+    {
+     "da": 7,
+     "a": 8,
+     "senso": "doppio",
+     "icone": [
+      "spendDie"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "1",
+    "scoperta_eccezionale_testo": {
+     "en": "If you gain a Unique Discovery and there's no card left here, Gain 1 [success] instead.",
+     "it": "Se ottieni una Scoperta Eccezionale e qui non sono rimaste carte, ottieni invece 1 [success]."
+    },
+    "missione": "M01",
+    "missione_opzionale": "",
+    "condizione": {
+     "titolo": {
+      "en": "SCATTERED SUPPLY CRATES",
+      "it": "CASSE DI PROVVISTE SPARSE"
+     },
+     "testo": {
+      "en": "You have unlimited Supplies in this Tutorial.",
+      "it": "In questo Tutorial hai Provviste illimitate."
+     },
+     "viaggio": {
+      "nome": {
+       "en": "TRAVEL",
+       "it": "VIAGGIO"
+      },
+      "icona": "travel",
+      "pericolo": [],
+      "prova": false,
+      "costo": "[spendDie] / [dangerDieT]",
+      "testo": {
+       "en": "[spendDie] or roll [dangerDieT] to move to a connected Sector.",
+       "it": "[spendDie] oppure tira [dangerDieT] per muoverti in un Settore collegato."
+      }
+     }
+    }
+   },
+   "altro": {
+    "en": "Top slots: RANK-UP CARD, SUCCESS TOKENS, FOUND DISCOVERIES. Tutorial planet: no LIFT-OFF/EVAC Logs printed.",
+    "it": "Spazi in alto: CARTA GRADO SUPERIORE, SEGNALINI SUCCESSO, SCOPERTE TROVATE. Pianeta del tutorial: nessuna Annotazione di DECOLLO/EVAC stampata."
+   },
+   "dubbi": "Pianeta tutorial senza Log di decollo/evacuazione. Sentiero 5-6: all'estremità del Settore 5 c'è un simbolo cerchio-con-barra al posto della punta di freccia: interpretato come senso unico 6->5 (le punte di freccia ovunque indicano il lato da cui si esce). Settore 3 vuoto senza testo. Gli altri sentieri hanno punte a entrambe le estremità: considerati doppi. Il significato dei triangoli fra le righe d'esito non è certo (descritto in 'frecce'). Nome italiano ufficiale della Ferita 'Just a Scratch!' non noto. 'die' nei Refresh = cubo tricolore."
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc24911232942528198917122E572DB3855417B306EB90284850C26E77D70.jpg",
+   "pagine": "14-15",
+   "pianeta": "ETERNAL SUNRISE",
+   "nome_in_codice": "Kelu-8 B",
+   "decollo_log": 1058,
+   "evac_log": 1088,
+   "descrizione": {
+    "en": "It takes 485 Earth's days for this giant planet to complete one rotation. Due to the large temperature difference between the dayside and the nightside, two vastly different ecosystems evolved here: one that always follows the sun and one that only emerges in the dark.",
+    "it": "Questo pianeta gigante impiega 485 giorni terrestri per completare una rotazione. A causa della grande differenza di temperatura fra il lato diurno e quello notturno, qui si sono evoluti due ecosistemi molto diversi: uno che segue sempre il sole e uno che emerge solo al buio."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.122,
+     "y": 0.177,
+     "w": 0.199,
+     "h": 0.254,
+     "icone": [],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "FADING ECOSYSTEM",
+       "it": "ECOSISTEMA MORENTE"
+      },
+      "icone": [
+       "rocky",
+       "vegetation"
+      ],
+      "testo_colore": {
+       "en": "Plants wilt and animals hide in this unnaturally long evening.",
+       "it": "Le piante appassiscono e gli animali si nascondono in questa sera innaturalmente lunga."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "DIG OUT PLANTS",
+         "it": "DISSOTTERRARE PIANTE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "gathering+biology",
+          "en": "Gain 2 Strange Flora Leads.",
+          "it": "Ottieni 2 Indizi Strana Vegetazione."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieD].",
+          "it": "Tira [dangerDieD]."
+         }
+        ],
+        "tracce": []
+       },
+       {
+        "nome": {
+         "en": "CATCH LIVING SPECIMEN",
+         "it": "CATTURARE UN ESEMPLARE VIVO"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "defence+technology",
+          "en": "Gain 2 Live Specimen Leads.",
+          "it": "Ottieni 2 Indizi Esemplare Vivo."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieI].",
+          "it": "Tira [dangerDieI]."
+         }
+        ],
+        "tracce": []
+       }
+      ]
+     }
+    },
+    {
+     "n": 2,
+     "x": 0.122,
+     "y": 0.502,
+     "w": 0.199,
+     "h": 0.254,
+     "icone": [],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "GREAT PLAINS",
+       "it": "GRANDI PIANURE"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "Countless cycles of migration left deep marks in the rocky surface of the planet.",
+       "it": "Innumerevoli cicli di migrazione hanno lasciato segni profondi sulla superficie rocciosa del pianeta."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "RETURN FLIGHT",
+         "it": "VOLO DI RITORNO"
+        },
+        "icona": "",
+        "pericolo": [],
+        "prova": false,
+        "costo": "",
+        "speciali": [],
+        "esiti": [],
+        "tracce": [],
+        "testo": {
+         "en": "Take any Crewmembers and P.E.T. (if available) from this Sector and place them in Sector 5 – this counts as an Action.",
+         "it": "Prendi qualsiasi Membro dell'Equipaggio e il P.E.T. (se disponibile) da questo Settore e mettili nel Settore 5: questo conta come un'Azione."
+        }
+       }
+      ],
+      "tempo": {
+       "caselle": 2,
+       "en": "Place card P530 on top of this card.",
+       "it": "Metti la carta P530 sopra questa carta."
+      }
+     }
+    },
+    {
+     "n": 3,
+     "x": 0.122,
+     "y": 0.827,
+     "w": 0.199,
+     "h": 0.254,
+     "icone": [],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "FIRING POSITION",
+       "it": "POSTAZIONE DI TIRO"
+      },
+      "icone": [
+       "rocky"
+      ],
+      "testo_colore": {
+       "en": "Vanguard helped us pinpoint the location from where we were fired at.",
+       "it": "La Vanguard ci ha aiutati a individuare il punto da cui ci hanno sparato."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "FIND CLUES",
+         "it": "CERCARE INDIZI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "defence+technology+scienceDice",
+          "en": "Go to Log 1064.",
+          "it": "Vai all'Annotazione 1064."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieC].",
+          "it": "Tira [dangerDieC]."
+         }
+        ],
+        "tracce": [],
+        "testo": {
+         "en": "You may [sacrifaceDieBlue] to reroll 1 die.",
+         "it": "Puoi [sacrifaceDieBlue] per ritirare 1 dado."
+        }
+       }
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "x": 0.356,
+     "y": 0.177,
+     "w": 0.199,
+     "h": 0.254,
+     "icone": [],
+     "pdi": ""
+    },
+    {
+     "n": 5,
+     "x": 0.356,
+     "y": 0.502,
+     "w": 0.199,
+     "h": 0.254,
+     "icone": [
+      "lander"
+     ],
+     "pdi": ""
+    },
+    {
+     "n": 6,
+     "x": 0.356,
+     "y": 0.827,
+     "w": 0.199,
+     "h": 0.254,
+     "icone": [],
+     "pdi": ""
+    },
+    {
+     "n": 7,
+     "x": 0.643,
+     "y": 0.177,
+     "w": 0.199,
+     "h": 0.254,
+     "icone": [],
+     "pdi": ""
+    },
+    {
+     "n": 8,
+     "x": 0.643,
+     "y": 0.502,
+     "w": 0.199,
+     "h": 0.254,
+     "icone": [],
+     "pdi": ""
+    },
+    {
+     "n": 9,
+     "x": 0.643,
+     "y": 0.827,
+     "w": 0.199,
+     "h": 0.254,
+     "icone": [],
+     "pdi": ""
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 1,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 2,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 4,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "travelII"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 6,
+     "senso": "doppio",
+     "icone": [
+      "travelII"
+     ]
+    },
+    {
+     "da": 7,
+     "a": 8,
+     "senso": "doppio",
+     "icone": [
+      "travelIII"
+     ]
+    },
+    {
+     "da": 8,
+     "a": 9,
+     "senso": "doppio",
+     "icone": [
+      "travelIII"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "39, 40",
+    "missione": "M71",
+    "missione_opzionale": "(etichetta 'OPTIONAL MISSION' sul bordo destro, accanto alla Missione)",
+    "condizione": {
+     "titolo": {
+      "en": "THE LONG SUNSET",
+      "it": "IL LUNGO TRAMONTO"
+     },
+     "testo_colore": {
+      "en": "The last rays of light fall on this part of the planet.",
+      "it": "Gli ultimi raggi di luce cadono su questa parte del pianeta."
+     },
+     "viaggio": [
+      {
+       "nome": {
+        "en": "BRIGHT SIDE TRAVEL",
+        "it": "VIAGGIO SUL LATO LUMINOSO"
+       },
+       "icona": "travel",
+       "sentieri": [
+        "travel",
+        "travelII"
+       ],
+       "pericolo": [],
+       "prova": false,
+       "costo": "spendDie",
+       "testo": {
+        "en": "[spendDie] to move to a connected Sector.",
+        "it": "[spendDie] per muoverti in un Settore collegato."
+       }
+      },
+      {
+       "nome": {
+        "en": "DARK SIDE TRAVEL",
+        "it": "VIAGGIO SUL LATO OSCURO"
+       },
+       "icona": "diceCheck",
+       "sentieri": [
+        "travelIII"
+       ],
+       "pericolo": [],
+       "prova": true,
+       "costo": "",
+       "speciali": [
+        {
+         "req": "accident",
+         "effetto": "outcomeRed"
+        }
+       ],
+       "esiti": [
+        {
+         "colore": "green",
+         "req": "defence / xenology",
+         "en": "Move to a connected Sector.",
+         "it": "Muoviti in un Settore collegato."
+        },
+        {
+         "colore": "red",
+         "req": "",
+         "en": "Roll [dangerDieI].",
+         "it": "Tira [dangerDieI]."
+        }
+       ],
+       "frecce": "Triangolo arancione fra la riga verde e la riga rossa."
+      }
+     ],
+     "tempo": {
+      "caselle": 5,
+      "en": "Go to Log 1089.",
+      "it": "Vai all'Annotazione 1089."
+     }
+    }
+   },
+   "altro": {
+    "en": "Top slots: 5× DISCOVERY, 3× THREAT. The three columns of Sectors (1-3, 4-6, 7-9) are not connected to each other by printed paths.",
+    "it": "Spazi in alto: 5× SCOPERTA, 3× MINACCIA. Le tre colonne di Settori (1-3, 4-6, 7-9) non sono collegate fra loro da sentieri stampati."
+   },
+   "dubbi": "Icone sentiero 'travelII' e 'travelIII' (omino con II/III barre) non presenti nel foglio: nomi inventati. Le colonne 1-3, 4-6, 7-9 non hanno collegamenti orizzontali visibili (forse aggiunti da Log/carte). Sentieri con punte a entrambe le estremità: considerati doppi. Return Flight: 'P.E.T.' lasciato in inglese. 'OPTIONAL MISSION' è solo un'etichetta laterale, nessun codice. Il secondo dado Pericolo di Catch Living Specimen e di Dark Side Travel letto come I. Firing Position: requisito letto come defence+technology+scienceDice."
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc24483418006722217104AA54FC3EBFD1EF3116C0C66273A57C672ED8385.jpg",
+   "pagine": "28-29",
+   "pianeta": "ARROGATOR CRAFTWORLD – OUTER SHELL",
+   "nome_in_codice": "",
+   "decollo_log": 692,
+   "evac_log": 698,
+   "descrizione": {
+    "en": "The outer shell of this gargantuan spacecraft is bristling with impact craters and inactive defense systems. If this is really the Arrogator homeworld, it is ancient and full of threats.",
+    "it": "Il guscio esterno di questa gigantesca nave spaziale è costellato di crateri d'impatto e sistemi difensivi inattivi. Se questo è davvero il mondo natale degli Arrogator, è antichissimo e pieno di minacce."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.239,
+     "y": 0.5,
+     "w": 0.198,
+     "h": 0.252,
+     "icone": [
+      "rocky",
+      "void",
+      "lander"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "CRATER",
+       "it": "CRATERE"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "The ancient surface is pitted with craters. A real testament to its age.",
+       "it": "L'antica superficie è butterata di crateri. Una vera testimonianza della sua età."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "TAKE SAMPLES",
+         "it": "PRELEVARE CAMPIONI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "gathering / scouting+construction",
+          "effetto": "outcomeGreenProgress"
+         },
+         {
+          "req": "die",
+          "effetto": "outcomeRedProgress"
+         }
+        ],
+        "esiti": [],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 2,
+          "en": "Gain 2 Mineral Leads. Replace with card P000.",
+          "it": "Ottieni 2 Indizi Minerale. Sostituisci con la carta P000."
+         },
+         {
+          "colore": "red",
+          "caselle": 1,
+          "en": "Go to Log 566.",
+          "it": "Vai all'Annotazione 566."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "n": 2,
+     "x": 0.123,
+     "y": 0.827,
+     "w": 0.198,
+     "h": 0.252,
+     "icone": [
+      "void",
+      "ruins"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "FAINT SIGNAL",
+       "it": "SEGNALE DEBOLE"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "It is similar to Arrogator power signatures. Maybe it could lead us to some kind of power conduit?",
+       "it": "È simile alle tracce energetiche degli Arrogator. Forse potrebbe condurci a una specie di condotto energetico?"
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "REACH ITS SOURCE",
+         "it": "RAGGIUNGERE LA FONTE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "4*redDie+blueDie / scouting+technology+xenology",
+          "en": "Replace with card P310.",
+          "it": "Sostituisci con la carta P310."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieC].",
+          "it": "Tira [dangerDieC]."
+         }
+        ],
+        "tracce": []
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "x": 0.239,
+     "y": 0.176,
+     "w": 0.198,
+     "h": 0.252,
+     "icone": [
+      "ruins"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "DEBRIS FIELD",
+       "it": "CAMPO DI DETRITI"
+      },
+      "icone": [
+       "void"
+      ],
+      "testo_colore": {
+       "en": "There is wreckage buried under all this debris.",
+       "it": "Sotto tutti questi detriti è sepolto un relitto."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "EXCAVATE",
+         "it": "SCAVARE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "physical / technology / accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "gathering+construction+xenology",
+          "en": "Gain 2 Alien Tech Leads, go to Log 613.",
+          "it": "Ottieni 2 Indizi Tecnologia Aliena, vai all'Annotazione 613."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Go to Log 566.",
+          "it": "Vai all'Annotazione 566."
+         }
+        ],
+        "tracce": []
+       }
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "x": 0.356,
+     "y": 0.827,
+     "w": 0.198,
+     "h": 0.252,
+     "icone": [
+      "ruins"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "INACTIVE DEFENCE BATTERY",
+       "it": "BATTERIA DIFENSIVA INATTIVA"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "This cluster of Arrogator cannons could be deadly ... if it were powered.",
+       "it": "Questo gruppo di cannoni Arrogator potrebbe essere letale... se fosse alimentato."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "HIJACK ITS CONTROLS",
+         "it": "PRENDERE IL CONTROLLO DEI COMANDI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "2*scienceDice+2*technology",
+          "en": "Go to Log 705.",
+          "it": "Vai all'Annotazione 705."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Go to Log 566.",
+          "it": "Vai all'Annotazione 566."
+         }
+        ],
+        "tracce": []
+       }
+      ]
+     }
+    },
+    {
+     "n": 5,
+     "x": 0.681,
+     "y": 0.321,
+     "w": 0.198,
+     "h": 0.252,
+     "icone": [
+      "ruins"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "INACTIVE MACHINE SHOP",
+       "it": "OFFICINA INATTIVA"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "This replication depot looks like it was frozen mid-work.",
+       "it": "Questo deposito di replicazione sembra essersi fermato a metà lavoro."
+      },
+      "azioni": []
+     }
+    },
+    {
+     "n": 6,
+     "x": 0.681,
+     "y": 0.689,
+     "w": 0.198,
+     "h": 0.252,
+     "icone": [
+      "ruins",
+      "void"
+     ],
+     "pdi": "",
+     "stampato": {
+      "titolo": {
+       "en": "IRIS HATCH",
+       "it": "PORTELLO A IRIDE"
+      },
+      "icone": [],
+      "testo_colore": {
+       "en": "This hatch could be our way into the bowels of this beast.",
+       "it": "Questo portello potrebbe essere la nostra via verso le viscere di questa bestia."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "OPEN THE HATCH",
+         "it": "APRIRE IL PORTELLO"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "construction+technology",
+          "en": "Go to Log 753.",
+          "it": "Vai all'Annotazione 753."
+         }
+        ],
+        "tracce": []
+       }
+      ]
+     }
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 1,
+     "a": 3,
+     "senso": "1->3",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 4,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 1,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 1,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 4,
+     "a": 6,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "8, 22",
+    "missione": "M140",
+    "missione_opzionale": "",
+    "condizione": {
+     "titolo": {
+      "en": "POWER FIELD MAZE",
+      "it": "LABIRINTO DI CAMPI DI FORZA"
+     },
+     "testo_colore": {
+      "en": "Defensive force fields crisscross the surface.",
+      "it": "Campi di forza difensivi attraversano la superficie in ogni direzione."
+     },
+     "viaggio": {
+      "nome": {
+       "en": "TRAVEL",
+       "it": "VIAGGIO"
+      },
+      "icona": "diceCheck",
+      "pericolo": [],
+      "prova": true,
+      "costo": "",
+      "speciali": [
+       {
+        "req": "accident",
+        "effetto": "outcomeRed"
+       }
+      ],
+      "esiti": [
+       {
+        "colore": "green",
+        "req": "construction / technology / 3*die",
+        "en": "Move to a connected Sector.",
+        "it": "Muoviti in un Settore collegato."
+       },
+       {
+        "colore": "red",
+        "req": "",
+        "en": "Roll [dangerDieG].",
+        "it": "Tira [dangerDieG]."
+       }
+      ]
+     },
+     "tempo": {
+      "caselle": 2,
+      "en": "Go to Log 566.",
+      "it": "Vai all'Annotazione 566."
+     }
+    }
+   },
+   "altro": {
+    "en": "Top slots: 5× DISCOVERY, 3× THREAT.",
+    "it": "Spazi in alto: 5× SCOPERTA, 3× MINACCIA."
+   },
+   "dubbi": "Nessun nome in codice stampato (sottotitolo 'OUTER SHELL'). Sentiero 1-3: all'estremità del Settore 3 c'è il simbolo cerchio-con-barra, interpretato come senso unico 1->3. Sentiero 4-5: la linea parte dalla punta sopra il Settore 4 (a destra) e sale fino al lato sinistro del Settore 5. Crater: requisito speciale letto come 'gathering / scouting+construction' (raggruppamento ambiguo: potrebbe essere '(gathering / scouting)+construction'). Faint Signal: il requisito verde è '4 dadi rossi + 1 blu' oppure 'scouting+technology+xenology'. Power Field Maze: '3*die' = tre cubi tricolore. Inactive Machine Shop non ha azioni stampate. Iris Hatch ha solo la riga verde. Icone dei settori (riquadri a destra) distinte dalle icone stampate sulla carta (Debris Field: void)."
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2504637799905617651B6243D1A628C31252276D136664FEBE6AE8C91B7.jpg",
+   "tipo": "altro",
+   "pagine": "retro di copertina",
+   "descrizione": {
+    "en": "VICTORY POOL (Do not use until instructed!)",
+    "it": "RISERVA DELLA VITTORIA (Non usare finché non indicato!)"
+   },
+   "altro": {
+    "en": "Back cover of the Planetopedia: a large circle drawn over a planet illustration, used as the Victory Pool area.",
+    "it": "Retro di copertina del Planetopedia: un grande cerchio disegnato su un'illustrazione planetaria, usato come area della Riserva della Vittoria."
+   },
+   "dubbi": "Non è una plancia di pianeta. Traduzione di 'Victory Pool' non verificata col glossario ufficiale."
+  }
+ ]
+}

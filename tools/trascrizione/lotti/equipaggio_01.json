@@ -1,0 +1,215 @@
+{
+ "tipo": "equipaggio",
+ "immagini": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/destiny_32901.webp",
+   "nomi": [
+    "Destiny"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/lena_34408.webp",
+   "nomi": [
+    "Lena"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/tarif_32811.webp",
+   "nomi": [
+    "Tarif"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/reeve_32932.webp",
+   "nomi": [
+    "Reeve"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/evelyn_32911.webp",
+   "nomi": [
+    "Evelyn"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/gbolahan_34412.webp",
+   "nomi": [
+    "Gbolahan"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/brigitte_32918.webp",
+   "nomi": [
+    "Brigitte"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/blake_34415.webp",
+   "nomi": [
+    "Blake"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/zaima_32904.webp",
+   "nomi": [
+    "Zaima"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/charlie_32934.webp",
+   "nomi": [
+    "Charlie"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/aidan_32910.webp",
+   "nomi": [
+    "Aidan"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/ebe_32920.webp",
+   "nomi": [
+    "Ebe"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/theo_32926.webp",
+   "nomi": [
+    "Theo"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/ilse_34505.webp",
+   "nomi": [
+    "Ilse"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/koe_32919.webp",
+   "nomi": [
+    "Koe"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/arvi_32906.webp",
+   "nomi": [
+    "Arvi"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/elena_34401.webp",
+   "nomi": [
+    "Elena"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/avery_32801.webp",
+   "nomi": [
+    "Avery"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/francesca_32905.webp",
+   "nomi": [
+    "Francesca"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/mark_32925.webp",
+   "nomi": [
+    "Mark"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/maxim_34501.webp",
+   "nomi": [
+    "Maxim"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/indah_32900.webp",
+   "nomi": [
+    "Indah"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/narcisse_34605.webp",
+   "nomi": [
+    "Narcisse"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/javier_34400.webp",
+   "nomi": [
+    "Javier"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/keith_32802.webp",
+   "nomi": [
+    "Keith"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/jia_32816.webp",
+   "nomi": [
+    "Jia"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/christos_32917.webp",
+   "nomi": [
+    "Christos"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/bojana_32902.webp",
+   "nomi": [
+    "Bojana"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/andrew_32915.webp",
+   "nomi": [
+    "Andrew"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/amir/amir_34404.webp",
+   "nomi": [
+    "Amir"
+   ],
+   "lato": "fronte"
+  }
+ ]
+}

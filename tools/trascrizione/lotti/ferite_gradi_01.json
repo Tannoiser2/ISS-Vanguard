@@ -1,0 +1,156 @@
+{
+ "tipo": "ferite_gradi",
+ "immagini": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/wounded/wounded_30900.webp",
+   "nomi": [
+    "Wounded"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/panicked/panicked_31000.webp",
+   "nomi": [
+    "Panicked"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/freezing/freezing_31100.webp",
+   "nomi": [
+    "Freezing"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/exhausted/exhausted_31200.webp",
+   "nomi": [
+    "Exhausted"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/critically_wounded/critically_wounded_31300.webp",
+   "nomi": [
+    "Critically Wounded"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/burned/burned_31400.webp",
+   "nomi": [
+    "Burned"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/just_a_scratch/just_a_scratch_1000.webp",
+   "nomi": [
+    "Just a Scratch!"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34300.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34301.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34302.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34303.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34304.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34305.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34306.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34307.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34308.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34309.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34310.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34311.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34312.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34313.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34314.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34315.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34316.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34317.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34318.webp",
+   "nomi": [],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/tutorial_rank_up/tutorial_rank_up_1100.webp",
+   "nomi": [
+    "Tutorial Rank-Up"
+   ],
+   "lato": "fronte"
+  }
+ ]
+}

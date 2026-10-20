@@ -1,0 +1,257 @@
+{
+ "tipo": "atterraggio",
+ "immagini": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l18_9517.webp",
+   "nomi": [
+    "L18"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9517.webp",
+   "nomi": [
+    "L18"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l17_9516.webp",
+   "nomi": [
+    "L17"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9516.webp",
+   "nomi": [
+    "L17"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l16_9515.webp",
+   "nomi": [
+    "L16"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9515.webp",
+   "nomi": [
+    "L16"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l15_9514.webp",
+   "nomi": [
+    "L15"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9514.webp",
+   "nomi": [
+    "L15"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l14_9513.webp",
+   "nomi": [
+    "L14"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9513.webp",
+   "nomi": [
+    "L14"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l13_9512.webp",
+   "nomi": [
+    "L13"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9512.webp",
+   "nomi": [
+    "L13"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l12_9511.webp",
+   "nomi": [
+    "L12"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9511.webp",
+   "nomi": [
+    "L12"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l11_9510.webp",
+   "nomi": [
+    "L11"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9510.webp",
+   "nomi": [
+    "L11"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l10_9509.webp",
+   "nomi": [
+    "L10"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9509.webp",
+   "nomi": [
+    "L10"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l9_9508.webp",
+   "nomi": [
+    "L9"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9508.webp",
+   "nomi": [
+    "L9"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l8_9507.webp",
+   "nomi": [
+    "L8"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9507.webp",
+   "nomi": [
+    "L8"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l7_9506.webp",
+   "nomi": [
+    "L7"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9506.webp",
+   "nomi": [
+    "L7"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l6_9505.webp",
+   "nomi": [
+    "L6"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9505.webp",
+   "nomi": [
+    "L6"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l5_9504.webp",
+   "nomi": [
+    "L5"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9504.webp",
+   "nomi": [
+    "L5"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l4_9503.webp",
+   "nomi": [
+    "L4"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9503.webp",
+   "nomi": [
+    "L4"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l3_12102.webp",
+   "nomi": [
+    "L3"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_12102.webp",
+   "nomi": [
+    "L3"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l2_9501.webp",
+   "nomi": [
+    "L2"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9501.webp",
+   "nomi": [
+    "L2"
+   ],
+   "lato": "retro"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/l1_9500.webp",
+   "nomi": [
+    "L1"
+   ],
+   "lato": "fronte"
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/landing_cards/retro_9500.webp",
+   "nomi": [
+    "L1"
+   ],
+   "lato": "retro"
+  }
+ ]
+}

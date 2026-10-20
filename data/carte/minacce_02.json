@@ -1,0 +1,511 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/scintillating_shardfly/retro_7900.webp",
+   "nomi": [
+    "Scintillating Shardfly"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "SCINTILLATING SHARDFLY",
+    "it": "MOSCA DI SCHEGGE SCINTILLANTE"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/re_origination_beam/retro_7810.webp",
+   "nomi": [
+    "Re-Origination Beam"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "RE-ORIGINATION BEAM",
+    "it": "RAGGIO DI RI-ORIGINAZIONE"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/ophthalmoid/retro_7811.webp",
+   "nomi": [
+    "Ophthalmoid"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "OPHTHALMOID",
+    "it": "OFTALMOIDE"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/maw/retro_7801.webp",
+   "nomi": [
+    "Maw"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "MAW",
+    "it": "FAUCI"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/magnacereb/retro_7808.webp",
+   "nomi": [
+    "Magnacereb"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "MAGNACEREB",
+    "it": "MAGNACEREB"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/idemian_pilgrim/retro_19304.webp",
+   "nomi": [
+    "Idemian Pilgrim"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "FURIOUS PILGRIM",
+    "it": "PELLEGRINO FURIOSO"
+   },
+   "testo_colore": {
+    "en": "With their ceremony interrupted, the Idemian lashes at us with fury.",
+    "it": "Con la sua cerimonia interrotta, l'Idemiano si scaglia contro di noi con furia."
+   },
+   "icone": [],
+   "regole": {
+    "en": "Enraged Yell: Each Crewmember in the Sector with Furious Pilgrim or a connected Sector moves all dice of a chosen color to the Spent Pool.\nFurious Assault: Each Crewmember in the Sector with Furious Pilgrim rolls [dangerDieI]. Any of these Crewmembers may [spendDieGreen]+[spendDieGreen] to roll [dangerDieA] instead.",
+    "it": "Urlo Infuriato: Ogni Membro dell'Equipaggio nel Settore con il Pellegrino Furioso o in un Settore collegato sposta tutti i dadi di un colore a sua scelta nella Riserva dei Dadi Spesi.\nAssalto Furioso: Ogni Membro dell'Equipaggio nel Settore con il Pellegrino Furioso tira [dangerDieI]. Ognuno di questi Membri dell'Equipaggio può [spendDieGreen]+[spendDieGreen] per tirare invece [dangerDieA]."
+   },
+   "tempo": [
+    {
+     "casella": 1,
+     "en": "Enraged Yell",
+     "it": "Urlo Infuriato"
+    },
+    {
+     "casella": 2,
+     "en": "Furious Assault",
+     "it": "Assalto Furioso"
+    },
+    {
+     "casella": 3,
+     "en": "Flip this card.",
+     "it": "Gira questa carta."
+    }
+   ],
+   "azioni": [],
+   "dubbi": "Lato che si rivela dopo il fronte 'Idemian Pilgrim' (titolo stampato FURIOUS PILGRIM). Il primo dado Pericolo è letto come [dangerDieI] (lettera piccola, potrebbe essere T). Traccia del Tempo di 3 caselle con le etichette stampate sopra; le caselle 1 e 2 richiamano gli effetti descritti nel testo. Titoli/nomi degli effetti tradotti da me (non ufficiali)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/hunters_become_prey/retro_7902.webp",
+   "nomi": [
+    "Hunters Become Prey"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "HUNTERS BECOME PREY",
+    "it": "I CACCIATORI DIVENTANO PREDE"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/guardian_metahedron/retro_7807.webp",
+   "nomi": [
+    "Guardian Metahedron"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "BUBBLING METAHEDRON",
+    "it": "METAEDRO RIBOLLENTE"
+   },
+   "testo_colore": {
+    "en": "The Metahedron slowly reconstitutes itself.",
+    "it": "Il Metaedro si ricompone lentamente."
+   },
+   "icone": [],
+   "regole": {
+    "en": "",
+    "it": ""
+   },
+   "tempo": [
+    {
+     "casella": 1
+    },
+    {
+     "casella": 2
+    },
+    {
+     "casella": 3
+    },
+    {
+     "casella": 4
+    },
+    {
+     "casella": 5,
+     "en": "Flip this card.",
+     "it": "Gira questa carta."
+    }
+   ],
+   "azioni": [],
+   "dubbi": "Titolo stampato BUBBLING METAHEDRON (retro di Guardian Metahedron). Traccia di 5 caselle senza effetti intermedi; 'Flip this card.' è stampato a destra dell'ultima casella, attribuito alla casella 5. Titolo italiano non ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/gravity_rift/retro_7805.webp",
+   "nomi": [
+    "Gravity Rift"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "GRAVITY RIFT",
+    "it": "SQUARCIO GRAVITAZIONALE"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/flower_bug/retro_7901.webp",
+   "nomi": [
+    "Flower Bug"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "FLOWER BUG",
+    "it": "INSETTO FIORE"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/enraptured_visitor/retro_7800.webp",
+   "nomi": [
+    "Enraptured Visitor"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "ENRAPTURED VISITOR",
+    "it": "VISITATORE IN ESTASI"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/dust_storm/retro_7906.webp",
+   "nomi": [
+    "Dust Storm"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "DUST STORM",
+    "it": "TEMPESTA DI POLVERE"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/converted_arrogator_behemoth/retro_7802.webp",
+   "nomi": [
+    "Converted Arrogator Behemoth"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "CONVERTED ARROGATOR BEHEMOTH",
+    "it": "BEHEMOTH ARROGATOR CONVERTITO"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/carnivorous_thicket/retro_17907.webp",
+   "nomi": [
+    "Carnivorous Thicket"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "CARNIVOROUS THICKET",
+    "it": "BOSCAGLIA CARNIVORA"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/builder_s_biomebot/retro_7806.webp",
+   "nomi": [
+    "Builder's Biomebot"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "BUILDER'S BIOMEBOT",
+    "it": "BIOMEBOT DEL COSTRUTTORE"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/bombardment/retro_19103.webp",
+   "nomi": [
+    "Bombardment"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "BOMBARDMENT",
+    "it": "BOMBARDAMENTO"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/arrogator_warswarm/retro_19105.webp",
+   "nomi": [
+    "Arrogator Warswarm"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "ARROGATOR WARSWARM",
+    "it": "SCIAME DA GUERRA ARROGATOR"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/arrogator_guardian/retro_7809.webp",
+   "nomi": [
+    "Arrogator Guardian"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "SELF-REPAIRING GUARDIAN",
+    "it": "GUARDIANO AUTORIPARANTE"
+   },
+   "testo_colore": {
+    "en": "We simply don't have the firepower to incapacitate it for more than a few moments.",
+    "it": "Semplicemente non abbiamo la potenza di fuoco per metterlo fuori combattimento per più di qualche istante."
+   },
+   "icone": [],
+   "regole": {
+    "en": "",
+    "it": ""
+   },
+   "tempo": [
+    {
+     "casella": 1
+    },
+    {
+     "casella": 2,
+     "en": "Flip this card.",
+     "it": "Gira questa carta."
+    }
+   ],
+   "azioni": [],
+   "dubbi": "Titolo stampato SELF-REPAIRING GUARDIAN (retro di Arrogator Guardian). Traccia di 2 caselle; 'Flip this card.' a destra dell'ultima casella, attribuito alla casella 2. Titolo italiano non ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/arrogator_behemoth/retro_17308.webp",
+   "nomi": [
+    "Arrogator Behemoth"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "ARROGATOR BEHEMOTH",
+    "it": "BEHEMOTH ARROGATOR"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/aerugon_saboteur/retro_7804.webp",
+   "nomi": [
+    "Aerugon Saboteur"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "AERUGON SABOTEUR",
+    "it": "SABOTATORE AERUGON"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/adaptive_shield/retro_33403.webp",
+   "nomi": [
+    "Adaptive Shield"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "ADAPTIVE SHIELD",
+    "it": "SCUDO ADATTIVO"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/kurma/retro_33309.webp",
+   "nomi": [
+    "Kurma"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "KURMA",
+    "it": "KURMA"
+   },
+   "icone": [],
+   "altro": {
+    "en": "PLACE THIS SIDE DOWN",
+    "it": "METTI QUESTO LATO A FACCIA IN GIÙ"
+   },
+   "tempo": [],
+   "azioni": [],
+   "dubbi": "Lato di copertina: solo titolo, illustrazione e 'PLACE THIS SIDE DOWN'; le regole sono sull'altro lato. Titolo italiano non ufficiale (traduzione mia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/apex_predator/retro_33110.webp",
+   "nomi": [
+    "Apex Predator"
+   ],
+   "lato": "retro",
+   "titolo": {
+    "en": "GATHERING PREDATORS",
+    "it": "PREDATORI IN RADUNO"
+   },
+   "testo_colore": {
+    "en": "The danger has been averted. For a time.",
+    "it": "Il pericolo è stato scongiurato. Per ora."
+   },
+   "icone": [
+    "noSave"
+   ],
+   "regole": {
+    "en": "",
+    "it": ""
+   },
+   "tempo": [
+    {
+     "casella": 1
+    },
+    {
+     "casella": 2,
+     "en": "Flip this card.",
+     "it": "Gira questa carta."
+    }
+   ],
+   "azioni": [],
+   "dubbi": "Titolo stampato GATHERING PREDATORS (retro di Apex Predator), icona noSave in alto a destra. Traccia di 2 caselle; 'Flip this card.' attribuito alla casella 2. Titolo italiano non ufficiale."
+  }
+ ]
+}

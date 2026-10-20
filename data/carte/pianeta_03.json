@@ -1,0 +1,1089 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc25046390678656397519CBAD0038EBCD71ED920796F74E5256FD1480BD2.jpg",
+   "pagine": "4-5",
+   "pianeta": "PELLUCID",
+   "nome_in_codice": "TOI-2 C",
+   "decollo_log": 29,
+   "evac_log": 372,
+   "descrizione": {
+    "en": "An Earth-sized planet on the border of the habitable zone, with an elongated orbit, it gave life to an early space age civilization. Unfortunately, it was all but wiped away by when a strange, crystalline structure shattered the planet to pieces.",
+    "it": "Un pianeta delle dimensioni della Terra al confine della zona abitabile, con un'orbita allungata, ha dato vita a una civiltà agli albori dell'era spaziale. Purtroppo, è stata quasi del tutto spazzata via quando una strana struttura cristallina ha mandato in frantumi il pianeta."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.158,
+     "y": 0.5,
+     "w": 0.2015,
+     "h": 0.257,
+     "icone": [
+      "lander",
+      "void",
+      "ruins"
+     ],
+     "pdi": "ORBITING SHARD",
+     "stampato": {
+      "titolo": {
+       "en": "ORBITING SHARD",
+       "it": "FRAMMENTO ORBITANTE"
+      },
+      "icone": [
+       "noMovement"
+      ],
+      "testo_colore": {
+       "en": "Though buried in dust and half-melted, the artificial structures are clearly visible.",
+       "it": "Anche se sepolte nella polvere e mezze fuse, le strutture artificiali sono chiaramente visibili."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "SCOUT THE SITE",
+         "it": "ESPLORARE IL SITO"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "physical / gathering / scouting",
+          "effetto": "outcomeGreenProgress"
+         },
+         {
+          "req": "accident",
+          "effetto": "outcomeRedProgress"
+         }
+        ],
+        "esiti": [],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 4,
+          "en": "Go to Log 210.",
+          "it": "Vai all'Annotazione 210."
+         },
+         {
+          "colore": "red",
+          "caselle": 3,
+          "en": "[spendDie] + [spendDie].",
+          "it": "[spendDie] + [spendDie]."
+         }
+        ],
+        "frecce": ""
+       }
+      ]
+     }
+    },
+    {
+     "n": 2,
+     "x": 0.303,
+     "y": 0.83,
+     "w": 0.2015,
+     "h": 0.257,
+     "icone": [
+      "void",
+      "crystalline"
+     ],
+     "pdi": "CRYSTALLINE FILAMENTS",
+     "stampato": {
+      "titolo": {
+       "en": "CRYSTALLINE FILAMENTS",
+       "it": "FILAMENTI CRISTALLINI"
+      },
+      "testo_colore": {
+       "en": "The arm of the crystal, extending deep into space, is difficult to traverse – but its samples might help us understand this phenomenon.",
+       "it": "Il braccio del cristallo, che si estende in profondità nello spazio, è difficile da attraversare, ma i suoi campioni potrebbero aiutarci a comprendere questo fenomeno."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "STUDY THE CRYSTAL",
+         "it": "STUDIARE IL CRISTALLO"
+        },
+        "icona": "diceCheck",
+        "pericolo": [
+         "dangerDieA"
+        ],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "gathering+scienceDice+technology",
+          "en": "Refresh all [die] used in this Dice Check.",
+          "it": "Ricarica tutti i [die] usati in questa Prova."
+         },
+         {
+          "colore": "green",
+          "req": "redDie+greenDie",
+          "en": "Gain 1 [success] and Unique Discovery 2, replace with card P111.",
+          "it": "Ottieni 1 [success] e la Scoperta Eccezionale 2, sostituisci con la carta P111."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Go to Log 54.",
+          "it": "Vai all'Annotazione 54."
+         }
+        ],
+        "frecce": "Il risultato giallo è collegato al verde con una freccia: ottenendo il verde si applicano entrambi."
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "x": 0.303,
+     "y": 0.171,
+     "w": 0.2015,
+     "h": 0.257,
+     "icone": [
+      "void",
+      "ruins"
+     ],
+     "pdi": "FAILED SHELTERS",
+     "stampato": {
+      "titolo": {
+       "en": "FAILED SHELTERS",
+       "it": "RIFUGI FALLITI"
+      },
+      "testo_colore": {
+       "en": "This desperate attempt to survive the apocalypse was doomed from the start – no bunker or shelter could have survived this.",
+       "it": "Questo disperato tentativo di sopravvivere all'apocalisse era condannato fin dall'inizio: nessun bunker o rifugio avrebbe potuto resistere a tutto questo."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "OPEN THE SHELTERS",
+         "it": "APRIRE I RIFUGI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [
+         "dangerDieA"
+        ],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "technology",
+          "en": "Gain 2 Alien Tech Leads.",
+          "it": "Ottieni 2 Indizi Tecnologia Aliena."
+         },
+         {
+          "colore": "green",
+          "req": "redDie+blueDie",
+          "en": "Gain 1 [success] and Unique Discovery 3, replace with card P112.",
+          "it": "Ottieni 1 [success] e la Scoperta Eccezionale 3, sostituisci con la carta P112."
+         }
+        ],
+        "frecce": "Il risultato giallo è collegato al verde con una freccia: ottenendo il verde si applicano entrambi."
+       }
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "x": 0.643,
+     "y": 0.83,
+     "w": 0.2015,
+     "h": 0.257,
+     "icone": [
+      "void",
+      "ruins"
+     ],
+     "log": 16
+    },
+    {
+     "n": 5,
+     "x": 0.643,
+     "y": 0.171,
+     "w": 0.2015,
+     "h": 0.257,
+     "icone": [
+      "crystalline",
+      "important"
+     ],
+     "log": 15
+    },
+    {
+     "n": 6,
+     "x": 0.643,
+     "y": 0.5,
+     "w": 0.2015,
+     "h": 0.257,
+     "icone": []
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 1,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 1,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "dangerDieA"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 2,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "spendDie",
+      "spendDie"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 6,
+     "senso": "doppio",
+     "icone": [
+      "spendDie",
+      "spendDie"
+     ]
+    },
+    {
+     "da": 6,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "2, 3",
+    "scoperta_eccezionale_testo": {
+     "en": "If you gain a Unique Discovery and there's no card left here, gain [success] instead.",
+     "it": "Se ottieni una Scoperta Eccezionale e qui non è rimasta alcuna carta, ottieni invece [success]."
+    },
+    "missione": "M21",
+    "missione_opzionale": "",
+    "condizione": "CRYSTALLINE SHARDS (stampata)",
+    "condizione_stampata": {
+     "titolo": {
+      "en": "CRYSTALLINE SHARDS",
+      "it": "SCHEGGE CRISTALLINE"
+     },
+     "testo_colore": {
+      "en": "Sharp shards of pale red crystal carpet the rock beneath our feet.",
+      "it": "Affilate schegge di cristallo rosso pallido ricoprono la roccia sotto i nostri piedi."
+     },
+     "effetto_dadi": {
+      "req": "gathering",
+      "en": "Gain 1 Mineral Lead.",
+      "it": "Ottieni 1 Indizio Minerale."
+     },
+     "viaggio": {
+      "nome": {
+       "en": "TRAVEL",
+       "it": "VIAGGIO"
+      },
+      "icona": "travel",
+      "prova": false,
+      "costo": "spendDie / dangerDieA",
+      "en": "[spendDie] or roll [dangerDieA] to move to a connected Sector.",
+      "it": "[spendDie] o tira [dangerDieA] per muoverti in un Settore collegato."
+     },
+     "tempo": {
+      "caselle": 6,
+      "en": "Replace with card G02.",
+      "it": "Sostituisci con la carta G02."
+     }
+    }
+   },
+   "altro": {
+    "en": "Top tabs: DISCOVERY x5. Side tab on the right edge: MISSION.",
+    "it": "Linguette in alto: DISCOVERY x5 (Scoperte). Linguetta sul bordo destro: MISSION (Missione)."
+   },
+   "dubbi": "Settore 5: icona bioma letta come crystalline (potrebbe essere vegetation). Settore 6 senza icone né testo. Nella Condizione 'effetto_dadi' = riga [gathering] ▼ effetto (campo non previsto dallo schema). Senso dei sentieri: chevron a entrambi i capi, quindi tutti doppi. Il testo inglese della descrizione contiene 'wiped away by when' (refuso originale, trascritto così)."
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc24674799349841628805FAAD54B45B2B11287789DB75DA9F573CDBB1B6D.jpg",
+   "pagine": "18-19",
+   "pianeta": "COUSIN",
+   "nome_in_codice": "HR 5730 C",
+   "decollo_log": 395,
+   "evac_log": 310,
+   "descrizione": {
+    "en": "Cousin is similar to our Earth. Its flora resembles our trees and ferns, its fauna consists of mammal-like creatures, fish, and insects. They are, of course, different from Earth's species, but our taxonomy can assign them to known classes and orders. And, what's most important for the Away Team, you don't need a full exosuit to explore this area – light protection and an air filter are enough to protect a human being.",
+    "it": "Cousin è simile alla nostra Terra. La sua flora ricorda i nostri alberi e le nostre felci, la sua fauna è composta da creature simili a mammiferi, pesci e insetti. Sono, ovviamente, diversi dalle specie terrestri, ma la nostra tassonomia può assegnarli a classi e ordini noti. E, cosa più importante per la Squadra di Sbarco, non serve un'esotuta completa per esplorare quest'area: una protezione leggera e un filtro dell'aria bastano a proteggere un essere umano."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.645,
+     "y": 0.827,
+     "w": 0.1975,
+     "h": 0.2525,
+     "icone": [
+      "lander",
+      "vegetation"
+     ],
+     "pdi": "SOGGY CLEARING",
+     "stampato": {
+      "titolo": {
+       "en": "SOGGY CLEARING",
+       "it": "RADURA FRADICIA"
+      },
+      "testo_colore": {
+       "en": "The area is damp enough – our lander shouldn't set the jungle on fire.",
+       "it": "L'area è abbastanza umida: il nostro lander non dovrebbe incendiare la giungla."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "TAKE SAMPLES",
+         "it": "PRELEVARE CAMPIONI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "gathering / biology",
+          "en": "Gain 1 Strange Flora Lead.",
+          "it": "Ottieni 1 Indizio Strana Vegetazione."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieD].",
+          "it": "Tira [dangerDieD]."
+         }
+        ],
+        "frecce": ""
+       },
+       {
+        "nome": {
+         "en": "SCOUT THE AREA",
+         "it": "PERLUSTRARE L'AREA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "scouting+physical",
+          "en": "Go to Log 342.",
+          "it": "Vai all'Annotazione 342."
+         }
+        ],
+        "frecce": ""
+       }
+      ]
+     }
+    },
+    {
+     "n": 2,
+     "x": 0.645,
+     "y": 0.503,
+     "w": 0.1975,
+     "h": 0.2525,
+     "icone": [
+      "crystalline",
+      "vegetation",
+      "rocky"
+     ],
+     "pdi": "TREACHEROUS RAVINES",
+     "stampato": {
+      "titolo": {
+       "en": "TREACHEROUS RAVINES",
+       "it": "GOLE INSIDIOSE"
+      },
+      "icone": [
+       "noMovement"
+      ],
+      "testo_colore": {
+       "en": "The land is scarred by deep ravines and adorned with glimmering crystal structures.",
+       "it": "La terra è segnata da profonde gole e adornata da scintillanti strutture di cristallo."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "MAP THE AREA",
+         "it": "MAPPARE L'AREA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRedProgress"
+         },
+         {
+          "req": "scouting / redDie+greenDie+greenDie",
+          "effetto": "outcomeGreenProgress"
+         }
+        ],
+        "esiti": [],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 3,
+          "en": "Gain 1 [success], replace with card P210.",
+          "it": "Ottieni 1 [success], sostituisci con la carta P210."
+         },
+         {
+          "colore": "red",
+          "caselle": 1,
+          "en": "Roll [dangerDieC].",
+          "it": "Tira [dangerDieC]."
+         }
+        ],
+        "frecce": ""
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "x": 0.645,
+     "y": 0.178,
+     "w": 0.1975,
+     "h": 0.2525,
+     "icone": [
+      "crystalline"
+     ],
+     "pdi": "CRYSTALLINE JUNGLE",
+     "stampato": {
+      "titolo": {
+       "en": "CRYSTALLINE JUNGLE",
+       "it": "GIUNGLA CRISTALLINA"
+      },
+      "testo_colore": {
+       "en": "These structures are too similar to those from Pellucid. It cannot be a coincidence.",
+       "it": "Queste strutture sono troppo simili a quelle di Pellucid. Non può essere una coincidenza."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "CONFIRM OUR SUSPICIONS",
+         "it": "CONFERMARE I NOSTRI SOSPETTI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "scouting / greenDie+blueDie+blueDie",
+          "effetto": "outcomeGreenProgress"
+         }
+        ],
+        "esiti": [],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 3,
+          "en": "Go to Log 314.",
+          "it": "Vai all'Annotazione 314."
+         }
+        ],
+        "frecce": ""
+       }
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "x": 0.354,
+     "y": 0.827,
+     "w": 0.1975,
+     "h": 0.2525,
+     "icone": [
+      "vegetation",
+      "water"
+     ]
+    },
+    {
+     "n": 5,
+     "x": 0.237,
+     "y": 0.503,
+     "w": 0.1975,
+     "h": 0.2525,
+     "icone": [
+      "vegetation",
+      "rocky"
+     ],
+     "pdi": "FEEDING GROUND",
+     "stampato": {
+      "titolo": {
+       "en": "FEEDING GROUND",
+       "it": "TERRENO DI PASCOLO"
+      },
+      "testo_colore": {
+       "en": "Recliners, a harmless, lazy species, gather to nibble on leaves dripping with sap.",
+       "it": "I Reclinanti, una specie innocua e pigra, si radunano per brucare foglie grondanti di linfa."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "APPROACH RECLINERS",
+         "it": "AVVICINARE I RECLINANTI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [],
+        "esiti": [
+         {
+          "colore": "green",
+          "req": "xenology / greenDie+greenDie+blueDie",
+          "en": "Go to Log 369.",
+          "it": "Vai all'Annotazione 369."
+         }
+        ],
+        "frecce": ""
+       }
+      ]
+     }
+    },
+    {
+     "n": 6,
+     "x": 0.354,
+     "y": 0.178,
+     "w": 0.1975,
+     "h": 0.2525,
+     "icone": [
+      "vegetation",
+      "water"
+     ],
+     "pdi": "PROMISING LAKE",
+     "stampato": {
+      "titolo": {
+       "en": "PROMISING LAKE",
+       "it": "LAGO PROMETTENTE"
+      },
+      "testo_colore": {
+       "en": "This lake is teeming with life – however, we should research it before examining its flora and fauna.",
+       "it": "Questo lago brulica di vita; tuttavia, dovremmo studiarlo prima di esaminarne la flora e la fauna."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "STUDY THE WATERS",
+         "it": "STUDIARE LE ACQUE"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "xenology+scienceDice",
+          "en": "Gain 1 [success].",
+          "it": "Ottieni 1 [success]."
+         },
+         {
+          "colore": "green",
+          "req": "greenDie+greenDie+blueDie+blueDie",
+          "en": "Go to Log 442.",
+          "it": "Vai all'Annotazione 442."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieC].",
+          "it": "Tira [dangerDieC]."
+         }
+        ],
+        "frecce": "Il risultato giallo è collegato al verde con una freccia: ottenendo il verde si applicano entrambi."
+       }
+      ]
+     }
+    },
+    {
+     "n": 7,
+     "x": 0.121,
+     "y": 0.827,
+     "w": 0.1975,
+     "h": 0.2525,
+     "icone": [
+      "important"
+     ],
+     "log": 441
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 6,
+     "a": 5,
+     "senso": "doppio",
+     "icone": [
+      "spendDie",
+      "spendDie"
+     ]
+    },
+    {
+     "da": 6,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 5,
+     "a": 4,
+     "senso": "doppio",
+     "icone": [
+      "spendDie",
+      "spendDie"
+     ]
+    },
+    {
+     "da": 4,
+     "a": 1,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 3,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 2,
+     "a": 1,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "17, 34",
+    "missione": "",
+    "missione_opzionale": "",
+    "condizione": "BREEZE (stampata)",
+    "condizione_stampata": {
+     "titolo": {
+      "en": "BREEZE",
+      "it": "BREZZA"
+     },
+     "testo_colore": {
+      "en": "The pleasant wind carries warm air and a refreshing drizzle.",
+      "it": "Il vento piacevole porta aria calda e una pioggerella rinfrescante."
+     },
+     "effetto_dadi": {
+      "req": "anySameIcons+anySameIcons",
+      "en": "Refresh 1 [die].",
+      "it": "Ricarica 1 [die]."
+     },
+     "viaggio": {
+      "nome": {
+       "en": "TRAVEL",
+       "it": "VIAGGIO"
+      },
+      "icona": "travel",
+      "prova": false,
+      "costo": "spendDie",
+      "en": "[spendDie] to move to a connected Sector.",
+      "it": "[spendDie] per muoverti in un Settore collegato."
+     },
+     "tempo": {
+      "caselle": 2,
+      "en": "Replace with card G27.",
+      "it": "Sostituisci con la carta G27."
+     }
+    }
+   },
+   "altro": {
+    "en": "Top tabs: DISCOVERY x5, THREAT x3. Side tab: OPTIONAL MISSION. Mission and Optional Mission boxes are empty.",
+    "it": "Linguette in alto: DISCOVERY x5, THREAT x3 (Minacce). Linguetta laterale: OPTIONAL MISSION. I riquadri Missione e Missione Opzionale sono vuoti."
+   },
+   "dubbi": "Settore 7 (Log 441, icona important) non ha sentieri disegnati: probabilmente si collega tramite Annotazione. Icone bioma crystalline/vegetation distinte a vista (schegge vs foglia): settori 2 e 3 letti con crystalline. Settore 4 vuoto (nessun testo). Sentiero 6-2 e 4-1 attraversano la piega centrale (travel). 'Recliners' tradotto 'Reclinanti' (nome di specie non verificato nell'app)."
+  },
+  {
+   "file": "/home/claude/src/tts/Mods/Images/httpssteamusercontentaakamaihdnetugc2504637799911079962C65289EBD9E8F3A7F632D86CC0BF67C2F6E81B21.jpg",
+   "pagine": "32-33",
+   "pianeta": "FETCH",
+   "nome_in_codice": "LF-122/45-47",
+   "decollo_log": 768,
+   "evac_log": 785,
+   "descrizione": {
+    "en": "A belt consisting of 78 identical planets with great potential for the development of civilization. Each of them looks almost identical, except for the 3 planets that have been modified.",
+    "it": "Una cintura composta da 78 pianeti identici con un grande potenziale per lo sviluppo della civiltà. Ognuno di essi appare quasi identico, tranne i 3 pianeti che sono stati modificati."
+   },
+   "settori": [
+    {
+     "n": 1,
+     "x": 0.121,
+     "y": 0.259,
+     "w": 0.1975,
+     "h": 0.2525,
+     "icone": [
+      "lander",
+      "volvanic",
+      "rocky"
+     ],
+     "pdi": "HELL",
+     "stampato": {
+      "titolo": {
+       "en": "HELL",
+       "it": "INFERNO"
+      },
+      "testo_colore": {
+       "en": "Toxic ammonia fumes and runaway global warming rendered this planet uninhabitable.",
+       "it": "Fumi tossici di ammoniaca e un riscaldamento globale fuori controllo hanno reso questo pianeta inabitabile."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "WANDER TOWARD BUILDINGS",
+         "it": "VAGARE VERSO GLI EDIFICI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRedProgress"
+         },
+         {
+          "req": "scouting+defence",
+          "effetto": "outcomeGreenProgress"
+         }
+        ],
+        "esiti": [],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 2,
+          "en": "Go to Log 811.",
+          "it": "Vai all'Annotazione 811."
+         },
+         {
+          "colore": "red",
+          "caselle": 2,
+          "en": "Each Crewmember in this Sector gains a Burned Injury.",
+          "it": "Ogni Membro dell'Equipaggio in questo Settore subisce una Ferita Ustione."
+         }
+        ],
+        "frecce": ""
+       }
+      ]
+     },
+     "condizione_stampata": {
+      "titolo": {
+       "en": "TOXIC ATMOSPHERE (SECTOR 1)",
+       "it": "ATMOSFERA TOSSICA (SETTORE 1)"
+      },
+      "testo_colore": {
+       "en": "In such a poisoned atmosphere, only nitrophilic bacteria can survive.",
+       "it": "In un'atmosfera così avvelenata, solo i batteri nitrofili possono sopravvivere."
+      },
+      "effetto_dadi": {
+       "req": "biology",
+       "en": "Gain 1 Microorganism Lead.",
+       "it": "Ottieni 1 Indizio Microorganismo."
+      },
+      "viaggio": {
+       "nome": {
+        "en": "TRAVEL",
+        "it": "VIAGGIO"
+       },
+       "icona": "travel",
+       "prova": false,
+       "costo": "spendDie",
+       "en": "You may perform this Action only if there is a Lander in your Sector. [spendDie] to place at least 1 Crewmember and Lander from this Sector to any other connected Sector.",
+       "it": "Puoi eseguire questa Azione solo se nel tuo Settore c'è un Lander. [spendDie] per collocare almeno 1 Membro dell'Equipaggio e il Lander da questo Settore in qualsiasi altro Settore collegato."
+      },
+      "tempo": {
+       "caselle": 2,
+       "en": "Each Crewmember in Sector 1 rolls [dangerDieD]. Reset this track.",
+       "it": "Ogni Membro dell'Equipaggio nel Settore 1 tira [dangerDieD]. Azzera questa traccia."
+      }
+     }
+    },
+    {
+     "n": 2,
+     "x": 0.354,
+     "y": 0.559,
+     "w": 0.1975,
+     "h": 0.2525,
+     "icone": [
+      "lander",
+      "desert",
+      "rocky"
+     ],
+     "pdi": "DESERT",
+     "stampato": {
+      "titolo": {
+       "en": "DESERT",
+       "it": "DESERTO"
+      },
+      "testo_colore": {
+       "en": "This planet is harsh but habitable. A towering dome looming in the distance was probably meant to provide shelter from the raging winds.",
+       "it": "Questo pianeta è ostile ma abitabile. Un'imponente cupola che si staglia in lontananza doveva probabilmente offrire riparo dai venti furiosi."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "WALK OVER TO THE DOME",
+         "it": "RAGGIUNGERE LA CUPOLA"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRedProgress"
+         },
+         {
+          "req": "greenDie+blueDie+blueDie",
+          "effetto": "outcomeGreenProgress"
+         }
+        ],
+        "esiti": [],
+        "tracce": [
+         {
+          "colore": "green",
+          "caselle": 3,
+          "en": "Replace with card P364.",
+          "it": "Sostituisci con la carta P364."
+         },
+         {
+          "colore": "red",
+          "caselle": 2,
+          "en": "Each Crewmember in this Sector rolls [dangerDieC].",
+          "it": "Ogni Membro dell'Equipaggio in questo Settore tira [dangerDieC]."
+         }
+        ],
+        "frecce": ""
+       }
+      ]
+     },
+     "condizione_stampata": {
+      "titolo": {
+       "en": "GUSTY WIND (SECTOR 2)",
+       "it": "VENTO A RAFFICHE (SETTORE 2)"
+      },
+      "testo_colore": {
+       "en": "The wind is so strong that erosion is progressing rapidly on this planet, revealing mineral deposits.",
+       "it": "Il vento è così forte che l'erosione avanza rapidamente su questo pianeta, portando alla luce giacimenti minerali."
+      },
+      "effetto_dadi": {
+       "req": "gathering",
+       "en": "Gain 1 Mineral Lead.",
+       "it": "Ottieni 1 Indizio Minerale."
+      },
+      "viaggio": {
+       "nome": {
+        "en": "TRAVEL",
+        "it": "VIAGGIO"
+       },
+       "icona": "travel",
+       "prova": false,
+       "costo": "spendDie",
+       "en": "You may perform this Action only if there is a Lander in your Sector. [spendDie] to place at least 1 Crewmember and Lander from this Sector to any other connected Sector.",
+       "it": "Puoi eseguire questa Azione solo se nel tuo Settore c'è un Lander. [spendDie] per collocare almeno 1 Membro dell'Equipaggio e il Lander da questo Settore in qualsiasi altro Settore collegato."
+      },
+      "tempo": {
+       "caselle": 3,
+       "en": "Each Crewmember in Sector 2 rolls [dangerDieC]. Reset this track.",
+       "it": "Ogni Membro dell'Equipaggio nel Settore 2 tira [dangerDieC]. Azzera questa traccia."
+      }
+     }
+    },
+    {
+     "n": 3,
+     "x": 0.645,
+     "y": 0.559,
+     "w": 0.1975,
+     "h": 0.2525,
+     "icone": [
+      "lander",
+      "rocky"
+     ],
+     "pdi": "PARADISE",
+     "stampato": {
+      "titolo": {
+       "en": "PARADISE",
+       "it": "PARADISO"
+      },
+      "icone": [
+       "vegetation"
+      ],
+      "testo_colore": {
+       "en": "This world is not as pristine as we initially thought. A mysterious hatch leading underground proves we are not the first to land here.",
+       "it": "Questo mondo non è così incontaminato come pensavamo all'inizio. Una misteriosa botola che conduce sottoterra dimostra che non siamo i primi ad atterrare qui."
+      },
+      "azioni": [
+       {
+        "nome": {
+         "en": "FIND MORE CLUES",
+         "it": "TROVARE ALTRI INDIZI"
+        },
+        "icona": "diceCheck",
+        "pericolo": [],
+        "prova": true,
+        "costo": "",
+        "speciali": [
+         {
+          "req": "accident",
+          "effetto": "outcomeRed"
+         }
+        ],
+        "esiti": [
+         {
+          "colore": "yellow",
+          "req": "biology+xenology+scouting",
+          "en": "Gain 2 Strange Flora Leads.",
+          "it": "Ottieni 2 Indizi Strana Vegetazione."
+         },
+         {
+          "colore": "green",
+          "req": "greenDie+greenDie+blueDie",
+          "en": "Go to Log 821.",
+          "it": "Vai all'Annotazione 821."
+         },
+         {
+          "colore": "red",
+          "req": "",
+          "en": "Roll [dangerDieD].",
+          "it": "Tira [dangerDieD]."
+         }
+        ],
+        "frecce": "Il risultato giallo è collegato al verde con una freccia: ottenendo il verde si applicano entrambi."
+       }
+      ]
+     },
+     "condizione_stampata": {
+      "titolo": {
+       "en": "WILD JUNGLE (SECTOR 3)",
+       "it": "GIUNGLA SELVAGGIA (SETTORE 3)"
+      },
+      "testo_colore": {
+       "en": "The perfect living conditions made the vegetation grow amazingly, even on the rocky ground.",
+       "it": "Le condizioni di vita perfette hanno fatto crescere la vegetazione in modo straordinario, persino sul terreno roccioso."
+      },
+      "effetto_dadi": {
+       "req": "biology",
+       "en": "Gain 1 Strange Flora Lead.",
+       "it": "Ottieni 1 Indizio Strana Vegetazione."
+      },
+      "viaggio": {
+       "nome": {
+        "en": "TRAVEL",
+        "it": "VIAGGIO"
+       },
+       "icona": "travel",
+       "prova": false,
+       "costo": "spendDie",
+       "en": "You may perform this Action only if there is a Lander in your Sector. [spendDie] to place at least 1 Crewmember and Lander from this Sector to any other connected Sector.",
+       "it": "Puoi eseguire questa Azione solo se nel tuo Settore c'è un Lander. [spendDie] per collocare almeno 1 Membro dell'Equipaggio e il Lander da questo Settore in qualsiasi altro Settore collegato."
+      },
+      "tempo": {
+       "caselle": 4,
+       "en": "Each Crewmember in Sector 3 rolls [dangerDieA]. Reset this track.",
+       "it": "Ogni Membro dell'Equipaggio nel Settore 3 tira [dangerDieA]. Azzera questa traccia."
+      }
+     }
+    }
+   ],
+   "sentieri": [
+    {
+     "da": 1,
+     "a": 2,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 1,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    },
+    {
+     "da": 2,
+     "a": 3,
+     "senso": "doppio",
+     "icone": [
+      "travel"
+     ]
+    }
+   ],
+   "colonna_destra": {
+    "scoperta_eccezionale": "15, 23, 24",
+    "missione": "M161",
+    "missione_opzionale": "",
+    "condizione": "FETCH PLANETS BELT (stampata)",
+    "condizione_stampata": {
+     "titolo": {
+      "en": "FETCH PLANETS BELT",
+      "it": "CINTURA PLANETARIA DI FETCH"
+     },
+     "testo_colore": {
+      "en": "The sibling planets orbit close – with the help of a good jetpack you can move between them.",
+      "it": "I pianeti fratelli orbitano vicini: con l'aiuto di un buon jetpack puoi spostarti dall'uno all'altro."
+     },
+     "testo": {
+      "en": "During this Planetary Exploration, each Sector has a special Global Condition.",
+      "it": "Durante questa Esplorazione Planetaria, ogni Settore ha una Condizione Generale speciale."
+     }
+    }
+   },
+   "altro": {
+    "en": "Each of the 3 Sectors has its own printed Global Condition below it (stored in settori[].condizione_stampata). Top tabs: DISCOVERY x5, THREAT x2. Side tab: OPTIONAL MISSION.",
+    "it": "Ognuno dei 3 Settori ha la propria Condizione Generale stampata sotto di sé (in settori[].condizione_stampata). Linguette in alto: DISCOVERY x5, THREAT x2. Linguetta laterale: OPTIONAL MISSION."
+   },
+   "dubbi": "Il viaggio fra settori avviene con l'Azione TRAVEL delle Condizioni di settore (richiede Lander nel Settore, sposta Lander + almeno 1 Membro). Sector 3 PARADISE: icona vegetation stampata dentro la carta (oltre a rocky sul bordo). Riquadri delle condizioni di settore: GC1 x≈0.054-0.193 y≈0.395-0.644, GC2 x≈0.256-0.425 y≈0.694-0.944, GC3 x≈0.546-0.715 y≈0.694-0.944 (frazioni immagine). 'Burned Injury' tradotto 'Ferita Ustione'."
+  }
+ ]
+}

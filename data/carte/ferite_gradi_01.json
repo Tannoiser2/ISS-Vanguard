@@ -1,0 +1,919 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/wounded/wounded_30900.webp",
+   "nomi": [
+    "Wounded"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "WOUNDED",
+    "it": "FERITO"
+   },
+   "icone": [
+    "damage"
+   ],
+   "effetti": [
+    {
+     "icona": "damage",
+     "en": "[spendDie]",
+     "it": "[spendDie]"
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/panicked/panicked_31000.webp",
+   "nomi": [
+    "Panicked"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "PANICKED",
+    "it": "PANICO"
+   },
+   "icone": [
+    "mental",
+    "special"
+   ],
+   "effetti": [
+    {
+     "icona": "mental",
+     "en": "Reroll 1 [vanguard] from your Roll Pool.",
+     "it": "Ritira 1 [vanguard] dalla tua Riserva del Tiro."
+    },
+    {
+     "icona": "special",
+     "en": "Lose 1 Supplies.",
+     "it": "Perdi 1 Provviste."
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/freezing/freezing_31100.webp",
+   "nomi": [
+    "Freezing"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "FREEZING",
+    "it": "CONGELAMENTO"
+   },
+   "icone": [
+    "damage",
+    "heavyDamage"
+   ],
+   "effetti": [
+    {
+     "icona": "damage",
+     "en": "[spendDie] [spendDie]",
+     "it": "[spendDie] [spendDie]"
+    },
+    {
+     "icona": "heavyDamage",
+     "en": "[sacrifaceDie]",
+     "it": "[sacrifaceDie]"
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/exhausted/exhausted_31200.webp",
+   "nomi": [
+    "Exhausted"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "EXHAUSTED",
+    "it": "ALLO STREMO"
+   },
+   "icone": [
+    "heavyDamage",
+    "mental"
+   ],
+   "effetti": [
+    {
+     "icona": "heavyDamage",
+     "en": "[sacrifaceDie]",
+     "it": "[sacrifaceDie]"
+    },
+    {
+     "icona": "mental",
+     "en": "[outcomeRedProgress]. If the Dice Check has no track, [outcomeRed], if available.",
+     "it": "[outcomeRedProgress]. Se la Prova non ha tracce, [outcomeRed], se disponibile."
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/critically_wounded/critically_wounded_31300.webp",
+   "nomi": [
+    "Critically Wounded"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "CRITICALLY WOUNDED",
+    "it": "LESIONE GRAVE"
+   },
+   "icone": [
+    "damage",
+    "heavyDamage"
+   ],
+   "effetti": [
+    {
+     "icona": "damage",
+     "en": "[sacrifaceDie]",
+     "it": "[sacrifaceDie]"
+    },
+    {
+     "icona": "heavyDamage",
+     "en": "Gain a Wounded Injury.",
+     "it": "Ottieni una Ferita Ferito."
+    }
+   ],
+   "dubbi": "Traduzione 'Gain a Wounded Injury' resa letteralmente con il glossario (Wounded = Ferito): verificare la dicitura ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/burned/burned_31400.webp",
+   "nomi": [
+    "Burned"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "BURNED",
+    "it": "USTIONE"
+   },
+   "icone": [
+    "special"
+   ],
+   "effetti": [
+    {
+     "icona": "special",
+     "en": "All [basic] results count as [accident] results instead.",
+     "it": "Tutti i risultati [basic] contano invece come risultati [accident]."
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/just_a_scratch/just_a_scratch_1000.webp",
+   "nomi": [
+    "Just a Scratch!"
+   ],
+   "lato": "fronte",
+   "titolo": {
+    "en": "JUST A SCRATCH!",
+    "it": "SOLO UN GRAFFIO!"
+   },
+   "icone": [
+    "heavyDamage"
+   ],
+   "effetti": [
+    {
+     "icona": "heavyDamage",
+     "en": "[spendDie]",
+     "it": "[spendDie]"
+    }
+   ],
+   "testo": {
+    "en": "If you have a Just A Scratch Injury, you cannot gain another Injury. If you gain another Injury, ignore it.",
+    "it": "Se hai una Ferita Solo un Graffio, non puoi ottenere un'altra Ferita. Se ottieni un'altra Ferita, ignorala."
+   },
+   "dubbi": "Titolo italiano 'Solo un graffio!' non presente nel glossario: traduzione proposta. Carta del tutorial/starter (id 1000)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34300.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "AT THE END OF THE PLANETARY EXPLORATION: Flip this card if you have 3 Mineral Discoveries on your Lander board. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "AL TERMINE DELL'ESPLORAZIONE PLANETARIA: Gira questa carta se hai 3 Scoperte Minerale sulla tua plancia del Lander. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "fine_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Flip this card if you have 3 Mineral Discoveries on your Lander board.",
+     "it": "Gira questa carta se hai 3 Scoperte Minerale sulla tua plancia del Lander."
+    }
+   },
+   "azioni": [],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34301.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "AT THE END OF THE PLANETARY EXPLORATION: Flip this card if you have 3 Alien Tech Discoveries on your Lander board. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "AL TERMINE DELL'ESPLORAZIONE PLANETARIA: Gira questa carta se hai 3 Scoperte Tecnologia Aliena sulla tua plancia del Lander. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "fine_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Flip this card if you have 3 Alien Tech Discoveries on your Lander board.",
+     "it": "Gira questa carta se hai 3 Scoperte Tecnologia Aliena sulla tua plancia del Lander."
+    }
+   },
+   "azioni": [],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34302.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "ANYTIME DURING PLANETARY EXPLORATION: Flip this card when you have at least 1 Lead token on 3 different Discovery decks. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA: Gira questa carta quando hai almeno 1 segnalino Indizio su 3 mazzi Scoperta diversi. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "durante_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Flip this card when you have at least 1 Lead token on 3 different Discovery decks.",
+     "it": "Gira questa carta quando hai almeno 1 segnalino Indizio su 3 mazzi Scoperta diversi."
+    }
+   },
+   "azioni": [],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34303.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "ANYTIME DURING PLANETARY EXPLORATION: [specialAction] [diceCheck] SEEK LIFE — Only in a Sector with [volvanic], [vegetation], [desert], or [water]. Green: gathering + xenology + construction = Flip this card. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA: [specialAction] [diceCheck] CERCARE FORME DI VITA — Solo in un Settore con [volvanic], [vegetation], [desert] o [water]. Verde: gathering + xenology + construction = Gira questa carta. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "durante_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Complete the Special Action (green outcome): flip this card.",
+     "it": "Completa l'Azione Speciale (risultato verde): gira questa carta."
+    },
+    "biomi_ammessi": [
+     "volvanic",
+     "vegetation",
+     "desert",
+     "water"
+    ]
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "SEEK LIFE",
+      "it": "CERCARE FORME DI VITA"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "restrizione": {
+      "en": "Only in a Sector with [volvanic], [vegetation], [desert], or [water].",
+      "it": "Solo in un Settore con [volvanic], [vegetation], [desert] o [water]."
+     },
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "gathering+xenology+construction",
+       "en": "Flip this card.",
+       "it": "Gira questa carta."
+      }
+     ],
+     "tracce": [],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine. Icona accanto al nome = diceCheck. Aggiunto campo 'restrizione' per 'Only in a Sector with...' (non previsto dallo schema). Unico esito verde, nessuna riga rossa/gialla. Nome italiano dell'azione: traduzione proposta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34304.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "ANYTIME DURING PLANETARY EXPLORATION: [specialAction] [diceCheck] STUDY VOLATILE FUMES — Only in a Sector with [caves], [volvanic], [frigid], or [deadly]. Green: defence + xenology + scienceDice = Flip this card. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA: [specialAction] [diceCheck] STUDIARE I FUMI VOLATILI — Solo in un Settore con [caves], [volvanic], [frigid] o [deadly]. Verde: defence + xenology + scienceDice = Gira questa carta. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "durante_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Complete the Special Action (green outcome): flip this card.",
+     "it": "Completa l'Azione Speciale (risultato verde): gira questa carta."
+    },
+    "biomi_ammessi": [
+     "caves",
+     "volvanic",
+     "frigid",
+     "deadly"
+    ]
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "STUDY VOLATILE FUMES",
+      "it": "STUDIARE I FUMI VOLATILI"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "restrizione": {
+      "en": "Only in a Sector with [caves], [volvanic], [frigid], or [deadly].",
+      "it": "Solo in un Settore con [caves], [volvanic], [frigid] o [deadly]."
+     },
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "defence+xenology+scienceDice",
+       "en": "Flip this card.",
+       "it": "Gira questa carta."
+      }
+     ],
+     "tracce": [],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine. Icona accanto al nome = diceCheck. Aggiunto campo 'restrizione' per 'Only in a Sector with...' (non previsto dallo schema). Unico esito verde, nessuna riga rossa/gialla. Nome italiano dell'azione: traduzione proposta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34305.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "AT THE END OF THE PLANETARY EXPLORATION: Flip this card if all Crewmembers have one or fewer Injury cards. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "AL TERMINE DELL'ESPLORAZIONE PLANETARIA: Gira questa carta se tutti i Membri dell'Equipaggio hanno al massimo una carta Ferita. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "fine_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Flip this card if all Crewmembers have one or fewer Injury cards.",
+     "it": "Gira questa carta se tutti i Membri dell'Equipaggio hanno al massimo una carta Ferita."
+    }
+   },
+   "azioni": [],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34306.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "ANYTIME DURING PLANETARY EXPLORATION: Flip this card if there are no more Unique Discovery cards on the Planet board. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA: Gira questa carta se non ci sono più carte Scoperta Eccezionale sulla plancia del Pianeta. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "durante_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Flip this card if there are no more Unique Discovery cards on the Planet board.",
+     "it": "Gira questa carta se non ci sono più carte Scoperta Eccezionale sulla plancia del Pianeta."
+    }
+   },
+   "azioni": [],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34307.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "AT THE END OF THE PLANETARY EXPLORATION: Flip this card if you have 3 Strange Flora Discoveries on your Lander board. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "AL TERMINE DELL'ESPLORAZIONE PLANETARIA: Gira questa carta se hai 3 Scoperte Strana Vegetazione sulla tua plancia del Lander. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "fine_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Flip this card if you have 3 Strange Flora Discoveries on your Lander board.",
+     "it": "Gira questa carta se hai 3 Scoperte Strana Vegetazione sulla tua plancia del Lander."
+    }
+   },
+   "azioni": [],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34308.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "ANYTIME DURING PLANETARY EXPLORATION: Flip this card if each Crewmember has at least 7 discarded Section cards. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA: Gira questa carta se ogni Membro dell'Equipaggio ha almeno 7 carte Reparto scartate. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "durante_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Flip this card if each Crewmember has at least 7 discarded Section cards.",
+     "it": "Gira questa carta se ogni Membro dell'Equipaggio ha almeno 7 carte Reparto scartate."
+    }
+   },
+   "azioni": [],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34309.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "AT THE END OF THE PLANETARY EXPLORATION: Flip this card if you have at least 4 Supplies on your Lander board. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "AL TERMINE DELL'ESPLORAZIONE PLANETARIA: Gira questa carta se hai almeno 4 Provviste sulla tua plancia del Lander. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "fine_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Flip this card if you have at least 4 Supplies on your Lander board.",
+     "it": "Gira questa carta se hai almeno 4 Provviste sulla tua plancia del Lander."
+    }
+   },
+   "azioni": [],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34310.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "ANYTIME DURING PLANETARY EXPLORATION: Flip this card when a Threat card is discarded. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA: Gira questa carta quando viene scartata una carta Minaccia. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "durante_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Flip this card when a Threat card is discarded.",
+     "it": "Gira questa carta quando viene scartata una carta Minaccia."
+    }
+   },
+   "azioni": [],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34311.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "ANYTIME DURING PLANETARY EXPLORATION: Flip this card when there are at least 3 Mission Equipment tokens placed on the Planet board. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA: Gira questa carta quando ci sono almeno 3 segnalini Attrezzatura da Missione piazzati sulla plancia del Pianeta. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "durante_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Flip this card when there are at least 3 Mission Equipment tokens placed on the Planet board.",
+     "it": "Gira questa carta quando ci sono almeno 3 segnalini Attrezzatura da Missione piazzati sulla plancia del Pianeta."
+    }
+   },
+   "azioni": [],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34312.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "AT THE END OF THE PLANETARY EXPLORATION: Flip this card if you have 3 Microorganism Discoveries on your Lander board. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "AL TERMINE DELL'ESPLORAZIONE PLANETARIA: Gira questa carta se hai 3 Scoperte Microorganismo sulla tua plancia del Lander. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "fine_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Flip this card if you have 3 Microorganism Discoveries on your Lander board.",
+     "it": "Gira questa carta se hai 3 Scoperte Microorganismo sulla tua plancia del Lander."
+    }
+   },
+   "azioni": [],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34313.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "ANYTIME DURING PLANETARY EXPLORATION: [specialAction] [diceCheck] PREPARE BREATHTAKING FOOTAGE — Only in a Sector with [desert], [frigid], [void], or [crystalline]. Green: physical + scouting + technology = Flip this card. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA: [specialAction] [diceCheck] PREPARARE RIPRESE MOZZAFIATO — Solo in un Settore con [desert], [frigid], [void] o [crystalline]. Verde: physical + scouting + technology = Gira questa carta. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "durante_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Complete the Special Action (green outcome): flip this card.",
+     "it": "Completa l'Azione Speciale (risultato verde): gira questa carta."
+    },
+    "biomi_ammessi": [
+     "desert",
+     "frigid",
+     "void",
+     "crystalline"
+    ]
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "PREPARE BREATHTAKING FOOTAGE",
+      "it": "PREPARARE RIPRESE MOZZAFIATO"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "restrizione": {
+      "en": "Only in a Sector with [desert], [frigid], [void], or [crystalline].",
+      "it": "Solo in un Settore con [desert], [frigid], [void] o [crystalline]."
+     },
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "physical+scouting+technology",
+       "en": "Flip this card.",
+       "it": "Gira questa carta."
+      }
+     ],
+     "tracce": [],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine. Icona accanto al nome = diceCheck. Aggiunto campo 'restrizione' per 'Only in a Sector with...' (non previsto dallo schema). Unico esito verde, nessuna riga rossa/gialla. Nome italiano dell'azione: traduzione proposta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34314.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "ANYTIME DURING PLANETARY EXPLORATION: [specialAction] [diceCheck] RECKLESS RESEARCH — Only in a Sector with [vegetation], [deadly], [ruins], or [hostile]. Green: physical + scouting + construction = Flip this card. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA: [specialAction] [diceCheck] RICERCA SCONSIDERATA — Solo in un Settore con [vegetation], [deadly], [ruins] o [hostile]. Verde: physical + scouting + construction = Gira questa carta. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "durante_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Complete the Special Action (green outcome): flip this card.",
+     "it": "Completa l'Azione Speciale (risultato verde): gira questa carta."
+    },
+    "biomi_ammessi": [
+     "vegetation",
+     "deadly",
+     "ruins",
+     "hostile"
+    ]
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "RECKLESS RESEARCH",
+      "it": "RICERCA SCONSIDERATA"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "restrizione": {
+      "en": "Only in a Sector with [vegetation], [deadly], [ruins], or [hostile].",
+      "it": "Solo in un Settore con [vegetation], [deadly], [ruins] o [hostile]."
+     },
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "physical+scouting+construction",
+       "en": "Flip this card.",
+       "it": "Gira questa carta."
+      }
+     ],
+     "tracce": [],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine. Icona accanto al nome = diceCheck. Aggiunto campo 'restrizione' per 'Only in a Sector with...' (non previsto dallo schema). Unico esito verde, nessuna riga rossa/gialla. Nome italiano dell'azione: traduzione proposta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34315.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "ANYTIME DURING PLANETARY EXPLORATION: [specialAction] [diceCheck] STUDY A PRESSURE ANOMALY — Only in a Sector with [rocky], [caves], [water], or [void]. Green: defence + biology + technology = Flip this card. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA: [specialAction] [diceCheck] STUDIARE UN'ANOMALIA DI PRESSIONE — Solo in un Settore con [rocky], [caves], [water] o [void]. Verde: defence + biology + technology = Gira questa carta. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "durante_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Complete the Special Action (green outcome): flip this card.",
+     "it": "Completa l'Azione Speciale (risultato verde): gira questa carta."
+    },
+    "biomi_ammessi": [
+     "rocky",
+     "caves",
+     "water",
+     "void"
+    ]
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "STUDY A PRESSURE ANOMALY",
+      "it": "STUDIARE UN'ANOMALIA DI PRESSIONE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "restrizione": {
+      "en": "Only in a Sector with [rocky], [caves], [water], or [void].",
+      "it": "Solo in un Settore con [rocky], [caves], [water] o [void]."
+     },
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "defence+biology+technology",
+       "en": "Flip this card.",
+       "it": "Gira questa carta."
+      }
+     ],
+     "tracce": [],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine. Icona accanto al nome = diceCheck. Aggiunto campo 'restrizione' per 'Only in a Sector with...' (non previsto dallo schema). Unico esito verde, nessuna riga rossa/gialla. Nome italiano dell'azione: traduzione proposta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34316.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "AT THE END OF THE PLANETARY EXPLORATION: Flip this card if you have at least 5 Discovery cards on your Lander board. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "AL TERMINE DELL'ESPLORAZIONE PLANETARIA: Gira questa carta se hai almeno 5 carte Scoperta sulla tua plancia del Lander. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "fine_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Flip this card if you have at least 5 Discovery cards on your Lander board.",
+     "it": "Gira questa carta se hai almeno 5 carte Scoperta sulla tua plancia del Lander."
+    }
+   },
+   "azioni": [],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34317.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "AT THE END OF THE PLANETARY EXPLORATION: Flip this card if you have 3 Live Specimen Discoveries on your Lander board. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "AL TERMINE DELL'ESPLORAZIONE PLANETARIA: Gira questa carta se hai 3 Scoperte Esemplare Vivo sulla tua plancia del Lander. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "fine_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Flip this card if you have 3 Live Specimen Discoveries on your Lander board.",
+     "it": "Gira questa carta se hai 3 Scoperte Esemplare Vivo sulla tua plancia del Lander."
+    }
+   },
+   "azioni": [],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/rank_ups/34318.webp",
+   "nomi": [],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE",
+    "it": "GRADO SUPERIORE INCOMPLETO"
+   },
+   "testo": {
+    "en": "ANYTIME DURING PLANETARY EXPLORATION: [specialAction] [diceCheck] EXAMINE A FOSSIL — Only in a Sector with [rocky], [ruins], [crystalline], or [hostile]. Green: gathering + biology + scienceDice = Flip this card. Rank requirements: [rank1] 3 [success], [rank2] 6 [success].",
+    "it": "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA: [specialAction] [diceCheck] ESAMINARE UN FOSSILE — Solo in un Settore con [rocky], [ruins], [crystalline] o [hostile]. Verde: gathering + biology + scienceDice = Gira questa carta. Requisiti di grado: [rank1] 3 [success], [rank2] 6 [success]."
+   },
+   "campi": {
+    "quando": "durante_esplorazione",
+    "successi_per_grado": {
+     "rank1": 3,
+     "rank2": 6
+    },
+    "condizione": {
+     "en": "Complete the Special Action (green outcome): flip this card.",
+     "it": "Completa l'Azione Speciale (risultato verde): gira questa carta."
+    },
+    "biomi_ammessi": [
+     "rocky",
+     "ruins",
+     "crystalline",
+     "hostile"
+    ]
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "EXAMINE A FOSSIL",
+      "it": "ESAMINARE UN FOSSILE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "restrizione": {
+      "en": "Only in a Sector with [rocky], [ruins], [crystalline], or [hostile].",
+      "it": "Solo in un Settore con [rocky], [ruins], [crystalline] o [hostile]."
+     },
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "gathering+biology+scienceDice",
+       "en": "Flip this card.",
+       "it": "Gira questa carta."
+      }
+     ],
+     "tracce": [],
+     "frecce": ""
+    }
+   ],
+   "dubbi": "Le due soglie in basso sono icone [rank1] (3 Successi) e [rank2] (6 Successi): interpretate come segnalini Successo necessari per ottenere il grado indicato. Lato completato non presente nell'immagine. Icona accanto al nome = diceCheck. Aggiunto campo 'restrizione' per 'Only in a Sector with...' (non previsto dallo schema). Unico esito verde, nessuna riga rossa/gialla. Nome italiano dell'azione: traduzione proposta."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/tutorial_rank_up/tutorial_rank_up_1100.webp",
+   "nomi": [
+    "Tutorial Rank-Up"
+   ],
+   "lato": "incompleto",
+   "tipo": "rank_up",
+   "titolo": {
+    "en": "RANK-UP INCOMPLETE — TUTORIAL",
+    "it": "GRADO SUPERIORE INCOMPLETO — TUTORIAL"
+   },
+   "testo": {
+    "en": "PLACE WITH THIS SIDE FACE UP: To increase their Ranks after a Planetary Exploration, your team will need to fulfill a specific task listed on the Rank-Up card, and gather enough Success tokens ([success]). In this Exploration, you only need to gather at least 3 [success]. Once you do, flip this card to the Completed side. Rank requirement: [rank1] 3 [success].",
+    "it": "PIAZZALA CON QUESTO LATO A FACCIA IN SU: Per aumentare i propri Gradi dopo un'Esplorazione Planetaria, la vostra squadra dovrà portare a termine un compito specifico indicato sulla carta Grado Superiore e raccogliere abbastanza segnalini Successo ([success]). In questa Esplorazione dovete solo raccogliere almeno 3 [success]. Una volta fatto, girate questa carta sul lato Completato. Requisito di grado: [rank1] 3 [success]."
+   },
+   "campi": {
+    "quando": "durante_esplorazione",
+    "condizione": {
+     "en": "Gather at least 3 [success].",
+     "it": "Raccogli almeno 3 [success]."
+    },
+    "successi_per_grado": {
+     "rank1": 3
+    }
+   },
+   "azioni": [],
+   "dubbi": "Solo soglia [rank1] 3 Successi. Lato completato non presente nell'immagine."
+  }
+ ]
+}

@@ -1,0 +1,761 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/mineral_discoveries/6110.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "ULTRA-DURABLE CERAMIC CRUST",
+    "it": "CROSTA CERAMICA ULTRARESISTENTE"
+   },
+   "testo": {
+    "en": "SHIP MANAGEMENT: When unloaded, move Production Project C09 (Ceramic Plating) into the \"Awaiting...\" envelope. Then, remove this Discovery from the game.",
+    "it": "GESTIONE DELLA NAVE: Quando viene scaricata, sposta il Progetto di Produzione C09 (Placcatura Ceramica) nella busta \"In attesa...\". Poi rimuovi questa Scoperta dal gioco."
+   },
+   "campi": {
+    "categoria": "mineral",
+    "rarita": "common",
+    "scaricata": {
+     "en": "When unloaded, move Production Project C09 (Ceramic Plating) into the \"Awaiting...\" envelope. Then, remove this Discovery from the game.",
+     "it": "Quando viene scaricata, sposta il Progetto di Produzione C09 (Placcatura Ceramica) nella busta \"In attesa...\". Poi rimuovi questa Scoperta dal gioco."
+    }
+   },
+   "dubbi": "Nessuna dicitura/icona di rarità sulla carta: assunta common."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/mineral_discoveries/6111.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "FRACTAL NANOSTRUCTURE",
+    "it": "NANOSTRUTTURA FRATTALE"
+   },
+   "testo": {
+    "en": "SHIP MANAGEMENT: When unloaded, gain 1 [success].",
+    "it": "GESTIONE DELLA NAVE: Quando viene scaricata, ottieni 1 [success]."
+   },
+   "campi": {
+    "categoria": "mineral",
+    "rarita": "common",
+    "scaricata": {
+     "en": "When unloaded, gain 1 [success].",
+     "it": "Quando viene scaricata, ottieni 1 [success]."
+    }
+   },
+   "dubbi": "Nessuna dicitura/icona di rarità sulla carta: assunta common."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/mineral_discoveries/6112.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "MELTED CRYSTALLINE STRUCTURE",
+    "it": "STRUTTURA CRISTALLINA FUSA"
+   },
+   "testo": {
+    "en": "It has no apparent use, but our researchers should still find it interesting.",
+    "it": "Non ha alcuna utilità apparente, ma i nostri ricercatori dovrebbero comunque trovarla interessante."
+   },
+   "campi": {
+    "categoria": "mineral",
+    "rarita": "common"
+   },
+   "testo_colore": {
+    "en": "It has no apparent use, but our researchers should still find it interesting.",
+    "it": "Non ha alcuna utilità apparente, ma i nostri ricercatori dovrebbero comunque trovarla interessante."
+   },
+   "dubbi": "Nessuna dicitura/icona di rarità sulla carta: assunta common."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/mineral_discoveries/6104.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "INCANDESCENT GEMSTONE",
+    "it": "GEMMA INCANDESCENTE"
+   },
+   "testo": {
+    "en": "PLANETARY EXPLORATION: When you gain this Discovery, you may flip an Incomplete Rank-Up card to the Completed side.",
+    "it": "ESPLORAZIONE PLANETARIA: Quando ottieni questa Scoperta, puoi girare una carta Grado Superiore Incompleta sul lato Completato."
+   },
+   "campi": {
+    "categoria": "mineral",
+    "rarita": "ultra_rare",
+    "esplorazione": {
+     "en": "When you gain this Discovery, you may flip an Incomplete Rank-Up card to the Completed side.",
+     "it": "Quando ottieni questa Scoperta, puoi girare una carta Grado Superiore Incompleta sul lato Completato."
+    }
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/microorganism_discoveries/6003.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "MIND-ALTERING VIRUS",
+    "it": "VIRUS PSICOTROPO"
+   },
+   "testo": {
+    "en": "SHIP MANAGEMENT: When unloaded, you may move 1 Situation card from the \"Awaiting...\" envelope to \"Possible Situations.\"",
+    "it": "GESTIONE DELLA NAVE: Quando viene scaricata, puoi spostare 1 carta Situazione dalla busta \"In attesa...\" a \"Situazioni Possibili\"."
+   },
+   "campi": {
+    "categoria": "microorganism",
+    "rarita": "rare",
+    "scaricata": {
+     "en": "When unloaded, you may move 1 Situation card from the \"Awaiting...\" envelope to \"Possible Situations.\"",
+     "it": "Quando viene scaricata, puoi spostare 1 carta Situazione dalla busta \"In attesa...\" a \"Situazioni Possibili\"."
+    }
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/microorganism_discoveries/6002.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "RAVENOUS BACTERIOPHAGE",
+    "it": "BATTERIOFAGO VORACE"
+   },
+   "testo": {
+    "en": "While it may enable new treatment protocols, it requires long clinical trials.",
+    "it": "Anche se potrebbe consentire nuovi protocolli di cura, richiede lunghe sperimentazioni cliniche."
+   },
+   "campi": {
+    "categoria": "microorganism",
+    "rarita": "common"
+   },
+   "testo_colore": {
+    "en": "While it may enable new treatment protocols, it requires long clinical trials.",
+    "it": "Anche se potrebbe consentire nuovi protocolli di cura, richiede lunghe sperimentazioni cliniche."
+   },
+   "dubbi": "Nessuna dicitura/icona di rarità sulla carta: assunta common."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/microorganism_discoveries/6005.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "ORGANIC POLYMER",
+    "it": "POLIMERO ORGANICO"
+   },
+   "testo": {
+    "en": "Too complex for study in field conditions.",
+    "it": "Troppo complesso da studiare in condizioni di campo."
+   },
+   "campi": {
+    "categoria": "microorganism",
+    "rarita": "common"
+   },
+   "testo_colore": {
+    "en": "Too complex for study in field conditions.",
+    "it": "Troppo complesso da studiare in condizioni di campo."
+   },
+   "dubbi": "Nessuna dicitura/icona di rarità sulla carta: assunta common."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/microorganism_discoveries/6004.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "BUILDER'S GENESEED",
+    "it": "GENOSEME DEI COSTRUTTORI"
+   },
+   "testo": {
+    "en": "PLANETARY EXPLORATION: You may discard this card to gain 2 [success].",
+    "it": "ESPLORAZIONE PLANETARIA: Puoi scartare questa carta per ottenere 2 [success]."
+   },
+   "campi": {
+    "categoria": "microorganism",
+    "rarita": "ultra_rare",
+    "esplorazione": {
+     "en": "You may discard this card to gain 2 [success].",
+     "it": "Puoi scartare questa carta per ottenere 2 [success]."
+    }
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/microorganism_discoveries/6012.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "RAVENOUS PROTOZOA",
+    "it": "PROTOZOI VORACI"
+   },
+   "testo": {
+    "en": "SHIP MANAGEMENT: When unloaded, move Research Project R12 (Bio-assimilation) into the \"Awaiting...\" envelope. Then, remove this Discovery from the game.",
+    "it": "GESTIONE DELLA NAVE: Quando viene scaricata, sposta il Progetto di Ricerca R12 (Bioassimilazione) nella busta \"In attesa...\". Poi rimuovi questa Scoperta dal gioco."
+   },
+   "campi": {
+    "categoria": "microorganism",
+    "rarita": "common",
+    "scaricata": {
+     "en": "When unloaded, move Research Project R12 (Bio-assimilation) into the \"Awaiting...\" envelope. Then, remove this Discovery from the game.",
+     "it": "Quando viene scaricata, sposta il Progetto di Ricerca R12 (Bioassimilazione) nella busta \"In attesa...\". Poi rimuovi questa Scoperta dal gioco."
+    }
+   },
+   "dubbi": "Nessuna dicitura/icona di rarità sulla carta: assunta common."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/live_specimen_discoveries/5910.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "FLICKERY CILIA",
+    "it": "CIGLIA TREMOLANTI"
+   },
+   "testo": {
+    "en": "PLANETARY EXPLORATION: You may discard this card to gain 2 Supplies.",
+    "it": "ESPLORAZIONE PLANETARIA: Puoi scartare questa carta per ottenere 2 Provviste."
+   },
+   "campi": {
+    "categoria": "live_specimen",
+    "rarita": "common",
+    "esplorazione": {
+     "en": "You may discard this card to gain 2 Supplies.",
+     "it": "Puoi scartare questa carta per ottenere 2 Provviste."
+    }
+   },
+   "dubbi": "Nessuna dicitura/icona di rarità sulla carta: assunta common."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/live_specimen_discoveries/5912.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "THREE-LEGGED WORM",
+    "it": "VERME TRIPODE"
+   },
+   "testo": {
+    "en": "Despite a striking appearance, its biology is similar to many other organisms we've encountered.",
+    "it": "Nonostante l'aspetto sorprendente, la sua biologia è simile a quella di molti altri organismi che abbiamo incontrato."
+   },
+   "campi": {
+    "categoria": "live_specimen",
+    "rarita": "common"
+   },
+   "testo_colore": {
+    "en": "Despite a striking appearance, its biology is similar to many other organisms we've encountered.",
+    "it": "Nonostante l'aspetto sorprendente, la sua biologia è simile a quella di molti altri organismi che abbiamo incontrato."
+   },
+   "dubbi": "Nessuna dicitura/icona di rarità sulla carta: assunta common."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/live_specimen_discoveries/5902.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "BLOOMING LORICIFERA",
+    "it": "LORICIFERO IN FIORE"
+   },
+   "testo": {
+    "en": "SHIP MANAGEMENT: When unloaded, you may discard this card to draw 1 random Strange Flora Discovery.",
+    "it": "GESTIONE DELLA NAVE: Quando viene scaricata, puoi scartare questa carta per pescare 1 Scoperta Strana Vegetazione casuale."
+   },
+   "campi": {
+    "categoria": "live_specimen",
+    "rarita": "common",
+    "scaricata": {
+     "en": "When unloaded, you may discard this card to draw 1 random Strange Flora Discovery.",
+     "it": "Quando viene scaricata, puoi scartare questa carta per pescare 1 Scoperta Strana Vegetazione casuale."
+    }
+   },
+   "dubbi": "Nessuna dicitura/icona di rarità sulla carta: assunta common."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/live_specimen_discoveries/5904.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "ANCIENT SHAPESHIFTER",
+    "it": "ANTICO MUTAFORMA"
+   },
+   "testo": {
+    "en": "SHIP MANAGEMENT: When unloaded, you may discard this card to exchange 1 die in each Section's compartment with any dice available in the box.",
+    "it": "GESTIONE DELLA NAVE: Quando viene scaricata, puoi scartare questa carta per scambiare 1 dado nello scomparto di ogni Reparto con qualsiasi dado disponibile nella scatola."
+   },
+   "campi": {
+    "categoria": "live_specimen",
+    "rarita": "ultra_rare",
+    "scaricata": {
+     "en": "When unloaded, you may discard this card to exchange 1 die in each Section's compartment with any dice available in the box.",
+     "it": "Quando viene scaricata, puoi scartare questa carta per scambiare 1 dado nello scomparto di ogni Reparto con qualsiasi dado disponibile nella scatola."
+    }
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/strange_flora_discoveries/30812.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "STIMULATING MUSHROOM",
+    "it": "FUNGO STIMOLANTE"
+   },
+   "testo": {
+    "en": "PLANETARY EXPLORATION: During Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [physical] + [biology] to this Roll Pool. After the Dice Check, discard this card.",
+    "it": "ESPLORAZIONE PLANETARIA: Durante una Prova, puoi mettere questa carta nella Riserva del Tiro di qualsiasi Membro dell'Equipaggio nel tuo Settore, te compreso. Aggiungi [physical] + [biology] a questa Riserva del Tiro. Dopo la Prova, scarta questa carta."
+   },
+   "campi": {
+    "categoria": "strange_flora",
+    "rarita": "common",
+    "esplorazione": {
+     "en": "During Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [physical] + [biology] to this Roll Pool. After the Dice Check, discard this card.",
+     "it": "Durante una Prova, puoi mettere questa carta nella Riserva del Tiro di qualsiasi Membro dell'Equipaggio nel tuo Settore, te compreso. Aggiungi [physical] + [biology] a questa Riserva del Tiro. Dopo la Prova, scarta questa carta."
+    }
+   },
+   "dubbi": "Nessuna dicitura/icona di rarità sulla carta: assunta common."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/strange_flora_discoveries/30809.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "GLOWING DIGITALIS",
+    "it": "DIGITALE LUMINESCENTE"
+   },
+   "testo": {
+    "en": "A spectacular find, though not very useful.",
+    "it": "Un ritrovamento spettacolare, anche se non molto utile."
+   },
+   "campi": {
+    "categoria": "strange_flora",
+    "rarita": "common"
+   },
+   "testo_colore": {
+    "en": "A spectacular find, though not very useful.",
+    "it": "Un ritrovamento spettacolare, anche se non molto utile."
+   },
+   "dubbi": "Nessuna dicitura/icona di rarità sulla carta: assunta common."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/strange_flora_discoveries/30804.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "FLOWER OF EDEN",
+    "it": "FIORE DELL'EDEN"
+   },
+   "testo": {
+    "en": "PLANETARY EXPLORATION: You may discard this card to gain 2 [success].",
+    "it": "ESPLORAZIONE PLANETARIA: Puoi scartare questa carta per ottenere 2 [success]."
+   },
+   "campi": {
+    "categoria": "strange_flora",
+    "rarita": "ultra_rare",
+    "esplorazione": {
+     "en": "You may discard this card to gain 2 [success].",
+     "it": "Puoi scartare questa carta per ottenere 2 [success]."
+    }
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/strange_flora_discoveries/30802.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "DANGER-SENSING VINE",
+    "it": "RAMPICANTE PERCEPISCI-PERICOLI"
+   },
+   "testo": {
+    "en": "SHIP MANAGEMENT: When unloaded, you may discard this card to place 2 [command] in the Command Pool.",
+    "it": "GESTIONE DELLA NAVE: Quando viene scaricata, puoi scartare questa carta per mettere 2 [command] nella Riserva di Comando."
+   },
+   "campi": {
+    "categoria": "strange_flora",
+    "rarita": "rare",
+    "scaricata": {
+     "en": "When unloaded, you may discard this card to place 2 [command] in the Command Pool.",
+     "it": "Quando viene scaricata, puoi scartare questa carta per mettere 2 [command] nella Riserva di Comando."
+    }
+   },
+   "dubbi": "L'icona è una stella in un esagono (segnalino Comando): resa come [command]. 'Command Pool' tradotto 'Riserva di Comando' (non nel glossario)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/alien_tech_discoveries/5806.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "STRANGE GIZMO",
+    "it": "STRANO CONGEGNO"
+   },
+   "testo": {
+    "en": "This piece of ancient technology seems operational, though we do not dare to use it outside of a safe, controlled environment.",
+    "it": "Questo pezzo di tecnologia antica sembra funzionante, anche se non osiamo usarlo al di fuori di un ambiente sicuro e controllato."
+   },
+   "campi": {
+    "categoria": "alien_tech",
+    "rarita": "common"
+   },
+   "testo_colore": {
+    "en": "This piece of ancient technology seems operational, though we do not dare to use it outside of a safe, controlled environment.",
+    "it": "Questo pezzo di tecnologia antica sembra funzionante, anche se non osiamo usarlo al di fuori di un ambiente sicuro e controllato."
+   },
+   "dubbi": "Nessuna dicitura/icona di rarità sulla carta: assunta common."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/alien_tech_discoveries/5810.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "FLICKERING HOLOPROJECTIONS",
+    "it": "OLOPROIEZIONI TREMOLANTI"
+   },
+   "testo": {
+    "en": "SHIP MANAGEMENT: When unloaded, you may discard this card to take any number of Discoveries from \"Gathered Discoveries.\" You may use their Ship Management abilities now. Return any unused Discoveries to \"Gathered Discoveries.\"",
+    "it": "GESTIONE DELLA NAVE: Quando viene scaricata, puoi scartare questa carta per prendere un numero qualsiasi di Scoperte da \"Scoperte Raccolte\". Puoi usare ora le loro abilità di Gestione della Nave. Rimetti le Scoperte non usate in \"Scoperte Raccolte\"."
+   },
+   "campi": {
+    "categoria": "alien_tech",
+    "rarita": "common",
+    "scaricata": {
+     "en": "When unloaded, you may discard this card to take any number of Discoveries from \"Gathered Discoveries.\" You may use their Ship Management abilities now. Return any unused Discoveries to \"Gathered Discoveries.\"",
+     "it": "Quando viene scaricata, puoi scartare questa carta per prendere un numero qualsiasi di Scoperte da \"Scoperte Raccolte\". Puoi usare ora le loro abilità di Gestione della Nave. Rimetti le Scoperte non usate in \"Scoperte Raccolte\"."
+    }
+   },
+   "dubbi": "Nessuna dicitura/icona di rarità sulla carta: assunta common."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/alien_tech_discoveries/5805.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "LIVING BIOWEAVE",
+    "it": "BIOTESSUTO VIVENTE"
+   },
+   "testo": {
+    "en": "PLANETARY EXPLORATION: During Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [vanguard] to this Roll Pool. After the Dice Check, discard this card.",
+    "it": "ESPLORAZIONE PLANETARIA: Durante una Prova, puoi mettere questa carta nella Riserva del Tiro di qualsiasi Membro dell'Equipaggio nel tuo Settore, te compreso. Aggiungi [vanguard] a questa Riserva del Tiro. Dopo la Prova, scarta questa carta."
+   },
+   "campi": {
+    "categoria": "alien_tech",
+    "rarita": "common",
+    "esplorazione": {
+     "en": "During Dice Check, you may place this card in the Roll Pool of any Crewmember in your Sector, including yourself. Add [vanguard] to this Roll Pool. After the Dice Check, discard this card.",
+     "it": "Durante una Prova, puoi mettere questa carta nella Riserva del Tiro di qualsiasi Membro dell'Equipaggio nel tuo Settore, te compreso. Aggiungi [vanguard] a questa Riserva del Tiro. Dopo la Prova, scarta questa carta."
+    }
+   },
+   "dubbi": "Nessuna dicitura/icona di rarità sulla carta: assunta common."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/alien_tech_discoveries/5804.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "ALIEN DATA VAULT",
+    "it": "ARCHIVIO DATI ALIENO"
+   },
+   "testo": {
+    "en": "PLANETARY EXPLORATION: When you gain this Discovery, you may flip an Incomplete Rank-Up card to the Completed side.",
+    "it": "ESPLORAZIONE PLANETARIA: Quando ottieni questa Scoperta, puoi girare una carta Grado Superiore Incompleta sul lato Completato."
+   },
+   "campi": {
+    "categoria": "alien_tech",
+    "rarita": "ultra_rare",
+    "esplorazione": {
+     "en": "When you gain this Discovery, you may flip an Incomplete Rank-Up card to the Completed side.",
+     "it": "Quando ottieni questa Scoperta, puoi girare una carta Grado Superiore Incompleta sul lato Completato."
+    }
+   },
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/alien_tech_discoveries/5803.webp",
+   "nomi": [],
+   "tipo": "discovery",
+   "titolo": {
+    "en": "VIBRATING COUPLING",
+    "it": "GIUNTO VIBRANTE"
+   },
+   "testo": {
+    "en": "PLANETARY EXPLORATION: You may discard this card to allow each Crewmember to gain 1 Charge.",
+    "it": "ESPLORAZIONE PLANETARIA: Puoi scartare questa carta per permettere a ogni Membro dell'Equipaggio di ottenere 1 Carica."
+   },
+   "campi": {
+    "categoria": "alien_tech",
+    "rarita": "common",
+    "esplorazione": {
+     "en": "You may discard this card to allow each Crewmember to gain 1 Charge.",
+     "it": "Puoi scartare questa carta per permettere a ogni Membro dell'Equipaggio di ottenere 1 Carica."
+    }
+   },
+   "dubbi": "Nessuna dicitura/icona di rarità sulla carta: assunta common."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17803.webp",
+   "nomi": [],
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "OXYGENATING EXTREMOPHILE",
+    "it": "ESTREMOFILO OSSIGENANTE"
+   },
+   "testo": {
+    "en": "PLANETARY EXPLORATION: When you gain this card, each Crewmember Refreshes 2 dice.",
+    "it": "ESPLORAZIONE PLANETARIA: Quando ottieni questa carta, ogni Membro dell'Equipaggio Ricarica 2 dadi."
+   },
+   "campi": {
+    "numero": 4,
+    "esplorazione": {
+     "en": "When you gain this card, each Crewmember Refreshes 2 dice.",
+     "it": "Quando ottieni questa carta, ogni Membro dell'Equipaggio Ricarica 2 dadi."
+    }
+   },
+   "dubbi": "La carta non indica la categoria né la rarità (Scoperta Eccezionale): campi omessi."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17806.webp",
+   "nomi": [],
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "CARNIVOROUS EGG",
+    "it": "UOVO CARNIVORO"
+   },
+   "testo": {
+    "en": "SHIP MANAGEMENT: When unloaded, go to Log 392.",
+    "it": "GESTIONE DELLA NAVE: Quando viene scaricata, vai all'Annotazione 392."
+   },
+   "campi": {
+    "numero": 7,
+    "scaricata": {
+     "en": "When unloaded, go to Log 392.",
+     "it": "Quando viene scaricata, vai all'Annotazione 392."
+    }
+   },
+   "dubbi": "La carta non indica la categoria né la rarità (Scoperta Eccezionale): campi omessi."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17809.webp",
+   "nomi": [],
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "SEED OF LIFE",
+    "it": "SEME DELLA VITA"
+   },
+   "testo": {
+    "en": "PLANETARY EXPLORATION: When you gain this card, each Crewmember gains 1 Charge.",
+    "it": "ESPLORAZIONE PLANETARIA: Quando ottieni questa carta, ogni Membro dell'Equipaggio ottiene 1 Carica."
+   },
+   "campi": {
+    "numero": 10,
+    "esplorazione": {
+     "en": "When you gain this card, each Crewmember gains 1 Charge.",
+     "it": "Quando ottieni questa carta, ogni Membro dell'Equipaggio ottiene 1 Carica."
+    }
+   },
+   "dubbi": "La carta non indica la categoria né la rarità (Scoperta Eccezionale): campi omessi."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17812.webp",
+   "nomi": [],
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "MIRROR MASK",
+    "it": "MASCHERA SPECCHIO"
+   },
+   "testo": {
+    "en": "PLANETARY EXPLORATION: When you gain this card, each Crewmember draws 1 card.",
+    "it": "ESPLORAZIONE PLANETARIA: Quando ottieni questa carta, ogni Membro dell'Equipaggio pesca 1 carta."
+   },
+   "campi": {
+    "numero": 13,
+    "esplorazione": {
+     "en": "When you gain this card, each Crewmember draws 1 card.",
+     "it": "Quando ottieni questa carta, ogni Membro dell'Equipaggio pesca 1 carta."
+    }
+   },
+   "dubbi": "La carta non indica la categoria né la rarità (Scoperta Eccezionale): campi omessi."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17815.webp",
+   "nomi": [],
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "IDEMIAN CAPACITOR",
+    "it": "CONDENSATORE IDEMIANO"
+   },
+   "testo": {
+    "en": "SHIP MANAGEMENT: When unloaded, place 1 [energy_token] in the Energy Pool.",
+    "it": "GESTIONE DELLA NAVE: Quando viene scaricata, metti 1 [energy_token] nella Riserva di Energia."
+   },
+   "campi": {
+    "numero": 16,
+    "scaricata": {
+     "en": "When unloaded, place 1 [energy_token] in the Energy Pool.",
+     "it": "Quando viene scaricata, metti 1 [energy_token] nella Riserva di Energia."
+    }
+   },
+   "dubbi": "La carta non indica la categoria né la rarità (Scoperta Eccezionale): campi omessi. 'Energy Pool' tradotto 'Riserva di Energia' (non nel glossario)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17818.webp",
+   "nomi": [],
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "FRACTAL STONE #1",
+    "it": "PIETRA FRATTALE N. 1"
+   },
+   "testo": {
+    "en": "SHIP MANAGEMENT: When unloaded, go to Log 745.",
+    "it": "GESTIONE DELLA NAVE: Quando viene scaricata, vai all'Annotazione 745."
+   },
+   "campi": {
+    "numero": 19,
+    "scaricata": {
+     "en": "When unloaded, go to Log 745.",
+     "it": "Quando viene scaricata, vai all'Annotazione 745."
+    }
+   },
+   "dubbi": "La carta non indica la categoria né la rarità (Scoperta Eccezionale): campi omessi."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17821.webp",
+   "nomi": [],
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "ARROGATOR VACUUM TUBE",
+    "it": "TUBO A VUOTO ARROGATOR"
+   },
+   "testo": {
+    "en": "PLANETARY EXPLORATION: When you gain this card, each Crewmember Refreshes 1 die.",
+    "it": "ESPLORAZIONE PLANETARIA: Quando ottieni questa carta, ogni Membro dell'Equipaggio Ricarica 1 dado."
+   },
+   "campi": {
+    "numero": 22,
+    "esplorazione": {
+     "en": "When you gain this card, each Crewmember Refreshes 1 die.",
+     "it": "Quando ottieni questa carta, ogni Membro dell'Equipaggio Ricarica 1 dado."
+    }
+   },
+   "dubbi": "La carta non indica la categoria né la rarità (Scoperta Eccezionale): campi omessi. 'Arrogator' lasciato non tradotto (nome proprio)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17824.webp",
+   "nomi": [],
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "FOSSILIZED SEABORNE LIFE",
+    "it": "FOSSILE DI VITA MARINA"
+   },
+   "testo": {
+    "en": "PLANETARY EXPLORATION: When you gain this card, each Crewmember draws 2 cards.",
+    "it": "ESPLORAZIONE PLANETARIA: Quando ottieni questa carta, ogni Membro dell'Equipaggio pesca 2 carte."
+   },
+   "campi": {
+    "numero": 25,
+    "esplorazione": {
+     "en": "When you gain this card, each Crewmember draws 2 cards.",
+     "it": "Quando ottieni questa carta, ogni Membro dell'Equipaggio pesca 2 carte."
+    }
+   },
+   "dubbi": "La carta non indica la categoria né la rarità (Scoperta Eccezionale): campi omessi."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17827.webp",
+   "nomi": [],
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "CEREBRAL CORTEX",
+    "it": "CORTECCIA CEREBRALE"
+   },
+   "testo": {
+    "en": "SHIP MANAGEMENT: When unloaded, go to Log 89.",
+    "it": "GESTIONE DELLA NAVE: Quando viene scaricata, vai all'Annotazione 89."
+   },
+   "campi": {
+    "numero": 28,
+    "scaricata": {
+     "en": "When unloaded, go to Log 89.",
+     "it": "Quando viene scaricata, vai all'Annotazione 89."
+    }
+   },
+   "dubbi": "La carta non indica la categoria né la rarità (Scoperta Eccezionale): campi omessi."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17830.webp",
+   "nomi": [],
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "XENONITE",
+    "it": "XENONITE"
+   },
+   "testo": {
+    "en": "The hellscape that Biomebot connected to contained a previously unknown element.",
+    "it": "Il paesaggio infernale a cui si è collegato il Biomebot conteneva un elemento finora sconosciuto."
+   },
+   "campi": {
+    "numero": 31
+   },
+   "testo_colore": {
+    "en": "The hellscape that Biomebot connected to contained a previously unknown element.",
+    "it": "Il paesaggio infernale a cui si è collegato il Biomebot conteneva un elemento finora sconosciuto."
+   },
+   "dubbi": "La carta non indica la categoria né la rarità (Scoperta Eccezionale): campi omessi."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17833.webp",
+   "nomi": [],
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "SLIMY FRUIT",
+    "it": "FRUTTO VISCIDO"
+   },
+   "testo": {
+    "en": "A fast rotting plant oozing sticky liquid. Local creatures seem to love its scent.",
+    "it": "Una pianta che marcisce rapidamente trasudando un liquido appiccicoso. Le creature locali sembrano adorarne l'odore."
+   },
+   "campi": {
+    "numero": 34
+   },
+   "testo_colore": {
+    "en": "A fast rotting plant oozing sticky liquid. Local creatures seem to love its scent.",
+    "it": "Una pianta che marcisce rapidamente trasudando un liquido appiccicoso. Le creature locali sembrano adorarne l'odore."
+   },
+   "dubbi": "La carta non indica la categoria né la rarità (Scoperta Eccezionale): campi omessi."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17836.webp",
+   "nomi": [],
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "FLOWER BUG'S POLLEN",
+    "it": "POLLINE DELL'INSETTO-FIORE"
+   },
+   "testo": {
+    "en": "PLANETARY EXPLORATION: When the Flower Bug Travels, you may [spendDie][spendDie] or [spendDieGreen] to move it to any connected Sector instead.",
+    "it": "ESPLORAZIONE PLANETARIA: Quando l'Insetto-Fiore compie un Viaggio, puoi [spendDie][spendDie] o [spendDieGreen] per spostarlo invece in qualsiasi Settore collegato."
+   },
+   "campi": {
+    "numero": 37,
+    "esplorazione": {
+     "en": "When the Flower Bug Travels, you may [spendDie][spendDie] or [spendDieGreen] to move it to any connected Sector instead.",
+     "it": "Quando l'Insetto-Fiore compie un Viaggio, puoi [spendDie][spendDie] o [spendDieGreen] per spostarlo invece in qualsiasi Settore collegato."
+    }
+   },
+   "dubbi": "La carta non indica la categoria né la rarità (Scoperta Eccezionale): campi omessi. Icone: due dadi tricolori con freccia (spendDie x2) oppure dado verde con freccia (spendDieGreen). 'Flower Bug' tradotto 'Insetto-Fiore' (nome non ufficiale)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/unique_discoveries/17839.webp",
+   "nomi": [],
+   "tipo": "unique_discovery",
+   "titolo": {
+    "en": "IRREFUTABLE PROOF",
+    "it": "PROVA INCONFUTABILE"
+   },
+   "testo": {
+    "en": "Armed with these records and findings, we are ready to reveal the perpetrator.",
+    "it": "Forti di questi documenti e scoperte, siamo pronti a rivelare il colpevole."
+   },
+   "campi": {
+    "numero": 40
+   },
+   "testo_colore": {
+    "en": "Armed with these records and findings, we are ready to reveal the perpetrator.",
+    "it": "Forti di questi documenti e scoperte, siamo pronti a rivelare il colpevole."
+   },
+   "dubbi": "La carta non indica la categoria né la rarità (Scoperta Eccezionale): campi omessi."
+  }
+ ]
+}

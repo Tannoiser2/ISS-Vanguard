@@ -1,0 +1,694 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/destiny_32901.webp",
+   "nomi": [
+    "Destiny"
+   ],
+   "lato": "fronte",
+   "nome": "DESTINY JONES",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "scouting"
+   },
+   "abilita": {
+    "nome": "EFFICIENT",
+    "quando": "Anytime, not during Exertion",
+    "en": "Anytime, not during Exertion: Spend 1 Charge to [spendDie] instead of [sacrifaceDie].",
+    "it": "In qualsiasi momento, non durante uno Sforzo: Spendi 1 Carica per [spendDie] invece di [sacrifaceDie]."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Nel testo le icone sono il cubo tricolore con freccia (spendDie) e quello barrato (sacrifaceDie). Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/lena_34408.webp",
+   "nomi": [
+    "Lena"
+   ],
+   "lato": "fronte",
+   "nome": "LENA FREEMAN",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "construction"
+   },
+   "abilita": {
+    "nome": "LOADER",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to take a chosen Small or Personal Equipment card from the Armory.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per prendere una carta Attrezzatura Piccola o Personale a scelta dall'Armeria."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Small/Personal Equipment e Armory: 'Attrezzatura Piccola/Personale' e 'Armeria' non presenti nel glossario. Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/tarif_32811.webp",
+   "nomi": [
+    "Tarif"
+   ],
+   "lato": "fronte",
+   "nome": "TARIF ZOGBY",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "technology"
+   },
+   "abilita": {
+    "nome": "FORECAST",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to discard an Event card you just drew without resolving its text.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per scartare una carta Evento che hai appena pescato senza risolverne il testo."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/reeve_32932.webp",
+   "nomi": [
+    "Reeve"
+   ],
+   "lato": "fronte",
+   "nome": "REEVE HALDEMAN",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "biology"
+   },
+   "abilita": {
+    "nome": "FOLLOWER",
+    "quando": "Anytime",
+    "en": "Anytime: When another Crewmember Travels from your Sector, spend 1 Charge to move with them, ignoring Path icons.",
+    "it": "In qualsiasi momento: Quando un altro Membro dell'Equipaggio compie un Viaggio dal tuo Settore, spendi 1 Carica per muoverti con lui, ignorando le icone del Sentiero."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/evelyn_32911.webp",
+   "nomi": [
+    "Evelyn"
+   ],
+   "lato": "fronte",
+   "nome": "EVELYN CASTILLO",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "xenology"
+   },
+   "abilita": {
+    "nome": "TEAM PLAYER",
+    "quando": "When Assisting",
+    "en": "When Assisting: Spend 1 Charge to Assist with 2 [die] instead of 1. After the Dice Check, return those [die] to your Available dice.",
+    "it": "Quando Assisti: Spendi 1 Carica per Assistere con 2 [die] invece di 1. Dopo la Prova, rimetti quei [die] tra i tuoi dadi Disponibili."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/gbolahan_34412.webp",
+   "nomi": [
+    "Gbolahan"
+   ],
+   "lato": "fronte",
+   "nome": "GBOLAHAN MUSA",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "xenology"
+   },
+   "abilita": {
+    "nome": "COMPETENT",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to draw a chosen card from your discard pile.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per pescare una carta a scelta dalla tua pila degli scarti."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/brigitte_32918.webp",
+   "nomi": [
+    "Brigitte"
+   ],
+   "lato": "fronte",
+   "nome": "BRIGITTE BARTH",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "biology"
+   },
+   "abilita": {
+    "nome": "EFFICIENT",
+    "quando": "Anytime, not during Exertion",
+    "en": "Anytime, not during Exertion: Spend 1 Charge to [spendDie] instead of [sacrifaceDie].",
+    "it": "In qualsiasi momento, non durante uno Sforzo: Spendi 1 Carica per [spendDie] invece di [sacrifaceDie]."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Nel testo le icone sono il cubo tricolore con freccia (spendDie) e quello barrato (sacrifaceDie). Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/blake_34415.webp",
+   "nomi": [
+    "Blake"
+   ],
+   "lato": "fronte",
+   "nome": "BLAKE MCFARLANE",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "technology"
+   },
+   "abilita": {
+    "nome": "WELL-TRAINED",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to draw 2 cards from your Section deck.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per pescare 2 carte dal tuo mazzo Reparto."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/zaima_32904.webp",
+   "nomi": [
+    "Zaima"
+   ],
+   "lato": "fronte",
+   "nome": "ZAIMA ANWAR",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "biology"
+   },
+   "abilita": {
+    "nome": "HERMIT",
+    "quando": "When Resting",
+    "en": "When Resting: Spend 1 Charge to not spend Supplies.",
+    "it": "Durante il Riposo: Spendi 1 Carica per non spendere Provviste."
+   },
+   "cariche": 1,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/charlie_32934.webp",
+   "nomi": [
+    "Charlie"
+   ],
+   "lato": "fronte",
+   "nome": "CHARLIE MYERS",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "gathering"
+   },
+   "abilita": {
+    "nome": "UNBREAKABLE",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to replace 1 of your Injury cards with a Wounded Injury.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per sostituire 1 delle tue carte Ferita con una Ferita Ferito."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "'Wounded Injury' tradotto 'Ferita Ferito' secondo glossario (Wounded = Ferito); forse meglio 'una Ferita di tipo Ferito'. Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/aidan_32910.webp",
+   "nomi": [
+    "Aidan"
+   ],
+   "lato": "fronte",
+   "nome": "AIDAN CUNNINGHAM",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "biology"
+   },
+   "abilita": {
+    "nome": "RECKLESS",
+    "quando": "Before or after an Action",
+    "en": "Before or after an Action: Spend 1 Charge and roll [dangerDieA] to move to a connected Sector, ignoring the Path icons.",
+    "it": "Prima o dopo un'Azione: Spendi 1 Carica e tira [dangerDieA] per muoverti in un Settore collegato, ignorando le icone del Sentiero."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/ebe_32920.webp",
+   "nomi": [
+    "Ebe"
+   ],
+   "lato": "fronte",
+   "nome": "EBE LOMAN",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "gathering"
+   },
+   "abilita": {
+    "nome": "PROTECTOR",
+    "quando": "Anytime",
+    "en": "Anytime: When any Crewmember in your Sector would gain an Injury, spend 1 Charge to discard it (with an Injury die) instead.",
+    "it": "In qualsiasi momento: Quando un qualsiasi Membro dell'Equipaggio nel tuo Settore subirebbe una Ferita, spendi 1 Carica per scartarla invece (con un dado Ferita)."
+   },
+   "cariche": 1,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Traduzione di 'would gain an Injury ... discard it (with an Injury die)': resa interpretativa. Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/theo_32926.webp",
+   "nomi": [
+    "Theo"
+   ],
+   "lato": "fronte",
+   "nome": "THEO TSIAKALOS",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "scienceDice"
+   },
+   "abilita": {
+    "nome": "STORYTELLER",
+    "quando": "Anytime",
+    "en": "Anytime: When you gain a [success] during your turn, spend 2 Charges to gain 1 [success] more.",
+    "it": "In qualsiasi momento: Quando ottieni un [success] durante il tuo turno, spendi 2 Cariche per ottenere 1 [success] in più."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/ilse_34505.webp",
+   "nomi": [
+    "Ilse"
+   ],
+   "lato": "fronte",
+   "nome": "ILSE VOGEL",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "construction"
+   },
+   "abilita": {
+    "nome": "ADVISOR",
+    "quando": "When Assisting",
+    "en": "When Assisting: Spend 1 Charge to Assist a Crewmember in any Sector.",
+    "it": "Quando Assisti: Spendi 1 Carica per Assistere un Membro dell'Equipaggio in qualsiasi Settore."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/koe_32919.webp",
+   "nomi": [
+    "Koe"
+   ],
+   "lato": "fronte",
+   "nome": "KOE YASSIN",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "technology"
+   },
+   "abilita": {
+    "nome": "DISCIPLINED",
+    "quando": "During a Dice Check",
+    "en": "During a Dice Check: Spend 1 Charge to turn 1 [accident] result to a [vanguard] result.",
+    "it": "Durante una Prova: Spendi 1 Carica per trasformare 1 risultato [accident] in un risultato [vanguard]."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/arvi_32906.webp",
+   "nomi": [
+    "Arvi"
+   ],
+   "lato": "fronte",
+   "nome": "ARVI TUURI",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "technology"
+   },
+   "abilita": {
+    "nome": "CAREFUL",
+    "quando": "During a Dice Check",
+    "en": "During a Dice Check: Spend 1 Charge to move 1 die with a [accident] result from the Roll Pool to the Spent Pool.",
+    "it": "Durante una Prova: Spendi 1 Carica per spostare 1 dado con un risultato [accident] dalla Riserva del Tiro alla Riserva dei Dadi Spesi."
+   },
+   "cariche": 4,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/elena_34401.webp",
+   "nomi": [
+    "Elena"
+   ],
+   "lato": "fronte",
+   "nome": "ELENA RUBIO",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "physical"
+   },
+   "abilita": {
+    "nome": "HIDDEN RESERVES",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to Refresh all [redDie].",
+    "it": "In qualsiasi momento: Spendi 1 Carica per Ricaricare tutti i [redDie]."
+   },
+   "cariche": 1,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/avery_32801.webp",
+   "nomi": [
+    "Avery"
+   ],
+   "lato": "fronte",
+   "nome": "AVERY DODGE",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "biology"
+   },
+   "abilita": {
+    "nome": "HERMIT",
+    "quando": "When Resting",
+    "en": "When Resting: Spend 1 Charge to not spend Supplies.",
+    "it": "Durante il Riposo: Spendi 1 Carica per non spendere Provviste."
+   },
+   "cariche": 1,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/francesca_32905.webp",
+   "nomi": [
+    "Francesca"
+   ],
+   "lato": "fronte",
+   "nome": "FRANCESCA POTTER",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "physical"
+   },
+   "abilita": {
+    "nome": "WILD CARD",
+    "quando": "During a Dice Check",
+    "en": "During a Dice Check: If at least 2 results in the Roll Pool are [vanguard], spend 1 Charge to move all dice with a [accident] result to the Spent Pool.",
+    "it": "Durante una Prova: Se almeno 2 risultati nella Riserva del Tiro sono [vanguard], spendi 1 Carica per spostare tutti i dadi con un risultato [accident] nella Riserva dei Dadi Spesi."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/mark_32925.webp",
+   "nomi": [
+    "Mark"
+   ],
+   "lato": "fronte",
+   "nome": "MARK POULSEN",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "scouting"
+   },
+   "abilita": {
+    "nome": "ALERTNESS",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to ignore the result of 1 Danger die.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per ignorare il risultato di 1 dado Pericolo."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/maxim_34501.webp",
+   "nomi": [
+    "Maxim"
+   ],
+   "lato": "fronte",
+   "nome": "MAXIM PAVLENKO",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "physical"
+   },
+   "abilita": {
+    "nome": "DISCIPLINED",
+    "quando": "During a Dice Check",
+    "en": "During a Dice Check: Spend 1 Charge to turn 1 [accident] result to a [vanguard] result.",
+    "it": "Durante una Prova: Spendi 1 Carica per trasformare 1 risultato [accident] in un risultato [vanguard]."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/indah_32900.webp",
+   "nomi": [
+    "Indah"
+   ],
+   "lato": "fronte",
+   "nome": "INDAH RAU",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "construction"
+   },
+   "abilita": {
+    "nome": "UNBREAKABLE",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to replace 1 of your Injury cards with a Wounded Injury.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per sostituire 1 delle tue carte Ferita con una Ferita Ferito."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "'Wounded Injury' tradotto 'Ferita Ferito' secondo glossario (Wounded = Ferito); forse meglio 'una Ferita di tipo Ferito'. Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/narcisse_34605.webp",
+   "nomi": [
+    "Narcisse"
+   ],
+   "lato": "fronte",
+   "nome": "NARCISSE GUILLOUX",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "defence"
+   },
+   "abilita": {
+    "nome": "RECORD KEEPER",
+    "quando": "During a Dice Check",
+    "en": "During a Dice Check: Spend 1 Charge to roll 1 [die] from your Spent Pool and add it to your Roll Pool.",
+    "it": "Durante una Prova: Spendi 1 Carica per tirare 1 [die] dalla tua Riserva dei Dadi Spesi e aggiungerlo alla tua Riserva del Tiro."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/javier_34400.webp",
+   "nomi": [
+    "Javier"
+   ],
+   "lato": "fronte",
+   "nome": "JAVIER AGUERO",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "gathering"
+   },
+   "abilita": {
+    "nome": "SOLDIER",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to ignore one Time Track progression on one chosen Threat card. The effect of the current Time Track slot is not resolved again.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per ignorare un avanzamento della traccia del Tempo su una carta Minaccia a scelta. L'effetto della casella attuale della traccia del Tempo non viene risolto di nuovo."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/keith_32802.webp",
+   "nomi": [
+    "Keith"
+   ],
+   "lato": "fronte",
+   "nome": "KEITH WOOD",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "technology"
+   },
+   "abilita": {
+    "nome": "CAREFUL",
+    "quando": "During a Dice Check",
+    "en": "During a Dice Check: Spend 1 Charge to move 1 die with a [accident] result from the Roll Pool to the Spent Pool.",
+    "it": "Durante una Prova: Spendi 1 Carica per spostare 1 dado con un risultato [accident] dalla Riserva del Tiro alla Riserva dei Dadi Spesi."
+   },
+   "cariche": 4,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/jia_32816.webp",
+   "nomi": [
+    "Jia"
+   ],
+   "lato": "fronte",
+   "nome": "JIA SEOK",
+   "converti": {
+    "colore": "redDie",
+    "da": "basic",
+    "a": "xenology"
+   },
+   "abilita": {
+    "nome": "TRUMP CARD",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to take 1 card of any Rank from your Section Compartment to your hand.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per prendere in mano 1 carta di qualsiasi Grado dallo scomparto del tuo Reparto."
+   },
+   "cariche": 1,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "'Section Compartment' tradotto 'scomparto del Reparto' (termine non nel glossario). Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/christos_32917.webp",
+   "nomi": [
+    "Christos"
+   ],
+   "lato": "fronte",
+   "nome": "CHRISTOS NICOLI",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "xenology"
+   },
+   "abilita": {
+    "nome": "GRIT",
+    "quando": "During a Dice Check",
+    "en": "During a Dice Check: Spend 1 Charge to ignore the results of all your Injury dice.",
+    "it": "Durante una Prova: Spendi 1 Carica per ignorare i risultati di tutti i tuoi dadi Ferita."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/bojana_32902.webp",
+   "nomi": [
+    "Bojana"
+   ],
+   "lato": "fronte",
+   "nome": "BOJANA PERIĆ",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "defence"
+   },
+   "abilita": {
+    "nome": "FORTITUDE",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to Refresh 1 [redDie] + 1 [greenDie] + 1 [blueDie].",
+    "it": "In qualsiasi momento: Spendi 1 Carica per Ricaricare 1 [redDie] + 1 [greenDie] + 1 [blueDie]."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/crewmembers/andrew_32915.webp",
+   "nomi": [
+    "Andrew"
+   ],
+   "lato": "fronte",
+   "nome": "ANDREW MCVAY",
+   "converti": {
+    "colore": "greenDie",
+    "da": "basic",
+    "a": "defence"
+   },
+   "abilita": {
+    "nome": "ADVISOR",
+    "quando": "When Assisting",
+    "en": "When Assisting: Spend 1 Charge to Assist a Crewmember in any Sector.",
+    "it": "Quando Assisti: Spendi 1 Carica per Assistere un Membro dell'Equipaggio in qualsiasi Settore."
+   },
+   "cariche": 3,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/amir/amir_34404.webp",
+   "nomi": [
+    "Amir"
+   ],
+   "lato": "fronte",
+   "nome": "AMIR ZAYNAB",
+   "converti": {
+    "colore": "blueDie",
+    "da": "basic",
+    "a": "scienceDice"
+   },
+   "abilita": {
+    "nome": "WILD CARD",
+    "quando": "During a Dice Check",
+    "en": "During a Dice Check: If at least 2 results in the Roll Pool are [vanguard], spend 1 Charge to move all dice with a [accident] result to the Spent Pool.",
+    "it": "Durante una Prova: Se almeno 2 risultati nella Riserva del Tiro sono [vanguard], spendi 1 Carica per spostare tutti i dadi con un risultato [accident] nella Riserva dei Dadi Spesi."
+   },
+   "cariche": 2,
+   "reparto": "?",
+   "grado": "",
+   "dubbi": "Reparto non indicato sulla carta (nessuna icona/colore di Reparto, tutte le carte hanno lo stesso stile blu scuro). In basso a destra 3 chevron vuoti (traccia gradi?) non trascritti come grado."
+  }
+ ]
+}

@@ -17,6 +17,7 @@ boot_splash/use_filter=true
 
 Dati="*res://scripts/data/dati.gd"
 Immagini="*res://scripts/data/immagini.gd"
+Carte="*res://scripts/data/carte.gd"
 Tema="*res://scripts/ui/tema.gd"
 Campagna="*res://scripts/core/campagna.gd"
 Net="*res://scripts/net/net.gd"

@@ -1,0 +1,294 @@
+{"carte": [
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p001_12607.webp", "id": "P001",
+ "titolo": {"en": "NOTHING IMPORTANT", "it": "NIENTE DI IMPORTANTE"},
+ "icone": ["noSave"],
+ "testo_colore": {"en": "There's nothing worth mentioning here... for now.", "it": "Non c'è niente che valga la pena menzionare qui... per ora."},
+ "azioni": [], "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p074_12617.webp", "id": "P074",
+ "titolo": {"en": "SHADED CAMPSITE", "it": "ACCAMPAMENTO IN OMBRA"},
+ "icone": ["finalPOI"],
+ "testo_colore": {"en": "Safe from the hellish heat.", "it": "Al riparo dal calore infernale."},
+ "testo": {"en": "Whenever you Rest or Exert in this Sector, Refresh all [die].", "it": "Ogni volta che effettui Riposo o Sforzo in questo Settore, Ricarica tutti i [die]."},
+ "azioni": [
+  {"nome": {"en": "MAKE CAMP", "it": "ALLESTIRE IL CAMPO"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "",
+   "speciali": [],
+   "esiti": [
+    {"colore": "green", "req": "biology", "en": "You or an Assisting Crewmember: discard 1 Injury die.", "it": "Tu o un Membro dell'Equipaggio che ti Assiste: scarta 1 dado Ferita."},
+    {"colore": "green", "req": "vanguard", "en": "You or an Assisting Crewmember: draw 2 Section cards.", "it": "Tu o un Membro dell'Equipaggio che ti Assiste: pesca 2 carte Reparto."}
+   ]}
+ ],
+ "dubbi": "Due righe verdi e nessuna riga rossa: presumibilmente si applicano tutte le righe i cui requisiti sono soddisfatti (non è un'alternativa)."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p112_35502.webp", "id": "P112",
+ "titolo": {"en": "RESUPPLY DEPOT", "it": "DEPOSITO DI RIFORNIMENTO"},
+ "icone": [],
+ "testo_colore": {"en": "This crystalline arm, extending far into space, can be supplied directly from Vanguard – if we're desperate enough to order an emergency drop.", "it": "Questo braccio cristallino, che si estende lontano nello spazio, può essere rifornito direttamente dalla Vanguard, se siamo abbastanza disperati da ordinare un lancio d'emergenza."},
+ "azioni": [
+  {"nome": {"en": "EMERGENCY SUPPLY DROP", "it": "LANCIO DI RIFORNIMENTI D'EMERGENZA"}, "icona": "diceCheck", "pericolo": [], "prova": true,
+   "costo": {"en": "You must discard 1 [success] to perform this Action.", "it": "Devi scartare 1 [success] per eseguire questa Azione."},
+   "speciali": [{"req": "accident", "effetto": "outcomeRed"}],
+   "esiti": [
+    {"colore": "green", "req": "die+die", "en": "Gain 3 Supplies, replace with card P000.", "it": "Ottieni 3 Provviste, sostituisci con la carta P000."},
+    {"colore": "red", "req": "", "en": "Replace with card P000.", "it": "Sostituisci con la carta P000."}
+   ]}
+ ],
+ "dubbi": "Requisito verde: due dadi tricolore (die+die), cioè due dadi qualsiasi."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p135_13105.webp", "id": "P135",
+ "titolo": {"en": "WRIGGLING MASS", "it": "MASSA BRULICANTE"},
+ "icone": ["vegetation", "caves", "finalPOI"],
+ "testo_colore": {"en": "The ground is covered with countless worms secreting caustic liquid.", "it": "Il terreno è coperto da innumerevoli vermi che secernono un liquido caustico."},
+ "testo": {"en": "Each Crewmember who ends their turn in this Sector, rolls [dangerDieD].", "it": "Ogni Membro dell'Equipaggio che termina il proprio turno in questo Settore tira [dangerDieD]."},
+ "azioni": [
+  {"nome": {"en": "CATCH SPECIMENS", "it": "CATTURARE ESEMPLARI"}, "icona": "diceCheck", "pericolo": ["dangerDieD"], "prova": true, "costo": "",
+   "speciali": [],
+   "esiti": [
+    {"colore": "green", "req": "defence / biology", "en": "Gain 2 Live Specimen Leads.", "it": "Ottieni 2 Indizi Esemplare Vivo."}
+   ]}
+ ],
+ "dubbi": "Nessuna riga rossa stampata."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p162_13202.webp", "id": "P162",
+ "titolo": {"en": "BACTERIAL COLONY", "it": "COLONIA BATTERICA"},
+ "icone": ["rocky"],
+ "testo_colore": {"en": "Scans indicate vigorous biochemical activity.", "it": "Le scansioni indicano un'intensa attività biochimica."},
+ "azioni": [
+  {"nome": {"en": "TAKE SAMPLES", "it": "PRELEVARE CAMPIONI"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "",
+   "speciali": [{"req": "accident", "effetto": "outcomeRed"}],
+   "esiti": [
+    {"colore": "yellow", "req": "biology+xenology", "en": "Gain a Unique Discovery.", "it": "Ottieni una Scoperta Eccezionale.", "segue": "green"},
+    {"colore": "green", "req": "greenDie+greenDie+blueDie", "en": "Gain 1 [success] and 2 Microorganism Leads, replace with card P010.", "it": "Ottieni 1 [success] e 2 Indizi Microorganismo, sostituisci con la carta P010."},
+    {"colore": "red", "req": "", "en": "Go to Log 31.", "it": "Vai all'Annotazione 31."}
+   ],
+   "frecce": "Freccia gialla dalla riga gialla verso la riga verde: con il risultato giallo si applica anche quello verde."}
+ ],
+ "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p190_13214.webp", "id": "P190",
+ "titolo": {"en": "SLIME MOLD FIELD", "it": "CAMPO DI MUFFA MUCILLAGINOSA"},
+ "icone": ["frigid", "rocky"],
+ "testo_colore": {"en": "To correct our previous false assumption: orange slime mold scales the rocks and ice in the area.", "it": "A correzione della nostra precedente ipotesi errata: una muffa mucillaginosa arancione ricopre le rocce e il ghiaccio della zona."},
+ "azioni": [
+  {"nome": {"en": "FURTHER RESEARCH", "it": "ULTERIORI RICERCHE"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "",
+   "speciali": [
+    {"req": "biology+scienceDice", "effetto": "outcomeGreenProgress"},
+    {"req": "accident", "effetto": "outcomeRedProgress"}
+   ],
+   "tracce": [
+    {"colore": "green", "caselle": 3, "en": "Gain 1 [success] and 4 Live Specimen Leads, replace with card P000.", "it": "Ottieni 1 [success] e 4 Indizi Esemplare Vivo, sostituisci con la carta P000."},
+    {"colore": "red", "caselle": 1, "en": "Roll [dangerDieE].", "it": "Tira [dangerDieE]."}
+   ]}
+ ],
+ "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p201_13226.webp", "id": "P201",
+ "titolo": {"en": "TEEMING PASSAGE", "it": "PASSAGGIO BRULICANTE"},
+ "icone": ["water", "frigid", "noSave"],
+ "testo_colore": {"en": "Ominous, large shapes, small organisms similar to fish, something constantly stirs the water...", "it": "Grandi forme minacciose, piccoli organismi simili a pesci, qualcosa agita costantemente l'acqua..."},
+ "azioni": [],
+ "altro": {"en": "Go to Log 511.", "it": "Vai all'Annotazione 511."},
+ "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p219_19011.webp", "id": "P219",
+ "titolo": {"en": "DROWNED RUINS", "it": "ROVINE SOMMERSE"},
+ "icone": ["ruins"],
+ "testo_colore": {"en": "Preliminary examination revealed pieces of alien technology that don't seem like it's from this world.", "it": "Un esame preliminare ha rivelato frammenti di tecnologia aliena che non sembrano appartenere a questo mondo."},
+ "azioni": [
+  {"nome": {"en": "UNEARTH THE RUINS", "it": "RIPORTARE ALLA LUCE LE ROVINE"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "",
+   "speciali": [{"req": "accident", "effetto": "outcomeRed"}],
+   "esiti": [
+    {"colore": "green", "req": "gathering+technology / xenology+scienceDice", "en": "Go to Log 521.", "it": "Vai all'Annotazione 521."},
+    {"colore": "red", "req": "", "en": "Roll [dangerDieG].", "it": "Tira [dangerDieG]."}
+   ]}
+ ],
+ "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p240_19023.webp", "id": "P240",
+ "titolo": {"en": "DAMAGED CARGO HOLD", "it": "STIVA DANNEGGIATA"},
+ "icone": ["deadly", "void", "important"],
+ "testo_colore": {"en": "The cargo hold is rapidly depressurizing. Supplies, materials – and oxygen we so badly need – are sucked into space.", "it": "La stiva si sta depressurizzando rapidamente. Provviste, materiali e l'ossigeno di cui abbiamo così disperatamente bisogno vengono risucchiati nello spazio."},
+ "azioni": [
+  {"nome": {"en": "REPAIR THE DAMAGE", "it": "RIPARARE IL DANNO"}, "icona": "diceCheck", "pericolo": ["dangerDieI"], "prova": true, "costo": "",
+   "speciali": [
+    {"req": "construction / technology", "effetto": "outcomeGreenProgress"},
+    {"req": "accident", "effetto": "outcomeGreenReduction"}
+   ],
+   "tracce": [
+    {"colore": "green", "caselle": 3, "en": "Remove 1 marker from the Enemy Advantage Slot, gain 1 [success], go to Log 732.", "it": "Rimuovi 1 segnalino dallo Spazio Vantaggio Nemico, ottieni 1 [success], vai all'Annotazione 732."}
+   ]}
+ ],
+ "tempo": {"caselle": 3, "en": "Reset this track, add 1 marker to the Enemy Advantage Slot.", "it": "Azzera questa traccia, aggiungi 1 segnalino allo Spazio Vantaggio Nemico."},
+ "dubbi": "Campo 'tempo' aggiunto (non previsto dallo schema PDI): traccia del Tempo con 3 caselle » in basso. 'Enemy Advantage Slot' tradotto 'Spazio Vantaggio Nemico' (termine non nel glossario). Nessuna traccia rossa: l'incidente fa arretrare la traccia verde."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p277_19607.webp", "id": "P277",
+ "titolo": {"en": "SILENT CABAL", "it": "CONCILIABOLO SILENZIOSO"},
+ "icone": [],
+ "testo_colore": {"en": "The sea of humming, motionless Idemians is deeply disturbing.", "it": "Il mare di Idemiani immobili e ronzanti è profondamente inquietante."},
+ "azioni": [
+  {"nome": {"en": "STUDY THE CABAL", "it": "STUDIARE IL CONCILIABOLO"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "",
+   "speciali": [
+    {"req": "accident", "effetto": "outcomeRedProgress"},
+    {"req": "xenology / scienceDice", "effetto": "outcomeGreenProgress"}
+   ],
+   "tracce": [
+    {"colore": "green", "caselle": 3, "en": "Gain 1 [success], go to Log 534.", "it": "Ottieni 1 [success], vai all'Annotazione 534."},
+    {"colore": "red", "caselle": 2, "en": "Replace with card P278.", "it": "Sostituisci con la carta P278."}
+   ]}
+ ],
+ "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p290_19619.webp", "id": "P290",
+ "titolo": {"en": "MOLTEN METAL RESERVOIR", "it": "BACINO DI METALLO FUSO"},
+ "icone": ["finalPOI"],
+ "testo_colore": {"en": "Full of rare metals critically needed on Vanguard.", "it": "Pieno di metalli rari di cui la Vanguard ha disperato bisogno."},
+ "azioni": [
+  {"nome": {"en": "GATHER METAL", "it": "RACCOGLIERE METALLO"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "",
+   "speciali": [],
+   "esiti": [
+    {"colore": "yellow", "req": "2*gathering", "en": "Gain 2 Mineral Leads.", "it": "Ottieni 2 Indizi Minerale.", "segue": "green"},
+    {"colore": "green", "req": "redDie+redDie+greenDie", "en": "Gain 2 Mineral Leads.", "it": "Ottieni 2 Indizi Minerale."},
+    {"colore": "red", "req": "", "en": "Gain a Wounded Injury.", "it": "Subisci una Ferita Ferito."}
+   ],
+   "frecce": "Freccia gialla dalla riga gialla verso la verde: con il risultato giallo si applica anche quello verde (totale 4 Indizi Minerale)."}
+ ],
+ "dubbi": "Traduzione 'Gain a Wounded Injury': 'Subisci una Ferita Ferito' (verificare la formula ufficiale)."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p312_19631.webp", "id": "P312",
+ "titolo": {"en": "EXCAVATED TRANSPORT", "it": "TRASPORTO DISSEPOLTO"},
+ "icone": ["finalPOI"],
+ "testo_colore": {"en": "Dismantling the transport allowed us to repurpose its shield generator.", "it": "Smontare il trasporto ci ha permesso di riutilizzare il suo generatore di scudi."},
+ "testo": {"en": "Threats cannot move to this Sector.", "it": "Le Minacce non possono muoversi in questo Settore."},
+ "azioni": [], "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p324_19708.webp", "id": "P324",
+ "titolo": {"en": "ASSEMBLY LINE", "it": "CATENA DI MONTAGGIO"},
+ "icone": ["finalPOI", "deadly"],
+ "testo_colore": {"en": "This line showcases the whole production process.", "it": "Questa catena mostra l'intero processo produttivo."},
+ "azioni": [
+  {"nome": {"en": "EXPLORE THE BUILDING", "it": "ESPLORARE L'EDIFICIO"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "",
+   "speciali": [],
+   "esiti": [
+    {"colore": "green", "req": "defence+xenology+technology", "en": "Gain 2 Alien Tech Leads. Go to Log 244.", "it": "Ottieni 2 Indizi Tecnologia Aliena. Vai all'Annotazione 244."},
+    {"colore": "red", "req": "", "en": "[spendDie]+[spendDie]", "it": "[spendDie]+[spendDie]"}
+   ]}
+ ],
+ "dubbi": "Riga rossa composta solo da icone: due spendDie (Spendi 2 dadi)."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p362_19900.webp", "id": "P362",
+ "titolo": {"en": "STRANGE LAIR", "it": "STRANA TANA"},
+ "icone": ["noSave", "noMovement"],
+ "testo_colore": {"en": "None of our weapons are capable of wounding this monstrosity. Retreat is our only option.", "it": "Nessuna delle nostre armi è in grado di ferire questa mostruosità. La ritirata è la nostra unica opzione."},
+ "testo": {"en": "Important: No effect may cause Crewmembers to leave this Sector while this card is revealed.", "it": "Importante: nessun effetto può far lasciare questo Settore ai Membri dell'Equipaggio finché questa carta è rivelata."},
+ "azioni": [
+  {"nome": {"en": "LEAVE THE LAIR!", "it": "FUGGIRE DALLA TANA!"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "",
+   "speciali": [
+    {"req": "accident", "effetto": "outcomeRedProgress"},
+    {"req": "physical+physical / redDie+greenDie+greenDie", "effetto": "outcomeGreenProgress"}
+   ],
+   "tracce": [
+    {"colore": "green", "caselle": 2, "en": "Go to Log 873.", "it": "Vai all'Annotazione 873."},
+    {"colore": "red", "caselle": 2, "en": "Gain a Critically Wounded Injury.", "it": "Subisci una Ferita Lesione Grave."}
+   ]}
+ ],
+ "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p374_19912.webp", "id": "P374",
+ "titolo": {"en": "STABLE ENVIRONMENT", "it": "AMBIENTE STABILE"},
+ "icone": [],
+ "testo_colore": {"en": "The space behaves more naturally in this exact spot. Our instruments indicate that we may safely open a portal to Vanguard here.", "it": "In questo punto esatto lo spazio si comporta in modo più naturale. I nostri strumenti indicano che qui possiamo aprire in sicurezza un portale verso la Vanguard."},
+ "azioni": [
+  {"nome": {"en": "BUILD AN OUTPOST", "it": "COSTRUIRE UN AVAMPOSTO"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "",
+   "speciali": [
+    {"req": "accident", "effetto": "outcomeRedProgress"},
+    {"req": "construction / redDie+redDie+blueDie", "effetto": "outcomeGreenProgress"}
+   ],
+   "tracce": [
+    {"colore": "green", "caselle": 3, "en": "Gain 1 [success], go to Log 262.", "it": "Ottieni 1 [success], vai all'Annotazione 262."},
+    {"colore": "red", "caselle": 1, "en": "Roll [dangerDieI].", "it": "Tira [dangerDieI]."}
+   ]}
+ ],
+ "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p383_19924.webp", "id": "P383",
+ "titolo": {"en": "OUTER PLANTATION (WARP)", "it": "PIANTAGIONE ESTERNA (DISTORSIONE)"},
+ "icone": ["vegetation", "rocky", "noSave"],
+ "testo_colore": {"en": "This place, with two suns, bright sky, and lush fields, shouldn't be here. An armed biological construct guards the plantation and bulky depots.", "it": "Questo luogo, con due soli, un cielo luminoso e campi rigogliosi, non dovrebbe essere qui. Un costrutto biologico armato sorveglia la piantagione e i voluminosi depositi."},
+ "azioni": [
+  {"nome": {"en": "HARVEST SAMPLES", "it": "RACCOGLIERE CAMPIONI"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "",
+   "speciali": [{"req": "accident", "effetto": "outcomeRed"}],
+   "esiti": [
+    {"colore": "green", "req": "gathering+biology / redDie+redDie+greenDie+blueDie", "en": "Gain 3 Strange Flora Leads.", "it": "Ottieni 3 Indizi Strana Vegetazione."},
+    {"colore": "red", "req": "", "en": "Roll [dangerDieA], [sacrifaceDie].", "it": "Tira [dangerDieA], [sacrifaceDie].", "segue": "green"}
+   ],
+   "frecce": "Freccia rossa dalla riga rossa verso la verde: con il risultato rosso si applica anche quello verde (si ottengono comunque i 3 Indizi)."}
+ ],
+ "dubbi": "Interpretazione della freccia rossa rivolta verso l'alto (rosso -> anche verde) da verificare. 'WARP' tradotto 'DISTORSIONE'. Riga rossa: 'Roll [dangerDieA], [sacrifaceDie]' = tira il dado Pericolo A e sacrifica un dado."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p403_32301.webp", "id": "P403",
+ "titolo": {"en": "SHADOWED CAVERN", "it": "CAVERNA IN OMBRA"},
+ "icone": ["caves"],
+ "testo_colore": {"en": "The meteorite unearthed the entrance to a natural tunnel system plunging deep into Edan's innards.", "it": "Il meteorite ha portato alla luce l'ingresso di un sistema naturale di gallerie che sprofonda nelle viscere di Edan."},
+ "azioni": [
+  {"nome": {"en": "DELVE INTO THE DEPTHS", "it": "SCENDERE NELLE PROFONDITÀ"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "",
+   "speciali": [
+    {"req": "accident", "effetto": "outcomeRedProgress"},
+    {"req": "scouting+scouting / redDie+greenDie+greenDie+blueDie", "effetto": "outcomeGreenProgress"}
+   ],
+   "tracce": [
+    {"colore": "green", "caselle": 2, "en": "Replace with card P405.", "it": "Sostituisci con la carta P405."},
+    {"colore": "red", "caselle": 1, "en": "Roll [dangerDieC].", "it": "Tira [dangerDieC]."}
+   ]}
+ ],
+ "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p436_32313.webp", "id": "P436",
+ "titolo": {"en": "CHARGING PLASMA JET", "it": "GETTO DI PLASMA IN CARICA"},
+ "icone": [],
+ "testo_colore": {"en": "As searing plasma hits the door, the center lights up, absorbing the energy. The giant obstacle begins to move away slowly.", "it": "Mentre il plasma rovente colpisce la porta, il centro si illumina assorbendo l'energia. L'enorme ostacolo comincia lentamente a spostarsi."},
+ "testo": {"en": "Each Crewmember who ends their turn in this Sector rolls [dangerDieI]. Each Crewmember who enters this Sector rolls [dangerDieI].", "it": "Ogni Membro dell'Equipaggio che termina il proprio turno in questo Settore tira [dangerDieI]. Ogni Membro dell'Equipaggio che entra in questo Settore tira [dangerDieI]."},
+ "azioni": [],
+ "tempo": {"caselle": 2, "en": "The door is now open! Go to Log 124.", "it": "La porta ora è aperta! Vai all'Annotazione 124."},
+ "dubbi": "Campo 'tempo' aggiunto (non previsto dallo schema PDI): traccia del Tempo con 2 caselle » in basso."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p501_32610.webp", "id": "P501",
+ "titolo": {"en": "SHELTER", "it": "RIFUGIO"},
+ "icone": ["finalPOI"],
+ "testo_colore": {"en": "A place to rest.", "it": "Un posto dove riposare."},
+ "azioni": [
+  {"nome": {"en": "ENTER THE OUTPOST", "it": "ENTRARE NELL'AVAMPOSTO"}, "icona": "specialAction", "pericolo": [], "prova": false, "costo": "",
+   "speciali": [],
+   "esiti": [{"colore": "", "req": "", "en": "Go to Log 1023.", "it": "Vai all'Annotazione 1023."}]}
+ ],
+ "dubbi": "Azione senza prova di dadi (solo freccia Azione Speciale): l'effetto è messo come esito senza colore."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p513_32622.webp", "id": "P513",
+ "titolo": {"en": "HUNTING PARTY", "it": "BATTUTA DI CACCIA"},
+ "icone": [],
+ "testo_colore": {"en": "If they get you...", "it": "Se ti prendono..."},
+ "testo": {"en": "If, at any moment, a Crewmember is in a Sector with this POI, go to Log 1022.", "it": "Se, in qualsiasi momento, un Membro dell'Equipaggio si trova in un Settore con questo PDI, vai all'Annotazione 1022."},
+ "azioni": [], "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p532_32634.webp", "id": "P532",
+ "titolo": {"en": "ACHERO TITAN", "it": "TITANO ACHERO"},
+ "icone": ["hostile"],
+ "testo_colore": {"en": "Armed and covered in protective domes, this seat of the duskline hunters looks like a moving fortress. Outsiders are not welcome.", "it": "Armata e coperta di cupole protettive, questa dimora dei cacciatori del crepuscolo sembra una fortezza in movimento. Gli estranei non sono i benvenuti."},
+ "azioni": [
+  {"nome": {"en": "INFILTRATE THE TITAN", "it": "INFILTRARSI NEL TITANO"}, "icona": "diceCheck", "pericolo": ["dangerDieI"], "prova": true, "costo": "",
+   "speciali": [
+    {"req": "", "effetto": {"en": "You may [sacrifaceDie] to reroll 1 [die].", "it": "Puoi [sacrifaceDie] per ritirare 1 [die]."}},
+    {"req": "basic / accident", "effetto": "outcomeRed"}
+   ],
+   "esiti": [
+    {"colore": "green", "req": "redDie+redDie+greenDie+blueDie+blueDie", "en": "Go to Log 1084.", "it": "Vai all'Annotazione 1084."},
+    {"colore": "red", "req": "", "en": "Roll [dangerDieI].", "it": "Tira [dangerDieI]."}
+   ]}
+ ],
+ "dubbi": "'duskline hunters' tradotto 'cacciatori del crepuscolo' (nome proprio, verificare la resa ufficiale)."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_from_tutorial_deck_a/p000_12603.webp", "id": "P000",
+ "titolo": {"en": "NOTHING INTERESTING", "it": "NIENTE DI INTERESSANTE"},
+ "icone": ["finalPOI"],
+ "testo_colore": {"en": "Nothing of interest or value remains here...", "it": "Qui non rimane nulla di interessante o di valore..."},
+ "azioni": [], "dubbi": ""}
+]}

@@ -1,0 +1,292 @@
+{"carte": [
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p001_12606.webp", "id": "P001",
+ "titolo": {"en": "NOTHING IMPORTANT", "it": "NIENTE DI IMPORTANTE"},
+ "icone": ["noSave"],
+ "testo_colore": {"en": "There's nothing worth mentioning here... for now.", "it": "Non c'è niente degno di nota qui... per ora."},
+ "azioni": [],
+ "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p075_12618.webp", "id": "P075",
+ "titolo": {"en": "TREACHEROUS CAMPSITE", "it": "ACCAMPAMENTO INSIDIOSO"},
+ "icone": ["finalPOI"],
+ "testo_colore": {"en": "Barely holding back the elements.", "it": "Resiste a malapena agli elementi."},
+ "testo": {"en": "Whenever you Rest or Exert in this Sector, Refresh all [die].", "it": "Ogni volta che effettui un Riposo o uno Sforzo in questo Settore, Ricarica tutti i [die]."},
+ "azioni": [
+  {"nome": {"en": "MAKE CAMP", "it": "ALLESTIRE IL CAMPO"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "", "speciali": [],
+   "esiti": [
+    {"colore": "green", "req": "biology", "en": "You or an Assisting Crewmember: discard 1 Injury die.", "it": "Tu o un Membro dell'Equipaggio che ti Assiste: scarta 1 dado Ferita."},
+    {"colore": "green", "req": "vanguard", "en": "You or an Assisting Crewmember: draw 1 Section card.", "it": "Tu o un Membro dell'Equipaggio che ti Assiste: pesca 1 carta Reparto."}
+   ], "tracce": []}
+ ],
+ "dubbi": "Due righe verdi e nessuna rossa: presumibilmente ogni riga soddisfatta si applica (anche entrambe)."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p113_35503.webp", "id": "P113",
+ "titolo": {"en": "BURIED SIGNAL", "it": "SEGNALE SEPOLTO"},
+ "icone": ["caves"],
+ "testo_colore": {"en": "This mountain of charred rubble comes alive as a beacon-like signal sounds deep beneath it.", "it": "Questa montagna di macerie carbonizzate si anima mentre un segnale simile a un radiofaro risuona nelle sue profondità."},
+ "azioni": [
+  {"nome": {"en": "BURIED SIGNAL", "it": "SEGNALE SEPOLTO"}, "icona": "diceCheck", "pericolo": ["dangerDieA"], "prova": true, "costo": "",
+   "speciali": [
+    {"req": "gathering", "effetto": "outcomeYellowProgress"},
+    {"req": "die", "effetto": "outcomeGreenProgress"}
+   ],
+   "esiti": [],
+   "tracce": [
+    {"colore": "yellow", "caselle": 2, "en": "Gain 2 Alien Tech Leads, [outcomeGreenProgress].", "it": "Ottieni 2 Indizi Tecnologia Aliena, [outcomeGreenProgress]."},
+    {"colore": "green", "caselle": 4, "en": "Go to Log 22.", "it": "Vai all'Annotazione 22."}
+   ]}
+ ],
+ "dubbi": "Icona in alto a destra letta come caves. Il requisito speciale 'die' (cubo tricolore) = qualsiasi dado."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p136_13106.webp", "id": "P136",
+ "titolo": {"en": "PLANT CORPSE", "it": "CADAVERE VEGETALE"},
+ "icone": ["vegetation", "water", "finalPOI"],
+ "testo_colore": {"en": "The cave once inhabited by the carnivorous thicket is still empty, excluding the thicket's rotting body.", "it": "La caverna un tempo abitata dalla boscaglia carnivora è ancora vuota, fatta eccezione per il corpo in decomposizione della boscaglia."},
+ "azioni": [
+  {"nome": {"en": "RECOVER BIOMASS", "it": "RECUPERARE BIOMASSA"}, "icona": "diceCheck", "pericolo": ["dangerDieD"], "prova": true, "costo": "",
+   "speciali": [
+    {"req": "accident / physical", "effetto": "outcomeRedProgress"},
+    {"req": "gathering / biology", "effetto": "outcomeGreenProgress"}
+   ],
+   "esiti": [],
+   "tracce": [
+    {"colore": "green", "caselle": 4, "en": "Gain 1 Supplies and 3 Strange Flora Leads. Place card P001 on top of this card.", "it": "Ottieni 1 Provvista e 3 Indizi Strana Vegetazione. Metti la carta P001 sopra questa carta."},
+    {"colore": "red", "caselle": 2, "en": "Place card P001 on top of this card.", "it": "Metti la carta P001 sopra questa carta."}
+   ]}
+ ],
+ "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p164_13203.webp", "id": "P164",
+ "titolo": {"en": "INFECTED BIOME", "it": "BIOMA INFETTO"},
+ "icone": ["noSave"],
+ "testo_colore": {"en": "It's our fault!", "it": "È colpa nostra!"},
+ "azioni": [
+  {"nome": {"en": "CONTROL THE INFECTION", "it": "CONTENERE L'INFEZIONE"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "", "speciali": [],
+   "esiti": [
+    {"colore": "green", "req": "biology+xenology+scienceDice", "en": "Gain 1 [success], go to Log 155.", "it": "Ottieni 1 [success], vai all'Annotazione 155."},
+    {"colore": "red", "req": "", "en": "[spendDie]", "it": "[spendDie]"}
+   ], "tracce": []}
+ ],
+ "dubbi": "La riga rossa contiene solo l'icona spendDie (Spendi un dado)."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p191_13215.webp", "id": "P191",
+ "titolo": {"en": "EXCAVATION SITE", "it": "SITO DI SCAVO"},
+ "icone": ["frigid", "rocky", "ruins"],
+ "testo_colore": {"en": "Artificial structures are right under the layer of solid ice and gravel.", "it": "Strutture artificiali si trovano proprio sotto lo strato di ghiaccio compatto e ghiaia."},
+ "azioni": [
+  {"nome": {"en": "INVESTIGATE", "it": "INDAGARE"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "",
+   "speciali": [
+    {"req": "accident / physical", "effetto": "outcomeRedProgress"},
+    {"req": "gathering / redDie+greenDie", "effetto": "outcomeGreenProgress"}
+   ],
+   "esiti": [],
+   "tracce": [
+    {"colore": "green", "caselle": 4, "en": "Gain 2 Mineral Leads, go to Log 287.", "it": "Ottieni 2 Indizi Minerale, vai all'Annotazione 287."},
+    {"colore": "red", "caselle": 2, "en": "Roll [dangerDieA].", "it": "Tira [dangerDieA]."}
+   ]}
+ ],
+ "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p202_19000.webp", "id": "P202",
+ "titolo": {"en": "BURIED STELE", "it": "STELE SEPOLTA"},
+ "icone": ["water", "frigid", "ruins", "noSave"],
+ "testo_colore": {"en": "The stele is hidden deep inside the coral grove. It's easy to reach them – if we don't care about the rare species, that is.", "it": "La stele è nascosta nel profondo del boschetto di coralli. È facile raggiungerli – sempre che non ci importi delle specie rare."},
+ "azioni": [
+  {"nome": {"en": "TRY NOT TO HARM THE CORALS", "it": "CERCARE DI NON DANNEGGIARE I CORALLI"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "",
+   "speciali": [
+    {"req": "accident", "effetto": "outcomeRed"}
+   ],
+   "esiti": [
+    {"colore": "green", "req": "gathering+biology+scienceDice", "en": "Go to Log 324.", "it": "Vai all'Annotazione 324."},
+    {"colore": "red", "req": "", "en": "Go to Log 446.", "it": "Vai all'Annotazione 446."}
+   ], "tracce": []}
+ ],
+ "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p220_19012.webp", "id": "P220",
+ "titolo": {"en": "SILVER LAKE", "it": "LAGO D'ARGENTO"},
+ "icone": ["finalPOI"],
+ "testo_colore": {"en": "There's still so much to study.", "it": "C'è ancora così tanto da studiare."},
+ "azioni": [
+  {"nome": {"en": "CATCH SPECIMEN", "it": "CATTURARE UN ESEMPLARE"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "", "speciali": [],
+   "esiti": [
+    {"colore": "green", "req": "biology+gathering / xenology", "en": "Gain 2 Live Specimen Leads.", "it": "Ottieni 2 Indizi Esemplare Vivo."},
+    {"colore": "red", "req": "", "en": "[sacrifaceDie]", "it": "[sacrifaceDie]"}
+   ], "tracce": []}
+ ],
+ "dubbi": "La riga rossa contiene solo l'icona sacrifaceDie (Sacrifica un dado). Requisito letto come (biology+gathering) / xenology."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p241_19024.webp", "id": "P241",
+ "titolo": {"en": "ARROGATOR CRUISER", "it": "INCROCIATORE ARROGATORE"},
+ "icone": ["void"],
+ "testo_colore": {"en": "The cruiser keeps up the pace with ISS Vanguard, pounding us with missiles.", "it": "L'incrociatore tiene il passo della ISS Vanguard, martellandoci di missili."},
+ "azioni": [
+  {"nome": {"en": "DOGFIGHT", "it": "COMBATTIMENTO AEREO"}, "icona": "diceCheck", "pericolo": ["dangerDieI"], "prova": true, "costo": "",
+   "speciali": [
+    {"req": "defence / scouting / technology", "effetto": "outcomeGreenProgress"},
+    {"req": "accident", "effetto": "outcomeRedProgress"}
+   ],
+   "esiti": [],
+   "tracce": [
+    {"colore": "green", "caselle": 4, "en": "Go to Log 127.", "it": "Vai all'Annotazione 127."},
+    {"colore": "red", "caselle": 4, "en": "Go to Log 136.", "it": "Vai all'Annotazione 136."}
+   ]}
+ ],
+ "dubbi": "'Arrogator' tradotto come 'Arrogatore' (nome di fazione, verificare la resa ufficiale)."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p278_19608.webp", "id": "P278",
+ "titolo": {"en": "DISTURBED CABAL", "it": "CABALA TURBATA"},
+ "icone": ["noSave"],
+ "testo_colore": {"en": "All eyes are on us!", "it": "Tutti gli occhi sono puntati su di noi!"},
+ "azioni": [
+  {"nome": {"en": "DEFUSE THE SITUATION", "it": "DISINNESCARE LA SITUAZIONE"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "",
+   "speciali": [
+    {"req": "vanguard", "effetto": "outcomeRed"}
+   ],
+   "esiti": [
+    {"colore": "green", "req": "biology+xenology", "en": "Replace with card P277.", "it": "Sostituisci con la carta P277."},
+    {"colore": "red", "req": "", "en": "Go to Log 259.", "it": "Vai all'Annotazione 259."}
+   ], "tracce": []}
+ ],
+ "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p291_19620.webp", "id": "P291",
+ "titolo": {"en": "DEADLY RAIN", "it": "PIOGGIA LETALE"},
+ "icone": ["deadly", "noMovement"],
+ "testo_colore": {"en": "Heavy metal particles are cooling down – enough to form deadly bullets.", "it": "Particelle di metallo pesante si stanno raffreddando – abbastanza da formare proiettili letali."},
+ "azioni": [
+  {"nome": {"en": "SURVIVE", "it": "SOPRAVVIVERE"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "",
+   "speciali": [
+    {"req": "defence+scouting", "effetto": "outcomeGreenProgress"},
+    {"req": "accident", "effetto": "outcomeRedProgress"}
+   ],
+   "esiti": [],
+   "tracce": [
+    {"colore": "green", "caselle": 3, "en": "Discard this card.", "it": "Scarta questa carta."},
+    {"colore": "red", "caselle": 2, "en": "Gain a Wounded Injury.", "it": "Subisci una Ferita Ferito."}
+   ]}
+ ],
+ "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p313_19632.webp", "id": "P313",
+ "titolo": {"en": "ACTIVE DEFENSE BATTERY", "it": "BATTERIA DIFENSIVA ATTIVA"},
+ "icone": ["deadly", "noSave"],
+ "testo_colore": {"en": "A whole defense battery, powered up and deadly.", "it": "Un'intera batteria difensiva, attiva e letale."},
+ "azioni": [],
+ "altro": {"en": "Go to Log 626.", "it": "Vai all'Annotazione 626."},
+ "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p325_19709.webp", "id": "P325",
+ "titolo": {"en": "POWER PLANT", "it": "CENTRALE ELETTRICA"},
+ "icone": ["deadly"],
+ "testo_colore": {"en": "The plant, attached to the ceiling, reminds us faintly of coral growth. It leaks dangerous amounts of radiation though.", "it": "La centrale, attaccata al soffitto, ci ricorda vagamente una formazione di corallo. Tuttavia rilascia quantità pericolose di radiazioni."},
+ "azioni": [
+  {"nome": {"en": "EXPLORE THE COMPLEX", "it": "ESPLORARE IL COMPLESSO"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "", "speciali": [],
+   "esiti": [
+    {"colore": "green", "req": "gathering+2*scienceDice+technology", "en": "Gain 4 Mineral Leads. Go to Log 577.", "it": "Ottieni 4 Indizi Minerale. Vai all'Annotazione 577."},
+    {"colore": "red", "req": "", "en": "Roll [dangerDieG].", "it": "Tira [dangerDieG]."}
+   ], "tracce": []}
+ ],
+ "dubbi": "'Plant' qui è ambiguo (centrale/pianta): il testo parla di radiazioni e di un complesso, resa 'centrale'."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p363_19901.webp", "id": "P363",
+ "titolo": {"en": "PLACE OF EVACUATION", "it": "LUOGO DI EVACUAZIONE"},
+ "icone": ["noSave"],
+ "testo_colore": {"en": "This was a homeport for large interplanetary transport ships. Some could still contain useful items.", "it": "Questo era il porto base per grandi navi da trasporto interplanetario. Alcune potrebbero ancora contenere oggetti utili."},
+ "azioni": [
+  {"nome": {"en": "SEARCH THE COCKPIT", "it": "PERQUISIRE LA CABINA DI PILOTAGGIO"}, "icona": "diceCheck", "pericolo": ["dangerDieB"], "prova": true, "costo": "", "speciali": [],
+   "esiti": [
+    {"colore": "green", "req": "construction+technology / greenDie+greenDie+blueDie", "en": "Go to Log 835.", "it": "Vai all'Annotazione 835."}
+   ], "tracce": []},
+  {"nome": {"en": "GO TO THE RUINED CITY", "it": "ANDARE ALLA CITTÀ IN ROVINA"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "", "speciali": [],
+   "esiti": [
+    {"colore": "green", "req": "defence+scouting / redDie+greenDie+greenDie", "en": "Replace with card P361.", "it": "Sostituisci con la carta P361."},
+    {"colore": "red", "req": "", "en": "Gain a Wounded Injury.", "it": "Subisci una Ferita Ferito."}
+   ], "tracce": []}
+ ],
+ "dubbi": "La prima azione non ha riga rossa (fallimento senza effetto oltre al dado Pericolo B)."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p375_19913.webp", "id": "P375",
+ "titolo": {"en": "OTHERWORLDLY OUTPOST", "it": "AVAMPOSTO ULTRATERRENO"},
+ "icone": ["finalPOI"],
+ "testo_colore": {"en": "A safe haven in a hellish, Escher world.", "it": "Un rifugio sicuro in un mondo infernale alla Escher."},
+ "azioni": [
+  {"nome": {"en": "REST", "it": "RIPOSO"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "", "speciali": [],
+   "esiti": [
+    {"colore": "green", "req": "defence / biology", "en": "You or an Assisting Crewmember: discard 1 Injury die.", "it": "Tu o un Membro dell'Equipaggio che ti Assiste: scarta 1 dado Ferita."}
+   ], "tracce": []},
+  {"nome": {"en": "RETURN TO VANGUARD", "it": "RITORNARE ALLA VANGUARD"}, "icona": "diceCheck", "pericolo": [], "prova": true, "costo": "",
+   "condizione": {"en": "You can perform this Action only if all Crewmembers are in this Sector and agree.", "it": "Puoi eseguire questa Azione solo se tutti i Membri dell'Equipaggio sono in questo Settore e sono d'accordo."},
+   "speciali": [],
+   "esiti": [
+    {"colore": "green", "req": "die", "en": "Go to Log 290.", "it": "Vai all'Annotazione 290."}
+   ], "tracce": []}
+ ],
+ "dubbi": "Campo extra 'condizione' nell'azione RETURN TO VANGUARD per il testo di prerequisito (non previsto dallo schema)."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p384_19925.webp", "id": "P384",
+ "titolo": {"en": "OPENED VENT (SECRETION)", "it": "SFIATO APERTO (SECREZIONE)"},
+ "icone": ["void", "deadly", "ruins", "noSave"],
+ "testo_colore": {"en": "Atmosphere and energy leak through a portal made by a machine resembling Vanguard's generator. It's a hazardous area.", "it": "Atmosfera ed energia fuoriescono da un portale creato da una macchina simile al generatore della Vanguard. È un'area pericolosa."},
+ "azioni": [],
+ "altro": {"en": "Go to Log 292", "it": "Vai all'Annotazione 292"},
+ "dubbi": ""},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p404_32302.webp", "id": "P404",
+ "titolo": {"en": "EXTRACTION POINT", "it": "PUNTO DI ESTRAZIONE"},
+ "icone": ["noSave"],
+ "testo_colore": {"en": "Time to call backup.", "it": "È ora di chiamare rinforzi."},
+ "azioni": [
+  {"nome": {"en": "LEAVE THE PLANET", "it": "LASCIARE IL PIANETA"}, "icona": "specialAction", "pericolo": [], "prova": false, "costo": "",
+   "condizione": {"en": "You can perform this Action only if all Crewmembers are in this Sector and agree.", "it": "Puoi eseguire questa Azione solo se tutti i Membri dell'Equipaggio sono in questo Settore e sono d'accordo."},
+   "speciali": [], "esiti": [], "tracce": [],
+   "effetto": {"en": "Go to Log 331.", "it": "Vai all'Annotazione 331."}}
+ ],
+ "dubbi": "Azione senza prova: campi extra 'condizione' ed 'effetto' nell'azione."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p437_32314.webp", "id": "P437",
+ "titolo": {"en": "OPEN GATEWAY", "it": "PORTALE APERTO"},
+ "icone": ["finalPOI"],
+ "testo_colore": {"en": "Behind the door, a long ramp leads deeper into the heart of this neutron star.", "it": "Dietro la porta, una lunga rampa conduce più in profondità nel cuore di questa stella di neutroni."},
+ "azioni": [
+  {"nome": {"en": "DESCEND", "it": "SCENDERE"}, "icona": "", "pericolo": [], "prova": false, "costo": "spendDie",
+   "speciali": [], "esiti": [], "tracce": [],
+   "effetto": {"en": "[spendDie] to move your Crewmember to Sector 5 – this counts as an Action.", "it": "[spendDie] per spostare il tuo Membro dell'Equipaggio nel Settore 5 – questo conta come un'Azione."}}
+ ],
+ "dubbi": "DESCEND non ha la freccia specialAction né l'icona di prova: è un effetto a costo (Spendi un dado) che conta come Azione."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p502_32611.webp", "id": "P502",
+ "titolo": {"en": "FLOWER BUGS' LAIR", "it": "COVO DEGLI INSETTI FIORE"},
+ "icone": ["finalPOI"],
+ "testo_colore": {"en": "It's better to keep away until I know how to deal with the Bugs.", "it": "È meglio stare alla larga finché non so come affrontare gli Insetti."},
+ "azioni": [
+  {"nome": {"en": "HARVEST THE AREA", "it": "RACCOGLIERE NELL'AREA"}, "icona": "diceCheck", "pericolo": ["dangerDieD"], "prova": true, "costo": "",
+   "condizione": {"en": "If you have Unique Discovery 37, you may ignore [dangerDieD].", "it": "Se possiedi la Scoperta Eccezionale 37, puoi ignorare [dangerDieD]."},
+   "speciali": [
+    {"req": "biology / xenology / defence", "effetto": "outcomeGreenProgress"}
+   ],
+   "esiti": [],
+   "tracce": [
+    {"colore": "green", "caselle": 3, "en": "Gain 1 Live Specimen Discovery and 1 Strange Flora Discovery, replace with card P000.", "it": "Ottieni 1 Scoperta Esemplare Vivo e 1 Scoperta Strana Vegetazione, sostituisci con la carta P000."}
+   ]}
+ ],
+ "dubbi": "Solo traccia verde (3 caselle), nessuna traccia rossa. Testo sotto il nome messo nel campo extra 'condizione'."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p520_32623.webp", "id": "P520",
+ "titolo": {"en": "DUSKLINE", "it": "LINEA DEL CREPUSCOLO"},
+ "icone": ["rocky"],
+ "testo_colore": {"en": "The line of dusk slowly creeps forward, changing the face of the planet.", "it": "La linea del crepuscolo avanza lentamente, cambiando il volto del pianeta."},
+ "azioni": [],
+ "dubbi": "Carta senza regole né azioni (solo titolo, testo di colore e bioma)."},
+
+{"file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p533_32635.webp", "id": "P533",
+ "titolo": {"en": "STRUGGLING TITAN", "it": "TITANO IN DIFFICOLTÀ"},
+ "icone": ["hostile"],
+ "testo_colore": {"en": "Unrest reigns in the city, as Aerugons riot and abandon the Titan, taking anything they can carry. A meeting of all the clans was called to discuss the crisis.", "it": "In città regnano i disordini: gli Aerugon si ribellano e abbandonano il Titano, portando via tutto ciò che possono. È stata convocata un'assemblea di tutti i clan per discutere la crisi."},
+ "azioni": [
+  {"nome": {"en": "ATTEND THE COUNCIL", "it": "PARTECIPARE AL CONSIGLIO"}, "icona": "specialAction", "pericolo": [], "prova": false, "costo": "",
+   "speciali": [], "esiti": [], "tracce": [],
+   "effetto": {"en": "Warning: This will conclude your mission. Be sure to gather all the information you want beforehand. Go to Log 1062.", "it": "Attenzione: questo concluderà la tua missione. Assicurati di raccogliere prima tutte le informazioni che desideri. Vai all'Annotazione 1062."}}
+ ],
+ "dubbi": "Icona in alto a destra letta come hostile (mirino)."}
+]}
