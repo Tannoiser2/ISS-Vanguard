@@ -3043,6 +3043,11 @@ func rispondi_logbook(q: String) -> int:
 		var sett := int(esp.membro(int(esp.s["attivo"]))["settore"])
 		_ultima_spiegazione = "%s è nel Settore %d" % [esp.membro(int(esp.s["attivo"]))["carta"], sett]
 		return 1 if sett == int(m3.get_string(1)) else 0
+	if Campagna.dati.get("nave") is Dictionary and not (Campagna.dati["nave"] as Dictionary).is_empty():
+		var pc := Nave.domanda_carte(t, Nave.new(Campagna.dati["nave"]))
+		if pc >= 0:
+			_ultima_spiegazione = "Carte del Ponte: %s" % ", ".join(Campagna.dati["nave"].get("ponte", []) + Campagna.dati["nave"].get("ponte_viaggio", []))
+			return pc
 	var m4 := RegEx.create_from_string("(?i)(?:carta )?missione (M\\d+) è scoperta").search(t)
 	if m4:
 		_ultima_spiegazione = "Missioni in gioco: %s" % ", ".join(esp.s["missioni"])
@@ -3059,9 +3064,14 @@ func rispondi_logbook(q: String) -> int:
 
 ## Istruzioni del Logbook eseguite dal programma; restituisce le righe "fatto" (vuoto = niente).
 func istruzione_logbook(t: String) -> Array:
+	var carte := []
+	if Campagna.dati.get("nave") is Dictionary and not (Campagna.dati["nave"] as Dictionary).is_empty():
+		carte = Nave.new(Campagna.dati["nave"]).istruzione_carte(t)
+		if not carte.is_empty():
+			Campagna.modificata()
 	var ops: Array = Effetti.analizza_it(t)["op"]
 	if ops.is_empty() or str(esp.s.get("finita", "")) != "":
-		return []
+		return carte
 	var chi := int(esp.s["attivo"])
 	var sett := int(esp.membro(chi)["settore"])
 	var fatti := []
@@ -3069,6 +3079,7 @@ func istruzione_logbook(t: String) -> Array:
 	var logs := []
 	for op in ops:
 		await _op(op, chi, sett, fatti, manuali, logs, "Logbook")
+	fatti = carte + fatti
 	_salva()
 	aggiorna()
 	return fatti

@@ -127,7 +127,17 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
     sistemati secondo la plancia del Reparto, attrezzatura, briefing e passaggio all'esplorazione;
   - rientro: Missione fallita, Scoperte in eccesso, scarico, infermeria (recupero, terapisti, prove di
     sopravvivenza), Muro della memoria, promozioni, compravendita dei dadi, Punto di salvataggio;
-  - le carte citate dal Logbook si mettono nella busta, nell'Armeria o fra le Situazioni con un clic.
+  - le carte citate dal Logbook si mettono nella busta, nell'Armeria o fra le Situazioni con un clic;
+    le istruzioni "Sposta la carta X … nella busta In attesa…", "… all'Inventario" e "Rimuovi la carta X
+    dal gioco" le esegue il programma (anche durante l'esplorazione), e risponde da solo alle domande
+    "Possiedi la carta X nel raccoglitore…?";
+  - **potenziamenti del Ponte**: Morale Alto +1 Comando, B07 e B15 (sconti in Energia), B13 (prima parte
+    della scansione gratis), B08, B14, B16 (conversioni con un pulsante), B11 e B12 (all'inizio del Ponte),
+    B17 (un Membro a riposo per rimandare una Situazione), B03 e B18 (annotazione all'installazione),
+    B04 (carta Atterraggio L6 nello scanner), B06 (annotazione 460 nell'Occhio del Vuoto), B01 e B02 (rotte);
+  - **potenziamenti delle strutture**: F01 (ritiro di un Danno nella prova di sopravvivenza), F02 (prova
+    in più per avanzare in infermeria), F03 (Scoperte per mandare un Membro per Reparto a riposo), F04
+    (coda 2), F05 (dado Pericolo su un progetto), F06 (Scoperte per far avanzare tutti i progetti).
 - **Regolamento** e riassunto delle regole (inglese, dai PDF del modulo) consultabili in gioco.
 
 ## Comandi del tavolo
@@ -165,6 +175,8 @@ tests/prova_dadi.gd        prove del motore dei dadi
 tests/prova_missione.gd    partita simulata a caso dell'esplorazione (-- p.18-19 500)
 tests/foto_missione.gd     screenshot della preparazione e dell'esplorazione
 tests/prova_nave.gd        giro completo della Gestione della Nave (-- foto per gli screenshot)
+tests/prova_ponte.gd       potenziamenti del Ponte e delle strutture, carte spostate dal Logbook
+tests/foto_3d.gd           screenshot della plancia 3D dell'esplorazione
 tests/prova_atterraggio.gd atterraggio, risposte automatiche del Logbook e Minacce
 tests/prova_pianeti.gd     registrazione e ripristino dei pianeti visitati
 tools/unisci_carte.py      trascrizioni delle carte (data/carte) -> data/carte_db.json

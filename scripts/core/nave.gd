@@ -170,6 +170,8 @@ func genera_pool() -> Dictionary:
 		var c := Carte.per_id(str(id))
 		com += int(c.get("campi", {}).get("modifica_comando", 0))
 		en += int(c.get("campi", {}).get("modifica_energia", 0))
+	if str(s.get("morale", "")) == "high":
+		com += 1
 	if s.get("penalita", false):
 		com = 1
 	s["pool"]["comando"] = com
@@ -196,6 +198,139 @@ func dalla_busta(prefissi: Array) -> Array:
 				break
 	return out
 
+# ------------------------------------------------------------------ potenziamenti del Ponte
+
+func ha_ponte(id: String) -> bool:
+	return id in s.get("ponte", []) or id in s.get("ponte_viaggio", [])
+
+## Inizio del passo del Ponte: B11 (+1 Successo con 3 o meno) e B12 (Morale Molto basso → sale).
+func inizio_ponte() -> Array:
+	var fatti := []
+	if ha_ponte("B11") and int(s["pool"].get("successi", 0)) <= 3:
+		s["pool"]["successi"] = int(s["pool"]["successi"]) + 1
+		fatti.append("B11: +1 Successo (ne avevi 3 o meno)")
+	if ha_ponte("B12") and str(s["morale"]) == "very_low":
+		morale_su()
+		fatti.append("B12: il Morale sale da Molto basso")
+	for f in fatti:
+		diario(f)
+	return fatti
+
+## Costo in Energia di un volo verso un altro sistema (B07: -1, minimo 1).
+func costo_rotta(base: int) -> int:
+	return max(min(base, 1), base - 1) if ha_ponte("B07") else base
+
+## Costo in Energia di una destinazione del sistema (B15: -1, minimo 1).
+func costo_destinazione(base: int) -> int:
+	return max(min(base, 1), base - 1) if ha_ponte("B15") else base
+
+## Costo di una parte della scansione (B13: la prima è gratis).
+func costo_scansione(k: int, base: int) -> int:
+	return 0 if k == 0 and ha_ponte("B13") else base
+
+## Conversioni dei potenziamenti (B08, B14, B16): [id, da, quanti, a, quanti].
+const CONVERSIONI := [["B08", "comando", 1, "energia", 2], ["B14", "energia", 4, "comando", 1], ["B16", "comando", 1, "successi", 3]]
+
+func converti(id: String) -> bool:
+	for c in CONVERSIONI:
+		if c[0] == id and ha_ponte(id) and spendi(c[1], c[2]):
+			s["pool"][c[3]] = int(s["pool"].get(c[3], 0)) + int(c[4])
+			diario("%s: %d %s → %d %s" % [id, c[2], c[1], c[4], c[3]])
+			return true
+	return false
+
+## Potenziamenti delle strutture (F…): alcuni hanno effetto subito.
+func aggiungi_potenziamento(id: String) -> void:
+	if not id in s["potenziamenti"]:
+		s["potenziamenti"].append(id)
+	if id == "F04":
+		s["code_attive"] = 2
+		diario("F04: si sblocca la coda di produzione 2")
+
+func ha_potenziamento(id: String) -> bool:
+	return id in s.get("potenziamenti", [])
+
+## Una carta è in possesso della nave (Ponte, potenziamenti, Armeria, progetti, Situazioni)?
+func ha_carta(id: String) -> bool:
+	id = id.to_upper()
+	for k in ["ponte", "ponte_viaggio", "potenziamenti", "armeria", "situazioni", "ricerca", "produzione_pronti", "mod_lander"]:
+		if id in s.get(k, []):
+			return true
+	for q in s.get("code", []):
+		if id in q:
+			return true
+	return id == str(s.get("obiettivo", "")) or id == str(s.get("obiettivo_secondario", ""))
+
+## Domande del Logbook "Possiedi la carta X (oppure Y) nel raccoglitore…": 1 sì, 0 no, -1 non è una di queste.
+static func domanda_carte(q: String, n: Nave) -> int:
+	var t := RegEx.create_from_string("\\[/?[bi]\\]").sub(q, "", true)
+	if not RegEx.create_from_string("(?i)possiedi (?:la|le) cart[ae]").search(t):
+		return -1
+	if t.to_lower().contains("scoperta"):
+		return -1
+	var cod := []
+	for m in RegEx.create_from_string("\\b([BCEFLORS]\\d{2})\\b").search_all(t):
+		cod.append(m.get_string(1))
+	if cod.is_empty():
+		return -1
+	var tutte := t.to_lower().contains(" e ") and not t.to_lower().contains("oppure")
+	var ok := cod.map(func(x): return n.ha_carta(x))
+	if tutte:
+		return 1 if not ok.has(false) else 0
+	return 1 if ok.has(true) else 0
+
+## Toglie una carta da ovunque si trovi sulla nave.
+func togli_carta(id: String) -> void:
+	for k in ["busta", "ponte", "ponte_viaggio", "potenziamenti", "armeria", "situazioni", "situazioni_possibili", "situazioni_future", "ricerca", "produzione_pronti", "mod_lander"]:
+		if s.has(k):
+			(s[k] as Array).erase(id)
+	for q in s.get("code", []):
+		for k in (q as Array).size():
+			if q[k] == id:
+				q[k] = null
+
+## Istruzioni del Logbook che spostano le carte della nave: "Sposta la carta X da … all'interno della
+## busta In attesa…", "… all'Inventario", "Rimuovi la carta X dal gioco". Restituisce le righe fatte.
+func istruzione_carte(t: String) -> Array:
+	var fatti := []
+	var pulito := RegEx.create_from_string("\\[/?[bi]\\]").sub(t, "", true).replace("’", "'").replace("“", "\"").replace("”", "\"").replace("''", "\"")
+	var rx_cod := RegEx.create_from_string("\\b([A-Z]\\d{1,3})\\b")
+	for frase in RegEx.create_from_string("[.\\n●•]").sub(pulito, "§", true).split("§"):
+		var f := str(frase).strip_edges()
+		var fl := f.to_lower()
+		if f == "" or fl.begins_with("se ") or fl.contains(" se ") or fl.contains(" o ") or fl.contains(" oppure "):
+			continue
+		if not RegEx.create_from_string("^(sposta|prendi|rimuovi) (la|le) cart").search(fl):
+			continue
+		var codici := []
+		var testa := f.substr(0, f.find(" da ") if f.find(" da ") > 0 else f.length())
+		if fl.begins_with("rimuovi"):
+			testa = f.substr(0, f.find(" dal ") if f.find(" dal ") > 0 else f.length())
+		for m in rx_cod.search_all(testa):
+			codici.append(m.get_string(1))
+		if codici.is_empty() or testa.contains("-"):
+			continue
+		for id in codici:
+			if fl.contains("dalla busta") and fl.contains("rimuovila dal gioco"):
+				(s["busta"] as Array).erase(id)
+				fatti.append("%s tolta dalla busta e rimossa dal gioco" % id)
+			elif fl.contains("busta") and fl.contains("in attesa"):
+				if id in s["busta"]:
+					continue
+				togli_carta(id)
+				s["busta"].append(id)
+				fatti.append("%s nella busta \"In attesa…\"" % id)
+			elif fl.contains("inventario"):
+				togli_carta(id)
+				s["armeria"].append(id)
+				fatti.append("%s nell'Inventario (Armeria)" % id)
+			elif fl.begins_with("rimuovi") and fl.contains("dal gioco"):
+				togli_carta(id)
+				fatti.append("%s rimossa dal gioco" % id)
+	for x in fatti:
+		diario("Logbook: " + x)
+	return fatti
+
 ## Ponte, passo 1: installa le carte del Ponte (obiettivi, livello, potenziamenti).
 func installa_ponte() -> Array:
 	var fatti := []
@@ -219,6 +354,10 @@ func installa_ponte() -> Array:
 			_:
 				s["ponte"].append(id)
 				fatti.append("Potenziamento del Ponte: %s" % Carte.titolo(c))
+		var lg = c.get("campi", {}).get("log_installazione")
+		if lg != null and (lg is float or lg is int or str(lg).is_valid_int()):
+			s.get_or_add("log_da_leggere", []).append(int(lg) if not lg is String else int(lg))
+			fatti.append("%s: leggi l'Annotazione %d" % [id, int(lg) if not lg is String else int(lg)])
 	return fatti
 
 # ------------------------------------------------------------------ situazioni
@@ -400,6 +539,10 @@ func _fila() -> Array:
 		s["infermeria"] = f
 	if (f as Array).size() != FILA.size():
 		(f as Array).resize(FILA.size())
+	# dopo un salvataggio JSON gli indici tornano come numeri decimali
+	for k in (f as Array).size():
+		if f[k] is float:
+			f[k] = int(f[k])
 	return f
 
 ## Ricovera un Membro ferito nella casella libera più a destra del suo livello (1 Ferita: lievi,
@@ -460,16 +603,64 @@ func recupero(extra: Array = []) -> Array:
 ## Prova di sopravvivenza (chi è nelle caselle critiche): 3 dadi Ferita; si muore con
 ## 1 [heavyDamage] e 1 [damage], oppure con 2 [heavyDamage] (Ship Book pag. 34).
 func prova_sopravvivenza(i: int) -> Dictionary:
-	var facce := []
+	var dadi := []
 	for k in 3:
 		var d := {"tipo": "ferita", "faccia": 0}
 		Prova.tira(d, rng)
-		facce.append_array(Prova.icone(d))
-	var pesanti := facce.count("heavyDamage")
-	var morto: bool = (pesanti >= 1 and facce.count("damage") >= 1) or pesanti >= 2
+		dadi.append(d)
+	var facce := _facce(dadi)
+	var morto := _morte(facce)
+	# F01: si può ritirare un risultato [damage]
+	var ritirato := false
+	if morto and ha_potenziamento("F01"):
+		for d in dadi:
+			if "damage" in Prova.icone(d):
+				Prova.tira(d, rng)
+				ritirato = true
+				break
+		facce = _facce(dadi)
+		morto = _morte(facce)
+		if ritirato:
+			diario("F01: ritirato un risultato Danno")
 	if morto:
 		muori(i)
-	return {"facce": facce, "morto": morto}
+	return {"facce": facce, "morto": morto, "ritirato": ritirato}
+
+static func _facce(dadi: Array) -> Array:
+	var out := []
+	for d in dadi:
+		out.append_array(Prova.icone(d))
+	return out
+
+static func _morte(facce: Array) -> bool:
+	var pesanti := facce.count("heavyDamage")
+	return (pesanti >= 1 and facce.count("damage") >= 1) or pesanti >= 2
+
+## F02: dopo una Prova di sopravvivenza superata il Membro avanza di una casella verso la guarigione.
+func sposta_destra(i: int) -> bool:
+	var f := _fila()
+	var j := f.find(i)
+	if j < 0:
+		return false
+	if j == f.size() - 1:
+		f[j] = null
+		s["equipaggio"][i]["stato"] = "disponibile"
+		diario("%s è guarito" % s["equipaggio"][i]["carta"])
+		return true
+	if f[j + 1] == null:
+		f[j + 1] = i
+		f[j] = null
+		return true
+	return false
+
+## F03: torna nell'Equipaggio a riposo (dall'infermeria).
+func dimetti(i: int) -> void:
+	var f := _fila()
+	var j := f.find(i)
+	if j >= 0:
+		f[j] = null
+	s["equipaggio"][i]["stato"] = "riposo"
+	diario("%s lascia l'infermeria e va a riposo" % s["equipaggio"][i]["carta"])
 
 func muori(i: int) -> void:
 	var m: Dictionary = s["equipaggio"][i]

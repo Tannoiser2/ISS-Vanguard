@@ -47,8 +47,15 @@ func _run() -> void:
 	_premi("INIZIO RAPIDO")
 	await _chiudi_finestre(20)
 	print("equipaggio: ", gn.nave.s["equipaggio"].map(func(m): return "%s/%s" % [m["carta"], m["reparto"]]))
+	gn.nave.s["ponte"] += ["B08", "B16", "B17"]
+	gn.nave.s["ponte_viaggio"] += ["B07", "B15", "B06"]
+	gn.nave.s["pool"]["comando"] = 3
+	gn.aggiorna()
+	await aspetta()
 	await scatta("ponte")
 	_premi("RIVELA")
+	await _chiudi_finestre()
+	await scatta("ponte_situazioni")
 	await _chiudi_finestre()
 	await _avanti()          # → mappa
 	print("passo: ", gn.nave.passo(), " energia ", gn.nave.s["pool"]["energia"], " comando ", gn.nave.s["pool"]["comando"])

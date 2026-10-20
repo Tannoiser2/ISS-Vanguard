@@ -475,6 +475,10 @@ func rispondi_logbook(q: String) -> int:
 	if m:
 		_ultima_spiegazione = "Scoperte Eccezionali sulla nave: %s" % ", ".join(nave.s["eccezionali"].keys())
 		return 1 if nave.s["eccezionali"].has(m.get_string(1)) else 0
+	var pc := Nave.domanda_carte(t, nave)
+	if pc >= 0:
+		_ultima_spiegazione = "Carte della nave: Ponte %s" % ", ".join(nave.s["ponte"] + nave.s["ponte_viaggio"])
+		return pc
 	var m2 := RegEx.create_from_string("(?i)hai livello di tecnologia (\\d+)").search(t)
 	if m2:
 		_ultima_spiegazione = "Livello tecnologico %d" % int(nave.s["tech"])
@@ -484,7 +488,7 @@ func rispondi_logbook(q: String) -> int:
 func istruzione_logbook(t: String) -> Array:
 	if nave.s.is_empty():
 		return []
-	var fatti := []
+	var fatti := nave.istruzione_carte(t)
 	for op in Effetti.analizza_it(t)["op"]:
 		match str(op["op"]):
 			"nave_pagina":
@@ -708,7 +712,8 @@ func _desc_recluta(f: String) -> String:
 func _passo_ponte() -> void:
 	_titolo("Ponte di comando", 2)
 	if not _scelta.get("fatto", false):
-		var fatti := nave.installa_ponte()
+		var inizio := nave.inizio_ponte()
+		var fatti := inizio + nave.installa_ponte()
 		var pool := nave.genera_pool()
 		_scelta["fatto"] = true
 		_scelta["installate"] = fatti
@@ -732,7 +737,16 @@ func _passo_ponte() -> void:
 			nave.s["pool"][k] = int(nave.s["pool"][k]) + 1
 			_salva()
 			aggiorna(), 13))
-	_testo("[color=#9fbbd6]Il Morale Alto dà +1 Comando; controlla anche i potenziamenti del Ponte e correggi con − / +.[/color]", 13)
+	_testo("[color=#9fbbd6]Già contati: Obiettivo, Livello tecnologico, Morale Alto (+1 Comando), Penalità e potenziamenti del Ponte. Correggi con − / + solo se serve.[/color]", 13)
+	_conversioni()
+	var dl: Array = nave.s.get("log_da_leggere", [])
+	if not dl.is_empty():
+		var n_log: int = dl[0]
+		_corpo.add_child(Tema.pulsante_primario("LEGGI L'ANNOTAZIONE %d (potenziamento installato)" % n_log, func():
+			dl.pop_front()
+			_salva()
+			aggiorna()
+			_apri_log(n_log), 14))
 	_sezione("3. Situazioni in sospeso")
 	var dr: Array = _scelta["da_risolvere"]
 	if dr.is_empty():
@@ -756,6 +770,17 @@ func _passo_ponte() -> void:
 		for id in nave.s["situazioni"]:
 			var c := Carte.per_id(str(id))
 			_testo("[b]%s[/b]\nEffetto (alla prossima Gestione, se non risolta): %s\nQuando risolta: %s" % [_carta(str(id)), _bb(Carte.t(c.get("effetto", ""))), _bb(Carte.t(c.get("risolta", "")))], 15)
+			if nave.ha_ponte("B17"):
+				var idd2 := str(id)
+				_corpo.add_child(Tema.pulsante("B17: UN MEMBRO A RIPOSO PER RIMANDARE %s FRA LE POSSIBILI" % idd2, func():
+					var i := await _assegna("rimandare la Situazione %s (B17)" % idd2)
+					if i < 0:
+						return
+					nave.s["situazioni"].erase(idd2)
+					nave.s["situazioni_possibili"].append(idd2)
+					nave.diario("B17: %s torna fra le Situazioni possibili" % idd2)
+					_salva()
+					aggiorna(), 13))
 	_avanti("ALLA MAPPA STELLARE ▶", func():
 		if not (_scelta["da_risolvere"] as Array).is_empty():
 			avviso("Prima risolvi gli effetti delle Situazioni in sospeso")
@@ -763,6 +788,24 @@ func _passo_ponte() -> void:
 		if not _scelta.get("pescate", false):
 			nave.pesca_situazioni(nave.n_situazioni())
 		return true)
+
+## Pulsanti delle conversioni dei potenziamenti del Ponte (B08, B14, B16) installati.
+func _conversioni() -> void:
+	var r: HFlowContainer = null
+	for c in Nave.CONVERSIONI:
+		if not nave.ha_ponte(c[0]):
+			continue
+		if r == null:
+			r = _riga()
+		var nomi := {"comando": "Comando", "energia": "Energia", "successi": "Successi"}
+		var id: String = c[0]
+		var b := Tema.pulsante("%s: %d %s → %d %s" % [id, c[2], nomi[c[1]], c[4], nomi[c[3]]], func():
+			if not nave.converti(id):
+				avviso("Non hai abbastanza %s" % nomi[c[1]])
+			_salva()
+			aggiorna(), 13)
+		b.disabled = int(nave.s["pool"].get(c[1], 0)) < int(c[2])
+		r.add_child(b)
 
 # --- Mappa stellare (pag. 5) -------------------------------------------------------------
 
@@ -779,8 +822,9 @@ func _passo_mappa() -> void:
 		for rt in sis.get("rotte", []):
 			var req := str(rt.get("richiede", ""))
 			var ok_req: bool = req == "" or req in nave.s["ponte_viaggio"] or req in nave.s["ponte"]
-			var en: int = int(rt.get("energia", 0)) if rt.get("energia") != null else 0
-			var b := Tema.pulsante("→ %s · %d Energia%s%s" % [rt.get("verso", "?"), en, (" · richiede " + req) if req != "" else "", (" · Annotazione %d" % int(rt["log"])) if rt.get("log") != null else ""], func():
+			var en0: int = int(rt.get("energia", 0)) if rt.get("energia") != null else 0
+			var en: int = nave.costo_rotta(en0)
+			var b := Tema.pulsante("→ %s · %d Energia%s%s%s" % [rt.get("verso", "?"), en, " (B07)" if en != en0 else "", (" · richiede " + req) if req != "" else "", (" · Annotazione %d" % int(rt["log"])) if rt.get("log") != null else ""], func():
 				if not nave.spendi("energia", en):
 					avviso("Energia insufficiente")
 					return
@@ -797,9 +841,10 @@ func _passo_mappa() -> void:
 			_corpo.add_child(b)
 		_sezione("2. Visita una destinazione")
 		for d in sis.get("destinazioni", []):
-			var en2: int = int(d.get("energia", 0)) if d.get("energia") != null else 0
+			var en20: int = int(d.get("energia", 0)) if d.get("energia") != null else 0
+			var en2: int = nave.costo_destinazione(en20)
 			var at := str(d.get("atterraggio", ""))
-			var lbl := "%s · %d Energia%s" % [d.get("nome", "?"), en2, (" · ATTERRAGGIO " + at) if at != "" else ""]
+			var lbl := "%s · %d Energia%s%s" % [d.get("nome", "?"), en2, " (B15)" if en2 != en20 else "", (" · ATTERRAGGIO " + at) if at != "" else ""]
 			var v := VBoxContainer.new()
 			_corpo.add_child(v)
 			var b2 := Tema.pulsante(lbl, func():
@@ -817,6 +862,31 @@ func _passo_mappa() -> void:
 			b2.alignment = HORIZONTAL_ALIGNMENT_LEFT
 			v.add_child(b2)
 			_testo("[color=#9fbbd6]%s[/color] %s" % [Carte.t(d.get("descrizione", "")), _bb(Carte.t(d.get("testo", "")))], 14, v)
+		# potenziamenti del Ponte che aprono viaggi speciali
+		var speciali := false
+		for id in nave.s["ponte"] + nave.s["ponte_viaggio"]:
+			var cp := Carte.per_id(str(id))
+			var campi: Dictionary = cp.get("campi", {})
+			if str(campi.get("carta_atterraggio", "")) != "":
+				if not speciali:
+					_sezione("Viaggi speciali dei potenziamenti del Ponte")
+					speciali = true
+				var la := str(campi["carta_atterraggio"])
+				_corpo.add_child(Tema.pulsante("%s: METTI LA CARTA ATTERRAGGIO %s NELLO SCANNER" % [id, la], func():
+					nave.s["scanner"] = {"carta": la, "rivelate": 0, "destinazione": Carte.titolo(cp)}
+					nave.diario("%s: carta Atterraggio %s nello scanner" % [id, la])
+					_salva()
+					aggiorna(), 13))
+			elif str(campi.get("sistema", "")) != "" and str(campi.get("sistema", "")).to_lower() == str(nave.s["sistema"]).to_lower():
+				if not speciali:
+					_sezione("Viaggi speciali dei potenziamenti del Ponte")
+					speciali = true
+				if campi.get("log") != null:
+					var lg := int(campi["log"]) if not campi["log"] is String else int(str(campi["log"]))
+					_corpo.add_child(Tema.pulsante("%s: VAI ALL'ANNOTAZIONE %d" % [id, lg], func(): _apri_log(lg), 13))
+				else:
+					_testo("[b]%s[/b]: %s" % [_carta(str(id)), _bb(Carte.t(cp.get("testo", "")))], 14)
+		_conversioni()
 		_avanti("ALLA DERIVA ▶", func():
 			var j := await _scegli("NESSUN ATTERRAGGIO", ["Sì, la nave resta alla deriva"], "Senza una carta Atterraggio nello scanner: si abbassa il Morale, il segnalino Penalità va nella riserva del Comando e si passa al Punto di salvataggio (Ship Book, ALLA DERIVA).")
 			if j != 0:
@@ -836,7 +906,7 @@ func _passo_mappa() -> void:
 	var testo_retro := _retro_atterraggio(str(scanner["carta"]))
 	var sezioni := _parti_briefing(testo_retro)
 	for k in parti.size():
-		var costo := int(parti[k].get("costo_energia", 0))
+		var costo := nave.costo_scansione(k, int(parti[k].get("costo_energia", 0)))
 		if k < riv:
 			_testo("[color=#5be39b]Parte %d:[/color] %s" % [k + 1, _bb(sezioni[k]) if k < sezioni.size() else "(vedi la carta)"], 15)
 		elif k == riv:
@@ -995,7 +1065,7 @@ func _struttura_produzione() -> void:
 		for id in nave.dalla_busta(["C"]):
 			nave.s["produzione_pronti"].append(id)
 		for id in nave.dalla_busta(["F"]):
-			nave.s["potenziamenti"].append(id)
+			nave.aggiungi_potenziamento(str(id))
 		_scelta["finiti"] = nave.avanza_produzione()
 		_salva()
 	if not (_scelta["finiti"] as Array).is_empty():
@@ -1041,6 +1111,50 @@ func _struttura_produzione() -> void:
 				_salva()
 				aggiorna(), 12))
 		r.add_child(Tema.pulsante("VEDI", func(): _mostra_carta(idd), 12))
+	if nave.ha_potenziamento("F05") and not _scelta.get("f05", false):
+		_corpo.add_child(Tema.pulsante("F05: TIRA IL DADO PERICOLO PER UN PROGETTO IN CODA", func():
+			var pos := []
+			for q in int(nave.s["code_attive"]):
+				for k in 3:
+					if nave.s["code"][q][k] != null:
+						pos.append([q, k])
+			if pos.is_empty():
+				avviso("Nessun progetto in coda")
+				return
+			var j := await _scegli("F05", pos.map(func(x): return "Coda %d, stadio %d: %s" % [x[0] + 1, x[1] + 1, _carta(str(nave.s["code"][x[0]][x[1]]))]), "Con [rare] il progetto torna indietro di uno stadio, altrimenti avanza.")
+			if j < 0:
+				return
+			_scelta["f05"] = true
+			var d := {"tipo": "pericolo", "faccia": 0}
+			Prova.tira(d, nave.rng)
+			var q2: int = pos[j][0]
+			var k2: int = pos[j][1]
+			var fin := ""
+			if "rare" in Prova.icone(d):
+				if k2 > 0 and nave.s["code"][q2][k2 - 1] == null:
+					nave.s["code"][q2][k2 - 1] = nave.s["code"][q2][k2]
+					nave.s["code"][q2][k2] = null
+				avviso("Dado Pericolo: raro — il progetto torna indietro")
+			else:
+				fin = nave.potenzia_progetto(q2, k2)
+				avviso("Dado Pericolo: %s — il progetto avanza" % ("+".join(Prova.icone(d)) if not Prova.icone(d).is_empty() else "vuoto"))
+			_salva()
+			aggiorna()
+			if fin != "":
+				await applica_retro(fin), 13))
+	if nave.ha_potenziamento("F06"):
+		_corpo.add_child(Tema.pulsante("F06: SCARTA 1 FLORA STRANA + 1 MICRORGANISMO: TUTTI I PROGETTI AVANZANO", func():
+			var idx := nave.paga_scoperte([{"tipo": "strange_flora", "n": 1}, {"tipo": "microorganism", "n": 1}])
+			if idx.is_empty():
+				avviso("Servono 1 Flora strana e 1 Microrganismo")
+				return
+			nave.togli_scoperte(idx)
+			var fin := nave.avanza_produzione()
+			nave.diario("F06: tutti i progetti avanzano")
+			_salva()
+			aggiorna()
+			for f in fin:
+				await applica_retro(str(f)), 13))
 	var r2 := _riga()
 	r2.add_child(Tema.pulsante("SBLOCCA LA CODA 2" if int(nave.s["code_attive"]) < 2 else "CODA 2 ATTIVA", func():
 		nave.s["code_attive"] = 2
@@ -1396,7 +1510,7 @@ func _passo_infermeria() -> void:
 	if not _scelta.get("fatto", false):
 		_scelta["fatto"] = true
 		for id in nave.dalla_busta(["F"]):
-			nave.s["potenziamenti"].append(id)
+			nave.aggiungi_potenziamento(str(id))
 		_salva()
 	_sezione("3. Recupero")
 	var ric := nave.in_infermeria()
@@ -1421,6 +1535,37 @@ func _passo_infermeria() -> void:
 					avviso("Guariti: " + ", ".join(g.map(func(x): return str(nave.s["equipaggio"][x]["carta"]))))
 				_salva()
 				aggiorna(), 14))
+	if nave.ha_potenziamento("F03") and not ric.is_empty() and not _scelta.get("f03", false):
+		_corpo.add_child(Tema.pulsante("F03: SCARTA 1 FLORA STRANA + 1 MICRORGANISMO: UN MEMBRO PER REPARTO A RIPOSO", func():
+			var idx := nave.paga_scoperte([{"tipo": "strange_flora", "n": 1}, {"tipo": "microorganism", "n": 1}])
+			if idx.is_empty():
+				avviso("Servono 1 Flora strana e 1 Microrganismo")
+				return
+			nave.togli_scoperte(idx)
+			_scelta["f03"] = true
+			for rep in Nave.REPARTI:
+				var cand := nave.in_infermeria().filter(func(x): return str(nave.s["equipaggio"][x]["reparto"]) == rep)
+				if cand.is_empty():
+					continue
+				var j := 0
+				if cand.size() > 1:
+					j = await _scegli("F03 — %s" % str(Dati.SEZIONI.get(rep, {}).get("nome", rep)).to_upper(), cand.map(func(x): return "%s (%s)" % [nave.s["equipaggio"][x]["carta"], nave.livello_infermeria(x)]), "Chi torna a riposo?", false)
+				nave.dimetti(cand[max(0, j)])
+			_salva()
+			aggiorna(), 13))
+	if nave.ha_potenziamento("F02") and not ric.is_empty() and not _scelta.get("f02", false):
+		_corpo.add_child(Tema.pulsante("F02: PROVA DI SOPRAVVIVENZA IN PIÙ PER FAR AVANZARE UN MEMBRO", func():
+			var j := await _scegli("F02", ric.map(func(x): return "%s (%s)" % [nave.s["equipaggio"][x]["carta"], nave.livello_infermeria(x)]), "Tira 3 dadi Ferita: se sopravvive avanza di una casella verso la guarigione.")
+			if j < 0:
+				return
+			_scelta["f02"] = true
+			var i: int = ric[j]
+			var nome := str(nave.s["equipaggio"][i]["carta"])
+			var p := nave.prova_sopravvivenza(i)
+			var esito := "MUORE" if p["morto"] else ("avanza di una casella" if nave.sposta_destra(i) else "sopravvive (casella successiva occupata)")
+			await _scegli("F02", ["OK"], "%s: %s → %s" % [nome, ", ".join(p["facce"]), esito], false)
+			_salva()
+			aggiorna(), 13))
 	_sezione("4. I feriti vanno in infermeria · 2. gli illesi a riposo")
 	for m in e.get("equipaggio", []):
 		var n := (m.get("ferite", []) as Array).size()
@@ -1450,9 +1595,9 @@ func _passo_infermeria() -> void:
 		for i in nave.in_infermeria():
 			if nave.livello_infermeria(i) == "critical":
 				var p := nave.prova_sopravvivenza(i)
-				esiti.append("Prova di sopravvivenza di %s: %s → %s" % [nave.s["equipaggio"][i]["carta"] if not p["morto"] else nave.s["memoriale"].back()["carta"], ", ".join(p["facce"]), "MUORE" if p["morto"] else "sopravvive"])
+				esiti.append("Prova di sopravvivenza di %s: %s → %s%s" % [nave.s["equipaggio"][i]["carta"] if not p["morto"] else nave.s["memoriale"].back()["carta"], ", ".join(p["facce"]), "MUORE" if p["morto"] else "sopravvive", " (F01: ritirato un Danno)" if p.get("ritirato", false) else ""])
 		if not esiti.is_empty():
-			await _scegli("INFERMERIA", ["OK"], "\n".join(esiti.map(func(x): return "• " + str(x))) + "\n\n[color=#9fbbd6]I potenziamenti dell'infermeria (es. ritiro di un dado) vanno applicati a mano con le correzioni dell'Equipaggio.[/color]", false)
+			await _scegli("INFERMERIA", ["OK"], "\n".join(esiti.map(func(x): return "• " + str(x))) + ("\n\n[color=#9fbbd6]F01: un risultato Danno è già stato ritirato dove serviva.[/color]" if nave.ha_potenziamento("F01") else ""), false)
 		return true)
 
 func _passo_memoriale() -> void:
