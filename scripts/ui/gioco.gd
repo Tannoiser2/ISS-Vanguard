@@ -23,7 +23,7 @@ func _ready() -> void:
 	var stato_tav: Dictionary = Campagna.dati.get("tavolo", {})
 	if stato_tav.get("pezzi", []).is_empty():
 		tavolo.allestisci()
-		tavolo.vista("tutto")
+		tavolo.vista("nave")
 	else:
 		tavolo.ripristina(stato_tav)
 	tavolo.sopra.connect(_su_sopra)
@@ -97,21 +97,30 @@ func _costruisci_ui() -> void:
 	var sp := Control.new()
 	sp.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	h.add_child(sp)
-	for k in ["pianeta", "nave", "equipaggio", "mazzi", "scoperte", "tutto"]:
-		var b := Tema.pulsante(Tavolo.VISTE[k]["nome"].to_upper(), tavolo.vista.bind(k), 12)
+	# viste del tavolo come schede: si guarda solo la parte che serve
+	var gruppo := ButtonGroup.new()
+	for k in ["nave", "equipaggio", "mazzi", "scoperte", "pianeta", "tutto"]:
+		var nome_v: String = {"scoperte": "Scoperte", "tutto": "Tutto"}.get(k, Tavolo.VISTE[k]["nome"])
+		var b := Tema.pulsante(nome_v.to_upper(), tavolo.vista.bind(k), 12)
+		b.toggle_mode = true
+		b.button_group = gruppo
+		b.button_pressed = k == "nave"
 		b.tooltip_text = "Vista: %s" % Tavolo.VISTE[k]["nome"]
 		h.add_child(b)
 	h.add_child(VSeparator.new())
-	h.add_child(Tema.pulsante_primario("ESPLORAZIONE", apri_esplorazione, 14))
+	var esp_in_corso: bool = Campagna.dati.get("esplorazione") is Dictionary and not Campagna.dati["esplorazione"].is_empty()
+	h.add_child(Tema.pulsante_primario("RIPRENDI ESPLORAZIONE" if esp_in_corso else "ESPLORAZIONE", apri_esplorazione, 14))
 	h.add_child(Tema.pulsante_primario("LOGBOOK", func(): _mostra_logbook(not logbook.visible), 14))
-	h.add_child(Tema.pulsante("REGOLE", func(): ui.add_child(VisoreRegole.new()), 12))
-	h.add_child(Tema.pulsante("?", _mostra_aiuto, 14))
-	h.add_child(Tema.pulsante("SALVA", func():
-		Campagna.dati["tavolo"] = tavolo.serializza()
-		Campagna.salva_subito(), 12))
-	h.add_child(Tema.pulsante("MENU", func():
-		Campagna.dati["tavolo"] = tavolo.serializza()
-		esci.emit(), 12))
+	var menu := MenuButton.new()
+	menu.text = "≡"
+	menu.flat = false
+	menu.add_theme_font_size_override("font_size", 18)
+	menu.get_popup().add_item("Regolamento", 0)
+	menu.get_popup().add_item("Comandi del tavolo", 1)
+	menu.get_popup().add_item("Salva adesso", 2)
+	menu.get_popup().add_item("Torna al menu", 3)
+	menu.get_popup().id_pressed.connect(_voce_menu_barra)
+	h.add_child(menu)
 	_stato_salva = Label.new()
 	_stato_salva.add_theme_font_override("font", Tema.mono)
 	_stato_salva.add_theme_font_size_override("font_size", 14)
@@ -181,7 +190,11 @@ func _costruisci_ui() -> void:
 	hint.add_theme_font_size_override("font_size", 14)
 	hint.add_theme_color_override("font_color", Color(0.6, 0.72, 0.85, 0.85))
 	hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	hint.text = "Tasto destro = menu del pezzo · destro trascinato = ruota · rotella = zoom · ≡ > Comandi del tavolo per tutti i tasti"
 	ui.add_child(hint)
+	var tw := hint.create_tween()
+	tw.tween_interval(8.0)
+	tw.tween_property(hint, "modulate:a", 0.0, 1.5)
 
 var _missione: Missione
 
@@ -214,6 +227,18 @@ func _mostra_missione(st: Dictionary) -> void:
 		_missione.queue_free()
 		tavolo.visible = true
 		tavolo.process_mode = Node.PROCESS_MODE_INHERIT)
+
+func _voce_menu_barra(id: int) -> void:
+	if id == 0:
+		ui.add_child(VisoreRegole.new())
+	elif id == 1:
+		_mostra_aiuto()
+	elif id == 2:
+		Campagna.dati["tavolo"] = tavolo.serializza()
+		Campagna.salva_subito()
+	elif id == 3:
+		Campagna.dati["tavolo"] = tavolo.serializza()
+		esci.emit()
 
 func _mostra_logbook(v: bool) -> void:
 	logbook.visible = v

@@ -33,7 +33,10 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   Ogni campagna ha un **codice di 6 caratteri** (in alto e nel registro): dal menu *Riprendi con un
   codice* la si riapre da qualunque dispositivo.
 - **Esplorazione planetaria automatizzata** (pulsante ESPLORAZIONE): durante la missione si vede solo
-  la plancia del pianeta, divisa in settori cliccabili, senza l'astronave.
+  la plancia del pianeta, a tutto schermo, senza l'astronave. Interfaccia a passi: in basso il Membro
+  di turno (dadi, Ferite, carte in mano) e solo le azioni possibili in quel momento; le destinazioni
+  si scelgono cliccando sulla mappa; Settore, Squadra, Missione, Diario e Logbook si aprono a richiesta
+  in un cassetto laterale (Esc lo chiude).
   - preparazione guidata: pianeta del Planetopedia, Squadra di Sbarco (Membro, Reparto, Grado),
     Lander, Missioni e Condizione Generale, mazzi Reparto/Eventi/Scoperte e sacchetto degli Indizi;
     con il tutorial è già tutto pronto (Amir nel Settore 1, Provviste illimitate, solo "Solo un graffio!",

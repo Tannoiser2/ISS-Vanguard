@@ -30,7 +30,21 @@ var _pannello: VBoxContainer
 var _logbook: PannelloLogbook
 var _toast: Label
 var _toast_tw: Tween
-var _pulsanti := {}
+var _schede := {}
+var _membro_box: HBoxContainer
+var _passo: RichTextLabel
+var _azioni_box: HBoxContainer
+var _cassetto_box: PanelContainer
+var _cassetto_titolo: Label
+var _cassetto_tipo := ""
+var _scelta_settore := false
+var _consentiti := {}        # settore -> testo mostrato sulla mappa durante una scelta
+var _testo_scelta := ""
+
+signal _settore_scelto(n: int)
+
+const ALTO_HUD := 46
+const ALTO_BARRA := 74
 
 # ------------------------------------------------------------------ avvio
 
@@ -45,29 +59,16 @@ func _ready() -> void:
 	fondo.color = Color(0.008, 0.016, 0.035)
 	fondo.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(fondo)
-	var radice := VBoxContainer.new()
-	radice.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	radice.add_theme_constant_override("separation", 0)
-	add_child(radice)
-	radice.add_child(_barra_alta())
-	var corpo := HBoxContainer.new()
-	corpo.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	corpo.add_theme_constant_override("separation", 0)
-	radice.add_child(corpo)
-	# plancia
-	var area := Control.new()
-	area.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	area.clip_contents = true
-	corpo.add_child(area)
+	# la plancia occupa tutto lo spazio fra la riga di stato e la barra del turno
 	_plancia = TextureRect.new()
 	_plancia.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	_plancia.offset_left = 10
-	_plancia.offset_top = 10
-	_plancia.offset_right = -10
-	_plancia.offset_bottom = -10
+	_plancia.offset_left = 6
+	_plancia.offset_top = ALTO_HUD + 4
+	_plancia.offset_right = -6
+	_plancia.offset_bottom = -ALTO_BARRA - 4
 	_plancia.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	_plancia.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	area.add_child(_plancia)
+	add_child(_plancia)
 	_sovra = Control.new()
 	_sovra.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_sovra.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -78,26 +79,16 @@ func _ready() -> void:
 		Immagini.carica(img, func(t):
 			_plancia.texture = t
 			_disponi())
-	# pannello laterale
-	var lato := PanelContainer.new()
-	lato.custom_minimum_size = Vector2(500, 0)
-	lato.add_theme_stylebox_override("panel", Tema.box(Color(0.02, 0.045, 0.09, 0.97), Tema.CIANO_SCURO, 1, 0, 10))
-	corpo.add_child(lato)
-	var sc := ScrollContainer.new()
-	sc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	lato.add_child(sc)
-	_pannello = VBoxContainer.new()
-	_pannello.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_pannello.add_theme_constant_override("separation", 8)
-	sc.add_child(_pannello)
-	radice.add_child(_barra_azioni())
+	add_child(_hud())
+	add_child(_barra_turno())
+	add_child(_cassetto())
 	# Logbook sopra a tutto, a destra
 	_logbook = PannelloLogbook.new()
 	_logbook.set_anchors_preset(Control.PRESET_RIGHT_WIDE)
 	_logbook.offset_left = -660
-	_logbook.offset_top = 60
-	_logbook.offset_bottom = -70
-	_logbook.offset_right = -10
+	_logbook.offset_top = ALTO_HUD + 6
+	_logbook.offset_bottom = -ALTO_BARRA - 6
+	_logbook.offset_right = -6
 	add_child(_logbook)
 	_logbook.imposta(Campagna.motore)
 	_logbook.chiuso.connect(func(): _logbook.visible = false)
@@ -105,7 +96,7 @@ func _ready() -> void:
 	_logbook.visible = false
 	_toast = Label.new()
 	_toast.set_anchors_preset(Control.PRESET_CENTER_TOP)
-	_toast.offset_top = 64
+	_toast.offset_top = ALTO_HUD + 14
 	_toast.offset_left = -500
 	_toast.offset_right = 500
 	_toast.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -125,54 +116,263 @@ func _ready() -> void:
 		for i in esp.vivi():
 			_entra_nel_settore(i, [])
 
-func _barra_alta() -> Control:
+func _unhandled_input(e: InputEvent) -> void:
+	if e is InputEventKey and e.pressed and e.keycode == KEY_ESCAPE:
+		if _scelta_settore:
+			_settore_scelto.emit(-1)
+		elif _cassetto_box.visible:
+			apri_cassetto("")
+		elif _logbook.visible:
+			_logbook.visible = false
+		get_viewport().set_input_as_handled()
+
+# ------------------------------------------------------------------ riga di stato in alto
+
+func _hud() -> Control:
 	var barra := PanelContainer.new()
-	barra.add_theme_stylebox_override("panel", Tema.box(Color(0.02, 0.05, 0.11, 0.95), Tema.CIANO_SCURO, 0, 0, 8))
+	barra.set_anchors_preset(Control.PRESET_TOP_WIDE)
+	barra.offset_bottom = ALTO_HUD
+	barra.add_theme_stylebox_override("panel", Tema.box(Color(0.02, 0.05, 0.11, 0.92), Tema.CIANO_SCURO, 0, 0, 6))
 	var h := HBoxContainer.new()
-	h.add_theme_constant_override("separation", 10)
+	h.add_theme_constant_override("separation", 14)
 	barra.add_child(h)
-	h.add_child(Tema.etichetta(str(pl.get("pianeta", "ESPLORAZIONE")), 20, Tema.TESTO, true))
-	_info = Tema.testo_ricco(17)
+	h.add_child(Tema.etichetta(str(pl.get("pianeta", "ESPLORAZIONE")), 17, Tema.TESTO, true))
+	_info = Tema.testo_ricco(16)
 	_info.fit_content = true
 	_info.scroll_active = false
 	_info.autowrap_mode = TextServer.AUTOWRAP_OFF
 	_info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_info.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	h.add_child(_info)
+	for v in [["settore", "SETTORE"], ["squadra", "SQUADRA"], ["missione", "MISSIONE"], ["diario", "DIARIO"]]:
+		var k: String = v[0]
+		var b := Tema.pulsante(v[1], func(): apri_cassetto("" if _cassetto_tipo == k and _cassetto_box.visible else k), 12)
+		b.toggle_mode = true
+		_schede[k] = b
+		h.add_child(b)
 	h.add_child(Tema.pulsante_primario("LOGBOOK", func():
 		_logbook.visible = not _logbook.visible
 		if _logbook.visible:
-			_logbook.mostra_corrente(), 14))
-	h.add_child(Tema.pulsante("DIARIO", _mostra_diario, 12))
-	h.add_child(Tema.pulsante("SALVA", func():
-		_salva()
-		Campagna.salva_subito(), 12))
-	h.add_child(Tema.pulsante("NAVE", func():
-		_salva()
-		chiusa.emit(), 12))
+			apri_cassetto("")
+			_logbook.mostra_corrente(), 13))
+	var menu := MenuButton.new()
+	menu.text = "≡"
+	menu.flat = false
+	menu.add_theme_font_size_override("font_size", 18)
+	menu.get_popup().add_item("Salva adesso", 0)
+	menu.get_popup().add_item("Torna alla nave (l'esplorazione resta salvata)", 1)
+	menu.get_popup().add_item("Correzioni manuali…", 2)
+	menu.get_popup().id_pressed.connect(_voce_menu)
+	h.add_child(menu)
 	return barra
 
-func _barra_azioni() -> Control:
+func _voce_menu(id: int) -> void:
+	if id == 0:
+		_salva()
+		Campagna.salva_subito()
+		avviso("Salvato")
+	elif id == 1:
+		_salva()
+		chiusa.emit()
+	elif id == 2:
+		_correzioni(int(esp.s["attivo"]))
+
+# ------------------------------------------------------------------ barra del turno in basso
+
+func _barra_turno() -> Control:
 	var barra := PanelContainer.new()
+	barra.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
+	barra.offset_top = -ALTO_BARRA
 	barra.add_theme_stylebox_override("panel", Tema.box(Color(0.02, 0.05, 0.11, 0.95), Tema.CIANO_SCURO, 0, 0, 8))
 	var h := HBoxContainer.new()
-	h.alignment = BoxContainer.ALIGNMENT_CENTER
-	h.add_theme_constant_override("separation", 10)
+	h.add_theme_constant_override("separation", 12)
 	barra.add_child(h)
-	var voci := [
-		["viaggio", "VIAGGIO", _viaggio, "Scegli un sentiero dal tuo settore e risolvi le sue icone"],
-		["riposo", "RIPOSO", _riposo, "-1 Provviste, ricarica metà dei dadi (per eccesso), pesca 1 carta"],
-		["prepara", "PREPARAZIONE", _preparazione, "Pesca 1 carta Reparto e/o fai una Prova per le Combinazioni"],
-		["decollo", "DECOLLO", _decollo, "Solo nel settore del Lander: termina l'esplorazione"],
-		["sforzo", "SFORZO", _sforzo, "Non è un'azione: sacrifica 1 dado (con 3 dadi o meno: Allo stremo) e ricarica 5 dadi"],
-		["fine", "FINE TURNO", _fine_turno, "Gira il segnalino Turno, pesca e risolvi un Evento"],
-	]
-	for v in voci:
-		var b := Tema.pulsante_primario(v[1], v[2], 16) if v[0] == "fine" else Tema.pulsante(v[1], v[2], 16)
-		b.tooltip_text = v[3]
-		b.custom_minimum_size = Vector2(150, 44)
-		_pulsanti[v[0]] = b
-		h.add_child(b)
+	_membro_box = HBoxContainer.new()
+	_membro_box.add_theme_constant_override("separation", 10)
+	h.add_child(_membro_box)
+	h.add_child(VSeparator.new())
+	_passo = Tema.testo_ricco(17)
+	_passo.fit_content = true
+	_passo.scroll_active = false
+	_passo.autowrap_mode = TextServer.AUTOWRAP_OFF
+	_passo.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_passo.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	h.add_child(_passo)
+	_azioni_box = HBoxContainer.new()
+	_azioni_box.add_theme_constant_override("separation", 8)
+	_azioni_box.alignment = BoxContainer.ALIGNMENT_END
+	h.add_child(_azioni_box)
 	return barra
+
+## Il Membro di turno: nome, dadi, Ferite e carte in mano, in una sola riga.
+func _aggiorna_membro() -> void:
+	for c in _membro_box.get_children():
+		c.queue_free()
+	var att := int(esp.s["attivo"])
+	var m := esp.membro(att)
+	var col: Color = Dati.SEZIONI.get(str(m["reparto"]), {}).get("colore", Color.WHITE)
+	# chi non ha ancora giocato in questo round (si può scegliere finché il turno non è iniziato)
+	var cambio: bool = int(esp.s["azioni"]) == 2 and not esp.s["speciale_usata"] and not _occupato and str(esp.s.get("finita", "")) == ""
+	for i in esp.s["equipaggio"].size():
+		var mi := esp.membro(i)
+		if mi["morto"]:
+			continue
+		var ci: Color = Dati.SEZIONI.get(str(mi["reparto"]), {}).get("colore", Color.WHITE)
+		var g := _gettone(str(mi["carta"]).substr(0, 1), ci if not mi["turno_fatto"] or i == att else ci.darkened(0.6), "%s%s" % [mi["carta"], " (turno fatto)" if mi["turno_fatto"] else ""], i == att)
+		if i != att and cambio and not mi["turno_fatto"]:
+			var jj: int = i
+			g.gui_input.connect(func(ev):
+				if ev is InputEventMouseButton and ev.pressed and ev.button_index == MOUSE_BUTTON_LEFT:
+					esp.scegli_attivo(jj)
+					_sel = int(esp.membro(jj)["settore"])
+					_salva()
+					aggiorna())
+			g.tooltip_text += " — clic: gioca ora il suo turno"
+			g.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		g.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		_membro_box.add_child(g)
+	var v := VBoxContainer.new()
+	v.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	v.add_theme_constant_override("separation", 2)
+	var nome := Tema.etichetta(str(m["carta"]), 15, col, true)
+	v.add_child(nome)
+	var fd := HBoxContainer.new()
+	fd.add_theme_constant_override("separation", 3)
+	for d in m["dadi"]:
+		if d["stato"] != "sacrificato":
+			fd.add_child(_chip_dado(d))
+	for f in m["ferite"]:
+		var l := Label.new()
+		l.text = " ✚"
+		l.tooltip_text = "Ferita: " + str(NOMI_FERITE.get(f, f))
+		l.mouse_filter = Control.MOUSE_FILTER_PASS
+		l.add_theme_color_override("font_color", Tema.ROSSO)
+		fd.add_child(l)
+	v.add_child(fd)
+	_membro_box.add_child(v)
+	var mano := HBoxContainer.new()
+	mano.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	mano.add_theme_constant_override("separation", 4)
+	for c in m["mano"]:
+		var carta := Carte.per_file(str(c))
+		var cc: String = str(c)
+		var b := Tema.pulsante(Carte.titolo(carta), func(): _carta_in_mano(att, cc), 11)
+		b.tooltip_text = Carte.t(carta.get("effetto", ""))
+		mano.add_child(b)
+	_membro_box.add_child(mano)
+
+func _aggiorna_passo() -> void:
+	for c in _azioni_box.get_children():
+		c.queue_free()
+	var att := int(esp.s["attivo"])
+	var m := esp.membro(att)
+	if str(esp.s.get("finita", "")) != "":
+		_passo.text = "[b]Esplorazione terminata[/b]"
+		_azioni_box.add_child(Tema.pulsante_primario("RIEPILOGO", func(): apri_cassetto("fine"), 15))
+		return
+	if _scelta_settore:
+		_passo.text = "[color=#ffb347]%s[/color]" % _testo_scelta
+		_azioni_box.add_child(Tema.pulsante("ANNULLA", func(): _settore_scelto.emit(-1), 14))
+		return
+	if _occupato:
+		_passo.text = "[color=#9fbbd6]…[/color]"
+		return
+	var az := int(esp.s["azioni"])
+	var sett := int(m["settore"])
+	var pallini := "●".repeat(az) + "○".repeat(max(0, 2 - az))
+	if az > 0:
+		_passo.text = "[b]%s[/b] [color=#9fbbd6]azioni[/color]  %s" % [pallini, "[color=#9fbbd6]· Azione Speciale usata[/color]" if esp.s["speciale_usata"] else ""]
+	else:
+		_passo.text = "[b]%s[/b]  [color=#ffb347]Azioni finite: termina il turno[/color]" % pallini
+	if az > 0:
+		var icone: Array = esp.icone_settore(pl, sett, _carte_pdi())
+		if not "noMovement" in icone and not esp.sentieri(pl, sett).is_empty():
+			_bottone_azione("VIAGGIO", _viaggio, "Scegli sulla mappa un settore collegato")
+		var azs := _azioni_settore(sett)
+		if not azs.is_empty() and not esp.s["speciale_usata"]:
+			if azs.size() == 1:
+				var a: Dictionary = azs[0]["azione"]
+				_bottone_azione("◆ " + Carte.t(a.get("nome", "")).to_upper(), func(): _esegui_azione(a, azs[0]["fonte"], azs[0]["chiave"], sett), "Azione Speciale del settore (una per turno)", true)
+			else:
+				_bottone_azione("◆ AZIONE SPECIALE", func():
+					_sel = sett
+					apri_cassetto("settore"), "Scegli quale Azione Speciale eseguire", true)
+		if esp.s.get("provviste_illimitate", false) or int(esp.s["lander"]["provviste"]) > 0:
+			_bottone_azione("RIPOSO", _riposo, "-1 Provviste, ricarica metà dei dadi (per eccesso), pesca 1 carta")
+		_bottone_azione("PREPARAZIONE", _preparazione, "Pesca 1 carta Reparto e/o fai una Prova per le Combinazioni")
+		if sett == int(esp.s["lander"]["settore"]):
+			_bottone_azione("DECOLLO", _decollo, "Termina l'esplorazione")
+	var mb := MenuButton.new()
+	mb.text = "⋯"
+	mb.flat = false
+	mb.tooltip_text = "Sforzo e correzioni"
+	mb.add_theme_font_size_override("font_size", 18)
+	mb.get_popup().add_item("Sforzo: sacrifica 1 dado e ricarica 5 dadi", 0)
+	mb.get_popup().add_item("Correzioni manuali…", 1)
+	mb.get_popup().id_pressed.connect(func(id): if id == 0: _sforzo() else: _correzioni(att))
+	_azioni_box.add_child(mb)
+	var fine := Tema.pulsante_primario("FINE TURNO", _fine_turno, 16) if az == 0 else Tema.pulsante("FINE TURNO", _fine_turno, 15)
+	fine.tooltip_text = "Gira il segnalino Turno, pesca e risolvi un Evento"
+	_azioni_box.add_child(fine)
+
+func _bottone_azione(t: String, cb: Callable, tip: String, primario := false) -> void:
+	var b := Tema.pulsante_primario(t, cb, 15) if primario else Tema.pulsante(t, cb, 15)
+	b.tooltip_text = tip
+	b.custom_minimum_size = Vector2(0, 46)
+	_azioni_box.add_child(b)
+
+## Azioni Speciali disponibili nel settore (dal PDI in cima o da quello stampato sulla plancia).
+func _azioni_settore(n: int) -> Array:
+	var carta := _carta_pdi(n)
+	var src: Dictionary = carta
+	if carta.is_empty():
+		for x in pl.get("settori", []):
+			if int(x.get("n", 0)) == n and x.get("stampato") is Dictionary:
+				src = x["stampato"]
+	var out := []
+	var azs: Array = src.get("azioni", []) if src.get("azioni") is Array else []
+	for k in azs.size():
+		out.append({"azione": azs[k], "fonte": Carte.titolo(src), "chiave": "%s#%d" % [esp.pdi_in_cima(n) if not carta.is_empty() else "S%d" % n, k]})
+	return out
+
+# ------------------------------------------------------------------ cassetto laterale (consultazione)
+
+func _cassetto() -> Control:
+	_cassetto_box = PanelContainer.new()
+	_cassetto_box.set_anchors_preset(Control.PRESET_RIGHT_WIDE)
+	_cassetto_box.offset_left = -470
+	_cassetto_box.offset_top = ALTO_HUD + 6
+	_cassetto_box.offset_bottom = -ALTO_BARRA - 6
+	_cassetto_box.offset_right = -6
+	_cassetto_box.add_theme_stylebox_override("panel", Tema.box(Color(0.02, 0.045, 0.09, 0.97), Tema.CIANO_SCURO, 1, 6, 10))
+	var v := VBoxContainer.new()
+	_cassetto_box.add_child(v)
+	var h := HBoxContainer.new()
+	_cassetto_titolo = Tema.etichetta("", 15, Tema.CIANO, true)
+	_cassetto_titolo.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	h.add_child(_cassetto_titolo)
+	h.add_child(Tema.pulsante("✕", func(): apri_cassetto(""), 13))
+	v.add_child(h)
+	var sc := ScrollContainer.new()
+	sc.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	sc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	v.add_child(sc)
+	_pannello = VBoxContainer.new()
+	_pannello.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_pannello.add_theme_constant_override("separation", 8)
+	sc.add_child(_pannello)
+	_cassetto_box.visible = false
+	return _cassetto_box
+
+## Apre il cassetto con una delle schede (settore, squadra, missione, diario, fine); "" lo chiude.
+func apri_cassetto(tipo: String) -> void:
+	_cassetto_tipo = tipo
+	_cassetto_box.visible = tipo != ""
+	if tipo != "":
+		_logbook.visible = false
+	for k in _schede:
+		_schede[k].set_pressed_no_signal(k == tipo)
+	_aggiorna_pannello()
 
 func _salva() -> void:
 	Campagna.dati["esplorazione"] = esp.s
@@ -252,8 +452,38 @@ func _disponi() -> void:
 		box.size = Vector2(w, h)
 
 func seleziona(n: int) -> void:
+	if _scelta_settore:
+		if _consentiti.has(n):
+			_settore_scelto.emit(n)
+		return
+	if _sel == n and _cassetto_box.visible and _cassetto_tipo == "settore":
+		apri_cassetto("")
+		return
 	_sel = n
+	apri_cassetto("settore")
 	aggiorna()
+
+## Fa scegliere un settore direttamente sulla mappa: consentiti = {settore: testo da mostrare}.
+## Restituisce il settore scelto, oppure -1 (Annulla / Esc).
+func _scegli_settore(testo: String, consentiti: Dictionary) -> int:
+	if consentiti.is_empty():
+		return -1
+	_scelta_settore = true
+	_consentiti = consentiti
+	_testo_scelta = testo
+	apri_cassetto("")
+	aggiorna()
+	var n: int = await _settore_scelto
+	_scelta_settore = false
+	_consentiti = {}
+	aggiorna()
+	return n
+
+func _tutti_i_settori(testo := "") -> Dictionary:
+	var out := {}
+	for k in esp.s["settori"]:
+		out[int(k)] = testo
+	return out
 
 func _carta_pdi(n: int) -> Dictionary:
 	var id := esp.pdi_in_cima(n)
@@ -278,9 +508,15 @@ func _aggiorna_settori() -> void:
 			if c.has("file"):
 				var tr: TextureRect = w["img"]
 				Immagini.carica(str(c["file"]), func(t): if is_instance_valid(tr) and w["pdi"] == id: tr.texture = t)
-		var sel: bool = int(n) == _sel
+		var sel: bool = int(n) == _sel and _cassetto_box.visible and _cassetto_tipo == "settore"
 		var att := int(esp.membro(int(esp.s["attivo"]))["settore"]) == int(n) if not esp.vivi().is_empty() else false
-		w["bordo"].add_theme_stylebox_override("panel", Tema.box(Color(0, 0, 0, 0), Tema.AMBRA if sel else (Tema.CIANO if att else Color(0.4, 0.7, 1.0, 0.25)), 3 if sel else (2 if att else 1), 6, 0))
+		if _scelta_settore:
+			var ok := _consentiti.has(int(n))
+			w["bordo"].add_theme_stylebox_override("panel", Tema.box(Color(1, 0.7, 0.28, 0.12) if ok else Color(0, 0, 0, 0.55), Tema.AMBRA if ok else Color(0, 0, 0, 0), 3 if ok else 0, 6, 0))
+			w["box"].mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if ok else Control.CURSOR_ARROW
+		else:
+			w["bordo"].add_theme_stylebox_override("panel", Tema.box(Color(0, 0, 0, 0), Tema.AMBRA if sel else (Tema.CIANO if att else Color(0.4, 0.7, 1.0, 0.0)), 3 if sel else (2 if att else 0), 6, 0))
+			w["box"].mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		for ch in w["crew"].get_children():
 			ch.queue_free()
 		if int(esp.s["lander"]["settore"]) == int(n):
@@ -300,6 +536,8 @@ func _aggiorna_settori() -> void:
 				info.append("☠ " + str(mn.get("nome", "")))
 		if int(st.get("log", 0)) > 0 and not st.get("visitato", false):
 			info.append("Log %d" % int(st["log"]))
+		if _scelta_settore and _consentiti.has(int(n)):
+			info = ["➜ " + str(_consentiti[int(n)])] if str(_consentiti[int(n)]) != "" else ["➜"]
 		w["info"].text = "  ".join(info)
 
 func _gettone(t: String, col: Color, tip: String, attivo := false) -> Control:
@@ -330,37 +568,49 @@ func aggiorna() -> void:
 	if esp.s.is_empty():
 		return
 	_aggiorna_settori()
-	var att := int(esp.s["attivo"])
-	var m := esp.membro(att)
 	var ind := []
 	for t in Esplorazione.TIPI_SCOPERTA:
 		var v := 0
 		for x in esp.s["indizi"][t]:
 			v += int(x.get("v", 1))
 		if v > 0:
-			ind.append("%s %d" % [NOMI_SCOPERTE[t], v])
+			ind.append("%s %d/3" % [NOMI_SCOPERTE[t], v])
 	var prov := "∞" if esp.s.get("provviste_illimitate", false) else str(esp.s["lander"]["provviste"])
-	_info.text = "  [color=#9fbbd6]ROUND[/color] [b]%d[/b]   [color=#9fbbd6]TURNO DI[/color] [b]%s[/b] (%d azioni%s)   [color=#9fbbd6]PROVVISTE[/color] [b]%s[/b]   [color=#9fbbd6]SUCCESSI[/color] [b]%d[/b]   [color=#9fbbd6]SCOPERTE[/color] [b]%d/%d[/b]%s" % [
-		int(esp.s["round"]), str(m["carta"]), int(esp.s["azioni"]), ", speciale usata" if esp.s["speciale_usata"] else "",
-		prov, int(esp.s["successi"]), esp.s["scoperte"].size(), int(esp.s["lander"]["max_scoperte"]),
+	var gc := _condizione()
+	var tm = gc.get("tempo")
+	var tempo := ("   [color=#9fbbd6]TEMPO[/color] [b]%d/%d[/b]" % [int(esp.s["condizione"]["tempo"]), int(tm.get("caselle", 0))]) if tm is Dictionary else ""
+	_info.text = "[color=#9fbbd6]ROUND[/color] [b]%d[/b]   [color=#9fbbd6]PROVVISTE[/color] [b]%s[/b]   [color=#9fbbd6]SUCCESSI[/color] [b]%d[/b]   [color=#9fbbd6]SCOPERTE[/color] [b]%d/%d[/b]%s%s" % [
+		int(esp.s["round"]), prov, int(esp.s["successi"]), esp.s["scoperte"].size(), int(esp.s["lander"]["max_scoperte"]), tempo,
 		("   [color=#9fbbd6]INDIZI[/color] " + ", ".join(ind)) if not ind.is_empty() else ""]
-	var finita := str(esp.s.get("finita", "")) != ""
-	for k in _pulsanti:
-		_pulsanti[k].disabled = finita or _occupato
-	_pulsanti["decollo"].disabled = finita or _occupato or int(m["settore"]) != int(esp.s["lander"]["settore"])
+	_aggiorna_membro()
+	_aggiorna_passo()
+	if str(esp.s.get("finita", "")) != "" and _cassetto_tipo != "fine" and not _occupato:
+		apri_cassetto("fine")
+		return
 	_aggiorna_pannello()
 
 func _aggiorna_pannello() -> void:
+	if not _cassetto_box.visible:
+		return
 	for c in _pannello.get_children():
 		c.queue_free()
-	if str(esp.s.get("finita", "")) != "":
-		_pannello_fine()
-		return
-	_sezione_settore()
-	_pannello.add_child(HSeparator.new())
-	_sezione_squadra()
-	_pannello.add_child(HSeparator.new())
-	_sezione_condizione()
+	match _cassetto_tipo:
+		"settore":
+			_cassetto_titolo.text = "SETTORE %d" % _sel
+			_sezione_settore()
+		"squadra":
+			_cassetto_titolo.text = "SQUADRA DI SBARCO"
+			_sezione_squadra()
+		"missione":
+			_cassetto_titolo.text = "CONDIZIONE E MISSIONI"
+			_sezione_condizione()
+		"diario":
+			_cassetto_titolo.text = "DIARIO"
+			var righe: Array = esp.s["diario"]
+			_testo("\n".join(righe.slice(max(0, righe.size() - 80)).map(func(x): return "• " + str(x))), 14)
+		"fine":
+			_cassetto_titolo.text = "FINE DELL'ESPLORAZIONE"
+			_pannello_fine()
 
 func _titolo(t: String, col := Tema.CIANO) -> void:
 	_pannello.add_child(Tema.etichetta(t, 15, col, true))
@@ -384,7 +634,8 @@ func _sezione_settore() -> void:
 	var stampato: Dictionary = dati.get("stampato", {}) if dati.get("stampato") is Dictionary else {}
 	var sorgente: Dictionary = carta if not carta.is_empty() else stampato
 	var tit := Carte.titolo(sorgente) if not sorgente.is_empty() else ""
-	_titolo("SETTORE %d%s" % [n, (" — " + tit) if tit != "" else ""], Tema.AMBRA)
+	if tit != "":
+		_titolo(tit.to_upper(), Tema.AMBRA)
 	var icone: Array = esp.icone_settore(pl, n, _carte_pdi())
 	if not icone.is_empty():
 		_testo("Icone: " + Dati.testo_carta(" ".join(icone.map(func(x): return "[%s]" % x)), 22))
@@ -423,6 +674,10 @@ func _sezione_settore() -> void:
 		_pannello.add_child(lb)
 	var hm := HBoxContainer.new()
 	hm.add_theme_constant_override("separation", 6)
+	hm.visible = false
+	var apri := Tema.pulsante("CORREZIONI DEL SETTORE ▾", func(): hm.visible = not hm.visible, 11)
+	apri.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	_pannello.add_child(apri)
 	var campo := LineEdit.new()
 	campo.placeholder_text = "P107"
 	campo.custom_minimum_size = Vector2(90, 0)
@@ -479,7 +734,6 @@ func _eff(e) -> String:
 	return Dati.testo_carta(Carte.t(e), 20)
 
 func _sezione_squadra() -> void:
-	_titolo("SQUADRA DI SBARCO")
 	for i in esp.s["equipaggio"].size():
 		var m := esp.membro(i)
 		var riq := PanelContainer.new()
@@ -787,10 +1041,18 @@ func _viaggio() -> void:
 		return
 	if not _inizia():
 		return
-	var j := await _scegli("VIAGGIO DAL SETTORE %d" % sett, sentieri.map(func(p): return "Settore %d — sentiero: %s" % [int(p["a"]), ", ".join((p["icone"] as Array).map(func(x): return _txt_icone("[%s]" % x)))]))
-	if j < 0:
+	var dest_ok := {}
+	var indice := {}
+	for k in sentieri.size():
+		var a := int(sentieri[k]["a"])
+		if not dest_ok.has(a):
+			dest_ok[a] = ", ".join((sentieri[k]["icone"] as Array).map(func(x): return _txt_icone("[%s]" % x)))
+			indice[a] = k
+	var scelto := await _scegli_settore("VIAGGIO: clicca sulla mappa il settore di destinazione", dest_ok)
+	if scelto < 0:
 		_finisci()
 		return
+	var j: int = indice[scelto]
 	esp.usa_azione(false)
 	var dest := int(sentieri[j]["a"])
 	_destinazione = dest
@@ -997,10 +1259,9 @@ func _correzioni(i: int) -> void:
 	var j := await _scegli("CORREZIONI — " + str(esp.membro(i)["carta"]), voci)
 	match j:
 		0:
-			var sett: Array = esp.s["settori"].keys()
-			var k := await _scegli("IN QUALE SETTORE?", sett.map(func(x): return "Settore " + str(x)))
+			var k := await _scegli_settore("Dove sposti %s? Clicca il settore" % esp.membro(i)["carta"], _tutti_i_settori())
 			if k >= 0:
-				esp.viaggia(i, int(sett[k]))
+				esp.viaggia(i, k)
 		1:
 			esp.ricarica(i, 1, "")
 		2:
@@ -1034,10 +1295,12 @@ func _carta_dal_logbook(nome: String) -> void:
 	nome = nome.strip_edges().to_upper()
 	var c := Carte.per_id(nome)
 	if nome.begins_with("P") and not c.is_empty():
-		var sett: Array = esp.s["settori"].keys()
-		var k := await _scegli("IN QUALE SETTORE VA %s?" % nome, sett.map(func(x): return "Settore %s%s" % [str(x), " (ora: %s)" % esp.pdi_in_cima(int(x)) if esp.pdi_in_cima(int(x)) != "" else ""]))
+		var dove := {}
+		for x in esp.s["settori"]:
+			dove[int(x)] = nome
+		var k := await _scegli_settore("Dove va la carta %s? Clicca il settore sulla mappa" % nome, dove)
 		if k >= 0:
-			esp.piazza_pdi(int(sett[k]), nome)
+			esp.piazza_pdi(k, nome)
 	elif nome.begins_with("M") and not c.is_empty():
 		if not nome in esp.s["missioni"]:
 			esp.s["missioni"].append(nome)
@@ -1051,10 +1314,9 @@ func _carta_dal_logbook(nome: String) -> void:
 	else:
 		var mn := Carte.categoria("minacce").filter(func(x): return Carte.titolo(x).to_upper() == nome or str(x.get("nomi", [""])[0]).to_upper() == nome if not (x.get("nomi", []) as Array).is_empty() else false)
 		if not mn.is_empty():
-			var sett2: Array = esp.s["settori"].keys()
-			var k3 := await _scegli("IN QUALE SETTORE VA LA MINACCIA?", sett2.map(func(x): return "Settore " + str(x)))
+			var k3 := await _scegli_settore("Dove va la Minaccia %s? Clicca il settore" % Carte.titolo(mn[0]), _tutti_i_settori("☠"))
 			if k3 >= 0:
-				esp.s["minacce"].append({"nome": Carte.titolo(mn[0]), "file": str(mn[0]["file"]), "settore": int(sett2[k3]), "tempo": 0})
+				esp.s["minacce"].append({"nome": Carte.titolo(mn[0]), "file": str(mn[0]["file"]), "settore": k3, "tempo": 0})
 		else:
 			avviso("Carta %s: prendila e applicala a mano" % nome)
 			return
@@ -1172,9 +1434,14 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			else:
 				var sen := esp.sentieri(pl, int(m["settore"]))
 				if not sen.is_empty():
-					var j := await _scegli("MUOVITI IN UN SETTORE COLLEGATO", sen.map(func(p): return "Settore %d" % int(p["a"])), "", false)
-					_muovi(chi, int(sen[j]["a"]), logs)
-					fatti.append("%s si sposta nel Settore %d" % [m["carta"], int(sen[j]["a"])])
+					var ok := {}
+					for p in sen:
+						ok[int(p["a"])] = ""
+					var dst := -1
+					while dst < 0:
+						dst = await _scegli_settore("%s si muove: clicca un settore collegato" % m["carta"], ok)
+					_muovi(chi, dst, logs)
+					fatti.append("%s si sposta nel Settore %d" % [m["carta"], dst])
 		"scarta_questa":
 			manuali.append("Scarta la carta (%s)" % fonte)
 		"fine_esplorazione":
@@ -1202,7 +1469,7 @@ func _tira_pericolo(lettera: String, chi: int, sett: int, fatti: Array, manuali:
 	var nome := "vuoto" if ic.is_empty() else str(ic[0])
 	var nomi_it := {"vuoto": "faccia vuota", "common": "comune", "uncommon": "non comune", "rare": "raro", "special": "speciale"}
 	if lettera.substr(0, 1) in ["A", "B", "C", "D", "E", "F", "G", "H", "I", "T"]:
-		var e := Prova.effetto_pericolo(lettera, d)
+		var e := Prova.effetto_pericolo(lettera, d).replace("[mental]", "[mental] (%s)" % esp.membro(chi)["carta"])
 		fatti.append("Dado Pericolo %s: %s → %s" % [lettera, nomi_it.get(nome, nome), _txt_icone(e) if e != "" else "nessun effetto"])
 		if e != "":
 			for op in Effetti.analizza(e)["op"]:

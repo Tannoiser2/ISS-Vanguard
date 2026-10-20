@@ -105,6 +105,10 @@ func _run() -> void:
 
 ## Se è aperta una finestra (scelta, prova di dadi) preme un pulsante a caso fra quelli utili.
 func _premi_finestra() -> bool:
+	if mis._scelta_settore:
+		var ks: Array = mis._consentiti.keys()
+		mis._settore_scelto.emit(ks[rng.randi_range(0, ks.size() - 1)])
+		return true
 	var fin = null
 	for c in mis.get_children():
 		if c is ColorRect and c.get_child_count() > 0 and c.get_child(0) is CenterContainer:

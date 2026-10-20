@@ -55,7 +55,17 @@ func _run() -> void:
 	await foto("missione")
 	mis.seleziona(2)
 	await aspetta(1)
-	await foto("settore_2")
+	await foto("cassetto_settore")
+	mis.apri_cassetto("squadra")
+	await aspetta(1)
+	await foto("cassetto_squadra")
+	mis.apri_cassetto("")
+	mis._viaggio()
+	await aspetta(1)
+	if mis._scelta_settore:
+		await foto("viaggio_scelta")
+		mis._settore_scelto.emit(-1)
+		await aspetta(1)
 	# una prova di dadi
 	var st: Dictionary = {}
 	for x in mis.pl.get("settori", []):
