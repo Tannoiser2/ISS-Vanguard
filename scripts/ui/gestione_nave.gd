@@ -342,7 +342,7 @@ func _assegnabili(icone: Array = []) -> Array:
 	for i in nave.membri("", "disponibile"):
 		if not nave.assegnabile(i):
 			continue
-		if not icone.is_empty() and not "anySameIcons" in icone and not nave.conversione(i) in icone:
+		if not icone.is_empty() and not "anySameIcons" in icone and not nave.conversioni(i).any(func(x): return x in icone):
 			continue
 		out.append(i)
 	return out
@@ -350,7 +350,7 @@ func _assegnabili(icone: Array = []) -> Array:
 func _nome_membro(i: int) -> String:
 	var m: Dictionary = nave.s["equipaggio"][i]
 	return "%s (%s, Grado %d%s)" % [m["carta"], Dati.SEZIONI.get(m["reparto"], {}).get("nome", m["reparto"]), int(m["grado"]),
-		(", conv. " + Traduzioni.icona(nave.conversione(i))) if nave.conversione(i) != "" else ""]
+		(", conv. " + " / ".join(nave.conversioni(i).map(func(x): return Traduzioni.icona(str(x))))) if nave.conversione(i) != "" else ""]
 
 ## Chiede di assegnare un Membro (restituisce l'indice o -1).
 func _assegna(compito: String, icone: Array = []) -> int:
@@ -574,7 +574,27 @@ func _riempi_cassetto() -> void:
 				for i in nave.membri(r):
 					var m: Dictionary = s["equipaggio"][i]
 					var st: String = {"disponibile": "disponibile", "riposo": "a riposo", "infermeria": "in infermeria (%s)" % nave.livello_infermeria(i), "morto": "morto", "squadra": "in missione"}.get(m["stato"], m["stato"])
-					_testo("• %s · Grado %d · [i]%s[/i]" % [m["carta"], int(m["grado"]), st], 15, _cassetto)
+					var vet := " · [color=#ffd36e]Veterano[/color]" if m.get("veterano", false) else ""
+					_testo("• %s · Grado %d · [i]%s[/i]%s" % [m["carta"], int(m["grado"]), st, vet], 15, _cassetto)
+					var ob = m.get("obiettivo")
+					if ob is Dictionary:
+						var v := Carte.per_file(str(ob["file"]))
+						_testo("   [color=#9fbbd6]Obiettivo individuale%s:[/color] %s" % [(" (%d/%d)" % [int(ob.get("traccia", 0)), Fascicoli.caselle(v)]) if Fascicoli.caselle(v) > 0 else "", _bb(Fascicoli.testo_obiettivo(v))], 13, _cassetto)
+			# espansione Fascicoli del personale
+			_cassetto.add_child(Tema.etichetta("FASCICOLI DEL PERSONALE", 13, Tema.CIANO, true))
+			var opz := OptionButton.new()
+			for t in ["Espansione non usata", "Obiettivo individuale dal Grado 2 (standard)", "Obiettivo individuale dal Grado 3 (impegnativa)"]:
+				opz.add_item(t)
+			opz.selected = {0: 0, 2: 1, 3: 2}.get(nave.grado_fascicoli(), 0)
+			opz.item_selected.connect(func(k):
+				nave.s["fascicoli"] = [0, 2, 3][k]
+				var nuovi := nave.controlla_fascicoli()
+				_salva()
+				aggiorna()
+				_riempi_cassetto()
+				if not nuovi.is_empty():
+					avviso("Obiettivi individuali: " + ", ".join(nuovi.map(func(x): return str(nave.s["equipaggio"][x]["carta"])))))
+			_cassetto.add_child(opz)
 		"progetti":
 			_cassetto_titolo.text = "PROGETTI"
 			_cassetto.add_child(Tema.etichetta("RICERCA (pag. 9)", 13, Tema.CIANO, true))
@@ -707,12 +727,25 @@ func _desc_recluta(f: String) -> String:
 	return "%s — converte %s · %s (%s Cariche)" % [c.get("nome", "?"), Traduzioni.icona(str(cv.get("a", ""))) if cv is Dictionary else "-",
 		str(ab.get("nome", "")) if ab is Dictionary else "", str(c.get("cariche", "?"))]
 
+## Fascicoli del personale: dopo una promozione il Membro può ricevere il suo Obiettivo individuale.
+func _nuovo_fascicolo(i: int) -> void:
+	var f := nave.controlla_fascicolo(i)
+	if f == "":
+		return
+	_salva()
+	var v := Carte.per_file(f)
+	await _scegli("FASCICOLI DEL PERSONALE — %s" % str(nave.s["equipaggio"][i]["carta"]).to_upper(), ["OK"],
+		"[b]Obiettivo individuale[/b]\n%s\n\n[color=#9fbbd6]Introduzione: File %s (solo racconto, poi File 192). La carta va accanto alla plancia del Membro ogni volta che parte in esplorazione; quando l'Obiettivo è compiuto il Membro diventa Veterano: nuovo ritratto e una seconda abilità di conversione.[/color]" % [_bb(Fascicoli.testo_obiettivo(v)), str(v.get("introduzione", "?"))],
+		false, str(v.get("file_retro", v.get("file", ""))))
+
 # --- Ponte di comando (pag. 2) -----------------------------------------------------------
 
 func _passo_ponte() -> void:
 	_titolo("Ponte di comando", 2)
 	if not _scelta.get("fatto", false):
 		var inizio := nave.inizio_ponte()
+		for i in nave.controlla_fascicoli():
+			inizio.append("Fascicoli del personale: Obiettivo individuale per %s (vedi EQUIPAGGIO)" % nave.s["equipaggio"][i]["carta"])
 		var fatti := inizio + nave.installa_ponte()
 		var pool := nave.genera_pool()
 		_scelta["fatto"] = true
@@ -1214,7 +1247,8 @@ func _struttura_caserma() -> void:
 		nave.s["equipaggio"][all[k]]["stato"] = "riposo"
 		nave.diario("%s promosso al Grado 2" % nave.s["equipaggio"][all[k]]["carta"])
 		_salva()
-		aggiorna(), 13))
+		aggiorna()
+		await _nuovo_fascicolo(all[k]), 13))
 	_sezione("1. Trasferisci o congeda")
 	_corpo.add_child(Tema.pulsante("CONGEDA UN MEMBRO", func():
 		var c := nave.membri().filter(func(i): return nave.s["equipaggio"][i]["stato"] in ["disponibile", "riposo"])
@@ -1386,7 +1420,8 @@ func _atterra() -> void:
 		var m: Dictionary = nave.s["equipaggio"][i]
 		var c := Carte.per_file(str(m["file"]))
 		membri.append({"nave": i, "carta": m["carta"], "file": m["file"], "reparto": m["reparto"], "grado": int(m["grado"]),
-			"cariche": int(c.get("cariche", 0)), "dadi": _dadi_squadra(m), "conv": c.get("converti", {})})
+			"cariche": int(c.get("cariche", 0)), "dadi": _dadi_squadra(m), "conv": c.get("converti", {}),
+			"obiettivo": (m.get("obiettivo", {}) as Dictionary).duplicate() if m.get("obiettivo") is Dictionary else {}})
 		m["stato"] = "squadra"
 	nave.s["squadra"] = squadra.duplicate()
 	nave.s["equip_caricato"] = (_scelta.get("equip", []) as Array).duplicate()
@@ -1643,7 +1678,8 @@ func _passo_debriefing() -> void:
 				nave.diario("%s promosso al Grado %d" % [mm["carta"], int(nave.s["equipaggio"][ii]["grado"])])
 				(_scelta.get_or_add("promossi", []) as Array).append(ii)
 				_salva()
-				aggiorna(), 14)
+				aggiorna()
+				await _nuovo_fascicolo(ii), 14)
 			b.disabled = ii in _scelta.get("promossi", []) or int(mm["grado"]) >= 3
 			_corpo.add_child(b)
 	else:

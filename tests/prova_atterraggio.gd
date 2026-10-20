@@ -281,6 +281,24 @@ func _run() -> void:
 	var mz3 := []
 	mis._pdi_parola_chiave(1, fz3, mz3)
 	ok(Carte.en(Carte.per_id(e.pdi_in_cima(1)).get("titolo", "")).contains("(WARP)"), "Visitatore: in cima il PDI (WARP) → %s" % e.pdi_in_cima(1))
+	# Fascicoli del personale: Obiettivo individuale durante l'esplorazione
+	var vet: Dictionary = {}
+	for c in Carte.categoria("veterani"):
+		if int(c.get("traccia", 0)) == 2:
+			vet = c
+			break
+	e.membro(0)["morto"] = false
+	e.membro(0)["obiettivo"] = {"file": str(vet["file"]), "traccia": 0}
+	e.membro(0)["conv_extra"] = []
+	mis.apri_cassetto("squadra")
+	await aspetta()
+	mis._avanza_obiettivo(0, 1)
+	await chiudi()
+	ok(int(e.membro(0)["obiettivo"]["traccia"]) == 1, "Obiettivo individuale: traccia 1/2")
+	mis._avanza_obiettivo(0, 1)
+	await chiudi()
+	ok(e.membro(0).get("veterano", false) and str(e.membro(0)["file"]) == str(vet["file"]) and not (e.membro(0)["conv_extra"] as Array).is_empty(), "traccia piena: il Membro diventa Veterano con una conversione in più")
+	mis.apri_cassetto("")
 	# tutte le Minacce: tre avanzamenti del Tempo ciascuna
 	var tot_fatti := 0
 	var tot_man := 0

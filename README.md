@@ -144,6 +144,15 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   - **potenziamenti delle strutture**: F01 (ritiro di un Danno nella prova di sopravvivenza), F02 (prova
     in più per avanzare in infermeria), F03 (Scoperte per mandare un Membro per Reparto a riposo), F04
     (coda 2), F05 (dado Pericolo su un progetto), F06 (Scoperte per far avanzare tutti i progetti).
+- **Fascicoli del personale** (espansione Personnel Files, nel modulo TTS): le 90 carte Veterano trascritte.
+  Nel cassetto EQUIPAGGIO della nave si sceglie la versione (Obiettivo dal Grado 2, standard; dal Grado 3,
+  impegnativa; oppure espansione spenta — spenta di base per Deadly Frontier, che non la prevede). Alla
+  promozione (o aggiungendo l'espansione a campagna iniziata, al Ponte) il Membro riceve la sua carta
+  Obiettivo individuale; in esplorazione la carta sta nel cassetto SQUADRA con la sua traccia (AVANZA,
+  AZZERA, COMPIUTO). Compiuto l'Obiettivo il Membro diventa Veterano subito: nuovo ritratto e seconda
+  abilità di conversione (valida da quel momento, anche nelle assegnazioni sulla nave); Cariche e plancia
+  non cambiano. Le tracce che lo prevedono si azzerano a fine esplorazione. I File del libretto sono solo
+  racconto (il modulo non li contiene) e non servono per giocare.
 - **Regolamento** e riassunto delle regole (inglese, dai PDF del modulo) consultabili in gioco.
 
 ## Comandi del tavolo
@@ -182,6 +191,7 @@ tests/prova_missione.gd    partita simulata a caso dell'esplorazione (-- p.18-19
 tests/foto_missione.gd     screenshot della preparazione e dell'esplorazione
 tests/prova_nave.gd        giro completo della Gestione della Nave (-- foto per gli screenshot)
 tests/prova_ponte.gd       potenziamenti del Ponte e delle strutture, carte spostate dal Logbook
+tests/prova_fascicoli.gd   Fascicoli del personale (Obiettivi individuali e Veterani)
 tests/foto_3d.gd           screenshot della plancia 3D dell'esplorazione
 tests/prova_atterraggio.gd atterraggio, risposte automatiche del Logbook e Minacce
 tests/prova_pianeti.gd     registrazione e ripristino dei pianeti visitati

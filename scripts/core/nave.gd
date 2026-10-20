@@ -130,9 +130,12 @@ func assegna(i: int, compito: String) -> bool:
 
 ## Icona di conversione di un Membro (dalla carta Equipaggio).
 func conversione(i: int) -> String:
-	var c := Carte.per_file(str(s["equipaggio"][i].get("file", "")))
-	var cv = c.get("converti", {})
-	return str(cv.get("a", "")) if cv is Dictionary else ""
+	var l := conversioni(i)
+	return str(l[0]) if not l.is_empty() else ""
+
+## Icone di conversione del Membro (due per i Veterani dei Fascicoli del personale).
+func conversioni(i: int) -> Array:
+	return Fascicoli.conversioni(Carte.per_file(str(s["equipaggio"][i].get("file", "")))).map(func(x): return str(x["a"]))
 
 func n_dadi() -> int:
 	return (s["dadi"]["ingegneria"] as Array).size()
@@ -197,6 +200,47 @@ func dalla_busta(prefissi: Array) -> Array:
 				s["busta"].erase(id)
 				break
 	return out
+
+# ------------------------------------------------------------------ Fascicoli del personale
+
+## Grado da cui si riceve l'Obiettivo individuale: 2 (versione standard), 3 (impegnativa), 0 = espansione spenta.
+func grado_fascicoli() -> int:
+	if not s.has("fascicoli"):
+		# l'espansione si gioca con la campagna base e con Lost Fleet
+		return 0 if Campagna.id_campagna() == 12 else 2
+	return int(s["fascicoli"])
+
+## Se il Membro ha raggiunto il Grado richiesto e non è già Veterano, riceve la sua carta Obiettivo individuale.
+## Restituisce il file della carta assegnata ("" se niente).
+func controlla_fascicolo(i: int) -> String:
+	var m: Dictionary = s["equipaggio"][i]
+	var g := grado_fascicoli()
+	if g <= 0 or int(m["grado"]) < g or m.get("veterano", false) or m.get("obiettivo") is Dictionary or m["stato"] == "morto":
+		return ""
+	var v := Fascicoli.veterano_di(str(m.get("file", "")))
+	if v.is_empty():
+		return ""
+	m["obiettivo"] = {"file": str(v["file"]), "traccia": 0}
+	diario("Fascicoli del personale: %s riceve il suo Obiettivo individuale" % m["carta"])
+	return str(v["file"])
+
+func controlla_fascicoli() -> Array:
+	var out := []
+	for i in s["equipaggio"].size():
+		if controlla_fascicolo(i) != "":
+			out.append(i)
+	return out
+
+## Obiettivo completato (File 1): la carta Veterano sostituisce quella del Membro; Cariche e plancia restano.
+func diventa_veterano(i: int) -> void:
+	var m: Dictionary = s["equipaggio"][i]
+	var ob = m.get("obiettivo")
+	if not ob is Dictionary:
+		return
+	m["file"] = str(ob["file"])
+	m["veterano"] = true
+	m.erase("obiettivo")
+	diario("%s è ora un Veterano" % m["carta"])
 
 # ------------------------------------------------------------------ potenziamenti del Ponte
 

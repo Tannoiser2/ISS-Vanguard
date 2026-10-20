@@ -184,13 +184,11 @@ func _conferma() -> void:
 	var squadra := []
 	var visti := {}
 	for m in dalla_nave.get("membri", []):
-		var cv = m.get("conv", {})
-		var conv := {}
-		if cv is Dictionary and not cv.is_empty():
-			conv = {"colore": str(cv.get("colore", "")).replace("Die", ""), "a": str(cv.get("a", ""))}
+		var convs := Fascicoli.conversioni({"converti": m.get("conv", {})})
+		var conv: Dictionary = convs[0] if not convs.is_empty() else {}
 		squadra.append({"nave": int(m["nave"]), "carta": m["carta"], "file": m["file"], "reparto": m["reparto"], "grado": int(m["grado"]),
-			"dadi": m["dadi"], "mazzo": _mazzo_reparto(REPARTI[m["reparto"]], int(m["grado"])), "conv": conv,
-			"cariche": int(m.get("cariche", 0)), "mano_iniziale": 2})
+			"dadi": m["dadi"], "mazzo": _mazzo_reparto(REPARTI[m["reparto"]], int(m["grado"])), "conv": conv, "conv_extra": convs.slice(1),
+			"obiettivo": m.get("obiettivo", {}), "cariche": int(m.get("cariche", 0)), "mano_iniziale": 2})
 		visti[m["reparto"]] = true
 	for r in _righe:
 		if not dalla_nave.is_empty():

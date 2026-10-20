@@ -1013,7 +1013,80 @@ func _sezione_squadra() -> void:
 		var k2: int = i
 		hb.add_child(Tema.pulsante("CORREZIONI…", func(): _correzioni(k2), 12))
 		v.add_child(hb)
+		_obiettivo_individuale(i, v)
 		_pannello.add_child(riq)
+
+## Fascicoli del personale: la carta Obiettivo individuale accanto alla plancia del Membro.
+func _obiettivo_individuale(i: int, v: VBoxContainer) -> void:
+	var m := esp.membro(i)
+	var ob = m.get("obiettivo")
+	if not ob is Dictionary or (ob as Dictionary).is_empty() or m["morto"]:
+		return
+	var vc := Carte.per_file(str(ob.get("file", "")))
+	var n := Fascicoli.caselle(vc)
+	var r := Tema.testo_ricco(14)
+	r.fit_content = true
+	r.scroll_active = false
+	r.text = "[color=#ffd36e][b]OBIETTIVO INDIVIDUALE[/b][/color]%s\n%s" % [(" — traccia [b]%d/%d[/b]" % [int(ob.get("traccia", 0)), n]) if n > 0 else "", Dati.testo_carta(Fascicoli.testo_obiettivo(vc), 18)]
+	v.add_child(r)
+	var hb := HFlowContainer.new()
+	hb.add_theme_constant_override("h_separation", 6)
+	hb.add_theme_constant_override("v_separation", 4)
+	var ii := i
+	if n > 0:
+		hb.add_child(Tema.pulsante("AVANZA LA TRACCIA", func(): await _avanza_obiettivo(ii, 1), 12))
+		hb.add_child(Tema.pulsante("AZZERA", func(): await _avanza_obiettivo(ii, -99), 12))
+	hb.add_child(Tema.pulsante_primario("COMPIUTO", func(): await _completa_obiettivo(ii), 12))
+	hb.add_child(Tema.pulsante("CARTA", func(): _mostra_carta(str(vc.get("file_retro", vc.get("file", ""))), "Obiettivo individuale"), 12))
+	v.add_child(hb)
+
+## Il Membro corrispondente sulla nave (per tenere aggiornata la sua carta Obiettivo).
+func _membro_nave(i: int) -> Dictionary:
+	var nv = Campagna.dati.get("nave") if Campagna.dati is Dictionary else null
+	var k := int(esp.membro(i).get("nave", -1))
+	if nv is Dictionary and k >= 0 and k < (nv.get("equipaggio", []) as Array).size():
+		return nv["equipaggio"][k]
+	return {}
+
+func _avanza_obiettivo(i: int, delta: int) -> void:
+	var ob: Dictionary = esp.membro(i)["obiettivo"]
+	var vc := Carte.per_file(str(ob.get("file", "")))
+	var n := Fascicoli.caselle(vc)
+	ob["traccia"] = clampi(int(ob.get("traccia", 0)) + delta, 0, n)
+	var mn := _membro_nave(i)
+	if mn.get("obiettivo") is Dictionary:
+		mn["obiettivo"]["traccia"] = ob["traccia"]
+	esp.diario("%s: traccia dell'Obiettivo individuale %d/%d" % [esp.membro(i)["carta"], int(ob["traccia"]), n])
+	_salva()
+	aggiorna()
+	if n > 0 and int(ob["traccia"]) >= n:
+		await _completa_obiettivo(i)
+
+## Obiettivo compiuto (File di Completamento, poi File 1): il Membro diventa Veterano subito, anche
+## durante una Prova; la nuova abilità di conversione vale da ora, Cariche e plancia non cambiano.
+func _completa_obiettivo(i: int) -> void:
+	var m := esp.membro(i)
+	var ob: Dictionary = m["obiettivo"]
+	var vc := Carte.per_file(str(ob.get("file", "")))
+	if not await _si_no("OBIETTIVO INDIVIDUALE — %s" % str(m["carta"]).to_upper(), "%s\n\nL'Obiettivo è compiuto? (Completamento: File %s, poi File 1)" % [Dati.testo_carta(Fascicoli.testo_obiettivo(vc), 18), str(vc.get("completamento", "?"))], str(vc.get("file", ""))):
+		return
+	m["file"] = str(vc.get("file", m["file"]))
+	m["veterano"] = true
+	var convs := Fascicoli.conversioni(vc)
+	var gia := [m.get("conv", {})] + (m.get("conv_extra", []) as Array)
+	for c in convs:
+		if not gia.any(func(x): return x is Dictionary and str(x.get("colore", "")) == c["colore"] and str(x.get("a", "")) == c["a"]):
+			m.get_or_add("conv_extra", []).append(c)
+	m["obiettivo"] = {}
+	var mn := _membro_nave(i)
+	if not mn.is_empty():
+		mn["file"] = m["file"]
+		mn["veterano"] = true
+		mn.erase("obiettivo")
+	esp.diario("%s è ora un Veterano" % m["carta"])
+	_salva()
+	aggiorna()
+	await _scegli("NUOVO VETERANO", ["OK"], "[b]%s è ora un Veterano![/b]\nNuovo ritratto e nuova abilità di conversione (vale subito). Le Cariche e la plancia restano come sono." % m["carta"], false, str(vc.get("file", "")))
 
 func _chip_dado(d: Dictionary) -> Control:
 	var p := Panel.new()
@@ -1109,6 +1182,11 @@ func _pannello_fine() -> void:
 		# il pianeta resta registrato per la prossima visita (salvo il tutorial)
 		if not esp.s.get("tutorial", false):
 			Campagna.dati.get_or_add("pianeti_registrati", {})[esp.s["pagina"]] = esp.registra(func(id): return Carte.per_id(id), func(m): return _carta_minaccia(m))
+		# le tracce degli Obiettivi individuali che si azzerano a fine esplorazione
+		for k in esp.s["equipaggio"].size():
+			var mn := _membro_nave(k)
+			if mn.get("obiettivo") is Dictionary and Carte.per_file(str(mn["obiettivo"].get("file", ""))).get("azzera_fine_esplorazione", false):
+				mn["obiettivo"]["traccia"] = 0
 		var arch: Array = Campagna.dati.get_or_add("esplorazioni_concluse", [])
 		arch.append({"pagina": esp.s["pagina"], "finita": esp.s["finita"], "successi": esp.s["successi"], "scoperte": esp.s["scoperte"],
 			"eccezionali": esp.s["eccezionali"], "grado_girato": esp.s.get("grado_girato", false), "grado_superiore": esp.s.get("grado_superiore", ""), "missioni_rimaste": esp.s["missioni"],

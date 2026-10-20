@@ -176,6 +176,8 @@ for p in sorted(glob.glob(os.path.join(PRJ, "data", "carte", "*.json"))):
             norm_retro(c["retro"])
         r = rel(c.get("file", ""))
         c["file"] = r
+        if c.get("file_retro"):
+            c["file_retro"] = rel(c["file_retro"])
         db["per_file"][r] = c
         cid = str(c.get("id", "") or (c.get("campi") or {}).get("id", "") or "").upper()
         if cid:

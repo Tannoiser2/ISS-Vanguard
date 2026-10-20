@@ -1,0 +1,575 @@
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/veteran_stjepan/veteran_stjepan_35805.webp",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/veteran_stjepan/retro_35805.webp",
+   "lato": "fronte",
+   "veterano": true,
+   "nomi": [
+    "Stjepan"
+   ],
+   "nome": "STJEPAN BELIĆ",
+   "converti": [
+    {
+     "colore": "greenDie",
+     "da": "basic",
+     "a": "construction"
+    },
+    {
+     "colore": "blueDie",
+     "da": "basic",
+     "a": "physical"
+    }
+   ],
+   "abilita": {
+    "nome": "BRUTE FORCE",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge, then discard any number of cards. Refresh 1 [die] for every discarded card.",
+    "it": "In qualsiasi momento: Spendi 1 Carica, poi scarta un numero qualsiasi di carte. Ricarica 1 [die] per ogni carta scartata."
+   },
+   "cariche": 2,
+   "obiettivo": {
+    "en": "Each time you use your Crewmember Ability, progress the track on this card by 1 for each [die] refreshed. Reset the track on this card at the end of a Planetary Exploration.",
+    "it": "Ogni volta che usi la tua Abilità del Membro dell'Equipaggio, fai avanzare di 1 la traccia di questa carta per ogni [die] ricaricato. Azzera la traccia di questa carta alla fine dell'Esplorazione Planetaria."
+   },
+   "traccia": 7,
+   "azzera_fine_esplorazione": true,
+   "introduzione": 77,
+   "completamento": 177,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/veteran_tarif/veteran_tarif_35904.webp",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/veteran_tarif/retro_35904.webp",
+   "lato": "fronte",
+   "veterano": true,
+   "nomi": [
+    "Tarif"
+   ],
+   "nome": "TARIF ZOGBY",
+   "converti": [
+    {
+     "colore": "blueDie",
+     "da": "basic",
+     "a": "technology"
+    },
+    {
+     "colore": "redDie",
+     "da": "basic",
+     "a": "technology"
+    }
+   ],
+   "abilita": {
+    "nome": "FORECAST",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to discard an Event card you just drew without resolving its text.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per scartare una carta Evento che hai appena pescato senza risolverne il testo."
+   },
+   "cariche": 3,
+   "obiettivo": {
+    "en": "Each time you [spendDie] to use an Equipment card effect, progress the Track on this card by 1 for each die Spent. Reset the track on this card at the end of a Planetary Exploration.",
+    "it": "Ogni volta che [spendDie] per usare l'effetto di una carta Attrezzatura, fai avanzare di 1 la traccia di questa carta per ogni dado Speso. Azzera la traccia di questa carta alla fine dell'Esplorazione Planetaria."
+   },
+   "traccia": 7,
+   "azzera_fine_esplorazione": true,
+   "introduzione": 78,
+   "completamento": 178,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/veteran_tayen/veteran_tayen_35800.webp",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/veteran_tayen/retro_35800.webp",
+   "lato": "fronte",
+   "veterano": true,
+   "nomi": [
+    "Tayen"
+   ],
+   "nome": "TAYEN HATATHLI",
+   "converti": [
+    {
+     "colore": "blueDie",
+     "da": "basic",
+     "a": "physical"
+    },
+    {
+     "colore": "redDie",
+     "da": "basic",
+     "a": "scouting"
+    }
+   ],
+   "abilita": {
+    "nome": "UNBREAKABLE",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to replace 1 of your Injury cards with a Wounded Injury.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per sostituire 1 delle tue carte Ferita con una Ferita \"Ferito\"."
+   },
+   "cariche": 2,
+   "obiettivo": {
+    "en": "Each time you roll no icon on a Danger die, progress the track on this card by 1. Reset the track on this card at the end of a Planetary Exploration.",
+    "it": "Ogni volta che non ottieni alcuna icona su un dado Pericolo, fai avanzare di 1 la traccia di questa carta. Azzera la traccia di questa carta alla fine dell'Esplorazione Planetaria."
+   },
+   "traccia": 1,
+   "azzera_fine_esplorazione": true,
+   "introduzione": 79,
+   "completamento": 179,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/veteran_terry/veteran_terry_103.webp",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/veteran_terry/retro_103.webp",
+   "lato": "fronte",
+   "veterano": true,
+   "nomi": [
+    "Terry"
+   ],
+   "nome": "TERRY ISAAC",
+   "converti": [
+    {
+     "colore": "blueDie",
+     "da": "basic",
+     "a": "defence"
+    },
+    {
+     "colore": "blueDie",
+     "da": "basic",
+     "a": "xenology"
+    }
+   ],
+   "abilita": {
+    "nome": "INSIGHT",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to gain a Discovery from a deck with Lead tokens of a total value of 2.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per ottenere una Scoperta da un mazzo con segnalini Indizio di valore totale 2."
+   },
+   "cariche": 2,
+   "obiettivo": {
+    "en": "During your Dice Check, when you resolve a yellow Outcome that requires at least 1 [xenology], go to Completion.",
+    "it": "Durante la tua Prova, quando risolvi un Risultato giallo che richiede almeno 1 [xenology], vai al Completamento."
+   },
+   "traccia": 0,
+   "azzera_fine_esplorazione": false,
+   "introduzione": 80,
+   "completamento": 180,
+   "dubbi": "Entrambe le conversioni sono su dado blu."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/veteran_thabisa/veteran_thabisa_35913.webp",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/veteran_thabisa/retro_35913.webp",
+   "lato": "fronte",
+   "veterano": true,
+   "nomi": [
+    "Thabisa"
+   ],
+   "nome": "THABISA GBHEO",
+   "converti": [
+    {
+     "colore": "redDie",
+     "da": "basic",
+     "a": "technology"
+    },
+    {
+     "colore": "redDie",
+     "da": "basic",
+     "a": "construction"
+    }
+   ],
+   "abilita": {
+    "nome": "FORTITUDE",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to Refresh 1 [redDie] + 1 [greenDie] +1 [blueDie].",
+    "it": "In qualsiasi momento: Spendi 1 Carica per Ricaricare 1 [redDie] + 1 [greenDie] + 1 [blueDie]."
+   },
+   "cariche": 2,
+   "obiettivo": {
+    "en": "Each time you use a Convert Ability for 1 of your dice, progress the track on this card by 1. Reset the track on this card at the end of a Planetary Exploration.",
+    "it": "Ogni volta che usi un'Abilità di conversione per 1 dei tuoi dadi, fai avanzare di 1 la traccia di questa carta. Azzera la traccia di questa carta alla fine dell'Esplorazione Planetaria."
+   },
+   "traccia": 7,
+   "azzera_fine_esplorazione": true,
+   "introduzione": 81,
+   "completamento": 181,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/veteran_theo/veteran_theo_35808.webp",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/veteran_theo/retro_35808.webp",
+   "lato": "fronte",
+   "veterano": true,
+   "nomi": [
+    "Theo"
+   ],
+   "nome": "THEO TSIAKALOS",
+   "converti": [
+    {
+     "colore": "greenDie",
+     "da": "basic",
+     "a": "scienceDice"
+    },
+    {
+     "colore": "greenDie",
+     "da": "basic",
+     "a": "gathering"
+    }
+   ],
+   "abilita": {
+    "nome": "STORYTELLER",
+    "quando": "Anytime",
+    "en": "Anytime: When you gain a [success] during your turn, spend 2 Charges to gain 1 [success] more.",
+    "it": "In qualsiasi momento: Quando ottieni un [success] durante il tuo turno, spendi 2 Cariche per ottenere 1 [success] in più."
+   },
+   "cariche": 2,
+   "obiettivo": {
+    "en": "When you use 2 different Discoveries with a \"Planetary Exploration\" effect during a single turn, go to Completion.",
+    "it": "Quando usi 2 Scoperte diverse con un effetto \"Esplorazione Planetaria\" durante un singolo turno, vai al Completamento."
+   },
+   "traccia": 0,
+   "azzera_fine_esplorazione": false,
+   "introduzione": 82,
+   "completamento": 182,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/veteran_uwe/veteran_uwe_35900.webp",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/veteran_uwe/retro_35900.webp",
+   "lato": "fronte",
+   "veterano": true,
+   "nomi": [
+    "Uwe"
+   ],
+   "nome": "UWE LEHMANN",
+   "converti": [
+    {
+     "colore": "redDie",
+     "da": "basic",
+     "a": "scouting"
+    },
+    {
+     "colore": "blueDie",
+     "da": "basic",
+     "a": "scouting"
+    }
+   ],
+   "abilita": {
+    "nome": "ALPHA",
+    "quando": "During a Dice Check",
+    "en": "During a Dice Check: Spend 1 Charge to choose a Crewmember Assisting you and turn 1 [die] in their Roll Pool to any result.",
+    "it": "Durante una Prova: Spendi 1 Carica per scegliere un Membro dell'Equipaggio che ti sta Assistendo e girare 1 [die] nella sua Riserva del Tiro su un risultato qualsiasi."
+   },
+   "cariche": 3,
+   "obiettivo": {
+    "en": "During your first turn of the Planetary Exploration, If you are in the highest numbered Sector, go to Completion.",
+    "it": "Durante il tuo primo turno dell'Esplorazione Planetaria, se ti trovi nel Settore con il numero più alto, vai al Completamento."
+   },
+   "traccia": 0,
+   "azzera_fine_esplorazione": false,
+   "introduzione": 83,
+   "completamento": 183,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/veteran_vad_sz/veteran_vad_sz_104.webp",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/veteran_vad_sz/retro_104.webp",
+   "lato": "fronte",
+   "veterano": true,
+   "nomi": [
+    "Vadász"
+   ],
+   "nome": "VADÁSZ KAPLONY",
+   "converti": [
+    {
+     "colore": "blueDie",
+     "da": "basic",
+     "a": "construction"
+    },
+    {
+     "colore": "greenDie",
+     "da": "basic",
+     "a": "gathering"
+    }
+   ],
+   "abilita": {
+    "nome": "ENERGETIC",
+    "quando": "When Resting",
+    "en": "When Resting: Spend 1 Charge to Refresh 1 [die] more and draw 1 additional card.",
+    "it": "Durante il Riposo: Spendi 1 Carica per Ricaricare 1 [die] in più e pescare 1 carta aggiuntiva."
+   },
+   "cariche": 3,
+   "obiettivo": {
+    "en": "When you end a Planetary Exploration with at least 9 [success] on your Lander board, go to Completion.",
+    "it": "Quando termini un'Esplorazione Planetaria con almeno 9 [success] sulla tua plancia del Lander, vai al Completamento."
+   },
+   "traccia": 0,
+   "azzera_fine_esplorazione": false,
+   "introduzione": 84,
+   "completamento": 184,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/veteran_valya/veteran_valya_35816.webp",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/veteran_valya/retro_35816.webp",
+   "lato": "fronte",
+   "veterano": true,
+   "nomi": [
+    "Valya"
+   ],
+   "nome": "VALYA NOVIKOVA",
+   "converti": [
+    {
+     "colore": "greenDie",
+     "da": "basic",
+     "a": "scienceDice"
+    },
+    {
+     "colore": "redDie",
+     "da": "basic",
+     "a": "scienceDice"
+    }
+   ],
+   "abilita": {
+    "nome": "RECKLESS",
+    "quando": "Before or after an Action",
+    "en": "Before or after an Action: Spend 1 Charge and roll [dangerDieA] to move to a connected Sector, ignoring the Path icons.",
+    "it": "Prima o dopo un'Azione: Spendi 1 Carica e tira [dangerDieA] per spostarti in un Settore collegato, ignorando le icone del sentiero."
+   },
+   "cariche": 3,
+   "obiettivo": {
+    "en": "During your Dice Check, when you resolve a yellow Outcome that requires at least 1 [scienceDice], go to Completion.",
+    "it": "Durante la tua Prova, quando risolvi un Risultato giallo che richiede almeno 1 [scienceDice], vai al Completamento."
+   },
+   "traccia": 0,
+   "azzera_fine_esplorazione": false,
+   "introduzione": 85,
+   "completamento": 185,
+   "dubbi": "Il retro riporta il nome 'Valya Novikov' (senza la 'a' finale), il fronte 'VALYA NOVIKOVA'."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/veteran_vukajlo/veteran_vukajlo_35805.webp",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/veteran_vukajlo/retro_35805.webp",
+   "lato": "fronte",
+   "veterano": true,
+   "nomi": [
+    "Vukajlo"
+   ],
+   "nome": "VUKAJLO STEPANOVIĆ",
+   "converti": [
+    {
+     "colore": "greenDie",
+     "da": "basic",
+     "a": "gathering"
+    },
+    {
+     "colore": "redDie",
+     "da": "basic",
+     "a": "physical"
+    }
+   ],
+   "abilita": {
+    "nome": "ENDURANCE",
+    "quando": "During a Dice Check",
+    "en": "During a Dice Check: Spend 1 Charge to ignore the result of 1 Injury die.",
+    "it": "Durante una Prova: Spendi 1 Carica per ignorare il risultato di 1 dado Ferita."
+   },
+   "cariche": 3,
+   "obiettivo": {
+    "en": "At the end of any player's turn, if you are the only Crewmember in a Sector with at least 2 Threats, go to Completion.",
+    "it": "Alla fine del turno di qualsiasi giocatore, se sei l'unico Membro dell'Equipaggio in un Settore con almeno 2 Minacce, vai al Completamento."
+   },
+   "traccia": 0,
+   "azzera_fine_esplorazione": false,
+   "introduzione": 86,
+   "completamento": 186,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/veteran_waylon/veteran_waylon_35910.webp",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/veteran_waylon/retro_35910.webp",
+   "lato": "fronte",
+   "veterano": true,
+   "nomi": [
+    "Waylon"
+   ],
+   "nome": "WAYLON COLLEY",
+   "converti": [
+    {
+     "colore": "blueDie",
+     "da": "basic",
+     "a": "gathering"
+    },
+    {
+     "colore": "greenDie",
+     "da": "basic",
+     "a": "construction"
+    }
+   ],
+   "abilita": {
+    "nome": "LOADER",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to take a chosen Small or Personal Equipment card from the Armory.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per prendere una carta Attrezzatura Piccola o Personale a scelta dall'Armeria."
+   },
+   "cariche": 2,
+   "obiettivo": {
+    "en": "Each time you use a Small Equipment card, progress the track on this card by 1. Reset the track on this card at the end of a Planetary Exploration.",
+    "it": "Ogni volta che usi una carta Attrezzatura Piccola, fai avanzare di 1 la traccia di questa carta. Azzera la traccia di questa carta alla fine dell'Esplorazione Planetaria."
+   },
+   "traccia": 3,
+   "azzera_fine_esplorazione": true,
+   "introduzione": 87,
+   "completamento": 187,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/veteran_willow/veteran_willow_110.webp",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/veteran_willow/retro_110.webp",
+   "lato": "fronte",
+   "veterano": true,
+   "nomi": [
+    "Willow"
+   ],
+   "nome": "WILLOW BAKER",
+   "converti": [
+    {
+     "colore": "greenDie",
+     "da": "basic",
+     "a": "scouting"
+    },
+    {
+     "colore": "blueDie",
+     "da": "basic",
+     "a": "defence"
+    }
+   ],
+   "abilita": {
+    "nome": "SOLDIER",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to ignore one Time Track progression on one chosen Threat card. The effect of the current Time Track slot is not resolved again.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per ignorare un avanzamento della traccia del Tempo su una carta Minaccia a scelta. L'effetto della casella attuale della traccia del Tempo non viene risolto di nuovo."
+   },
+   "cariche": 2,
+   "obiettivo": {
+    "en": "When you use your Crewmember Ability twice during one turn, go to Completion.",
+    "it": "Quando usi la tua Abilità del Membro dell'Equipaggio due volte durante un turno, vai al Completamento."
+   },
+   "traccia": 0,
+   "azzera_fine_esplorazione": false,
+   "introduzione": 88,
+   "completamento": 188,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/veteran_yut/veteran_yut_35807.webp",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/veteran_yut/retro_35807.webp",
+   "lato": "fronte",
+   "veterano": true,
+   "nomi": [
+    "Yut"
+   ],
+   "nome": "YUT NIMAWAN",
+   "converti": [
+    {
+     "colore": "greenDie",
+     "da": "basic",
+     "a": "scouting"
+    },
+    {
+     "colore": "blueDie",
+     "da": "basic",
+     "a": "defence"
+    }
+   ],
+   "abilita": {
+    "nome": "PROTECTOR",
+    "quando": "Anytime",
+    "en": "Anytime: When any Crewmember in your Sector would gain an Injury, spend 1 Charge to discard it (with an Injury die) instead.",
+    "it": "In qualsiasi momento: Quando un qualsiasi Membro dell'Equipaggio nel tuo Settore dovrebbe ottenere una Ferita, spendi 1 Carica per scartarla invece (con un dado Ferita)."
+   },
+   "cariche": 1,
+   "obiettivo": {
+    "en": "Each time you use a card (either for an Ability or a Dice Combination) during a Dice Check, progress the track on this card by 1. At the end of each Dice Check, reset the track on this card. Reset the track on this card at the end of a Planetary Exploration",
+    "it": "Ogni volta che usi una carta (per un'Abilità o per una Combinazione di Dadi) durante una Prova, fai avanzare di 1 la traccia di questa carta. Alla fine di ogni Prova, azzera la traccia di questa carta. Azzera la traccia di questa carta alla fine dell'Esplorazione Planetaria."
+   },
+   "traccia": 3,
+   "azzera_fine_esplorazione": true,
+   "introduzione": 89,
+   "completamento": 189,
+   "dubbi": "La traccia si azzera anche alla fine di ogni Prova (campo azzera_fine_prova). Il testo inglese dell'ultima frase non ha il punto finale.",
+   "azzera_fine_prova": true
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/veteran_zaima/veteran_zaima_105.webp",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/veteran_zaima/retro_105.webp",
+   "lato": "fronte",
+   "veterano": true,
+   "nomi": [
+    "Zaima"
+   ],
+   "nome": "ZAIMA ANWAR",
+   "converti": [
+    {
+     "colore": "blueDie",
+     "da": "basic",
+     "a": "biology"
+    },
+    {
+     "colore": "redDie",
+     "da": "basic",
+     "a": "biology"
+    }
+   ],
+   "abilita": {
+    "nome": "HERMIT",
+    "quando": "When Resting",
+    "en": "When Resting: Spend 1 Charge to not spend Supplies.",
+    "it": "Durante il Riposo: Spendi 1 Carica per non spendere Provviste."
+   },
+   "cariche": 1,
+   "obiettivo": {
+    "en": "When you end a Planetary Exploration with at least 4 Strange Flora Discoveries and no other Discoveries (except Unique Discoveries) on your Lander board, go to Completion.",
+    "it": "Quando termini un'Esplorazione Planetaria con almeno 4 Scoperte di Strana Vegetazione e nessun'altra Scoperta (eccetto le Scoperte Eccezionali) sulla tua plancia del Lander, vai al Completamento."
+   },
+   "traccia": 0,
+   "azzera_fine_esplorazione": false,
+   "introduzione": 90,
+   "completamento": 190,
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/veteran_zoe/veteran_zoe_114.webp",
+   "file_retro": "/home/claude/iss-vanguard/web/img/carte/veteran_zoe/retro_114.webp",
+   "lato": "fronte",
+   "veterano": true,
+   "nomi": [
+    "Zoe"
+   ],
+   "nome": "ZOE FUENTES",
+   "converti": [
+    {
+     "colore": "redDie",
+     "da": "basic",
+     "a": "gathering"
+    },
+    {
+     "colore": "greenDie",
+     "da": "basic",
+     "a": "scouting"
+    }
+   ],
+   "abilita": {
+    "nome": "SEARCHER",
+    "quando": "Anytime",
+    "en": "Anytime: Spend 1 Charge to gain a Discovery from a deck with any 3 Lead tokens.",
+    "it": "In qualsiasi momento: Spendi 1 Carica per ottenere una Scoperta da un mazzo con 3 segnalini Indizio qualsiasi."
+   },
+   "cariche": 2,
+   "obiettivo": {
+    "en": "Each time you use your Crewmember Ability to gain a Discovery from a deck with Lead tokens of a total value of 0, progress the track on this card by 1. Reset the track on this card at the end of a Planetary Exploration.",
+    "it": "Ogni volta che usi la tua Abilità del Membro dell'Equipaggio per ottenere una Scoperta da un mazzo con segnalini Indizio di valore totale 0, fai avanzare di 1 la traccia di questa carta. Azzera la traccia di questa carta alla fine dell'Esplorazione Planetaria."
+   },
+   "traccia": 1,
+   "azzera_fine_esplorazione": true,
+   "introduzione": 91,
+   "completamento": 191,
+   "dubbi": ""
+  }
+ ]
+}

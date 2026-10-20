@@ -67,6 +67,9 @@ func _conv(i: int) -> Array:
 	var c: Dictionary = esp.membro(i).get("conv", {})
 	if not c.is_empty():
 		out.append({"colore": str(c.get("colore", "")).replace("Die", ""), "a": str(c.get("a", ""))})
+	# seconda abilità di conversione dei Veterani (Fascicoli del personale)
+	for x in esp.membro(i).get("conv_extra", []):
+		out.append({"colore": str(x.get("colore", "")).replace("Die", ""), "a": str(x.get("a", ""))})
 	# attrezzatura con un'abilità di conversione ("[blueDie basic] = [construction]")
 	var rx := RegEx.create_from_string("\\[(red|blue|green)Die basic\\]\\s*=\\s*\\[(\\w+)\\]")
 	for e in esp.membro(i).get("attrezzatura", []):

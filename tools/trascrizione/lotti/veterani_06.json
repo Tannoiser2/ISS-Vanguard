@@ -1,0 +1,79 @@
+{
+ "coppie": [
+  {
+   "fronte": "/home/claude/iss-vanguard/web/img/carte/veteran_stjepan/veteran_stjepan_35805.webp",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/veteran_stjepan/retro_35805.webp",
+   "nome": "stjepan"
+  },
+  {
+   "fronte": "/home/claude/iss-vanguard/web/img/carte/veteran_tarif/veteran_tarif_35904.webp",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/veteran_tarif/retro_35904.webp",
+   "nome": "tarif"
+  },
+  {
+   "fronte": "/home/claude/iss-vanguard/web/img/carte/veteran_tayen/veteran_tayen_35800.webp",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/veteran_tayen/retro_35800.webp",
+   "nome": "tayen"
+  },
+  {
+   "fronte": "/home/claude/iss-vanguard/web/img/carte/veteran_terry/veteran_terry_103.webp",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/veteran_terry/retro_103.webp",
+   "nome": "terry"
+  },
+  {
+   "fronte": "/home/claude/iss-vanguard/web/img/carte/veteran_thabisa/veteran_thabisa_35913.webp",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/veteran_thabisa/retro_35913.webp",
+   "nome": "thabisa"
+  },
+  {
+   "fronte": "/home/claude/iss-vanguard/web/img/carte/veteran_theo/veteran_theo_35808.webp",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/veteran_theo/retro_35808.webp",
+   "nome": "theo"
+  },
+  {
+   "fronte": "/home/claude/iss-vanguard/web/img/carte/veteran_uwe/veteran_uwe_35900.webp",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/veteran_uwe/retro_35900.webp",
+   "nome": "uwe"
+  },
+  {
+   "fronte": "/home/claude/iss-vanguard/web/img/carte/veteran_vad_sz/veteran_vad_sz_104.webp",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/veteran_vad_sz/retro_104.webp",
+   "nome": "vad_sz"
+  },
+  {
+   "fronte": "/home/claude/iss-vanguard/web/img/carte/veteran_valya/veteran_valya_35816.webp",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/veteran_valya/retro_35816.webp",
+   "nome": "valya"
+  },
+  {
+   "fronte": "/home/claude/iss-vanguard/web/img/carte/veteran_vukajlo/veteran_vukajlo_35805.webp",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/veteran_vukajlo/retro_35805.webp",
+   "nome": "vukajlo"
+  },
+  {
+   "fronte": "/home/claude/iss-vanguard/web/img/carte/veteran_waylon/veteran_waylon_35910.webp",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/veteran_waylon/retro_35910.webp",
+   "nome": "waylon"
+  },
+  {
+   "fronte": "/home/claude/iss-vanguard/web/img/carte/veteran_willow/veteran_willow_110.webp",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/veteran_willow/retro_110.webp",
+   "nome": "willow"
+  },
+  {
+   "fronte": "/home/claude/iss-vanguard/web/img/carte/veteran_yut/veteran_yut_35807.webp",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/veteran_yut/retro_35807.webp",
+   "nome": "yut"
+  },
+  {
+   "fronte": "/home/claude/iss-vanguard/web/img/carte/veteran_zaima/veteran_zaima_105.webp",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/veteran_zaima/retro_105.webp",
+   "nome": "zaima"
+  },
+  {
+   "fronte": "/home/claude/iss-vanguard/web/img/carte/veteran_zoe/veteran_zoe_114.webp",
+   "retro": "/home/claude/iss-vanguard/web/img/carte/veteran_zoe/retro_114.webp",
+   "nome": "zoe"
+  }
+ ]
+}

@@ -90,6 +90,17 @@ func _run() -> void:
 	mis._viaggio()
 	await aspetta(1.5)
 	await foto("scelta_settore")
+	mis._settore_scelto.emit(-1)
+	await aspetta(1)
+	var vet: Dictionary = {}
+	for c in root.get_node("Carte").categoria("veterani"):
+		if int(c.get("traccia", 0)) == 2:
+			vet = c
+			break
+	mis.esp.membro(0)["obiettivo"] = {"file": str(vet["file"]), "traccia": 1}
+	mis.apri_cassetto("squadra")
+	await aspetta(1.5)
+	await foto("obiettivo_individuale")
 	quit()
 
 func _bottoni(n_: Node) -> Array:
