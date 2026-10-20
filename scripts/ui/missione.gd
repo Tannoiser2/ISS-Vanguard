@@ -24,6 +24,7 @@ var _occupato := false
 var _scelta := {}
 
 var _plancia: TextureRect
+var _p3d: Plancia3D
 var _sovra: Control
 var _widget := {}          # n settore -> {"box", "img", "crew", "info"}
 var _info: RichTextLabel
@@ -75,12 +76,22 @@ func _ready() -> void:
 	_sovra.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_plancia.add_child(_sovra)
 	_plancia.resized.connect(_disponi)
+	# la stessa plancia in 3D (miniature, segnalini in piedi, telecamera libera)
+	_p3d = Plancia3D.new()
+	_p3d.mis = self
+	_p3d.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	_p3d.offset_top = ALTO_HUD
+	_p3d.offset_bottom = -ALTO_BARRA
+	_p3d.cliccato.connect(seleziona)
+	add_child(_p3d)
 	var img := Carte.img_pianeta(str(esp.s.get("pagina", "")))
 	if img != "":
 		Immagini.carica(img, func(t):
 			_plancia.texture = t
+			_p3d.imposta_plancia(t)
 			_disponi())
 	add_child(_hud())
+	_imposta_vista(vista_3d())
 	add_child(_barra_turno())
 	add_child(_cassetto())
 	# Logbook sopra a tutto, a destra
@@ -160,6 +171,10 @@ func _hud() -> Control:
 		b.toggle_mode = true
 		_schede[k] = b
 		h.add_child(b)
+	var bv := Tema.pulsante("VISTA 2D", func(): _imposta_vista(not _p3d.visible), 12)
+	bv.tooltip_text = "Passa dalla plancia in 3D a quella piatta e viceversa"
+	_schede["vista"] = bv
+	h.add_child(bv)
 	h.add_child(Tema.pulsante_primario("LOGBOOK", func():
 		_logbook.visible = not _logbook.visible
 		if _logbook.visible:
@@ -175,6 +190,20 @@ func _hud() -> Control:
 	menu.get_popup().id_pressed.connect(_voce_menu)
 	h.add_child(menu)
 	return barra
+
+static func vista_3d() -> bool:
+	return bool(Campagna.dati.get("opzioni", {}).get("vista_3d", true)) if Campagna.dati is Dictionary else true
+
+func _imposta_vista(tre_d: bool) -> void:
+	_p3d.visible = tre_d
+	_plancia.visible = not tre_d
+	if Campagna.dati is Dictionary:
+		Campagna.dati.get_or_add("opzioni", {})["vista_3d"] = tre_d
+	if _schede.has("vista"):
+		_schede["vista"].text = "VISTA 2D" if tre_d else "VISTA 3D"
+	if tre_d:
+		_p3d.vista_iniziale()
+		_p3d.aggiorna()
 
 func _voce_menu(id: int) -> void:
 	if id == 0:
@@ -649,6 +678,8 @@ func _aggiorna_settori() -> void:
 		if _scelta_settore and _consentiti.has(int(n)):
 			info = ["➜ " + str(_consentiti[int(n)])] if str(_consentiti[int(n)]) != "" else ["➜"]
 		w["info"].text = "  ".join(info)
+	if _p3d and _p3d.visible:
+		_p3d.aggiorna()
 
 func _gettone(t: String, col: Color, tip: String, attivo := false) -> Control:
 	var p := Panel.new()
