@@ -132,5 +132,27 @@ func _run() -> void:
 	await chiudi()
 	ok(int(e.membro(0)["cariche"]) == 0, "abilità: spesa 1 Carica")
 	ok(e.membro(0)["dadi"].filter(func(d): return d["tipo"] == "base_rosso" and d["stato"] == "speso").is_empty(), "abilità di Elena: ricaricati tutti i dadi rossi")
+	# Attrezzature di missione
+	e.s["azioni"] = 2
+	for d in e.membro(0)["dadi"]:
+		d["stato"] = "disponibile"
+	e.membro(0)["attrezzatura"] = ["E47", "E08"]
+	var s0 := int(e.membro(0)["settore"])
+	mis._usa_attrezzatura(0, "E47")
+	await chiudi()
+	ok(mis._ha_segnalino(s0, "E47") and not "E47" in e.membro(0)["attrezzatura"], "Avamposto piazzato nel settore %d" % s0)
+	ok(int(e.s["azioni"]) == 1, "piazzare il segnalino costa un'azione")
+	for d in e.membro(0)["dadi"]:
+		d["stato"] = "speso"
+	e.membro(0)["dadi"].resize(5)
+	mis._riposo()
+	await chiudi()
+	var disp: int = e.membro(0)["dadi"].filter(func(d): return d["stato"] == "disponibile").size()
+	ok(disp == 5, "Riposo nell'Avamposto: 3 + 2 dadi ricaricati (%d)" % disp)
+	e.s["settori"][str(s0)].get_or_add("attrezzature", []).append({"id": "E08", "nome": "Medevac Drone", "marcatori": 0})
+	e.membro(0)["ferite"] = ["wounded", "wounded", "wounded"]
+	var fz := []
+	e.ferita(0, "wounded")
+	ok(mis._salva_con_drone(0, fz) and str(e.s["finita"]) == "", "Drone Medevac: niente evacuazione alla quarta Ferita")
 	print("errori: ", errori)
 	quit()

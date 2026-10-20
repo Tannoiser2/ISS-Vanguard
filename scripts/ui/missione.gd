@@ -319,6 +319,15 @@ func _aggiorna_passo() -> void:
 				_bottone_azione("◆ AZIONE SPECIALE", func():
 					_sel = sett
 					apri_cassetto("settore"), "Scegli quale Azione Speciale eseguire", true)
+		var tel := _segnalino_ovunque("E10")
+		var ls := int(esp.s["lander"]["settore"])
+		if tel > 0 and tel != ls and (sett == tel or sett == ls):
+			var dest_t := ls if sett == tel else tel
+			_bottone_azione("TELEFERICA → %d" % dest_t, func():
+				esp.usa_azione(false)
+				_muovi(att, dest_t, [])
+				_salva()
+				aggiorna(), "Teleferica: ci si muove gratis fra il suo settore e quello del Lander (conta come un'azione)")
 		if esp.s.get("provviste_illimitate", false) or int(esp.s["lander"]["provviste"]) > 0:
 			_bottone_azione("RIPOSO", _riposo, "-1 Provviste, ricarica metà dei dadi (per eccesso), pesca 1 carta")
 		_bottone_azione("PREPARAZIONE", _preparazione, "Pesca 1 carta Reparto e/o fai una Prova per le Combinazioni")
@@ -403,6 +412,14 @@ func _controlla_grado(fine: bool) -> void:
 			ok = esp.vivi().all(func(i): return (esp.membro(i)["scarti"] as Array).size() >= 7)
 	if cond.contains("lead token on 3 different"):
 		ok = Esplorazione.TIPI_SCOPERTA.filter(func(t): return not (esp.s["indizi"][t] as Array).is_empty()).size() >= 3
+	var cd_ecc = pl.get("colonna_destra", {})
+	if cond.contains("no more unique discovery") and cd_ecc is Dictionary and str(cd_ecc.get("scoperta_eccezionale", "")).strip_edges() != "":
+		ok = (esp.s.get("eccezionali_pianeta", []) as Array).is_empty()
+	if cond.contains("3 mission equipment tokens"):
+		var n_tok := 0
+		for k in esp.s["settori"]:
+			n_tok += _segnalini(int(k)).size()
+		ok = n_tok >= 3
 	if cond.contains("threat card is discarded"):
 		ok = esp.s.get("minaccia_scartata", false)
 	if ok:
@@ -624,6 +641,8 @@ func _aggiorna_settori() -> void:
 				info.append("☠ " + str(mn.get("nome", "")))
 		if int(st.get("log", 0)) > 0 and not st.get("visitato", false):
 			info.append("Log %d" % int(st["log"]))
+		for tk in st.get("attrezzature", []):
+			info.append("⚙ " + str(tk.get("nome", "")))
 		if _scelta_settore and _consentiti.has(int(n)):
 			info = ["➜ " + str(_consentiti[int(n)])] if str(_consentiti[int(n)]) != "" else ["➜"]
 		w["info"].text = "  ".join(info)
@@ -757,6 +776,31 @@ func _sezione_settore() -> void:
 		var am: Array = cm.get("azioni", []) if cm.get("azioni") is Array else []
 		for k in am.size():
 			voci.append({"azione": am[k], "chiave": "M:%s#%d" % [mn.get("en", mn["nome"]), k], "fonte": "Minaccia " + str(mn["nome"]), "n": -1})
+	for tk in _segnalini(n):
+		var ce := Carte.per_id(str(tk["id"]))
+		var en_t := Carte.en(ce.get("effetto", ""))
+		_titolo("⚙ " + Carte.titolo(ce).to_upper(), Tema.VERDE)
+		var dopo := en_t.find("this counts as an Action.")
+		_testo(_bb_regole(Carte.t(ce.get("effetto", ""))) + ("\n[color=#9fbbd6]Segnalini sopra: %d[/color]" % int(tk["marcatori"]) if int(tk.get("marcatori", 0)) > 0 else ""), 14)
+		var hb2 := HBoxContainer.new()
+		var tkk: Dictionary = tk
+		# "Any Crewmember in a Sector with the X token may [costo] to effetto."
+		var mu := RegEx.create_from_string("(?i)may ((?:\\[\\w+\\]\\s*\\+?\\s*)+) to ([^.]+)\\.").search(en_t.substr(max(0, dopo)))
+		if mu and presente:
+			var costo_t := mu.get_string(1)
+			var eff_t := mu.get_string(2)
+			hb2.add_child(Tema.pulsante("USA (%s)" % _txt_icone(costo_t), func():
+				if not _inizia():
+					return
+				await applica([{"en": costo_t, "it": "", "fonte": Carte.titolo(ce)}, {"en": eff_t, "it": Carte.t(ce.get("effetto", "")), "fonte": Carte.titolo(ce)}], chi, n)
+				_finisci(), 12))
+		if int(tk.get("marcatori", 0)) > 0:
+			hb2.add_child(Tema.pulsante("SCARTA UN SEGNALINO", func():
+				tkk["marcatori"] = int(tkk["marcatori"]) - 1
+				esp.diario("%s: un segnalino in meno (%d)" % [Carte.titolo(ce), int(tkk["marcatori"])])
+				_salva()
+				aggiorna(), 12))
+		_pannello.add_child(hb2)
 	for vv in voci:
 		var a: Dictionary = vv["azione"]
 		var riq := PanelContainer.new()
@@ -1251,8 +1295,37 @@ func _riposo() -> void:
 		return
 	esp.usa_azione(false)
 	esp.riposa(chi)
+	_bonus_avamposto(chi)
 	await _scarta_eccesso()
 	_finisci()
+
+## Attrezzature di missione piazzate in un settore.
+func _segnalini(n: int) -> Array:
+	return esp.s["settori"].get(str(n), {}).get("attrezzature", [])
+
+func _ha_segnalino(n: int, id: String) -> bool:
+	return _segnalini(n).any(func(x): return str(x["id"]) == id)
+
+func _segnalino_ovunque(id: String) -> int:
+	for k in esp.s["settori"]:
+		if _ha_segnalino(int(k), id):
+			return int(k)
+	return -1
+
+## Avamposto (E47): riposando o facendo uno Sforzo nel suo settore si ricaricano 2 dadi in più.
+func _bonus_avamposto(chi: int) -> void:
+	if _ha_segnalino(int(esp.membro(chi)["settore"]), "E47"):
+		var f := esp.ricarica(chi, 2, "")
+		avviso("Avamposto: %s ricarica %d dadi in più" % [esp.membro(chi)["carta"], f])
+
+## Drone Medevac (E08): la quarta Ferita si ignora e il Membro va nel settore del Lander.
+func _salva_con_drone(chi: int, fatti: Array) -> bool:
+	if str(esp.s.get("finita", "")) != "evac" or _segnalino_ovunque("E08") < 0:
+		return false
+	esp.s["finita"] = ""
+	esp.viaggia(chi, int(esp.s["lander"]["settore"]))
+	fatti.append("Drone Medevac: la quarta Ferita di %s si ignora e torna nel settore del Lander" % esp.membro(chi)["carta"])
+	return true
 
 func _preparazione() -> void:
 	var chi := int(esp.s["attivo"])
@@ -1297,6 +1370,11 @@ func _sforzo() -> void:
 		var j := await _scegli("SFORZO: QUALE DADO SACRIFICHI?", dadi.map(func(d): return "%s (%s)" % [str(d["tipo"]), str(d["stato"])]))
 		if j >= 0:
 			esp.sforzo(chi, str(dadi[j]["id"]))
+	if str(esp.s.get("finita", "")) == "":
+		_bonus_avamposto(chi)
+	var fz := []
+	if _salva_con_drone(chi, fz):
+		avviso(fz[0])
 	if str(esp.s.get("finita", "")) == "evac":
 		avviso("Quarta Ferita: evacuazione d'emergenza!")
 	_finisci()
@@ -1391,6 +1469,13 @@ func _usa_attrezzatura(i: int, id: String) -> void:
 		return
 	if not _inizia():
 		return
+	var rx_tok := RegEx.create_from_string("(?i)place (?:a|an|the) ([\\w .'-]+?) token in your sector(?:,? and (\\d+) markers on the token)?")
+	var tok := rx_tok.search(en)
+	var sett_i := int(esp.membro(i)["settore"])
+	if tok and en.to_lower().contains("if you are in a lander sector") and sett_i != int(esp.s["lander"]["settore"]):
+		avviso("Si può piazzare solo nel settore del Lander")
+		_finisci()
+		return
 	if en.to_lower().contains("counts as an action"):
 		if not esp.usa_azione(false):
 			avviso("Serve un'azione")
@@ -1409,6 +1494,18 @@ func _usa_attrezzatura(i: int, id: String) -> void:
 	var due := en.find("]:")
 	if due >= 0 and due < 60:
 		eff = en.substr(due + 2)
+	if tok:
+		# Attrezzatura di missione: il segnalino resta nel settore e i suoi effetti valgono per tutti
+		var marc := int(tok.get_string(2)) if tok.get_string(2) != "" else 0
+		var m3 := RegEx.create_from_string("(?i)place (\\d+) markers on this card").search(en)
+		if m3:
+			marc = int(m3.get_string(1))
+		esp.s["settori"][str(sett_i)].get_or_add("attrezzature", []).append({"id": id, "nome": tok.get_string(1), "marcatori": marc})
+		(esp.membro(i)["attrezzatura"] as Array).erase(id)
+		esp.diario("%s piazza il segnalino %s nel Settore %d" % [esp.membro(i)["carta"], tok.get_string(1), sett_i])
+		await applica(testi, i, sett_i)
+		_finisci()
+		return
 	testi.append({"en": eff, "it": it, "fonte": Carte.titolo(c)})
 	if eff.to_lower().contains("return this card to the armory") or eff.to_lower().contains("discard this card"):
 		(esp.membro(i)["attrezzatura"] as Array).erase(id)
@@ -1617,7 +1714,9 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 				await _tira_pericolo(str(op["lettera"]), chi, sett, fatti, manuali, logs, fonte)
 		"ferita":
 			var r := esp.ferita(chi, str(op["tipo"]))
-			if r == "":
+			if r == "evac" and _salva_con_drone(chi, fatti):
+				pass
+			elif r == "":
 				fatti.append("%s ha già una Ferita: si ignora (tutorial)" % m["carta"])
 			else:
 				fatti.append("%s subisce la Ferita %s" % [m["carta"], NOMI_FERITE.get(r, r)] if r != "evac" else "Quarta Ferita: evacuazione d'emergenza!")
@@ -1858,7 +1957,9 @@ func _effetto_minaccia(m: Dictionary, c: Dictionary, nome_eff: String, fatti: Ar
 	var ok := true
 	# movimento
 	var mv := RegEx.create_from_string("(?i)move .+? (?:by )?(\\d+|one|two) sectors? toward the nearest crewmember").search(testo)
-	if tl.begins_with("roll d10 and place"):
+	if tl.begins_with("if there is no %s on the planet board" % en.to_lower()):
+		fatti.append("%s è già sulla plancia: non succede nulla" % m["nome"])
+	elif tl.begins_with("roll d10 and place"):
 		var d := esp.rng.randi_range(0, 9)
 		if esp.s["settori"].has(str(d)):
 			m["settore"] = d

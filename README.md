@@ -72,6 +72,11 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
     (dadi spesi o sacrificati, Ferite, traccia o risultato rosso, ritiro del Vanguard);
   - **carta Grado Superiore**: se ne scelgono 2 all'inizio, la sua Azione Speciale compare nei settori
     giusti, le condizioni (Scoperte, Indizi, Ferite, Provviste, Minacce scartate…) si controllano da sole;
+  - **Attrezzature di missione**: il segnalino si piazza nel settore (costo e azione pagati, controllo
+    "solo nel settore del Lander"), compare sulla mappa e nel pannello del settore con il suo testo;
+    gli usi "chi è nel settore può [costo] per…" hanno il loro pulsante, i segnalini sopra la carta si
+    scartano con un clic; Avamposto (+2 dadi a Riposo e Sforzo), Teleferica (viaggio gratis da e per il
+    Lander) e Drone Medevac (niente evacuazione alla quarta Ferita) funzionano da soli;
   - **pianeti registrati**: lasciando un pianeta si registrano i PDI rivelati, i settori finiti, le Minacce
     e le Scoperte Eccezionali non ancora prese (le carte con l'icona "non salvare" escluse); tornandoci
     la plancia si ripristina da sola; la Scoperta Eccezionale "in cima" si prende dalla plancia
