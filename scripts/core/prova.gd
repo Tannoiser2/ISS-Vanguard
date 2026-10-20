@@ -271,9 +271,33 @@ static func scegli_esito(esiti: Array, dadi: Array, conv: Array, vietati: Dictio
 	return {"riga": -1, "dadi": []}
 
 ## Effetto di un dado Pericolo con la lettera data (tabelle A-D della carta di riferimento).
+## Tabelle dei dadi Pericolo non stampate sulla carta di riferimento (J, quelle delle annotazioni…):
+## il giocatore le legge una volta e il programma le ricorda (lettera -> {icona: effetto}).
+static var apprese: Dictionary = {}
+
+## La tabella di questa lettera è conosciuta (A–I, T, oppure già imparata per questa faccia)?
+static func tabella_nota(lettera: String, d: Dictionary) -> bool:
+	var ic := icone(d)
+	if ic.is_empty() or defs()["tabelle_pericolo"].has(lettera.substr(0, 1)):
+		return true
+	return apprese.get(lettera, {}).has(str(ic[0]))
+
 static func effetto_pericolo(lettera: String, d: Dictionary) -> String:
 	var ic := icone(d)
 	if ic.is_empty():
 		return ""
+	if not defs()["tabelle_pericolo"].has(lettera.substr(0, 1)):
+		return str(apprese.get(lettera, {}).get(str(ic[0]), ""))
 	var t: Dictionary = defs()["tabelle_pericolo"].get(lettera.substr(0, 1), {})
 	return str(t.get(ic[0], ""))
+
+## Tutti gli effetti che compaiono nelle tabelle conosciute (per scegliere quello di una tabella nuova).
+static func effetti_tabelle() -> Array:
+	var out := []
+	for k in defs()["tabelle_pericolo"]:
+		for f in defs()["tabelle_pericolo"][k]:
+			var e := str(defs()["tabelle_pericolo"][k][f])
+			if not e in out:
+				out.append(e)
+	out.sort()
+	return out

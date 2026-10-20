@@ -264,7 +264,7 @@ func ha_carta(id: String) -> bool:
 ## Domande del Logbook "Possiedi la carta X (oppure Y) nel raccoglitore…": 1 sì, 0 no, -1 non è una di queste.
 static func domanda_carte(q: String, n: Nave) -> int:
 	var t := RegEx.create_from_string("\\[/?[bi]\\]").sub(q, "", true)
-	if not RegEx.create_from_string("(?i)possiedi (?:la|le) cart[ae]").search(t):
+	if not RegEx.create_from_string("(?i)possiedi (?:la|le) cart[ae]|possiedi il potenziamento|hai (?:la carta|il potenziamento)").search(t):
 		return -1
 	if t.to_lower().contains("scoperta"):
 		return -1
@@ -278,6 +278,22 @@ static func domanda_carte(q: String, n: Nave) -> int:
 	if tutte:
 		return 1 if not ok.has(false) else 0
 	return 1 if ok.has(true) else 0
+
+## Requisito di una destinazione della mappa ("requires Ship Upgrade B05", "requires Objectives O06 – O11"):
+## "" se soddisfatto, altrimenti il testo del requisito mancante.
+func requisito_destinazione(en: String) -> String:
+	var m := RegEx.create_from_string("(?i)requires (?:ship|bridge) upgrade (B\\d{2})").search(en)
+	if m and not ha_ponte(m.get_string(1)):
+		return m.get_string(1)
+	var m2 := RegEx.create_from_string("(?i)requires objectives? O(\\d{2})(?:\\s*[–-]\\s*O(\\d{2}))?").search(en)
+	if m2:
+		var da := int(m2.get_string(1))
+		var a := int(m2.get_string(2)) if m2.get_string(2) != "" else da
+		var ob := str(s.get("obiettivo", ""))
+		var n := int(ob.substr(1)) if ob.begins_with("O") and ob.substr(1).is_valid_int() else -1
+		if n < da or n > a:
+			return "Obiettivo O%02d–O%02d" % [da, a]
+	return ""
 
 ## Toglie una carta da ovunque si trovi sulla nave.
 func togli_carta(id: String) -> void:

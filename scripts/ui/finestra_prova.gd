@@ -574,13 +574,13 @@ func _risolvi() -> void:
 		elif d["tipo"] == "pericolo":
 			var e := Prova.effetto_pericolo(str(d["lettera"]), d)
 			var ic2 := Prova.icone(d)
-			if str(d["lettera"]).substr(0, 1) in ["A", "B", "C", "D", "E", "F", "G", "H", "I", "T"]:
+			if Prova.tabella_nota(str(d["lettera"]), d):
 				resoconto.append("Dado Pericolo %s: %s → %s" % [d["lettera"], "+".join(ic2) if not ic2.is_empty() else "vuoto", e if e != "" else "nessun effetto"])
 				if e != "":
 					testi.append({"en": e, "it": _it_pericolo(e), "fonte": "dado Pericolo"})
 			else:
-				resoconto.append("Dado Pericolo %s: %s (tabella sulla carta o nell'annotazione)" % [d["lettera"], "+".join(ic2) if not ic2.is_empty() else "vuoto"])
-				testi.append({"en": "", "it": "Dado Pericolo %s: risultato %s — applica l'effetto indicato per questa lettera." % [d["lettera"], "+".join(ic2) if not ic2.is_empty() else "vuoto"], "manuale": true})
+				resoconto.append("Dado Pericolo %s: %s (tabella sulla carta o nell'annotazione)" % [d["lettera"], "+".join(ic2)])
+				testi.append({"en": "", "it": "Dado Pericolo %s: risultato %s" % [d["lettera"], "+".join(ic2)], "pericolo_ignoto": str(d["lettera"]), "icona": str(ic2[0]), "fonte": "dado Pericolo"})
 	# 7. effetti speciali (prima quelli della Condizione Generale)
 	var esito_immediato := ferita_esito
 	var tutte := speciali_globali + (azione.get("speciali", []) as Array)

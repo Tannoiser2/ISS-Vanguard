@@ -99,7 +99,11 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
     Biomebot del Costruttore (pila di PDI) e Raggio di Ri-originazione, Droni dello Sciame Arrogatore,
     segnalini dei Cacciatori Diventano Prede, Pellegrino Idemiano (segnalini dai dadi tirati, carta
     che si gira, Processione tra i Bruciaincenso), Visitatore Rapito, Boscaglia Carnivora, Fauci.
-    Restano a mano solo le parole chiave dei PDI e la pila delle Condizioni Generali (Visitatore Rapito);
+    Visitatore Rapito: l'Impulso mette in cima il PDI con la parola chiave della Condizione Generale,
+    lo Stimolo fa scegliere quale Condizione Generale della pila va in cima;
+  - **dadi Pericolo con tabelle non stampate sulla carta di riferimento** (J, quelli delle annotazioni):
+    la prima volta si sceglie l'effetto letto sulla carta o nell'annotazione e il programma lo ricorda
+    per tutta la campagna; "un dado Pericolo qualsiasi" fa scegliere la tabella;
   - **effetti a scatto**: abilità "quando riposi" (niente Provviste, dado e carta in più), attrezzatura
     che evita una Ferita, tute che ignorano o ritirano il dado Pericolo nei biomi indicati, tute che
     ignorano un [spendDie] del sentiero, dadi in più a Riposo e Sforzo, meno dadi Ferita nei biomi
@@ -134,7 +138,9 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   - **potenziamenti del Ponte**: Morale Alto +1 Comando, B07 e B15 (sconti in Energia), B13 (prima parte
     della scansione gratis), B08, B14, B16 (conversioni con un pulsante), B11 e B12 (all'inizio del Ponte),
     B17 (un Membro a riposo per rimandare una Situazione), B03 e B18 (annotazione all'installazione),
-    B04 (carta Atterraggio L6 nello scanner), B06 (annotazione 460 nell'Occhio del Vuoto), B01 e B02 (rotte);
+    B04 (carta Atterraggio L6 nello scanner), B06 (annotazione 460 nell'Occhio del Vuoto), B01 e B02 (rotte),
+    B05 (lo Spazio Oscuro di K3-569 si apre solo con B05; anche i requisiti "Obiettivi O06–O11" delle
+    destinazioni sono controllati), B10 (le domande del Logbook su B10 si rispondono da sole);
   - **potenziamenti delle strutture**: F01 (ritiro di un Danno nella prova di sopravvivenza), F02 (prova
     in più per avanzare in infermeria), F03 (Scoperte per mandare un Membro per Reparto a riposo), F04
     (coda 2), F05 (dado Pericolo su un progetto), F06 (Scoperte per far avanzare tutti i progetti).

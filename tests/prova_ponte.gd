@@ -56,6 +56,14 @@ func _run() -> void:
 	ok(N.domanda_carte("Possiedi la carta[b]B06[/b] oppure [b]B12[/b] nel raccoglitore?", n) == 1, "domanda: B06 oppure B12 → sì")
 	ok(N.domanda_carte("Possiedi la carta [b]B10[/b] nel raccoglitore?", n) == 0, "domanda: B10 → no")
 	ok(N.domanda_carte("Possiedi la Scoperta Eccezionale 12?", n) == -1, "domanda sulle Scoperte: non è di questo tipo")
+	ok(n.requisito_destinazione("0[energyCost]: FOLLOW THE COORDINATES (requires Ship Upgrade B05)") == "B05", "Dark Space: serve B05")
+	n.s["ponte_viaggio"].append("B05")
+	ok(n.requisito_destinazione("(requires Ship Upgrade B05)") == "", "Dark Space: con B05 si va")
+	n.s["obiettivo"] = "O03"
+	ok(n.requisito_destinazione("MAKE CONTACT (requires Objectives O06 – O11)") != "", "contatto: serve un Obiettivo fra O06 e O11")
+	n.s["obiettivo"] = "O07"
+	ok(n.requisito_destinazione("MAKE CONTACT (requires Objectives O06 – O11)") == "", "contatto: con O07 si può")
+	ok(N.domanda_carte("Possiedi il Potenziamento del Ponte di Comando [b]B05[/b] (Scafo Rinforzato)?", n) == 1, "domanda: il Potenziamento B05")
 	# infermeria
 	n.ricovera(0, 3)
 	n.aggiungi_potenziamento("F01")

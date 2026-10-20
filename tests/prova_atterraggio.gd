@@ -258,6 +258,29 @@ func _run() -> void:
 	mis._gioca_reparto(0, "carte/rank_iii_security/32906.webp")
 	await chiudi()
 	ok(e.membro(0)["mano"].size() == 1, "carta Reparto: senza Minaccia nel settore non si gioca")
+	# tabelle dei dadi Pericolo non stampate sulla carta di riferimento: si imparano
+	Prova.apprese = {}
+	var dj := {"tipo": "pericolo", "lettera": "J", "faccia": 0}
+	for k in 8:
+		dj["faccia"] = k
+		if not Prova.icone(dj).is_empty():
+			break
+	ok(not Prova.tabella_nota("J", dj) and Prova.tabella_nota("A1", dj), "dado J sconosciuto, A1 usa la tabella A")
+	mis._pericolo_ignoto("J", str(Prova.icone(dj)[0]))
+	await chiudi()
+	ok(Prova.tabella_nota("J", dj), "dado J: la faccia %s ora è nota" % str(Prova.icone(dj)[0]))
+	# Visitatore Rapito: il PDI con la parola chiave della Condizione Generale va in cima
+	var vers: Array = Carte.versioni("G29")
+	var kw := -1
+	for k in vers.size():
+		if Carte.en(vers[k].get("titolo", "")).to_upper() == "WARP":
+			kw = k
+	e.s["condizione"] = {"carta": "G29@%d" % kw, "tempo": 0}
+	e.s["settori"]["1"]["pdi"] = ["P382"]
+	var fz3 := []
+	var mz3 := []
+	mis._pdi_parola_chiave(1, fz3, mz3)
+	ok(Carte.en(Carte.per_id(e.pdi_in_cima(1)).get("titolo", "")).contains("(WARP)"), "Visitatore: in cima il PDI (WARP) → %s" % e.pdi_in_cima(1))
 	# tutte le Minacce: tre avanzamenti del Tempo ciascuna
 	var tot_fatti := 0
 	var tot_man := 0

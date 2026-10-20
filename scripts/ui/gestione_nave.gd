@@ -858,7 +858,11 @@ func _passo_mappa() -> void:
 					aggiorna()
 				else:
 					await applica(Carte.en(d.get("testo", "")), Carte.t(d.get("testo", "")), str(d.get("nome", ""))), 14)
-			b2.disabled = int(nave.s["pool"]["energia"]) < en2
+			var req2 := nave.requisito_destinazione(Carte.en(d.get("testo", "")))
+			b2.disabled = int(nave.s["pool"]["energia"]) < en2 or req2 != ""
+			if req2 != "":
+				b2.text += " · richiede " + req2
+				b2.tooltip_text = "Serve: " + req2
 			b2.alignment = HORIZONTAL_ALIGNMENT_LEFT
 			v.add_child(b2)
 			_testo("[color=#9fbbd6]%s[/color] %s" % [Carte.t(d.get("descrizione", "")), _bb(Carte.t(d.get("testo", "")))], 14, v)

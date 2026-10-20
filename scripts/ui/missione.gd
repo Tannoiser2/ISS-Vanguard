@@ -57,6 +57,8 @@ func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	theme = Tema.tema
 	pl = Carte.pianeta(str(esp.s.get("pagina", "")))
+	if Campagna.dati is Dictionary:
+		Prova.apprese = Campagna.dati.get_or_add("tabelle_pericolo", {})
 	var fondo := ColorRect.new()
 	fondo.color = Color(0.008, 0.016, 0.035)
 	fondo.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -2110,6 +2112,11 @@ func applica(testi: Array, chi: int, sett: int) -> void:
 	for t in testi:
 		var en := str(t.get("en", ""))
 		var fonte := str(t.get("fonte", ""))
+		if t.has("pericolo_ignoto"):
+			en = await _pericolo_ignoto(str(t["pericolo_ignoto"]), str(t.get("icona", "")))
+			fatti.append("Dado Pericolo %s: %s" % [t["pericolo_ignoto"], _txt_icone(en) if en != "" else "nessun effetto"])
+			if en == "":
+				continue
 		if en.strip_edges() == "":
 			if str(t.get("it", "")) != "":
 				manuali.append("%s: %s" % [fonte, str(t["it"])])
@@ -2378,6 +2385,10 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			fatti.append("Planetopedia alle pagine %s" % str(op["pagina"]).trim_prefix("p."))
 
 func _tira_pericolo(lettera: String, chi: int, sett: int, fatti: Array, manuali: Array, logs: Array, fonte: String) -> void:
+	if lettera.to_lower() == "any":
+		var lett := ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
+		var j := await _scegli("QUALE DADO PERICOLO?", lett.map(func(x): return "Dado Pericolo " + x), "L'annotazione dice di tirare un dado Pericolo qualsiasi: scegli la tabella.", false)
+		lettera = lett[max(0, j)]
 	var d := {"tipo": "pericolo", "lettera": lettera, "faccia": 0}
 	Prova.tira(d, esp.rng)
 	if await _pericolo_ignorato(chi, sett, d, fatti):
@@ -2385,7 +2396,9 @@ func _tira_pericolo(lettera: String, chi: int, sett: int, fatti: Array, manuali:
 	var ic := Prova.icone(d)
 	var nome := "vuoto" if ic.is_empty() else str(ic[0])
 	var nomi_it := {"vuoto": "faccia vuota", "common": "comune", "uncommon": "non comune", "rare": "raro", "special": "speciale"}
-	if lettera.substr(0, 1) in ["A", "B", "C", "D", "E", "F", "G", "H", "I", "T"]:
+	if not Prova.tabella_nota(lettera, d):
+		await _pericolo_ignoto(lettera, str(ic[0]))
+	if Prova.tabella_nota(lettera, d):
 		var e := Prova.effetto_pericolo(lettera, d)
 		fatti.append("Dado Pericolo %s: %s → %s" % [lettera, nomi_it.get(nome, nome), _txt_icone(e) if e != "" else "nessun effetto"])
 		if e != "":
@@ -2394,6 +2407,25 @@ func _tira_pericolo(lettera: String, chi: int, sett: int, fatti: Array, manuali:
 	else:
 		fatti.append("Dado Pericolo %s: %s" % [lettera, nomi_it.get(nome, nome)])
 		manuali.append("Dado Pericolo %s con risultato %s: applica l'effetto indicato per la lettera %s (sulla carta, sulla plancia o nell'annotazione)." % [lettera, nomi_it.get(nome, nome), lettera])
+
+## Tabella di un dado Pericolo non stampata sulla carta di riferimento: la prima volta il giocatore
+## sceglie l'effetto letto sulla carta o nell'annotazione, poi il programma lo ricorda.
+func _pericolo_ignoto(lettera: String, icona: String) -> String:
+	var t: Dictionary = Prova.apprese.get_or_add(lettera, {})
+	if t.has(icona):
+		return str(t[icona])
+	var nomi_it := {"common": "comune", "uncommon": "non comune", "rare": "raro", "special": "speciale"}
+	var eff := Prova.effetti_tabelle()
+	var opz := ["Nessun effetto"] + eff.map(func(x): return _txt_icone(FinestraProva._it_pericolo(str(x)))) + ["Un altro effetto (lo applico a mano)"]
+	var j := await _scegli("DADO PERICOLO %s — %s" % [lettera, nomi_it.get(icona, icona).to_upper()],
+		opz, "La tabella del dado Pericolo [b]%s[/b] non è sulla carta di riferimento: è stampata sulla carta o nell'annotazione che ti ha fatto tirare.\nChe effetto c'è per il risultato [b]%s[/b]? Il programma lo ricorderà per le prossime volte." % [lettera, nomi_it.get(icona, icona)], false)
+	var e := ""
+	if j >= 1 and j <= eff.size():
+		e = str(eff[j - 1])
+	if j <= eff.size():
+		t[icona] = e
+		Campagna.modificata()
+	return e
 
 # ------------------------------------------------------------------ Minacce
 
@@ -2543,12 +2575,19 @@ func _minaccia_speciale(m: Dictionary, c: Dictionary, eff: String, testo: String
 		["Enraptured Visitor", "impulse"]:
 			await _frase_minaccia(m, "Each Crewmember in the Sector with Enraptured Visitor [spendDie]+[spendDie].", fatti, manuali, logs, "")
 			if sett in [1, 2, 3]:
-				manuali.append("Visitatore Rapito: nel Settore %d metti in cima alla pila il PDI con la parola chiave uguale al nome della Condizione Generale" % sett)
+				_pdi_parola_chiave(sett, fatti, manuali)
 			return true
 		["Enraptured Visitor", "stimulus"]:
 			m["settore"] = 7
 			fatti.append("%s nel Settore 7" % m["nome"])
-			manuali.append("Visitatore Rapito: metti in cima alla pila delle Condizioni Generali quella che preferite")
+			var gid := str(esp.s["condizione"]["carta"]).get_slice("@", 0)
+			var vers := Carte.versioni(gid)
+			if vers.size() > 1:
+				var j5 := await _scegli("STIMOLO — CONDIZIONE GENERALE", vers.map(func(x): return Carte.titolo(x)), "Scegliete quale Condizione Generale della pila va in cima.", false, str(vers[0].get("file", "")))
+				esp.s["condizione"] = {"carta": "%s@%d" % [gid, max(0, j5)], "tempo": 0}
+				fatti.append("In cima alla pila delle Condizioni Generali: %s" % Carte.titolo(vers[max(0, j5)]))
+			else:
+				manuali.append("Visitatore Rapito: metti in cima alla pila delle Condizioni Generali quella che preferite")
 			return true
 		["Arrogator Warswarm", "hack drone"]:
 			var con: Variant = esp.s["settori"].keys().filter(func(k): return int(esp.s["settori"][k].get("droni", 0)) > 0)
@@ -2593,6 +2632,25 @@ func _minaccia_speciale(m: Dictionary, c: Dictionary, eff: String, testo: String
 	if testo.to_lower().begins_with("discard 1 non-unique discovery"):
 		return false
 	return false
+
+## Impulso del Visitatore Rapito: nel suo settore va in cima il PDI la cui parola chiave (fra parentesi
+## nel titolo) è il nome della Condizione Generale attuale.
+func _pdi_parola_chiave(n: int, fatti: Array, manuali: Array) -> void:
+	var top := esp.pdi_in_cima(n)
+	if top == "":
+		return
+	var base := top.get_slice("@", 0)
+	var vers := Carte.versioni(base)
+	var nome_gc := Carte.en(Carte.per_id(str(esp.s["condizione"]["carta"])).get("titolo", "")).to_upper().strip_edges()
+	for k in vers.size():
+		var t := Carte.en(vers[k].get("titolo", "")).to_upper()
+		if nome_gc != "" and t.contains("(" + nome_gc + ")"):
+			var p: Array = esp.s["settori"][str(n)]["pdi"]
+			p[p.size() - 1] = "%s@%d" % [base, k]
+			fatti.append("Settore %d: in cima il PDI %s (parola chiave %s)" % [n, Carte.titolo(vers[k]), Carte.titolo(Carte.per_id(str(esp.s["condizione"]["carta"])))])
+			return
+	if vers.size() > 1:
+		manuali.append("Visitatore Rapito: nessun PDI del Settore %d ha la parola chiave «%s»" % [n, nome_gc])
 
 func _minaccia_in(nome_en: String, n: int) -> bool:
 	return esp.s["minacce"].any(func(x): return str(x.get("en", "")).to_lower() == nome_en.to_lower() and int(x.get("settore", 0)) == n)

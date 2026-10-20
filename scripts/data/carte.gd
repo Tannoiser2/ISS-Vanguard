@@ -14,10 +14,15 @@ func _ready() -> void:
 func per_file(rel: String) -> Dictionary:
 	return db.get("per_file", {}).get(rel, {})
 
-## Carta per codice stampato (P107, G23, M02…). Se ci sono più versioni, la prima.
+## Carta per codice stampato (P107, G23, M02…). Se ci sono più versioni, la prima;
+## "P382@2" indica la terza versione dello stesso codice (carte con lo stesso numero e testi diversi).
 func per_id(id: String) -> Dictionary:
+	var k := 0
+	if id.contains("@"):
+		k = int(id.get_slice("@", 1))
+		id = id.get_slice("@", 0)
 	var l: Array = db.get("per_id", {}).get(id.to_upper(), [])
-	return per_file(str(l[0])) if not l.is_empty() else {}
+	return per_file(str(l[clampi(k, 0, l.size() - 1)])) if not l.is_empty() else {}
 
 func versioni(id: String) -> Array:
 	return db.get("per_id", {}).get(id.to_upper(), []).map(func(r): return per_file(str(r)))
