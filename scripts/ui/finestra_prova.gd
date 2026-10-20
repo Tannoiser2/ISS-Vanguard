@@ -60,10 +60,106 @@ func _svuota() -> void:
 		c.queue_free()
 
 func _conv(i: int) -> Array:
+	var out := []
 	var c: Dictionary = esp.membro(i).get("conv", {})
-	if c.is_empty():
-		return []
-	return [{"colore": str(c.get("colore", "")).replace("Die", ""), "a": str(c.get("a", ""))}]
+	if not c.is_empty():
+		out.append({"colore": str(c.get("colore", "")).replace("Die", ""), "a": str(c.get("a", ""))})
+	# attrezzatura con un'abilità di conversione ("[blueDie basic] = [construction]")
+	var rx := RegEx.create_from_string("\\[(red|blue|green)Die basic\\]\\s*=\\s*\\[(\\w+)\\]")
+	for e in esp.membro(i).get("attrezzatura", []):
+		var m := rx.search(Carte.en(Carte.per_id(str(e)).get("effetto", "")))
+		if m:
+			out.append({"colore": m.get_string(1), "a": m.get_string(2)})
+	return out
+
+## Carte Reparto, attrezzatura e abilità utilizzabili "durante una Prova" (passo 4).
+var _usati: Array = []
+func _modificatori() -> Array:
+	var out := []
+	var m := esp.membro(chi)
+	var presenti := esp.nel_settore(int(m["settore"]))
+	for j in presenti:
+		var mj := esp.membro(j)
+		for c in mj["mano"]:
+			var carta := Carte.per_file(str(c))
+			if str(carta.get("quando", "")) in ["during_check", "when_assisting"] and (j == chi or str(carta.get("quando", "")) == "during_check"):
+				out.append({"tipo": "carta", "chi": j, "id": str(c), "titolo": Carte.titolo(carta), "testo": Carte.t(carta.get("effetto", ""))})
+	for e in m.get("attrezzatura", []):
+		var ce := Carte.per_id(str(e))
+		if str(ce.get("quando", "")) == "during_check":
+			out.append({"tipo": "attrezzatura", "chi": chi, "id": str(e), "titolo": Carte.titolo(ce), "testo": Carte.t(ce.get("effetto", ""))})
+	var cm := Carte.per_file(str(m.get("file", "")))
+	var ab = cm.get("abilita", {})
+	if ab is Dictionary and (Carte.en(ab).to_lower().begins_with("during a dice check") or str(ab.get("quando", "")).to_lower().contains("dice check")):
+		out.append({"tipo": "abilita", "chi": chi, "id": "abilita", "titolo": "Abilità " + str(ab.get("nome", "")), "testo": Carte.t(ab)})
+	return out.filter(func(x): return not (str(x["tipo"]) + str(x["chi"]) + str(x["id"])) in _usati)
+
+func _mostra_modificatori() -> void:
+	var mods := _modificatori()
+	if mods.is_empty():
+		return
+	_corpo.add_child(Tema.etichetta("4. MODIFICA I RISULTATI (carte, attrezzatura, abilità)", 15, Tema.CIANO))
+	for x in mods:
+		var h := HBoxContainer.new()
+		h.add_theme_constant_override("separation", 8)
+		var r := Tema.testo_ricco(15)
+		r.fit_content = true
+		r.scroll_active = false
+		r.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		r.text = "[b]%s[/b]%s: %s" % [x["titolo"], (" (" + str(esp.membro(int(x["chi"]))["carta"]) + ")") if int(x["chi"]) != chi else "", Dati.testo_carta(str(x["testo"]), 18)]
+		h.add_child(r)
+		var xx: Dictionary = x
+		var b := Tema.pulsante("USA", func(): _usa_modificatore(xx), 13)
+		if x["tipo"] == "abilita" and int(esp.membro(chi)["cariche"]) <= 0 and str(x["testo"]).to_lower().contains("caric"):
+			b.disabled = true
+			b.tooltip_text = "Nessuna Carica"
+		h.add_child(b)
+		_corpo.add_child(h)
+
+func _usa_modificatore(x: Dictionary) -> void:
+	var j := int(x["chi"])
+	match str(x["tipo"]):
+		"carta":
+			esp.scarta_carta(j, str(x["id"]))
+		"attrezzatura":
+			if Carte.en(Carte.per_id(str(x["id"])).get("effetto", "")).to_lower().contains("return this card to the armory"):
+				(esp.membro(j)["attrezzatura"] as Array).erase(str(x["id"]))
+		"abilita":
+			if str(x["testo"]).to_lower().contains("caric"):
+				esp.membro(j)["cariche"] = max(0, int(esp.membro(j)["cariche"]) - 1)
+	_usati.append(str(x["tipo"]) + str(x["chi"]) + str(x["id"]))
+	_resoconto_mod.append("%s: %s" % [x["titolo"], "usata"])
+	esp.diario("%s usa %s" % [esp.membro(j)["carta"], x["titolo"]])
+	# alcuni effetti si applicano da soli
+	var en := ""
+	match str(x["tipo"]):
+		"carta": en = Carte.en(Carte.per_file(str(x["id"])).get("effetto", ""))
+		"attrezzatura": en = Carte.en(Carte.per_id(str(x["id"])).get("effetto", ""))
+		_: en = Carte.en(Carte.per_file(str(esp.membro(j).get("file", ""))).get("abilita", {}))
+	var rr := RegEx.create_from_string("(?i)reroll (?:any number of|all|up to \\d+) \\[(die|redDie|blueDie|greenDie)\\]").search(en)
+	if rr:
+		var col: String = {"die": "", "redDie": "red", "blueDie": "blue", "greenDie": "green"}[rr.get_string(1)]
+		for d in _pool:
+			if d["tipo"] in ["ferita", "pericolo"]:
+				continue
+			if (col == "" or Prova.colore(d) == col) and not _utile(d):
+				Prova.tira(d, esp.rng)
+		_resoconto_mod.append("Ritirati i dadi %s che non servivano" % ({"": "", "red": "rossi", "blue": "blu", "green": "verdi"}[col]))
+	_mostra_tiro()
+
+## Un dado è "utile" se una sua icona compare in un requisito dell'azione.
+func _utile(d: Dictionary) -> bool:
+	var req := ""
+	for e in azione.get("esiti", []):
+		req += " " + str(e.get("req", ""))
+	for sp in azione.get("speciali", []):
+		req += " " + str(sp.get("req", ""))
+	for ic in Prova.icone(d):
+		if ic == "vanguard" or req.contains(str(ic)):
+			return true
+	return false
+
+var _resoconto_mod: Array = []
 
 # ------------------------------------------------------------------ 1. scelta dei dadi
 
@@ -173,10 +269,17 @@ func _mostra_tiro() -> void:
 		r.add_child(_faccia(d))
 	_corpo.add_child(r)
 	var nota := Label.new()
-	nota.text = "Clic su un dado per ritirarlo o cambiarne il risultato, se una carta o un'abilità lo permette (scartala poi a mano)."
+	nota.text = "Clic su un dado per ritirarlo o cambiarne il risultato, come permette la carta o l'abilità usata."
 	nota.add_theme_color_override("font_color", Tema.TESTO_2)
 	nota.add_theme_font_size_override("font_size", 14)
 	_corpo.add_child(nota)
+	if not _resoconto_mod.is_empty():
+		var rm := Tema.testo_ricco(14)
+		rm.fit_content = true
+		rm.scroll_active = false
+		rm.text = "[color=#5be39b]" + " · ".join(_resoconto_mod) + "[/color]"
+		_corpo.add_child(rm)
+	_mostra_modificatori()
 	_mostra_combinazioni()
 	_corpo.add_child(Tema.pulsante_primario("RISOLVI LA PROVA", _risolvi, 18))
 
@@ -282,12 +385,48 @@ func _risolvi() -> void:
 			testi.append({"en": Carte.en(combo), "it": Carte.t(combo), "fonte": Carte.titolo(carta)})
 			esp.scarta_carta(chi, str(c))
 			resoconto.append("Combinazione: " + Carte.titolo(carta))
-	# 6. dadi Ferita e Pericolo
+	# 6. dadi Ferita: ognuno va sulla prima carta Ferita (da sinistra) libera con la sua icona
+	var carte_ferita := (m["ferite"] as Array).map(func(t): return _carta_ferita(str(t)))
+	var occupate := {}
+	var ferita_tracce := {}
+	var ferita_esito := ""
+	for d in _pool:
+		if d["tipo"] != "ferita":
+			continue
+		var ic := Prova.icone(d)
+		var applicato := false
+		for k in carte_ferita.size():
+			if occupate.has(k):
+				continue
+			for ef in carte_ferita[k].get("effetti", []):
+				if str(ef.get("icona", "")) in ic:
+					occupate[k] = true
+					applicato = true
+					var en := str(ef.get("en", ""))
+					resoconto.append("Dado Ferita %s su %s: %s" % ["+".join(ic), Carte.titolo(carte_ferita[k]), Carte.t(ef)])
+					if en.contains("outcomeRedProgress"):
+						if (azione.get("tracce", []) as Array).is_empty():
+							ferita_esito = "red"
+						else:
+							ferita_tracce["red"] = int(ferita_tracce.get("red", 0)) + 1
+					elif en.to_lower().begins_with("reroll 1 [vanguard]"):
+						for dd in _pool:
+							if dd["tipo"] not in ["ferita", "pericolo"] and "vanguard" in Prova.icone(dd):
+								Prova.tira(dd, esp.rng)
+								resoconto.append("ritirato un Vanguard: ora %s" % "+".join(Prova.icone(dd)))
+								break
+					elif en.to_lower().contains("count as [accident]"):
+						testi.append({"en": "", "it": "%s: in questa Prova i risultati [basic] contano come [accident]." % Carte.titolo(carte_ferita[k]), "fonte": "Ferita"})
+					else:
+						testi.append({"en": en, "it": Carte.t(ef), "fonte": "Ferita " + Carte.titolo(carte_ferita[k])})
+					break
+			if applicato:
+				break
+		if not applicato:
+			resoconto.append("Dado Ferita: %s (nessuna carta corrisponde)" % ("+".join(ic) if not ic.is_empty() else "vuoto"))
 	for d in _pool:
 		if d["tipo"] == "ferita":
-			var ic := Prova.icone(d)
-			resoconto.append("Dado Ferita: %s" % ("+".join(ic)))
-			testi.append({"en": "", "it": "Dado Ferita: %s — se l'icona corrisponde a una carta Ferita di %s, applica il suo effetto." % ["+".join(ic), m["carta"]], "manuale": true})
+			pass
 		elif d["tipo"] == "pericolo":
 			var e := Prova.effetto_pericolo(str(d["lettera"]), d)
 			var ic2 := Prova.icone(d)
@@ -299,10 +438,10 @@ func _risolvi() -> void:
 				resoconto.append("Dado Pericolo %s: %s (tabella sulla carta o nell'annotazione)" % [d["lettera"], "+".join(ic2) if not ic2.is_empty() else "vuoto"])
 				testi.append({"en": "", "it": "Dado Pericolo %s: risultato %s — applica l'effetto indicato per questa lettera." % [d["lettera"], "+".join(ic2) if not ic2.is_empty() else "vuoto"], "manuale": true})
 	# 7. effetti speciali (prima quelli della Condizione Generale)
-	var esito_immediato := ""
+	var esito_immediato := ferita_esito
 	var tutte := speciali_globali + (azione.get("speciali", []) as Array)
 	var ris := Prova.risolvi_speciali(tutte, _pool, conv, vietati)
-	var tracce := {}
+	var tracce := ferita_tracce.duplicate()
 	for x in ris:
 		var riga: Dictionary = tutte[x["riga"]]
 		var eff = riga.get("effetto", "")
@@ -383,8 +522,19 @@ func _risolvi() -> void:
 			if dd["id"] == d["id"]:
 				dd["stato"] = "speso"
 				dd["faccia"] = d["faccia"]
+	resoconto = _resoconto_mod + resoconto
 	esp.diario("%s: %s" % [m["carta"], "; ".join(resoconto)])
 	_mostra_riepilogo(resoconto, testi)
+
+const CARTE_FERITA := {"wounded": "Wounded", "panicked": "Panicked", "freezing": "Freezing", "exhausted": "Exhausted",
+	"critically_wounded": "Critically Wounded", "burned": "Burned", "just_a_scratch": "Just a Scratch!"}
+
+static func _carta_ferita(tipo: String) -> Dictionary:
+	var nome: String = CARTE_FERITA.get(tipo, "Wounded")
+	for c in Carte.categoria("ferite_gradi"):
+		if nome in c.get("nomi", []):
+			return c
+	return {}
 
 func _segui(esiti: Array, r: Dictionary, testi: Array) -> void:
 	var s := str(r.get("segue", ""))

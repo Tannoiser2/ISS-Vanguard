@@ -61,6 +61,17 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
     effetti sui Membri nel settore, carta girata, scarto); la loro Azione Speciale compare nel settore;
   - molte istruzioni del Logbook in italiano si eseguono da sole (Successi, Scoperte, Indizi, PDI,
     Missioni, spostamenti, dadi Pericolo, Ship Book a pagina 25…), e il riquadro dice cosa è stato fatto;
+  - **attrezzatura e abilità**: l'attrezzatura caricata sul Lander è distribuita alla squadra (piccola una
+    a testa, quella di Reparto a chi è del Reparto); in basso si usa con un clic (costo in dadi o azione
+    pagato da solo, effetto applicato, ritorno all'Armeria) o si passa a chi è nello stesso settore;
+    le abilità dei Membri spendono una Carica e applicano l'effetto; le abilità di conversione
+    dell'attrezzatura valgono nelle Prove;
+  - nella Prova, al passo 4, le carte Reparto "durante una Prova" (anche di chi assiste),
+    l'attrezzatura e le abilità si usano con un clic (scarto, Carica, ritiro automatico dei dadi inutili);
+  - **dadi Ferita**: ognuno va sulla prima carta Ferita con la sua icona e se ne applica l'effetto
+    (dadi spesi o sacrificati, Ferite, traccia o risultato rosso, ritiro del Vanguard);
+  - **carta Grado Superiore**: se ne scelgono 2 all'inizio, la sua Azione Speciale compare nei settori
+    giusti, le condizioni (Scoperte, Indizi, Ferite, Provviste, Minacce scartate…) si controllano da sole;
   - tutto lo stato dell'esplorazione è salvato nella campagna e si riprende da dove si era rimasti.
 - **Gestione della Nave automatizzata** (pulsante GESTIONE NAVE): il Ship Book una pagina alla volta,
   con a sinistra i passi e al centro solo quello corrente.

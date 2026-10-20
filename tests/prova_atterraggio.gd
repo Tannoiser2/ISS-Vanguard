@@ -117,5 +117,20 @@ func _run() -> void:
 	print("   ", fatti)
 	ok(fatti.any(func(x): return str(x).contains("Pericolo D")), "Veleno: il Membro nel settore tira il dado Pericolo D")
 	ok(not mis._azioni_settore(int(m["settore"])).filter(func(x): return str(x["chiave"]).begins_with("M:")).is_empty(), "l'Azione Speciale della Minaccia è disponibile nel suo settore")
+	# attrezzatura e abilità
+	e.membro(0)["attrezzatura"] = ["E07"]
+	e.membro(0)["file"] = "carte/crewmembers/elena_34401.webp"
+	e.membro(0)["cariche"] = 1
+	e.s["attivo"] = 0
+	for d in e.membro(0)["dadi"]:
+		d["stato"] = "speso" if d["tipo"] == "base_rosso" else "disponibile"
+	var pv := int(e.s["lander"]["provviste"])
+	mis._usa_attrezzatura(0, "E07")
+	await chiudi()
+	ok(int(e.s["lander"]["provviste"]) == pv + 2 and e.membro(0)["attrezzatura"].is_empty(), "attrezzatura E07: +2 Provviste e torna all'Armeria")
+	mis._usa_abilita(0)
+	await chiudi()
+	ok(int(e.membro(0)["cariche"]) == 0, "abilità: spesa 1 Carica")
+	ok(e.membro(0)["dadi"].filter(func(d): return d["tipo"] == "base_rosso" and d["stato"] == "speso").is_empty(), "abilità di Elena: ricaricati tutti i dadi rossi")
 	print("errori: ", errori)
 	quit()

@@ -1469,7 +1469,9 @@ func _passo_debriefing() -> void:
 	var e := _ultima_esplorazione()
 	_sezione("1. Promozioni")
 	if e.get("grado_girato", false):
-		_testo("La carta Grado Superiore è completata: i Membri della Squadra ancora vivi salgono di Grado se hanno i Successi richiesti dalla carta.", 15)
+		var req: Dictionary = Carte.per_file(str(e.get("grado_superiore", ""))).get("campi", {}).get("successi_per_grado", {})
+		_testo("La carta Grado Superiore è completata: i Membri della Squadra ancora vivi salgono di Grado se hanno i Successi richiesti dalla carta%s (Successi della riserva: %d)." % [
+			(": " + ", ".join(req.keys().map(func(k): return "Grado %s → %d" % [str(k).trim_prefix("rank"), int(req[k])]))) if not req.is_empty() else "", int(nave.s["pool"]["successi"])], 15)
 		for m in e.get("equipaggio", []):
 			var i := int(m.get("nave", -1))
 			if i < 0 or m.get("morto", false) or i >= nave.s["equipaggio"].size():

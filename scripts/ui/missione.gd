@@ -113,6 +113,8 @@ func _ready() -> void:
 	_sel = int(esp.membro(int(esp.s["attivo"]))["settore"]) if not esp.s["equipaggio"].is_empty() else 1
 	aggiorna()
 	# all'inizio: le annotazioni dei settori dove si trova già qualcuno
+	if int(esp.s["round"]) == 1 and esp.s["diario"].size() <= 1 and not esp.s.get("tutorial", false) and str(esp.s.get("grado_superiore", "")) == "":
+		_scegli_grado.call_deferred()
 	if int(esp.s["round"]) == 1 and esp.s["diario"].size() <= 1:
 		var br := int(esp.s["lander"].get("briefing", 0))
 		if br > 0 and not esp.s.get("briefing_letto", false):
@@ -266,6 +268,19 @@ func _aggiorna_membro() -> void:
 		var b := Tema.pulsante(Carte.titolo(carta), func(): _carta_in_mano(att, cc), 11)
 		b.tooltip_text = Carte.t(carta.get("effetto", ""))
 		mano.add_child(b)
+	# attrezzatura e abilità del Membro
+	for e in m.get("attrezzatura", []):
+		var ee := str(e)
+		var ce := Carte.per_id(ee)
+		var be := Tema.pulsante("⚙ " + Carte.titolo(ce), func(): _usa_attrezzatura(att, ee), 11)
+		be.tooltip_text = Carte.t(ce.get("effetto", ""))
+		mano.add_child(be)
+	var cm := Carte.per_file(str(m.get("file", "")))
+	var ab = cm.get("abilita", {})
+	if ab is Dictionary and not ab.is_empty():
+		var ba := Tema.pulsante("★ %s (%d)" % [str(ab.get("nome", "ABILITÀ")), int(m["cariche"])], func(): _usa_abilita(att), 11)
+		ba.tooltip_text = Carte.t(ab) + "\nCariche: %d" % int(m["cariche"])
+		mano.add_child(ba)
 	_membro_box.add_child(mano)
 
 func _aggiorna_passo() -> void:
@@ -347,7 +362,66 @@ func _azioni_settore(n: int) -> Array:
 		var am: Array = cm.get("azioni", []) if cm.get("azioni") is Array else []
 		for k in am.size():
 			out.append({"azione": am[k], "fonte": "Minaccia " + str(mn["nome"]), "chiave": "M:%s#%d" % [mn.get("en", mn["nome"]), k], "globale": true})
+	out.append_array(_azioni_grado(n))
 	return out
+
+## Azione Speciale della carta Grado Superiore (se ce l'ha e il settore ha uno dei biomi richiesti).
+func _azioni_grado(n: int) -> Array:
+	var out := []
+	var gs := str(esp.s.get("grado_superiore", ""))
+	if gs == "" or esp.s.get("grado_girato", false):
+		return out
+	var c := Carte.per_file(gs)
+	var biomi: Array = c.get("campi", {}).get("biomi_ammessi", [])
+	var icone: Array = esp.icone_settore(pl, n, _carte_pdi())
+	if not biomi.is_empty() and not biomi.any(func(b): return b in icone):
+		return out
+	var az: Array = c.get("azioni", []) if c.get("azioni") is Array else []
+	for k in az.size():
+		out.append({"azione": az[k], "fonte": "Grado Superiore", "chiave": "GC#grado%d" % k, "globale": true})
+	return out
+
+## Condizioni della carta Grado Superiore controllabili dal programma.
+func _controlla_grado(fine: bool) -> void:
+	var gs := str(esp.s.get("grado_superiore", ""))
+	if gs == "" or esp.s.get("grado_girato", false):
+		return
+	var cond := Carte.en(Carte.per_file(gs).get("campi", {}).get("condizione", "")).to_lower()
+	var ok := false
+	var tipi := {"mineral": "mineral", "alien tech": "alien_tech", "strange flora": "strange_flora", "microorganism": "microorganism", "live specimen": "live_specimen"}
+	if fine:
+		for k in tipi:
+			if cond.contains("3 %s discoveries" % k):
+				ok = esp.s["scoperte"].filter(func(x): return x["tipo"] == tipi[k]).size() >= 3
+		if cond.contains("at least 5 discovery cards"):
+			ok = esp.s["scoperte"].size() + esp.s["eccezionali"].size() >= 5
+		if cond.contains("at least 4 supplies"):
+			ok = int(esp.s["lander"]["provviste"]) >= 4
+		if cond.contains("one or fewer injury"):
+			ok = esp.vivi().all(func(i): return (esp.membro(i)["ferite"] as Array).size() <= 1)
+		if cond.contains("7 discarded section cards"):
+			ok = esp.vivi().all(func(i): return (esp.membro(i)["scarti"] as Array).size() >= 7)
+	if cond.contains("lead token on 3 different"):
+		ok = Esplorazione.TIPI_SCOPERTA.filter(func(t): return not (esp.s["indizi"][t] as Array).is_empty()).size() >= 3
+	if cond.contains("threat card is discarded"):
+		ok = esp.s.get("minaccia_scartata", false)
+	if ok:
+		esp.s["grado_girato"] = true
+		esp.diario("Carta Grado Superiore completata")
+		avviso("Carta Grado Superiore completata!")
+
+func _scegli_grado() -> void:
+	var tutte := Carte.categoria("ferite_gradi").filter(func(c): return str(c.get("tipo", "")) == "rank_up" and not str(c.get("file", "")).contains("tutorial"))
+	if tutte.size() < 2:
+		return
+	tutte.shuffle()
+	var due := tutte.slice(0, 2)
+	var j := await _scegli("CARTA GRADO SUPERIORE (scegline una)", due.map(func(c): return Carte.t(c.get("campi", {}).get("condizione", ""))),
+		"Ship Book pag. 24: si pescano 2 carte Grado Superiore e se ne sceglie una. Se la si completa, a fine esplorazione i Membri con abbastanza Successi salgono di Grado.", false)
+	esp.s["grado_superiore"] = str(due[j]["file"])
+	esp.diario("Carta Grado Superiore: %s" % Carte.t(due[j].get("campi", {}).get("condizione", "")))
+	_salva()
+	aggiorna()
 
 # ------------------------------------------------------------------ cassetto laterale (consultazione)
 
@@ -900,6 +974,7 @@ func _condizione() -> Dictionary:
 	return {}
 
 func _pannello_fine() -> void:
+	_controlla_grado(true)
 	_titolo("ESPLORAZIONE TERMINATA", Tema.AMBRA)
 	var motivo: String = {"decollo": "Decollo", "evac": "Evacuazione d'emergenza", "fine": "Fine dell'esplorazione"}.get(str(esp.s["finita"]), str(esp.s["finita"]))
 	var righe := ["Motivo: [b]%s[/b]" % motivo, "Successi: [b]%d[/b]" % int(esp.s["successi"])]
@@ -917,7 +992,7 @@ func _pannello_fine() -> void:
 	_pannello.add_child(Tema.pulsante_primario("TORNA ALLA NAVE", func():
 		var arch: Array = Campagna.dati.get_or_add("esplorazioni_concluse", [])
 		arch.append({"pagina": esp.s["pagina"], "finita": esp.s["finita"], "successi": esp.s["successi"], "scoperte": esp.s["scoperte"],
-			"eccezionali": esp.s["eccezionali"], "grado_girato": esp.s.get("grado_girato", false), "missioni_rimaste": esp.s["missioni"],
+			"eccezionali": esp.s["eccezionali"], "grado_girato": esp.s.get("grado_girato", false), "grado_superiore": esp.s.get("grado_superiore", ""), "missioni_rimaste": esp.s["missioni"],
 			"tutorial": esp.s.get("tutorial", false), "settori": esp.s["settori"], "minacce": esp.s["minacce"],
 			"equipaggio": esp.s["equipaggio"].map(func(m): return {"carta": m["carta"], "reparto": m["reparto"], "ferite": m["ferite"], "morto": m["morto"], "nave": int(m.get("nave", -1)), "grado": int(m["grado"])})})
 		var nv = Campagna.dati.get("nave")
@@ -1245,6 +1320,7 @@ func _fine_turno() -> void:
 	if not _inizia():
 		return
 	await _scarta_eccesso()
+	_controlla_grado(false)
 	var ev := esp.fine_turno()
 	if ev != "":
 		await _risolvi_evento(ev, chi)
@@ -1283,6 +1359,83 @@ func _scarta_eccesso() -> void:
 			var mano: Array = esp.membro(i)["mano"]
 			var j := await _scegli("%s HA TROPPE CARTE: SCARTANE %d" % [str(esp.membro(i)["carta"]).to_upper(), esp.eccesso_mano(i)], mano.map(func(c): return Carte.titolo(Carte.per_file(str(c)))), "", false)
 			esp.scarta_carta(i, str(mano[j]))
+
+## Attrezzatura: paga il costo (dadi, azione) e applica l'effetto; si può anche passare a chi è nel settore.
+func _usa_attrezzatura(i: int, id: String) -> void:
+	var c := Carte.per_id(id)
+	var en := Carte.en(c.get("effetto", ""))
+	var it := Carte.t(c.get("effetto", ""))
+	var quando := str(c.get("quando", ""))
+	var usabile: bool = quando in ["spend_cost", "anytime", "action", "travel", "start_of_turn", ""] and not _occupato
+	var opz := []
+	if usabile:
+		opz.append("USA")
+	var altri := esp.nel_settore(int(esp.membro(i)["settore"])).filter(func(j): return j != i)
+	for j in altri:
+		opz.append("PASSALA A " + str(esp.membro(j)["carta"]))
+	var testo := "[b]%s[/b]\n%s%s" % [{"smallEquipment": "Piccola attrezzatura", "personalEquipment": "Attrezzatura personale", "missionEquipment": "Attrezzatura di missione", "missionEquipmentUpgrades": "Potenziamento"}.get(str(c.get("tipo", "")), ""),
+		Dati.testo_carta(it, 20), "\n\n[color=#9fbbd6]Si usa durante una Prova (dalla finestra della Prova) o si applica da sola.[/color]" if not usabile else ""]
+	var k := await _scegli(Carte.titolo(c).to_upper(), opz, testo, true, str(c.get("file", "")))
+	if k < 0:
+		return
+	if opz[k] != "USA":
+		var j: int = altri[k - (1 if usabile else 0)]
+		(esp.membro(i)["attrezzatura"] as Array).erase(id)
+		esp.membro(j)["attrezzatura"].append(id)
+		esp.diario("%s passa %s a %s" % [esp.membro(i)["carta"], Carte.titolo(c), esp.membro(j)["carta"]])
+		_salva()
+		aggiorna()
+		return
+	if not _inizia():
+		return
+	if en.to_lower().contains("counts as an action"):
+		if not esp.usa_azione(false):
+			avviso("Serve un'azione")
+			_finisci()
+			return
+	var testi := []
+	var costo := str(c.get("costo", "")) if c.get("costo") != null else ""
+	if costo != "" and costo != "null":
+		var alt := Array(costo.split(" / "))
+		var j2 := 0
+		if alt.size() > 1:
+			j2 = await _scegli("COSTO", alt.map(func(x): return _txt_icone("[" + str(x).replace("+", "] + [") + "]")), "", false)
+		testi.append({"en": "[" + str(alt[j2]).replace("+", "] [") + "]", "it": "", "fonte": Carte.titolo(c)})
+	# l'effetto senza il costo iniziale ("[spendDie]: ...")
+	var eff := en
+	var due := en.find("]:")
+	if due >= 0 and due < 60:
+		eff = en.substr(due + 2)
+	testi.append({"en": eff, "it": it, "fonte": Carte.titolo(c)})
+	if eff.to_lower().contains("return this card to the armory") or eff.to_lower().contains("discard this card"):
+		(esp.membro(i)["attrezzatura"] as Array).erase(id)
+	esp.diario("%s usa %s" % [esp.membro(i)["carta"], Carte.titolo(c)])
+	await applica(testi, i, int(esp.membro(i)["settore"]))
+	_finisci()
+
+## Abilità del Membro: spende 1 Carica e applica l'effetto.
+func _usa_abilita(i: int) -> void:
+	var m := esp.membro(i)
+	var cm := Carte.per_file(str(m.get("file", "")))
+	var ab: Dictionary = cm.get("abilita", {})
+	var en := Carte.en(ab)
+	var it := Carte.t(ab)
+	var durante: bool = en.to_lower().begins_with("during a dice check") or en.to_lower().begins_with("when assisting")
+	var testo := "%s\n\nCariche: [b]%d[/b]%s" % [Dati.testo_carta(it, 20), int(m["cariche"]), "\n[color=#9fbbd6]Si usa dalla finestra della Prova.[/color]" if durante else ""]
+	var opz := [] if durante or int(m["cariche"]) <= 0 else ["USA (spendi 1 Carica)"]
+	var k := await _scegli("ABILITÀ " + str(ab.get("nome", "")).to_upper() + " — " + str(m["carta"]), opz, testo, true, str(cm.get("file", "")))
+	if k != 0:
+		return
+	if not _inizia():
+		return
+	m["cariche"] = int(m["cariche"]) - 1
+	var eff := en
+	var rx := RegEx.create_from_string("(?i)spend (?:1|one) charges? to ").search(en)
+	if rx:
+		eff = en.substr(rx.get_end())
+	esp.diario("%s usa l'abilità %s" % [m["carta"], ab.get("nome", "")])
+	await applica([{"en": eff, "it": it, "fonte": "Abilità " + str(ab.get("nome", ""))}], i, int(m["settore"]))
+	_finisci()
 
 func _carta_in_mano(i: int, c: String) -> void:
 	var carta := Carte.per_file(c)
@@ -1506,6 +1659,29 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			fatti.append("%s sacrifica %d dadi" % [m["carta"], int(op["n"])])
 		"niente":
 			fatti.append("Non succede nulla")
+		"gira_carta":
+			if fonte.begins_with("Grado"):
+				esp.s["grado_girato"] = true
+				fatti.append("[b]Carta Grado Superiore completata![/b]")
+			else:
+				manuali.append("Gira la carta (%s)" % fonte)
+		"scoperta_da_indizi":
+			var tipi := []
+			for t in Esplorazione.TIPI_SCOPERTA:
+				var v := 0
+				for x in esp.s["indizi"][t]:
+					v += int(x.get("v", 1))
+				if (int(op["valore"]) > 0 and v >= int(op["valore"])) or (int(op["segnalini"]) > 0 and (esp.s["indizi"][t] as Array).size() >= int(op["segnalini"])):
+					tipi.append(t)
+			if tipi.is_empty():
+				fatti.append("Nessun mazzo Scoperte ha abbastanza Indizi")
+			else:
+				var k := 0
+				if tipi.size() > 1:
+					k = await _scegli("DA QUALE MAZZO?", tipi.map(func(x): return NOMI_SCOPERTE[x]), "", false)
+				esp.scoperta(tipi[k])
+				fatti.append("Scoperta %s ottenuta" % NOMI_SCOPERTE[tipi[k]])
+				_controlla_scoperte(manuali)
 		"scarta_missione":
 			esp.s["missioni"].erase(str(op["carta"]))
 			fatti.append("Missione %s scartata" % op["carta"])
@@ -1685,6 +1861,7 @@ func _effetto_minaccia(m: Dictionary, c: Dictionary, nome_eff: String, fatti: Ar
 		fatti.append("%s nel Settore %d" % [m["nome"], nx])
 	elif tl.begins_with("discard") and tl.contains("threat card"):
 		esp.s["minacce"].erase(m)
+		esp.s["minaccia_scartata"] = true
 		fatti.append("%s viene scartata" % m["nome"])
 	else:
 		ok = false

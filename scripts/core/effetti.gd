@@ -34,6 +34,8 @@ static func analizza(en: String) -> Dictionary:
 		["(?i)gain (\\d+|a|an|one|two|three) success tokens?", func(m): return {"op": "successi", "n": _n(m.get_string(1))}],
 		["(?i)lose (\\d+|a|an|one|two|three) supplies", func(m): return {"op": "provviste", "n": -_n(m.get_string(1))}],
 		["(?i)gain (\\d+|a|an|one|two|three) supplies", func(m): return {"op": "provviste", "n": _n(m.get_string(1))}],
+		["(?i)refresh all \\[(die|redDie|blueDie|greenDie)\\]", func(m): return {"op": "ricarica", "n": 99, "colore": COLORE_DADO[m.get_string(1)]}],
+		["(?i)gain a discovery from a deck with (?:lead tokens of a total value of (\\d+)|any (\\d+) lead tokens)", func(m): return {"op": "scoperta_da_indizi", "valore": int(m.get_string(1)) if m.get_string(1) != "" else 0, "segnalini": int(m.get_string(2)) if m.get_string(2) != "" else 0}],
 		["(?i)refresh (\\d+|a|an|one|two|three|four|five) \\[(die|redDie|blueDie|greenDie)\\]", func(m): return {"op": "ricarica", "n": _n(m.get_string(1)), "colore": COLORE_DADO[m.get_string(2)]}],
 		["(?i)rolls? (\\d+ )?\\[(dangerDie\\w*)\\]", func(m): return {"op": "pericolo", "lettera": m.get_string(2).trim_prefix("dangerDie"), "n": _n(m.get_string(1)) if m.get_string(1) != "" else 1}],
 		["(?i)gain an? (critically wounded|wounded|burned|exhausted|panicked|freezing) injury", func(m): return {"op": "ferita", "tipo": m.get_string(1).to_lower().replace(" ", "_")}],
@@ -53,6 +55,7 @@ static func analizza(en: String) -> Dictionary:
 		["(?i)\\[(spendDie(?:Red|Blue|Green))\\]", func(m): return {"op": "spendi", "n": 1, "colore": m.get_string(1).trim_prefix("spendDie").to_lower()}],
 		["(?i)(?:^|[ .,;])\\[sacrifaceDie\\](?:\\s*\\+\\s*\\[sacrifaceDie\\])*", func(m): return {"op": "sacrifica", "n": m.get_string(0).count("sacrifaceDie"), "colore": ""}],
 		["(?i)nothing happens", func(m): return {"op": "niente"}],
+		["(?i)flip this card", func(m): return {"op": "gira_carta"}],
 	]
 	# l'ordine nel testo conta: raccoglie tutte le corrispondenze con la loro posizione
 	var trovate := []

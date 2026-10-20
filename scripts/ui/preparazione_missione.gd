@@ -199,6 +199,20 @@ func _conferma() -> void:
 			squadra[-1]["settore"] = r["settore"]
 	if squadra.size() < 2:
 		return
+	# attrezzatura caricata sul Lander: piccola una per Membro, quella di Reparto a chi è del Reparto
+	var piccole := 0
+	for e in dalla_nave.get("equip", []):
+		var ce := Carte.per_id(str(e))
+		var rep_en := str(ce.get("reparto", "")) if ce.get("reparto") != null else ""
+		var dest := 0
+		if str(ce.get("tipo", "")) == "smallEquipment":
+			dest = piccole % squadra.size()
+			piccole += 1
+		elif rep_en != "":
+			for k in squadra.size():
+				if REPARTI[squadra[k]["reparto"]] == rep_en:
+					dest = k
+		squadra[dest].get_or_add("attrezzatura", []).append(str(e))
 	var lc: Dictionary = _lander_carte[_lander.selected] if not _lander_carte.is_empty() else {}
 	var cl: Dictionary = lc.get("campi", {})
 	var tr: Dictionary = cl.get("traccia_atterraggio", {}) if cl.get("traccia_atterraggio") is Dictionary else {}
