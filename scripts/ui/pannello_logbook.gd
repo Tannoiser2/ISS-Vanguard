@@ -6,6 +6,9 @@ extends PanelContainer
 signal chiedi_carta(nome: String)      # porta una carta (P107, M02…) sul tavolo
 signal apri_registro
 signal chiuso
+## Chi sa rispondere alle domande e applicare le istruzioni (Missione o GestioneNave): metodi
+## rispondi_logbook(q) -> 1/0/-1, istruzione_logbook(t) -> Array (righe fatte), con _ultima_spiegazione.
+var contesto: Object = null
 
 const RX_CARTA := "\\b([PMGSBRCALFEO])(\\d{2,3})\\b"
 
@@ -303,7 +306,33 @@ func _pulsante_scelta(testo: String) -> Button:
 	b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	return b
 
+static var _facce_pericolo := {}
+
 func _griglia_immagini(els: Array, tipo: int) -> void:
+	if _facce_pericolo.is_empty():
+		var f := FileAccess.open("res://data/logbook/scelte_pericolo.json", FileAccess.READ)
+		if f:
+			_facce_pericolo = JSON.parse_string(f.get_as_text())
+	# se le immagini sono le facce del dado Pericolo, il programma può tirarlo
+	var scelte := []
+	for el in els:
+		for c in motore.alternative(el, tipo):
+			if c.has("img"):
+				scelte.append(c)
+	var facce := scelte.map(func(c): return str(_facce_pericolo.get(str(c["img"]).get_basename() + ".webp", "")))
+	if not scelte.is_empty() and not "" in facce:
+		var bt := Tema.pulsante_primario("TIRA IL DADO PERICOLO", func():
+			var d := {"tipo": "pericolo", "faccia": 0}
+			Prova.tira(d)
+			var ic := Prova.icone(d)
+			var faccia: String = str(ic[0]) if not ic.is_empty() else "vuota"
+			var k := facce.find(faccia)
+			if k < 0:
+				k = facce.find("altro")
+			_avviso("Dado Pericolo: %s" % {"vuota": "faccia vuota", "common": "comune", "uncommon": "non comune", "rare": "raro", "special": "speciale"}.get(faccia, faccia))
+			if k >= 0:
+				_esegui(scelte[k]), 16)
+		_corpo.add_child(bt)
 	var g := HFlowContainer.new()
 	g.add_theme_constant_override("h_separation", 8)
 	g.add_theme_constant_override("v_separation", 8)
@@ -349,6 +378,16 @@ func _risolvi(el: Dictionary, tipo: int) -> void:
 		alt = alt.filter(func(c): return not c.has("img"))
 	for c in alt:
 		if c.has("q") and str(c["q"]) != "":
+			var auto := -1
+			if contesto and contesto.has_method("rispondi_logbook"):
+				auto = contesto.rispondi_logbook(str(c["q"]))
+			if auto >= 0:
+				_avviso("Verifica automatica: %s → %s (%s)" % [_pulito(str(c["q"])), "Sì" if auto == 1 else "No", str(contesto.get("_ultima_spiegazione"))])
+				if auto == 0:
+					continue
+				_occupato = false
+				_esegui(c)
+				return
 			var si: bool = await _domanda(str(c["q"]), str(c.get("yes", "Sì")), str(c.get("no", "No")))
 			if not si:
 				continue
@@ -418,7 +457,12 @@ func _istruzioni(t: String) -> void:
 	var r := Tema.testo_ricco(19)
 	r.text = Dati.testo_bb(t, 22)
 	v.add_child(r)
-	# carte nominate nelle istruzioni: un clic le porta sul tavolo
+	if contesto and contesto.has_method("istruzione_logbook"):
+		var fatti: Array = await contesto.istruzione_logbook(t)
+		if not fatti.is_empty():
+			var rf := Tema.testo_ricco(17)
+			rf.text = "[color=#5be39b][b]FATTO DAL PROGRAMMA[/b][/color] (non ripeterlo sul tavolo)\n" + "\n".join(fatti.map(func(x): return "• " + str(x)))
+			v.add_child(rf)
 	var rx := RegEx.create_from_string(RX_CARTA)
 	var viste := {}
 	var hb := HFlowContainer.new()

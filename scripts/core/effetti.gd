@@ -35,7 +35,7 @@ static func analizza(en: String) -> Dictionary:
 		["(?i)lose (\\d+|a|an|one|two|three) supplies", func(m): return {"op": "provviste", "n": -_n(m.get_string(1))}],
 		["(?i)gain (\\d+|a|an|one|two|three) supplies", func(m): return {"op": "provviste", "n": _n(m.get_string(1))}],
 		["(?i)refresh (\\d+|a|an|one|two|three|four|five) \\[(die|redDie|blueDie|greenDie)\\]", func(m): return {"op": "ricarica", "n": _n(m.get_string(1)), "colore": COLORE_DADO[m.get_string(2)]}],
-		["(?i)roll (\\d+ )?\\[(dangerDie\\w*)\\]", func(m): return {"op": "pericolo", "lettera": m.get_string(2).trim_prefix("dangerDie"), "n": _n(m.get_string(1)) if m.get_string(1) != "" else 1}],
+		["(?i)rolls? (\\d+ )?\\[(dangerDie\\w*)\\]", func(m): return {"op": "pericolo", "lettera": m.get_string(2).trim_prefix("dangerDie"), "n": _n(m.get_string(1)) if m.get_string(1) != "" else 1}],
 		["(?i)gain an? (critically wounded|wounded|burned|exhausted|panicked|freezing) injury", func(m): return {"op": "ferita", "tipo": m.get_string(1).to_lower().replace(" ", "_")}],
 		["(?i)gain an? \"?just a scratch!?\"? injury", func(m): return {"op": "ferita", "tipo": "just_a_scratch"}],
 		["(?i)replace (?:this card |it )?with (?:card )?(P\\d{3})", func(m): return {"op": "sostituisci_pdi", "carta": m.get_string(1).to_upper()}],
@@ -79,3 +79,73 @@ static func analizza(en: String) -> Dictionary:
 	var pulito := RegEx.create_from_string("[\\s.,;:!]+").sub(resto, " ", true).strip_edges()
 	pulito = pulito.replace(" and ", " ").replace("and", "").replace(" then ", " ").strip_edges()
 	return {"op": ops, "resto": pulito if pulito.length() > 3 else ""}
+
+# ------------------------------------------------------------------ istruzioni del Logbook (italiano)
+
+const SCOPERTE_IT := {"strana vegetazione": "strange_flora", "minerale": "mineral", "minerali": "mineral", "microorganismo": "microorganism",
+	"microorganismi": "microorganism", "esemplare vivo": "live_specimen", "esemplari vivi": "live_specimen",
+	"tecnologia aliena": "alien_tech", "flora strana": "strange_flora"}
+const NUMERI_IT := {"un": 1, "una": 1, "uno": 1, "due": 2, "tre": 3, "quattro": 4, "cinque": 5, "sei": 6}
+const FERITE_IT := {"ferito": "wounded", "ferita lesione": "wounded", "lesione grave": "critically_wounded", "ustione": "burned",
+	"allo stremo": "exhausted", "panico": "panicked", "congelamento": "freezing", "solo un graffio": "just_a_scratch", "lesione": "wounded"}
+
+static func _ni(s: String) -> int:
+	s = s.strip_edges().to_lower()
+	return int(s) if s.is_valid_int() else int(NUMERI_IT.get(s, 1))
+
+## Istruzioni del Logbook in italiano -> operazioni (come analizza). Le icone sono {i:nome}.
+## Operazioni in più: muovi_tutti, muovi_attivo, scarta_missione, minaccia, ricarica_tutti, pericolo_tutti,
+## nave_pagina, planetopedia.
+static func analizza_it(testo: String) -> Dictionary:
+	var t := " " + RegEx.create_from_string("\\{i:(\\w+)\\}").sub(testo, "[$1]", true) + " "
+	t = RegEx.create_from_string("\\[/?[bi]\\]").sub(t, "", true).replace("\n", " ").replace("’", "'")
+	var N := "(\\d+|un|una|uno|due|tre|quattro|cinque|sei)"
+	var regole := [
+		["(?i)ottien[ie] " + N + " \\[success\\]", func(m): return {"op": "successi", "n": _ni(m.get_string(1))}],
+		["(?i)(?:ottien[ie] (?:anche )?|e )la scoperta eccezionale (\\d+)", func(m): return {"op": "scoperta_eccezionale", "n": int(m.get_string(1))}],
+		["(?i)ottien[ie] " + N + " indizi[o]? (strana vegetazione|minerale|microorganismo|esemplare vivo|tecnologia aliena|flora strana)", func(m): return {"op": "indizi", "tipo": SCOPERTE_IT[m.get_string(2).to_lower()], "n": _ni(m.get_string(1))}],
+		["(?i)ottien[ie] " + N + " scopert[ae] (strana vegetazione|minerale|microorganismo|esemplare vivo|tecnologia aliena|flora strana)", func(m): return {"op": "scoperta", "tipo": SCOPERTE_IT[m.get_string(2).to_lower()], "n": _ni(m.get_string(1))}],
+		["(?i)ottien[ie] " + N + " provvist[ae]", func(m): return {"op": "provviste", "n": _ni(m.get_string(1))}],
+		["(?i)perd[ie] " + N + " provvist[ae](?! meno)", func(m): return {"op": "provviste", "n": -_ni(m.get_string(1))}],
+		["(?i)sostituisci (?:il pdi|la carta|questa carta(?: pdi)?|eventuali carte|la carta pdi) (?:in questo settore |nel tuo settore )?con la carta (P\\d{3})", func(m): return {"op": "sostituisci_pdi", "carta": m.get_string(1).to_upper()}],
+		["(?i)sostituisci (?:il pdi|la carta|eventuali carte|la carta pdi) nel settore (\\d+) con la carta (P\\d{3})", func(m): return {"op": "piazza_pdi", "carta": m.get_string(2).to_upper(), "settore": int(m.get_string(1))}],
+		["(?i)posiziona la carta (P\\d{3})[^.•]{0,40}? nel settore (\\d+)", func(m): return {"op": "piazza_pdi", "carta": m.get_string(1).to_upper(), "settore": int(m.get_string(2))}],
+		["(?i)scarta la (?:carta )?missione (M\\d+)", func(m): return {"op": "scarta_missione", "carta": m.get_string(1).to_upper()}],
+		["(?i)posiziona tutti i membri dell'equipaggio[^.]{0,40}? nel settore (\\d+)", func(m): return {"op": "muovi_tutti", "settore": int(m.get_string(1))}],
+		["(?i)posiziona il tuo membro(?: dell'equipaggio)? nel settore (\\d+)", func(m): return {"op": "muovi_attivo", "settore": int(m.get_string(1))}],
+		["(?i)ciascun membro dell'equipaggio ricarica " + N + " \\[(die|redDie|blueDie|greenDie)\\]", func(m): return {"op": "ricarica_tutti", "n": _ni(m.get_string(1)), "colore": COLORE_DADO[m.get_string(2)]}],
+		["(?i)ciascun membro dell'equipaggio tira \\[(dangerDie\\w*)\\]", func(m): return {"op": "pericolo_tutti", "lettera": m.get_string(1).trim_prefix("dangerDie")}],
+		["(?i)(?<!ciascun membro dell'equipaggio )tira (?:un |il )?(?:dado )?\\[(dangerDie\\w*)\\]", func(m): return {"op": "pericolo", "lettera": m.get_string(1).trim_prefix("dangerDie"), "n": 1}],
+		["(?i)(?:subisci|ottieni) una ferita (ferito|lesione grave|ustione|allo stremo|panico|congelamento|solo un graffio)", func(m): return {"op": "ferita", "tipo": FERITE_IT[m.get_string(1).to_lower()]}],
+		["(?i)fai avanzare tutte le tracce del tempo di " + N, func(m): return {"op": "tempo_tutte", "n": _ni(m.get_string(1))}],
+		["(?i)apri il manuale della nave a pagina (\\d+)", func(m): return {"op": "nave_pagina", "n": int(m.get_string(1))}],
+		["(?i)apri la planetopedia alle pagine (\\d+)\\s*[-–]\\s*(\\d+)", func(m): return {"op": "planetopedia", "pagina": "p.%d-%d" % [int(m.get_string(1)), int(m.get_string(2))]}],
+		["(?i)non (?:succede|accade) nulla", func(m): return {"op": "niente"}],
+		# atterraggio
+		["(?i)posiziona un segnaposto nella casella iniziale", func(m): return {"op": "atterraggio_inizio"}],
+		["(?i)fai avanzare il contatore dell'atterraggio(?: di (due|tre|\\d+))?", func(m): return {"op": "atterraggio", "n": _ni(m.get_string(1)) if m.get_string(1) != "" else 1}],
+		["(?i)(?:sposta|muovi) il segnaposto (?:sul contatore dell'atterraggio )?di (\\d+) casell[ae] verso sinistra", func(m): return {"op": "atterraggio", "n": -int(m.get_string(1))}],
+		["(?i)perd[ie] " + N + " provvist[ae] meno ?\\[(landerArmor|landerSensors|landerAgility)\\]", func(m): return {"op": "provviste_meno", "n": _ni(m.get_string(1)), "stat": m.get_string(2)}],
+		["(?i)ciascun membro dell'equipaggio " + N + " \\[(sacrifaceDie|spendDie)\\] meno ?\\[(landerArmor|landerSensors|landerAgility)\\]", func(m): return {"op": "dadi_meno", "n": _ni(m.get_string(1)), "dado": m.get_string(2), "stat": m.get_string(3)}],
+		["(?i)ciascun membro dell'equipaggio (?:ottiene|subisce) una ferita (ferito|lesione grave|ustione|allo stremo|panico|congelamento|lesione|solo un graffio)", func(m): return {"op": "ferita_tutti", "tipo": FERITE_IT.get(m.get_string(1).to_lower(), "wounded")}],
+		["(?i)posiziona " + N + " segnaposto(?: danno)? sulla plancia lander,? meno\\.? ?\\[(landerArmor|landerSensors|landerAgility)\\]", func(m): return {"op": "danni_meno", "n": _ni(m.get_string(1)), "stat": m.get_string(2)}],
+		["(?i)tira un dado pericolo " + N + " volte,? meno ?\\[(landerArmor|landerSensors|landerAgility)\\]\\.? per ciascun \\[(common|uncommon|rare|special)\\]", func(m): return {"op": "danni_tiro", "n": _ni(m.get_string(1)), "stat": m.get_string(2), "faccia": m.get_string(3)}],
+	]
+	var trovate := []
+	for r in regole:
+		var rx := RegEx.create_from_string(r[0])
+		for m in rx.search_all(t):
+			trovate.append([m.get_start(), m.get_end(), r[1].call(m)])
+	trovate.sort_custom(func(a, b): return a[0] < b[0])
+	var occ := []
+	var ops := []
+	for x in trovate:
+		var sov := false
+		for o in occ:
+			if x[0] < o[1] and x[1] > o[0]:
+				sov = true
+		if sov:
+			continue
+		occ.append([x[0], x[1]])
+		ops.append(x[2])
+	return {"op": ops}

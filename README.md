@@ -52,6 +52,15 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
     con il pulsante CORREZIONI per sistemare qualunque cosa;
   - fine del turno con limite di carte e Evento (effetto principale o secondario secondo i biomi),
     annotazioni lette entrando nei settori, carte chieste dal Logbook piazzate nel settore giusto;
+  - **atterraggio**: all'inizio si apre il briefing; il contatore dell'Atterraggio, i danni al Lander,
+    le Provviste "meno Corazza/Agilità", i dadi e le Ferite della squadra si applicano da soli, e le
+    domande del Logbook sul Lander ("la Corazza è 4 o più?", "il segnaposto è su Atterraggio
+    riuscito?") hanno risposta automatica; le scelte a immagini del dado Pericolo si tirano con un clic;
+  - **Minacce**: piazzate dal Logbook nel settore scelto; quando le tracce del Tempo avanzano si
+    risolvono gli effetti della carta (movimento verso il Membro più vicino, D10, settore successivo,
+    effetti sui Membri nel settore, carta girata, scarto); la loro Azione Speciale compare nel settore;
+  - molte istruzioni del Logbook in italiano si eseguono da sole (Successi, Scoperte, Indizi, PDI,
+    Missioni, spostamenti, dadi Pericolo, Ship Book a pagina 25…), e il riquadro dice cosa è stato fatto;
   - tutto lo stato dell'esplorazione è salvato nella campagna e si riprende da dove si era rimasti.
 - **Gestione della Nave automatizzata** (pulsante GESTIONE NAVE): il Ship Book una pagina alla volta,
   con a sinistra i passi e al centro solo quello corrente.
@@ -105,6 +114,7 @@ tests/prova_dadi.gd        prove del motore dei dadi
 tests/prova_missione.gd    partita simulata a caso dell'esplorazione (-- p.18-19 500)
 tests/foto_missione.gd     screenshot della preparazione e dell'esplorazione
 tests/prova_nave.gd        giro completo della Gestione della Nave (-- foto per gli screenshot)
+tests/prova_atterraggio.gd atterraggio, risposte automatiche del Logbook e Minacce
 tools/unisci_carte.py      trascrizioni delle carte (data/carte) -> data/carte_db.json
 ```
 

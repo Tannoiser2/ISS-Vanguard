@@ -105,6 +105,7 @@ func _ready() -> void:
 	_logbook.offset_right = -6
 	add_child(_logbook)
 	_logbook.imposta(Campagna.motore)
+	_logbook.contesto = self
 	_logbook.chiuso.connect(func(): _logbook.visible = false)
 	_logbook.chiedi_carta.connect(_carta_dal_logbook)
 	_logbook.visible = false
@@ -458,6 +459,54 @@ func applica_retro(id: String) -> void:
 	aggiorna()
 	if not logs.is_empty():
 		_apri_log(int(logs[0]))
+
+# ------------------------------------------------------------------ Logbook automatico (nave)
+
+var _ultima_spiegazione := ""
+const PAGINA_PASSO := {2: "ponte", 3: "ponte", 5: "mappa", 6: "strutture", 8: "strutture", 12: "strutture", 16: "strutture", 17: "strutture",
+	18: "hangar", 19: "hangar", 21: "hangar", 23: "lancio", 24: "esplorazione", 25: "partenza", 26: "attracco", 28: "scarico",
+	29: "scarico", 32: "infermeria", 36: "memoriale", 27: "debriefing", 39: "salvataggio"}
+
+func rispondi_logbook(q: String) -> int:
+	if nave.s.is_empty():
+		return -1
+	var t := q.replace("[b]", "").replace("[/b]", "")
+	var m := RegEx.create_from_string("(?i)possiedi la scoperta eccezionale (\\d+)").search(t)
+	if m:
+		_ultima_spiegazione = "Scoperte Eccezionali sulla nave: %s" % ", ".join(nave.s["eccezionali"].keys())
+		return 1 if nave.s["eccezionali"].has(m.get_string(1)) else 0
+	var m2 := RegEx.create_from_string("(?i)hai livello di tecnologia (\\d+)").search(t)
+	if m2:
+		_ultima_spiegazione = "Livello tecnologico %d" % int(nave.s["tech"])
+		return 1 if int(nave.s["tech"]) >= int(m2.get_string(1)) else 0
+	return -1
+
+func istruzione_logbook(t: String) -> Array:
+	if nave.s.is_empty():
+		return []
+	var fatti := []
+	for op in Effetti.analizza_it(t)["op"]:
+		match str(op["op"]):
+			"nave_pagina":
+				var p: String = PAGINA_PASSO.get(int(op["n"]), "")
+				if p != "" and p != nave.passo():
+					nave.vai(p)
+					_sotto = ""
+					_scelta = {}
+					fatti.append("Ship Book a pagina %d: %s" % [int(op["n"]), Nave.NOMI_PASSI[p]])
+			"planetopedia":
+				Campagna.dati["prossimo_pianeta"] = str(op["pagina"])
+				fatti.append("Planetopedia alle pagine %s (per la prossima esplorazione)" % str(op["pagina"]).trim_prefix("p."))
+			"successi":
+				nave.s["pool"]["successi"] = int(nave.s["pool"]["successi"]) + int(op["n"])
+				fatti.append("+%d Successi" % int(op["n"]))
+			"scoperta_eccezionale":
+				nave.s["eccezionali"][str(op["n"])] = true
+				fatti.append("Scoperta Eccezionale %d" % int(op["n"]))
+	if not fatti.is_empty():
+		_salva()
+		aggiorna()
+	return fatti
 
 func _apri_log(n: int) -> void:
 	apri_cassetto("")
@@ -1216,7 +1265,8 @@ func _atterra() -> void:
 	nave.s["equip_caricato"] = (_scelta.get("equip", []) as Array).duplicate()
 	nave.vai("esplorazione")
 	_salva()
-	esplora.emit({"pagina": pagina, "membri": membri, "lander": nave.s["lander_scelto"], "equip": nave.s["equip_caricato"], "carta": lc})
+	esplora.emit({"pagina": pagina, "membri": membri, "lander": nave.s["lander_scelto"], "equip": nave.s["equip_caricato"], "carta": lc,
+		"briefing": _briefing(lc), "mod": (nave.s.get("mod_montate", []) as Array).duplicate()})
 
 ## Dadi del Reparto da mettere sulla plancia, rispettando la capienza per colore al Grado del Membro.
 func _dadi_squadra(m: Dictionary) -> Array:

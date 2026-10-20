@@ -91,6 +91,7 @@ func _ready() -> void:
 	_logbook.offset_right = -6
 	add_child(_logbook)
 	_logbook.imposta(Campagna.motore)
+	_logbook.contesto = self
 	_logbook.chiuso.connect(func(): _logbook.visible = false)
 	_logbook.chiedi_carta.connect(_carta_dal_logbook)
 	_logbook.visible = false
@@ -113,8 +114,14 @@ func _ready() -> void:
 	aggiorna()
 	# all'inizio: le annotazioni dei settori dove si trova già qualcuno
 	if int(esp.s["round"]) == 1 and esp.s["diario"].size() <= 1:
-		for i in esp.vivi():
-			_entra_nel_settore(i, [])
+		var br := int(esp.s["lander"].get("briefing", 0))
+		if br > 0 and not esp.s.get("briefing_letto", false):
+			# prima l'atterraggio: il briefing del Logbook guida la sequenza (contatore, danni, Ferite)
+			esp.s["briefing_letto"] = true
+			_apri_log(br)
+		else:
+			for i in esp.vivi():
+				_entra_nel_settore(i, [])
 
 func _unhandled_input(e: InputEvent) -> void:
 	if e is InputEventKey and e.pressed and e.keycode == KEY_ESCAPE:
@@ -333,6 +340,13 @@ func _azioni_settore(n: int) -> Array:
 	var azs: Array = src.get("azioni", []) if src.get("azioni") is Array else []
 	for k in azs.size():
 		out.append({"azione": azs[k], "fonte": Carte.titolo(src), "chiave": "%s#%d" % [esp.pdi_in_cima(n) if not carta.is_empty() else "S%d" % n, k]})
+	for mn in esp.s["minacce"]:
+		if int(mn.get("settore", 0)) != n:
+			continue
+		var cm := _carta_minaccia(mn)
+		var am: Array = cm.get("azioni", []) if cm.get("azioni") is Array else []
+		for k in am.size():
+			out.append({"azione": am[k], "fonte": "Minaccia " + str(mn["nome"]), "chiave": "M:%s#%d" % [mn.get("en", mn["nome"]), k], "globale": true})
 	return out
 
 # ------------------------------------------------------------------ cassetto laterale (consultazione)
@@ -579,6 +593,11 @@ func aggiorna() -> void:
 	var gc := _condizione()
 	var tm = gc.get("tempo")
 	var tempo := ("   [color=#9fbbd6]TEMPO[/color] [b]%d/%d[/b]" % [int(esp.s["condizione"]["tempo"]), int(tm.get("caselle", 0))]) if tm is Dictionary else ""
+	var ld: Dictionary = esp.s["lander"]
+	if int(ld.get("contatore", 0)) > 0 or int(ld.get("danni", 0)) > 0:
+		tempo += "   [color=#9fbbd6]ATTERRAGGIO[/color] [b]%d/%d[/b]%s" % [int(ld.get("contatore", 0)), int(ld.get("caselle", 5)), (" · danni %d" % int(ld["danni"])) if int(ld.get("danni", 0)) > 0 else ""]
+	if int(ld.get("corazza", 0)) + int(ld.get("sensori", 0)) + int(ld.get("agilita", 0)) > 0:
+		tempo += "   [color=#9fbbd6]LANDER[/color] C%d S%d A%d" % [int(ld.get("corazza", 0)), int(ld.get("sensori", 0)), int(ld.get("agilita", 0))]
 	_info.text = "[color=#9fbbd6]ROUND[/color] [b]%d[/b]   [color=#9fbbd6]PROVVISTE[/color] [b]%s[/b]   [color=#9fbbd6]SUCCESSI[/color] [b]%d[/b]   [color=#9fbbd6]SCOPERTE[/color] [b]%d/%d[/b]%s%s" % [
 		int(esp.s["round"]), prov, int(esp.s["successi"]), esp.s["scoperte"].size(), int(esp.s["lander"]["max_scoperte"]), tempo,
 		("   [color=#9fbbd6]INDIZI[/color] " + ", ".join(ind)) if not ind.is_empty() else ""]
@@ -648,8 +667,24 @@ func _sezione_settore() -> void:
 	var chi := int(esp.s["attivo"])
 	var presente := int(esp.membro(chi)["settore"]) == n
 	var azioni: Array = sorgente.get("azioni", []) if sorgente.get("azioni") is Array else []
+	var voci := []
 	for k in azioni.size():
-		var a: Dictionary = azioni[k]
+		voci.append({"azione": azioni[k], "chiave": "%s#%d" % [esp.pdi_in_cima(n) if not carta.is_empty() else "S%d" % n, k], "fonte": tit, "n": n})
+	# Minacce nel settore: carta, traccia del Tempo e Azione Speciale
+	for mn in esp.s["minacce"]:
+		if int(mn.get("settore", 0)) != n:
+			continue
+		var cm := _carta_minaccia(mn)
+		var trm: Array = cm.get("tempo", []) if cm.get("tempo") is Array else []
+		_titolo("☠ " + str(mn["nome"]).to_upper(), Tema.ROSSO)
+		_testo("%s\n[color=#9fbbd6]Tempo %d/%d[/color]" % [_bb_regole(Carte.t(cm.get("regole", ""))), int(mn.get("tempo", 0)), trm.size()], 14)
+		var mm: Dictionary = mn
+		_pannello.add_child(Tema.pulsante("VEDI LA CARTA MINACCIA", func(): _mostra_carta(str(mm["file"]), str(mm["nome"])), 12))
+		var am: Array = cm.get("azioni", []) if cm.get("azioni") is Array else []
+		for k in am.size():
+			voci.append({"azione": am[k], "chiave": "M:%s#%d" % [mn.get("en", mn["nome"]), k], "fonte": "Minaccia " + str(mn["nome"]), "n": -1})
+	for vv in voci:
+		var a: Dictionary = vv["azione"]
 		var riq := PanelContainer.new()
 		riq.add_theme_stylebox_override("panel", Tema.box(Color(0.03, 0.08, 0.15), Tema.CIANO_SCURO, 1, 4, 8))
 		var v := VBoxContainer.new()
@@ -657,10 +692,11 @@ func _sezione_settore() -> void:
 		var r := Tema.testo_ricco(15)
 		r.fit_content = true
 		r.scroll_active = false
-		r.text = _descrivi_azione(a, "%s#%d" % [esp.pdi_in_cima(n) if not carta.is_empty() else "S%d" % n, k], n)
+		var chiave: String = vv["chiave"]
+		var fonte_a: String = vv["fonte"]
+		r.text = _descrivi_azione(a, chiave, int(vv["n"]))
 		v.add_child(r)
-		var chiave := "%s#%d" % [esp.pdi_in_cima(n) if not carta.is_empty() else "S%d" % n, k]
-		var b := Tema.pulsante_primario("ESEGUI (%s)" % str(esp.membro(chi)["carta"]), func(): _esegui_azione(a, tit, chiave, n), 13)
+		var b := Tema.pulsante_primario("ESEGUI (%s)" % str(esp.membro(chi)["carta"]), func(): _esegui_azione(a, fonte_a, chiave, n), 13)
 		b.disabled = not presente or esp.s["speciale_usata"] or int(esp.s["azioni"]) <= 0 or _occupato
 		if not presente:
 			b.tooltip_text = "Il Membro attivo deve trovarsi in questo settore"
@@ -695,6 +731,9 @@ func _sezione_settore() -> void:
 		_salva()
 		aggiorna(), 12))
 	_pannello.add_child(hm)
+
+func _bb_regole(t: String) -> String:
+	return Dati.testo_carta(t, 18)
 
 func _descrivi_azione(a: Dictionary, chiave: String, n: int) -> String:
 	var righe := ["[b]%s%s[/b]" % ["◆ " if str(a.get("icona", "")) in ["diceCheck", "specialAction"] else "", Carte.t(a.get("nome", "")).to_upper()]]
@@ -810,7 +849,7 @@ func _sezione_condizione() -> void:
 	if gc.has("testo"):
 		_testo(Dati.testo_carta(Carte.t(gc["testo"]), 20), 15)
 	if gc.get("viaggio") is Dictionary:
-		_testo(_descrivi_azione(gc["viaggio"], "GC#viaggio", 0), 15)
+		_testo(_descrivi_azione(gc["viaggio"], "GC#viaggio", -1), 15)
 	var tm = gc.get("tempo")
 	if tm is Dictionary:
 		var h := HBoxContainer.new()
@@ -822,7 +861,7 @@ func _sezione_condizione() -> void:
 	if str(esp.s["condizione"]["carta"]).begins_with("G") and gc.has("file"):
 		_pannello.add_child(Tema.pulsante("VEDI LA CARTA", func(): _mostra_carta(str(gc["file"]), Carte.titolo(gc)), 12))
 	for a in gc.get("azioni", []) if gc.get("azioni") is Array else []:
-		var r := _testo(_descrivi_azione(a, "GC#" + Carte.t(a.get("nome", "")), 0), 15)
+		var r := _testo(_descrivi_azione(a, "GC#" + Carte.t(a.get("nome", "")), -1), 15)
 		var aa: Dictionary = a
 		_pannello.add_child(Tema.pulsante("ESEGUI", func(): _esegui_azione(aa, Carte.titolo(gc), "GC#" + Carte.t(aa.get("nome", "")), int(esp.membro(int(esp.s["attivo"]))["settore"])), 12))
 	# missioni
@@ -978,7 +1017,7 @@ func _esegui_azione(a: Dictionary, fonte: String, chiave: String, n: int) -> voi
 		f.azione = a
 		f.fonte = fonte
 		f.chiave_tracce = chiave
-		f.settore = n
+		f.settore = -1 if (chiave.begins_with("M:") or chiave.begins_with("GC#")) else n
 		f.speciali_globali = _speciali_globali()
 		add_child(f)
 		var r: Dictionary = await f.conclusa
@@ -1074,7 +1113,7 @@ func _viaggio() -> void:
 				f.azione = vg
 				f.fonte = "Viaggio (" + Carte.titolo(gc) + ")"
 				f.chiave_tracce = "GC#viaggio"
-				f.settore = sett
+				f.settore = -1
 				f.speciali_globali = _speciali_globali()
 				add_child(f)
 				var r: Dictionary = await f.conclusa
@@ -1317,11 +1356,11 @@ func _carta_dal_logbook(nome: String) -> void:
 		esp.s["condizione"] = {"carta": nome, "tempo": 0}
 		esp.diario("Nuova Condizione Generale: " + Carte.titolo(c))
 	else:
-		var mn := Carte.categoria("minacce").filter(func(x): return Carte.titolo(x).to_upper() == nome or str(x.get("nomi", [""])[0]).to_upper() == nome if not (x.get("nomi", []) as Array).is_empty() else false)
+		var mn := _trova_minaccia(nome)
 		if not mn.is_empty():
 			var k3 := await _scegli_settore("Dove va la Minaccia %s? Clicca il settore" % Carte.titolo(mn[0]), _tutti_i_settori("☠"))
 			if k3 >= 0:
-				esp.s["minacce"].append({"nome": Carte.titolo(mn[0]), "file": str(mn[0]["file"]), "settore": k3, "tempo": 0})
+				_aggiungi_minaccia(mn[0], k3)
 		else:
 			avviso("Carta %s: prendila e applicala a mano" % nome)
 			return
@@ -1427,6 +1466,7 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 		"tempo_tutte":
 			esp.tempo_tutte(int(op["n"]))
 			fatti.append("Tutte le tracce del Tempo avanzano di %d" % int(op["n"]))
+			await _minacce_avanzano(int(op["n"]), fatti, manuali, logs)
 		"azzera_tempo":
 			esp.azzera_tempo()
 			fatti.append("Tracce del Tempo azzerate")
@@ -1466,6 +1506,70 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			fatti.append("%s sacrifica %d dadi" % [m["carta"], int(op["n"])])
 		"niente":
 			fatti.append("Non succede nulla")
+		"scarta_missione":
+			esp.s["missioni"].erase(str(op["carta"]))
+			fatti.append("Missione %s scartata" % op["carta"])
+		"muovi_tutti":
+			for i in esp.vivi():
+				esp.viaggia(i, int(op["settore"]))
+			fatti.append("Tutta la squadra nel Settore %d" % int(op["settore"]))
+		"muovi_attivo":
+			esp.viaggia(chi, int(op["settore"]))
+			fatti.append("%s nel Settore %d" % [m["carta"], int(op["settore"])])
+		"ricarica_tutti":
+			for i in esp.vivi():
+				esp.ricarica(i, int(op["n"]), str(op["colore"]))
+			fatti.append("Ogni Membro ricarica %d dadi" % int(op["n"]))
+		"pericolo_tutti":
+			for i in esp.vivi():
+				await _tira_pericolo(str(op["lettera"]), i, int(esp.membro(i)["settore"]), fatti, manuali, logs, "dado Pericolo")
+		"ferita_tutti":
+			for i in esp.vivi():
+				var r2 := esp.ferita(i, str(op["tipo"]))
+				fatti.append("%s: %s" % [esp.membro(i)["carta"], "Ferita " + str(NOMI_FERITE.get(r2, r2)) if r2 not in ["", "evac"] else ("ignorata" if r2 == "" else "evacuazione!")])
+		"atterraggio_inizio":
+			esp.s["lander"]["contatore"] = int(esp.s["lander"].get("partenza", 1))
+			fatti.append("Contatore dell'Atterraggio sulla casella iniziale (%d)" % int(esp.s["lander"]["contatore"]))
+		"atterraggio":
+			var ld: Dictionary = esp.s["lander"]
+			ld["contatore"] = clampi(int(ld.get("contatore", 0)) + int(op["n"]), 1, int(ld.get("caselle", 5)))
+			fatti.append("Contatore dell'Atterraggio: %d/%d" % [int(ld["contatore"]), int(ld.get("caselle", 5))])
+		"provviste_meno":
+			var q: int = max(0, int(op["n"]) - _stat(str(op["stat"])))
+			if not esp.s.get("provviste_illimitate", false):
+				esp.s["lander"]["provviste"] = max(0, int(esp.s["lander"]["provviste"]) - q)
+			fatti.append("-%d Provviste (%d meno %s %d)" % [q, int(op["n"]), _nome_stat(str(op["stat"])), _stat(str(op["stat"]))])
+		"dadi_meno":
+			var q2: int = max(0, int(op["n"]) - _stat(str(op["stat"])))
+			for i in esp.vivi():
+				for k in q2:
+					if str(op["dado"]) == "spendDie":
+						esp.spendi_dado(i)
+					else:
+						esp.sacrifica_dado(i)
+			fatti.append("Ogni Membro %s %d dadi (%d meno %s)" % ["spende" if str(op["dado"]) == "spendDie" else "sacrifica", q2, int(op["n"]), _nome_stat(str(op["stat"]))])
+		"danni_meno":
+			var q3: int = max(0, int(op["n"]) - _stat(str(op["stat"])))
+			esp.s["lander"]["danni"] = int(esp.s["lander"].get("danni", 0)) + q3
+			fatti.append("+%d segnalini danno sul Lander (ora %d)" % [q3, int(esp.s["lander"]["danni"])])
+		"danni_tiro":
+			var tiri: int = max(0, int(op["n"]) - _stat(str(op["stat"])))
+			var colpi := 0
+			for k in tiri:
+				var d := {"tipo": "pericolo", "faccia": 0}
+				Prova.tira(d, esp.rng)
+				if str(op["faccia"]) in Prova.icone(d):
+					colpi += 1
+			esp.s["lander"]["danni"] = int(esp.s["lander"].get("danni", 0)) + colpi
+			fatti.append("%d tiri del dado Pericolo: %d segnalini danno (ora %d)" % [tiri, colpi, int(esp.s["lander"]["danni"])])
+		"nave_pagina":
+			fatti.append("Ship Book a pagina %d" % int(op["n"]))
+			if int(op["n"]) == 25:
+				esp.fine("fine")
+				fatti.append("L'esplorazione planetaria finisce: si torna alla nave")
+		"planetopedia":
+			Campagna.dati["prossimo_pianeta"] = str(op["pagina"])
+			fatti.append("Planetopedia alle pagine %s" % str(op["pagina"]).trim_prefix("p."))
 
 func _tira_pericolo(lettera: String, chi: int, sett: int, fatti: Array, manuali: Array, logs: Array, fonte: String) -> void:
 	var d := {"tipo": "pericolo", "lettera": lettera, "faccia": 0}
@@ -1483,6 +1587,238 @@ func _tira_pericolo(lettera: String, chi: int, sett: int, fatti: Array, manuali:
 		fatti.append("Dado Pericolo %s: %s" % [lettera, nomi_it.get(nome, nome)])
 		manuali.append("Dado Pericolo %s con risultato %s: applica l'effetto indicato per la lettera %s (sulla carta, sulla plancia o nell'annotazione)." % [lettera, nomi_it.get(nome, nome), lettera])
 
+# ------------------------------------------------------------------ Minacce
+
+func _trova_minaccia(nome: String) -> Array:
+	nome = nome.to_upper()
+	return Carte.categoria("minacce").filter(func(x): return str(x.get("lato", "fronte")) != "retro" and (Carte.titolo(x).to_upper() == nome or (not (x.get("nomi", []) as Array).is_empty() and str(x["nomi"][0]).to_upper() == nome) or Carte.en(x.get("titolo", "")).to_upper() == nome))
+
+func _aggiungi_minaccia(c: Dictionary, sett: int) -> void:
+	var en := Carte.en(c.get("titolo", ""))
+	esp.s["minacce"].append({"nome": Carte.titolo(c), "en": en, "file": str(c["file"]), "settore": sett, "tempo": 0})
+	esp.diario("Minaccia %s nel Settore %d" % [Carte.titolo(c), sett])
+
+func _carta_minaccia(m: Dictionary) -> Dictionary:
+	return Carte.per_file(str(m.get("file", "")))
+
+## Le tracce del Tempo delle Minacce avanzano: si risolve l'effetto stampato sopra ogni casella raggiunta.
+func _minacce_avanzano(n: int, fatti: Array, manuali: Array, logs: Array) -> void:
+	for m in esp.s["minacce"].duplicate():
+		var c := _carta_minaccia(m)
+		var tr: Array = c.get("tempo", []) if c.get("tempo") is Array else []
+		if tr.is_empty():
+			continue
+		for k in n:
+			if not m in esp.s["minacce"]:
+				break
+			m["tempo"] = int(m["tempo"]) + 1
+			var cas: Dictionary = {}
+			for x in tr:
+				if int(x.get("casella", 0)) == int(m["tempo"]):
+					cas = x
+			if cas.is_empty():
+				m["tempo"] = min(int(m["tempo"]), tr.size())
+				continue
+			fatti.append("Minaccia %s: tempo %d/%d → %s" % [m["nome"], int(m["tempo"]), tr.size(), Carte.t(cas)])
+			for nome_eff in Carte.en(cas).split(","):
+				var ne := nome_eff.strip_edges()
+				if ne == "":
+					continue
+				if ne.to_lower().contains("reset this track"):
+					m["tempo"] = 0
+					continue
+				if ne.to_lower().contains("flip this card"):
+					_gira_minaccia(m, fatti)
+					continue
+				await _effetto_minaccia(m, c, ne, fatti, manuali, logs)
+
+func _gira_minaccia(m: Dictionary, fatti: Array) -> void:
+	var c := _carta_minaccia(m)
+	var nomi: Array = c.get("nomi", [])
+	for x in Carte.categoria("minacce"):
+		if x.get("nomi", []) == nomi and str(x.get("file", "")) != str(m["file"]):
+			m["file"] = str(x["file"])
+			m["tempo"] = 0
+			fatti.append("La carta Minaccia %s si gira" % m["nome"])
+			return
+
+## Effetto con nome (es. "Travel", "Scintillation") dal testo delle regole della Minaccia.
+func _effetto_minaccia(m: Dictionary, c: Dictionary, nome_eff: String, fatti: Array, manuali: Array, logs: Array) -> void:
+	var regole_en := Carte.en(c.get("regole", ""))
+	var regole_it := Carte.t(c.get("regole", ""))
+	var testo := ""
+	var testo_it := ""
+	var righe_it := regole_it.split("\n")
+	var righe := regole_en.split("\n")
+	for k in righe.size():
+		var r := righe[k].strip_edges().trim_prefix("- ")
+		if r.to_lower().begins_with(nome_eff.to_lower() + ":"):
+			testo = r.substr(nome_eff.length() + 1).strip_edges()
+			testo_it = righe_it[k] if k < righe_it.size() else testo
+	if testo == "":
+		manuali.append("Minaccia %s: %s" % [m["nome"], nome_eff])
+		return
+	var en := str(m.get("en", Carte.en(c.get("titolo", ""))))
+	var tl := testo.to_lower()
+	var sett := int(m["settore"])
+	var ok := true
+	# movimento
+	var mv := RegEx.create_from_string("(?i)move .+? (?:by )?(\\d+|one|two) sectors? toward the nearest crewmember").search(testo)
+	if tl.begins_with("roll d10 and place"):
+		var d := esp.rng.randi_range(0, 9)
+		if esp.s["settori"].has(str(d)):
+			m["settore"] = d
+			fatti.append("%s: D10 = %d → Settore %d" % [m["nome"], d, d])
+		else:
+			fatti.append("%s: D10 = %d, nessun settore: resta dov'è" % [m["nome"], d])
+	elif mv:
+		if tl.begins_with("if there is no crewmember in the sector") and not esp.nel_settore(sett).is_empty():
+			fatti.append("%s: c'è un Membro nel suo settore, non si muove" % m["nome"])
+		else:
+			esp.muovi_minaccia_verso(pl, m, Effetti._n(mv.get_string(1)))
+			fatti.append("%s si sposta verso il Membro più vicino (Settore %d)" % [m["nome"], int(m["settore"])])
+	elif tl.contains("place") and tl.contains("one number higher"):
+		var nx := sett + 1
+		if not esp.s["settori"].has(str(nx)):
+			nx = 1
+		m["settore"] = nx
+		fatti.append("%s nel Settore %d" % [m["nome"], nx])
+	elif tl.begins_with("discard") and tl.contains("threat card"):
+		esp.s["minacce"].erase(m)
+		fatti.append("%s viene scartata" % m["nome"])
+	else:
+		ok = false
+	if ok:
+		return
+	# effetti sui Membri
+	var bersagli := []
+	var pref := "each crewmember in the sector with " + en.to_lower()
+	var pref2 := "each crewmember in a sector with"
+	if tl.begins_with(pref):
+		bersagli = esp.nel_settore(sett)
+		testo = testo.substr(pref.length()).strip_edges()
+	elif tl.begins_with(pref2):
+		bersagli = esp.nel_settore(sett)
+		testo = testo.substr(testo.find(" ", pref2.length() + 1)).strip_edges()
+	if bersagli.is_empty() and (tl.begins_with(pref) or tl.begins_with(pref2)):
+		fatti.append("%s: nessun Membro nel suo settore" % m["nome"])
+		var altro := testo.find("If there is none:")
+		if altro >= 0:
+			manuali.append("Minaccia %s (%s): %s" % [m["nome"], nome_eff, testo_it])
+		return
+	if bersagli.is_empty():
+		manuali.append("Minaccia %s (%s): %s" % [m["nome"], nome_eff, testo_it])
+		return
+	# alternativa "X OR Y": si sceglie per ciascun Membro
+	for i in bersagli:
+		var parte := testo.split(". ")[0]
+		var opzioni := Array(parte.split(" OR ")) if parte.contains(" OR ") else [parte]
+		var scelta: Variant = opzioni[0]
+		if opzioni.size() > 1:
+			var j := await _scegli("%s — %s" % [m["nome"].to_upper(), esp.membro(i)["carta"]], opzioni.map(func(x): return _txt_icone(str(x))), testo_it, false)
+			scelta = opzioni[j]
+		var a := Effetti.analizza(scelta)
+		for op in a["op"]:
+			await _op(op, i, sett, fatti, manuali, logs, "Minaccia " + str(m["nome"]))
+		if str(a["resto"]) != "" or testo.split(". ").size() > 1:
+			manuali.append("Minaccia %s (%s), per %s: %s" % [m["nome"], nome_eff, esp.membro(i)["carta"], testo_it])
+
+# ------------------------------------------------------------------ Lander e atterraggio
+
+const STAT := {"landerArmor": "corazza", "landerSensors": "sensori", "landerAgility": "agilita"}
+
+func _stat(nome: String) -> int:
+	return int(esp.s["lander"].get(STAT.get(nome, nome), 0))
+
+static func _nome_stat(nome: String) -> String:
+	return {"landerArmor": "Corazza", "landerSensors": "Sensori", "landerAgility": "Agilità"}.get(nome, nome)
+
+func in_atterraggio() -> bool:
+	var ld: Dictionary = esp.s["lander"]
+	return int(ld.get("contatore", 0)) > 0 and int(ld["contatore"]) < int(ld.get("caselle", 5)) and int(esp.s["round"]) == 1
+
+# ------------------------------------------------------------------ Logbook automatico
+
+## Risposta alle domande Sì/No del Logbook che dipendono dallo stato della partita:
+## 1 = sì, 0 = no, -1 = non si sa (la decide il giocatore). spiegazione in _ultima_spiegazione.
+var _ultima_spiegazione := ""
+func rispondi_logbook(q: String) -> int:
+	var t := RegEx.create_from_string("\\{i:(\\w+)\\}").sub(q, "[$1]", true)
+	t = RegEx.create_from_string("\\[/?[bi]\\]").sub(t, "", true).replace("\n", " ").replace("’", "'").strip_edges()
+	var tl := t.to_lower()
+	# contatore dell'Atterraggio
+	if tl.contains("atterraggio riuscito"):
+		var ld: Dictionary = esp.s["lander"]
+		var arrivato: bool = int(ld.get("contatore", 0)) >= int(ld.get("caselle", 5))
+		var neg: bool = tl.contains(" non ")
+		_ultima_spiegazione = "contatore dell'Atterraggio %d/%d" % [int(ld.get("contatore", 0)), int(ld.get("caselle", 5))]
+		return 1 if (arrivato != neg) else 0
+	# statistiche del Lander: "[landerX] è maggiore o uguale a N", "è N o più", "minore o uguale a N", "almeno N [x] e N [y]"
+	var rx_cmp := RegEx.create_from_string("\\[(landerArmor|landerSensors|landerAgility)\\]\\s*è\\s*(maggiore o uguale a|minore o uguale a)?\\s*(\\d+)\\s*(o più|o meno)?")
+	var rx_alm := RegEx.create_from_string("(\\d+)\\s*\\[(landerArmor|landerSensors|landerAgility)\\]")
+	var ok := true
+	var trovato := false
+	var spieg := []
+	if tl.contains("almeno"):
+		for m in rx_alm.search_all(t):
+			trovato = true
+			var v := _stat(m.get_string(2))
+			spieg.append("%s %d" % [_nome_stat(m.get_string(2)), v])
+			ok = ok and v >= int(m.get_string(1))
+	else:
+		for m in rx_cmp.search_all(t):
+			trovato = true
+			var v2 := _stat(m.get_string(1))
+			var n := int(m.get_string(3))
+			spieg.append("%s %d" % [_nome_stat(m.get_string(1)), v2])
+			if m.get_string(2).begins_with("minore") or m.get_string(4) == "o meno":
+				ok = ok and v2 <= n
+			else:
+				ok = ok and v2 >= n
+	if trovato:
+		_ultima_spiegazione = ", ".join(spieg)
+		return 1 if ok else 0
+	var m2 := RegEx.create_from_string("(?i)segnaposto danno sulla plancia lander").search(t)
+	if m2 and tl.contains("o più"):
+		var n2 := int(RegEx.create_from_string("(\\d+)").search(t).get_string(1))
+		_ultima_spiegazione = "%d segnalini danno sul Lander" % int(esp.s["lander"].get("danni", 0))
+		return 1 if int(esp.s["lander"].get("danni", 0)) >= n2 else 0
+	# posizione del Membro di turno
+	var m3 := RegEx.create_from_string("(?i)ti trovi nel settore (\\d+)").search(t)
+	if m3:
+		var sett := int(esp.membro(int(esp.s["attivo"]))["settore"])
+		_ultima_spiegazione = "%s è nel Settore %d" % [esp.membro(int(esp.s["attivo"]))["carta"], sett]
+		return 1 if sett == int(m3.get_string(1)) else 0
+	var m4 := RegEx.create_from_string("(?i)(?:carta )?missione (M\\d+) è scoperta").search(t)
+	if m4:
+		_ultima_spiegazione = "Missioni in gioco: %s" % ", ".join(esp.s["missioni"])
+		return 1 if m4.get_string(1).to_upper() in esp.s["missioni"] else 0
+	var m5 := RegEx.create_from_string("(?i)possiedi la scoperta eccezionale (\\d+)").search(t)
+	if m5:
+		var ecc: Array = esp.s["eccezionali"].map(func(x): return int(x))
+		_ultima_spiegazione = "Scoperte Eccezionali: %s" % ", ".join(ecc.map(func(x): return str(x)))
+		return 1 if int(m5.get_string(1)) in ecc else 0
+	var m6 := RegEx.create_from_string("(?i)segnaposto nel settore (\\d+)").search(t)
+	if m6 and tl.contains("presente"):
+		return -1
+	return -1
+
+## Istruzioni del Logbook eseguite dal programma; restituisce le righe "fatto" (vuoto = niente).
+func istruzione_logbook(t: String) -> Array:
+	var ops: Array = Effetti.analizza_it(t)["op"]
+	if ops.is_empty() or str(esp.s.get("finita", "")) != "":
+		return []
+	var chi := int(esp.s["attivo"])
+	var sett := int(esp.membro(chi)["settore"])
+	var fatti := []
+	var manuali := []
+	var logs := []
+	for op in ops:
+		await _op(op, chi, sett, fatti, manuali, logs, "Logbook")
+	_salva()
+	aggiorna()
+	return fatti
+
 func _controlla_scoperte(manuali: Array) -> void:
 	if esp.s["scoperte"].size() > int(esp.s["lander"]["max_scoperte"]):
 		manuali.append("Il Lander può trasportare al massimo %d Scoperte: scartane %d" % [int(esp.s["lander"]["max_scoperte"]), esp.s["scoperte"].size() - int(esp.s["lander"]["max_scoperte"])])
@@ -1492,6 +1828,7 @@ func _tempo(n: int) -> void:
 	var fatti := ["Tutte le tracce del Tempo avanzano di %d" % n]
 	var manuali := []
 	var logs := []
+	await _minacce_avanzano(n, fatti, manuali, logs)
 	_controlla_tempo(fatti, manuali, logs)
 	await _scegli("TEMPO", ["OK"], "\n".join(fatti.map(func(x): return "• " + str(x))) + ("\n" + "\n".join(manuali.map(func(x): return "• " + str(x))) if not manuali.is_empty() else ""), false)
 	if not logs.is_empty():

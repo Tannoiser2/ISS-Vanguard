@@ -50,7 +50,11 @@ func prepara(pagina: String, pianeta: Dictionary, squadra: Array, lander: Dictio
 				break
 	# senza icona Lander (es. il tutorial, dove il Lander è precipitato) non c'è un settore di decollo
 	s["lander"] = {"nome": lander.get("nome", "Lander"), "settore": sett_lander, "provviste": int(lander.get("provviste", 6)),
-		"max_scoperte": int(lander.get("scoperte_max", 5))}
+		"max_scoperte": int(lander.get("scoperte_max", 5)),
+		# statistiche e contatore dell'Atterraggio (plancia del Lander + modifiche)
+		"corazza": int(lander.get("corazza", 0)), "sensori": int(lander.get("sensori", 0)), "agilita": int(lander.get("agilita", 0)),
+		"caselle": int(lander.get("caselle", 5)), "partenza": int(lander.get("partenza", 1)), "contatore": 0, "danni": 0,
+		"briefing": int(lander.get("briefing", 0)), "mod": (lander.get("mod", []) as Array).duplicate()}
 	s["equipaggio"] = []
 	for m in squadra:
 		var c := {"carta": m.get("carta", ""), "file": m.get("file", ""), "nave": int(m.get("nave", -1)), "reparto": m.get("reparto", ""), "grado": int(m.get("grado", 1)),
@@ -412,7 +416,10 @@ func piazza_pdi(n: int, carta: String) -> void:
 func traccia(chiave: String, n: int) -> int:
 	return int(_tracce_di(n).get(chiave, 0))
 
+## Tracce delle azioni: per settore (PDI), oppure globali (n < 0: Condizione Generale, Missioni, Minacce).
 func _tracce_di(n: int) -> Dictionary:
+	if n < 0:
+		return s.get_or_add("tracce_globali", {})
 	return s["settori"].get(str(n), {}).get("tracce", {})
 
 ## Avanza (o arretra) una traccia di un'azione; restituisce il nuovo valore.
@@ -427,8 +434,7 @@ func avanza_traccia(n: int, chiave: String, delta: int, caselle: int) -> int:
 
 ## Fa avanzare tutte le tracce del Tempo (Condizione Generale, Minacce, settori).
 func tempo_tutte(delta: int) -> void:
-	avanza_tempo_condizione(delta)
-	avanza_tempo_minacce(delta)
+	avanza_tempo_condizione(delta)   # le Minacce le fa avanzare l'interfaccia (i loro effetti vanno risolti)
 	for k in s["settori"]:
 		if not s["settori"][k]["pdi"].is_empty():
 			s["settori"][k]["tempo"] = max(0, int(s["settori"][k]["tempo"]) + delta)
@@ -443,6 +449,46 @@ func azzera_tempo() -> void:
 func avanza_tempo_condizione(delta: int) -> int:
 	s["condizione"]["tempo"] = max(0, int(s["condizione"]["tempo"]) + delta)
 	return int(s["condizione"]["tempo"])
+
+# ------------------------------------------------------------------ minacce
+
+## Settori collegati a n (i sentieri a senso unico valgono nella loro direzione).
+func collegati(pianeta: Dictionary, n: int) -> Array:
+	return sentieri(pianeta, n).map(func(p): return int(p["a"]))
+
+## Distanza (in sentieri) da a a b, -1 se irraggiungibile.
+func distanza(pianeta: Dictionary, a: int, b: int) -> int:
+	var visti := {a: 0}
+	var coda := [a]
+	while not coda.is_empty():
+		var x: int = coda.pop_front()
+		if x == b:
+			return int(visti[x])
+		for y in collegati(pianeta, x):
+			if not visti.has(y):
+				visti[y] = int(visti[x]) + 1
+				coda.append(y)
+	return -1
+
+## Muove una Minaccia di n passi verso il Membro più vicino (o verso il settore dato).
+func muovi_minaccia_verso(pianeta: Dictionary, m: Dictionary, passi: int, meta := 0) -> void:
+	for k in passi:
+		var da := int(m["settore"])
+		var bersagli: Array = [meta] if meta > 0 else vivi().map(func(i): return int(membro(i)["settore"]))
+		if bersagli.is_empty() or da in bersagli:
+			return
+		var migliore := da
+		var dmin := 999
+		for y in collegati(pianeta, da):
+			for b in bersagli:
+				var dd := distanza(pianeta, y, int(b))
+				if dd >= 0 and dd < dmin:
+					dmin = dd
+					migliore = y
+		if migliore == da:
+			return
+		m["settore"] = migliore
+	diario("%s si sposta nel Settore %d" % [m.get("nome", "Minaccia"), int(m["settore"])])
 
 func avanza_tempo_minacce(delta: int) -> void:
 	for m in s["minacce"]:

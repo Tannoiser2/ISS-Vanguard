@@ -138,6 +138,9 @@ func _ready() -> void:
 	hb.add_child(Tema.pulsante("ANNULLA", queue_free, 16))
 	hb.add_child(Tema.pulsante_primario("ATTERRA", _conferma, 18))
 
+static func _num(x) -> int:
+	return int(x) if (x is int or x is float or (x is String and str(x).is_valid_int())) else 0
+
 static func _provviste(cm: Dictionary) -> int:
 	var p = cm.get("provviste", 6)
 	return int(p.get("base", 6)) if p is Dictionary else int(p)
@@ -198,7 +201,18 @@ func _conferma() -> void:
 		return
 	var lc: Dictionary = _lander_carte[_lander.selected] if not _lander_carte.is_empty() else {}
 	var cl: Dictionary = lc.get("campi", {})
-	var lander := {"nome": str(cl.get("nome", "Lander")), "provviste": _provviste(cl), "scoperte_max": int(cl.get("scoperte_max", 5)), "file": str(lc.get("file", ""))}
+	var tr: Dictionary = cl.get("traccia_atterraggio", {}) if cl.get("traccia_atterraggio") is Dictionary else {}
+	var lander := {"nome": str(cl.get("nome", "Lander")), "provviste": _provviste(cl), "scoperte_max": int(cl.get("scoperte_max", 5)), "file": str(lc.get("file", "")),
+		"corazza": _num(cl.get("corazza")), "sensori": _num(cl.get("sensori")), "agilita": _num(cl.get("agilita")),
+		"caselle": int(tr.get("caselle", 5)), "partenza": int(tr.get("partenza", 1)),
+		"briefing": int(dalla_nave.get("briefing", 0)), "mod": dalla_nave.get("mod", [])}
+	# modifiche montate all'Hangar: statistiche, Provviste e Scoperte
+	for a in dalla_nave.get("mod", []):
+		var cm: Dictionary = Carte.per_id(str(a)).get("campi", {})
+		for k in ["corazza", "sensori", "agilita"]:
+			lander[k] = int(lander[k]) + _num(cm.get(k))
+		lander["provviste"] = int(lander["provviste"]) + _num(cm.get("provviste"))
+		lander["scoperte_max"] = int(lander["scoperte_max"]) + _num(cm.get("scoperte_max"))
 	var mazzi := {
 		"eventi": _eventi(),
 		"condizione": _condizione.text.strip_edges().to_upper(),
