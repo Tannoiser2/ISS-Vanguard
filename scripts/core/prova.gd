@@ -31,7 +31,11 @@ static func icone(d: Dictionary) -> Array:
 	if t == "virtuale":
 		return d.get("icone", [])
 	if D["reparto"].has(t):
-		return D["reparto"][t]["facce"][f]
+		var ic: Array = D["reparto"][t]["facce"][f]
+		# Ustionato: in questa Prova i risultati [basic] contano come [accident]
+		if d.get("bruciato", false) and "basic" in ic:
+			return ic.map(func(x): return "accident" if x == "basic" else x)
+		return ic
 	return []
 
 static func colore(d: Dictionary) -> String:
@@ -172,6 +176,9 @@ static func _corrisponde(t: String, s: Dictionary, fase: int, conv: Array, stess
 		1:
 			return "vanguard" if (ic == "vanguard" and t in ICONE_REPARTO) else ""
 		2:
+			for c in conv:
+				if c.get("da", "") == "qualsiasi" and c.get("a", "") == t and ic not in ["basic", "accident"]:
+					return "convertito"
 			if ic == "basic":
 				for c in conv:
 					if c.get("colore", "") == s["colore"] and c.get("a", "") == t:

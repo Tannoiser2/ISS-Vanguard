@@ -76,7 +76,15 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
     "solo nel settore del Lander"), compare sulla mappa e nel pannello del settore con il suo testo;
     gli usi "chi è nel settore può [costo] per…" hanno il loro pulsante, i segnalini sopra la carta si
     scartano con un clic; Avamposto (+2 dadi a Riposo e Sforzo), Teleferica (viaggio gratis da e per il
-    Lander) e Drone Medevac (niente evacuazione alla quarta Ferita) funzionano da soli;
+    Lander) e Drone Medevac (niente evacuazione alla quarta Ferita) funzionano da soli; anche
+    Espansione dell'Avamposto (bonus nei settori collegati), Potenziamenti finali (requisiti controllati,
+    pulsante ATTIVA), Laser Minerario Pesante (ogni icona vale [gathering] e dadi rossi ricaricati),
+    Torretta Modulare e Unità Scudo (Vanguard in più nelle Prove contro le Minacce, via i dadi Pericolo),
+    Sistema di Difesa (salta un avanzamento del Tempo) e P.E.T. (il suo dado assiste, si sposta a inizio turno);
+  - **Ustione**: se un dado Ferita cade sull'Ustione, i [basic] della Prova contano davvero come [accident];
+  - **Minacce**: le regole si leggono frase per frase (spostamenti verso i Membri, tabelle col D10,
+    "se non c'è…", effetti su chi è nel settore, scelta tra più effetti); restano a mano solo i casi
+    più particolari, segnalati nel riepilogo;
   - **effetti a scatto**: abilità "quando riposi" (niente Provviste, dado e carta in più), attrezzatura
     che evita una Ferita, tute che ignorano o ritirano il dado Pericolo nei biomi indicati, tute che
     ignorano un [spendDie] del sentiero, dadi in più a Riposo e Sforzo, meno dadi Ferita nei biomi

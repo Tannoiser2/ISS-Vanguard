@@ -154,6 +154,34 @@ func _run() -> void:
 	var fz := []
 	e.ferita(0, "wounded")
 	ok(mis._salva_con_drone(0, fz) and str(e.s["finita"]) == "", "Drone Medevac: niente evacuazione alla quarta Ferita")
+	# Laser Minerario, Ustione, Sistema di Difesa, P.E.T.
+	var conv_l := [{"da": "qualsiasi", "a": "gathering"}]
+	ok(Prova.soddisfa(["gathering"], [{"id": "v", "tipo": "virtuale", "icone": ["construction"]}], conv_l)["ok"], "Laser Minerario: [construction] vale [gathering]")
+	ok(not Prova.soddisfa(["gathering"], [{"id": "v", "tipo": "virtuale", "icone": ["accident"]}], conv_l)["ok"], "Laser Minerario: [accident] no")
+	var facce: Array = Prova.defs()["reparto"]["base_rosso"]["facce"]
+	var fb := -1
+	for k in facce.size():
+		if "basic" in facce[k]:
+			fb = k
+	if fb >= 0:
+		ok("accident" in Prova.icone({"tipo": "base_rosso", "faccia": fb, "bruciato": true}), "Ustione: [basic] diventa [accident]")
+	var mz := {"nome": "Prova", "en": "Prova", "settore": s0, "tempo": 0, "file": ""}
+	e.s["settori"][str(s0)]["attrezzature"].append({"id": "E14", "nome": "Defense System", "marcatori": 1})
+	mis._sistema_difesa(mz)
+	await chiudi()
+	ok(not mis._ha_segnalino(s0, "E14"), "Sistema di Difesa: segnalino scartato e carta all'Armeria")
+	e.s["azioni"] = 2
+	e.s["attivo"] = 0
+	for d in e.membro(0)["dadi"]:
+		d["stato"] = "disponibile"
+	e.membro(0)["attrezzatura"] = ["E23"]
+	mis._usa_attrezzatura(0, "E23")
+	await chiudi()
+	var pet: Dictionary = {}
+	for t in mis._segnalini(s0):
+		if str(t["id"]) == "E23":
+			pet = t
+	ok(not pet.is_empty() and pet.get("dado") is Dictionary and e.membro(0)["dadi"].any(func(d): return d["stato"] == "pet"), "P.E.T. piazzato con un dado del Membro")
 	# effetti a scatto
 	e.s["finita"] = ""
 	e.s["azioni"] = 2

@@ -19,6 +19,7 @@ var _assist := {}          # indice membro -> [id dadi]
 var _assist_abilita := {}  # indice membro -> "2" / "tutti" / "lontano": abilità "When Assisting" usata
 var _assist_restituiti := {}   # indice membro -> true: i dadi di assistenza tornano disponibili
 var _pool: Array = []      # dadi tirati (copie con "chi")
+var _pet := false          # P.E.T. (E23) assiste con il suo dado
 var _fase := 0             # 0 scelta, 1 dopo il tiro
 var _corpo: VBoxContainer
 var _titolo: Label
@@ -72,7 +73,27 @@ func _conv(i: int) -> Array:
 		var m := rx.search(Carte.en(Carte.per_id(str(e)).get("effetto", "")))
 		if m:
 			out.append({"colore": m.get_string(1), "a": m.get_string(2)})
+	# Laser Minerario Pesante (E35) nel settore: ogni icona tranne [accident] e [basic] vale [gathering]
+	if _token(settore, "E35") != {}:
+		out.append({"da": "qualsiasi", "a": "gathering"})
 	return out
+
+## Segnalino di attrezzatura di missione con quell'id nel settore n ({} se non c'è).
+func _token(n: int, id: String) -> Dictionary:
+	for t in esp.s["settori"].get(str(n), {}).get("attrezzature", []):
+		if str(t["id"]) == id:
+			return t
+	return {}
+
+## Torretta Modulare (E62) nel settore o in uno collegato.
+func _torretta() -> Dictionary:
+	var pl := Carte.pianeta(str(esp.s.get("pagina", "")))
+	for n in [settore] + esp.collegati(pl, settore):
+		var t := _token(n, "E62")
+		if t != {}:
+			t["_settore"] = n
+			return t
+	return {}
 
 ## Carte Reparto, attrezzatura e abilità utilizzabili "durante una Prova" (passo 4).
 var _usati: Array = []
@@ -99,6 +120,12 @@ func _modificatori() -> Array:
 	var ab = cm.get("abilita", {})
 	if ab is Dictionary and (Carte.en(ab).to_lower().begins_with("during a dice check") or str(ab.get("quando", "")).to_lower().contains("dice check")):
 		out.append({"tipo": "abilita", "chi": chi, "id": "abilita", "titolo": "Abilità " + str(ab.get("nome", "")), "testo": Carte.t(ab)})
+	var tor := _torretta()
+	if tor != {} and int(tor.get("marcatori", 0)) > 0:
+		if chiave_tracce.begins_with("M:"):
+			out.append({"tipo": "torretta", "chi": chi, "id": "E62", "titolo": "Torretta Modulare", "testo": "Scarta 1 segnalino dalla Torretta (ne ha %d) per aggiungere [vanguard] alla Riserva del Tiro." % int(tor["marcatori"])})
+		if _token(int(tor["_settore"]), "E63") != {} and _pool.any(func(d): return d["tipo"] == "pericolo"):
+			out.append({"tipo": "scudo", "chi": chi, "id": "E63", "titolo": "Unità Scudo", "testo": "Scarta 1 segnalino dalla Torretta (ne ha %d) per togliere tutti i dadi Pericolo da questa Prova." % int(tor["marcatori"])})
 	return out.filter(func(x): return not (str(x["tipo"]) + str(x["chi"]) + str(x["id"])) in _usati)
 
 func _mostra_modificatori() -> void:
@@ -126,6 +153,15 @@ func _mostra_modificatori() -> void:
 func _usa_modificatore(x: Dictionary) -> void:
 	var j := int(x["chi"])
 	match str(x["tipo"]):
+		"torretta", "scudo":
+			var tor := _torretta()
+			tor["marcatori"] = int(tor["marcatori"]) - 1
+			if x["tipo"] == "torretta":
+				_pool.append({"id": "v%d" % _pool.size(), "tipo": "virtuale", "icone": ["vanguard"], "faccia": 0, "chi": chi})
+				_resoconto_mod.append("Torretta Modulare: +[vanguard] nella Riserva del Tiro")
+			else:
+				_pool = _pool.filter(func(d): return d["tipo"] != "pericolo")
+				_resoconto_mod.append("Unità Scudo: tolti i dadi Pericolo")
 		"carta":
 			esp.scarta_carta(j, str(x["id"]))
 		"attrezzatura":
@@ -243,6 +279,13 @@ func _mostra_scelta() -> void:
 					_assist_abilita[jj] = ab
 				r.add_child(cb)
 			_corpo.add_child(r)
+	var pet := _token(int(m["settore"]), "E23")
+	if pet != {} and pet.get("dado") is Dictionary and not (pet["dado"] as Dictionary).is_empty():
+		var cbp := CheckBox.new()
+		cbp.text = "P.E.T. assiste con il suo dado (%s)" % str(pet["dado"].get("tipo", ""))
+		cbp.button_pressed = _pet
+		cbp.toggled.connect(func(on): _pet = on)
+		_corpo.add_child(cbp)
 	var info := Tema.testo_ricco(17)
 	var extra := []
 	if int(m["dadi_ferita"]) > 0:
@@ -311,6 +354,14 @@ func _tira() -> void:
 				c["chi"] = j
 				Prova.tira(c, esp.rng)
 				_pool.append(c)
+	var pet := _token(int(m["settore"]), "E23")
+	if _pet and pet != {} and pet.get("dado") is Dictionary:
+		var cp: Dictionary = (pet["dado"] as Dictionary).duplicate()
+		cp["id"] = "pet"
+		cp["chi"] = chi
+		Prova.tira(cp, esp.rng)
+		_pool.append(cp)
+		_resoconto_mod.append("P.E.T. assiste con un dado")
 	var n_ferita := int(m["dadi_ferita"])
 	var icone_sett := esp.icone_settore(Carte.pianeta(str(esp.s.get("pagina", ""))), int(m["settore"]), {}) if n_ferita > 0 else []
 	for e in m.get("attrezzatura", []):
@@ -498,7 +549,10 @@ func _risolvi() -> void:
 								resoconto.append("ritirato un Vanguard: ora %s" % "+".join(Prova.icone(dd)))
 								break
 					elif en.to_lower().contains("count as [accident]"):
-						testi.append({"en": "", "it": "%s: in questa Prova i risultati [basic] contano come [accident]." % Carte.titolo(carte_ferita[k]), "fonte": "Ferita"})
+						for dd in _pool:
+							if dd["tipo"] not in ["ferita", "pericolo", "virtuale"]:
+								dd["bruciato"] = true
+						resoconto.append("%s: i risultati [basic] contano come [accident]" % Carte.titolo(carte_ferita[k]))
 					else:
 						testi.append({"en": en, "it": Carte.t(ef), "fonte": "Ferita " + Carte.titolo(carte_ferita[k])})
 					break
@@ -604,6 +658,14 @@ func _risolvi() -> void:
 			if dd["id"] == d["id"]:
 				dd["stato"] = "disponibile" if _assist_restituiti.has(j) else "speso"
 				dd["faccia"] = d["faccia"]
+	if _token(settore, "E35") != {}:
+		var r_n := 0
+		for dd in m["dadi"]:
+			if dd["stato"] == "speso" and Prova.colore(dd) == "red":
+				dd["stato"] = "disponibile"
+				r_n += 1
+		if r_n > 0:
+			resoconto.append("Laser Minerario Pesante: %d dadi rossi ricaricati" % r_n)
 	resoconto = _resoconto_mod + resoconto
 	esp.diario("%s: %s" % [m["carta"], "; ".join(resoconto)])
 	_mostra_riepilogo(resoconto, testi)

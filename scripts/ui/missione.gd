@@ -797,6 +797,32 @@ func _sezione_settore() -> void:
 					return
 				await applica([{"en": costo_t, "it": "", "fonte": Carte.titolo(ce)}, {"en": eff_t, "it": Carte.t(ce.get("effetto", "")), "fonte": Carte.titolo(ce)}], chi, n)
 				_finisci(), 12))
+		var att := en_t.find("Activation:")
+		if att >= 0 and presente:
+			var eff_a := en_t.substr(att + 11)
+			for fine in [" Then, detach", ", detach", " detach"]:
+				if eff_a.find(fine) >= 0:
+					eff_a = eff_a.substr(0, eff_a.find(fine))
+					break
+			hb2.add_child(Tema.pulsante("ATTIVA", func():
+				if not _inizia():
+					return
+				_segnalini(n).erase(tkk)
+				esp.diario("%s: attivazione" % Carte.titolo(ce))
+				await applica([{"en": eff_a.strip_edges(), "it": Carte.t(ce.get("effetto", "")), "fonte": Carte.titolo(ce)}], chi, n)
+				_finisci(), 12))
+		if str(tk["id"]) == "E23" and int(tk.get("padrone", -1)) == chi and int(tk.get("mosso", -1)) != int(esp.s["round"]):
+			hb2.add_child(Tema.pulsante("SPOSTA P.E.T.", func():
+				var col := esp.collegati(Carte.pianeta(str(esp.s.get("pagina", ""))), n)
+				var j := await _scegli("SPOSTA P.E.T.", col.map(func(x): return "Settore %d" % x), "All'inizio del turno P.E.T. può andare in un settore collegato (ignora i divieti di movimento).")
+				if j < 0:
+					return
+				_segnalini(n).erase(tkk)
+				tkk["mosso"] = int(esp.s["round"])
+				esp.s["settori"][str(col[j])].get_or_add("attrezzature", []).append(tkk)
+				esp.diario("P.E.T. si sposta nel Settore %d" % col[j])
+				_salva()
+				aggiorna(), 12))
 		if int(tk.get("marcatori", 0)) > 0:
 			hb2.add_child(Tema.pulsante("SCARTA UN SEGNALINO", func():
 				tkk["marcatori"] = int(tkk["marcatori"]) - 1
@@ -1461,7 +1487,9 @@ func _segnalino_ovunque(id: String) -> int:
 
 ## Avamposto (E47): riposando o facendo uno Sforzo nel suo settore si ricaricano 2 dadi in più.
 func _bonus_avamposto(chi: int) -> void:
-	if _ha_segnalino(int(esp.membro(chi)["settore"]), "E47"):
+	var sm := int(esp.membro(chi)["settore"])
+	var av := _segnalino_ovunque("E47")
+	if av >= 0 and (av == sm or (_ha_segnalino(av, "E58") and sm in esp.collegati(Carte.pianeta(str(esp.s.get("pagina", ""))), av))):
 		var f := esp.ricarica(chi, 2, "")
 		avviso("Avamposto: %s ricarica %d dadi in più" % [esp.membro(chi)["carta"], f])
 
@@ -1620,7 +1648,7 @@ func _usa_attrezzatura(i: int, id: String) -> void:
 		return
 	if not _inizia():
 		return
-	var rx_tok := RegEx.create_from_string("(?i)place (?:a|an|the) ([\\w .'-]+?) token in your sector(?:,? and (\\d+) markers on the token)?")
+	var rx_tok := RegEx.create_from_string("(?i)place (?:(?:a|an|the) )?([\\w.'-]+(?: [\\w.'-]+){0,3}?) token in your sector(?:,? and (\\d+) markers on the token)?")
 	var tok := rx_tok.search(en)
 	var sett_i := int(esp.membro(i)["settore"])
 	if tok and en.to_lower().contains("if you are in a lander sector") and sett_i != int(esp.s["lander"]["settore"]):
@@ -1646,12 +1674,45 @@ func _usa_attrezzatura(i: int, id: String) -> void:
 	if due >= 0 and due < 60:
 		eff = en.substr(due + 2)
 	if tok:
+		# requisiti dei potenziamenti dell'Avamposto e degli altri segnalini
+		var lo := en.to_lower()
+		var serve := []
+		if lo.contains("if there is an outpost token") or lo.contains("if there are outpost"):
+			serve.append("E47")
+		if lo.contains("and expansion tokens"):
+			serve.append("E58")
+		if lo.contains("if there is a modular turret token"):
+			serve.append("E62")
+		for sv in serve:
+			if not _ha_segnalino(sett_i, sv):
+				avviso("Serve il segnalino %s in questo settore" % Carte.titolo(Carte.per_id(sv)))
+				_finisci()
+				return
+		if lo.contains("but no other final outpost upgrades") and _segnalini(sett_i).any(func(x): return str(x["id"]) in ["E57", "E59", "E60"]):
+			avviso("C'è già un Potenziamento finale dell'Avamposto")
+			_finisci()
+			return
+		var dado_pet := {}
+		if id == "E23":
+			var dd := esp.dadi_disponibili(i)
+			if dd.is_empty():
+				avviso("Serve un dado disponibile da mettere su P.E.T.")
+				_finisci()
+				return
+			var jd := await _scegli("DADO PER P.E.T.", dd.map(func(x): return "%s (%s)" % [x["tipo"], Prova.colore(x)]), "Il dado resta su P.E.T. e assiste le Prove nel suo settore.", false)
+			dado_pet = dd[max(0, jd)]
+			dado_pet["stato"] = "pet"
 		# Attrezzatura di missione: il segnalino resta nel settore e i suoi effetti valgono per tutti
 		var marc := int(tok.get_string(2)) if tok.get_string(2) != "" else 0
 		var m3 := RegEx.create_from_string("(?i)place (\\d+) markers on this card").search(en)
 		if m3:
 			marc = int(m3.get_string(1))
-		esp.s["settori"][str(sett_i)].get_or_add("attrezzature", []).append({"id": id, "nome": tok.get_string(1), "marcatori": marc})
+		var nuovo := {"id": id, "nome": tok.get_string(1), "marcatori": marc}
+		if id == "E23":
+			nuovo["padrone"] = i
+			nuovo["dado"] = dado_pet.duplicate()
+			nuovo["mosso"] = int(esp.s["round"])
+		esp.s["settori"][str(sett_i)].get_or_add("attrezzature", []).append(nuovo)
 		(esp.membro(i)["attrezzatura"] as Array).erase(id)
 		esp.diario("%s piazza il segnalino %s nel Settore %d" % [esp.membro(i)["carta"], tok.get_string(1), sett_i])
 		await applica(testi, i, sett_i)
@@ -2091,6 +2152,8 @@ func _minacce_avanzano(n: int, fatti: Array, manuali: Array, logs: Array) -> voi
 		for k in n:
 			if not m in esp.s["minacce"]:
 				break
+			if await _sistema_difesa(m):
+				continue
 			m["tempo"] = int(m["tempo"]) + 1
 			var cas: Dictionary = {}
 			for x in tr:
@@ -2111,6 +2174,22 @@ func _minacce_avanzano(n: int, fatti: Array, manuali: Array, logs: Array) -> voi
 					_gira_minaccia(m, fatti)
 					continue
 				await _effetto_minaccia(m, c, ne, fatti, manuali, logs)
+
+## Sistema di Difesa (E14): scartando 1 segnalino si ignora un avanzamento del Tempo di una Minaccia nel suo settore.
+func _sistema_difesa(m: Dictionary) -> bool:
+	for tk in _segnalini(int(m.get("settore", 0))):
+		if str(tk["id"]) == "E14" and int(tk.get("marcatori", 0)) > 0:
+			var k := await _scegli("SISTEMA DI DIFESA", ["IGNORA L'AVANZAMENTO (scarta 1 segnalino, ne restano %d)" % (int(tk["marcatori"]) - 1), "NO"],
+				"La Minaccia %s sta per avanzare sulla sua traccia del Tempo nel Settore %d." % [m["nome"], int(m["settore"])], false)
+			if k != 0:
+				return false
+			tk["marcatori"] = int(tk["marcatori"]) - 1
+			esp.diario("Sistema di Difesa: ignorato l'avanzamento del Tempo di %s" % m["nome"])
+			if int(tk["marcatori"]) <= 0:
+				_segnalini(int(m["settore"])).erase(tk)
+				esp.diario("Sistema di Difesa: segnalini finiti, la carta torna nell'Armeria")
+			return true
+	return false
 
 func _gira_minaccia(m: Dictionary, fatti: Array) -> void:
 	var c := _carta_minaccia(m)
