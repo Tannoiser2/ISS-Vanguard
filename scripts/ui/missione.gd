@@ -773,12 +773,14 @@ func _sezione_settore() -> void:
 		var cm := _carta_minaccia(mn)
 		var trm: Array = cm.get("tempo", []) if cm.get("tempo") is Array else []
 		_titolo("☠ " + str(mn["nome"]).to_upper(), Tema.ROSSO)
-		_testo("%s\n[color=#9fbbd6]Tempo %d/%d[/color]" % [_bb_regole(Carte.t(cm.get("regole", ""))), int(mn.get("tempo", 0)), trm.size()], 14)
+		_testo("%s\n[color=#9fbbd6]Tempo %d/%d%s[/color]" % [_bb_regole(Carte.t(cm.get("regole", ""))), int(mn.get("tempo", 0)), trm.size(), (" — segnalini sulla carta: %d" % int(mn["marcatori"])) if int(mn.get("marcatori", 0)) > 0 else ""], 14)
 		var mm: Dictionary = mn
 		_pannello.add_child(Tema.pulsante("VEDI LA CARTA MINACCIA", func(): _mostra_carta(str(mm["file"]), str(mm["nome"])), 12))
 		var am: Array = cm.get("azioni", []) if cm.get("azioni") is Array else []
 		for k in am.size():
 			voci.append({"azione": am[k], "chiave": "M:%s#%d" % [mn.get("en", mn["nome"]), k], "fonte": "Minaccia " + str(mn["nome"]), "n": -1})
+	if int(st.get("segni", 0)) > 0:
+		_testo("[color=#ffb347]Segnalini Minaccia in questo settore: %d[/color]" % int(st["segni"]), 14)
 	for tk in _segnalini(n):
 		var ce := Carte.per_id(str(tk["id"]))
 		var en_t := Carte.en(ce.get("effetto", ""))
@@ -2222,6 +2224,11 @@ func _effetto_minaccia(m: Dictionary, c: Dictionary, nome_eff: String, fatti: Ar
 	if testo == "":
 		manuali.append("Minaccia %s: %s" % [m["nome"], nome_eff])
 		return
+	_eff_nome = nome_eff.to_lower()
+	_regole_minaccia = regole_en.to_lower()
+	if int(m["settore"]) <= 0 and _eff_nome == "travel" and _regole_minaccia.contains("its travel is ignored"):
+		fatti.append("%s è fuori dalla plancia: il Viaggio si ignora" % m["nome"])
+		return
 	var sett0 := int(m["settore"])
 	# tabella col D10 sui settori collegati
 	if testo.to_lower().contains("roll d10") and testo.contains("0-4"):
@@ -2262,7 +2269,27 @@ func _effetto_minaccia(m: Dictionary, c: Dictionary, nome_eff: String, fatti: Ar
 			if nessuno:
 				await _frase_minaccia(m, fr.substr(cond_n.get_end()).strip_edges(), fatti, manuali, logs, testo_it)
 			continue
-		if frl.begins_with("if there is no such sector") or frl.begins_with("if there are no sectors with a higher number"):
+		if frl.begins_with("if there is no such sector") or frl.begins_with("if there are no sectors with a higher number") or frl.begins_with("in case of a tie"):
+			continue
+		# "If there is a Crewmember in the Sector with X, Effetto." / "Otherwise, …"
+		var cc := RegEx.create_from_string("(?i)^if there is a crewmember in the sector with .+?, (\\w[\\w -]*)\\.?$").search(fr)
+		if cc:
+			var vero := not esp.nel_settore(int(m["settore"])).is_empty()
+			_altrimenti = not vero
+			if vero:
+				fatti.append("C'è un Membro nel settore di %s: %s" % [m["nome"], cc.get_string(1)])
+				await _effetto_minaccia(m, c, cc.get_string(1), fatti, manuali, logs)
+			continue
+		var cm2 := RegEx.create_from_string("(?i)^if there(?:'s| is) no marker on the .+? threat card, (.+)$").search(fr)
+		if cm2:
+			var vero2 := int(m.get("marcatori", 0)) <= 0
+			_altrimenti = not vero2
+			if vero2:
+				await _frase_minaccia(m, cm2.get_string(1), fatti, manuali, logs, testo_it)
+			continue
+		if frl.begins_with("otherwise, "):
+			if _altrimenti:
+				await _frase_minaccia(m, fr.substr(11).strip_edges(), fatti, manuali, logs, testo_it)
 			continue
 		var rag := RegEx.create_from_string("(?i)^if .+? reaches sector (\\d+), go to log (\\d+)").search(fr)
 		if rag:
@@ -2273,7 +2300,14 @@ func _effetto_minaccia(m: Dictionary, c: Dictionary, nome_eff: String, fatti: Ar
 		nessuno = await _frase_minaccia(m, fr, fatti, manuali, logs, testo_it)
 
 ## Una frase dell'effetto di una Minaccia; restituisce true se "nessun Membro" era nel suo settore.
+var _eff_nome := ""
+var _regole_minaccia := ""
+var _altrimenti := false
+
 func _frase_minaccia(m: Dictionary, testo: String, fatti: Array, manuali: Array, logs: Array, testo_it: String) -> bool:
+	for pre in ["Then, ", "then, ", "Then "]:
+		testo = testo.trim_prefix(pre)
+	testo = testo.strip_edges()
 	var en := str(m.get("en", "")).to_lower()
 	var tl := testo.to_lower().trim_prefix("then, ").trim_prefix("then ")
 	var sett := int(m["settore"])
@@ -2328,6 +2362,78 @@ func _frase_minaccia(m: Dictionary, testo: String, fatti: Array, manuali: Array,
 		if tl.contains("discard 1 marker from this card"):
 			m["marcatori"] = max(0, int(m.get("marcatori", 0)) - 1)
 		return false
+	var glog := RegEx.create_from_string("(?i)^go to log (\\d+)").search(tl)
+	if glog:
+		logs.append(int(glog.get_string(1)))
+		fatti.append("%s: Annotazione %s" % [m["nome"], glog.get_string(1)])
+		return false
+	var rmk := RegEx.create_from_string("(?i)^(?:remove|discard) (?:1|a) markers? from (?:this card|the .+? threat card)\\.?(?: and (.+))?$").search(testo)
+	if rmk:
+		m["marcatori"] = max(0, int(m.get("marcatori", 0)) - 1)
+		fatti.append("%s: un segnalino in meno sulla carta (%d)" % [m["nome"], int(m["marcatori"])])
+		if rmk.get_string(1) != "":
+			return await _frase_minaccia(m, rmk.get_string(1), fatti, manuali, logs, testo_it)
+		return false
+	if tl.begins_with("place 1 marker there") or tl.begins_with("place 1 marker on this card"):
+		m["marcatori"] = int(m.get("marcatori", 0)) + 1
+		fatti.append("%s: un segnalino sulla carta (%d)" % [m["nome"], int(m["marcatori"])])
+		return false
+	if RegEx.create_from_string("(?i)^move .+? to a random connected sector").search(testo):
+		var colr := esp.collegati(pl, sett)
+		if not colr.is_empty():
+			m["settore"] = colr[esp.rng.randi_range(0, colr.size() - 1)]
+		fatti.append("%s nel Settore %d" % [m["nome"], int(m["settore"])])
+		return false
+	# segnalini nei settori (Squarcio Gravitazionale)
+	if RegEx.create_from_string("(?i)^place .+? in the lowest-numbered sector with the fewest markers").search(testo):
+		var migliore := -1
+		var ks: Variant = esp.s["settori"].keys().map(func(x): return int(x))
+		ks.sort()
+		for k in ks:
+			if migliore < 0 or int(esp.s["settori"][str(k)].get("segni", 0)) < int(esp.s["settori"][str(migliore)].get("segni", 0)):
+				migliore = k
+		m["settore"] = migliore
+		fatti.append("%s nel Settore %d" % [m["nome"], migliore])
+		return false
+	var asg := RegEx.create_from_string("(?i)^(add|remove) 1 marker (?:to|from) (?:that sector|the sector with|sector with)").search(testo)
+	if asg:
+		var st2: Dictionary = esp.s["settori"][str(int(m["settore"]))]
+		st2["segni"] = max(0, int(st2.get("segni", 0)) + (1 if asg.get_string(1).to_lower() == "add" else -1))
+		fatti.append("Settore %d: %d segnalini" % [int(m["settore"]), int(st2["segni"])])
+		var dopo_p := testo.find(".")
+		if dopo_p > 0 and dopo_p < testo.length() - 2:
+			return await _frase_minaccia(m, testo.substr(dopo_p + 1), fatti, manuali, logs, testo_it)
+		return false
+	# segnalini sulle plance dei Membri (Oftalmoide)
+	if tl.begins_with("place a marker on a crew board of a crewmember in the highest-numbered sector"):
+		var vivi2 := esp.vivi()
+		vivi2.shuffle()
+		vivi2.sort_custom(func(a, b): return int(esp.membro(a)["settore"]) > int(esp.membro(b)["settore"]))
+		if not vivi2.is_empty():
+			var mb := esp.membro(vivi2[0])
+			mb["segni"] = int(mb.get("segni", 0)) + 1
+			fatti.append("%s: un segnalino sulla plancia di %s" % [m["nome"], mb["carta"]])
+		return false
+	var cpm := RegEx.create_from_string("(?i)^each player with a marker on their crew board discards 1 marker from their crew board and (.+?)(?: \\(if no player has a marker, (\\w+) instead\\))?\\.?$").search(testo)
+	if cpm:
+		var con := esp.vivi().filter(func(i): return int(esp.membro(i).get("segni", 0)) > 0)
+		if con.is_empty() and cpm.get_string(2) != "":
+			await _effetto_minaccia(m, _carta_minaccia(m), cpm.get_string(2), fatti, manuali, logs)
+			return false
+		for i in con:
+			esp.membro(i)["segni"] = int(esp.membro(i)["segni"]) - 1
+			for op in Effetti.analizza(cpm.get_string(1))["op"]:
+				await _op(op, i, sett, fatti, manuali, logs, "Minaccia " + str(m["nome"]))
+		return false
+	var rmb := RegEx.create_from_string("(?i)^remove .+? from the planet board(?: and \\[outcome(Red|Green|Yellow)Reduction\\])?").search(testo)
+	if rmb:
+		m["settore"] = 0
+		fatti.append("%s esce dalla plancia del Pianeta" % m["nome"])
+		if rmb.get_string(1) != "":
+			var col4 := rmb.get_string(1).to_lower()
+			var v4 := esp.avanza_traccia(-1, "M:%s#0#%s" % [m.get("en", m["nome"]), col4], -1, 99)
+			fatti.append("Traccia %s dell'azione di %s: %d" % [col4, m["nome"], v4])
+		return false
 	if tl.begins_with("travel and [outcome"):
 		var c := _carta_minaccia(m)
 		await _effetto_minaccia(m, c, "Travel", fatti, manuali, logs)
@@ -2365,6 +2471,19 @@ func _frase_minaccia(m: Dictionary, testo: String, fatti: Array, manuali: Array,
 			bersagli = esp.nel_settore(sett)
 			resto = testo.substr(pref.length()).strip_edges()
 			break
+	if tl2.begins_with("each crewmember in that sector"):
+		bersagli = esp.nel_settore(sett)
+		resto = testo.substr(30).strip_edges()
+	# "Attack affects …" (Predatore Alfa): tutti nel suo settore, o 1 a caso se è fuori plancia
+	if bersagli.is_empty() and _regole_minaccia.contains(_eff_nome + " affects") and not tl2.begins_with("each "):
+		if sett <= 0:
+			var vv := esp.vivi()
+			bersagli = [vv[esp.rng.randi_range(0, vv.size() - 1)]] if not vv.is_empty() else []
+		else:
+			bersagli = esp.nel_settore(sett)
+		if bersagli.is_empty():
+			fatti.append("%s: nessun Membro coinvolto" % m["nome"])
+			return true
 	if tl2.begins_with("each other crewmember"):
 		bersagli = esp.vivi().filter(func(i): return int(esp.membro(i)["settore"]) != sett)
 		resto = testo.substr(21).strip_edges()
