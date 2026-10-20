@@ -101,7 +101,49 @@ func prepara(pagina: String, pianeta: Dictionary, squadra: Array, lander: Dictio
 	s["eventi_sospesi"] = s["tutorial"]
 	s["morale"] = 0
 	s["diario"] = []
+	# Scoperte Eccezionali sul lato destro della plancia ("17, 34": la prima in fondo, l'ultima in cima)
+	s["eccezionali_pianeta"] = []
+	var cd = pianeta.get("colonna_destra", {})
+	if cd is Dictionary:
+		for x in str(cd.get("scoperta_eccezionale", "")).replace(";", ",").split(","):
+			if x.strip_edges().is_valid_int():
+				s["eccezionali_pianeta"].append(int(x.strip_edges()))
 	diario("Inizio dell'esplorazione: %s" % str(pianeta.get("pianeta", pagina)))
+	var reg = mazzi.get("registro", {})
+	if reg is Dictionary and not reg.is_empty():
+		ripristina(reg)
+
+## Scheda del pianeta registrato (Ship Book pag. 23 e 39): PDI rivelati e settori finiti, Minacce,
+## Scoperte Eccezionali non ancora prese. Le carte con l'icona [noSave] non si registrano.
+func registra(carte_pdi: Callable, carte_minacce: Callable) -> Dictionary:
+	var sett := {}
+	for k in s["settori"]:
+		var st: Dictionary = s["settori"][k]
+		var pila: Array = (st.get("pdi", []) as Array).filter(func(id): return not "noSave" in (carte_pdi.call(str(id)).get("icone", []) as Array))
+		sett[k] = {"pdi": pila, "finito": st.get("finito", false), "visitato": st.get("visitato", false)}
+	var minacce := []
+	for m in s["minacce"]:
+		if not "noSave" in (carte_minacce.call(m).get("icone", []) as Array):
+			minacce.append({"nome": m.get("nome", ""), "en": m.get("en", ""), "file": m.get("file", ""), "settore": int(m.get("settore", 0))})
+	return {"settori": sett, "minacce": minacce, "eccezionali_pianeta": (s.get("eccezionali_pianeta", []) as Array).duplicate()}
+
+func ripristina(reg: Dictionary) -> void:
+	for k in reg.get("settori", {}):
+		if not s["settori"].has(str(k)):
+			continue
+		var r: Dictionary = reg["settori"][k]
+		var st: Dictionary = s["settori"][str(k)]
+		if not (r.get("pdi", []) as Array).is_empty():
+			st["pdi"] = (r["pdi"] as Array).duplicate()
+		st["finito"] = r.get("finito", false)
+		st["visitato"] = r.get("visitato", false)
+	for m in reg.get("minacce", []):
+		var x: Dictionary = (m as Dictionary).duplicate()
+		x["tempo"] = 0
+		s["minacce"].append(x)
+	if reg.has("eccezionali_pianeta"):
+		s["eccezionali_pianeta"] = (reg["eccezionali_pianeta"] as Array).map(func(x): return int(x))
+	diario("Pianeta già visitato: PDI, Minacce e Scoperte Eccezionali come l'ultima volta")
 
 func _nuovo_dado(tipo: String) -> Dictionary:
 	_id_dado += 1

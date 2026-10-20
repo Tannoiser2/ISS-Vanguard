@@ -990,6 +990,9 @@ func _pannello_fine() -> void:
 		_pannello.add_child(Tema.pulsante_primario("ANNOTAZIONE %d" % int(log_fine), func(): _apri_log(int(log_fine)), 14))
 	_testo("Segui il Ship Book (pag. 25): riporta Scoperte, Ferite e Successi sulla nave.", 14)
 	_pannello.add_child(Tema.pulsante_primario("TORNA ALLA NAVE", func():
+		# il pianeta resta registrato per la prossima visita (salvo il tutorial)
+		if not esp.s.get("tutorial", false):
+			Campagna.dati.get_or_add("pianeti_registrati", {})[esp.s["pagina"]] = esp.registra(func(id): return Carte.per_id(id), func(m): return _carta_minaccia(m))
 		var arch: Array = Campagna.dati.get_or_add("esplorazioni_concluse", [])
 		arch.append({"pagina": esp.s["pagina"], "finita": esp.s["finita"], "successi": esp.s["successi"], "scoperte": esp.s["scoperte"],
 			"eccezionali": esp.s["eccezionali"], "grado_girato": esp.s.get("grado_girato", false), "grado_superiore": esp.s.get("grado_superiore", ""), "missioni_rimaste": esp.s["missioni"],
@@ -1578,9 +1581,24 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 				fatti.append("Scoperta %s%s" % [NOMI_SCOPERTE.get(op["tipo"], op["tipo"]), "" if c2 != "" else " (mazzo vuoto)"])
 			_controlla_scoperte(manuali)
 		"scoperta_eccezionale":
-			esp.s["eccezionali"].append(int(op["n"]))
-			fatti.append("Scoperta Eccezionale %s" % (str(op["n"]) if int(op["n"]) > 0 else ""))
-			manuali.append("Prendi la carta Scoperta Eccezionale %s" % (str(op["n"]) if int(op["n"]) > 0 else "in cima"))
+			var ep: Array = esp.s.get_or_add("eccezionali_pianeta", [])
+			var num := int(op["n"])
+			if num == 0:
+				if ep.is_empty():
+					# "se non ci sono più carte qui, ottieni invece 1 Successo" (plancia del pianeta)
+					esp.s["successi"] = int(esp.s["successi"]) + 1
+					fatti.append("Nessuna Scoperta Eccezionale rimasta sul pianeta: +1 Successo")
+				else:
+					num = int(ep.pop_back())
+			else:
+				ep.erase(num)
+			if num > 0:
+				esp.s["eccezionali"].append(num)
+				var ue := _eccezionale(num)
+				fatti.append("[b]Scoperta Eccezionale %d[/b]%s" % [num, (": " + Carte.titolo(ue)) if not ue.is_empty() else ""])
+				var pe = ue.get("campi", {}).get("esplorazione")
+				if pe is Dictionary:
+					manuali.append("Scoperta Eccezionale %d: %s" % [num, Carte.t(pe)])
 		"successi":
 			esp.s["successi"] = int(esp.s["successi"]) + int(op["n"])
 			fatti.append("+%d Successo" % int(op["n"]))
@@ -1995,6 +2013,12 @@ func istruzione_logbook(t: String) -> Array:
 	_salva()
 	aggiorna()
 	return fatti
+
+func _eccezionale(n: int) -> Dictionary:
+	for c in Carte.categoria("scoperte"):
+		if str(c.get("tipo", "")) == "unique_discovery" and int(c.get("campi", {}).get("numero", -1)) == n:
+			return c
+	return {}
 
 func _controlla_scoperte(manuali: Array) -> void:
 	if esp.s["scoperte"].size() > int(esp.s["lander"]["max_scoperte"]):

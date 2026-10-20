@@ -72,6 +72,10 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
     (dadi spesi o sacrificati, Ferite, traccia o risultato rosso, ritiro del Vanguard);
   - **carta Grado Superiore**: se ne scelgono 2 all'inizio, la sua Azione Speciale compare nei settori
     giusti, le condizioni (Scoperte, Indizi, Ferite, Provviste, Minacce scartate…) si controllano da sole;
+  - **pianeti registrati**: lasciando un pianeta si registrano i PDI rivelati, i settori finiti, le Minacce
+    e le Scoperte Eccezionali non ancora prese (le carte con l'icona "non salvare" escluse); tornandoci
+    la plancia si ripristina da sola; la Scoperta Eccezionale "in cima" si prende dalla plancia
+    (e se non ne restano si ottiene 1 Successo);
   - tutto lo stato dell'esplorazione è salvato nella campagna e si riprende da dove si era rimasti.
 - **Gestione della Nave automatizzata** (pulsante GESTIONE NAVE): il Ship Book una pagina alla volta,
   con a sinistra i passi e al centro solo quello corrente.
@@ -126,6 +130,7 @@ tests/prova_missione.gd    partita simulata a caso dell'esplorazione (-- p.18-19
 tests/foto_missione.gd     screenshot della preparazione e dell'esplorazione
 tests/prova_nave.gd        giro completo della Gestione della Nave (-- foto per gli screenshot)
 tests/prova_atterraggio.gd atterraggio, risposte automatiche del Logbook e Minacce
+tests/prova_pianeti.gd     registrazione e ripristino dei pianeti visitati
 tools/unisci_carte.py      trascrizioni delle carte (data/carte) -> data/carte_db.json
 ```
 

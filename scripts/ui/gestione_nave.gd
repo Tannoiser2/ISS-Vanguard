@@ -501,7 +501,7 @@ func istruzione_logbook(t: String) -> Array:
 				nave.s["pool"]["successi"] = int(nave.s["pool"]["successi"]) + int(op["n"])
 				fatti.append("+%d Successi" % int(op["n"]))
 			"scoperta_eccezionale":
-				nave.s["eccezionali"][str(op["n"])] = true
+				nave.s["eccezionali"][str(int(op["n"]))] = true
 				fatti.append("Scoperta Eccezionale %d" % int(op["n"]))
 	if not fatti.is_empty():
 		_salva()
@@ -599,6 +599,15 @@ func _riempi_cassetto() -> void:
 			_cassetto.add_child(Tema.etichetta("ARMERIA", 13, Tema.CIANO, true))
 			for e in s["armeria"]:
 				_testo("• %s" % _carta(str(e)), 14, _cassetto)
+			var reg: Dictionary = Campagna.dati.get("pianeti_registrati", {})
+			if not reg.is_empty():
+				_cassetto.add_child(Tema.etichetta("PIANETI REGISTRATI", 13, Tema.CIANO, true))
+				for k in reg:
+					var n_pdi := 0
+					for x in reg[k].get("settori", {}):
+						n_pdi += (reg[k]["settori"][x].get("pdi", []) as Array).size()
+					_testo("• %s — %d PDI, %d Minacce, Eccezionali: %s" % [str(Carte.pianeta(str(k)).get("pianeta", k)), n_pdi, (reg[k].get("minacce", []) as Array).size(),
+						", ".join((reg[k].get("eccezionali_pianeta", []) as Array).map(func(x): return str(x)))], 14, _cassetto)
 			_cassetto.add_child(Tema.etichetta("HANGAR", 13, Tema.CIANO, true))
 			for l in s["lander"]:
 				_testo("• %s%s" % [l["nome"], " (danneggiato)" if l.get("danneggiato", false) else ""], 14, _cassetto)
@@ -654,7 +663,7 @@ func _passo_avvio() -> void:
 		var ultima: Dictionary = (Campagna.dati.get("esplorazioni_concluse", [{}]) as Array).back() if not (Campagna.dati.get("esplorazioni_concluse", []) as Array).is_empty() else {}
 		nave.s["pool"]["successi"] = int(ultima.get("successi", 0))
 		for e in ultima.get("eccezionali", []):
-			nave.s["eccezionali"][str(e)] = true
+			nave.s["eccezionali"][str(int(e))] = true
 		for sc in ultima.get("scoperte", []):
 			nave.s["scoperte"].append({"tipo": sc.get("tipo", ""), "file": sc.get("carta", ""), "rarita": str(Carte.per_file(str(sc.get("carta", ""))).get("campi", {}).get("rarita", ""))})
 		await _reclute_iniziali(2, 1)
@@ -1371,7 +1380,7 @@ func _passo_scarico() -> void:
 		if not e.get("scaricata", false):
 			e["scaricata"] = true
 			for n in e.get("eccezionali", []):
-				nave.s["eccezionali"][str(n)] = true
+				nave.s["eccezionali"][str(int(n))] = true
 			for s in e.get("scoperte", []):
 				nave.s["scoperte"].append({"tipo": s.get("tipo", ""), "file": s.get("carta", ""), "rarita": str(Carte.per_file(str(s.get("carta", ""))).get("campi", {}).get("rarita", ""))})
 			for a in nave.s.get("mod_montate", []):

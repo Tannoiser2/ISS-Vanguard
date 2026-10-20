@@ -13,6 +13,7 @@ var pagina_iniziale := "p.2-3"
 ## Dalla Gestione della Nave: {"pagina", "membri": [{nave, carta, file, reparto, grado, cariche, dadi, conv}], "lander"}
 var dalla_nave: Dictionary = {}
 var _griglia: GridContainer
+var _nota_registro: Label
 var _pianeta: OptionButton
 var _righe := []          # [{membro: OptionButton, reparto: OptionButton, grado: SpinBox, attivo: CheckBox}]
 var _lander: OptionButton
@@ -124,6 +125,10 @@ func _ready() -> void:
 	_condizione = LineEdit.new()
 	_condizione.custom_minimum_size = Vector2(240, 0)
 	hm.add_child(_condizione)
+	_nota_registro = Label.new()
+	_nota_registro.add_theme_color_override("font_color", Tema.AMBRA)
+	_nota_registro.add_theme_font_size_override("font_size", 15)
+	v.add_child(_nota_registro)
 	_proponi_condizione()
 	var nota := Label.new()
 	nota.text = "Missioni e Condizione: il Logbook e la plancia indicano quali carte usare. Il Lander parte nel settore con l'icona Lander."
@@ -155,6 +160,16 @@ func _proponi_condizione() -> void:
 	var st: String = _pianeti[_pianeta.selected]["stato"] if not _pianeti.is_empty() else ""
 	var pl := Carte.pianeta(st)
 	var cd: Dictionary = pl.get("colonna_destra", {}) if pl.get("colonna_destra") is Dictionary else {}
+	if _nota_registro:
+		var reg: Dictionary = (Campagna.dati.get("pianeti_registrati", {}) as Dictionary).get(st, {})
+		if reg.is_empty():
+			_nota_registro.text = ""
+		else:
+			var n_pdi := 0
+			for k in reg.get("settori", {}):
+				n_pdi += (reg["settori"][k].get("pdi", []) as Array).size()
+			_nota_registro.text = "Pianeta già visitato: si ripristinano %d PDI, %d Minacce e le Scoperte Eccezionali rimaste (%s)." % [n_pdi, (reg.get("minacce", []) as Array).size(),
+				", ".join((reg.get("eccezionali_pianeta", []) as Array).map(func(x): return str(x))) if not (reg.get("eccezionali_pianeta", []) as Array).is_empty() else "nessuna"]
 	var cond = cd.get("condizione", "")
 	_condizione.text = cond if cond is String else "(stampata sulla plancia)"
 	var mis = cd.get("missione", "")
@@ -234,6 +249,7 @@ func _conferma() -> void:
 		"scoperte": _scoperte(),
 		"indizi": _indizi(),
 		"provviste_illimitate": _tutorial.button_pressed and st == "p.2-3",
+		"registro": (Campagna.dati.get("pianeti_registrati", {}) as Dictionary).get(st, {}) if not _tutorial.button_pressed else {},
 		"tutorial": _tutorial.button_pressed and st == "p.2-3",
 	}
 	pronta.emit({"pagina": st, "squadra": squadra, "lander": lander, "mazzi": mazzi, "tutorial": _tutorial.button_pressed})
