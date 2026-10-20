@@ -491,7 +491,7 @@
    "quando": "anytime",
    "effetto": {
     "en": "Anytime: When another Crewmember in your Sector or a connected Sector would gain an Injury, you gain a Wounded Injury instead.",
-    "it": "In qualsiasi momento: Quando un altro Membro dell'Equipaggio nel tuo Settore o in un Settore collegato starebbe per subire una Ferita, invece subisci tu una Ferita Ferito."
+    "it": "In qualsiasi momento: Quando un altro Membro dell'Equipaggio nel tuo Settore o in un Settore collegato starebbe per subire una Ferita, invece subisci tu una Ferita Lesione."
    },
    "icone_sx": [
     "security",

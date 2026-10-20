@@ -1,478 +1,982 @@
-{"carte": [
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p010_12911.webp",
-  "id": "P010",
-  "titolo": {"en": "DESERT", "it": "DESERTO"},
-  "icone": ["finalPOI", "desert"],
-  "testo_colore": {"en": "The sand is coarse, and rough, and irritating, and it gets everywhere.", "it": "La sabbia è ruvida, grezza e irritante, e si infila dappertutto."},
-  "testo": {"en": "Each Crewmember who ends their turn in this Sector [spendDie].", "it": "Ogni Membro dell'Equipaggio che termina il proprio turno in questo Settore [spendDie]."},
-  "azioni": [],
-  "dubbi": ""
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p085_12624.webp",
-  "id": "P085",
-  "titolo": {"en": "SPANNED CHASMS", "it": "BURRONI ATTRAVERSATI"},
-  "icone": ["deadly", "rocky"],
-  "testo_colore": {"en": "The narrow bridges laid over the chasms allow us to traverse the area, but they do bring their own risks...", "it": "Gli stretti ponti gettati sopra i burroni ci permettono di attraversare la zona, ma comportano anche i loro rischi..."},
-  "azioni": [
-   {
-    "nome": {"en": "SURVEY THE RAVINES", "it": "ESAMINARE LE GOLE"},
-    "icona": "diceCheck",
-    "pericolo": [],
-    "prova": true,
-    "costo": "",
-    "speciali": [],
-    "esiti": [
-     {"colore": "yellow", "req": "scouting", "en": "Gain a Unique Discovery.", "it": "Ottieni una Scoperta Eccezionale.", "segue": "green"},
-     {"colore": "green", "req": "redDie+redDie", "en": "Gain 1 [success] and 2 Microorganism Leads, replace with card P160.", "it": "Ottieni 1 [success] e 2 Indizi Microorganismo, sostituisci con la carta P160."},
-     {"colore": "red", "req": "", "en": "Go to Log 125.", "it": "Vai all'Annotazione 125."}
-    ],
-    "frecce": "Freccia dalla riga gialla verso la riga verde: ottenendo il verde si applica anche il giallo."
-   }
-  ],
-  "dubbi": ""
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p130_13100.webp",
-  "id": "P130",
-  "titolo": {"en": "ASH FIELD", "it": "CAMPO DI CENERE"},
-  "icone": ["desert", "vegetation", "noSave"],
-  "testo_colore": {"en": "This area was burning not so long ago – the oxygen level is low enough to land here without the risk of combustion.", "it": "Questa zona bruciava non molto tempo fa: il livello di ossigeno è abbastanza basso da poter atterrare qui senza rischio di combustione."},
-  "testo": {"en": "This card should always be on top of the other cards in the same Sector.", "it": "Questa carta deve sempre trovarsi sopra le altre carte nello stesso Settore."},
-  "azioni": [
-   {
-    "nome": {"en": "FORAGE", "it": "RACCOGLIERE"},
-    "icona": "diceCheck",
-    "pericolo": [],
-    "prova": true,
-    "costo": "",
-    "speciali": [],
-    "esiti": [
-     {"colore": "green", "req": "biology", "en": "Gain 1 Strange Flora Lead.", "it": "Ottieni 1 Indizio Strana Vegetazione."},
-     {"colore": "green", "req": "gathering", "en": "Gain 1 Mineral Lead.", "it": "Ottieni 1 Indizio Minerale."},
-     {"colore": "red", "req": "", "en": "Gain a Burned Injury.", "it": "Subisci una Ferita Ustione."}
-    ]
-   }
-  ],
-  "dubbi": "Seconda icona bioma letta come vegetation (foglia). Due righe verdi indipendenti: presumibilmente si applicano tutte quelle soddisfatte."
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p142_13112.webp",
-  "id": "P142",
-  "titolo": {"en": "THE ENDLESS MAZE", "it": "IL LABIRINTO INFINITO"},
-  "icone": ["finalPOI"],
-  "testo_colore": {"en": "Caves and tunnels spread in every possible direction.", "it": "Grotte e gallerie si diramano in ogni possibile direzione."},
-  "azioni": [
-   {
-    "nome": {"en": "SEARCH THE CAVE SYSTEM", "it": "PERLUSTRARE IL SISTEMA DI GROTTE"},
-    "icona": "diceCheck",
-    "pericolo": [],
-    "prova": true,
-    "costo": {"en": "Gain a Panicked Injury before the roll.", "it": "Subisci una Ferita Panico prima del tiro."},
-    "speciali": [],
-    "esiti": [
-     {"colore": "yellow", "req": "defence+scouting", "en": "If you gained the Panicked Injury during this Action, discard it along with the Injury die.", "it": "Se hai subito la Ferita Panico durante questa Azione, scartala insieme al dado Ferita.", "segue": "green"},
-     {"colore": "green", "req": "redDie+redDie+redDie+greenDie", "en": "Go to Log 418.", "it": "Vai all'Annotazione 418."},
-     {"colore": "red", "req": "", "en": "Lose 1 Supplies and roll [dangerDieC].", "it": "Perdi 1 Provviste e tira [dangerDieC]."}
-    ],
-    "frecce": "Freccia dalla riga gialla verso la riga verde: ottenendo il verde si applica anche il giallo."
-   }
-  ],
-  "dubbi": ""
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p170_13209.webp",
-  "id": "P170",
-  "titolo": {"en": "EVERSTORM", "it": "TEMPESTA PERENNE"},
-  "icone": ["finalPOI", "deadly"],
-  "testo_colore": {"en": "The winds shift! A sudden storm engulfs our Landing Zone, making it impossible to return to our lander.", "it": "I venti cambiano! Un'improvvisa tempesta avvolge la nostra Zona di Atterraggio, rendendo impossibile tornare al nostro lander."},
-  "testo": {"en": "Each Crewmember who ends their turn in this Sector rolls [dangerDieA].", "it": "Ogni Membro dell'Equipaggio che termina il proprio turno in questo Settore tira [dangerDieA]."},
-  "azioni": [],
-  "dubbi": ""
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p196_13221.webp",
-  "id": "P196",
-  "titolo": {"en": "INTO THE DEPTHS", "it": "NELLE PROFONDITÀ"},
-  "icone": ["frigid", "water", "finalPOI"],
-  "testo_colore": {"en": "There's much more water than we expected. We can explore this new aquatic world.", "it": "C'è molta più acqua di quanto ci aspettassimo. Possiamo esplorare questo nuovo mondo acquatico."},
-  "azioni": [
-   {
-    "nome": {"en": "DESCEND UNDER THE ICE", "it": "SCENDERE SOTTO IL GHIACCIO"},
-    "icona": "",
-    "pericolo": [],
-    "prova": false,
-    "costo": {"en": "You can perform this Action only if all Crewmembers are in this Sector and agree.", "it": "Puoi eseguire questa Azione solo se tutti i Membri dell'Equipaggio sono in questo Settore e sono d'accordo."},
-    "speciali": [],
-    "esiti": [
-     {"colore": "", "req": "", "en": "Each Crewmember [spendDie] to go to Log 260.", "it": "Ogni Membro dell'Equipaggio [spendDie] per andare all'Annotazione 260."}
-    ]
-   }
-  ],
-  "dubbi": "Azione senza tiro (nessuna icona diceCheck): requisito = tutti i Membri nel Settore e d'accordo; costo = ogni Membro spende un dado; effetto = Annotazione 260. Condizione nel campo costo, effetto come esito senza colore."
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p214_19006.webp",
-  "id": "P214",
-  "titolo": {"en": "COMMOTION", "it": "TRAMBUSTO"},
-  "icone": ["noSave"],
-  "testo_colore": {"en": "Usually calm Recliners make an uproar along the shore of the lake...", "it": "I Recliner, di solito tranquilli, fanno baccano lungo la riva del lago..."},
-  "azioni": [
-   {
-    "nome": {"en": "CHECK THE SITUATION", "it": "CONTROLLARE LA SITUAZIONE"},
-    "icona": "",
-    "pericolo": [],
-    "prova": false,
-    "costo": "",
-    "speciali": [],
-    "esiti": [
-     {"colore": "", "req": "", "en": "Go to Log 398.", "it": "Vai all'Annotazione 398."}
-    ]
-   }
-  ],
-  "dubbi": "\"Recliners\" è il nome di una creatura aliena: lasciato in inglese (verificare il nome ufficiale italiano)."
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p235_19018.webp",
-  "id": "P235",
-  "titolo": {"en": "ARMORY", "it": "ARMERIA"},
-  "icone": [],
-  "testo_colore": {"en": "We've retaken the armory! We can now equip ourselves better.", "it": "Abbiamo riconquistato l'armeria! Ora possiamo equipaggiarci meglio."},
-  "azioni": [
-   {
-    "nome": {"en": "EQUIP YOURSELF", "it": "EQUIPAGGIARSI"},
-    "icona": "diceCheck",
-    "pericolo": [],
-    "prova": true,
-    "costo": "",
-    "speciali": [],
-    "esiti": [
-     {"colore": "yellow", "req": "scouting", "en": "Draw 1 Section card.", "it": "Pesca 1 carta Reparto.", "segue": "green"},
-     {"colore": "green", "req": "redDie+greenDie", "en": "Gain 1 chosen Equipment card from the Armory.", "it": "Ottieni 1 carta Attrezzatura a scelta dall'Armeria."}
-    ],
-    "frecce": "Freccia dalla riga gialla verso la riga verde: ottenendo il verde si applica anche il giallo."
-   }
-  ],
-  "dubbi": "Nessuna riga rossa. \"Armory\" qui indica probabilmente la riserva Armeria delle carte Attrezzatura."
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p272_19602.webp",
-  "id": "P272",
-  "titolo": {"en": "STRANGE LATHE", "it": "STRANO TORNIO"},
-  "icone": [],
-  "testo_colore": {"en": "The delicate surface of the mask is easy to scratch or crack...", "it": "La delicata superficie della maschera si graffia o si incrina facilmente..."},
-  "azioni": [
-   {
-    "nome": {"en": "POLISH THE MASK", "it": "LUCIDARE LA MASCHERA"},
-    "icona": "diceCheck",
-    "pericolo": [],
-    "prova": true,
-    "costo": "",
-    "speciali": [
-     {"req": "accident / physical", "effetto": "outcomeRedProgress"},
-     {"req": "construction / technology", "effetto": "outcomeGreenProgress"}
-    ],
-    "esiti": [],
-    "tracce": [
-     {"colore": "green", "caselle": 3, "en": "Go to Log 618.", "it": "Vai all'Annotazione 618."},
-     {"colore": "red", "caselle": 1, "en": "Go to Log 728.", "it": "Vai all'Annotazione 728."}
-    ]
-   }
-  ],
-  "dubbi": ""
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p284_19614.webp",
-  "id": "P284",
-  "titolo": {"en": "THE NAVEL", "it": "L'OMBELICO"},
-  "icone": [],
-  "testo_colore": {"en": "The central stone megalith seems to have some ceremonial significance.", "it": "Il megalite di pietra centrale sembra avere un qualche significato cerimoniale."},
-  "azioni": [
-   {
-    "nome": {"en": "ANALYZE THE NAVEL", "it": "ANALIZZARE L'OMBELICO"},
-    "icona": "diceCheck",
-    "pericolo": [],
-    "prova": true,
-    "costo": "",
-    "speciali": [],
-    "esiti": [
-     {"colore": "yellow", "req": "2*scienceDice", "en": "Gain 1 [success].", "it": "Ottieni 1 [success].", "segue": "green"},
-     {"colore": "green", "req": "greenDie+greenDie+blueDie+blueDie", "en": "Go to Log 480.", "it": "Vai all'Annotazione 480."}
-    ],
-    "frecce": "Freccia dalla riga gialla verso la riga verde: ottenendo il verde si applica anche il giallo."
-   }
-  ],
-  "dubbi": "Nessuna riga rossa."
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p297_19626.webp",
-  "id": "P297",
-  "titolo": {"en": "HIDDEN ENCLAVE", "it": "ENCLAVE NASCOSTA"},
-  "icone": ["finalPOI"],
-  "testo_colore": {"en": "It was probably a residential area. Or something entirely else.", "it": "Probabilmente era una zona residenziale. O qualcosa di completamente diverso."},
-  "azioni": [
-   {
-    "nome": {"en": "SUMMARIZE YOUR CURRENT KNOWLEDGE", "it": "RIASSUMERE LE CONOSCENZE ATTUALI"},
-    "icona": "diceCheck",
-    "pericolo": [],
-    "prova": true,
-    "costo": "",
-    "speciali": [],
-    "esiti": [
-     {"colore": "green", "req": "scouting+biology+technology", "en": "Go to Log 163.", "it": "Vai all'Annotazione 163."}
-    ]
+{
+ "carte": [
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p010_12911.webp",
+   "id": "P010",
+   "titolo": {
+    "en": "DESERT",
+    "it": "DESERTO"
    },
-   {
-    "nome": {"en": "TAKE SAMPLES", "it": "PRELEVARE CAMPIONI"},
-    "icona": "diceCheck",
-    "pericolo": [],
-    "prova": true,
-    "costo": "",
-    "speciali": [
-     {"req": "scouting / biology", "effetto": "outcomeRed"}
-    ],
-    "esiti": [
-     {"colore": "green", "req": "greenDie+greenDie+greenDie", "en": "Gain 3 Live Specimen Leads.", "it": "Ottieni 3 Indizi Esemplare Vivo."},
-     {"colore": "red", "req": "", "en": "Progress all Time Tracks by 1.", "it": "Fai avanzare di 1 tutte le tracce del Tempo."}
-    ]
-   }
-  ],
-  "dubbi": "La prima azione ha solo la riga verde (nessuna rossa). Nella seconda, scouting/biology porta all'esito rosso (icona outcomeRed verificata con ingrandimento)."
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p319_19703.webp",
-  "id": "P319",
-  "titolo": {"en": "SUBLEVEL COMPLEX", "it": "COMPLESSO SOTTERRANEO"},
-  "icone": [],
-  "testo_colore": {"en": "Entrance to the underground.", "it": "Ingresso al sottosuolo."},
-  "azioni": [
-   {
-    "nome": {"en": "ENTER THE COMPLEX", "it": "ENTRARE NEL COMPLESSO"},
-    "icona": "diceCheck",
-    "pericolo": [],
-    "prova": true,
-    "costo": "",
-    "speciali": [],
-    "esiti": [
-     {"colore": "green", "req": "2*scouting", "en": "Go to Log 186.", "it": "Vai all'Annotazione 186."},
-     {"colore": "red", "req": "", "en": "[spendDie]", "it": "[spendDie]"}
-    ]
-   }
-  ],
-  "dubbi": "La riga rossa contiene solo l'icona spendDie (nessun testo)."
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p331_19715.webp",
-  "id": "P331",
-  "titolo": {"en": "HALL OF TROPHIES", "it": "SALA DEI TROFEI"},
-  "icone": ["finalPOI"],
-  "testo_colore": {"en": "A looming edifice of Arrogator might.", "it": "Un incombente edificio della potenza Arrogator."},
-  "azioni": [
-   {
-    "nome": {"en": "TRY TO COMMUNICATE", "it": "TENTARE DI COMUNICARE"},
-    "icona": "diceCheck",
-    "pericolo": [],
-    "prova": true,
-    "costo": "",
-    "speciali": [],
-    "esiti": [
-     {"colore": "green", "req": "xenology+scienceDice", "en": "Go to Log 841.", "it": "Vai all'Annotazione 841."},
-     {"colore": "red", "req": "", "en": "Progress all Time Tracks by 1.", "it": "Fai avanzare di 1 tutte le tracce del Tempo."}
-    ]
-   }
-  ],
-  "dubbi": "\"Arrogator\" è il nome di una specie aliena: lasciato in inglese (verificare il nome ufficiale italiano)."
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p369_19907.webp",
-  "id": "P369",
-  "titolo": {"en": "WESTERN BUNKER", "it": "BUNKER OCCIDENTALE"},
-  "icone": ["caves", "noSave"],
-  "testo_colore": {"en": "The interior is full of artwork, antiques, and historical objects – our scans revealed most of them originate from another planet in this system.", "it": "L'interno è pieno di opere d'arte, oggetti d'antiquariato e reperti storici: le nostre scansioni hanno rivelato che la maggior parte proviene da un altro pianeta di questo sistema."},
-  "azioni": [
-   {
-    "nome": {"en": "GO TO THE EASTERN PART", "it": "ANDARE NELLA PARTE ORIENTALE"},
-    "icona": "diceCheck",
-    "pericolo": ["dangerDieD"],
-    "prova": true,
-    "costo": {"en": "You can perform this Action only if there are 2 markers in this Sector.", "it": "Puoi eseguire questa Azione solo se ci sono 2 segnalini in questo Settore."},
-    "speciali": [],
-    "esiti": [
-     {"colore": "green", "req": "physical+scouting / redDie+redDie+greenDie", "en": "Go to Log 894.", "it": "Vai all'Annotazione 894."}
-    ]
+   "icone": [
+    "finalPOI",
+    "desert"
+   ],
+   "testo_colore": {
+    "en": "The sand is coarse, and rough, and irritating, and it gets everywhere.",
+    "it": "La sabbia è ruvida, grezza e irritante, e si infila dappertutto."
    },
-   {
-    "nome": {"en": "GO TO ANOTHER BUNKER", "it": "ANDARE IN UN ALTRO BUNKER"},
-    "icona": "diceCheck",
-    "pericolo": [],
-    "prova": true,
-    "costo": "",
-    "speciali": [],
-    "esiti": [
-     {"colore": "green", "req": "defence+scouting / redDie+greenDie+greenDie", "en": "Go to Log 786.", "it": "Vai all'Annotazione 786."},
-     {"colore": "red", "req": "", "en": "Gain an Exhausted Injury.", "it": "Subisci una Ferita Allo Stremo."}
-    ]
-   }
-  ],
-  "dubbi": "La riga rossa è stampata sotto la seconda azione; la prima azione non ha riga rossa propria (in caso di fallimento si applica solo il dado Pericolo D). Requisiti verdi con alternativa: (physical+scouting) oppure (redDie+redDie+greenDie)."
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p382_19919.webp",
-  "id": "P382",
-  "titolo": {"en": "INACTIVE RECEPTORS (SECRETION)", "it": "RECETTORI INATTIVI (SECREZIONE)"},
-  "icone": ["void", "noSave"],
-  "testo_colore": {"en": "The surrounding emanates heat and pulses slowly. Despite the overall strangeness of this place, one can feel peace here.", "it": "L'ambiente circostante emana calore e pulsa lentamente. Nonostante la stranezza generale di questo luogo, qui si può percepire un senso di pace."},
-  "azioni": [
-   {
-    "nome": {"en": "TAKE SAMPLES", "it": "PRELEVARE CAMPIONI"},
-    "icona": "diceCheck",
-    "pericolo": [],
-    "prova": true,
-    "costo": "",
-    "speciali": [
-     {"req": "vanguard / accident", "effetto": "outcomeRed"}
-    ],
-    "esiti": [
-     {"colore": "yellow", "req": "gathering+xenology", "en": "Gain 1 Live Specimen Lead.", "it": "Ottieni 1 Indizio Esemplare Vivo.", "segue": "green"},
-     {"colore": "green", "req": "redDie+greenDie+greenDie", "en": "Gain 2 Live Specimen Leads.", "it": "Ottieni 2 Indizi Esemplare Vivo."},
-     {"colore": "red", "req": "", "en": "Roll [dangerDieG].", "it": "Tira [dangerDieG]."}
-    ],
-    "frecce": "Freccia dalla riga gialla verso la riga verde: ottenendo il verde si applica anche il giallo."
-   }
-  ],
-  "dubbi": "Icona bioma letta come void (spirale)."
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p398_19931.webp",
-  "id": "P398",
-  "titolo": {"en": "EDIFICE CONTROL", "it": "CONTROLLO DELL'EDIFICIO"},
-  "icone": ["finalPOI", "caves"],
-  "testo_colore": {"en": "The heart of the Edifice is a machine of unfathomable scale and power.", "it": "Il cuore dell'Edificio è una macchina di dimensioni e potenza insondabili."},
-  "azioni": [
-   {
-    "nome": {"en": "INVESTIGATE THE CONSOLE", "it": "ESAMINARE LA CONSOLE"},
-    "icona": "diceCheck",
-    "pericolo": [],
-    "prova": true,
-    "costo": "",
-    "speciali": [
-     {"req": "accident / construction", "effetto": "outcomeRed"}
-    ],
-    "esiti": [
-     {"colore": "green", "req": "scienceDice+technology / greenDie+blueDie+blueDie", "en": "Gain Unique Discovery 29, go to Log 719.", "it": "Ottieni la Scoperta Eccezionale 29, vai all'Annotazione 719."},
-     {"colore": "red", "req": "", "en": "[sacrifaceDieGreen]+[sacrifaceDieBlue], roll [dangerDieG].", "it": "[sacrifaceDieGreen]+[sacrifaceDieBlue], tira [dangerDieG]."}
-    ]
-   }
-  ],
-  "dubbi": ""
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p431_32308.webp",
-  "id": "P431",
-  "titolo": {"en": "OPENING IRIS", "it": "IRIDE CHE SI APRE"},
-  "icone": [],
-  "testo_colore": {"en": "The giant shutter begins to open, flooding the hall with blinding light and searing heat. The temperature of this jet is even higher than the one of the sun surrounding the vault!", "it": "L'enorme otturatore inizia ad aprirsi, inondando la sala di luce accecante e calore rovente. La temperatura di questo getto è persino più alta di quella del sole che circonda la cripta!"},
-  "testo": {"en": "Important: Find a place to hide before the plasma jet fills the hallway!", "it": "Importante: trova un posto dove nasconderti prima che il getto di plasma riempia il corridoio!"},
-  "azioni": [],
-  "tempo": {"caselle": 3, "en": "Go to Log 729.", "it": "Vai all'Annotazione 729."},
-  "altro": {"en": "Time Track with 3 spaces at the bottom; when completed: Go to Log 729.", "it": "Traccia del Tempo con 3 caselle in basso; al completamento: vai all'Annotazione 729."},
-  "dubbi": "La carta ha una traccia del Tempo (3 caselle ») come le Condizioni Generali: aggiunto il campo \"tempo\" (non previsto nello schema PDI) oltre ad \"altro\"."
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p443_32605.webp",
-  "id": "P443",
-  "titolo": {"en": "VISIONS OF IMMORTALITY", "it": "VISIONI DI IMMORTALITÀ"},
-  "icone": ["noMovement"],
-  "testo_colore": {"en": "You tumble into a twisted vision where alien technologies allow humans to reach the state of immortality and – over long eons – slowly slip into madness.", "it": "Precipiti in una visione distorta in cui le tecnologie aliene permettono agli umani di raggiungere l'immortalità e, nel corso di lunghi eoni, di scivolare lentamente nella follia."},
-  "azioni": [
-   {
-    "nome": {"en": "FIGHT THE VISIONS", "it": "COMBATTERE LE VISIONI"},
-    "icona": "diceCheck",
-    "pericolo": [],
-    "prova": true,
-    "costo": {"en": "In this Dice Check, you must take and roll all dice from your Crew board (including those in your Spent Pool).", "it": "In questa Prova devi prendere e tirare tutti i dadi della tua plancia Equipaggio (compresi quelli nella tua Riserva dei Dadi Spesi)."},
-    "speciali": [
-     {"req": "vanguard", "effetto": {"en": "Return any [vanguard] results to available dice on their owner's Crew board.", "it": "Riporta ogni risultato [vanguard] tra i dadi disponibili sulla plancia Equipaggio del suo proprietario."}},
-     {"req": "scouting / biology / scienceDice", "effetto": "outcomeRed"}
-    ],
-    "esiti": [
-     {"colore": "green", "req": "die", "en": "Replace with card P444.", "it": "Sostituisci con la carta P444."},
-     {"colore": "red", "req": "", "en": "Roll [dangerDieD].", "it": "Tira [dangerDieD]."}
-    ]
-   }
-  ],
-  "dubbi": "Il testo sui risultati vanguard nel riquadro speciale è una regola testuale senza simbolo '='; codificato come speciale con req \"vanguard\"."
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p508_32617.webp",
-  "id": "P508",
-  "titolo": {"en": "ALIEN LANDER", "it": "LANDER ALIENO"},
-  "icone": ["hostile"],
-  "testo_colore": {"en": "It's barely guarded... Those hunters are sure about their prowess.", "it": "È a malapena sorvegliato... Quei cacciatori sono sicuri della propria abilità."},
-  "azioni": [
-   {
-    "nome": {"en": "STEAL THE LANDER", "it": "RUBARE IL LANDER"},
-    "icona": "diceCheck",
-    "pericolo": [],
-    "prova": true,
-    "costo": {"en": "You can perform this Dice Check only if card P501 (Shelter) is in Sector 3 and there are no markers in this or connected Sectors.", "it": "Puoi eseguire questa Prova solo se la carta P501 (Rifugio) è nel Settore 3 e non ci sono segnalini in questo Settore o in quelli collegati."},
-    "speciali": [],
-    "esiti": [
-     {"colore": "green", "req": "xenology / technology", "en": "Go to Log 1008.", "it": "Vai all'Annotazione 1008."}
-    ]
-   }
-  ],
-  "dubbi": "Nessuna riga rossa. Titolo della carta P501 (Shelter) tradotto come Rifugio: verificare il nome ufficiale."
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p526_32629.webp",
-  "id": "P526",
-  "titolo": {"en": "TEA CEREMONY", "it": "CERIMONIA DEL TÈ"},
-  "icone": ["noMovement"],
-  "testo_colore": {"en": "Even with half of the Xenology department giving remote advice, you can barely make sense of the items laid out in front of you.", "it": "Anche con metà del dipartimento di Xenologia che ti dà consigli a distanza, riesci a malapena a dare un senso agli oggetti disposti davanti a te."},
-  "azioni": [
-   {
-    "nome": {"en": "PARTAKE IN THE CEREMONY", "it": "PARTECIPARE ALLA CERIMONIA"},
-    "icona": "diceCheck",
-    "pericolo": [],
-    "prova": true,
-    "costo": "",
-    "speciali": [
-     {"req": "anySameIcons+anySameIcons+anySameIcons", "effetto": "outcomeYellowProgress"},
-     {"req": "anySameIcons+anySameIcons", "effetto": "outcomeGreenProgress"},
-     {"req": "redDie / blueDie / accident", "effetto": "outcomeRedProgress"}
-    ],
-    "esiti": [],
-    "tracce": [
-     {"colore": "yellow", "caselle": 2, "en": "Go to Log 1075.", "it": "Vai all'Annotazione 1075."},
-     {"colore": "green", "caselle": 3, "en": "Go to Log 1079.", "it": "Vai all'Annotazione 1079."},
-     {"colore": "red", "caselle": 4, "en": "Go to Log 1083.", "it": "Vai all'Annotazione 1083."}
-    ]
-   }
-  ],
-  "dubbi": "Il requisito rosso mostra un dado rosso e uno blu (redDie / blueDie): presumibilmente ogni dado rosso o blu (qualsiasi faccia) e ogni accident fa avanzare la traccia rossa. Non è chiaro come interagiscano le combinazioni di 3 e di 2 icone uguali (se un tris conta anche come coppia)."
- },
- {
-  "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_from_tutorial_deck_a/p107_34705.webp",
-  "id": "P107",
-  "titolo": {"en": "BULBOUS CANNON", "it": "CANNONE BULBOSO"},
-  "icone": [],
-  "testo_colore": {"en": "The installation that downed our ship will prevent any rescue efforts. Someone needs to disable it!", "it": "L'installazione che ha abbattuto la nostra nave impedirà qualsiasi tentativo di soccorso. Qualcuno deve disattivarla!"},
-  "azioni": [
-   {
-    "nome": {"en": "SPRINT TO THE BASE OF THE CANNON", "it": "CORRERE ALLA BASE DEL CANNONE"},
-    "icona": "diceCheck",
-    "pericolo": ["dangerDieT"],
-    "prova": true,
-    "costo": "",
-    "speciali": [],
-    "esiti": [
-     {"colore": "green", "req": "basic+physical", "en": "Replace with card P103.", "it": "Sostituisci con la carta P103."},
-     {"colore": "red", "req": "", "en": "Gain a Just a Scratch! Injury.", "it": "Subisci una Ferita Solo un Graffio!."}
-    ]
-   }
-  ],
-  "dubbi": "Carta del mazzo tutorial A. Nome della Ferita \"Just a Scratch!\" tradotto come \"Solo un Graffio!\": verificare il nome ufficiale italiano."
- }
-]}
+   "testo": {
+    "en": "Each Crewmember who ends their turn in this Sector [spendDie].",
+    "it": "Ogni Membro dell'Equipaggio che termina il proprio turno in questo Settore [spendDie]."
+   },
+   "azioni": [],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p085_12624.webp",
+   "id": "P085",
+   "titolo": {
+    "en": "SPANNED CHASMS",
+    "it": "BURRONI ATTRAVERSATI"
+   },
+   "icone": [
+    "deadly",
+    "rocky"
+   ],
+   "testo_colore": {
+    "en": "The narrow bridges laid over the chasms allow us to traverse the area, but they do bring their own risks...",
+    "it": "Gli stretti ponti gettati sopra i burroni ci permettono di attraversare la zona, ma comportano anche i loro rischi..."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "SURVEY THE RAVINES",
+      "it": "ESAMINARE LE GOLE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "yellow",
+       "req": "scouting",
+       "en": "Gain a Unique Discovery.",
+       "it": "Ottieni una Scoperta Eccezionale.",
+       "segue": "green"
+      },
+      {
+       "colore": "green",
+       "req": "redDie+redDie",
+       "en": "Gain 1 [success] and 2 Microorganism Leads, replace with card P160.",
+       "it": "Ottieni 1 [success] e 2 Indizi Microorganismo, sostituisci con la carta P160."
+      },
+      {
+       "colore": "red",
+       "req": "",
+       "en": "Go to Log 125.",
+       "it": "Vai all'Annotazione 125."
+      }
+     ],
+     "frecce": "Freccia dalla riga gialla verso la riga verde: ottenendo il verde si applica anche il giallo."
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p130_13100.webp",
+   "id": "P130",
+   "titolo": {
+    "en": "ASH FIELD",
+    "it": "CAMPO DI CENERE"
+   },
+   "icone": [
+    "desert",
+    "vegetation",
+    "noSave"
+   ],
+   "testo_colore": {
+    "en": "This area was burning not so long ago – the oxygen level is low enough to land here without the risk of combustion.",
+    "it": "Questa zona bruciava non molto tempo fa: il livello di ossigeno è abbastanza basso da poter atterrare qui senza rischio di combustione."
+   },
+   "testo": {
+    "en": "This card should always be on top of the other cards in the same Sector.",
+    "it": "Questa carta deve sempre trovarsi sopra le altre carte nello stesso Settore."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "FORAGE",
+      "it": "RACCOGLIERE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "biology",
+       "en": "Gain 1 Strange Flora Lead.",
+       "it": "Ottieni 1 Indizio Strana Vegetazione."
+      },
+      {
+       "colore": "green",
+       "req": "gathering",
+       "en": "Gain 1 Mineral Lead.",
+       "it": "Ottieni 1 Indizio Minerale."
+      },
+      {
+       "colore": "red",
+       "req": "",
+       "en": "Gain a Burned Injury.",
+       "it": "Subisci una Ferita Ustione."
+      }
+     ]
+    }
+   ],
+   "dubbi": "Seconda icona bioma letta come vegetation (foglia). Due righe verdi indipendenti: presumibilmente si applicano tutte quelle soddisfatte."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p142_13112.webp",
+   "id": "P142",
+   "titolo": {
+    "en": "THE ENDLESS MAZE",
+    "it": "IL LABIRINTO INFINITO"
+   },
+   "icone": [
+    "finalPOI"
+   ],
+   "testo_colore": {
+    "en": "Caves and tunnels spread in every possible direction.",
+    "it": "Grotte e gallerie si diramano in ogni possibile direzione."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "SEARCH THE CAVE SYSTEM",
+      "it": "PERLUSTRARE IL SISTEMA DI GROTTE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": {
+      "en": "Gain a Panicked Injury before the roll.",
+      "it": "Subisci una Ferita Panico prima del tiro."
+     },
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "yellow",
+       "req": "defence+scouting",
+       "en": "If you gained the Panicked Injury during this Action, discard it along with the Injury die.",
+       "it": "Se hai subito la Ferita Panico durante questa Azione, scartala insieme al dado Ferita.",
+       "segue": "green"
+      },
+      {
+       "colore": "green",
+       "req": "redDie+redDie+redDie+greenDie",
+       "en": "Go to Log 418.",
+       "it": "Vai all'Annotazione 418."
+      },
+      {
+       "colore": "red",
+       "req": "",
+       "en": "Lose 1 Supplies and roll [dangerDieC].",
+       "it": "Perdi 1 Provviste e tira [dangerDieC]."
+      }
+     ],
+     "frecce": "Freccia dalla riga gialla verso la riga verde: ottenendo il verde si applica anche il giallo."
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p170_13209.webp",
+   "id": "P170",
+   "titolo": {
+    "en": "EVERSTORM",
+    "it": "TEMPESTA PERENNE"
+   },
+   "icone": [
+    "finalPOI",
+    "deadly"
+   ],
+   "testo_colore": {
+    "en": "The winds shift! A sudden storm engulfs our Landing Zone, making it impossible to return to our lander.",
+    "it": "I venti cambiano! Un'improvvisa tempesta avvolge la nostra Zona di Atterraggio, rendendo impossibile tornare al nostro lander."
+   },
+   "testo": {
+    "en": "Each Crewmember who ends their turn in this Sector rolls [dangerDieA].",
+    "it": "Ogni Membro dell'Equipaggio che termina il proprio turno in questo Settore tira [dangerDieA]."
+   },
+   "azioni": [],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p196_13221.webp",
+   "id": "P196",
+   "titolo": {
+    "en": "INTO THE DEPTHS",
+    "it": "NELLE PROFONDITÀ"
+   },
+   "icone": [
+    "frigid",
+    "water",
+    "finalPOI"
+   ],
+   "testo_colore": {
+    "en": "There's much more water than we expected. We can explore this new aquatic world.",
+    "it": "C'è molta più acqua di quanto ci aspettassimo. Possiamo esplorare questo nuovo mondo acquatico."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "DESCEND UNDER THE ICE",
+      "it": "SCENDERE SOTTO IL GHIACCIO"
+     },
+     "icona": "",
+     "pericolo": [],
+     "prova": false,
+     "costo": {
+      "en": "You can perform this Action only if all Crewmembers are in this Sector and agree.",
+      "it": "Puoi eseguire questa Azione solo se tutti i Membri dell'Equipaggio sono in questo Settore e sono d'accordo."
+     },
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "",
+       "req": "",
+       "en": "Each Crewmember [spendDie] to go to Log 260.",
+       "it": "Ogni Membro dell'Equipaggio [spendDie] per andare all'Annotazione 260."
+      }
+     ]
+    }
+   ],
+   "dubbi": "Azione senza tiro (nessuna icona diceCheck): requisito = tutti i Membri nel Settore e d'accordo; costo = ogni Membro spende un dado; effetto = Annotazione 260. Condizione nel campo costo, effetto come esito senza colore."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p214_19006.webp",
+   "id": "P214",
+   "titolo": {
+    "en": "COMMOTION",
+    "it": "TRAMBUSTO"
+   },
+   "icone": [
+    "noSave"
+   ],
+   "testo_colore": {
+    "en": "Usually calm Recliners make an uproar along the shore of the lake...",
+    "it": "I Recliner, di solito tranquilli, fanno baccano lungo la riva del lago..."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "CHECK THE SITUATION",
+      "it": "CONTROLLARE LA SITUAZIONE"
+     },
+     "icona": "",
+     "pericolo": [],
+     "prova": false,
+     "costo": "",
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "",
+       "req": "",
+       "en": "Go to Log 398.",
+       "it": "Vai all'Annotazione 398."
+      }
+     ]
+    }
+   ],
+   "dubbi": "\"Recliners\" è il nome di una creatura aliena: lasciato in inglese (verificare il nome ufficiale italiano)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p235_19018.webp",
+   "id": "P235",
+   "titolo": {
+    "en": "ARMORY",
+    "it": "ARMERIA"
+   },
+   "icone": [],
+   "testo_colore": {
+    "en": "We've retaken the armory! We can now equip ourselves better.",
+    "it": "Abbiamo riconquistato l'armeria! Ora possiamo equipaggiarci meglio."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "EQUIP YOURSELF",
+      "it": "EQUIPAGGIARSI"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "yellow",
+       "req": "scouting",
+       "en": "Draw 1 Section card.",
+       "it": "Pesca 1 carta Reparto.",
+       "segue": "green"
+      },
+      {
+       "colore": "green",
+       "req": "redDie+greenDie",
+       "en": "Gain 1 chosen Equipment card from the Armory.",
+       "it": "Ottieni 1 carta Attrezzatura a scelta dall'Armeria."
+      }
+     ],
+     "frecce": "Freccia dalla riga gialla verso la riga verde: ottenendo il verde si applica anche il giallo."
+    }
+   ],
+   "dubbi": "Nessuna riga rossa. \"Armory\" qui indica probabilmente la riserva Armeria delle carte Attrezzatura."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p272_19602.webp",
+   "id": "P272",
+   "titolo": {
+    "en": "STRANGE LATHE",
+    "it": "STRANO TORNIO"
+   },
+   "icone": [],
+   "testo_colore": {
+    "en": "The delicate surface of the mask is easy to scratch or crack...",
+    "it": "La delicata superficie della maschera si graffia o si incrina facilmente..."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "POLISH THE MASK",
+      "it": "LUCIDARE LA MASCHERA"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [
+      {
+       "req": "accident / physical",
+       "effetto": "outcomeRedProgress"
+      },
+      {
+       "req": "construction / technology",
+       "effetto": "outcomeGreenProgress"
+      }
+     ],
+     "esiti": [],
+     "tracce": [
+      {
+       "colore": "green",
+       "caselle": 3,
+       "en": "Go to Log 618.",
+       "it": "Vai all'Annotazione 618."
+      },
+      {
+       "colore": "red",
+       "caselle": 1,
+       "en": "Go to Log 728.",
+       "it": "Vai all'Annotazione 728."
+      }
+     ]
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p284_19614.webp",
+   "id": "P284",
+   "titolo": {
+    "en": "THE NAVEL",
+    "it": "L'OMBELICO"
+   },
+   "icone": [],
+   "testo_colore": {
+    "en": "The central stone megalith seems to have some ceremonial significance.",
+    "it": "Il megalite di pietra centrale sembra avere un qualche significato cerimoniale."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "ANALYZE THE NAVEL",
+      "it": "ANALIZZARE L'OMBELICO"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "yellow",
+       "req": "2*scienceDice",
+       "en": "Gain 1 [success].",
+       "it": "Ottieni 1 [success].",
+       "segue": "green"
+      },
+      {
+       "colore": "green",
+       "req": "greenDie+greenDie+blueDie+blueDie",
+       "en": "Go to Log 480.",
+       "it": "Vai all'Annotazione 480."
+      }
+     ],
+     "frecce": "Freccia dalla riga gialla verso la riga verde: ottenendo il verde si applica anche il giallo."
+    }
+   ],
+   "dubbi": "Nessuna riga rossa."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p297_19626.webp",
+   "id": "P297",
+   "titolo": {
+    "en": "HIDDEN ENCLAVE",
+    "it": "ENCLAVE NASCOSTA"
+   },
+   "icone": [
+    "finalPOI"
+   ],
+   "testo_colore": {
+    "en": "It was probably a residential area. Or something entirely else.",
+    "it": "Probabilmente era una zona residenziale. O qualcosa di completamente diverso."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "SUMMARIZE YOUR CURRENT KNOWLEDGE",
+      "it": "RIASSUMERE LE CONOSCENZE ATTUALI"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "scouting+biology+technology",
+       "en": "Go to Log 163.",
+       "it": "Vai all'Annotazione 163."
+      }
+     ]
+    },
+    {
+     "nome": {
+      "en": "TAKE SAMPLES",
+      "it": "PRELEVARE CAMPIONI"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [
+      {
+       "req": "scouting / biology",
+       "effetto": "outcomeRed"
+      }
+     ],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "greenDie+greenDie+greenDie",
+       "en": "Gain 3 Live Specimen Leads.",
+       "it": "Ottieni 3 Indizi Esemplare Vivo."
+      },
+      {
+       "colore": "red",
+       "req": "",
+       "en": "Progress all Time Tracks by 1.",
+       "it": "Fai avanzare di 1 tutte le tracce del Tempo."
+      }
+     ]
+    }
+   ],
+   "dubbi": "La prima azione ha solo la riga verde (nessuna rossa). Nella seconda, scouting/biology porta all'esito rosso (icona outcomeRed verificata con ingrandimento)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p319_19703.webp",
+   "id": "P319",
+   "titolo": {
+    "en": "SUBLEVEL COMPLEX",
+    "it": "COMPLESSO SOTTERRANEO"
+   },
+   "icone": [],
+   "testo_colore": {
+    "en": "Entrance to the underground.",
+    "it": "Ingresso al sottosuolo."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "ENTER THE COMPLEX",
+      "it": "ENTRARE NEL COMPLESSO"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "2*scouting",
+       "en": "Go to Log 186.",
+       "it": "Vai all'Annotazione 186."
+      },
+      {
+       "colore": "red",
+       "req": "",
+       "en": "[spendDie]",
+       "it": "[spendDie]"
+      }
+     ]
+    }
+   ],
+   "dubbi": "La riga rossa contiene solo l'icona spendDie (nessun testo)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p331_19715.webp",
+   "id": "P331",
+   "titolo": {
+    "en": "HALL OF TROPHIES",
+    "it": "SALA DEI TROFEI"
+   },
+   "icone": [
+    "finalPOI"
+   ],
+   "testo_colore": {
+    "en": "A looming edifice of Arrogator might.",
+    "it": "Un incombente edificio della potenza Arrogator."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "TRY TO COMMUNICATE",
+      "it": "TENTARE DI COMUNICARE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "xenology+scienceDice",
+       "en": "Go to Log 841.",
+       "it": "Vai all'Annotazione 841."
+      },
+      {
+       "colore": "red",
+       "req": "",
+       "en": "Progress all Time Tracks by 1.",
+       "it": "Fai avanzare di 1 tutte le tracce del Tempo."
+      }
+     ]
+    }
+   ],
+   "dubbi": "\"Arrogator\" è il nome di una specie aliena: lasciato in inglese (verificare il nome ufficiale italiano)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p369_19907.webp",
+   "id": "P369",
+   "titolo": {
+    "en": "WESTERN BUNKER",
+    "it": "BUNKER OCCIDENTALE"
+   },
+   "icone": [
+    "caves",
+    "noSave"
+   ],
+   "testo_colore": {
+    "en": "The interior is full of artwork, antiques, and historical objects – our scans revealed most of them originate from another planet in this system.",
+    "it": "L'interno è pieno di opere d'arte, oggetti d'antiquariato e reperti storici: le nostre scansioni hanno rivelato che la maggior parte proviene da un altro pianeta di questo sistema."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "GO TO THE EASTERN PART",
+      "it": "ANDARE NELLA PARTE ORIENTALE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [
+      "dangerDieD"
+     ],
+     "prova": true,
+     "costo": {
+      "en": "You can perform this Action only if there are 2 markers in this Sector.",
+      "it": "Puoi eseguire questa Azione solo se ci sono 2 segnalini in questo Settore."
+     },
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "physical+scouting / redDie+redDie+greenDie",
+       "en": "Go to Log 894.",
+       "it": "Vai all'Annotazione 894."
+      }
+     ]
+    },
+    {
+     "nome": {
+      "en": "GO TO ANOTHER BUNKER",
+      "it": "ANDARE IN UN ALTRO BUNKER"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "defence+scouting / redDie+greenDie+greenDie",
+       "en": "Go to Log 786.",
+       "it": "Vai all'Annotazione 786."
+      },
+      {
+       "colore": "red",
+       "req": "",
+       "en": "Gain an Exhausted Injury.",
+       "it": "Subisci una Ferita Allo Stremo."
+      }
+     ]
+    }
+   ],
+   "dubbi": "La riga rossa è stampata sotto la seconda azione; la prima azione non ha riga rossa propria (in caso di fallimento si applica solo il dado Pericolo D). Requisiti verdi con alternativa: (physical+scouting) oppure (redDie+redDie+greenDie)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p382_19919.webp",
+   "id": "P382",
+   "titolo": {
+    "en": "INACTIVE RECEPTORS (SECRETION)",
+    "it": "RECETTORI INATTIVI (SECREZIONE)"
+   },
+   "icone": [
+    "void",
+    "noSave"
+   ],
+   "testo_colore": {
+    "en": "The surrounding emanates heat and pulses slowly. Despite the overall strangeness of this place, one can feel peace here.",
+    "it": "L'ambiente circostante emana calore e pulsa lentamente. Nonostante la stranezza generale di questo luogo, qui si può percepire un senso di pace."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "TAKE SAMPLES",
+      "it": "PRELEVARE CAMPIONI"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [
+      {
+       "req": "vanguard / accident",
+       "effetto": "outcomeRed"
+      }
+     ],
+     "esiti": [
+      {
+       "colore": "yellow",
+       "req": "gathering+xenology",
+       "en": "Gain 1 Live Specimen Lead.",
+       "it": "Ottieni 1 Indizio Esemplare Vivo.",
+       "segue": "green"
+      },
+      {
+       "colore": "green",
+       "req": "redDie+greenDie+greenDie",
+       "en": "Gain 2 Live Specimen Leads.",
+       "it": "Ottieni 2 Indizi Esemplare Vivo."
+      },
+      {
+       "colore": "red",
+       "req": "",
+       "en": "Roll [dangerDieG].",
+       "it": "Tira [dangerDieG]."
+      }
+     ],
+     "frecce": "Freccia dalla riga gialla verso la riga verde: ottenendo il verde si applica anche il giallo."
+    }
+   ],
+   "dubbi": "Icona bioma letta come void (spirale)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p398_19931.webp",
+   "id": "P398",
+   "titolo": {
+    "en": "EDIFICE CONTROL",
+    "it": "CONTROLLO DELL'EDIFICIO"
+   },
+   "icone": [
+    "finalPOI",
+    "caves"
+   ],
+   "testo_colore": {
+    "en": "The heart of the Edifice is a machine of unfathomable scale and power.",
+    "it": "Il cuore dell'Edificio è una macchina di dimensioni e potenza insondabili."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "INVESTIGATE THE CONSOLE",
+      "it": "ESAMINARE LA CONSOLE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [
+      {
+       "req": "accident / construction",
+       "effetto": "outcomeRed"
+      }
+     ],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "scienceDice+technology / greenDie+blueDie+blueDie",
+       "en": "Gain Unique Discovery 29, go to Log 719.",
+       "it": "Ottieni la Scoperta Eccezionale 29, vai all'Annotazione 719."
+      },
+      {
+       "colore": "red",
+       "req": "",
+       "en": "[sacrifaceDieGreen]+[sacrifaceDieBlue], roll [dangerDieG].",
+       "it": "[sacrifaceDieGreen]+[sacrifaceDieBlue], tira [dangerDieG]."
+      }
+     ]
+    }
+   ],
+   "dubbi": ""
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p431_32308.webp",
+   "id": "P431",
+   "titolo": {
+    "en": "OPENING IRIS",
+    "it": "IRIDE CHE SI APRE"
+   },
+   "icone": [],
+   "testo_colore": {
+    "en": "The giant shutter begins to open, flooding the hall with blinding light and searing heat. The temperature of this jet is even higher than the one of the sun surrounding the vault!",
+    "it": "L'enorme otturatore inizia ad aprirsi, inondando la sala di luce accecante e calore rovente. La temperatura di questo getto è persino più alta di quella del sole che circonda la cripta!"
+   },
+   "testo": {
+    "en": "Important: Find a place to hide before the plasma jet fills the hallway!",
+    "it": "Importante: trova un posto dove nasconderti prima che il getto di plasma riempia il corridoio!"
+   },
+   "azioni": [],
+   "tempo": {
+    "caselle": 3,
+    "en": "Go to Log 729.",
+    "it": "Vai all'Annotazione 729."
+   },
+   "altro": {
+    "en": "Time Track with 3 spaces at the bottom; when completed: Go to Log 729.",
+    "it": "Traccia del Tempo con 3 caselle in basso; al completamento: vai all'Annotazione 729."
+   },
+   "dubbi": "La carta ha una traccia del Tempo (3 caselle ») come le Condizioni Generali: aggiunto il campo \"tempo\" (non previsto nello schema PDI) oltre ad \"altro\"."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p443_32605.webp",
+   "id": "P443",
+   "titolo": {
+    "en": "VISIONS OF IMMORTALITY",
+    "it": "VISIONI DI IMMORTALITÀ"
+   },
+   "icone": [
+    "noMovement"
+   ],
+   "testo_colore": {
+    "en": "You tumble into a twisted vision where alien technologies allow humans to reach the state of immortality and – over long eons – slowly slip into madness.",
+    "it": "Precipiti in una visione distorta in cui le tecnologie aliene permettono agli umani di raggiungere l'immortalità e, nel corso di lunghi eoni, di scivolare lentamente nella follia."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "FIGHT THE VISIONS",
+      "it": "COMBATTERE LE VISIONI"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": {
+      "en": "In this Dice Check, you must take and roll all dice from your Crew board (including those in your Spent Pool).",
+      "it": "In questa Prova devi prendere e tirare tutti i dadi della tua plancia Equipaggio (compresi quelli nella tua Riserva dei Dadi Spesi)."
+     },
+     "speciali": [
+      {
+       "req": "vanguard",
+       "effetto": {
+        "en": "Return any [vanguard] results to available dice on their owner's Crew board.",
+        "it": "Riporta ogni risultato [vanguard] tra i dadi disponibili sulla plancia Equipaggio del suo proprietario."
+       }
+      },
+      {
+       "req": "scouting / biology / scienceDice",
+       "effetto": "outcomeRed"
+      }
+     ],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "die",
+       "en": "Replace with card P444.",
+       "it": "Sostituisci con la carta P444."
+      },
+      {
+       "colore": "red",
+       "req": "",
+       "en": "Roll [dangerDieD].",
+       "it": "Tira [dangerDieD]."
+      }
+     ]
+    }
+   ],
+   "dubbi": "Il testo sui risultati vanguard nel riquadro speciale è una regola testuale senza simbolo '='; codificato come speciale con req \"vanguard\"."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p508_32617.webp",
+   "id": "P508",
+   "titolo": {
+    "en": "ALIEN LANDER",
+    "it": "LANDER ALIENO"
+   },
+   "icone": [
+    "hostile"
+   ],
+   "testo_colore": {
+    "en": "It's barely guarded... Those hunters are sure about their prowess.",
+    "it": "È a malapena sorvegliato... Quei cacciatori sono sicuri della propria abilità."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "STEAL THE LANDER",
+      "it": "RUBARE IL LANDER"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": {
+      "en": "You can perform this Dice Check only if card P501 (Shelter) is in Sector 3 and there are no markers in this or connected Sectors.",
+      "it": "Puoi eseguire questa Prova solo se la carta P501 (Rifugio) è nel Settore 3 e non ci sono segnalini in questo Settore o in quelli collegati."
+     },
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "xenology / technology",
+       "en": "Go to Log 1008.",
+       "it": "Vai all'Annotazione 1008."
+      }
+     ]
+    }
+   ],
+   "dubbi": "Nessuna riga rossa. Titolo della carta P501 (Shelter) tradotto come Rifugio: verificare il nome ufficiale."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_000_533/p526_32629.webp",
+   "id": "P526",
+   "titolo": {
+    "en": "TEA CEREMONY",
+    "it": "CERIMONIA DEL TÈ"
+   },
+   "icone": [
+    "noMovement"
+   ],
+   "testo_colore": {
+    "en": "Even with half of the Xenology department giving remote advice, you can barely make sense of the items laid out in front of you.",
+    "it": "Anche con metà del dipartimento di Xenologia che ti dà consigli a distanza, riesci a malapena a dare un senso agli oggetti disposti davanti a te."
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "PARTAKE IN THE CEREMONY",
+      "it": "PARTECIPARE ALLA CERIMONIA"
+     },
+     "icona": "diceCheck",
+     "pericolo": [],
+     "prova": true,
+     "costo": "",
+     "speciali": [
+      {
+       "req": "anySameIcons+anySameIcons+anySameIcons",
+       "effetto": "outcomeYellowProgress"
+      },
+      {
+       "req": "anySameIcons+anySameIcons",
+       "effetto": "outcomeGreenProgress"
+      },
+      {
+       "req": "redDie / blueDie / accident",
+       "effetto": "outcomeRedProgress"
+      }
+     ],
+     "esiti": [],
+     "tracce": [
+      {
+       "colore": "yellow",
+       "caselle": 2,
+       "en": "Go to Log 1075.",
+       "it": "Vai all'Annotazione 1075."
+      },
+      {
+       "colore": "green",
+       "caselle": 3,
+       "en": "Go to Log 1079.",
+       "it": "Vai all'Annotazione 1079."
+      },
+      {
+       "colore": "red",
+       "caselle": 4,
+       "en": "Go to Log 1083.",
+       "it": "Vai all'Annotazione 1083."
+      }
+     ]
+    }
+   ],
+   "dubbi": "Il requisito rosso mostra un dado rosso e uno blu (redDie / blueDie): presumibilmente ogni dado rosso o blu (qualsiasi faccia) e ogni accident fa avanzare la traccia rossa. Non è chiaro come interagiscano le combinazioni di 3 e di 2 icone uguali (se un tris conta anche come coppia)."
+  },
+  {
+   "file": "/home/claude/iss-vanguard/web/img/carte/points_of_interest_from_tutorial_deck_a/p107_34705.webp",
+   "id": "P107",
+   "titolo": {
+    "en": "BULBOUS CANNON",
+    "it": "CANNONE BULBOSO"
+   },
+   "icone": [],
+   "testo_colore": {
+    "en": "The installation that downed our ship will prevent any rescue efforts. Someone needs to disable it!",
+    "it": "L'installazione che ha abbattuto la nostra nave impedirà qualsiasi tentativo di soccorso. Qualcuno deve disattivarla!"
+   },
+   "azioni": [
+    {
+     "nome": {
+      "en": "SPRINT TO THE BASE OF THE CANNON",
+      "it": "CORRERE ALLA BASE DEL CANNONE"
+     },
+     "icona": "diceCheck",
+     "pericolo": [
+      "dangerDieT"
+     ],
+     "prova": true,
+     "costo": "",
+     "speciali": [],
+     "esiti": [
+      {
+       "colore": "green",
+       "req": "basic+physical",
+       "en": "Replace with card P103.",
+       "it": "Sostituisci con la carta P103."
+      },
+      {
+       "colore": "red",
+       "req": "",
+       "en": "Gain a Just a Scratch! Injury.",
+       "it": "Subisci una Ferita Niente di Grave."
+      }
+     ]
+    }
+   ],
+   "dubbi": "Carta del mazzo tutorial A. Nome della Ferita \"Just a Scratch!\" tradotto come \"Solo un Graffio!\": verificare il nome ufficiale italiano."
+  }
+ ]
+}

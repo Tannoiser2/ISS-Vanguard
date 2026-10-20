@@ -976,7 +976,7 @@
    "icone": [],
    "regole": {
     "en": "Hack Drone: Remove 1 Drone from the Planet board.\nSwarm: Place 1 Drone in each Sector with a Crewmember. If there are more Sectors than Drones, choose the lowest-numbered Sectors. Place remaining Drones in the Sector with the Arrogator Warswarm.\nDrones: Each Crewmember in a Sector with at least 1 Drone [spendDieGreen]/[spendDieBlue] OR rolls [dangerDieI].\nEradication Blast: Each Crewmember in the Sector with the Arrogator Warswarm gains a Wounded Injury. Then, each Crewmember in a Sector with at least 1 Drone [spendDieGreen]+[spendDieBlue] OR rolls [dangerDieC].",
-    "it": "Hackerare un Drone: Rimuovi 1 Drone dalla plancia del Pianeta.\nSciame: Piazza 1 Drone in ogni Settore con un Membro dell'Equipaggio. Se ci sono più Settori che Droni, scegli i Settori con il numero più basso. Piazza i Droni rimanenti nel Settore con lo Sciame da Guerra Arrogatore.\nDroni: Ogni Membro dell'Equipaggio in un Settore con almeno 1 Drone [spendDieGreen]/[spendDieBlue] OPPURE tira [dangerDieI].\nRaffica di Eradicazione: Ogni Membro dell'Equipaggio nel Settore con lo Sciame da Guerra Arrogatore subisce una Ferita Ferito. Poi, ogni Membro dell'Equipaggio in un Settore con almeno 1 Drone [spendDieGreen]+[spendDieBlue] OPPURE tira [dangerDieC]."
+    "it": "Hackerare un Drone: Rimuovi 1 Drone dalla plancia del Pianeta.\nSciame: Piazza 1 Drone in ogni Settore con un Membro dell'Equipaggio. Se ci sono più Settori che Droni, scegli i Settori con il numero più basso. Piazza i Droni rimanenti nel Settore con lo Sciame da Guerra Arrogatore.\nDroni: Ogni Membro dell'Equipaggio in un Settore con almeno 1 Drone [spendDieGreen]/[spendDieBlue] OPPURE tira [dangerDieI].\nRaffica di Eradicazione: Ogni Membro dell'Equipaggio nel Settore con lo Sciame da Guerra Arrogatore subisce una Ferita Lesione. Poi, ogni Membro dell'Equipaggio in un Settore con almeno 1 Drone [spendDieGreen]+[spendDieBlue] OPPURE tira [dangerDieC]."
    },
    "tempo": [
     {
@@ -1137,7 +1137,7 @@
    "icone": [],
    "regole": {
     "en": "Travel: If there is no Crewmember in the Sector with Arrogator Behemoth, move Arrogator Behemoth 2 Sectors toward the nearest Crewmember.\nAttack: Each Crewmember in the Sector with Arrogator Behemoth [spendDie]. If there is none: Travel and [outcomeRedProgress].\nEradication Beam: Each Crewmember in the Sector with Arrogator Behemoth [sacrifaceDie] and gains a Wounded Injury.",
-    "it": "Viaggio: Se non c'è alcun Membro dell'Equipaggio nel Settore con il Behemoth Arrogatore, muovi il Behemoth Arrogatore di 2 Settori verso il Membro dell'Equipaggio più vicino.\nAttacco: Ogni Membro dell'Equipaggio nel Settore con il Behemoth Arrogatore [spendDie]. Se non ce n'è nessuno: Viaggio e [outcomeRedProgress].\nRaggio di Eradicazione: Ogni Membro dell'Equipaggio nel Settore con il Behemoth Arrogatore [sacrifaceDie] e subisce una Ferita Ferito."
+    "it": "Viaggio: Se non c'è alcun Membro dell'Equipaggio nel Settore con il Behemoth Arrogatore, muovi il Behemoth Arrogatore di 2 Settori verso il Membro dell'Equipaggio più vicino.\nAttacco: Ogni Membro dell'Equipaggio nel Settore con il Behemoth Arrogatore [spendDie]. Se non ce n'è nessuno: Viaggio e [outcomeRedProgress].\nRaggio di Eradicazione: Ogni Membro dell'Equipaggio nel Settore con il Behemoth Arrogatore [sacrifaceDie] e subisce una Ferita Lesione."
    },
    "tempo": [
     {

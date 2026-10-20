@@ -12,8 +12,8 @@ signal _scelto(i: int)
 const AR_PIANETA := 2.0121
 const NOMI_SCOPERTE := {"mineral": "Minerale", "microorganism": "Microrganismo", "live_specimen": "Esemplare vivo",
 	"strange_flora": "Flora strana", "alien_tech": "Tecnologia aliena"}
-const NOMI_FERITE := {"wounded": "Ferito", "panicked": "Panico", "freezing": "Congelamento", "exhausted": "Allo Stremo",
-	"critically_wounded": "Lesione Grave", "burned": "Ustione", "just_a_scratch": "Solo un graffio!"}
+const NOMI_FERITE := {"wounded": "Lesione", "panicked": "Panico", "freezing": "Congelamento", "exhausted": "Allo Stremo",
+	"critically_wounded": "Lesione Grave", "burned": "Ustione", "just_a_scratch": "Niente di Grave"}
 const REP_EN := {"ingegneria": "engineering", "ricognizione": "recon", "scienza": "science", "sicurezza": "security"}
 
 var esp: Esplorazione
@@ -1503,7 +1503,7 @@ func _evita_ferita(chi: int, tipo: String, fatti: Array) -> bool:
 			(esp.membro(chi)["attrezzatura"] as Array).erase(str(e))
 			fatti.append("%s evita la Ferita %s con %s" % [esp.membro(chi)["carta"], NOMI_FERITE.get(tipo, tipo), Carte.titolo(ce)])
 			return true
-	# carte Reparto in mano: "non subire quella Ferita" o "la subisci tu (Ferito) al posto di un altro"
+	# carte Reparto in mano: "non subire quella Ferita" o "la subisci tu (Lesione) al posto di un altro"
 	for c in esp.membro(chi)["mano"].duplicate():
 		var cc := Carte.per_file(str(c))
 		if Carte.en(cc.get("effetto", "")).to_lower().contains("when you would gain an injury, do not gain that injury"):
@@ -1521,7 +1521,7 @@ func _evita_ferita(chi: int, tipo: String, fatti: Array) -> bool:
 		for c in esp.membro(j)["mano"].duplicate():
 			var cc2 := Carte.per_file(str(c))
 			if Carte.en(cc2.get("effetto", "")).to_lower().contains("you gain a wounded injury instead"):
-				if await _si_no(Carte.titolo(cc2), "%s sta per subire la Ferita %s.\n%s gioca la carta e subisce invece una Ferita Ferito?" % [esp.membro(chi)["carta"], NOMI_FERITE.get(tipo, tipo), esp.membro(j)["carta"]], str(cc2.get("file", ""))):
+				if await _si_no(Carte.titolo(cc2), "%s sta per subire la Ferita %s.\n%s gioca la carta e subisce invece una Ferita Lesione?" % [esp.membro(chi)["carta"], NOMI_FERITE.get(tipo, tipo), esp.membro(j)["carta"]], str(cc2.get("file", ""))):
 					esp.scarta_carta(j, str(c))
 					var r := esp.ferita(j, "wounded")
 					fatti.append("%s subisce la Ferita al posto di %s%s" % [esp.membro(j)["carta"], esp.membro(chi)["carta"], " (evacuazione!)" if r == "evac" else ""])

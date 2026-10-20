@@ -1,695 +1,695 @@
 {
-  "nota": "Facce dei dadi nell'ordine delle celle dell'immagine TTS (griglia 3x2 nella parte bassa). Ogni faccia è una lista di icone. 'img' = immagine del dado in web/img.",
-  "reparto": {
-    "base_rosso": {
-      "colore": "red",
-      "tipo": "basic",
-      "img": "dadi/dado_0b8113.webp",
-      "facce": [
-        [
-          "basic"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "basic"
-        ],
-        [
-          "basic"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "basic"
-        ]
-      ]
-    },
-    "base_blu": {
-      "colore": "blue",
-      "tipo": "basic",
-      "img": "dadi/dado_627e09.webp",
-      "facce": [
-        [
-          "basic"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "basic"
-        ],
-        [
-          "basic"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "basic"
-        ]
-      ]
-    },
-    "base_verde": {
-      "colore": "green",
-      "tipo": "basic",
-      "img": "dadi/dado_1d1122.webp",
-      "facce": [
-        [
-          "basic"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "basic"
-        ],
-        [
-          "basic"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "basic"
-        ]
-      ]
-    },
-    "physical": {
-      "colore": "red",
-      "tipo": "specialized",
-      "img": "dadi/dado_ad678f.webp",
-      "facce": [
-        [
-          "physical"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "physical"
-        ],
-        [
-          "physical"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "basic"
-        ]
-      ]
-    },
-    "defence": {
-      "colore": "red",
-      "tipo": "specialized",
-      "img": "dadi/dado_6a71c9.webp",
-      "facce": [
-        [
-          "defence"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "defence"
-        ],
-        [
-          "defence"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "basic"
-        ]
-      ]
-    },
-    "gathering": {
-      "colore": "red",
-      "tipo": "specialized",
-      "img": "dadi/dado_614746.webp",
-      "facce": [
-        [
-          "gathering"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "gathering"
-        ],
-        [
-          "gathering"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "basic"
-        ]
-      ]
-    },
-    "scienceDice": {
-      "colore": "blue",
-      "tipo": "specialized",
-      "img": "dadi/dado_477e34.webp",
-      "facce": [
-        [
-          "scienceDice"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "scienceDice"
-        ],
-        [
-          "scienceDice"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "basic"
-        ]
-      ]
-    },
-    "technology": {
-      "colore": "blue",
-      "tipo": "specialized",
-      "img": "dadi/dado_d261bc.webp",
-      "facce": [
-        [
-          "technology"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "technology"
-        ],
-        [
-          "technology"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "basic"
-        ]
-      ]
-    },
-    "construction": {
-      "colore": "blue",
-      "tipo": "specialized",
-      "img": "dadi/dado_1a8f2d.webp",
-      "facce": [
-        [
-          "construction"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "construction"
-        ],
-        [
-          "construction"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "basic"
-        ]
-      ]
-    },
-    "biology": {
-      "colore": "green",
-      "tipo": "specialized",
-      "img": "dadi/dado_0f2528.webp",
-      "facce": [
-        [
-          "biology"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "biology"
-        ],
-        [
-          "biology"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "basic"
-        ]
-      ]
-    },
-    "xenology": {
-      "colore": "green",
-      "tipo": "specialized",
-      "img": "dadi/dado_c967ed.webp",
-      "facce": [
-        [
-          "xenology"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "xenology"
-        ],
-        [
-          "xenology"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "basic"
-        ]
-      ]
-    },
-    "scouting": {
-      "colore": "green",
-      "tipo": "specialized",
-      "img": "dadi/dado_198867.webp",
-      "facce": [
-        [
-          "scouting"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "scouting"
-        ],
-        [
-          "scouting"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "basic"
-        ]
-      ]
-    },
-    "universale_rosso": {
-      "colore": "red",
-      "tipo": "universal",
-      "img": "dadi/dado_82b9ec.webp",
-      "facce": [
-        [
-          "defence",
-          "gathering"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "defence",
-          "physical"
-        ],
-        [
-          "gathering",
-          "physical"
-        ],
-        [
-          "basic"
-        ],
-        [
-          "basic"
-        ]
-      ]
-    },
-    "universale_blu": {
-      "colore": "blue",
-      "tipo": "universal",
-      "img": "dadi/dado_e261fc.webp",
-      "facce": [
-        [
-          "scienceDice",
-          "technology"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "construction",
-          "technology"
-        ],
-        [
-          "construction",
-          "scienceDice"
-        ],
-        [
-          "basic"
-        ],
-        [
-          "basic"
-        ]
-      ]
-    },
-    "universale_verde": {
-      "colore": "green",
-      "tipo": "universal",
-      "img": "dadi/dado_4e0d75.webp",
-      "facce": [
-        [
-          "biology",
-          "xenology"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "biology",
-          "scouting"
-        ],
-        [
-          "xenology",
-          "scouting"
-        ],
-        [
-          "basic"
-        ],
-        [
-          "basic"
-        ]
-      ]
-    },
-    "esperto_rosso": {
-      "colore": "red",
-      "tipo": "expert",
-      "img": "dadi/dado_88e2e8.webp",
-      "facce": [
-        [
-          "gathering",
-          "gathering"
-        ],
-        [
-          "defence"
-        ],
-        [
-          "defence",
-          "defence"
-        ],
-        [
-          "physical",
-          "physical"
-        ],
-        [
-          "physical"
-        ],
-        [
-          "gathering"
-        ]
-      ]
-    },
-    "esperto_blu": {
-      "colore": "blue",
-      "tipo": "expert",
-      "img": "dadi/dado_26cf85.webp",
-      "facce": [
-        [
-          "technology",
-          "technology"
-        ],
-        [
-          "construction"
-        ],
-        [
-          "construction",
-          "construction"
-        ],
-        [
-          "scienceDice",
-          "scienceDice"
-        ],
-        [
-          "scienceDice"
-        ],
-        [
-          "technology"
-        ]
-      ]
-    },
-    "esperto_verde": {
-      "colore": "green",
-      "tipo": "expert",
-      "img": "dadi/dado_b9ed44.webp",
-      "facce": [
-        [
-          "xenology",
-          "xenology"
-        ],
-        [
-          "biology"
-        ],
-        [
-          "biology",
-          "biology"
-        ],
-        [
-          "scouting",
-          "scouting"
-        ],
-        [
-          "scouting"
-        ],
-        [
-          "xenology"
-        ]
-      ]
-    },
-    "jolly_rosso": {
-      "colore": "red",
-      "tipo": "wild",
-      "img": "dadi/dado_c2f3f8.webp",
-      "facce": [
-        [
-          "accident"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "vanguard",
-          "vanguard"
-        ]
-      ]
-    },
-    "jolly_blu": {
-      "colore": "blue",
-      "tipo": "wild",
-      "img": "dadi/dado_07a1a2.webp",
-      "facce": [
-        [
-          "accident"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "vanguard",
-          "vanguard"
-        ]
-      ]
-    },
-    "jolly_verde": {
-      "colore": "green",
-      "tipo": "wild",
-      "img": "dadi/dado_0c3c5c.webp",
-      "facce": [
-        [
-          "accident"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "accident"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "vanguard"
-        ],
-        [
-          "vanguard",
-          "vanguard"
-        ]
-      ]
-    }
-  },
-  "ferita": {
-    "img": "dadi/dado_ea8989.webp",
-    "facce": [
-      [
-        "damage"
-      ],
-      [
-        "mental"
-      ],
-      [
-        "mental"
-      ],
-      [
-        "damage"
-      ],
-      [
-        "heavyDamage"
-      ],
-      [
-        "special"
-      ]
-    ]
-  },
-  "pericolo": {
-    "nota": "dado a 8 facce",
-    "facce": [
-      [],
-      [
-        "common"
-      ],
-      [
-        "common"
-      ],
-      [
-        "common"
-      ],
-      [
-        "uncommon"
-      ],
-      [
-        "uncommon"
-      ],
-      [
-        "rare"
-      ],
-      [
-        "special"
-      ]
-    ]
-  },
-  "tabelle_pericolo": {
-    "A": {
-      "common": "[spendDie]",
-      "uncommon": "Gain a Wounded Injury"
-    },
-    "B": {
-      "common": "Lose 1 Supplies",
-      "uncommon": "Gain a Burned Injury",
-      "rare": "Gain a Wounded Injury"
-    },
-    "C": {
-      "common": "[spendDie]",
-      "rare": "Gain an Exhausted Injury",
-      "special": "Gain an Exhausted Injury"
-    },
-    "D": {
-      "uncommon": "[spendDie]",
-      "rare": "Gain an Exhausted Injury",
-      "special": "Gain a Panicked Injury"
-    },
-    "E": {
-      "uncommon": "Gain a Freezing Injury",
-      "rare": "Gain an Exhausted Injury",
-      "special": "[sacrifaceDie]"
-    },
-    "F": {
-      "common": "Gain a Critically Wounded Injury",
-      "uncommon": "Gain a Wounded Injury",
-      "rare": "Gain a Panicked Injury AND lose 1 [crewHead]"
-    },
-    "G": {
-      "common": "Lose 1 [crewHead]",
-      "uncommon": "Lose 1 Supplies",
-      "rare": "Gain a Burned Injury"
-    },
-    "H": {
-      "common": "Gain a Panicked Injury",
-      "uncommon": "Lose 1 Supplies",
-      "rare": "Lose 1 [crewHead]",
-      "special": "[sacrifaceDie]"
-    },
-    "I": {
-      "common": "Gain a Wounded Injury",
-      "uncommon": "Gain a Wounded Injury",
-      "rare": "[spendDie] + [spendDie]",
-      "special": "[sacrifaceDie]"
-    },
-    "T": {
-      "uncommon": "Gain a Just a Scratch! Injury",
-      "rare": "[spendDie]"
-    }
-  },
-  "iniziali": {
-    "ingegneria": [
-      "base_rosso",
-      "base_blu",
-      "base_verde",
-      "construction",
-      "gathering"
+ "nota": "Facce dei dadi nell'ordine delle celle dell'immagine TTS (griglia 3x2 nella parte bassa). Ogni faccia è una lista di icone. 'img' = immagine del dado in web/img. Tabelle verificate sulla carta di riferimento italiana.",
+ "reparto": {
+  "base_rosso": {
+   "colore": "red",
+   "tipo": "basic",
+   "img": "dadi/dado_0b8113.webp",
+   "facce": [
+    [
+     "basic"
     ],
-    "ricognizione": [
-      "base_rosso",
-      "base_blu",
-      "base_verde",
-      "physical",
-      "scouting"
+    [
+     "vanguard"
     ],
-    "sicurezza": [
-      "base_rosso",
-      "base_blu",
-      "base_verde",
-      "defence",
-      "physical"
+    [
+     "basic"
     ],
-    "scienza": [
-      "base_rosso",
-      "base_blu",
-      "base_verde",
-      "scienceDice",
-      "biology"
+    [
+     "basic"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "basic"
     ]
+   ]
   },
-  "icone_reparto": [
-    "biology",
-    "xenology",
-    "scouting",
-    "scienceDice",
-    "technology",
-    "construction",
-    "physical",
-    "defence",
-    "gathering"
+  "base_blu": {
+   "colore": "blue",
+   "tipo": "basic",
+   "img": "dadi/dado_627e09.webp",
+   "facce": [
+    [
+     "basic"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "basic"
+    ],
+    [
+     "basic"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "basic"
+    ]
+   ]
+  },
+  "base_verde": {
+   "colore": "green",
+   "tipo": "basic",
+   "img": "dadi/dado_1d1122.webp",
+   "facce": [
+    [
+     "basic"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "basic"
+    ],
+    [
+     "basic"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "basic"
+    ]
+   ]
+  },
+  "physical": {
+   "colore": "red",
+   "tipo": "specialized",
+   "img": "dadi/dado_ad678f.webp",
+   "facce": [
+    [
+     "physical"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "physical"
+    ],
+    [
+     "physical"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "basic"
+    ]
+   ]
+  },
+  "defence": {
+   "colore": "red",
+   "tipo": "specialized",
+   "img": "dadi/dado_6a71c9.webp",
+   "facce": [
+    [
+     "defence"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "defence"
+    ],
+    [
+     "defence"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "basic"
+    ]
+   ]
+  },
+  "gathering": {
+   "colore": "red",
+   "tipo": "specialized",
+   "img": "dadi/dado_614746.webp",
+   "facce": [
+    [
+     "gathering"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "gathering"
+    ],
+    [
+     "gathering"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "basic"
+    ]
+   ]
+  },
+  "scienceDice": {
+   "colore": "blue",
+   "tipo": "specialized",
+   "img": "dadi/dado_477e34.webp",
+   "facce": [
+    [
+     "scienceDice"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "scienceDice"
+    ],
+    [
+     "scienceDice"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "basic"
+    ]
+   ]
+  },
+  "technology": {
+   "colore": "blue",
+   "tipo": "specialized",
+   "img": "dadi/dado_d261bc.webp",
+   "facce": [
+    [
+     "technology"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "technology"
+    ],
+    [
+     "technology"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "basic"
+    ]
+   ]
+  },
+  "construction": {
+   "colore": "blue",
+   "tipo": "specialized",
+   "img": "dadi/dado_1a8f2d.webp",
+   "facce": [
+    [
+     "construction"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "construction"
+    ],
+    [
+     "construction"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "basic"
+    ]
+   ]
+  },
+  "biology": {
+   "colore": "green",
+   "tipo": "specialized",
+   "img": "dadi/dado_0f2528.webp",
+   "facce": [
+    [
+     "biology"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "biology"
+    ],
+    [
+     "biology"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "basic"
+    ]
+   ]
+  },
+  "xenology": {
+   "colore": "green",
+   "tipo": "specialized",
+   "img": "dadi/dado_c967ed.webp",
+   "facce": [
+    [
+     "xenology"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "xenology"
+    ],
+    [
+     "xenology"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "basic"
+    ]
+   ]
+  },
+  "scouting": {
+   "colore": "green",
+   "tipo": "specialized",
+   "img": "dadi/dado_198867.webp",
+   "facce": [
+    [
+     "scouting"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "scouting"
+    ],
+    [
+     "scouting"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "basic"
+    ]
+   ]
+  },
+  "universale_rosso": {
+   "colore": "red",
+   "tipo": "universal",
+   "img": "dadi/dado_82b9ec.webp",
+   "facce": [
+    [
+     "defence",
+     "gathering"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "defence",
+     "physical"
+    ],
+    [
+     "gathering",
+     "physical"
+    ],
+    [
+     "basic"
+    ],
+    [
+     "basic"
+    ]
+   ]
+  },
+  "universale_blu": {
+   "colore": "blue",
+   "tipo": "universal",
+   "img": "dadi/dado_e261fc.webp",
+   "facce": [
+    [
+     "scienceDice",
+     "technology"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "construction",
+     "technology"
+    ],
+    [
+     "construction",
+     "scienceDice"
+    ],
+    [
+     "basic"
+    ],
+    [
+     "basic"
+    ]
+   ]
+  },
+  "universale_verde": {
+   "colore": "green",
+   "tipo": "universal",
+   "img": "dadi/dado_4e0d75.webp",
+   "facce": [
+    [
+     "biology",
+     "xenology"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "biology",
+     "scouting"
+    ],
+    [
+     "xenology",
+     "scouting"
+    ],
+    [
+     "basic"
+    ],
+    [
+     "basic"
+    ]
+   ]
+  },
+  "esperto_rosso": {
+   "colore": "red",
+   "tipo": "expert",
+   "img": "dadi/dado_88e2e8.webp",
+   "facce": [
+    [
+     "gathering",
+     "gathering"
+    ],
+    [
+     "defence"
+    ],
+    [
+     "defence",
+     "defence"
+    ],
+    [
+     "physical",
+     "physical"
+    ],
+    [
+     "physical"
+    ],
+    [
+     "gathering"
+    ]
+   ]
+  },
+  "esperto_blu": {
+   "colore": "blue",
+   "tipo": "expert",
+   "img": "dadi/dado_26cf85.webp",
+   "facce": [
+    [
+     "technology",
+     "technology"
+    ],
+    [
+     "construction"
+    ],
+    [
+     "construction",
+     "construction"
+    ],
+    [
+     "scienceDice",
+     "scienceDice"
+    ],
+    [
+     "scienceDice"
+    ],
+    [
+     "technology"
+    ]
+   ]
+  },
+  "esperto_verde": {
+   "colore": "green",
+   "tipo": "expert",
+   "img": "dadi/dado_b9ed44.webp",
+   "facce": [
+    [
+     "xenology",
+     "xenology"
+    ],
+    [
+     "biology"
+    ],
+    [
+     "biology",
+     "biology"
+    ],
+    [
+     "scouting",
+     "scouting"
+    ],
+    [
+     "scouting"
+    ],
+    [
+     "xenology"
+    ]
+   ]
+  },
+  "jolly_rosso": {
+   "colore": "red",
+   "tipo": "wild",
+   "img": "dadi/dado_c2f3f8.webp",
+   "facce": [
+    [
+     "accident"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "vanguard",
+     "vanguard"
+    ]
+   ]
+  },
+  "jolly_blu": {
+   "colore": "blue",
+   "tipo": "wild",
+   "img": "dadi/dado_07a1a2.webp",
+   "facce": [
+    [
+     "accident"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "vanguard",
+     "vanguard"
+    ]
+   ]
+  },
+  "jolly_verde": {
+   "colore": "green",
+   "tipo": "wild",
+   "img": "dadi/dado_0c3c5c.webp",
+   "facce": [
+    [
+     "accident"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "accident"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "vanguard"
+    ],
+    [
+     "vanguard",
+     "vanguard"
+    ]
+   ]
+  }
+ },
+ "ferita": {
+  "img": "dadi/dado_ea8989.webp",
+  "facce": [
+   [
+    "damage"
+   ],
+   [
+    "mental"
+   ],
+   [
+    "mental"
+   ],
+   [
+    "damage"
+   ],
+   [
+    "heavyDamage"
+   ],
+   [
+    "special"
+   ]
+  ]
+ },
+ "pericolo": {
+  "nota": "dado a 8 facce",
+  "facce": [
+   [],
+   [
+    "common"
+   ],
+   [
+    "common"
+   ],
+   [
+    "common"
+   ],
+   [
+    "uncommon"
+   ],
+   [
+    "uncommon"
+   ],
+   [
+    "rare"
+   ],
+   [
+    "special"
+   ]
+  ]
+ },
+ "tabelle_pericolo": {
+  "A": {
+   "common": "[spendDie]",
+   "uncommon": "Gain a Wounded Injury"
+  },
+  "B": {
+   "common": "Lose 1 Supplies",
+   "uncommon": "Gain a Burned Injury",
+   "special": "Gain a Wounded Injury"
+  },
+  "C": {
+   "common": "[spendDie]",
+   "rare": "Gain an Exhausted Injury",
+   "special": "Gain an Exhausted Injury"
+  },
+  "D": {
+   "uncommon": "[spendDie]",
+   "rare": "Gain an Exhausted Injury",
+   "special": "Gain a Panicked Injury"
+  },
+  "E": {
+   "uncommon": "Gain a Freezing Injury",
+   "rare": "Gain an Exhausted Injury",
+   "special": "[sacrifaceDie]"
+  },
+  "F": {
+   "common": "Gain a Critically Wounded Injury",
+   "uncommon": "Gain a Wounded Injury",
+   "rare": "Gain a Panicked Injury AND lose 1 [crewHead]"
+  },
+  "G": {
+   "common": "Lose 1 [crewHead]",
+   "uncommon": "Lose 1 Supplies",
+   "rare": "Gain a Burned Injury"
+  },
+  "H": {
+   "common": "Gain a Panicked Injury",
+   "uncommon": "Lose 1 Supplies",
+   "rare": "Lose 1 [crewHead]",
+   "special": "[sacrifaceDie]"
+  },
+  "I": {
+   "common": "Gain a Wounded Injury",
+   "uncommon": "Gain a Wounded Injury",
+   "rare": "[spendDie] + [spendDie]",
+   "special": "[sacrifaceDie]"
+  },
+  "T": {
+   "uncommon": "Gain a Just a Scratch! Injury",
+   "rare": "[spendDie]"
+  }
+ },
+ "iniziali": {
+  "ingegneria": [
+   "base_rosso",
+   "base_blu",
+   "base_verde",
+   "construction",
+   "gathering"
   ],
-  "nota_tabelle": "Carta Riferimento Dado Pericolo (fronte A-D, retro E-I e T del tutorial). "
+  "ricognizione": [
+   "base_rosso",
+   "base_blu",
+   "base_verde",
+   "physical",
+   "scouting"
+  ],
+  "sicurezza": [
+   "base_rosso",
+   "base_blu",
+   "base_verde",
+   "defence",
+   "physical"
+  ],
+  "scienza": [
+   "base_rosso",
+   "base_blu",
+   "base_verde",
+   "scienceDice",
+   "biology"
+  ]
+ },
+ "icone_reparto": [
+  "biology",
+  "xenology",
+  "scouting",
+  "scienceDice",
+  "technology",
+  "construction",
+  "physical",
+  "defence",
+  "gathering"
+ ],
+ "nota_tabelle": "Carta Riferimento Dado Pericolo (fronte A-D, retro E-I e T del tutorial). "
 }

@@ -129,7 +129,7 @@
     {
      "icona": "heavyDamage",
      "en": "Gain a Wounded Injury.",
-     "it": "Ottieni una Ferita Ferito."
+     "it": "Ottieni una Ferita Lesione."
     }
    ],
    "dubbi": "Traduzione 'Gain a Wounded Injury' resa letteralmente con il glossario (Wounded = Ferito): verificare la dicitura ufficiale."
@@ -178,7 +178,7 @@
    ],
    "testo": {
     "en": "If you have a Just A Scratch Injury, you cannot gain another Injury. If you gain another Injury, ignore it.",
-    "it": "Se hai una Ferita Solo un Graffio, non puoi ottenere un'altra Ferita. Se ottieni un'altra Ferita, ignorala."
+    "it": "Se hai una Ferita Niente di Grave, non puoi ottenere un'altra Ferita. Se ottieni un'altra Ferita, ignorala."
    },
    "dubbi": "Titolo italiano 'Solo un graffio!' non presente nel glossario: traduzione proposta. Carta del tutorial/starter (id 1000)."
   },

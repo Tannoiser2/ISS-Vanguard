@@ -177,7 +177,7 @@
    "quando": "when_gain_injury",
    "effetto": {
     "en": "If you gain the Wounded, Critically Wounded, or Burned Injury, you may return this card to the Armory instead of gaining that Injury.",
-    "it": "Se ottieni la Ferita Ferito, Lesione Grave o Ustione, puoi rimettere questa carta nell'Armeria invece di ottenere quella Ferita."
+    "it": "Se ottieni la Ferita Lesione, Lesione Grave o Ustione, puoi rimettere questa carta nell'Armeria invece di ottenere quella Ferita."
    },
    "azioni": [],
    "segnalino": false,
@@ -198,7 +198,7 @@
    "quando": "passive",
    "effetto": {
     "en": "You may only carry 1 Suit. Ignore all Wounded and Critically Wounded Injury effects.",
-    "it": "Puoi portare solo 1 Tuta. Ignora tutti gli effetti delle Ferite Ferito e Lesione Grave."
+    "it": "Puoi portare solo 1 Tuta. Ignora tutti gli effetti delle Ferite Lesione e Lesione Grave."
    },
    "azioni": [],
    "segnalino": false,

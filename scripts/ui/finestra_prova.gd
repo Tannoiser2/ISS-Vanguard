@@ -718,9 +718,12 @@ static func _nome_colore(c: String) -> String:
 	return {"green": "verde", "yellow": "giallo", "red": "rosso"}.get(c, c)
 
 static func _it_pericolo(e: String) -> String:
-	return e.replace("[spendDie]", "Spendi un dado").replace("Gain a Wounded Injury", "Subisci la Ferita Ferito") \
-		.replace("Gain a Burned Injury", "Subisci la Ferita Ustione").replace("Gain an Exhausted Injury", "Subisci la Ferita Allo Stremo") \
-		.replace("Gain a Panicked Injury", "Subisci la Ferita Panico").replace("Lose 1 Supplies", "Perdi 1 Provvista")
+	return e.replace("[spendDie]", "Spendi un dado").replace("Gain a Wounded Injury", "Ottieni una Ferita Lesione") \
+		.replace("Gain a Burned Injury", "Ottieni una Ferita Ustione").replace("Gain an Exhausted Injury", "Ottieni una Ferita Allo Stremo") \
+		.replace("Gain a Panicked Injury AND lose 1 [crewHead]", "Ottieni una Ferita Panico e perdi 1 [crewHead]").replace("Gain a Panicked Injury", "Ottieni una Ferita Panico") \
+		.replace("Gain a Critically Wounded Injury", "Ottieni una Ferita Lesione Grave").replace("Gain a Freezing Injury", "Ottieni una Ferita Congelamento") \
+		.replace("Gain a Just a Scratch! Injury", "Ottieni una Ferita Niente di Grave").replace("Lose 1 [crewHead]", "Perdi 1 [crewHead]") \
+		.replace("Lose 1 Supplies", "Perdi 1 Provviste").replace("[sacrifaceDie]", "Sacrifica un dado")
 
 func _mostra_riepilogo(resoconto: Array, testi: Array) -> void:
 	_svuota()

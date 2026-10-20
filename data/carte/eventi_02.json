@@ -334,7 +334,7 @@
    },
    "principale": {
     "en": "[spendDieBlue]+[spendDieGreen] - OR - Gain a Wounded Injury.",
-    "it": "[spendDieBlue]+[spendDieGreen] - OPPURE - Ottieni una Ferita Ferito."
+    "it": "[spendDieBlue]+[spendDieGreen] - OPPURE - Ottieni una Ferita Lesione."
    },
    "scelta": [
     {
@@ -343,7 +343,7 @@
     },
     {
      "en": "Gain a Wounded Injury",
-     "it": "Ottieni una Ferita Ferito"
+     "it": "Ottieni una Ferita Lesione"
     }
    ],
    "dubbi": ""

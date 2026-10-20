@@ -153,7 +153,7 @@
    },
    "principale": {
     "en": "[spendDie] and lose 1 Supplies - OR - Gain a Wounded Injury.",
-    "it": "[spendDie] e perdi 1 Provviste - OPPURE - Subisci una Ferita Ferito."
+    "it": "[spendDie] e perdi 1 Provviste - OPPURE - Subisci una Ferita Lesione."
    },
    "scelta": [
     {
@@ -162,7 +162,7 @@
     },
     {
      "en": "Gain a Wounded Injury",
-     "it": "Subisci una Ferita Ferito"
+     "it": "Subisci una Ferita Lesione"
     }
    ],
    "dubbi": "'Wounded Injury' tradotto 'Ferita Ferito' (nome della Ferita = Ferito)."

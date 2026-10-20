@@ -95,7 +95,7 @@ const SCOPERTE_IT := {"strana vegetazione": "strange_flora", "minerale": "minera
 	"tecnologia aliena": "alien_tech", "flora strana": "strange_flora"}
 const NUMERI_IT := {"un": 1, "una": 1, "uno": 1, "due": 2, "tre": 3, "quattro": 4, "cinque": 5, "sei": 6}
 const FERITE_IT := {"ferito": "wounded", "ferita lesione": "wounded", "lesione grave": "critically_wounded", "ustione": "burned",
-	"allo stremo": "exhausted", "panico": "panicked", "congelamento": "freezing", "solo un graffio": "just_a_scratch", "lesione": "wounded"}
+	"allo stremo": "exhausted", "panico": "panicked", "congelamento": "freezing", "solo un graffio": "just_a_scratch", "niente di grave": "just_a_scratch", "lesione": "wounded"}
 
 static func _ni(s: String) -> int:
 	s = s.strip_edges().to_lower()
@@ -124,7 +124,7 @@ static func analizza_it(testo: String) -> Dictionary:
 		["(?i)ciascun membro dell'equipaggio ricarica " + N + " \\[(die|redDie|blueDie|greenDie)\\]", func(m): return {"op": "ricarica_tutti", "n": _ni(m.get_string(1)), "colore": COLORE_DADO[m.get_string(2)]}],
 		["(?i)ciascun membro dell'equipaggio tira \\[(dangerDie\\w*)\\]", func(m): return {"op": "pericolo_tutti", "lettera": m.get_string(1).trim_prefix("dangerDie")}],
 		["(?i)(?<!ciascun membro dell'equipaggio )tira (?:un |il )?(?:dado )?\\[(dangerDie\\w*)\\]", func(m): return {"op": "pericolo", "lettera": m.get_string(1).trim_prefix("dangerDie"), "n": 1}],
-		["(?i)(?:subisci|ottieni) una ferita (ferito|lesione grave|ustione|allo stremo|panico|congelamento|solo un graffio)", func(m): return {"op": "ferita", "tipo": FERITE_IT[m.get_string(1).to_lower()]}],
+		["(?i)(?:subisci|ottieni) una ferita (ferito|lesione grave|lesione|ustione|allo stremo|panico|congelamento|solo un graffio|niente di grave)", func(m): return {"op": "ferita", "tipo": FERITE_IT[m.get_string(1).to_lower()]}],
 		["(?i)fai avanzare tutte le tracce del tempo di " + N, func(m): return {"op": "tempo_tutte", "n": _ni(m.get_string(1))}],
 		["(?i)apri il manuale della nave a pagina (\\d+)", func(m): return {"op": "nave_pagina", "n": int(m.get_string(1))}],
 		["(?i)apri la planetopedia alle pagine (\\d+)\\s*[-–]\\s*(\\d+)", func(m): return {"op": "planetopedia", "pagina": "p.%d-%d" % [int(m.get_string(1)), int(m.get_string(2))]}],
@@ -135,7 +135,7 @@ static func analizza_it(testo: String) -> Dictionary:
 		["(?i)(?:sposta|muovi) il segnaposto (?:sul contatore dell'atterraggio )?di (\\d+) casell[ae] verso sinistra", func(m): return {"op": "atterraggio", "n": -int(m.get_string(1))}],
 		["(?i)perd[ie] " + N + " provvist[ae] meno ?\\[(landerArmor|landerSensors|landerAgility)\\]", func(m): return {"op": "provviste_meno", "n": _ni(m.get_string(1)), "stat": m.get_string(2)}],
 		["(?i)ciascun membro dell'equipaggio " + N + " \\[(sacrifaceDie|spendDie)\\] meno ?\\[(landerArmor|landerSensors|landerAgility)\\]", func(m): return {"op": "dadi_meno", "n": _ni(m.get_string(1)), "dado": m.get_string(2), "stat": m.get_string(3)}],
-		["(?i)ciascun membro dell'equipaggio (?:ottiene|subisce) una ferita (ferito|lesione grave|ustione|allo stremo|panico|congelamento|lesione|solo un graffio)", func(m): return {"op": "ferita_tutti", "tipo": FERITE_IT.get(m.get_string(1).to_lower(), "wounded")}],
+		["(?i)ciascun membro dell'equipaggio (?:ottiene|subisce) una ferita (ferito|lesione grave|ustione|allo stremo|panico|congelamento|lesione|solo un graffio|niente di grave)", func(m): return {"op": "ferita_tutti", "tipo": FERITE_IT.get(m.get_string(1).to_lower(), "wounded")}],
 		["(?i)posiziona " + N + " segnaposto(?: danno)? sulla plancia lander,? meno\\.? ?\\[(landerArmor|landerSensors|landerAgility)\\]", func(m): return {"op": "danni_meno", "n": _ni(m.get_string(1)), "stat": m.get_string(2)}],
 		["(?i)tira un dado pericolo " + N + " volte,? meno ?\\[(landerArmor|landerSensors|landerAgility)\\]\\.? per ciascun \\[(common|uncommon|rare|special)\\]", func(m): return {"op": "danni_tiro", "n": _ni(m.get_string(1)), "stat": m.get_string(2), "faccia": m.get_string(3)}],
 	]

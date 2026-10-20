@@ -80,7 +80,7 @@ Lead = Indizio/Indizi · Strange Flora = Strana Vegetazione · Mineral = Mineral
 Live Specimen = Esemplare Vivo · Alien Tech = Tecnologia Aliena · Discovery = Scoperta · Unique Discovery = Scoperta Eccezionale ·
 Sector = Settore · Crewmember = Membro dell'Equipaggio · Away Team = Squadra di Sbarco · Section = Reparto ·
 Section card = carta Reparto · Dice Check = Prova (di dadi) · Roll Pool = Riserva del Tiro · Spent Pool = Riserva dei Dadi Spesi ·
-Supplies = Provviste · Injury = Ferita · Wounded = Ferito · Burned = Ustione · Exhausted = Allo Stremo · Panicked = Panico ·
+Supplies = Provviste · Injury = Ferita · Wounded = Lesione · Critically Wounded = Lesione Grave · Just a Scratch! = Niente di Grave · Burned = Ustione · Exhausted = Allo Stremo · Panicked = Panico ·
 Freezing = Congelamento · Critically Wounded = Lesione Grave · Point of Interest (POI) = Punto di Interesse (PDI) ·
 Threat = Minaccia · Time token = segnalino Tempo · Time Track = traccia del Tempo · Success token = segnalino Successo ·
 Global Condition = Condizione Generale · Event = Evento · Mission = Missione · Special Action = Azione Speciale ·
