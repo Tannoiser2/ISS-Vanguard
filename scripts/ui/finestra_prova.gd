@@ -15,7 +15,9 @@ var settore := 0
 var speciali_globali: Array = []   # effetti speciali della Condizione Generale (si applicano a tutte le prove)
 
 var _scelti := {}          # id dado -> true
-var _assist := {}          # indice membro -> id dado
+var _assist := {}          # indice membro -> [id dadi]
+var _assist_abilita := {}  # indice membro -> "2" / "tutti" / "lontano": abilità "When Assisting" usata
+var _assist_restituiti := {}   # indice membro -> true: i dadi di assistenza tornano disponibili
 var _pool: Array = []      # dadi tirati (copie con "chi")
 var _fase := 0             # 0 scelta, 1 dopo il tiro
 var _corpo: VBoxContainer
@@ -199,23 +201,47 @@ func _mostra_scelta() -> void:
 			_scelti[d["id"]] = true
 		_mostra_scelta(), 12)
 	_corpo.add_child(tutti)
-	# chi è nello stesso settore può assistere con un dado
-	var altri := esp.nel_settore(int(m["settore"])).filter(func(j): return j != chi)
+	# chi è nello stesso settore può assistere con un dado (le abilità "When Assisting" cambiano le regole)
+	var da_lontano: Variant = m.get("attrezzatura", []).any(func(e): return Carte.en(Carte.per_id(str(e)).get("effetto", "")).contains("may Assist you from other Sectors"))
+	var altri := esp.vivi().filter(func(j): return j != chi and (int(esp.membro(j)["settore"]) == int(m["settore"]) or da_lontano or (_abilita_assist(j) == "lontano" and int(esp.membro(j)["cariche"]) > 0)))
 	if not altri.is_empty():
 		_corpo.add_child(Tema.etichetta("ASSISTENZA (UN DADO CIASCUNO)", 15, Tema.CIANO))
 		for j in altri:
+			var jj: int = j
 			var r := HFlowContainer.new()
 			r.add_theme_constant_override("h_separation", 8)
 			var l := Label.new()
 			l.text = str(esp.membro(j)["carta"]) + ":"
 			l.custom_minimum_size = Vector2(160, 0)
 			r.add_child(l)
+			var ab := _abilita_assist(j)
+			var lontano: bool = int(esp.membro(j)["settore"]) != int(m["settore"]) and not da_lontano
+			var limite := 1
+			if _assist_abilita.has(jj):
+				limite = 2 if ab == "2" else (99 if ab == "tutti" else 1)
+			var scelti: Array = _assist.get_or_add(jj, [])
 			for d in esp.dadi_disponibili(j):
-				var jj: int = j
-				r.add_child(_chip_dado(d, _assist.get(jj, "") == d["id"], func(on):
-					if on: _assist[jj] = d["id"]
-					elif _assist.get(jj, "") == d["id"]: _assist.erase(jj)
+				var idd: String = d["id"]
+				r.add_child(_chip_dado(d, idd in scelti, func(on):
+					if on and not idd in scelti:
+						if scelti.size() >= limite:
+							scelti.pop_front()
+						scelti.append(idd)
+					elif not on:
+						scelti.erase(idd)
 					_mostra_scelta()))
+			if ab != "" and (ab != "lontano" or lontano) and int(esp.membro(j)["cariche"]) > 0:
+				var cb := CheckBox.new()
+				cb.text = {"2": "Abilità: assiste con 2 dadi (1 Carica)", "tutti": "Abilità: assiste con quanti dadi vuole (1 Carica)", "lontano": "Abilità: assiste da un altro settore (1 Carica)"}[ab]
+				cb.button_pressed = _assist_abilita.has(jj) or lontano
+				cb.disabled = lontano
+				cb.toggled.connect(func(on):
+					if on: _assist_abilita[jj] = ab
+					else: _assist_abilita.erase(jj)
+					_mostra_scelta())
+				if lontano:
+					_assist_abilita[jj] = ab
+				r.add_child(cb)
 			_corpo.add_child(r)
 	var info := Tema.testo_ricco(17)
 	var extra := []
@@ -227,6 +253,19 @@ func _mostra_scelta() -> void:
 		info.text = "[color=#ffb347]Si aggiungono: %s.[/color]" % ", ".join(extra)
 		_corpo.add_child(info)
 	_corpo.add_child(Tema.pulsante_primario("TIRA I DADI", _tira, 18))
+
+## Abilità "When Assisting" del Membro j: "2", "tutti", "lontano" o "".
+func _abilita_assist(j: int) -> String:
+	var en := Carte.en(Carte.per_file(str(esp.membro(j).get("file", ""))).get("abilita", {}))
+	if not en.begins_with("When Assisting"):
+		return ""
+	if en.contains("with 2 [die]"):
+		return "2"
+	if en.contains("any number of [die]"):
+		return "tutti"
+	if en.contains("in any Sector"):
+		return "lontano"
+	return ""
 
 func _chip_dado(d: Dictionary, premuto: bool, cb: Callable) -> Button:
 	var b := Button.new()
@@ -259,8 +298,15 @@ func _tira() -> void:
 			Prova.tira(c, esp.rng)
 			_pool.append(c)
 	for j in _assist:
+		if (_assist[j] as Array).is_empty():
+			continue
+		if _assist_abilita.has(j):
+			esp.membro(j)["cariche"] = max(0, int(esp.membro(j)["cariche"]) - 1)
+			_resoconto_mod.append("%s usa la sua abilità per assistere" % esp.membro(j)["carta"])
+			if Carte.en(Carte.per_file(str(esp.membro(j).get("file", ""))).get("abilita", {})).contains("return those [die] to your Available dice"):
+				_assist_restituiti[j] = true
 		for d in esp.dadi_disponibili(j):
-			if d["id"] == _assist[j]:
+			if d["id"] in _assist[j]:
 				var c: Dictionary = d.duplicate()
 				c["chi"] = j
 				Prova.tira(c, esp.rng)
@@ -556,7 +602,7 @@ func _risolvi() -> void:
 		var j := int(d["chi"])
 		for dd in esp.membro(j)["dadi"]:
 			if dd["id"] == d["id"]:
-				dd["stato"] = "speso"
+				dd["stato"] = "disponibile" if _assist_restituiti.has(j) else "speso"
 				dd["faccia"] = d["faccia"]
 	resoconto = _resoconto_mod + resoconto
 	esp.diario("%s: %s" % [m["carta"], "; ".join(resoconto)])

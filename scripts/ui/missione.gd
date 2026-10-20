@@ -1934,6 +1934,26 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			fatti.append("%s sacrifica %d dadi" % [m["carta"], int(op["n"])])
 		"niente":
 			fatti.append("Non succede nulla")
+		"perdita_testa":
+			# l'icona della testa indica il Membro che ha tirato: la perdita va sulla sua plancia
+			for k in int(op["n"]):
+				var opz := ["Spendi un dado", "Scarta una carta Reparto dalla mano", "Perdi una Carica", "Altro (lo applico a mano)"]
+				var j := await _scegli("%s PERDE 1 [TESTA]" % str(m["carta"]).to_upper(), opz,
+					"Il dado Pericolo indica una perdita per il Membro che ha tirato (%s): scegli che cosa perde dalla sua plancia, come indica la carta di riferimento." % m["carta"], false)
+				match j:
+					0:
+						esp.spendi_dado(chi)
+						fatti.append("%s spende un dado" % m["carta"])
+					1:
+						if not (m["mano"] as Array).is_empty():
+							var k2 := await _scegli("QUALE CARTA?", (m["mano"] as Array).map(func(c): return Carte.titolo(Carte.per_file(str(c)))), "", false)
+							esp.scarta_carta(chi, str(m["mano"][k2]))
+							fatti.append("%s scarta una carta" % m["carta"])
+					2:
+						m["cariche"] = max(0, int(m["cariche"]) - 1)
+						fatti.append("%s perde una Carica" % m["carta"])
+					3:
+						manuali.append("%s perde 1 [testa] (dado Pericolo)" % m["carta"])
 		"tutti":
 			for i2 in esp.vivi():
 				await _op(op["sub"], i2, int(esp.membro(i2)["settore"]), fatti, manuali, logs, fonte)
@@ -2038,7 +2058,7 @@ func _tira_pericolo(lettera: String, chi: int, sett: int, fatti: Array, manuali:
 	var nome := "vuoto" if ic.is_empty() else str(ic[0])
 	var nomi_it := {"vuoto": "faccia vuota", "common": "comune", "uncommon": "non comune", "rare": "raro", "special": "speciale"}
 	if lettera.substr(0, 1) in ["A", "B", "C", "D", "E", "F", "G", "H", "I", "T"]:
-		var e := Prova.effetto_pericolo(lettera, d).replace("[mental]", "[mental] (%s)" % esp.membro(chi)["carta"])
+		var e := Prova.effetto_pericolo(lettera, d)
 		fatti.append("Dado Pericolo %s: %s → %s" % [lettera, nomi_it.get(nome, nome), _txt_icone(e) if e != "" else "nessun effetto"])
 		if e != "":
 			for op in Effetti.analizza(e)["op"]:

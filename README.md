@@ -82,6 +82,9 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
     ignorano un [spendDie] del sentiero, dadi in più a Riposo e Sforzo, meno dadi Ferita nei biomi
     indicati, Ferite ignorate; Scoperte (anche Eccezionali) con effetto "quando la ottieni", Scoperte da
     scartare per un effetto (pulsante SCOPERTE) e Scoperte che aggiungono icone alla Prova;
+  - **assistenza**: le abilità "quando assisti" (2 dadi, quanti dadi si vuole, da un altro settore)
+    spendono una Carica, e i dadi tornano disponibili quando la carta lo dice; anche l'attrezzatura che
+    permette di farsi assistere da altri settori;
   - **pianeti registrati**: lasciando un pianeta si registrano i PDI rivelati, i settori finiti, le Minacce
     e le Scoperte Eccezionali non ancora prese (le carte con l'icona "non salvare" escluse); tornandoci
     la plancia si ripristina da sola; la Scoperta Eccezionale "in cima" si prende dalla plancia
@@ -148,6 +151,6 @@ tools/unisci_carte.py      trascrizioni delle carte (data/carte) -> data/carte_d
 - Le carte sono quelle **inglesi** del modulo TTS: le scansioni italiane si sostituiscono rigenerando
   `web/img/carte` (stessi nomi file) senza toccare il codice.
 - Automatizzati: Logbook, esplorazione planetaria e Gestione della Nave. Vedi sotto cosa resta a mano.
-- Dado Pericolo: "Perdi 1 [testa]" (tabelle F, G, H) resta da applicare a mano, il significato
-  dell'icona è da verificare.
+- Dado Pericolo: l'icona della testa (tabelle F, G, H) indica il Membro che ha tirato; il programma
+  chiede che cosa perde dalla sua plancia.
 - Deadly Frontier e Lost Fleet: paragrafi completi, componenti solo del gioco base.

@@ -626,17 +626,17 @@
     "F": {
       "common": "Gain a Critically Wounded Injury",
       "uncommon": "Gain a Wounded Injury",
-      "rare": "Gain a Panicked Injury AND lose 1 [mental]"
+      "rare": "Gain a Panicked Injury AND lose 1 [crewHead]"
     },
     "G": {
-      "common": "Lose 1 [mental]",
+      "common": "Lose 1 [crewHead]",
       "uncommon": "Lose 1 Supplies",
       "rare": "Gain a Burned Injury"
     },
     "H": {
       "common": "Gain a Panicked Injury",
       "uncommon": "Lose 1 Supplies",
-      "rare": "Lose 1 [mental]",
+      "rare": "Lose 1 [crewHead]",
       "special": "[sacrifaceDie]"
     },
     "I": {
@@ -691,5 +691,5 @@
     "defence",
     "gathering"
   ],
-  "nota_tabelle": "Carta Riferimento Dado Pericolo (fronte A-D, retro E-I e T del tutorial). 'Lose 1 [mental]': icona della testa, significato da verificare."
+  "nota_tabelle": "Carta Riferimento Dado Pericolo (fronte A-D, retro E-I e T del tutorial). "
 }

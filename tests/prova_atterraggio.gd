@@ -180,5 +180,29 @@ func _run() -> void:
 	await chiudi()
 	print("   ", fz2)
 	ok(e.dadi_disponibili(0).size() >= 2, "Scoperta Eccezionale con effetto all'ottenimento: ogni Membro ricarica 2 dadi")
+	# assistenza con l'abilità di Joppe (quanti dadi vuole, poi tornano disponibili)
+	e.s["finita"] = ""
+	e.membro(1)["file"] = "carte/joppe/joppe_34406.webp"
+	e.membro(1)["cariche"] = 1
+	e.viaggia(1, int(e.membro(0)["settore"]))
+	for i in 2:
+		for d in e.membro(i)["dadi"]:
+			d["stato"] = "disponibile"
+	var FP = load("res://scripts/ui/finestra_prova.gd")
+	var f = FP.new()
+	f.esp = e
+	f.chi = 0
+	f.azione = {"nome": {"it": "PROVA"}, "esiti": [{"colore": "red", "req": "", "en": "", "it": ""}], "speciali": [], "tracce": []}
+	f.fonte = "prova"
+	f.settore = int(e.membro(0)["settore"])
+	mis.add_child(f)
+	await aspetta()
+	f._assist_abilita[1] = "tutti"
+	f._assist[1] = e.dadi_disponibili(1).slice(0, 3).map(func(d): return d["id"])
+	f._tira()
+	ok(f._pool.filter(func(d): return int(d["chi"]) == 1).size() == 3, "Joppe assiste con 3 dadi")
+	ok(int(e.membro(1)["cariche"]) == 0, "abilità di assistenza: 1 Carica")
+	f._risolvi()
+	ok(e.dadi_disponibili(1).size() == e.membro(1)["dadi"].filter(func(d): return d["stato"] != "sacrificato").size(), "i dadi di Joppe tornano disponibili")
 	print("errori: ", errori)
 	quit()
