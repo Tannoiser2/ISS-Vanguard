@@ -541,10 +541,14 @@ func _texture(m: StandardMaterial3D, rel: String) -> void:
 	var t := Immagini.subito(rel)
 	if t:
 		m.albedo_texture = t
+		m.albedo_color = Color.WHITE
 		return
+	# finché l'immagine non arriva il pezzo resta scuro (non un rettangolo bianco)
+	m.albedo_color = Color(0.1, 0.14, 0.2)
 	Immagini.carica(rel, func(tex):
 		if is_instance_valid(self) and m:
-			m.albedo_texture = tex)
+			m.albedo_texture = tex
+			m.albedo_color = Color.WHITE)
 
 ## Immagine da mostrare ingrandita (lato visibile).
 func immagine_visibile() -> String:

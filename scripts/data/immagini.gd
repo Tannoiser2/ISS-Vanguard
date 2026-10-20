@@ -7,7 +7,7 @@
 extends Node
 
 const SITO := "https://tannoiser2.github.io/ISS-Vanguard/"
-const MAX_PARALLELE := 6
+const MAX_PARALLELE := 12
 
 signal pronta(rel: String, tex: Texture2D)
 
