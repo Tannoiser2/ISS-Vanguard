@@ -232,6 +232,32 @@ func _run() -> void:
 	ok(int(e.membro(1)["cariche"]) == 0, "abilità di assistenza: 1 Carica")
 	f._risolvi()
 	ok(e.dadi_disponibili(1).size() == e.membro(1)["dadi"].filter(func(d): return d["stato"] != "sacrificato").size(), "i dadi di Joppe tornano disponibili")
+	# carte Reparto con effetti propri
+	f.queue_free()
+	e.s["finita"] = ""
+	e.s["attivo"] = 0
+	e.membro(0)["cariche"] = 1
+	e.membro(0)["mano"] = ["carte/rank_i_science/8422.webp"]
+	var ind_prima := 0
+	for t in Esplorazione.TIPI_SCOPERTA:
+		ind_prima += (e.s["indizi"][t] as Array).size()
+	var sc_prima: int = e.s["scoperte"].size()
+	mis._gioca_reparto(0, "carte/rank_i_science/8422.webp")
+	await chiudi()
+	var ind_dopo := 0
+	for t in Esplorazione.TIPI_SCOPERTA:
+		ind_dopo += (e.s["indizi"][t] as Array).size()
+	ok(int(e.membro(0)["cariche"]) == 0 and (ind_dopo > ind_prima or e.s["scoperte"].size() > sc_prima) and e.membro(0)["mano"].is_empty(), "carta Reparto: 1 Carica per 2 Indizi")
+	e.membro(0)["mano"] = ["carte/rank_iii_security/32905.webp"]
+	var nf0: int = e.membro(0)["ferite"].size()
+	mis._op({"op": "ferita", "tipo": "wounded"}, 0, int(e.membro(0)["settore"]), [], [], [], "prova")
+	await chiudi()
+	ok(e.membro(0)["ferite"].size() == nf0 and e.membro(0)["mano"].is_empty(), "carta Reparto: Ferita evitata")
+	e.membro(0)["mano"] = ["carte/rank_iii_security/32906.webp"]
+	e.s["minacce"] = []
+	mis._gioca_reparto(0, "carte/rank_iii_security/32906.webp")
+	await chiudi()
+	ok(e.membro(0)["mano"].size() == 1, "carta Reparto: senza Minaccia nel settore non si gioca")
 	# tutte le Minacce: tre avanzamenti del Tempo ciascuna
 	var tot_fatti := 0
 	var tot_man := 0

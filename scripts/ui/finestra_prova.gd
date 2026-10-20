@@ -105,7 +105,8 @@ func _modificatori() -> Array:
 		var mj := esp.membro(j)
 		for c in mj["mano"]:
 			var carta := Carte.per_file(str(c))
-			if str(carta.get("quando", "")) in ["during_check", "when_assisting"] and (j == chi or str(carta.get("quando", "")) == "during_check"):
+			var pericolo_ok: bool = Carte.en(carta.get("effetto", "")).to_lower().contains("reroll 1 danger die") and _pool.any(func(d): return d["tipo"] == "pericolo")
+			if pericolo_ok or (str(carta.get("quando", "")) in ["during_check", "when_assisting"] and (j == chi or str(carta.get("quando", "")) == "during_check")):
 				out.append({"tipo": "carta", "chi": j, "id": str(c), "titolo": Carte.titolo(carta), "testo": Carte.t(carta.get("effetto", ""))})
 	for e in m.get("attrezzatura", []):
 		var ce := Carte.per_id(str(e))
@@ -193,6 +194,13 @@ func _usa_modificatore(x: Dictionary) -> void:
 		"carta": en = Carte.en(Carte.per_file(str(x["id"])).get("effetto", ""))
 		"attrezzatura": en = Carte.en(Carte.per_id(str(x["id"])).get("effetto", ""))
 		_: en = Carte.en(Carte.per_file(str(esp.membro(j).get("file", ""))).get("abilita", {}))
+	if en.to_lower().contains("reroll 1 danger die"):
+		for d in _pool:
+			if d["tipo"] == "pericolo":
+				var prima := "+".join(Prova.icone(d))
+				Prova.tira(d, esp.rng)
+				_resoconto_mod.append("Dado Pericolo ritirato: %s → %s" % [prima if prima != "" else "vuoto", "+".join(Prova.icone(d)) if not Prova.icone(d).is_empty() else "vuoto"])
+				break
 	var rr := RegEx.create_from_string("(?i)reroll (?:any number of|all|up to \\d+) \\[(die|redDie|blueDie|greenDie)\\]").search(en)
 	if rr:
 		var col: String = {"die": "", "redDie": "red", "blueDie": "blue", "greenDie": "green"}[rr.get_string(1)]

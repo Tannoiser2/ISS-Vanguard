@@ -81,6 +81,12 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
     pulsante ATTIVA), Laser Minerario Pesante (ogni icona vale [gathering] e dadi rossi ricaricati),
     Torretta Modulare e Unità Scudo (Vanguard in più nelle Prove contro le Minacce, via i dadi Pericolo),
     Sistema di Difesa (salta un avanzamento del Tempo) e P.E.T. (il suo dado assiste, si sposta a inizio turno);
+  - **carte Reparto speciali**: "in qualsiasi momento" e "prima o dopo un'Azione" con condizioni
+    controllate (attrezzatura di missione o Minaccia nel settore, biomi, nessun PDI finale), scarto della
+    carta aggiuntiva, ricariche a scelta di colore, piccola attrezzatura dall'Armeria, spostamento di un
+    Membro, Scoperte e Indizi scambiati o spostati, fine turno senza Evento; le carte che scattano da sole
+    (Ferita evitata o presa al posto di un altro, Evento scartato, dado Pericolo ritirato) vengono proposte
+    al momento giusto;
   - **Ustione**: se un dado Ferita cade sull'Ustione, i [basic] della Prova contano davvero come [accident];
   - **Minacce**: le regole si leggono frase per frase (spostamenti verso i Membri, tabelle col D10,
     "se non c'è…", effetti su chi è nel settore, scelta tra più effetti); restano a mano solo i casi

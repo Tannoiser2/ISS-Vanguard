@@ -1384,6 +1384,29 @@ func _evita_ferita(chi: int, tipo: String, fatti: Array) -> bool:
 			(esp.membro(chi)["attrezzatura"] as Array).erase(str(e))
 			fatti.append("%s evita la Ferita %s con %s" % [esp.membro(chi)["carta"], NOMI_FERITE.get(tipo, tipo), Carte.titolo(ce)])
 			return true
+	# carte Reparto in mano: "non subire quella Ferita" o "la subisci tu (Ferito) al posto di un altro"
+	for c in esp.membro(chi)["mano"].duplicate():
+		var cc := Carte.per_file(str(c))
+		if Carte.en(cc.get("effetto", "")).to_lower().contains("when you would gain an injury, do not gain that injury"):
+			if await _si_no(Carte.titolo(cc), "%s sta per subire la Ferita %s.\nGiochi la carta per non subirla?" % [esp.membro(chi)["carta"], NOMI_FERITE.get(tipo, tipo)], str(cc.get("file", ""))):
+				esp.scarta_carta(chi, str(c))
+				fatti.append("%s non subisce la Ferita %s (%s)" % [esp.membro(chi)["carta"], NOMI_FERITE.get(tipo, tipo), Carte.titolo(cc)])
+				return true
+	var sc := int(esp.membro(chi)["settore"])
+	for j in esp.vivi():
+		if j == chi:
+			continue
+		var sj := int(esp.membro(j)["settore"])
+		if sj != sc and not sc in esp.collegati(pl, sj):
+			continue
+		for c in esp.membro(j)["mano"].duplicate():
+			var cc2 := Carte.per_file(str(c))
+			if Carte.en(cc2.get("effetto", "")).to_lower().contains("you gain a wounded injury instead"):
+				if await _si_no(Carte.titolo(cc2), "%s sta per subire la Ferita %s.\n%s gioca la carta e subisce invece una Ferita Ferito?" % [esp.membro(chi)["carta"], NOMI_FERITE.get(tipo, tipo), esp.membro(j)["carta"]], str(cc2.get("file", ""))):
+					esp.scarta_carta(j, str(c))
+					var r := esp.ferita(j, "wounded")
+					fatti.append("%s subisce la Ferita al posto di %s%s" % [esp.membro(j)["carta"], esp.membro(chi)["carta"], " (evacuazione!)" if r == "evac" else ""])
+					return true
 	return false
 
 ## Tute contro il dado Pericolo: ignorare l'effetto (nei biomi indicati) pagando dadi, oppure ritirarlo.
@@ -1583,7 +1606,16 @@ func _fine_turno() -> void:
 		return
 	await _scarta_eccesso()
 	_controlla_grado(false)
+	var salta: bool = esp.s.get("salta_evento", false)
+	esp.s.erase("salta_evento")
+	var sosp: bool = esp.s.get("eventi_sospesi", false)
+	if salta:
+		esp.s["eventi_sospesi"] = true
 	var ev := esp.fine_turno()
+	if salta:
+		esp.s["eventi_sospesi"] = sosp
+	if ev != "" and await _scarta_evento(chi, ev):
+		ev = ""
 	if ev != "":
 		await _risolvi_evento(ev, chi)
 	if str(esp.s.get("finita", "")) == "":
@@ -1598,6 +1630,18 @@ func _fine_turno() -> void:
 					break
 		_sel = int(esp.membro(int(esp.s["attivo"]))["settore"])
 	_finisci()
+
+## Carta Reparto che scarta l'Evento appena pescato senza risolverlo.
+func _scarta_evento(chi: int, ev: String) -> bool:
+	for c in esp.membro(chi)["mano"]:
+		var en := Carte.en(Carte.per_file(str(c)).get("effetto", "")).to_lower()
+		if en.contains("discard an event card you just drew"):
+			var ce := Carte.per_file(ev)
+			if await _si_no(Carte.titolo(Carte.per_file(str(c))), "Evento pescato: %s\n\nGiochi la carta per scartarlo senza risolverlo?" % Carte.titolo(ce), str(ce.get("file", ""))):
+				esp.scarta_carta(chi, str(c))
+				esp.diario("%s scarta l'Evento %s" % [esp.membro(chi)["carta"], Carte.titolo(ce)])
+				return true
+	return false
 
 func _risolvi_evento(ev: String, chi: int) -> void:
 	var c := Carte.per_file(ev)
@@ -1758,12 +1802,194 @@ func _carta_in_mano(i: int, c: String) -> void:
 		testo += "\n\n[color=#ffb347]Combinazione[/color] %s: %s" % [_req(str(carta["combo"].get("req", ""))), Dati.testo_carta(Carte.t(carta["combo"]), 20)]
 	var j := await _scegli(Carte.titolo(carta), ["GIOCA (applica l'effetto e scarta)", "SCARTA"], testo, true, str(carta.get("file", "")))
 	if j == 0:
-		esp.scarta_carta(i, c)
-		await applica([{"en": Carte.en(carta.get("effetto", "")), "it": Carte.t(carta.get("effetto", "")), "fonte": Carte.titolo(carta)}], i, int(esp.membro(i)["settore"]))
+		if not await _gioca_reparto(i, c):
+			esp.scarta_carta(i, c)
+			await applica([{"en": Carte.en(carta.get("effetto", "")), "it": Carte.t(carta.get("effetto", "")), "fonte": Carte.titolo(carta)}], i, int(esp.membro(i)["settore"]))
 	elif j == 1:
 		esp.scarta_carta(i, c)
 	_salva()
 	aggiorna()
+
+const BIOMI := ["ruins", "vegetation", "void", "deadly", "rocky", "caves", "volvanic", "volcanic", "desert", "water", "frigid", "hostile", "crystalline"]
+
+## Carte Reparto "In qualsiasi momento" / "Prima o dopo un'Azione" con effetti propri.
+## Restituisce true se l'effetto è stato gestito qui (la carta è già scartata o la giocata annullata).
+func _gioca_reparto(i: int, c: String) -> bool:
+	var carta := Carte.per_file(c)
+	var en := Carte.en(carta.get("effetto", ""))
+	for pre in ["Anytime: ", "Before or after an Action: "]:
+		en = en.trim_prefix(pre)
+	var lo := en.to_lower()
+	var m := esp.membro(i)
+	var sett := int(m["settore"])
+	var tit := Carte.titolo(carta)
+	# carte che scattano da sole in altri momenti
+	if lo.contains("would gain an injury") or lo.contains("event card you just drew") or lo.contains("reroll 1 danger die"):
+		avviso("%s scatta da sola al momento giusto (Ferita, Evento o dado Pericolo)" % tit)
+		return true
+	# condizioni
+	var cond := RegEx.create_from_string("(?i)^if (?:you are in a sector with|your sector has) ([^,]+), ").search(en)
+	if cond:
+		var cl := cond.get_string(1).to_lower()
+		var vero := true
+		if cl.contains("mission equipment"):
+			vero = not _segnalini(sett).is_empty()
+		elif cl.contains("at least 2 biome icons"):
+			vero = esp.icone_settore(pl, sett, _carte_pdi()).filter(func(x): return str(x) in BIOMI).size() >= 2
+		elif cl.contains("no [finalpoi]"):
+			vero = not esp.icone_settore(pl, sett, _carte_pdi()).has("finalPOI")
+		elif cl.contains("a threat"):
+			vero = esp.s["minacce"].any(func(x): return int(x.get("settore", 0)) == sett)
+		if not vero:
+			avviso("%s: condizione non soddisfatta (%s)" % [tit, _pulito_bb(cond.get_string(1))])
+			return true
+		en = en.substr(cond.get_end())
+		lo = en.to_lower()
+	var serve_carta := lo.begins_with("discard 1 additional card to ")
+	var altre: Array = (m["mano"] as Array).filter(func(x): return str(x) != c)
+	if serve_carta and altre.is_empty():
+		avviso("%s: serve un'altra carta da scartare" % tit)
+		return true
+	var gestita := lo.contains("refresh a total of") or lo.contains("small equipment card from the armory") or lo.contains("move 1 crewmember from your sector") \
+		or lo.contains("discard 1 discovery to gain") or lo.contains("discard 1 charge to gain") or lo.contains("move 1 lead token") \
+		or lo.contains("discard 1 lead token") or lo.contains("end your turn") or lo.contains("discarded lead token")
+	if not gestita:
+		if serve_carta:
+			# scarto aggiuntivo, poi l'effetto generico
+			var k0 := await _scegli("SCARTA UN'ALTRA CARTA", altre.map(func(x): return Carte.titolo(Carte.per_file(str(x)))), "", true)
+			if k0 < 0:
+				return true
+			esp.scarta_carta(i, c)
+			esp.scarta_carta(i, str(altre[k0]))
+			await applica([{"en": en.substr(29), "it": Carte.t(carta.get("effetto", "")), "fonte": tit}], i, sett)
+			return true
+		return false
+	if not _inizia():
+		return true
+	var fatti := []
+	if serve_carta:
+		var k := await _scegli("SCARTA UN'ALTRA CARTA", altre.map(func(x): return Carte.titolo(Carte.per_file(str(x)))), "", true)
+		if k < 0:
+			_finisci()
+			return true
+		esp.scarta_carta(i, str(altre[k]))
+	var ok := true
+	if lo.contains("refresh a total of"):
+		var n := int(RegEx.create_from_string("refresh a total of (\\d+)").search(lo).get_string(1))
+		var cols := RegEx.create_from_string("\\[(red|blue|green)Die\\]").search_all(en).map(func(x): return x.get_string(1))
+		var j := await _scegli(tit, cols.map(func(x): return "Prima i dadi " + {"red": "rossi", "blue": "blu", "green": "verdi"}[x]), "Ricarica in tutto %d dadi di questi colori." % n, false)
+		if j > 0:
+			cols.reverse()
+		var f := 0
+		for col in cols:
+			f += esp.ricarica(i, n - f, col)
+		fatti.append("%s ricarica %d dadi" % [m["carta"], f])
+	elif lo.contains("small equipment card from the armory"):
+		var arm := _armeria_piccola()
+		if arm.is_empty():
+			ok = false
+			avviso("Nessuna piccola attrezzatura nell'Armeria")
+		else:
+			var j2 := await _scegli("PRENDI DALL'ARMERIA", arm.map(func(x): return Carte.titolo(Carte.per_id(str(x)))), "", false)
+			m.get_or_add("attrezzatura", []).append(str(arm[j2]))
+			fatti.append("%s prende %s dall'Armeria" % [m["carta"], Carte.titolo(Carte.per_id(str(arm[j2])))])
+	elif lo.contains("move 1 crewmember from your sector"):
+		var qui := esp.nel_settore(sett)
+		var col := esp.collegati(pl, sett)
+		var j3 := await _scegli("CHI SI SPOSTA?", qui.map(func(x): return str(esp.membro(x)["carta"])), "", false)
+		var j4 := await _scegli("DOVE?", col.map(func(x): return "Settore %d" % x), "Ignorando le icone del sentiero.", false)
+		if col.is_empty():
+			ok = false
+		else:
+			esp.viaggia(qui[j3], col[j4])
+			fatti.append("%s si sposta nel Settore %d" % [esp.membro(qui[j3])["carta"], col[j4]])
+	elif lo.contains("discard 1 discovery to gain"):
+		var sc: Array = esp.s["scoperte"]
+		if sc.is_empty():
+			ok = false
+			avviso("Nessuna Scoperta da scartare")
+		else:
+			var j5 := await _scegli("SCARTA UNA SCOPERTA", sc.map(func(x): return "%s — %s" % [NOMI_SCOPERTE.get(x["tipo"], x["tipo"]), Carte.titolo(Carte.per_file(str(x["carta"])))]), "", false)
+			var vecchia: Dictionary = sc[j5]
+			sc.remove_at(j5)
+			esp.s["mazzi_scoperte"].get_or_add(str(vecchia["tipo"]), []).insert(0, vecchia["carta"])
+			var tipo := await _scegli_tipo_scoperta("QUALE SCOPERTA OTTIENI?")
+			await _op({"op": "scoperta", "tipo": tipo, "n": 1}, i, sett, fatti, [], [], tit)
+	elif lo.contains("discard 1 charge to gain"):
+		if int(m["cariche"]) <= 0:
+			ok = false
+			avviso("Nessuna Carica")
+		else:
+			m["cariche"] = int(m["cariche"]) - 1
+			var tipo2 := await _scegli_tipo_scoperta("2 INDIZI DI QUALE TIPO?")
+			await _op({"op": "indizi", "tipo": tipo2, "n": 2}, i, sett, fatti, [], [], tit)
+	elif lo.contains("move 1 lead token") or lo.contains("discard 1 lead token"):
+		var con := Esplorazione.TIPI_SCOPERTA.filter(func(t): return not (esp.s["indizi"][t] as Array).is_empty())
+		if con.is_empty():
+			ok = false
+			avviso("Nessun Indizio sui mazzi delle Scoperte")
+		else:
+			var j6 := await _scegli("DA QUALE MAZZO?", con.map(func(t): return "%s (%d)" % [NOMI_SCOPERTE.get(t, t), (esp.s["indizi"][t] as Array).size()]), "", false)
+			var tok: Dictionary = (esp.s["indizi"][con[j6]] as Array).pop_back()
+			if lo.contains("move 1 lead token"):
+				var altri_t := Esplorazione.TIPI_SCOPERTA.filter(func(t): return t != con[j6])
+				var j7 := await _scegli("SU QUALE MAZZO?", altri_t.map(func(t): return str(NOMI_SCOPERTE.get(t, t))), "", false)
+				esp.s["indizi"][altri_t[j7]].append(tok)
+				fatti.append("Indizio spostato da %s a %s" % [NOMI_SCOPERTE.get(con[j6], con[j6]), NOMI_SCOPERTE.get(altri_t[j7], altri_t[j7])])
+			else:
+				(esp.s["sacchetto"] if tok.get("riciclo", false) else esp.s["fuori_sacchetto"]).append(tok)
+				var pc := esp.pesca_carta(i)
+				fatti.append("%s scarta un Indizio e pesca %s" % [m["carta"], Carte.titolo(Carte.per_file(pc)) if pc != "" else "nulla"])
+	elif lo.contains("discarded lead token"):
+		var fuori: Array = esp.s["fuori_sacchetto"]
+		var idx := -1
+		for k2 in fuori.size():
+			if int(fuori[k2].get("v", 1)) == 1:
+				idx = k2
+		if idx < 0:
+			ok = false
+			avviso("Nessun Indizio scartato di valore 1")
+		else:
+			esp.s["sacchetto"].append(fuori[idx])
+			fuori.remove_at(idx)
+			fatti.append("Un Indizio di valore 1 torna nel sacchetto")
+	elif lo.contains("end your turn"):
+		esp.s["salta_evento"] = true
+		fatti.append("%s termina il turno senza pescare un Evento" % m["carta"])
+	if ok:
+		esp.scarta_carta(i, c)
+		esp.diario("%s gioca %s: %s" % [m["carta"], tit, "; ".join(fatti)])
+		if not fatti.is_empty():
+			avviso("; ".join(fatti))
+	_salva()
+	_finisci()
+	aggiorna()
+	if ok and lo.contains("end your turn"):
+		await _fine_turno()
+	return true
+
+func _scegli_tipo_scoperta(titolo: String) -> String:
+	var j := await _scegli(titolo, Esplorazione.TIPI_SCOPERTA.map(func(t): return str(NOMI_SCOPERTE.get(t, t))), "", false)
+	return Esplorazione.TIPI_SCOPERTA[max(0, j)]
+
+## Piccola attrezzatura nell'Armeria (quella della nave non portata da nessuno; altrimenti tutto il catalogo).
+func _armeria_piccola() -> Array:
+	var portate := []
+	for k in esp.s["equipaggio"].size():
+		portate += esp.membro(k).get("attrezzatura", [])
+	var fonte: Array = Campagna.dati.get("nave", {}).get("armeria", []) if Campagna.dati.get("nave") is Dictionary else []
+	if fonte.is_empty():
+		for c in Carte.categoria("unavailable_equipment"):
+			var id := Carte.titolo(c)
+			for x in c.get("nomi", []):
+				id = str(x)
+			fonte.append(id)
+	var out := []
+	for id in fonte:
+		var ce := Carte.per_id(str(id))
+		if str(ce.get("tipo", "")) == "smallEquipment" and not str(id) in portate and not str(id) in out:
+			out.append(str(id))
+	return out
 
 func _correzioni(i: int) -> void:
 	var voci := ["Sposta in un altro settore", "Ricarica 1 dado", "Spendi 1 dado", "Pesca 1 carta", "Cura l'ultima Ferita", "Subisci una Ferita", "+1 Carica", "+1 Provviste", "-1 Provviste", "+1 Successo", "Avanza tutte le tracce del Tempo", "Termina l'esplorazione"]
