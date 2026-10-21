@@ -30,6 +30,8 @@ static func icone(d: Dictionary) -> Array:
 		return D["pericolo"]["facce"][f]
 	if t == "virtuale":
 		return d.get("icone", [])
+	if d.get("forzato") is Array:
+		return d["forzato"]       # risultato imposto da una carta ("gira il dado sul risultato…")
 	if D["reparto"].has(t):
 		var ic: Array = D["reparto"][t]["facce"][f]
 		# Ustionato: in questa Prova i risultati [basic] contano come [accident]

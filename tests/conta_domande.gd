@@ -1,4 +1,5 @@
 extends SceneTree
+## Diagnostica: quante domande Sì/No del Logbook il programma risolve da solo (le altre sono scelte del giocatore).
 var main
 func _initialize() -> void:
 	root.size = Vector2i(1280, 800)

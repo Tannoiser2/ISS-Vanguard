@@ -32,6 +32,19 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   il contenuto di scatole e sacchetti, i flag e la cronologia del Logbook, il diario e le note.
   Ogni campagna ha un **codice di 6 caratteri** (in alto e nel registro): dal menu *Riprendi con un
   codice* la si riapre da qualunque dispositivo.
+- **Partita a fasi**: si gioca una fase alla volta a schermo intero — inizio della campagna (Annotazione
+  iniziale e prima esplorazione), Gestione della Nave (Ship Book passo per passo), Esplorazione planetaria.
+  All'apertura il gioco va da solo alla fase in corso; il tavolo virtuale 3D del modulo TTS resta
+  disponibile come strumento (TAVOLO nella nave, ≡ nell'esplorazione) con "TORNA ALLA PARTITA".
+- **Il programma tiene traccia di tutto**: risponde da solo a circa 430 delle 560 domande Sì/No del
+  Logbook (statistiche del Lander, carte e PDI sulla plancia, Condizione Generale, Missioni, Minacce,
+  Squadra, quarte Ferite, segnaposto su carte/riserve/slot, Piaghe, modalità di gioco, Obiettivo, Scanner,
+  Morale, Scoperte Eccezionali…); le altre sono scelte vere ("vuoi spendere…", "desideri abbandonare…").
+  Le regole sempre attive di PDI e Condizioni Generali scattano da sole (chi entra nel settore, inizio e
+  fine del turno, Riposo e Sforzo); la traccia del Tempo della Condizione Generale si risolve da sola.
+- **Turno scandito**: sotto la riga di stato la traccia del turno mostra il Round, l'ordine della Squadra
+  (chi ha giocato, chi è di turno — clic su un nome per cambiare chi gioca), Azione 1, Azione 2, Fine
+  turno con l'Evento, e una riga "COSA FARE" con il prossimo passo.
 - **Esplorazione planetaria automatizzata** (pulsante ESPLORAZIONE): durante la missione si vede solo
   la plancia del pianeta, a tutto schermo, senza l'astronave. Interfaccia a passi: in basso il Membro
   di turno (dadi, Ferite, carte in mano) e solo le azioni possibili in quel momento; le destinazioni
@@ -93,6 +106,10 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
     Membro, Scoperte e Indizi scambiati o spostati, fine turno senza Evento; le carte che scattano da sole
     (Ferita evitata o presa al posto di un altro, Evento scartato, dado Pericolo ritirato) vengono proposte
     al momento giusto;
+  - **carte che cambiano i dadi guidate**: "Ritira 1 dado rosso", "sposta 2 dadi nei Dadi Spesi per girarne
+    un altro su Vanguard", "gira 1 dado sul risultato scelto", "togli un dado con incidente", "conta un'icona
+    come Vanguard": il programma evidenzia i dadi validi e li cambia con un clic (tasto destro: correzione libera);
+  - **alternative "OPPURE"** di esiti ed Eventi: si sceglie quale, senza applicarle tutte;
   - **Ustione**: se un dado Ferita cade sull'Ustione, i [basic] della Prova contano davvero come [accident];
   - **Minacce**: le regole si leggono frase per frase (spostamenti verso i Membri, tabelle col D10,
     "se non c'è…", effetti su chi è nel settore, scelta tra più effetti). Anche le Minacce speciali:

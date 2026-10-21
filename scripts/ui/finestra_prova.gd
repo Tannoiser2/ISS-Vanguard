@@ -20,6 +20,7 @@ var _assist_abilita := {}  # indice membro -> "2" / "tutti" / "lontano": abilit�
 var _assist_restituiti := {}   # indice membro -> true: i dadi di assistenza tornano disponibili
 var _pool: Array = []      # dadi tirati (copie con "chi")
 var _pet := false          # P.E.T. (E23) assiste con il suo dado
+var _sel_mod := {}         # carta/abilità in uso che chiede di scegliere dei dadi: {"modo", "n", "colore", "testo", "poi"}
 var _fase := 0             # 0 scelta, 1 dopo il tiro
 var _corpo: VBoxContainer
 var _titolo: Label
@@ -204,6 +205,31 @@ func _usa_modificatore(x: Dictionary) -> void:
 				Prova.tira(d, esp.rng)
 				_resoconto_mod.append("Dado Pericolo ritirato: %s → %s" % [prima if prima != "" else "vuoto", "+".join(Prova.icone(d)) if not Prova.icone(d).is_empty() else "vuoto"])
 				break
+	# effetti guidati: si cliccano i dadi giusti, il programma controlla colore e numero
+	var lo := en.to_lower()
+	var r1 := RegEx.create_from_string("(?i)reroll (1|2|3|one|two) \\[(die|redDie|blueDie|greenDie)\\]").search(en)
+	if r1:
+		_sel_mod = {"modo": "ritira", "n": Effetti._n(r1.get_string(1)), "colore": _col_dado(r1.get_string(2)), "testo": "%s: clicca %s da ritirare" % [x["titolo"], _quanti(Effetti._n(r1.get_string(1)), r1.get_string(2))]}
+	elif lo.contains("move 2 [die] from the roll pool to their owner's spent pool to turn 1 other [die] to the [vanguard] result"):
+		_sel_mod = {"modo": "spendi", "n": 2, "colore": "", "testo": "%s: clicca 2 dadi da spostare nei Dadi Spesi" % x["titolo"], "poi": {"modo": "vanguard", "n": 1, "colore": "", "testo": "%s: clicca il dado da girare su [vanguard]" % x["titolo"]}}
+	elif lo.contains("move 2 [die] from the roll pool to their owner's spent pool to turn 1 other [die] to the result"):
+		_sel_mod = {"modo": "spendi", "n": 2, "colore": "", "testo": "%s: clicca 2 dadi da spostare nei Dadi Spesi" % x["titolo"], "poi": {"modo": "gira", "n": 1, "colore": "", "testo": "%s: clicca il dado da girare sul risultato che vuoi" % x["titolo"]}}
+	elif RegEx.create_from_string("(?i)turn 1 \\[(die|redDie|blueDie|greenDie)\\] to the chosen result").search(en):
+		var g := RegEx.create_from_string("(?i)turn 1 \\[(die|redDie|blueDie|greenDie)\\]").search(en)
+		_sel_mod = {"modo": "gira", "n": 1, "colore": _col_dado(g.get_string(1)), "testo": "%s: clicca %s da girare sul risultato che vuoi" % [x["titolo"], _quanti(1, g.get_string(1))]}
+	elif lo.contains("move 1 [die] with a [accident] result from the roll pool"):
+		for d in _pool:
+			if not d["tipo"] in ["ferita", "pericolo", "virtuale"] and "accident" in Prova.icone(d):
+				_togli_dal_tiro(d)
+				_resoconto_mod.append("%s: tolto un dado con [accident]" % x["titolo"])
+				break
+	elif RegEx.create_from_string("(?i)treat any \\[(\\w+)\\] result as a \\[vanguard\\] result").search(en):
+		var tr := RegEx.create_from_string("(?i)treat any \\[(\\w+)\\] result as a \\[vanguard\\] result").search(en)
+		for d in _pool:
+			var ic := Prova.icone(d)
+			if tr.get_string(1) in ic:
+				d["forzato"] = ic.map(func(y): return "vanguard" if y == tr.get_string(1) else y)
+		_resoconto_mod.append("%s: ogni [%s] vale [vanguard]" % [x["titolo"], tr.get_string(1)])
 	var rr := RegEx.create_from_string("(?i)reroll (?:any number of|all|up to \\d+) \\[(die|redDie|blueDie|greenDie)\\]").search(en)
 	if rr:
 		var col: String = {"die": "", "redDie": "red", "blueDie": "blue", "greenDie": "green"}[rr.get_string(1)]
@@ -409,7 +435,19 @@ func _mostra_tiro() -> void:
 		r.add_child(_faccia(d))
 	_corpo.add_child(r)
 	var nota := Label.new()
-	nota.text = "Clic su un dado per ritirarlo o cambiarne il risultato, come permette la carta o l'abilità usata."
+	nota.text = "I dadi si cambiano solo con le carte, l'attrezzatura e le abilità qui sotto: il programma ti dice quali cliccare." if _sel_mod.is_empty() else ""
+	if not _sel_mod.is_empty():
+		var bs := HBoxContainer.new()
+		var ls := Tema.testo_ricco(16)
+		ls.fit_content = true
+		ls.scroll_active = false
+		ls.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		ls.text = "[color=#ffb347][b]▶ %s[/b] (%d)[/color]" % [Dati.testo_carta(str(_sel_mod["testo"]), 18), int(_sel_mod["n"])]
+		bs.add_child(ls)
+		bs.add_child(Tema.pulsante("FATTO", func():
+			_sel_mod = {}
+			_mostra_tiro(), 13))
+		_corpo.add_child(bs)
 	nota.add_theme_color_override("font_color", Tema.TESTO_2)
 	nota.add_theme_font_size_override("font_size", 14)
 	_corpo.add_child(nota)
@@ -455,7 +493,13 @@ func _faccia(d: Dictionary) -> Control:
 		l2.text = "—"
 		h.add_child(l2)
 	b.add_child(h)
-	b.pressed.connect(_menu_dado.bind(d))
+	b.pressed.connect(_clic_dado.bind(d))
+	# tasto destro: correzione libera (per un errore o una regola che il programma non conosce)
+	b.gui_input.connect(func(e):
+		if e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_RIGHT:
+			_menu_dado(d))
+	if not _sel_mod.is_empty() and _dado_valido(d):
+		b.add_theme_stylebox_override("normal", Tema.box(col, Tema.AMBRA, 4, 8, 2))
 	v.add_child(b)
 	var l3 := Label.new()
 	l3.text = ("dado " + d.get("lettera", "")) if d["tipo"] == "pericolo" else ("Ferita" if d["tipo"] == "ferita" else str(esp.membro(int(d["chi"]))["carta"]).get_slice(" ", 0))
@@ -463,6 +507,74 @@ func _faccia(d: Dictionary) -> Control:
 	l3.add_theme_font_size_override("font_size", 12)
 	v.add_child(l3)
 	return v
+
+static func _col_dado(icona: String) -> String:
+	return {"die": "", "redDie": "red", "blueDie": "blue", "greenDie": "green"}.get(icona, "")
+
+static func _quanti(n: int, icona: String) -> String:
+	var c: String = {"die": "dado", "redDie": "dado rosso", "blueDie": "dado blu", "greenDie": "dado verde"}.get(icona, "dado")
+	return ("1 " + c) if n == 1 else ("%d %s" % [n, c.replace("dado", "dadi").replace("rosso", "rossi").replace("verde", "verdi")])
+
+func _dado_valido(d: Dictionary) -> bool:
+	if d["tipo"] in ["ferita", "pericolo", "virtuale"]:
+		return false
+	var c := str(_sel_mod.get("colore", ""))
+	return c == "" or Prova.colore(d) == c
+
+## Un dado tolto dalla Riserva del Tiro va nei Dadi Spesi del suo proprietario.
+func _togli_dal_tiro(d: Dictionary) -> void:
+	_pool.erase(d)
+	for dd in esp.membro(int(d["chi"]))["dadi"]:
+		if dd["id"] == d["id"]:
+			dd["stato"] = "speso"
+
+func _clic_dado(d: Dictionary) -> void:
+	if _sel_mod.is_empty():
+		var ic := Prova.icone(d)
+		_resoconto_mod.append("Per cambiare un dado usa una carta o un'abilità qui sotto (tasto destro: correzione libera)")
+		_mostra_tiro()
+		_resoconto_mod.pop_back()
+		return
+	if not _dado_valido(d):
+		return
+	match str(_sel_mod["modo"]):
+		"ritira":
+			Prova.tira(d, esp.rng)
+			_resoconto_mod.append("Ritirato: ora %s" % ("+".join(Prova.icone(d)) if not Prova.icone(d).is_empty() else "vuoto"))
+		"spendi":
+			_togli_dal_tiro(d)
+			_resoconto_mod.append("Un dado va nei Dadi Spesi")
+		"vanguard":
+			d["forzato"] = ["vanguard"]
+			_resoconto_mod.append("Un dado girato su [vanguard]")
+		"gira":
+			var facce := []
+			for f in Prova.numero_facce(d):
+				var ic2 := Prova.icone({"tipo": d["tipo"], "faccia": f})
+				if not ic2.is_empty() and not ic2 in facce:
+					facce.append(ic2)
+			var pm := PopupMenu.new()
+			for k in facce.size():
+				pm.add_item("+".join(facce[k]), k)
+			pm.id_pressed.connect(func(id):
+				d.erase("forzato")
+				for f in Prova.numero_facce(d):
+					if Prova.icone({"tipo": d["tipo"], "faccia": f}) == facce[id]:
+						d["faccia"] = f
+						break
+				_resoconto_mod.append("Un dado girato su %s" % "+".join(facce[id]))
+				_avanza_sel()
+				_mostra_tiro())
+			add_child(pm)
+			pm.popup(Rect2i(get_global_mouse_position(), Vector2i(10, 10)))
+			return
+	_avanza_sel()
+	_mostra_tiro()
+
+func _avanza_sel() -> void:
+	_sel_mod["n"] = int(_sel_mod["n"]) - 1
+	if int(_sel_mod["n"]) <= 0:
+		_sel_mod = _sel_mod.get("poi", {})
 
 func _menu_dado(d: Dictionary) -> void:
 	var pm := PopupMenu.new()

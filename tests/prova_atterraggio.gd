@@ -230,6 +230,20 @@ func _run() -> void:
 	f._tira()
 	ok(f._pool.filter(func(d): return int(d["chi"]) == 1).size() == 3, "Joppe assiste con 3 dadi")
 	ok(int(e.membro(1)["cariche"]) == 0, "abilità di assistenza: 1 Carica")
+	# carte Reparto guidate: si cliccano i dadi che la carta permette di cambiare
+	f._pool = [{"id": "r1", "tipo": "base_rosso", "faccia": 0, "chi": 0}, {"id": "b1", "tipo": "base_blu", "faccia": 0, "chi": 0}, {"id": "g1", "tipo": "base_verde", "faccia": 0, "chi": 0}]
+	f._usa_modificatore({"tipo": "carta", "chi": 0, "id": "carte/rank_i_engineering/1306.webp", "titolo": "Prova", "testo": ""})
+	ok(str(f._sel_mod.get("modo", "")) == "ritira" and str(f._sel_mod.get("colore", "")) == "red", "Reroll 1 [redDie]: si sceglie un dado rosso")
+	f._clic_dado(f._pool[1])
+	ok(not f._sel_mod.is_empty(), "un dado blu non si può ritirare con questa carta")
+	f._clic_dado(f._pool[0])
+	ok(f._sel_mod.is_empty(), "ritirato il dado rosso: la carta è usata")
+	f._usa_modificatore({"tipo": "carta", "chi": 0, "id": "carte/rank_ii_science/8424.webp", "titolo": "Prova", "testo": ""})
+	f._clic_dado(f._pool[0])
+	f._clic_dado(f._pool[0])
+	ok(f._pool.size() == 1 and str(f._sel_mod.get("modo", "")) == "vanguard", "2 dadi nei Dadi Spesi, poi si sceglie quello da girare")
+	f._clic_dado(f._pool[0])
+	ok(Prova.icone(f._pool[0]) == ["vanguard"], "il dado rimasto vale [vanguard]")
 	f._risolvi()
 	ok(e.dadi_disponibili(1).size() == e.membro(1)["dadi"].filter(func(d): return d["stato"] != "sacrificato").size(), "i dadi di Joppe tornano disponibili")
 	# carte Reparto con effetti propri
@@ -299,7 +313,21 @@ func _run() -> void:
 	await chiudi()
 	ok(e.membro(0).get("veterano", false) and str(e.membro(0)["file"]) == str(vet["file"]) and not (e.membro(0)["conv_extra"] as Array).is_empty(), "traccia piena: il Membro diventa Veterano con una conversione in più")
 	mis.apri_cassetto("")
-	# tutte le Minacce: tre avanzamenti del Tempo ciascuna
+	# regole sempre attive dei PDI: a fine turno nel settore
+	var s_att := int(e.membro(0)["settore"])
+	e.s["settori"][str(s_att)]["pdi"] = ["P010"]
+	for d in e.membro(0)["dadi"]:
+		d["stato"] = "disponibile"
+	var disp_p: int = e.dadi_disponibili(0).size()
+	mis._passivi("fine_turno", 0)
+	await chiudi()
+	ok(e.dadi_disponibili(0).size() == disp_p - 1, "P010: chi finisce il turno nel settore spende un dado")
+	e.s["settori"][str(s_att)]["pdi"] = ["P192"]
+	e.membro(0)["mano"] = []
+	mis._passivi("riposo", 0)
+	await chiudi()
+	ok(e.membro(0)["mano"].size() == e.limite_mano(0), "P192: riposando si pesca fino al limite della mano")
+		# tutte le Minacce: tre avanzamenti del Tempo ciascuna
 	var tot_fatti := 0
 	var tot_man := 0
 	for cm in Carte.categoria("minacce"):

@@ -279,7 +279,10 @@ func _aggiorna_traccia_turno() -> void:
 					esp.scegli_attivo(ii)
 					_sel = int(esp.membro(ii)["settore"])
 					_salva()
-					aggiorna())
+					aggiorna()
+					if _inizia():
+						await _passivi("inizio_turno", ii)
+						_finisci())
 		_turno_box.add_child(chip)
 	var sp := Control.new()
 	sp.custom_minimum_size = Vector2(24, 0)
@@ -463,7 +466,7 @@ func _aggiorna_passo() -> void:
 			var dest_t := ls if sett == tel else tel
 			_bottone_azione("TELEFERICA → %d" % dest_t, func():
 				esp.usa_azione(false)
-				_muovi(att, dest_t, [])
+				await _muovi(att, dest_t, [])
 				_salva()
 				aggiorna(), "Teleferica: ci si muove gratis fra il suo settore e quello del Lander (conta come un'azione)")
 		if esp.s.get("provviste_illimitate", false) or int(esp.s["lander"]["provviste"]) > 0:
@@ -1521,7 +1524,7 @@ func _viaggio() -> void:
 			testi.append({"en": "", "it": "Icona del sentiero da risolvere: [%s]" % s, "fonte": "sentiero"})
 	await applica(testi, chi, sett)
 	if _destinazione > 0 and str(esp.s.get("finita", "")) == "":
-		_muovi(chi, _destinazione, [])
+		await _muovi(chi, _destinazione, [])
 	_destinazione = 0
 	_finisci()
 
@@ -1529,6 +1532,76 @@ func _muovi(chi: int, a: int, logs: Array) -> void:
 	esp.viaggia(chi, a)
 	_sel = a
 	_entra_nel_settore(chi, logs)
+	await _passivi("entra", chi)
+
+## Regole sempre attive del PDI del settore e della Condizione Generale, nei momenti in cui scattano:
+## "entra" (chi entra nel settore), "inizio_turno", "fine_turno", "riposo", "sforzo".
+func _passivi(momento: String, chi: int) -> void:
+	if chi < 0 or chi >= esp.s["equipaggio"].size() or esp.membro(chi)["morto"] or str(esp.s.get("finita", "")) != "":
+		return
+	var sett := int(esp.membro(chi)["settore"])
+	var del_settore := ""
+	var carta := _carta_pdi(sett)
+	if not carta.is_empty():
+		del_settore = Carte.en(carta.get("testo", ""))
+	else:
+		for x in pl.get("settori", []):
+			if int(x.get("n", 0)) == sett and x.get("stampato") is Dictionary:
+				del_settore = Carte.en(x["stampato"].get("testo", ""))
+	var globale := Carte.en(_condizione().get("testo", ""))
+	var testi := []
+	var icone := esp.icone_settore(pl, sett, _carte_pdi())
+	var frasi := func(t: String) -> Array: return Array(RegEx.create_from_string("(?<=\\.)\\s+").sub(t, "§", true).split("§")).map(func(x): return str(x).strip_edges())
+	var trova := func(t: String, rx: String) -> String:
+		var m := RegEx.create_from_string(rx).search(t)
+		return m.get_string(m.get_group_count()) if m else ""
+	for f in frasi.call(del_settore):
+		var e := ""
+		match momento:
+			"fine_turno": e = trova.call(f, "(?i)^each crew\\w* who ends their turn in this sector,? (.+)$")
+			"entra": e = trova.call(f, "(?i)^each crew\\w* who enters this sector,? (.+)$")
+			"inizio_turno": e = trova.call(f, "(?i)^each crew\\w* who starts their turn in this sector,? (?!must)(.+)$")
+			"riposo": e = trova.call(f, "(?i)^whenever you rest(?: or exert)? in this sector,? (.+)$")
+			"sforzo": e = trova.call(f, "(?i)^whenever you rest or exert in this sector,? (.+)$")
+		if e != "":
+			testi.append({"en": e, "it": Carte.t(carta.get("testo", "")) if not carta.is_empty() else e, "fonte": "Settore %d" % sett})
+	for f in frasi.call(globale):
+		var e2 := ""
+		match momento:
+			"inizio_turno":
+				var m1 := RegEx.create_from_string("(?i)^each crew\\w* who starts their turn with (\\d+) or fewer available dice,? (.+)$").search(f)
+				if m1 and esp.dadi_disponibili(chi).size() <= int(m1.get_string(1)):
+					e2 = m1.get_string(2)
+				var m2 := RegEx.create_from_string("(?i)^each crew\\w* who starts their turn in a sector with an? \\[(\\w+)\\]( and without the builder's biomebot)?,? (?:immediately )?(.+)$").search(f)
+				if m2 and m2.get_string(1) in icone and (m2.get_string(2) == "" or not _minaccia_in("Builder's Biomebot", sett)):
+					e2 = m2.get_string(3)
+			"riposo": e2 = trova.call(f, "(?i)^whenever you rest(?: or exert)?,? (.+)$")
+			"sforzo": e2 = trova.call(f, "(?i)^whenever you rest or exert,? (.+)$")
+		if e2 != "":
+			testi.append({"en": e2, "it": e2, "fonte": "Condizione Generale"})
+	if testi.is_empty():
+		return
+	var m := esp.membro(chi)
+	var resto := []
+	var fatti := []
+	for t in testi:
+		var en := str(t["en"])
+		var lo := en.to_lower()
+		if lo.contains("draw cards up to your hand limit"):
+			var n := 0
+			while (m["mano"] as Array).size() < esp.limite_mano(chi) and esp.pesca_carta(chi) != "":
+				n += 1
+			fatti.append("%s pesca %d carte fino al limite della mano (%s)" % [m["carta"], n, t["fonte"]])
+		elif lo.contains("refresh 1 [die] fewer"):
+			esp.spendi_dado(chi)
+			fatti.append("%s ricarica 1 dado in meno (%s)" % [m["carta"], t["fonte"]])
+		else:
+			resto.append(t)
+	if not fatti.is_empty():
+		avviso("; ".join(fatti))
+		esp.diario("; ".join(fatti))
+	if not resto.is_empty():
+		await applica(resto, chi, sett)
 
 ## Entrando in un settore con un'annotazione non ancora letta, la si legge subito.
 func _entra_nel_settore(chi: int, logs: Array) -> void:
@@ -1558,6 +1631,7 @@ func _riposo() -> void:
 	esp.riposa(chi)
 	_bonus_avamposto(chi)
 	await _scatti_riposo(chi, prov_prima)
+	await _passivi("riposo", chi)
 	await _scarta_eccesso()
 	_finisci()
 
@@ -1798,6 +1872,7 @@ func _sforzo() -> void:
 			esp.sforzo(chi, str(dadi[j]["id"]))
 	if str(esp.s.get("finita", "")) == "":
 		_bonus_avamposto(chi)
+		await _passivi("sforzo", chi)
 		for e in esp.membro(chi).get("attrezzatura", []):
 			if str(Carte.per_id(str(e)).get("quando", "")) == "on_exert" and Carte.en(Carte.per_id(str(e)).get("effetto", "")).to_lower().contains("refresh 1"):
 				esp.ricarica(chi, 1, "")
@@ -1831,6 +1906,7 @@ func _fine_turno() -> void:
 	if not _inizia():
 		return
 	await _scarta_eccesso()
+	await _passivi("fine_turno", chi)
 	_controlla_grado(false)
 	var salta: bool = esp.s.get("salta_evento", false)
 	esp.s.erase("salta_evento")
@@ -1847,7 +1923,7 @@ func _fine_turno() -> void:
 	if str(esp.s.get("finita", "")) == "":
 		if esp.round_finito():
 			esp.prossimo_round(int(esp.s.get("primo", 0)))
-			avviso("Round %d" % int(esp.s["round"]))
+			avviso("Inizia il Round %d — tocca a %s (clicca un altro nome nella traccia del turno per cambiare)" % [int(esp.s["round"]), esp.membro(int(esp.s["attivo"]))["carta"]])
 		else:
 			for k in esp.s["equipaggio"].size():
 				var j2: int = (chi + 1 + k) % esp.s["equipaggio"].size()
@@ -1855,6 +1931,7 @@ func _fine_turno() -> void:
 					esp.scegli_attivo(j2)
 					break
 		_sel = int(esp.membro(int(esp.s["attivo"]))["settore"])
+		await _passivi("inizio_turno", int(esp.s["attivo"]))
 	_finisci()
 
 ## Carta Reparto che scarta l'Evento appena pescato senza risolverlo.
@@ -2306,6 +2383,15 @@ func applica(testi: Array, chi: int, sett: int) -> void:
 			if str(t.get("it", "")) != "":
 				manuali.append("%s: %s" % [fonte, str(t["it"])])
 			continue
+		# "X - OR - Y": sceglie il giocatore (solo le alternative che può pagare per intero)
+		var alt := Array(RegEx.create_from_string("\\s+-?\\s*OR\\s*-?\\s+").sub(en, "§", true).split("§"))
+		if alt.size() > 1:
+			var it_alt := Array(RegEx.create_from_string("(?i)\\s+-?\\s*OPPURE\\s*-?\\s+").sub(str(t.get("it", "")), "§", true).split("§"))
+			var nomi := []
+			for k in alt.size():
+				nomi.append(_txt_icone(str(it_alt[k]) if it_alt.size() == alt.size() else str(alt[k])))
+			var jj := await _scegli(fonte.to_upper(), nomi, "Scegli una delle alternative:", false)
+			en = str(alt[max(0, jj)])
 		var a := Effetti.analizza(en)
 		for op in a["op"]:
 			await _op(op, chi, sett, fatti, manuali, logs, fonte)
@@ -2422,7 +2508,7 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			if _destinazione > 0:
 				var d := _destinazione
 				_destinazione = 0
-				_muovi(chi, d, logs)
+				await _muovi(chi, d, logs)
 				fatti.append("%s si sposta nel Settore %d" % [m["carta"], d])
 			else:
 				var sen := esp.sentieri(pl, int(m["settore"]))
@@ -2433,7 +2519,7 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 					var dst := -1
 					while dst < 0:
 						dst = await _scegli_settore("%s si muove: clicca un settore collegato" % m["carta"], ok)
-					_muovi(chi, dst, logs)
+					await _muovi(chi, dst, logs)
 					fatti.append("%s si sposta nel Settore %d" % [m["carta"], dst])
 		"scarta_questa":
 			manuali.append("Scarta la carta (%s)" % fonte)
