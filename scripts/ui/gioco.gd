@@ -1,4 +1,6 @@
-## Schermata di gioco: tavolo 3D con sopra l'interfaccia (Logbook, anteprima, comandi, registro).
+## Schermata di gioco. La partita procede per fasi, ognuna a schermo intero: inizio della campagna
+## (Logbook e missione tutorial), Gestione della Nave (Ship Book passo per passo) ed Esplorazione
+## planetaria (plancia del pianeta). Il tavolo virtuale 3D resta disponibile, ma solo su richiesta.
 class_name Gioco
 extends Node
 
@@ -39,18 +41,67 @@ func _ready() -> void:
 	_costruisci_ui()
 	Campagna.cambiata.connect(_salva_tavolo_differito)
 	Campagna.salvata.connect(_su_salvata)
-	var modo := str(Campagna.dati.get("modo", ""))
-	if Campagna.dati.get("esplorazione") is Dictionary and not Campagna.dati["esplorazione"].is_empty():
-		# un'esplorazione in corso: si riprende direttamente dalla plancia del pianeta
-		apri_esplorazione.call_deferred()
+	_mostra_tavolo(false)
+	vai_alla_fase.call_deferred()
+
+## Porta alla fase in cui si trova la partita: esplorazione in corso, inizio della campagna, Nave.
+func vai_alla_fase() -> void:
+	if is_instance_valid(_missione) or is_instance_valid(_nave) or is_instance_valid(_inizio):
 		return
-	if Campagna.motore.posizione().is_empty() and Campagna.dati["registro"].get("eventi", []).size() <= 1:
-		# prima apertura: il Logbook propone l'annotazione iniziale
-		_mostra_logbook(true)
-		if modo == "rapido":
-			avviso("Inizio rapido: segui il regolamento a pag. 28, poi apri l'annotazione indicata.")
-	elif not Campagna.motore.posizione().is_empty():
-		_mostra_logbook(true)
+	if Campagna.dati.get("esplorazione") is Dictionary and not Campagna.dati["esplorazione"].is_empty():
+		apri_esplorazione()
+		return
+	var nave_pronta: bool = Campagna.dati.get("nave") is Dictionary and (Campagna.dati["nave"] as Dictionary).has("passo")
+	var concluse: Array = Campagna.dati.get("esplorazioni_concluse", [])
+	if nave_pronta or str(Campagna.dati.get("modo", "")) in ["rapido", "operazioni"] or not concluse.is_empty():
+		apri_nave()
+		return
+	_schermata_inizio()
+
+func _mostra_tavolo(v: bool) -> void:
+	tavolo.visible = v
+	tavolo.process_mode = Node.PROCESS_MODE_INHERIT if v else Node.PROCESS_MODE_DISABLED
+	if is_instance_valid(_barra):
+		_barra.visible = v
+	if is_instance_valid(_hint):
+		_hint.visible = v
+
+## Inizio della campagna: l'Annotazione iniziale del Logbook e poi la missione tutorial su Pellucid.
+var _inizio: Control
+func _schermata_inizio() -> void:
+	_mostra_tavolo(false)
+	_inizio = Control.new()
+	_inizio.set_anchors_preset(Control.PRESET_FULL_RECT)
+	ui.add_child(_inizio)
+	ui.move_child(_inizio, 0)
+	var fondo := ColorRect.new()
+	fondo.color = Color(0.008, 0.016, 0.035)
+	fondo.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_inizio.add_child(fondo)
+	var p := PanelContainer.new()
+	p.add_theme_stylebox_override("panel", Tema.box(Color(0.02, 0.05, 0.11), Tema.CIANO_SCURO, 1, 8, 24))
+	p.position = Vector2(40, 90)
+	p.custom_minimum_size = Vector2(620, 0)
+	_inizio.add_child(p)
+	var v := VBoxContainer.new()
+	v.add_theme_constant_override("separation", 14)
+	p.add_child(v)
+	v.add_child(Tema.etichetta("INIZIO DELLA CAMPAGNA", 24, Tema.CIANO, true))
+	var r := Tema.testo_ricco(17)
+	r.fit_content = true
+	r.text = "[b]1.[/b] Leggi l'Annotazione iniziale nel Logbook qui a destra: la storia e le istruzioni le segue il programma.\n[b]2.[/b] Poi parte la prima esplorazione (il tutorial su Pellucid): il pianeta, la Squadra di Sbarco e le carte si preparano da soli.\n[b]3.[/b] Al ritorno comincia la Gestione della Nave, un passo del Ship Book alla volta."
+	v.add_child(r)
+	v.add_child(Tema.pulsante_primario("INIZIA LA PRIMA ESPLORAZIONE ▶", func():
+		_inizio.queue_free()
+		_mostra_logbook(false)
+		apri_esplorazione(), 18))
+	v.add_child(Tema.pulsante("SALTA IL TUTORIAL: VAI ALLA GESTIONE DELLA NAVE", func():
+		_inizio.queue_free()
+		_mostra_logbook(false)
+		apri_nave(), 14))
+	_mostra_logbook(true)
+	if Campagna.motore.posizione().is_empty():
+		logbook.apri_inizio(str(Campagna.dati.get("modo", "")) == "operazioni")
 
 var _salvo_tavolo := false
 ## Prima di ogni salvataggio copia nella campagna lo stato del tavolo.
@@ -77,6 +128,7 @@ func _costruisci_ui() -> void:
 	barra.set_anchors_preset(Control.PRESET_TOP_WIDE)
 	barra.offset_bottom = 54
 	ui.add_child(barra)
+	_barra = barra
 	var h := HBoxContainer.new()
 	h.add_theme_constant_override("separation", 8)
 	barra.add_child(h)
@@ -108,10 +160,11 @@ func _costruisci_ui() -> void:
 		b.tooltip_text = "Vista: %s" % Tavolo.VISTE[k]["nome"]
 		h.add_child(b)
 	h.add_child(VSeparator.new())
-	var esp_in_corso: bool = Campagna.dati.get("esplorazione") is Dictionary and not Campagna.dati["esplorazione"].is_empty()
-	h.add_child(Tema.pulsante_primario("GESTIONE NAVE", apri_nave, 14))
-	h.add_child(Tema.pulsante_primario("RIPRENDI ESPLORAZIONE" if esp_in_corso else "ESPLORAZIONE", apri_esplorazione, 14))
-	h.add_child(Tema.pulsante_primario("LOGBOOK", func(): _mostra_logbook(not logbook.visible), 14))
+	# il tavolo è uno strumento in più: dalla barra si torna sempre alla fase della partita
+	h.add_child(Tema.pulsante_primario("▶ TORNA ALLA PARTITA", func():
+		_mostra_logbook(false)
+		vai_alla_fase(), 14))
+	h.add_child(Tema.pulsante("LOGBOOK", func(): _mostra_logbook(not logbook.visible), 13))
 	var menu := MenuButton.new()
 	menu.text = "≡"
 	menu.flat = false
@@ -193,30 +246,33 @@ func _costruisci_ui() -> void:
 	hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	hint.text = "Tasto destro = menu del pezzo · destro trascinato = ruota · rotella = zoom · ≡ > Comandi del tavolo per tutti i tasti"
 	ui.add_child(hint)
+	_hint = hint
 	var tw := hint.create_tween()
 	tw.tween_interval(8.0)
 	tw.tween_property(hint, "modulate:a", 0.0, 1.5)
 
 var _missione: Missione
 var _nave: GestioneNave
+var _barra: Control
+var _hint: Control
 
 ## Gestione della Nave (Ship Book) a schermo intero.
 func apri_nave() -> void:
 	if is_instance_valid(_nave):
 		return
+	if is_instance_valid(_inizio):
+		_inizio.queue_free()
 	var st = Campagna.dati.get("nave")
 	if not st is Dictionary:
 		st = {}
 		Campagna.dati["nave"] = st
 	_nave = GestioneNave.new(st)
-	tavolo.visible = false
-	tavolo.process_mode = Node.PROCESS_MODE_DISABLED
+	_mostra_tavolo(false)
 	logbook.visible = false
 	ui.add_child(_nave)
 	_nave.chiusa.connect(func():
 		_nave.queue_free()
-		tavolo.visible = true
-		tavolo.process_mode = Node.PROCESS_MODE_INHERIT)
+		_mostra_tavolo(true))
 	_nave.esplora.connect(func(cfg: Dictionary):
 		_nave.queue_free()
 		if cfg.is_empty():
@@ -226,6 +282,7 @@ func apri_nave() -> void:
 		prep.dalla_nave = cfg
 		prep.pagina_iniziale = str(cfg.get("pagina", "p.2-3"))
 		prep.pronta.connect(_avvia_esplorazione)
+		prep.annullata.connect(func(): vai_alla_fase.call_deferred())
 		ui.add_child(prep))
 
 func _avvia_esplorazione(cfg: Dictionary) -> void:
@@ -240,6 +297,8 @@ func _avvia_esplorazione(cfg: Dictionary) -> void:
 func apri_esplorazione() -> void:
 	if is_instance_valid(_missione):
 		return
+	if is_instance_valid(_inizio):
+		_inizio.queue_free()
 	var st = Campagna.dati.get("esplorazione")
 	if st is Dictionary and not st.is_empty():
 		_mostra_missione(st)
@@ -247,21 +306,21 @@ func apri_esplorazione() -> void:
 	var prep := PreparazioneMissione.new()
 	prep.pagina_iniziale = str(Campagna.dati.get("prossimo_pianeta", "p.2-3"))
 	prep.pronta.connect(_avvia_esplorazione)
+	prep.annullata.connect(func(): vai_alla_fase.call_deferred())
 	ui.add_child(prep)
 
 func _mostra_missione(st: Dictionary) -> void:
 	_missione = Missione.new(st)
-	tavolo.visible = false
-	tavolo.process_mode = Node.PROCESS_MODE_DISABLED
+	_mostra_tavolo(false)
 	logbook.visible = false
 	ui.add_child(_missione)
 	_missione.chiusa.connect(func():
 		_missione.queue_free()
-		tavolo.visible = true
-		tavolo.process_mode = Node.PROCESS_MODE_INHERIT
-		# finita l'esplorazione si torna alla Gestione della Nave
+		# finita l'esplorazione si torna alla Gestione della Nave, altrimenti al tavolo virtuale
 		if not Campagna.dati.has("esplorazione"):
-			apri_nave())
+			apri_nave()
+		else:
+			_mostra_tavolo(true))
 
 func _voce_menu_barra(id: int) -> void:
 	if id == 0:

@@ -4,6 +4,7 @@ class_name PreparazioneMissione
 extends Control
 
 signal pronta(cfg: Dictionary)
+signal annullata
 
 const REPARTI := {"ingegneria": "engineering", "ricognizione": "recon", "scienza": "science", "sicurezza": "security"}
 ## Tutorial (Regolamento pag. 14): Amir nel Settore 1, il Membro alla sua sinistra nel 2, poi 1 e 2.
@@ -140,7 +141,9 @@ func _ready() -> void:
 	hb.alignment = BoxContainer.ALIGNMENT_END
 	hb.add_theme_constant_override("separation", 10)
 	v.add_child(hb)
-	hb.add_child(Tema.pulsante("ANNULLA", queue_free, 16))
+	hb.add_child(Tema.pulsante("ANNULLA", func():
+		annullata.emit()
+		queue_free(), 16))
 	hb.add_child(Tema.pulsante_primario("ATTERRA", _conferma, 18))
 
 static func _num(x) -> int:

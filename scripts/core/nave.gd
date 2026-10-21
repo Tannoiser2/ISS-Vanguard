@@ -339,6 +339,40 @@ func requisito_destinazione(en: String) -> String:
 			return "Obiettivo O%02d–O%02d" % [da, a]
 	return ""
 
+## Domande del Logbook sullo stato della nave: {"r": 1/0/-1, "perche": testo}.
+static func domanda_nave(t: String, n: Nave) -> Dictionary:
+	var tl := t.to_lower()
+	var r := func(v: bool, p: String) -> Dictionary: return {"r": 1 if v else 0, "perche": p}
+	var m := RegEx.create_from_string("(?i)obiettivo attuale è (O\\d{2})(?:\\s*[-–]\\s*O?(\\d{2}))?").search(t)
+	if m:
+		var ob := str(n.s.get("obiettivo", ""))
+		var k := int(ob.substr(1)) if ob.substr(1).is_valid_int() else -1
+		var da := int(m.get_string(1).substr(1))
+		var a := int(m.get_string(2)) if m.get_string(2) != "" else da
+		return r.call(k >= da and k <= a, "Obiettivo attuale: %s" % ob)
+	m = RegEx.create_from_string("(?i)carta atterraggio (L\\d+) si trova (?:all'interno dello|nello) scanner").search(t)
+	if m:
+		return r.call(str(n.s.get("scanner", {}).get("carta", "")).to_upper() == m.get_string(1).to_upper(), "Scanner: %s" % n.s.get("scanner", {}).get("carta", "vuoto"))
+	var morale := str(n.s.get("morale", ""))
+	if tl.contains("morale era già \"alto\"") or tl.contains("morale è alto"):
+		return r.call(morale == "high", "Morale: %s" % Nave.NOMI_MORALE.get(morale, morale))
+	if tl.contains("morale è \"basso\"") or tl.contains("morale è basso"):
+		return r.call(morale == "low", "Morale: %s" % Nave.NOMI_MORALE.get(morale, morale))
+	if tl.contains("morale è molto basso") or tl.contains("morale  è molto basso"):
+		return r.call(morale == "very_low", "Morale: %s" % Nave.NOMI_MORALE.get(morale, morale))
+	m = RegEx.create_from_string("(?i)progetto di ricerca (R\\d+).*si trova in .?progetti di ricerca").search(t)
+	if m:
+		return r.call(m.get_string(1).to_upper() in n.s.get("ricerca", []), "Progetti di Ricerca: %s" % ", ".join(n.s.get("ricerca", [])))
+	m = RegEx.create_from_string("(?i)possiedi almeno (\\d+) scoperte eccezionali").search(t)
+	if m:
+		return r.call((n.s.get("eccezionali", {}) as Dictionary).size() >= int(m.get_string(1)), "Scoperte Eccezionali sulla nave: %d" % (n.s.get("eccezionali", {}) as Dictionary).size())
+	m = RegEx.create_from_string("(?i)possiedi (?:entrambe )?(?:la |le )?scoperte? eccezional[ei]\\s*(\\d+)(?:\\s*e\\s*(\\d+))?").search(t)
+	if m:
+		var e: Dictionary = n.s.get("eccezionali", {})
+		var v := e.has(str(int(m.get_string(1)))) and (m.get_string(2) == "" or e.has(str(int(m.get_string(2)))))
+		return r.call(v, "Scoperte Eccezionali sulla nave: %s" % ", ".join(e.keys()))
+	return {"r": -1, "perche": ""}
+
 ## Toglie una carta da ovunque si trovi sulla nave.
 func togli_carta(id: String) -> void:
 	for k in ["busta", "ponte", "ponte_viaggio", "potenziamenti", "armeria", "situazioni", "situazioni_possibili", "situazioni_future", "ricerca", "produzione_pronti", "mod_lander"]:

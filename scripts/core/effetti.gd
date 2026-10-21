@@ -97,6 +97,23 @@ const NUMERI_IT := {"un": 1, "una": 1, "uno": 1, "due": 2, "tre": 3, "quattro": 
 const FERITE_IT := {"ferito": "wounded", "ferita lesione": "wounded", "lesione grave": "critically_wounded", "ustione": "burned",
 	"allo stremo": "exhausted", "panico": "panicked", "congelamento": "freezing", "solo un graffio": "just_a_scratch", "niente di grave": "just_a_scratch", "lesione": "wounded"}
 
+## Chiave di un gruppo di segnaposto: "carta:m21", "carta:vigilanza", "riserva:potere diplomatico", "slot:conoscenza".
+static func chiave_segni(t: String) -> String:
+	var x := t.to_lower().strip_edges().replace("’", "'")
+	x = RegEx.create_from_string("\\(.*?\\)").sub(x, "", true)
+	for pre in ["sulla ", "dalla ", "alla ", "allo ", "dallo ", "nello ", "nella "]:
+		x = x.trim_prefix(pre)
+	var tipo := "carta"
+	for k in ["riserva", "slot", "carta"]:
+		if x.begins_with(k + " "):
+			tipo = k
+			x = x.substr(k.length() + 1)
+			break
+	for k in ["missione opzionale ", "missione ", "condizione generale ", "condizione globale ", "pdi ", "minaccia "]:
+		x = x.trim_prefix(k)
+	x = x.get_slice(" sulla ", 0).get_slice(" nel settore", 0).strip_edges().trim_suffix(".")
+	return tipo + ":" + x
+
 static func _ni(s: String) -> int:
 	s = s.strip_edges().to_lower()
 	return int(s) if s.is_valid_int() else int(NUMERI_IT.get(s, 1))
@@ -129,6 +146,13 @@ static func analizza_it(testo: String) -> Dictionary:
 		["(?i)apri il manuale della nave a pagina (\\d+)", func(m): return {"op": "nave_pagina", "n": int(m.get_string(1))}],
 		["(?i)apri la planetopedia alle pagine (\\d+)\\s*[-–]\\s*(\\d+)", func(m): return {"op": "planetopedia", "pagina": "p.%d-%d" % [int(m.get_string(1)), int(m.get_string(2))]}],
 		["(?i)non (?:succede|accade) nulla", func(m): return {"op": "niente"}],
+		# segnaposto su carte, riserve e slot; Piaghe nei settori (le domande del Logbook li controllano)
+		["(?i)(?:posiziona|aggiungi|metti) " + N + " segnaposto (?:universal[ei] )?(sulla carta [^.,;•]+?|alla riserva [^.,;•]+?|allo slot [^.,;•]+?|nello slot [^.,;•]+?)(?=[.,;•]| e | se | su di| oppure|$)", func(m): return {"op": "segni", "dove": chiave_segni(m.get_string(2)), "n": _ni(m.get_string(1))}],
+		["(?i)(?:scarta|rimuovi|togli) " + N + " segnaposto (dalla carta [^.,;•]+?|dalla riserva [^.,;•]+?|dallo slot [^.,;•]+?)(?=[.,;•]| e | se |$)", func(m): return {"op": "segni", "dove": chiave_segni(m.get_string(2)), "n": -_ni(m.get_string(1))}],
+		["(?i)(?:scarta|rimuovi) tutti i segnaposto (dalla carta [^.,;•]+?|dalla riserva [^.,;•]+?|dallo slot [^.,;•]+?)(?=[.,;•]| e | se |$)", func(m): return {"op": "segni", "dove": chiave_segni(m.get_string(1)), "n": -999}],
+		["(?i)(?:posiziona|aggiungi) " + N + " piag(?:a|he) nel (?:settore (\\d+)|tuo settore|relativo settore)", func(m): return {"op": "piaghe", "n": _ni(m.get_string(1)), "settore": int(m.get_string(2)) if m.get_string(2) != "" else 0}],
+		["(?i)(?:rimuovi|scarta) " + N + " piag(?:a|he) dal (?:settore (\\d+)|tuo settore)", func(m): return {"op": "piaghe", "n": -_ni(m.get_string(1)), "settore": int(m.get_string(2)) if m.get_string(2) != "" else 0}],
+		["(?i)(?:rimuovi|scarta) tutte le piaghe dal (?:settore (\\d+)|tuo settore)", func(m): return {"op": "piaghe", "n": -999, "settore": int(m.get_string(1)) if m.get_string(1) != "" else 0}],
 		# atterraggio
 		["(?i)posiziona un segnaposto nella casella iniziale", func(m): return {"op": "atterraggio_inizio"}],
 		["(?i)fai avanzare il contatore dell'atterraggio(?: di (due|tre|\\d+))?", func(m): return {"op": "atterraggio", "n": _ni(m.get_string(1)) if m.get_string(1) != "" else 1}],

@@ -46,6 +46,7 @@ var _testo_scelta := ""
 signal _settore_scelto(n: int)
 
 const ALTO_HUD := 46
+const ALTO_TURNO := 58
 const ALTO_BARRA := 74
 
 # ------------------------------------------------------------------ avvio
@@ -67,7 +68,7 @@ func _ready() -> void:
 	_plancia = TextureRect.new()
 	_plancia.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_plancia.offset_left = 6
-	_plancia.offset_top = ALTO_HUD + 4
+	_plancia.offset_top = ALTO_HUD + ALTO_TURNO + 4
 	_plancia.offset_right = -6
 	_plancia.offset_bottom = -ALTO_BARRA - 4
 	_plancia.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -82,7 +83,7 @@ func _ready() -> void:
 	_p3d = Plancia3D.new()
 	_p3d.mis = self
 	_p3d.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	_p3d.offset_top = ALTO_HUD
+	_p3d.offset_top = ALTO_HUD + ALTO_TURNO
 	_p3d.offset_bottom = -ALTO_BARRA
 	_p3d.cliccato.connect(seleziona)
 	add_child(_p3d)
@@ -93,6 +94,7 @@ func _ready() -> void:
 			_p3d.imposta_plancia(t)
 			_disponi())
 	add_child(_hud())
+	add_child(_traccia_turno())
 	_imposta_vista(vista_3d())
 	add_child(_barra_turno())
 	add_child(_cassetto())
@@ -187,7 +189,7 @@ func _hud() -> Control:
 	menu.flat = false
 	menu.add_theme_font_size_override("font_size", 18)
 	menu.get_popup().add_item("Salva adesso", 0)
-	menu.get_popup().add_item("Torna alla nave (l'esplorazione resta salvata)", 1)
+	menu.get_popup().add_item("Tavolo virtuale (l'esplorazione resta salvata)", 1)
 	menu.get_popup().add_item("Correzioni manuali…", 2)
 	menu.get_popup().id_pressed.connect(_voce_menu)
 	h.add_child(menu)
@@ -206,6 +208,110 @@ func _imposta_vista(tre_d: bool) -> void:
 	if tre_d:
 		_p3d.vista_iniziale()
 		_p3d.aggiorna()
+
+# ------------------------------------------------------------------ traccia del turno (sotto la riga di stato)
+
+var _turno_box: HBoxContainer
+var _turno_guida: RichTextLabel
+
+## Il turno scandito: Round, ordine della Squadra (chi ha giocato, chi è di turno, chi deve ancora),
+## i passi del turno (Azione 1, Azione 2, Fine turno con l'Evento) e una riga "cosa fare adesso".
+func _traccia_turno() -> Control:
+	var p := PanelContainer.new()
+	p.set_anchors_preset(Control.PRESET_TOP_WIDE)
+	p.offset_top = ALTO_HUD
+	p.offset_bottom = ALTO_HUD + ALTO_TURNO
+	p.add_theme_stylebox_override("panel", Tema.box(Color(0.015, 0.035, 0.08, 0.96), Tema.CIANO_SCURO, 0, 0, 6))
+	var v := VBoxContainer.new()
+	v.add_theme_constant_override("separation", 2)
+	p.add_child(v)
+	_turno_box = HBoxContainer.new()
+	_turno_box.add_theme_constant_override("separation", 6)
+	v.add_child(_turno_box)
+	_turno_guida = Tema.testo_ricco(15)
+	_turno_guida.fit_content = true
+	_turno_guida.scroll_active = false
+	_turno_guida.autowrap_mode = TextServer.AUTOWRAP_OFF
+	v.add_child(_turno_guida)
+	return p
+
+func _chip_turno(testo: String, stato: String, col := Color.WHITE) -> Control:
+	var l := Label.new()
+	l.text = testo
+	l.add_theme_font_override("font", Tema.titolo)
+	l.add_theme_font_size_override("font_size", 14)
+	var pc := PanelContainer.new()
+	var c: Color = {"fatto": Color(0.25, 0.35, 0.45), "ora": Tema.AMBRA, "dopo": Color(0.45, 0.6, 0.75), "evento": Color(0.85, 0.5, 0.95)}.get(stato, col)
+	pc.add_theme_stylebox_override("panel", Tema.box(Color(c.r, c.g, c.b, 0.22 if stato == "ora" else 0.08), c, 2 if stato == "ora" else 1, 10, 6))
+	l.add_theme_color_override("font_color", c if stato != "fatto" else Color(0.5, 0.6, 0.7))
+	pc.add_child(l)
+	return pc
+
+func _freccia() -> Label:
+	var l := Label.new()
+	l.text = "›"
+	l.add_theme_color_override("font_color", Tema.TESTO_2)
+	return l
+
+func _aggiorna_traccia_turno() -> void:
+	if _turno_box == null:
+		return
+	for c in _turno_box.get_children():
+		c.queue_free()
+	var att := int(esp.s["attivo"])
+	_turno_box.add_child(_chip_turno("ROUND %d" % int(esp.s["round"]), "dopo"))
+	_turno_box.add_child(_freccia())
+	# ordine della Squadra in questo round
+	for i in esp.s["equipaggio"].size():
+		var m := esp.membro(i)
+		if m["morto"]:
+			_turno_box.add_child(_chip_turno("✝ " + str(m["carta"]).get_slice(" ", 0), "fatto"))
+			continue
+		var stato := "fatto" if m["turno_fatto"] else ("ora" if i == att else "dopo")
+		var chip := _chip_turno(("✓ " if stato == "fatto" else ("▶ " if stato == "ora" else "")) + str(m["carta"]).get_slice(" ", 0), stato, Dati.SEZIONI.get(str(m["reparto"]), {}).get("colore", Color.WHITE))
+		# l'ordine dei turni lo decidono i giocatori: finché il Membro di turno non ha agito si può cambiare
+		if stato == "dopo" and int(esp.s["azioni"]) == 2 and not esp.s["speciale_usata"] and not _occupato:
+			var ii: int = i
+			chip.tooltip_text = "Fai giocare adesso %s" % m["carta"]
+			chip.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+			chip.gui_input.connect(func(e):
+				if e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT:
+					esp.scegli_attivo(ii)
+					_sel = int(esp.membro(ii)["settore"])
+					_salva()
+					aggiorna())
+		_turno_box.add_child(chip)
+	var sp := Control.new()
+	sp.custom_minimum_size = Vector2(24, 0)
+	_turno_box.add_child(sp)
+	# passi del turno del Membro attivo
+	var az := int(esp.s["azioni"])
+	var fatte := 2 - az
+	for k in 2:
+		var st := "fatto" if k < fatte else ("ora" if k == fatte else "dopo")
+		_turno_box.add_child(_chip_turno("AZIONE %d" % (k + 1), st))
+		_turno_box.add_child(_freccia())
+	_turno_box.add_child(_chip_turno("FINE TURNO · EVENTO", "ora" if az <= 0 else "dopo"))
+	var resto := esp.vivi().filter(func(i): return not esp.membro(i)["turno_fatto"] and i != att).size()
+	_turno_box.add_child(_freccia())
+	_turno_box.add_child(_chip_turno("FINE ROUND" if resto == 0 else "%d ANCORA DA GIOCARE" % resto, "dopo"))
+	# cosa fare adesso
+	var m2 := esp.membro(att)
+	var nome := str(m2["carta"])
+	var g := ""
+	if str(esp.s.get("finita", "")) != "":
+		g = "[b]Esplorazione conclusa.[/b] Apri il RIEPILOGO in basso a destra e torna alla nave."
+	elif in_atterraggio():
+		g = "[b]Atterraggio.[/b] Segui il Logbook: il contatore dell'Atterraggio, i danni e le Ferite li tiene il programma."
+	elif _scelta_settore:
+		g = "[color=#ffb347][b]%s[/b][/color]" % _testo_scelta
+	elif az == 2:
+		g = "[b]%s[/b], prima azione: [b]VIAGGIO[/b] in un settore collegato, l'[b]AZIONE SPECIALE[/b] del settore (una per turno), [b]RIPOSO[/b] o [b]PREPARAZIONE[/b]. Le carte in mano si giocano quando vuoi." % nome
+	elif az == 1:
+		g = "[b]%s[/b], seconda azione%s. Oppure FINE TURNO se non serve." % [nome, " (l'Azione Speciale l'hai già usata)" if esp.s["speciale_usata"] else ""]
+	else:
+		g = "[b]%s[/b] ha finito le azioni: premi [b]FINE TURNO[/b] — si pesca e si risolve un Evento, poi tocca %s." % [nome, "al prossimo Membro" if resto > 0 else "alla fine del Round: poi un nuovo Round, e decidete voi chi gioca per primo"]
+	_turno_guida.text = "[color=#9fbbd6]COSA FARE ▸[/color] " + g
 
 func _voce_menu(id: int) -> void:
 	if id == 0:
@@ -732,6 +838,7 @@ func aggiorna() -> void:
 		("   [color=#9fbbd6]INDIZI[/color] " + ", ".join(ind)) if not ind.is_empty() else ""]
 	_aggiorna_membro()
 	_aggiorna_passo()
+	_aggiorna_traccia_turno()
 	if str(esp.s.get("finita", "")) != "" and _cassetto_tipo != "fine" and not _occupato:
 		apri_cassetto("fine")
 		return
@@ -1153,7 +1260,7 @@ func _sezione_condizione() -> void:
 
 func _condizione() -> Dictionary:
 	var id := str(esp.s["condizione"]["carta"])
-	if RegEx.create_from_string("^G\\d+$").search(id):
+	if RegEx.create_from_string("^G\\d+(@\\d+)?$").search(id):
 		var c := Carte.per_id(id)
 		if not c.is_empty():
 			return c
@@ -2208,7 +2315,7 @@ func applica(testi: Array, chi: int, sett: int) -> void:
 			manuali.append("%s: %s" % [fonte, str(t.get("it", en))])
 		if str(esp.s.get("finita", "")) != "":
 			break
-	_controlla_tempo(fatti, manuali, logs)
+	await _controlla_tempo(fatti, manuali, logs)
 	if not fatti.is_empty() or not manuali.is_empty():
 		var testo := ""
 		if not fatti.is_empty():
@@ -2345,6 +2452,15 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			for k in int(op["n"]):
 				esp.sacrifica_dado(chi, "", str(op["colore"]))
 			fatti.append("%s sacrifica %d dadi" % [m["carta"], int(op["n"])])
+		"segni":
+			var cont: Dictionary = esp.s.get_or_add("contatori", {})
+			cont[op["dove"]] = max(0, int(cont.get(op["dove"], 0)) + int(op["n"]))
+			fatti.append("Segnaposto %s: %d" % [str(op["dove"]).get_slice(":", 1), int(cont[op["dove"]])])
+		"piaghe":
+			var sp := int(op["settore"]) if int(op["settore"]) > 0 else sett
+			var stp: Dictionary = esp.s["settori"].get(str(sp), {})
+			stp["piaghe"] = max(0, int(stp.get("piaghe", 0)) + int(op["n"]))
+			fatti.append("Settore %d: %d Piaghe" % [sp, int(stp["piaghe"])])
 		"niente":
 			fatti.append("Non succede nulla")
 		"perdita_testa":
@@ -2514,6 +2630,9 @@ func _trova_minaccia(nome: String) -> Array:
 func _aggiungi_minaccia(c: Dictionary, sett: int) -> void:
 	var en := Carte.en(c.get("titolo", ""))
 	esp.s["minacce"].append({"nome": Carte.titolo(c), "en": en, "file": str(c["file"]), "settore": sett, "tempo": 0})
+	# lo Sciame da Guerra Arrogatore arriva con i suoi 3 Droni nello stesso settore
+	if en.to_upper().contains("ARROGATOR WARSWARM") and esp.s["settori"].has(str(sett)):
+		esp.s["settori"][str(sett)]["droni"] = int(esp.s["settori"][str(sett)].get("droni", 0)) + 3
 	esp.diario("Minaccia %s nel Settore %d" % [Carte.titolo(c), sett])
 
 func _carta_minaccia(m: Dictionary) -> Dictionary:
@@ -2585,9 +2704,9 @@ func _minaccia_speciale(m: Dictionary, c: Dictionary, eff: String, testo: String
 	var sett := int(m["settore"])
 	match [en, eff]:
 		["Re-Origination Beam", "travel"]:
+			# il segnalino parte sulla regola "lenta"; un'annotazione può spostarlo (m["viaggio"] = "veloce")
 			if not m.has("viaggio"):
-				var j := await _scegli("RAGGIO DI RI-ORIGINAZIONE", ["Viaggio (lento)", "Viaggio (veloce)"], "Quale regola di Viaggio è contrassegnata da un segnalino sulla carta?", false)
-				m["viaggio"] = "veloce" if j == 1 else "lento"
+				m["viaggio"] = "lento"
 			var meta := 8
 			if m["viaggio"] == "lento":
 				if (sett - 1) in esp.collegati(pl, sett):
@@ -2680,8 +2799,7 @@ func _minaccia_speciale(m: Dictionary, c: Dictionary, eff: String, testo: String
 			return true
 		["Arrogator Warswarm", "swarm"]:
 			if not m.has("droni_totali"):
-				var j4 := await _scegli("SCIAME DA GUERRA ARROGATORE", ["3", "4", "5", "6", "7", "8"], "Quanti Droni ci sono in tutto (sulla plancia e nella riserva)?", false)
-				m["droni_totali"] = max(0, j4) + 3
+				m["droni_totali"] = 3      # i Droni dello Sciame sono 3 (Logbook: "tutti e 3 i Droni")
 			var sul := 0
 			for k in esp.s["settori"]:
 				sul += int(esp.s["settori"][k].get("droni", 0))
@@ -3135,7 +3253,11 @@ var _ultima_spiegazione := ""
 func rispondi_logbook(q: String) -> int:
 	var t := RegEx.create_from_string("\\{i:(\\w+)\\}").sub(q, "[$1]", true)
 	t = RegEx.create_from_string("\\[/?[bi]\\]").sub(t, "", true).replace("\n", " ").replace("’", "'").strip_edges()
+	t = RegEx.create_from_string("\\s+").sub(t, " ", true)
 	var tl := t.to_lower()
+	var st := _rispondi_stato(t, tl)
+	if st >= 0:
+		return st
 	# contatore dell'Atterraggio
 	if tl.contains("atterraggio riuscito"):
 		var ld: Dictionary = esp.s["lander"]
@@ -3198,6 +3320,184 @@ func rispondi_logbook(q: String) -> int:
 		return -1
 	return -1
 
+## Domande del Logbook sullo stato della partita che il programma conosce (carte sulla plancia,
+## Condizione Generale, Missioni, Minacce, Equipaggio, segnaposto, Piaghe, modalità di gioco…).
+func _rispondi_stato(t: String, tl: String) -> int:
+	var si := func(v: bool, perche: String) -> int:
+		_ultima_spiegazione = perche
+		return 1 if v else 0
+	# domande in inglese (alcune annotazioni non tradotte): le stesse verifiche
+	tl = tl.replace("has the marker reached the “landing successful” space", "il segnaposto ha raggiunto la casella atterraggio riuscito") \
+		.replace("is the global condition card", "la carta condizione generale").replace(" on the board", " si trova sulla plancia") \
+		.replace("is mission", "la carta missione").replace(" revealed", " è scoperta").replace("are you on ", "ti trovi su ") \
+		.replace("are you playing this operation as a single scenario", "sessione di gioco singola").replace("sei nel settore", "ti trovi nel settore")
+	var ce := RegEx.create_from_string("is (?:the )?card (P\\d{3}).*? in sector (\\d+)").search(tl)
+	if ce:
+		tl = "la carta %s si trova nel settore %s" % [ce.get_string(1), ce.get_string(2)]
+		t = tl.to_upper().replace("LA CARTA", "la carta")
+	# due statistiche del Lander insieme ("e" / "oppure"), "pari o superiore", "N or more"
+	var due := RegEx.create_from_string("\\[(lander\\w+)\\] (e|oppure) \\[(lander\\w+)\\] sono maggiori o uguali a (\\d+)").search(t)
+	if due:
+		var a1 := _stat(due.get_string(1)) >= int(due.get_string(4))
+		var a2 := _stat(due.get_string(3)) >= int(due.get_string(4))
+		_ultima_spiegazione = "%s %d, %s %d" % [_nome_stat(due.get_string(1)), _stat(due.get_string(1)), _nome_stat(due.get_string(3)), _stat(due.get_string(3))]
+		return 1 if ((a1 and a2) if due.get_string(2) == "e" else (a1 or a2)) else 0
+	var ps := RegEx.create_from_string("\\[(lander\\w+)\\]\\s*(?:è pari o superiore a|is|)\\s*(\\d+)\\s*(?:or more|o superiore)?").search(t)
+	if ps and (tl.contains("pari o superiore") or tl.contains("or more")):
+		_ultima_spiegazione = "%s %d" % [_nome_stat(ps.get_string(1)), _stat(ps.get_string(1))]
+		return 1 if _stat(ps.get_string(1)) >= int(ps.get_string(2)) else 0
+	if tl.contains("girare la tua carta rank-up") or tl.contains("girare la carta grado superiore"):
+		_ultima_spiegazione = "carta Grado Superiore %s" % ("girata" if esp.s.get("grado_girato", false) else "non girata")
+		return 1 if esp.s.get("grado_girato", false) else 0
+	var modo := str(Campagna.dati.get("modo", "campagna")) if Campagna.dati is Dictionary else "campagna"
+	# modalità di gioco
+	if RegEx.create_from_string("stai giocando (?:la|una) campagna|all'interno di una campagna").search(tl):
+		return si.call(modo in ["campagna", "rapido"], "modalità: %s" % modo)
+	if RegEx.create_from_string("sessione di gioco singola|scenario indipendente").search(tl):
+		return si.call(modo == "operazioni", "modalità: %s" % modo)
+	if tl.contains("stai effettuando un'esplorazione planetaria"):
+		return si.call(true, "sei in esplorazione")
+	# quarta Ferita, Membri morti o rimasti
+	if RegEx.create_from_string("(?:riportato|ricevuto|ottenuto|gain) (?:una |la |a )?(?:quarta|fourth) (?:ferita|injury)").search(tl):
+		return si.call(esp.s.get("quarta_ferita", false), "quarta Ferita: %s" % ("sì" if esp.s.get("quarta_ferita", false) else "no"))
+	if RegEx.create_from_string("(?:tutti i membri dell'equipaggio sono morti|sono morti tutti i membri)").search(tl):
+		return si.call(esp.vivi().is_empty(), "Membri vivi: %d" % esp.vivi().size())
+	if RegEx.create_from_string("ultimo membro dell'equipaggio").search(tl):
+		return si.call(esp.vivi().size() <= 1, "Membri vivi: %d" % esp.vivi().size())
+	if RegEx.create_from_string("ci sono (?:ancora )?membri dell'equipaggio sulla plancia|almeno un membro dell'equipaggio non è impossibilitato").search(tl):
+		return si.call(not esp.vivi().is_empty(), "Membri vivi: %d" % esp.vivi().size())
+	if tl.contains("solo una miniatura di un membro"):
+		return si.call(esp.vivi().size() == 1, "Membri sulla plancia: %d" % esp.vivi().size())
+	var mm := RegEx.create_from_string("sono presenti (\\d+) o più membri").search(tl)
+	if mm:
+		return si.call(esp.vivi().size() >= int(mm.get_string(1)), "Membri: %d" % esp.vivi().size())
+	mm = RegEx.create_from_string("tutti i membri dell'equipaggio si trovano nel settore (\\d+)").search(tl)
+	if mm:
+		return si.call(esp.vivi().all(func(i): return int(esp.membro(i)["settore"]) == int(mm.get_string(1))), "posizioni della Squadra")
+	mm = RegEx.create_from_string("un membro dell'equipaggio ha (\\d+) ferite").search(tl)
+	if mm:
+		return si.call(esp.vivi().any(func(i): return (esp.membro(i)["ferite"] as Array).size() >= int(mm.get_string(1))), "Ferite della Squadra")
+	mm = RegEx.create_from_string("il tuo membro dell'equipaggio (?:adesso )?si trova nel settore (\\d+)(?: oppure (\\d+))?").search(tl)
+	if mm and not tl.contains(", e "):
+		var sa := int(esp.membro(int(esp.s["attivo"]))["settore"])
+		return si.call(sa == int(mm.get_string(1)) or (mm.get_string(2) != "" and sa == int(mm.get_string(2))), "il Membro di turno è nel Settore %d" % sa)
+	# carte PDI sulla plancia
+	var cod := RegEx.create_from_string("\\b(P\\d{3})\\b").search_all(t).map(func(x): return x.get_string(1))
+	var sett_q := RegEx.create_from_string("nel settore (\\d+)").search_all(tl).map(func(x): return int(x.get_string(1)))
+	if not cod.is_empty() and not tl.contains("segnaposto") and not tl.contains("missione") and (tl.contains("si trova") or tl.contains("è presente") or tl.contains("pdi nel settore") or tl.contains("ci sono altre")):
+		var dove := _pdi_sulla_plancia()
+		var trovati := []
+		for c in cod:
+			for n in dove.get(c, []):
+				trovati.append(n)
+		var v := false
+		if tl.contains("non ci sono altre"):
+			v = trovati.is_empty()
+		elif not sett_q.is_empty():
+			v = trovati.any(func(n): return n in sett_q)
+			if tl.contains(" non si trova"):
+				v = not v
+		else:
+			v = not trovati.is_empty()
+		return si.call(v, "%s: %s" % [", ".join(cod), ("Settore " + ", ".join(trovati.map(func(x): return str(x)))) if not trovati.is_empty() else "non sulla plancia"])
+	mm = RegEx.create_from_string("il pdi stampato \\(([^)]+)\\) si trova nel settore (\\d+)").search(tl)
+	if mm:
+		var n2 := int(mm.get_string(2))
+		var p: Array = esp.s["settori"].get(str(n2), {}).get("pdi", [])
+		return si.call(p.is_empty() or str(p[-1]) == "P000", "Settore %d: %s" % [n2, "PDI stampato" if p.is_empty() else str(p[-1])])
+	mm = RegEx.create_from_string("almeno una carta pdi in ognuno dei settori ([\\d, e]+)").search(tl)
+	if mm:
+		var ss := RegEx.create_from_string("\\d+").search_all(mm.get_string(1)).map(func(x): return int(x.get_string(0)))
+		return si.call(ss.all(func(n): return not (esp.s["settori"].get(str(n), {}).get("pdi", []) as Array).is_empty()), "PDI nei Settori %s" % mm.get_string(1))
+	# Condizione Generale
+	var gc_id := str(esp.s["condizione"]["carta"]).get_slice("@", 0).to_upper()
+	var gc := Carte.per_id(str(esp.s["condizione"]["carta"]))
+	mm = RegEx.create_from_string("(?i)condizione (?:generale|globale) (G\\d+)").search(t)
+	if mm and (tl.contains("plancia") or tl.contains("attuale")):
+		return si.call(gc_id == mm.get_string(1).to_upper(), "Condizione Generale in gioco: %s %s" % [gc_id, Carte.titolo(gc)])
+	mm = RegEx.create_from_string("condizione (?:generale|globale) attuale è\\s+(.+?)\\?*$").search(tl)
+	if mm:
+		var nome := mm.get_string(1).strip_edges().to_lower()
+		return si.call(Carte.t(gc.get("titolo", "")).to_lower().contains(nome) or Carte.en(gc.get("titolo", "")).to_lower().contains(nome), "Condizione Generale in gioco: %s" % Carte.titolo(gc))
+	# Missioni
+	var mis_cod := RegEx.create_from_string("\\b(M\\d+)\\b").search_all(t).map(func(x): return x.get_string(1).to_upper())
+	if not mis_cod.is_empty() and not tl.contains("segnaposto") and not tl.contains("p0") and (tl.contains("scopert") or tl.contains("attuale")):
+		var in_gioco: Array = (esp.s["missioni"] as Array).map(func(x): return str(x).to_upper())
+		return si.call(mis_cod.any(func(x): return x in in_gioco), "Missioni in gioco: %s" % ", ".join(in_gioco))
+	if RegEx.create_from_string("ci sono carte missione scoperte|una carta missione è scoperta|almeno (?:1|una) carta missione").search(tl):
+		return si.call(not (esp.s["missioni"] as Array).is_empty(), "Missioni in gioco: %d" % (esp.s["missioni"] as Array).size())
+	# Minacce
+	if tl.contains("non ci sono più carte minaccia"):
+		return si.call((esp.s["minacce"] as Array).is_empty(), "Minacce in gioco: %d" % (esp.s["minacce"] as Array).size())
+	mm = RegEx.create_from_string("(?:è presente una minaccia|il segnalino|la carta minaccia|la minaccia) ([\\w' ]+?) (?:sulla plancia|si trova sulla plancia|è sulla plancia)").search(tl)
+	if mm:
+		var nm := mm.get_string(1).strip_edges()
+		var c := (esp.s["minacce"] as Array).filter(func(x): return str(x.get("nome", "")).to_lower().contains(nm) or str(x.get("en", "")).to_lower().contains(nm) or nm.contains(str(x.get("nome", "")).to_lower()))
+		return si.call(not c.is_empty(), "Minacce in gioco: %s" % ", ".join((esp.s["minacce"] as Array).map(func(x): return str(x.get("nome", "")))))
+	# attrezzatura accanto alle plance
+	var ecod := RegEx.create_from_string("\\b(E\\d{2,3})\\b").search_all(t).map(func(x): return x.get_string(1))
+	if not ecod.is_empty() and tl.contains("accanto"):
+		var tutte := []
+		for i in esp.vivi():
+			tutte += esp.membro(i).get("attrezzatura", [])
+		return si.call(ecod.any(func(x): return x in tutte), "attrezzatura della Squadra: %s" % ", ".join(tutte))
+	# Scoperte Eccezionali sulle plance
+	mm = RegEx.create_from_string("la scoperta eccezionale (\\d+) si trova sulla plancia (pianeta|lander)").search(tl)
+	if mm:
+		var num := int(mm.get_string(1))
+		var v2: bool = num in (esp.s.get("eccezionali_pianeta", []) as Array).map(func(x): return int(x)) if mm.get_string(2) == "pianeta" else num in (esp.s["eccezionali"] as Array).map(func(x): return int(x))
+		return si.call(v2, "Scoperte Eccezionali")
+	if tl.contains("non c'è alcuna scoperta eccezionale sulla plancia pianeta"):
+		return si.call((esp.s.get("eccezionali_pianeta", []) as Array).is_empty(), "Scoperte Eccezionali sulla plancia: %d" % (esp.s.get("eccezionali_pianeta", []) as Array).size())
+	# pianeta e Lander
+	mm = RegEx.create_from_string("(?:ti trovi su(?:l pianeta)?|plancia pianeta attualmente aperta è) ([^?(]+)").search(tl)
+	if mm:
+		var nome2 := mm.get_string(1).strip_edges()
+		return si.call(str(pl.get("pianeta", "")).to_lower().begins_with(nome2.substr(0, 6)), "pianeta: %s" % pl.get("pianeta", ""))
+	mm = RegEx.create_from_string("stai usando il lander (\\w+)").search(tl)
+	if mm:
+		return si.call(str(esp.s["lander"].get("nome", "")).to_lower().contains(mm.get_string(1)), "Lander: %s" % esp.s["lander"].get("nome", ""))
+	# Piaghe
+	mm = RegEx.create_from_string("sono presenti (\\d+) piaghe nel settore (\\d+)").search(tl)
+	if mm:
+		var pg := int(esp.s["settori"].get(mm.get_string(2), {}).get("piaghe", 0))
+		return si.call(pg >= int(mm.get_string(1)), "Settore %s: %d Piaghe" % [mm.get_string(2), pg])
+	mm = RegEx.create_from_string("ancora un settore con almeno (\\d+) piag").search(tl)
+	if mm:
+		var c2: Variant = esp.s["settori"].keys().filter(func(k): return int(esp.s["settori"][k].get("piaghe", 0)) >= int(mm.get_string(1)))
+		return si.call(not c2.is_empty(), "Settori con Piaghe: %s" % ", ".join(c2))
+	# segnaposto su carte, riserve e slot
+	mm = RegEx.create_from_string("(?:sono presenti|possiedi|hai|è presente)(?: almeno| esattamente)? (\\d+)( o più| o meno)? segnaposto (sulla carta [^?]+|nella riserva [^?]+|nello slot [^?]+)").search(tl)
+	if mm:
+		var n3 := int(mm.get_string(1))
+		var cont: Dictionary = esp.s.get("contatori", {})
+		var dove := mm.get_string(3)
+		var chiavi := [Effetti.chiave_segni(dove)]
+		if dove.contains(" oppure "):
+			chiavi = Array(dove.split(" oppure ")).map(func(x): return Effetti.chiave_segni(("sulla carta " + str(x)) if not str(x).begins_with("sulla") else str(x)))
+		if dove.contains("missione attuale") and not (esp.s["missioni"] as Array).is_empty():
+			chiavi = ["carta:" + str(esp.s["missioni"][0]).to_lower()]
+		var v3 := 0
+		for k in chiavi:
+			v3 = max(v3, int(cont.get(k, 0)))
+		var ok3 := v3 >= n3 if (tl.contains("almeno") or mm.get_string(2) == " o più") else (v3 <= n3 if mm.get_string(2) == " o meno" else v3 == n3)
+		return si.call(ok3, "segnaposto %s: %d" % [chiavi[0].get_slice(":", 1), v3])
+	# nave (Obiettivo, Scanner, Morale, Progetti)
+	if Campagna.dati.get("nave") is Dictionary and not (Campagna.dati["nave"] as Dictionary).is_empty():
+		var rn := Nave.domanda_nave(t, Nave.new(Campagna.dati["nave"]))
+		if rn["r"] >= 0:
+			_ultima_spiegazione = rn["perche"]
+			return rn["r"]
+	return -1
+
+## Dove si trova ogni carta PDI sulla plancia: codice -> [settori] (in cima o sotto nella pila).
+func _pdi_sulla_plancia() -> Dictionary:
+	var out := {}
+	for k in esp.s["settori"]:
+		for c in esp.s["settori"][k].get("pdi", []):
+			out.get_or_add(str(c).get_slice("@", 0).to_upper(), []).append(int(k))
+	return out
+
 ## Istruzioni del Logbook eseguite dal programma; restituisce le righe "fatto" (vuoto = niente).
 func istruzione_logbook(t: String) -> Array:
 	var carte := []
@@ -3236,7 +3536,7 @@ func _tempo(n: int) -> void:
 	var manuali := []
 	var logs := []
 	await _minacce_avanzano(n, fatti, manuali, logs)
-	_controlla_tempo(fatti, manuali, logs)
+	await _controlla_tempo(fatti, manuali, logs)
 	await _scegli("TEMPO", ["OK"], "\n".join(fatti.map(func(x): return "• " + str(x))) + ("\n" + "\n".join(manuali.map(func(x): return "• " + str(x))) if not manuali.is_empty() else ""), false)
 	if not logs.is_empty():
 		_apri_log(int(logs[0]))
@@ -3252,12 +3552,30 @@ func _controlla_tempo(fatti: Array, manuali: Array, logs: Array) -> void:
 	if cas <= 0 or int(esp.s["condizione"]["tempo"]) < cas or esp.s["condizione"].get("scattata", false):
 		return
 	esp.s["condizione"]["scattata"] = true
-	var a := Effetti.analizza(Carte.en(tm))
-	for op in a["op"]:
-		if op["op"] == "log":
-			logs.append(int(op["n"]))
-			fatti.append("Tempo della Condizione Generale esaurito: Annotazione %d" % int(op["n"]))
-		else:
-			manuali.append("Tempo della Condizione Generale: " + Carte.t(tm))
-	if a["op"].is_empty():
-		manuali.append("Tempo della Condizione Generale: " + Carte.t(tm))
+	fatti.append("[b]Traccia del Tempo della Condizione Generale completa[/b]: %s" % Carte.t(tm))
+	var testo := Carte.en(tm)
+	for f in RegEx.create_from_string("(?<=\\.)\\s+").sub(testo, "§", true).split("§"):
+		var fr := str(f).strip_edges()
+		var fl := fr.to_lower()
+		if fr == "":
+			continue
+		if fl.begins_with("discard this condition"):
+			esp.s["condizione"] = {"carta": "", "tempo": 0}
+			fatti.append("La Condizione Generale si scarta: torna quella stampata sulla plancia")
+			continue
+		if fl.begins_with("reset this track"):
+			esp.s["condizione"]["tempo"] = 0
+			esp.s["condizione"]["scattata"] = false
+			fatti.append("La traccia del Tempo della Condizione Generale si azzera")
+			continue
+		var bers: Array = [int(esp.s["attivo"])]
+		var resto := fr
+		if fl.begins_with("each crewmember "):
+			bers = esp.vivi()
+			resto = fr.substr(16)
+		var a := Effetti.analizza(resto)
+		for i in bers:
+			for op in a["op"]:
+				await _op(op, i, int(esp.membro(i)["settore"]), fatti, manuali, logs, "Tempo della Condizione Generale")
+		if a["op"].is_empty() or str(a["resto"]).length() > 12:
+			manuali.append("Tempo della Condizione Generale: " + fr)

@@ -129,6 +129,14 @@ func _svuota() -> void:
 	for c in _corpo.get_children():
 		c.queue_free()
 
+## Apre l'annotazione iniziale della campagna (o delle Operazioni) senza passare dal menu.
+func apri_inizio(operazioni := false) -> void:
+	var intro: Dictionary = Dati.logbook(motore.camp).get("intro", {})
+	var k := "2" if operazioni and intro.has("2") else "1"
+	if intro.has(k):
+		var p := motore.entra(int(intro[k]))
+		_mostra(p[0], p[1])
+
 func _mostra_inizio() -> void:
 	_svuota()
 	_banner.visible = false

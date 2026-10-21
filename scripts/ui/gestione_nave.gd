@@ -475,6 +475,21 @@ func rispondi_logbook(q: String) -> int:
 	if m:
 		_ultima_spiegazione = "Scoperte Eccezionali sulla nave: %s" % ", ".join(nave.s["eccezionali"].keys())
 		return 1 if nave.s["eccezionali"].has(m.get_string(1)) else 0
+	var rn := Nave.domanda_nave(t, nave)
+	if rn["r"] >= 0:
+		_ultima_spiegazione = rn["perche"]
+		return rn["r"]
+	var tl := t.to_lower()
+	var modo := str(Campagna.dati.get("modo", "campagna"))
+	if RegEx.create_from_string("stai giocando (?:la|una) campagna|all'interno di una campagna").search(tl):
+		_ultima_spiegazione = "modalità: %s" % modo
+		return 1 if modo in ["campagna", "rapido"] else 0
+	if RegEx.create_from_string("sessione di gioco singola|scenario indipendente").search(tl):
+		_ultima_spiegazione = "modalità: %s" % modo
+		return 1 if modo == "operazioni" else 0
+	if tl.contains("stai effettuando un'esplorazione planetaria"):
+		_ultima_spiegazione = "sei nella Gestione della Nave"
+		return 0
 	var pc := Nave.domanda_carte(t, nave)
 	if pc >= 0:
 		_ultima_spiegazione = "Carte della nave: Ponte %s" % ", ".join(nave.s["ponte"] + nave.s["ponte_viaggio"])
@@ -675,7 +690,9 @@ func _passo_avvio() -> void:
 	var tut := ["AMIR ZAYNAB", "CHO JAE-YONG", "JOPPE ULRICH", "RIKU HASHIMURA"]
 	var rep_tut := {"AMIR ZAYNAB": "scienza", "CHO JAE-YONG": "ingegneria", "JOPPE ULRICH": "ricognizione", "RIKU HASHIMURA": "sicurezza"}
 	var r := _riga()
-	r.add_child(Tema.pulsante_primario("DOPO IL TUTORIAL", func():
+	var rapido := str(Campagna.dati.get("modo", "")) == "rapido"
+	var tutorial_fatto := (Campagna.dati.get("esplorazioni_concluse", []) as Array).any(func(x): return x.get("tutorial", false))
+	r.add_child(Tema.pulsante_primario("DOPO IL TUTORIAL" if tutorial_fatto else "DOPO IL TUTORIAL (non ancora giocato)", func():
 		# i quattro Membri del tutorial vanno a riposo, ogni Reparto sceglie 1 recluta fra 2 (Regolamento pag. 25)
 		var eq := []
 		for c in Carte.categoria("equipaggio"):
@@ -695,6 +712,8 @@ func _passo_avvio() -> void:
 		_salva()
 		aggiorna()
 		_apri_log(750), 16))
+	# la modalità scelta all'inizio della campagna decide da sola come si forma l'equipaggio
+	r.get_child(0).visible = not rapido
 	r.add_child(Tema.pulsante("INIZIO RAPIDO (3 reclute, 2 per Reparto)", func():
 		nave.inizializza([])
 		await _reclute_iniziali(3, 2)

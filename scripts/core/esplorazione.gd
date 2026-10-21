@@ -376,6 +376,7 @@ func ferita(i: int, tipo: String) -> String:
 			return ""
 		tipo = "just_a_scratch"
 	if m["ferite"].size() >= MAX_FERITE:
+		s["quarta_ferita"] = true
 		s["finita"] = "evac"
 		diario("%s subirebbe la quarta Ferita: evacuazione d'emergenza!" % m["carta"])
 		return "evac"
