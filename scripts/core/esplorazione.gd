@@ -295,12 +295,32 @@ func riposa(i: int) -> bool:
 ## Sforzo: sacrifica 1 dado e ricarica 5 dadi; con 3 dadi o meno in gioco si subisce Allo Stremo.
 func sforzo(i: int, id_dado := "") -> void:
 	var in_gioco: Array = membro(i)["dadi"].filter(func(d): return d["stato"] != "sacrificato")
+	s["_in_sforzo"] = true
 	if in_gioco.size() <= 3:
 		ferita(i, "exhausted")
 	else:
 		sacrifica_dado(i, id_dado)
+	s.erase("_in_sforzo")
+	notifica("sforzo", {"chi": i})
 	ricarica(i, 5, "")
 	diario("%s fa uno Sforzo" % membro(i)["carta"])
+
+## Avvisa l'interfaccia di un evento della partita (per gli Obiettivi individuali dei Fascicoli).
+var ascolta: Callable
+## Uso di una carta Attrezzatura (Obiettivi individuali: tute, piccola attrezzatura, dadi spesi).
+func notifica_attrezzatura(chi: int, id: String, spesi := 0) -> void:
+	notifica("attrezzatura", {"chi": chi, "id": id, "spesi": spesi})
+
+## Uso di una Scoperta con effetto "Esplorazione planetaria" (conta le Scoperte diverse del turno).
+func notifica_scoperta_usata(chi: int, carta: String) -> void:
+	var usate: Array = s.get_or_add("_scoperte_turno", [])
+	if not carta in usate:
+		usate.append(carta)
+	notifica("usa_scoperta", {"chi": chi, "carta": carta, "volte_turno": usate.size()})
+
+func notifica(evento: String, dati := {}) -> void:
+	if ascolta.is_valid():
+		ascolta.call(evento, dati)
 
 func pesca_carta(i: int) -> String:
 	var m := membro(i)
@@ -308,6 +328,8 @@ func pesca_carta(i: int) -> String:
 		m["mazzo"] = m["scarti"].duplicate()
 		m["scarti"] = []
 		_mescola(m["mazzo"])
+		if not m["mazzo"].is_empty():
+			notifica("rimescola", {"chi": i})
 	if m["mazzo"].is_empty():
 		return ""
 	var c: String = m["mazzo"].pop_back()
@@ -357,6 +379,8 @@ func sacrifica_dado(i: int, id_dado := "", colore := "") -> void:
 	lista.sort_custom(func(a, b): return _valore_dado(a) < _valore_dado(b))
 	lista[0]["stato"] = "sacrificato"
 	diario("%s sacrifica un dado" % membro(i)["carta"])
+	if not s.get("_in_sforzo", false):
+		notifica("sacrifica", {"chi": i, "n": 1})
 
 func _valore_dado(d: Dictionary) -> int:
 	var v := 0 if d["stato"] == "speso" else 10
@@ -451,10 +475,12 @@ func pdi_in_cima(n: int) -> String:
 ## Un nuovo PDI in un settore: si tolgono segnalini Tempo e marker del PDI precedente.
 func piazza_pdi(n: int, carta: String) -> void:
 	var st: Dictionary = s["settori"].get_or_add(str(n), {"pdi": [], "tempo": 0, "segnalini": 0, "tracce": {}, "finito": false})
+	var prima: Array = st.get("pdi", [])
 	st["pdi"] = [carta]
 	st["tempo"] = 0
 	st["tracce"] = {}
 	diario("Settore %d: %s" % [n, carta if carta != "P000" else "nessun PDI"])
+	notifica("pdi_piazzato", {"settore": n, "carta": carta, "sostituito": not prima.is_empty()})
 
 func traccia(chiave: String, n: int) -> int:
 	return int(_tracce_di(n).get(chiave, 0))

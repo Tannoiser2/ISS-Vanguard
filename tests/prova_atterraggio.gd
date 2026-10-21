@@ -313,6 +313,37 @@ func _run() -> void:
 	await chiudi()
 	ok(e.membro(0).get("veterano", false) and str(e.membro(0)["file"]) == str(vet["file"]) and not (e.membro(0)["conv_extra"] as Array).is_empty(), "traccia piena: il Membro diventa Veterano con una conversione in più")
 	mis.apri_cassetto("")
+	# Obiettivi individuali automatici: gli eventi della partita fanno avanzare le tracce da soli
+	var vet_n := {}
+	for c in Carte.categoria("veterani"):
+		vet_n[str(c.get("nome", "")).to_upper()] = c
+	e.membro(0)["veterano"] = false
+	e.membro(0)["obiettivo"] = {"file": str(vet_n["AVERY DODGE"]["file"]), "traccia": 0}
+	mis.esp.notifica("sforzo", {"chi": 0})
+	mis.esp.notifica("sforzo", {"chi": 1})
+	ok(int(e.membro(0)["obiettivo"]["traccia"]) == 1, "Avery: uno Sforzo suo avanza la traccia, quello di un altro no")
+	e.membro(0)["obiettivo"] = {"file": str(vet_n["SAMUEL HUGHES"]["file"]), "traccia": 0}
+	mis.esp.notifica("provviste", {"n": 3})
+	ok(int(e.membro(0)["obiettivo"]["traccia"]) == 3, "Samuel: +1 per ogni Provvista guadagnata")
+	e.membro(0)["obiettivo"] = {"file": str(vet_n["KLARA ATLADÓTTIR"]["file"]), "traccia": 0}
+	mis.esp.notifica("prova", {"chi": 0, "icone_distinte": 6})
+	await chiudi()
+	ok(e.membro(0).get("veterano", false) and (e.membro(0)["obiettivo"] as Dictionary).is_empty(), "Klara: 6 icone diverse in una Prova → Veterana senza domande")
+	e.membro(0)["veterano"] = false
+	e.membro(0)["obiettivo"] = {"file": str(vet_n["CHRISTOS NICOLI"]["file"]), "traccia": 0}
+	mis.esp.notifica("prova", {"chi": 1, "spesi": {0: [["defence"], ["basic"], ["defence", "physical"]]}})
+	ok(int(e.membro(0)["obiettivo"]["traccia"]) == 2, "Christos: due dadi con [defence] nei Dadi Spesi (anche assistendo)")
+	e.membro(0)["obiettivo"] = {"file": str(vet_n["GBOLAHAN MUSA"]["file"]), "traccia": 0}
+	var sc_ob: Array = e.s["scoperte"]
+	e.s["scoperte"] = []
+	mis.esp.notifica("fine_esplorazione", {})
+	ok(not e.membro(0).get("veterano", false), "Gbolahan: con meno di 8 Scoperte l'Obiettivo non si compie")
+	for k in 8:
+		e.s["scoperte"].append({"tipo": "mineral", "carta": "x%d" % k})
+	mis.esp.notifica("fine_esplorazione", {})
+	await chiudi()
+	ok(e.membro(0).get("veterano", false), "Gbolahan: 8 Scoperte a fine esplorazione → Veterano")
+	e.s["scoperte"] = sc_ob
 	# regole sempre attive dei PDI: a fine turno nel settore
 	var s_att := int(e.membro(0)["settore"])
 	e.s["settori"][str(s_att)]["pdi"] = ["P010"]

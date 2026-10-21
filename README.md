@@ -168,7 +168,14 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   Obiettivo individuale; in esplorazione la carta sta nel cassetto SQUADRA con la sua traccia (AVANZA,
   AZZERA, COMPIUTO). Compiuto l'Obiettivo il Membro diventa Veterano subito: nuovo ritratto e seconda
   abilità di conversione (valida da quel momento, anche nelle assegnazioni sulla nave); Cariche e plancia
-  non cambiano. Le tracce che lo prevedono si azzerano a fine esplorazione. I File del libretto sono solo
+  non cambiano. Le tracce che lo prevedono si azzerano a fine esplorazione.
+  **Gli Obiettivi si seguono da soli**: il gioco ascolta gli eventi dell'esplorazione (esito e icone delle
+  Prove, dadi finiti nei Dadi Spesi, assistenze, abilità, Sforzi, sacrifici, rimescolamenti, Indizi,
+  Provviste, Cariche, dadi Pericolo, ritiri, Attrezzature e tute, Scoperte ottenute e usate, PDI sostituiti,
+  Minacce scartate, fine turno e fine esplorazione) e fa avanzare le tracce o compie l'Obiettivo con un
+  avviso, senza fare domande: 79 carte su 90. Le 11 che dipendono da come si usa l'abilità del Membro
+  (Abby, Carles, Ebe, Francesca, Jaromir, Keith, Konstantin, Mark, Riku, Sofia, Zoe) restano da segnare
+  con i pulsanti, e la carta lo dice. I File del libretto sono solo
   racconto (il modulo non li contiene) e non servono per giocare.
 - **Regolamento** e riassunto delle regole (inglese, dai PDF del modulo) consultabili in gioco.
 

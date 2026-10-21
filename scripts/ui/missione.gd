@@ -53,6 +53,7 @@ const ALTO_BARRA := 74
 
 func _init(stato: Dictionary) -> void:
 	esp = Esplorazione.new(stato)
+	esp.ascolta = _evento_obiettivi
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -1137,7 +1138,9 @@ func _obiettivo_individuale(i: int, v: VBoxContainer) -> void:
 	var r := Tema.testo_ricco(14)
 	r.fit_content = true
 	r.scroll_active = false
-	r.text = "[color=#ffd36e][b]OBIETTIVO INDIVIDUALE[/b][/color]%s\n%s" % [(" — traccia [b]%d/%d[/b]" % [int(ob.get("traccia", 0)), n]) if n > 0 else "", Dati.testo_carta(Fascicoli.testo_obiettivo(vc), 18)]
+	var a_mano := str(vc.get("nome", "")).to_upper() in A_MANO
+	r.text = "[color=#ffd36e][b]OBIETTIVO INDIVIDUALE[/b][/color]%s\n%s\n[color=#9fbbd6]%s[/color]" % [(" — traccia [b]%d/%d[/b]" % [int(ob.get("traccia", 0)), n]) if n > 0 else "", Dati.testo_carta(Fascicoli.testo_obiettivo(vc), 18),
+		"Dipende da come usi l'abilità: segnalo con i pulsanti." if a_mano else "Il gioco lo segue da solo; i pulsanti servono solo per correggere."]
 	v.add_child(r)
 	var hb := HFlowContainer.new()
 	hb.add_theme_constant_override("h_separation", 6)
@@ -1174,11 +1177,13 @@ func _avanza_obiettivo(i: int, delta: int) -> void:
 
 ## Obiettivo compiuto (File di Completamento, poi File 1): il Membro diventa Veterano subito, anche
 ## durante una Prova; la nuova abilità di conversione vale da ora, Cariche e plancia non cambiano.
-func _completa_obiettivo(i: int) -> void:
+func _completa_obiettivo(i: int, automatico := false) -> void:
 	var m := esp.membro(i)
 	var ob: Dictionary = m["obiettivo"]
+	if ob.is_empty():
+		return
 	var vc := Carte.per_file(str(ob.get("file", "")))
-	if not await _si_no("OBIETTIVO INDIVIDUALE — %s" % str(m["carta"]).to_upper(), "%s\n\nL'Obiettivo è compiuto? (Completamento: File %s, poi File 1)" % [Dati.testo_carta(Fascicoli.testo_obiettivo(vc), 18), str(vc.get("completamento", "?"))], str(vc.get("file", ""))):
+	if not automatico and not await _si_no("OBIETTIVO INDIVIDUALE — %s" % str(m["carta"]).to_upper(), "%s\n\nL'Obiettivo è compiuto? (Completamento: File %s, poi File 1)" % [Dati.testo_carta(Fascicoli.testo_obiettivo(vc), 18), str(vc.get("completamento", "?"))], str(vc.get("file", ""))):
 		return
 	m["file"] = str(vc.get("file", m["file"]))
 	m["veterano"] = true
@@ -1196,7 +1201,190 @@ func _completa_obiettivo(i: int) -> void:
 	esp.diario("%s è ora un Veterano" % m["carta"])
 	_salva()
 	aggiorna()
+	if automatico:
+		# durante una Prova o un effetto non si interrompe nulla: basta un avviso
+		avviso("Obiettivo individuale compiuto: %s è ora un Veterano (nuova abilità di conversione)" % m["carta"])
+		return
 	await _scegli("NUOVO VETERANO", ["OK"], "[b]%s è ora un Veterano![/b]\nNuovo ritratto e nuova abilità di conversione (vale subito). Le Cariche e la plancia restano come sono." % m["carta"], false, str(vc.get("file", "")))
+
+# ------------------------------------------------------------------ Obiettivi individuali automatici
+
+const FACCE_SPESE := {"CHRISTOS NICOLI": "defence", "GIOVANNA NELLI": "biology", "JANICE BOISSEAU": "construction", "LENA FREEMAN": "physical",
+	"LÀNH PHAN": "gathering", "MAXIM PAVLENKO": "scienceDice", "NARCISSE GUILLOUX": "technology", "PETRA SEDLÁČKOVÁ": "scouting",
+	"SHERYL HAYES": "xenology", "QAMIL NAJJAR": "vanguard"}
+const GIALLO_CON := {"ADRIEN OLIVER": "physical", "BLAKE MCFARLANE": "technology", "DESTINY JONES": "gathering", "EUTIMIO VELIZ": "scouting",
+	"MASIKA SALAH": "construction", "TERRY ISAAC": "xenology", "VALYA NOVIKOVA": "scienceDice", "BRIGITTE BARTH": "biology"}
+const INDIZI_DI := {"CAMELIA TRENTINO": ["microorganism", "mineral"], "CHO JAE-YONG": ["strange_flora", "live_specimen"],
+	"GAL YADIN": ["microorganism", "alien_tech"], "JOPPE ULRICH": ["live_specimen", "mineral"]}
+const SOLO_SCOPERTE := {"BIANCA OLIVEIRA SOUSA": {"alien_tech": 4}, "EVELYN CASTILLO": {"live_specimen": 4}, "ZAIMA ANWAR": {"strange_flora": 4},
+	"BORYS WALCZAK": {"strange_flora": 2, "alien_tech": 2}, "JESSIE BENNET": {"microorganism": 2, "live_specimen": 2}}
+## Obiettivi che dipendono da come si usa l'abilità del Membro: restano da segnare con i pulsanti.
+const A_MANO := ["ABBY KNIGHT", "CARLES PORRA", "EBE LOMAN", "FRANCESCA POTTER", "JAROMIR GOLUBOV", "KEITH WOOD", "KONSTANTIN PLANK",
+	"MARK POULSEN", "RIKU HASHIMURA", "SOFIA BENN", "ZOE FUENTES"]
+
+## Riceve gli eventi della partita e fa avanzare (o completa) gli Obiettivi individuali della Squadra.
+func _evento_obiettivi(ev: String, d: Dictionary) -> void:
+	if ev == "attrezzatura":
+		var ce := Carte.per_id(str(d.get("id", "")))
+		d["piccola"] = str(ce.get("tipo", "")) == "smallEquipment"
+		d["tuta"] = Carte.en(ce.get("effetto", "")).contains("only carry 1 Suit")
+	if ev == "pdi_piazzato" and not esp.s.get("final_apparso", false) and not pl.is_empty():
+		for k in esp.s["settori"]:
+			if esp.icone_settore(pl, int(k), _carte_pdi()).has("finalPOI"):
+				esp.s["final_apparso"] = true
+				d["primo_final"] = true
+				break
+	for i in esp.vivi():
+		var ob = esp.membro(i).get("obiettivo")
+		if not ob is Dictionary or (ob as Dictionary).is_empty():
+			continue
+		var vc := Carte.per_file(str(ob.get("file", "")))
+		var nome := str(vc.get("nome", "")).to_upper()
+		var p := _progresso_obiettivo(nome, ev, i, d)
+		if p == 0:
+			continue
+		var n := Fascicoli.caselle(vc)
+		if p >= 99 or n == 0:
+			_completa_obiettivo(i, true)
+			continue
+		ob["traccia"] = mini(int(ob.get("traccia", 0)) + p, n)
+		var mn := _membro_nave(i)
+		if mn.get("obiettivo") is Dictionary:
+			mn["obiettivo"]["traccia"] = ob["traccia"]
+		esp.diario("%s: Obiettivo individuale %d/%d" % [esp.membro(i)["carta"], int(ob["traccia"]), n])
+		if int(ob["traccia"]) >= n:
+			_completa_obiettivo(i, true)
+		else:
+			avviso("%s: Obiettivo individuale %d/%d" % [esp.membro(i)["carta"], int(ob["traccia"]), n])
+
+func _progresso_obiettivo(nome: String, ev: String, i: int, d: Dictionary) -> int:
+	var mio: bool = int(d.get("chi", -2)) == i
+	var sett := int(esp.membro(i)["settore"])
+	if FACCE_SPESE.has(nome):
+		if ev == "prova":
+			var ic: String = FACCE_SPESE[nome]
+			var n := 0
+			for f in (d.get("spesi", {}) as Dictionary).get(i, []):
+				if ic in f:
+					n += 1
+			return n
+		return 0
+	if GIALLO_CON.has(nome):
+		return 99 if ev == "prova" and mio and str(d.get("colore", "")) == "yellow" and str(d.get("req", "")).contains(GIALLO_CON[nome]) else 0
+	if INDIZI_DI.has(nome):
+		return int(d.get("n", 0)) if ev == "indizi" and i == int(esp.s["attivo"]) and str(d.get("tipo", "")) in INDIZI_DI[nome] else 0
+	if SOLO_SCOPERTE.has(nome):
+		if ev != "fine_esplorazione":
+			return 0
+		var conta := _conta_scoperte()
+		var serve: Dictionary = SOLO_SCOPERTE[nome]
+		for t in conta:
+			if not serve.has(t) and int(conta[t]) > 0:
+				return 0
+		for t in serve:
+			if int(conta.get(t, 0)) < int(serve[t]):
+				return 0
+		return 99
+	match nome:
+		"LI TENG": return 1 if ev == "prova" and mio and str(d.get("colore", "")) == "yellow" else 0
+		"BERN LOUW": return 99 if ev == "prova" and mio and str(d.get("colore", "")) == "green" and int(d.get("propri", 1)) == 0 else 0
+		"OWEN CAMPBELL": return 99 if ev == "prova" and mio and (str(d.get("colore", "")) in ["green", "yellow"] or d.get("traccia_gv", false)) and int(d.get("accidenti", 0)) >= 3 else 0
+		"AÏSSATA SAMA": return (d.get("assistenti", []) as Array).size() if ev == "prova" and mio else 0
+		"JAVIER AGUERO": return 99 if ev == "prova" and mio and int(d.get("propri", 0)) >= 6 and int(d.get("accidenti_tiro", 1)) == 0 else 0
+		"KLARA ATLADÓTTIR": return 99 if ev == "prova" and mio and int(d.get("icone_distinte", 0)) >= 6 else 0
+		"MANISH JAIN": return 99 if ev == "prova" and mio and int(d.get("vanguard", 0)) >= 5 else 0
+		"MILLIE PETERS": return 99 if ev == "prova" and (mio or i in d.get("assistenti", [])) and int(d.get("totale", 0)) >= 13 else 0
+		"NERIO CANALES ROLDÁN": return 1 if ev == "prova" and mio and d.get("pet", false) else 0
+		"THABISA GBHEO": return int(d.get("conversioni", 0)) if ev == "prova" and mio else 0
+		"YUT NIMAWAN": return 99 if ev == "prova" and mio and int(d.get("carte_usate", 0)) >= 3 else 0
+		"ELENA RUBIO": return 1 if ev == "scoperta" and i in d.get("assistenti", []) else 0
+		"BOJANA PERIĆ": return 1 if ev == "scoperta" and mio and str(d.get("tipo", "")) == "alien_tech" else 0
+		"NICHOLAS GREEN": return 1 if ev == "assisti" and mio else 0
+		"ELIZABETH LOGUE": return 99 if ev == "assisti" and mio and d.get("ultimo", false) and int(d.get("in_gioco", 99)) <= 6 else 0
+		"SABAH ALKAABI": return 99 if ev == "assisti" and mio and int(d.get("segnalini", 0)) >= 2 else 0
+		"ANDREW MCVAY": return 1 if ev == "assisti" and mio and d.get("abilita", false) and d.get("lontano", false) else 0
+		"MAEDA AYUMI": return 99 if ev == "assisti" and mio and d.get("abilita", false) and int(d.get("dadi", 0)) >= 11 else 0
+		"JIA SEOK": return 1 if ev == "pericolo" and mio else 0
+		"TAYEN HATATHLI": return 1 if ev == "pericolo" and mio and d.get("vuoto", false) else 0
+		"AVERY DODGE": return 1 if ev == "sforzo" and mio else 0
+		"AMIR ZAYNAB": return int(d.get("n", 1)) if ev == "sacrifica" and mio else 0
+		"AIDAN CUNNINGHAM": return 1 if ev == "rimescola" and mio else 0
+		"GONG SHUN": return 1 if ev == "cariche" and mio else 0
+		"SAMUEL HUGHES": return int(d.get("n", 0)) if ev == "provviste" else 0
+		"BETTY CONVILLE": return 1 if ev == "pdi_piazzato" and d.get("sostituito", false) and int(d.get("settore", 0)) == sett else 0
+		"NATALIA TORRES": return 99 if ev == "pdi_piazzato" and d.get("primo_final", false) and i == int(esp.s["attivo"]) else 0
+		"ARVI TUURI": return 99 if ev == "minaccia_scartata" and mio and int(d.get("settore", -1)) == sett else 0
+		"ISABEL SANDOVAL": return 1 if ev == "ritiro" and mio and ((d.get("icone", []) as Array).has("xenology") or (d.get("icone", []) as Array).has("vanguard")) else 0
+		"RAVEN TYSON": return 1 if ev == "attrezzatura" and mio and d.get("tuta", false) else 0
+		"TARIF ZOGBY": return int(d.get("spesi", 0)) if ev == "attrezzatura" and mio else 0
+		"WAYLON COLLEY": return 1 if ev == "attrezzatura" and mio and d.get("piccola", false) else 0
+		"RICA DE GRAAF": return 1 if ev == "abilita" and mio and d.get("in_prova", false) and (esp.membro(i)["mano"] as Array).is_empty() else 0
+		"STJEPAN BELIĆ": return int(d.get("ricaricati", 0)) if ev == "abilita" and mio else 0
+		"KOE YASSIN": return 99 if ev == "abilita" and mio and int(d.get("volte_prova", 0)) >= 2 else 0
+		"WILLOW BAKER": return 99 if ev == "abilita" and mio and int(d.get("volte_turno", 0)) >= 2 else 0
+		"THEO TSIAKALOS": return 99 if ev == "usa_scoperta" and mio and int(d.get("volte_turno", 0)) >= 2 else 0
+		"AGATA ANDRADA":
+			if ev != "fine_turno" or not mio:
+				return 0
+			var col := esp.collegati(pl, sett)
+			return 1 if esp.nel_settore(sett).size() == 2 and not esp.vivi().any(func(j): return int(esp.membro(j)["settore"]) in col) else 0
+		"CHARLIE MYERS":
+			return 99 if ev == "fine_turno" and mio and esp.icone_settore(pl, sett, _carte_pdi()).filter(func(x): return str(x) in BIOMI).size() >= 3 else 0
+		"INDAH RAU":
+			if ev != "fine_turno" or not mio:
+				return 0
+			var col2 := esp.collegati(pl, sett)
+			var biomi := esp.icone_settore(pl, sett, _carte_pdi()).filter(func(x): return str(x) in BIOMI)
+			return 99 if biomi.is_empty() and not esp.vivi().any(func(j): return j != i and (int(esp.membro(j)["settore"]) == sett or int(esp.membro(j)["settore"]) in col2)) else 0
+		"UWE LEHMANN":
+			if ev != "fine_turno" or not mio or int(esp.s["round"]) != 1:
+				return 0
+			var mx := 0
+			for k in esp.s["settori"]:
+				mx = maxi(mx, int(k))
+			return 99 if sett == mx else 0
+		"MEGHAN CLARKE":
+			if ev != "fine_turno":
+				return 0
+			for k in esp.s["settori"]:
+				if esp.nel_settore(int(k)).is_empty() and (esp.s["settori"][k].get("attrezzature", []) as Array).is_empty():
+					return 0
+			return 99
+		"SAMARTH RAMPRAKASH": return 99 if ev == "fine_turno" and (esp.s["sacchetto"] as Array).size() <= 2 else 0
+		"VUKAJLO STEPANOVIĆ":
+			return 99 if ev == "fine_turno" and esp.nel_settore(sett).size() == 1 and (esp.s["minacce"] as Array).filter(func(x): return int(x.get("settore", 0)) == sett).size() >= 2 else 0
+		"ANN BECKMAN":
+			if ev != "fine_esplorazione":
+				return 0
+			var tipi := {}
+			for t in esp.membro(i)["ferite"]:
+				tipi[t] = true
+			return 99 if tipi.size() >= 2 else 0
+		"EWALD MAAL":
+			return 99 if ev == "fine_esplorazione" and esp.s.get("grado_girato", false) and esp.s["equipaggio"].any(func(x): return int(x["grado"]) < int(esp.membro(i)["grado"])) else 0
+		"GASPARD FABRON":
+			if ev != "fine_esplorazione":
+				return 0
+			var c := _conta_scoperte()
+			return 99 if Esplorazione.TIPI_SCOPERTA.all(func(t): return int(c.get(t, 0)) > 0) else 0
+		"GBOLAHAN MUSA": return 99 if ev == "fine_esplorazione" and (esp.s["scoperte"] as Array).size() + (esp.s["eccezionali"] as Array).size() >= 8 else 0
+		"ILSE VOGEL": return 99 if ev == "fine_esplorazione" and (esp.membro(i)["scarti"] as Array).size() >= 15 else 0
+		"MONICA DAVIS":
+			if ev != "fine_esplorazione":
+				return 0
+			var pulito: Variant = esp.s["equipaggio"].all(func(x): return x["morto"] or ((x["ferite"] as Array).is_empty() and int(x.get("dadi_ferita", 0)) == 0))
+			var obbl := (esp.s["missioni"] as Array).filter(func(x): return not Carte.per_id(str(x)).get("opzionale", false))
+			return 99 if pulito and obbl.is_empty() else 0
+		"REEVE HALDEMAN": return 99 if ev == "fine_esplorazione" and (esp.s.get("eccezionali_pianeta", []) as Array).is_empty() and (esp.s["scoperte"] as Array).size() >= 4 else 0
+		"VADÁSZ KAPLONY": return 99 if ev == "fine_esplorazione" and int(esp.s["successi"]) >= 9 else 0
+	return 0
+
+## Scoperte sul Lander per tipo (le Eccezionali a parte).
+func _conta_scoperte() -> Dictionary:
+	var out := {}
+	for sc in esp.s["scoperte"]:
+		out[str(sc["tipo"])] = int(out.get(str(sc["tipo"]), 0)) + 1
+	return out
 
 func _chip_dado(d: Dictionary) -> Control:
 	var p := Panel.new()
@@ -1292,6 +1480,7 @@ func _pannello_fine() -> void:
 		# il pianeta resta registrato per la prossima visita (salvo il tutorial)
 		if not esp.s.get("tutorial", false):
 			Campagna.dati.get_or_add("pianeti_registrati", {})[esp.s["pagina"]] = esp.registra(func(id): return Carte.per_id(id), func(m): return _carta_minaccia(m))
+		esp.notifica("fine_esplorazione", {})
 		# le tracce degli Obiettivi individuali che si azzerano a fine esplorazione
 		for k in esp.s["equipaggio"].size():
 			var mn := _membro_nave(k)
@@ -1426,8 +1615,12 @@ func _esegui_azione(a: Dictionary, fonte: String, chiave: String, n: int) -> voi
 			testi.append({"en": Carte.en(a["testo"]), "it": Carte.t(a["testo"]), "fonte": fonte})
 		for e in a.get("esiti", []):
 			testi.append({"en": Carte.en(e), "it": Carte.t(e), "fonte": fonte})
+	_azione_in_corso = chiave
 	await applica(testi, chi, n)
+	_azione_in_corso = ""
 	_finisci()
+
+var _azione_in_corso := ""
 
 ## Effetti speciali della Condizione Generale validi per tutte le Prove.
 func _speciali_globali() -> Array:
@@ -1727,12 +1920,14 @@ func _pericolo_ignorato(chi: int, sett: int, d: Dictionary, fatti: Array) -> boo
 			if esp.dadi_disponibili(chi).size() >= costo and await _si_no(Carte.titolo(ce), "Dado Pericolo: %s.\nSpendi %d dado/i per ignorarne l'effetto?" % [faccia, costo]):
 				for k in costo:
 					esp.spendi_dado(chi)
+				esp.notifica_attrezzatura(chi, str(e), costo)
 				fatti.append("%s ignora il dado Pericolo con %s" % [esp.membro(chi)["carta"], Carte.titolo(ce)])
 				return true
 		elif en.to_lower().contains("reroll a danger die"):
 			if esp.dadi_disponibili(chi).size() >= 1 and await _si_no(Carte.titolo(ce), "Dado Pericolo: %s.\nPaghi il costo della tuta per ritirarlo?" % faccia):
 				esp.spendi_dado(chi, "blue") if esp.dadi_disponibili(chi).any(func(x): return Prova.colore(x) == "blue") else esp.spendi_dado(chi)
 				Prova.tira(d, esp.rng)
+				esp.notifica_attrezzatura(chi, str(e), 1)
 				fatti.append("%s ritira il dado Pericolo con %s" % [esp.membro(chi)["carta"], Carte.titolo(ce)])
 	return false
 
@@ -1755,6 +1950,7 @@ func _ignora_spendi_sentiero(chi: int, sett: int) -> bool:
 
 ## Scoperta appena ottenuta: effetto "quando la ottieni" e attrezzatura che dà Indizi in più.
 func _scoperta_ottenuta(file: String, tipo: String, chi: int, fatti: Array, manuali: Array, logs: Array) -> void:
+	esp.notifica("scoperta", {"chi": chi, "tipo": tipo, "assistenti": (esp.s.get("_ultima_prova", {}) as Dictionary).get("assistenti", [])})
 	var c := Carte.per_file(file)
 	var pe = c.get("campi", {}).get("esplorazione")
 	if pe is Dictionary and Carte.en(pe).to_lower().begins_with("when you gain this"):
@@ -1789,6 +1985,7 @@ func _usa_scoperte() -> void:
 	var sc: Dictionary = esp.s["scoperte"][usabili[j][0]]
 	esp.s["scoperte"].remove_at(usabili[j][0])
 	esp.s["mazzi_scoperte"].get_or_add(str(sc["tipo"]), []).insert(0, sc["carta"])
+	esp.notifica_scoperta_usata(int(esp.s["attivo"]), str(sc["carta"]))
 	var en := Carte.en(usabili[j][2])
 	en = en.substr(en.to_lower().find(" to ") + 4)
 	await applica([{"en": en, "it": Carte.t(usabili[j][2]), "fonte": Carte.titolo(usabili[j][1])}], int(esp.s["attivo"]), int(esp.membro(int(esp.s["attivo"]))["settore"]))
@@ -1907,6 +2104,11 @@ func _fine_turno() -> void:
 		return
 	await _scarta_eccesso()
 	await _passivi("fine_turno", chi)
+	esp.notifica("fine_turno", {"chi": chi})
+	esp.s.erase("_ultima_prova")
+	esp.s.erase("_abilita_turno")
+	esp.s.erase("_abilita_usate")
+	esp.s.erase("_scoperte_turno")
 	_controlla_grado(false)
 	var salta: bool = esp.s.get("salta_evento", false)
 	esp.s.erase("salta_evento")
@@ -2011,12 +2213,15 @@ func _usa_attrezzatura(i: int, id: String) -> void:
 			return
 	var testi := []
 	var costo := str(c.get("costo", "")) if c.get("costo") != null else ""
+	var n_spesi := 0
 	if costo != "" and costo != "null":
 		var alt := Array(costo.split(" / "))
 		var j2 := 0
 		if alt.size() > 1:
 			j2 = await _scegli("COSTO", alt.map(func(x): return _txt_icone("[" + str(x).replace("+", "] + [") + "]")), "", false)
 		testi.append({"en": "[" + str(alt[j2]).replace("+", "] [") + "]", "it": "", "fonte": Carte.titolo(c)})
+		n_spesi = str(alt[j2]).count("spendDie")
+	esp.notifica_attrezzatura(i, id, n_spesi)
 	# l'effetto senza il costo iniziale ("[spendDie]: ...")
 	var eff := en
 	var due := en.find("]:")
@@ -2095,7 +2300,11 @@ func _usa_abilita(i: int) -> void:
 	if rx:
 		eff = en.substr(rx.get_end())
 	esp.diario("%s usa l'abilità %s" % [m["carta"], ab.get("nome", "")])
+	var prima := esp.dadi_disponibili(i).size()
 	await applica([{"en": eff, "it": it, "fonte": "Abilità " + str(ab.get("nome", ""))}], i, int(m["settore"]))
+	var at: Dictionary = esp.s.get_or_add("_abilita_usate", {})
+	at[str(i)] = int(at.get(str(i), 0)) + 1
+	esp.notifica("abilita", {"chi": i, "in_prova": false, "ricaricati": maxi(0, esp.dadi_disponibili(i).size() - prima), "volte_turno": int(at[str(i)])})
 	_finisci()
 
 func _carta_in_mano(i: int, c: String) -> void:
@@ -2424,6 +2633,7 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			logs.append(int(op["n"]))
 			fatti.append("Vai all'Annotazione %d" % int(op["n"]))
 		"indizi":
+			esp.notifica("indizi", {"chi": chi, "tipo": str(op["tipo"]), "n": int(op["n"])})
 			var sc := esp.indizi(str(op["tipo"]), int(op["n"]))
 			fatti.append("%d Indizi %s" % [int(op["n"]), NOMI_SCOPERTE.get(op["tipo"], op["tipo"])])
 			for c in sc:
@@ -2465,6 +2675,8 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 				esp.s["grado_girato"] = true
 				manuali.append("Hai 3 Successi: gira la carta Grado Superiore sul lato Completato (Regolamento pag. 21)")
 		"provviste":
+			if int(op["n"]) > 0:
+				esp.notifica("provviste", {"n": int(op["n"])})
 			if not esp.s.get("provviste_illimitate", false):
 				esp.s["lander"]["provviste"] = max(0, int(esp.s["lander"]["provviste"]) + int(op["n"]))
 			fatti.append("%+d Provviste" % int(op["n"]))
@@ -2496,6 +2708,8 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			fatti.append("%s pesca %d carte" % [m["carta"], int(op["n"])])
 		"cariche":
 			m["cariche"] = int(m["cariche"]) + int(op["n"])
+			if int(op["n"]) > 0:
+				esp.notifica("cariche", {"chi": chi})
 			fatti.append("+%d Cariche a %s" % [int(op["n"]), m["carta"]])
 		"tempo_tutte":
 			esp.tempo_tutte(int(op["n"]))
@@ -2522,7 +2736,27 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 					await _muovi(chi, dst, logs)
 					fatti.append("%s si sposta nel Settore %d" % [m["carta"], dst])
 		"scarta_questa":
-			manuali.append("Scarta la carta (%s)" % fonte)
+			# "Scarta questa Minaccia/Missione/Condizione": la carta dell'azione che si sta risolvendo
+			var ch := _azione_in_corso
+			if ch.begins_with("M:"):
+				var en_m := ch.substr(2).get_slice("#", 0)
+				var mm := (esp.s["minacce"] as Array).filter(func(x): return str(x.get("en", x.get("nome", ""))) == en_m)
+				if not mm.is_empty():
+					var sm := int(mm[0].get("settore", 0))
+					esp.s["minacce"].erase(mm[0])
+					esp.s["minaccia_scartata"] = true
+					fatti.append("La Minaccia %s viene scartata" % mm[0]["nome"])
+					esp.notifica("minaccia_scartata", {"chi": chi, "settore": sm})
+				else:
+					manuali.append("Scarta la carta (%s)" % fonte)
+			elif ch.begins_with("GC#"):
+				esp.s["condizione"] = {"carta": "", "tempo": 0}
+				fatti.append("La Condizione Generale si scarta")
+			elif RegEx.create_from_string("^M\\d+").search(ch.get_slice("#", 0)):
+				esp.s["missioni"].erase(ch.get_slice("#", 0))
+				fatti.append("Missione %s scartata" % ch.get_slice("#", 0))
+			else:
+				manuali.append("Scarta la carta (%s)" % fonte)
 		"fine_esplorazione":
 			esp.fine("fine")
 			fatti.append("L'esplorazione planetaria finisce")
@@ -2671,6 +2905,7 @@ func _tira_pericolo(lettera: String, chi: int, sett: int, fatti: Array, manuali:
 		lettera = lett[max(0, j)]
 	var d := {"tipo": "pericolo", "lettera": lettera, "faccia": 0}
 	Prova.tira(d, esp.rng)
+	esp.notifica("pericolo", {"chi": chi, "vuoto": Prova.icone(d).is_empty()})
 	if await _pericolo_ignorato(chi, sett, d, fatti):
 		return
 	var ic := Prova.icone(d)

@@ -20,6 +20,8 @@ var _assist_abilita := {}  # indice membro -> "2" / "tutti" / "lontano": abilit�
 var _assist_restituiti := {}   # indice membro -> true: i dadi di assistenza tornano disponibili
 var _pool: Array = []      # dadi tirati (copie con "chi")
 var _pet := false          # P.E.T. (E23) assiste con il suo dado
+var _accidenti_iniziali := 0   # [accident] nel tiro prima di ogni modifica (Obiettivi individuali)
+var _abilita_qui := 0          # abilità del Membro usate in questa Prova
 var _sel_mod := {}         # carta/abilità in uso che chiede di scegliere dei dadi: {"modo", "n", "colore", "testo", "poi"}
 var _fase := 0             # 0 scelta, 1 dopo il tiro
 var _corpo: VBoxContainer
@@ -170,16 +172,20 @@ func _usa_modificatore(x: Dictionary) -> void:
 		"carta":
 			esp.scarta_carta(j, str(x["id"]))
 		"attrezzatura":
+			esp.notifica_attrezzatura(j, str(x["id"]), str(Carte.per_id(str(x["id"])).get("costo", "")).count("spendDie"))
 			if Carte.en(Carte.per_id(str(x["id"])).get("effetto", "")).to_lower().contains("return this card to the armory"):
 				(esp.membro(j)["attrezzatura"] as Array).erase(str(x["id"]))
 		"abilita":
 			if str(x["testo"]).to_lower().contains("caric"):
 				esp.membro(j)["cariche"] = max(0, int(esp.membro(j)["cariche"]) - 1)
+			_abilita_qui += 1
+			esp.notifica("abilita", {"chi": j, "in_prova": true, "volte_prova": _abilita_qui, "volte_turno": _abilita_turno_piu(j)})
 		"scoperta":
 			# la Scoperta torna in fondo al suo mazzo e le sue icone si aggiungono alla Riserva del Tiro
 			for k in esp.s["scoperte"].size():
 				if str(esp.s["scoperte"][k]["carta"]) == str(x["id"]):
 					var sc: Dictionary = esp.s["scoperte"][k]
+					esp.notifica_scoperta_usata(chi, str(sc["carta"]))
 					esp.s["scoperte"].remove_at(k)
 					esp.s["mazzi_scoperte"].get_or_add(str(sc["tipo"]), []).insert(0, sc["carta"])
 					break
@@ -238,6 +244,7 @@ func _usa_modificatore(x: Dictionary) -> void:
 				continue
 			if (col == "" or Prova.colore(d) == col) and not _utile(d):
 				Prova.tira(d, esp.rng)
+				esp.notifica("ritiro", {"chi": chi, "icone": Prova.icone(d)})
 		_resoconto_mod.append("Ritirati i dadi %s che non servivano" % ({"": "", "red": "rossi", "blue": "blu", "green": "verdi"}[col]))
 	_mostra_tiro()
 
@@ -408,9 +415,11 @@ func _tira() -> void:
 			var biomi := RegEx.create_from_string("\\[(\\w+)\\]").search_all(mr.get_string(2)).map(func(x): return x.get_string(1))
 			if biomi.any(func(b): return b in icone_sett):
 				n_ferita -= int(mr.get_string(1))
+				esp.notifica_attrezzatura(chi, str(e))
 				_resoconto_mod.append("%s: %s dado Ferita in meno" % [Carte.titolo(Carte.per_id(str(e))), mr.get_string(1)])
 		if en.to_lower().contains("ignore 1 injury die per roll") and n_ferita > 0:
 			n_ferita -= 1
+			esp.notifica_attrezzatura(chi, str(e))
 			_resoconto_mod.append("%s: un dado Ferita ignorato" % Carte.titolo(Carte.per_id(str(e))))
 	for k in max(0, n_ferita):
 		var f := {"id": "f%d" % k, "tipo": "ferita", "faccia": 0, "chi": chi}
@@ -423,7 +432,30 @@ func _tira() -> void:
 		Prova.tira(d, esp.rng)
 		_pool.append(d)
 	_fase = 1
+	var sezione := _pool.filter(func(d): return not d["tipo"] in ["ferita", "pericolo", "virtuale"])
+	_accidenti_iniziali = sezione.filter(func(d): return "accident" in Prova.icone(d)).size()
+	for d in _pool:
+		if d["tipo"] == "pericolo":
+			esp.notifica("pericolo", {"chi": chi, "vuoto": Prova.icone(d).is_empty()})
+	var col := esp.collegati(Carte.pianeta(str(esp.s.get("pagina", ""))), settore)
+	for j in _assist:
+		if (_assist[j] as Array).is_empty():
+			continue
+		var sj := int(esp.membro(j)["settore"])
+		var in_gioco := (esp.membro(j)["dadi"] as Array).filter(func(x): return str(x.get("stato", "")) in ["disponibile", "speso"]).size()
+		var rimasti := esp.dadi_disponibili(j).filter(func(x): return not x["id"] in _assist[j]).size()
+		if _assist_abilita.has(j):
+			esp.notifica("abilita", {"chi": j, "in_prova": true, "volte_prova": 1, "volte_turno": _abilita_turno_piu(j)})
+		esp.notifica("assisti", {"chi": j, "verso": chi, "abilita": _assist_abilita.has(j), "lontano": sj != settore and not sj in col,
+			"dadi": sezione.size(), "ultimo": rimasti == 0, "in_gioco": in_gioco,
+			"segnalini": (esp.s["settori"].get(str(settore), {}).get("attrezzature", []) as Array).size()})
 	_mostra_tiro()
+
+## Conta le abilità usate dal Membro in questo turno (per gli Obiettivi individuali).
+func _abilita_turno_piu(j: int) -> int:
+	var at: Dictionary = esp.s.get_or_add("_abilita_usate", {})
+	at[str(j)] = int(at.get(str(j), 0)) + 1
+	return int(at[str(j)])
 
 func _mostra_tiro() -> void:
 	_svuota()
@@ -540,6 +572,7 @@ func _clic_dado(d: Dictionary) -> void:
 	match str(_sel_mod["modo"]):
 		"ritira":
 			Prova.tira(d, esp.rng)
+			esp.notifica("ritiro", {"chi": chi, "icone": Prova.icone(d)})
 			_resoconto_mod.append("Ritirato: ora %s" % ("+".join(Prova.icone(d)) if not Prova.icone(d).is_empty() else "vuoto"))
 		"spendi":
 			_togli_dal_tiro(d)
@@ -669,6 +702,7 @@ func _risolvi() -> void:
 						for dd in _pool:
 							if dd["tipo"] not in ["ferita", "pericolo"] and "vanguard" in Prova.icone(dd):
 								Prova.tira(dd, esp.rng)
+								esp.notifica("ritiro", {"chi": chi, "icone": Prova.icone(dd)})
 								resoconto.append("ritirato un Vanguard: ora %s" % "+".join(Prova.icone(dd)))
 								break
 					elif en.to_lower().contains("count as [accident]"):
@@ -729,6 +763,8 @@ func _risolvi() -> void:
 	# 8-10. esito o tracce
 	var esiti: Array = azione.get("esiti", [])
 	var colore_esito := ""
+	var req_esito := ""
+	var viet0 := vietati.duplicate()
 	if esito_immediato != "":
 		colore_esito = esito_immediato
 	elif not (azione.get("tracce", []) as Array).is_empty():
@@ -736,6 +772,7 @@ func _risolvi() -> void:
 	elif not esiti.is_empty():
 		var e2 := Prova.scegli_esito(esiti, _pool, conv, vietati)
 		if e2["riga"] >= 0:
+			req_esito = str(esiti[e2["riga"]].get("req", ""))
 			colore_esito = str(esiti[e2["riga"]].get("colore", ""))
 			var r0: Dictionary = esiti[e2["riga"]]
 			testi.append({"en": r0.get("en", ""), "it": r0.get("it", ""), "fonte": "esito " + colore_esito})
@@ -773,14 +810,18 @@ func _risolvi() -> void:
 			if sg != "" and str(t4.get("colore", "")) == sg and not t4 in tr_finite:
 				testi.append({"en": t4.get("en", ""), "it": t4.get("it", ""), "fonte": "traccia " + sg})
 	# 9. tutti i dadi di Reparto tirati vanno nei Dadi Spesi
+	var spesi := {}
 	for d in _pool:
 		if d["tipo"] in ["ferita", "pericolo", "virtuale"]:
 			continue
 		var j := int(d["chi"])
+		if not _assist_restituiti.has(j) and d["id"] != "pet":
+			spesi.get_or_add(j, []).append(Prova.icone(d))
 		for dd in esp.membro(j)["dadi"]:
 			if dd["id"] == d["id"]:
 				dd["stato"] = "disponibile" if _assist_restituiti.has(j) else "speso"
 				dd["faccia"] = d["faccia"]
+	_notifica_prova(colore_esito, req_esito, tracce, conv, viet0, spesi)
 	if _token(settore, "E35") != {}:
 		var r_n := 0
 		for dd in m["dadi"]:
@@ -806,6 +847,46 @@ func _risolvi() -> void:
 	resoconto = _resoconto_mod + resoconto
 	esp.diario("%s: %s" % [m["carta"], "; ".join(resoconto)])
 	_mostra_riepilogo(resoconto, testi)
+
+## Riepilogo della Prova per gli Obiettivi individuali.
+func _notifica_prova(colore: String, req: String, tracce: Dictionary, conv: Array, viet0: Dictionary, spesi: Dictionary) -> void:
+	var sezione := _pool.filter(func(d): return not d["tipo"] in ["ferita", "pericolo", "virtuale"])
+	var distinte := {}
+	var n_acc := 0
+	var n_van := 0
+	for d in _pool:
+		if d["tipo"] in ["ferita", "pericolo"]:
+			continue
+		for ic in Prova.icone(d):
+			distinte[ic] = true
+			if ic == "accident":
+				n_acc += 1
+			elif ic == "vanguard":
+				n_van += 1
+	var assistenti := []
+	for d in sezione:
+		if int(d["chi"]) != chi and d["id"] != "pet" and not int(d["chi"]) in assistenti:
+			assistenti.append(int(d["chi"]))
+	var n_conv := 0
+	if req != "":
+		var ru := Prova.soddisfa_req(req, _pool, conv, viet0)
+		for u in ru.get("uso", []):
+			if str(u[3]) == "convertito":
+				for d in _pool:
+					if d["id"] == u[0] and int(d["chi"]) == chi:
+						n_conv += 1
+	if colore == "":
+		for c in ["yellow", "green"]:
+			if int(tracce.get(c, 0)) > 0:
+				colore = c
+				break
+	esp.s["_ultima_prova"] = {"assistenti": assistenti}
+	esp.notifica("prova", {"chi": chi, "settore": settore, "colore": colore, "req": req,
+		"propri": sezione.filter(func(d): return int(d["chi"]) == chi and d["id"] != "pet").size(), "totale": sezione.size(),
+		"icone_distinte": distinte.size(), "accidenti": n_acc, "accidenti_tiro": _accidenti_iniziali, "vanguard": n_van,
+		"assistenti": assistenti, "conversioni": n_conv, "pet": _pet, "spesi": spesi,
+		"carte_usate": _usati.filter(func(x): return str(x).begins_with("carta")).size() + _combo_scelte.size(),
+		"traccia_gv": int(tracce.get("green", 0)) > 0 or int(tracce.get("yellow", 0)) > 0})
 
 const CARTE_FERITA := {"wounded": "Wounded", "panicked": "Panicked", "freezing": "Freezing", "exhausted": "Exhausted",
 	"critically_wounded": "Critically Wounded", "burned": "Burned", "just_a_scratch": "Just a Scratch!"}
