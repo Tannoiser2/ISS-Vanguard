@@ -66,7 +66,7 @@ func _mostra_tavolo(v: bool) -> void:
 	if is_instance_valid(_hint):
 		_hint.visible = v
 
-## Inizio della campagna: l'Annotazione iniziale del Logbook e poi la missione tutorial su Pellucid.
+## Inizio della campagna: l'Annotazione iniziale del Logbook e poi la missione tutorial su Eye of the Void.
 var _inizio: Control
 func _schermata_inizio() -> void:
 	_mostra_tavolo(false)
@@ -89,7 +89,7 @@ func _schermata_inizio() -> void:
 	v.add_child(Tema.etichetta("INIZIO DELLA CAMPAGNA", 24, Tema.CIANO, true))
 	var r := Tema.testo_ricco(17)
 	r.fit_content = true
-	r.text = "[b]1.[/b] Leggi l'Annotazione iniziale nel Logbook qui a destra: la storia e le istruzioni le segue il programma.\n[b]2.[/b] Poi parte la prima esplorazione (il tutorial su Pellucid): il pianeta, la Squadra di Sbarco e le carte si preparano da soli.\n[b]3.[/b] Al ritorno comincia la Gestione della Nave, un passo del Ship Book alla volta."
+	r.text = "[b]1.[/b] Leggi l'Annotazione iniziale nel Logbook qui a destra: la storia e le istruzioni le segue il programma.\n[b]2.[/b] Poi parte la prima esplorazione (il tutorial su Eye of the Void): il pianeta, la Squadra di Sbarco e le carte si preparano da soli.\n[b]3.[/b] Al ritorno comincia la Gestione della Nave, un passo del Ship Book alla volta."
 	v.add_child(r)
 	v.add_child(Tema.pulsante_primario("INIZIA LA PRIMA ESPLORAZIONE ▶", func():
 		_inizio.queue_free()
@@ -305,6 +305,11 @@ func apri_esplorazione() -> void:
 		return
 	var prep := PreparazioneMissione.new()
 	prep.pagina_iniziale = str(Campagna.dati.get("prossimo_pianeta", "p.2-3"))
+	# spedizione già decisa sulla nave: squadra, Lander e pianeta sono quelli
+	var nv = Campagna.dati.get("nave")
+	if nv is Dictionary and str(nv.get("passo", "")) == "esplorazione" and nv.get("spedizione") is Dictionary and not (nv["spedizione"] as Dictionary).is_empty():
+		prep.dalla_nave = (nv["spedizione"] as Dictionary).duplicate(true)
+		prep.pagina_iniziale = str(prep.dalla_nave.get("pagina", prep.pagina_iniziale))
 	prep.pronta.connect(_avvia_esplorazione)
 	prep.annullata.connect(func(): vai_alla_fase.call_deferred())
 	ui.add_child(prep)

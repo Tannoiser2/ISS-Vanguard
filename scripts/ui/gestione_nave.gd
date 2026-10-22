@@ -1385,7 +1385,7 @@ func _passo_lancio() -> void:
 	if lc == "":
 		_testo("[color=#ffb347]Nessuna carta Atterraggio nello scanner: torna alla Mappa stellare.[/color]")
 	_sezione("3. Squadra di Sbarco")
-	_testo("Scegli i Membri disponibili (in solitario almeno 2 di Reparti diversi). I dadi e i mazzi Reparto si preparano da soli.", 15)
+	_testo("Scegli i Membri disponibili: uno per Reparto (in solitario almeno 2 Reparti). I dadi e i mazzi Reparto si preparano da soli.", 15)
 	var squadra: Array = _scelta.get_or_add("squadra", [])
 	for i in nave.membri("", "disponibile"):
 		var ii: int = i
@@ -1432,6 +1432,9 @@ func _atterra() -> void:
 	if squadra.size() < 2 or reparti.size() < 2:
 		avviso("Servono almeno 2 Membri di Reparti diversi")
 		return
+	if reparti.size() < squadra.size():
+		avviso("Ogni Reparto manda un solo Membro nella Squadra di Sbarco")
+		return
 	var lc := str(nave.s["scanner"].get("carta", ""))
 	var pagina := Carte.pianeta_per_nome(str(Carte.per_id(lc).get("campi", {}).get("pianeta", "")))
 	var membri := []
@@ -1446,8 +1449,12 @@ func _atterra() -> void:
 	nave.s["equip_caricato"] = (_scelta.get("equip", []) as Array).duplicate()
 	nave.vai("esplorazione")
 	_salva()
-	esplora.emit({"pagina": pagina, "membri": membri, "lander": nave.s["lander_scelto"], "equip": nave.s["equip_caricato"], "carta": lc,
-		"briefing": _briefing(lc), "mod": (nave.s.get("mod_montate", []) as Array).duplicate()})
+	var spedizione := {"pagina": pagina, "membri": membri, "lander": nave.s["lander_scelto"], "equip": nave.s["equip_caricato"], "carta": lc,
+		"briefing": _briefing(lc), "mod": (nave.s.get("mod_montate", []) as Array).duplicate()}
+	# resta salvata: se la preparazione viene annullata si riparte dalla stessa spedizione
+	nave.s["spedizione"] = spedizione.duplicate(true)
+	_salva()
+	esplora.emit(spedizione)
 
 ## Dadi del Reparto da mettere sulla plancia, rispettando la capienza per colore al Grado del Membro.
 func _dadi_squadra(m: Dictionary) -> Array:
@@ -1471,7 +1478,7 @@ func _passo_esplorazione() -> void:
 	_titolo("Esplorazione planetaria", 24)
 	_testo("La Squadra di Sbarco è sul pianeta. Al termine dell'esplorazione la Gestione della Nave riprende da \"Lasciare il pianeta\".")
 	var r := _riga()
-	r.add_child(Tema.pulsante_primario("VAI ALL'ESPLORAZIONE", func(): esplora.emit({}), 16))
+	r.add_child(Tema.pulsante_primario("VAI ALL'ESPLORAZIONE", func(): esplora.emit((nave.s.get("spedizione", {}) as Dictionary).duplicate(true)), 16))
 	r.add_child(Tema.pulsante("L'ESPLORAZIONE È FINITA ▶", func():
 		nave.vai("partenza")
 		_salva()

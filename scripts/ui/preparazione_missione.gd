@@ -115,6 +115,25 @@ func _ready() -> void:
 		if str(cm.get("nome", "")).to_upper() == str(dalla_nave.get("lander", "SPACE RANGER")).to_upper():
 			_lander.select(k)
 	hl.add_child(_lander)
+	# Nella campagna non si sceglie niente a mano: la squadra, il Lander e il pianeta sono quelli decisi
+	# sulla nave (o quelli del tutorial). Solo l'esplorazione libera, fuori dalla campagna, resta modificabile.
+	var tutorial := dalla_nave.is_empty() and pagina_iniziale == "p.2-3"
+	if not dalla_nave.is_empty() or tutorial:
+		_pianeta.disabled = true
+		_lander.disabled = true
+		_tutorial.disabled = true
+		var spiega := _lab("")
+		spiega.custom_minimum_size = Vector2(0, 0)
+		spiega.add_theme_color_override("font_color", Tema.TESTO_2)
+		spiega.text = "Lander e Squadra decisi sulla nave (Hangar e Alloggi)." if not tutorial else "Tutorial: Membri di Grado 1 e Lander come da Regolamento (pag. 13). Si possono solo scegliere quali Membri giocare (almeno 2)."
+		hl.add_child(spiega)
+	if tutorial:
+		_tutorial.button_pressed = true
+		for rr in _righe:
+			rr["membro"].disabled = true
+			rr["reparto"].disabled = true
+			rr["grado"].value = 1
+			rr["grado"].editable = false
 	# missioni e condizione
 	var hm := HBoxContainer.new()
 	v.add_child(hm)
