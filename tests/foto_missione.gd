@@ -59,6 +59,12 @@ func _run() -> void:
 	mis.apri_cassetto("squadra")
 	await aspetta(1)
 	await foto("cassetto_squadra")
+	mis._mostra_plancia(0)
+	await aspetta(1.5)
+	await foto("plancia")
+	for c in mis.get_children():
+		if c is ColorRect and c.get_child_count() > 0 and c.get_child(0) is CenterContainer:
+			c.queue_free()
 	mis.apri_cassetto("")
 	mis._viaggio()
 	await aspetta(1)

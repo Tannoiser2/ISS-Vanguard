@@ -26,6 +26,10 @@ var _sel_mod := {}         # carta/abilità in uso che chiede di scegliere dei d
 var _fase := 0             # 0 scelta, 1 dopo il tiro
 var _corpo: VBoxContainer
 var _titolo: Label
+var _dadi3d: Dadi3D = null   # vassoio 3D: i dadi si lanciano con la fisica (non nelle prove automatiche)
+
+static func _3d_attivo() -> bool:
+	return OS.get_environment("ISS_PROVA") == "" and DisplayServer.get_name() != "headless"
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -50,6 +54,10 @@ func _ready() -> void:
 	h.add_child(Tema.pulsante("ANNULLA", func():
 		conclusa.emit({"annullata": true})
 		queue_free(), 13))
+	if _3d_attivo():
+		_dadi3d = Dadi3D.new()
+		_dadi3d.visible = false
+		v.add_child(_dadi3d)
 	var sc := ScrollContainer.new()
 	sc.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	sc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
@@ -209,6 +217,8 @@ func _usa_modificatore(x: Dictionary) -> void:
 			if d["tipo"] == "pericolo":
 				var prima := "+".join(Prova.icone(d))
 				Prova.tira(d, esp.rng)
+				if _dadi3d:
+					await _dadi3d.rilancia([d])
 				_resoconto_mod.append("Dado Pericolo ritirato: %s → %s" % [prima if prima != "" else "vuoto", "+".join(Prova.icone(d)) if not Prova.icone(d).is_empty() else "vuoto"])
 				break
 	# effetti guidati: si cliccano i dadi giusti, il programma controlla colore e numero
@@ -238,13 +248,18 @@ func _usa_modificatore(x: Dictionary) -> void:
 		_resoconto_mod.append("%s: ogni [%s] vale [vanguard]" % [x["titolo"], tr.get_string(1)])
 	var rr := RegEx.create_from_string("(?i)reroll (?:any number of|all|up to \\d+) \\[(die|redDie|blueDie|greenDie)\\]").search(en)
 	if rr:
+		var rilanciati := []
 		var col: String = {"die": "", "redDie": "red", "blueDie": "blue", "greenDie": "green"}[rr.get_string(1)]
 		for d in _pool:
 			if d["tipo"] in ["ferita", "pericolo", "virtuale"]:
 				continue
 			if (col == "" or Prova.colore(d) == col) and not _utile(d):
 				Prova.tira(d, esp.rng)
-				esp.notifica("ritiro", {"chi": chi, "icone": Prova.icone(d)})
+				rilanciati.append(d)
+		if _dadi3d and not rilanciati.is_empty():
+			await _dadi3d.rilancia(rilanciati)
+		for d in rilanciati:
+			esp.notifica("ritiro", {"chi": chi, "icone": Prova.icone(d)})
 		_resoconto_mod.append("Ritirati i dadi %s che non servivano" % ({"": "", "red": "rossi", "blue": "blu", "green": "verdi"}[col]))
 	_mostra_tiro()
 
@@ -431,6 +446,12 @@ func _tira() -> void:
 		var d := {"id": "p%d" % n, "tipo": "pericolo", "faccia": 0, "chi": chi, "lettera": str(p).trim_prefix("dangerDie")}
 		Prova.tira(d, esp.rng)
 		_pool.append(d)
+	if _dadi3d:
+		# il risultato è quello che esce davvero dal lancio
+		_svuota()
+		_corpo.add_child(Tema.etichetta("I dadi rotolano…", 18, Tema.CIANO))
+		_dadi3d.visible = true
+		await _dadi3d.lancia(_pool.filter(func(d): return d["tipo"] != "virtuale"))
 	_fase = 1
 	var sezione := _pool.filter(func(d): return not d["tipo"] in ["ferita", "pericolo", "virtuale"])
 	_accidenti_iniziali = sezione.filter(func(d): return "accident" in Prova.icone(d)).size()
@@ -556,6 +577,8 @@ func _dado_valido(d: Dictionary) -> bool:
 ## Un dado tolto dalla Riserva del Tiro va nei Dadi Spesi del suo proprietario.
 func _togli_dal_tiro(d: Dictionary) -> void:
 	_pool.erase(d)
+	if _dadi3d:
+		_dadi3d.togli(d)
 	for dd in esp.membro(int(d["chi"]))["dadi"]:
 		if dd["id"] == d["id"]:
 			dd["stato"] = "speso"
@@ -572,6 +595,8 @@ func _clic_dado(d: Dictionary) -> void:
 	match str(_sel_mod["modo"]):
 		"ritira":
 			Prova.tira(d, esp.rng)
+			if _dadi3d:
+				await _dadi3d.rilancia([d])
 			esp.notifica("ritiro", {"chi": chi, "icone": Prova.icone(d)})
 			_resoconto_mod.append("Ritirato: ora %s" % ("+".join(Prova.icone(d)) if not Prova.icone(d).is_empty() else "vuoto"))
 		"spendi":
@@ -595,6 +620,8 @@ func _clic_dado(d: Dictionary) -> void:
 					if Prova.icone({"tipo": d["tipo"], "faccia": f}) == facce[id]:
 						d["faccia"] = f
 						break
+				if _dadi3d:
+					_dadi3d.allinea(d)
 				_resoconto_mod.append("Un dado girato su %s" % "+".join(facce[id]))
 				_avanza_sel()
 				_mostra_tiro())
@@ -619,8 +646,12 @@ func _menu_dado(d: Dictionary) -> void:
 	pm.id_pressed.connect(func(id):
 		if id == 0:
 			Prova.tira(d, esp.rng)
+			if _dadi3d:
+				await _dadi3d.rilancia([d])
 		else:
 			d["faccia"] = id - 10
+			if _dadi3d:
+				_dadi3d.allinea(d)
 		_mostra_tiro())
 	add_child(pm)
 	pm.popup(Rect2i(get_global_mouse_position(), Vector2i(10, 10)))

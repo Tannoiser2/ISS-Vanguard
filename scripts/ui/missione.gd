@@ -1098,17 +1098,17 @@ func _sezione_squadra() -> void:
 		var r := Tema.testo_ricco(15)
 		r.fit_content = true
 		r.scroll_active = false
-		r.text = "[color=#%s][b]%s[/b][/color] · %s, Grado %d · Settore %d · [i]%s[/i]\nDadi: [b]%d[/b] disponibili, %d spesi, %d sacrificati · Cariche %d%s" % [
+		r.text = "[color=#%s][b]%s[/b][/color] · %s, Grado %d · Settore %d · [i]%s[/i]\n[color=#9fbbd6]Dadi: %d disponibili, %d spesi, %d sacrificati · Cariche %d[/color]" % [
 			col.to_html(false), str(m["carta"]), Dati.SEZIONI.get(str(m["reparto"]), {}).get("nome", ""), int(m["grado"]), int(m["settore"]), stato,
-			disp, spesi, sacr, int(m["cariche"]),
-			("\nFerite: " + ", ".join(m["ferite"].map(func(x): return NOMI_FERITE.get(x, x)))) if not m["ferite"].is_empty() else ""]
+			disp, spesi, sacr, int(m["cariche"])]
 		v.add_child(r)
-		# dadi
-		var fd := HFlowContainer.new()
-		fd.add_theme_constant_override("h_separation", 3)
-		for d in m["dadi"]:
-			fd.add_child(_chip_dado(d))
-		v.add_child(fd)
+		# la plancia originale del Reparto con i dadi, la carta, le Cariche e le Ferite (clic: più grande)
+		var pm := PlanciaMembro.new(m, esp, i)
+		pm.larghezza(396)
+		var ip: int = i
+		pm.premuta.connect(func(): _mostra_plancia(ip))
+		pm.tooltip_text = "Clicca per vedere la plancia più grande"
+		v.add_child(pm)
 		# mano
 		var fm := HFlowContainer.new()
 		fm.add_theme_constant_override("h_separation", 4)
@@ -1135,6 +1135,29 @@ func _sezione_squadra() -> void:
 		v.add_child(hb)
 		_obiettivo_individuale(i, v)
 		_pannello.add_child(riq)
+
+## La plancia del Membro a tutto schermo.
+func _mostra_plancia(i: int) -> void:
+	var vel := ColorRect.new()
+	vel.color = Color(0, 0.01, 0.03, 0.85)
+	vel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	add_child(vel)
+	var c := CenterContainer.new()
+	c.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	vel.add_child(c)
+	var v := VBoxContainer.new()
+	v.custom_minimum_size = Vector2(minf(minf(1400, get_viewport_rect().size.x - 60), (get_viewport_rect().size.y - 110) * PlanciaMembro.RAPPORTO), 0)
+	c.add_child(v)
+	var h := HBoxContainer.new()
+	var t := Tema.etichetta("PLANCIA — " + str(esp.membro(i)["carta"]), 20, Tema.TESTO, true)
+	t.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	h.add_child(t)
+	h.add_child(Tema.pulsante("CHIUDI", func(): vel.queue_free(), 13))
+	v.add_child(h)
+	var pm := PlanciaMembro.new(esp.membro(i), esp, i)
+	pm.larghezza(v.custom_minimum_size.x)
+	pm.premuta.connect(func(): vel.queue_free())
+	v.add_child(pm)
 
 ## Fascicoli del personale: la carta Obiettivo individuale accanto alla plancia del Membro.
 func _obiettivo_individuale(i: int, v: VBoxContainer) -> void:

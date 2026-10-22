@@ -62,6 +62,13 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
     niente Eventi finché non arriva la Missione M02);
   - turni e round, due azioni per turno: Viaggio (icone del sentiero e azione Viaggio della Condizione
     Generale), Riposo, Preparazione, Azione Speciale (una per turno), Decollo; Sforzo in ogni momento;
+  - **dadi veri**: nella finestra della Prova i dadi si lanciano in un vassoio 3D con la fisica (cubi con
+    le facce dei dadi del modulo, ottaedri arancio per il Pericolo) e il risultato è la faccia che resta
+    in alto; anche i ritiri rilanciano solo quei dadi;
+  - **plance originali dei Reparti** (Recon, Security, Science, Engineering) nel cassetto SQUADRA: dadi
+    disponibili negli alloggiamenti del loro colore, Dadi Spesi con la faccia rimasta, carta del Membro,
+    Cariche, Ferite, mazzo e scarti; un clic la apre a tutto schermo;
+  - **arrivando in un settore** si apre subito la sua annotazione, altrimenti la sua carta;
   - **prove di dadi** complete: scelta dei dadi e assistenza, tiro, ritiri e modifiche, Combinazioni
     delle carte Reparto, dadi Ferita e Pericolo (tutte le tabelle A–I e T), effetti speciali,
     esiti collegati dalle frecce, tracce di avanzamento salvate nel settore;
@@ -216,6 +223,8 @@ tests/foto_missione.gd     screenshot della preparazione e dell'esplorazione
 tests/prova_nave.gd        giro completo della Gestione della Nave (-- foto per gli screenshot)
 tests/prova_ponte.gd       potenziamenti del Ponte e delle strutture, carte spostate dal Logbook
 tests/prova_fascicoli.gd   Fascicoli del personale (Obiettivi individuali e Veterani)
+tests/audit_effetti.gd     diagnostica: applica tutti i testi d'effetto delle carte e conta quelli rimasti a mano
+tests/foto_dadi.gd         screenshot del vassoio 3D dei dadi (xvfb-run)
 tests/foto_3d.gd           screenshot della plancia 3D dell'esplorazione
 tests/prova_atterraggio.gd atterraggio, risposte automatiche del Logbook e Minacce
 tests/prova_pianeti.gd     registrazione e ripristino dei pianeti visitati
@@ -223,6 +232,8 @@ tools/unisci_carte.py      trascrizioni delle carte (data/carte) -> data/carte_d
 ```
 
 ## Da fare / limiti attuali
+- Effetti delle carte: su 618 testi d'effetto 38 lasciano ancora qualcosa da fare a mano (regole molto
+  particolari, come il dado Pericolo aggiunto alla Riserva del Tiro o le scelte "dopo il tiro").
 - Le carte sono quelle **inglesi** del modulo TTS: le scansioni italiane si sostituiscono rigenerando
   `web/img/carte` (stessi nomi file) senza toccare il codice.
 - Automatizzati: Logbook, esplorazione planetaria e Gestione della Nave. Vedi sotto cosa resta a mano.
