@@ -68,10 +68,13 @@ func _run() -> void:
 	await _chiudi_dialoghi(mis)
 	mis._logbook.visible = false
 	# una Minaccia e un segnalino per vedere i pezzi
+	var fatte := 0
 	for cm in root.get_node("Carte").categoria("minacce"):
-		if str(cm.get("lato", "")) == "fronte":
-			mis._aggiungi_minaccia(cm, 2)
-			break
+		var nm := str((cm.get("nomi", [""]) as Array)[0])
+		if nm in ["Kurma", "Arrogator Warswarm", "Arrogator Behemoth"] and not nm in mis.esp.s["minacce"].map(func(x): return x.get("en", "")):
+			mis._aggiungi_minaccia(cm, 2 + fatte)
+			fatte += 1
+	mis.esp.s["settori"]["1"]["germogli"] = 2
 	mis.esp.s["settori"]["1"].get_or_add("attrezzature", []).append({"id": "E47", "nome": "Outpost", "marcatori": 0})
 	mis.aggiorna()
 	await aspetta(2)

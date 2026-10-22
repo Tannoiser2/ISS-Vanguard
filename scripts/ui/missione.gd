@@ -3363,6 +3363,15 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			fatti.append("%s torna a %d Cariche" % [m["carta"], int(m["cariche"])])
 		"niente_regola":
 			pass
+		"germogli":
+			var dove: Array = op.get("settori", [])
+			if dove.is_empty():
+				dove = esp.s["settori"].keys().map(func(x): return int(x))
+			for sg in dove:
+				var stg: Dictionary = esp.s["settori"].get(str(sg), {})
+				if not stg.is_empty():
+					stg["germogli"] = max(0, int(stg.get("germogli", 0)) + int(op["n"]))
+			fatti.append("Germogli: %s" % ("tolti dalla plancia" if int(op["n"]) < 0 else "nei Settori " + ", ".join(dove.map(func(x): return str(x)))))
 		"se_tiro_vuoto":
 			if str(esp.s.get("_ultimo_pericolo", "x")) == "":
 				fatti.append("Il tiro non ha avuto effetto:")

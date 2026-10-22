@@ -367,6 +367,7 @@ func _aggiorna_pedine(esp: Esplorazione, attivo: int) -> void:
 				_aggiorna_standee(nodo2, mm)
 			_metti(nodo2, _v3(c + Vector2(-r.size.x * 0.3 + k * 1.0, -r.size.y * 0.12)))
 		if int(esp.s["lander"]["settore"]) == int(n):
+			_nome_lander = str(esp.s["lander"].get("nome", ""))
 			viste["L"] = true
 			_metti(_pedina("L", _lander), _v3(c + Vector2(r.size.x * 0.3, -r.size.y * 0.2)))
 		var st: Dictionary = esp.s["settori"].get(str(n), {})
@@ -382,11 +383,19 @@ func _aggiorna_pedine(esp: Esplorazione, attivo: int) -> void:
 			extra.append(["S", Color(1.0, 0.6, 0.15)])
 		for k in int(st.get("droni", 0)):
 			extra.append(["D", Color(0.55, 0.6, 0.7)])
+		for k in int(st.get("germogli", 0)):
+			extra.append(["G", Color(0.4, 0.8, 0.3)])
 		for k in extra.size():
 			var chiave4 := "X%s#%d%s" % [str(n), k, extra[k][0]]
 			viste[chiave4] = true
 			var colx: Color = extra[k][1]
-			var nodo4 := _pedina(chiave4, func(): return _cubetto(colx))
+			var tipo_x: String = extra[k][0]
+			var nodo4 := _pedina(chiave4, func():
+				if tipo_x == "D":
+					return _sagoma("standee/drone.webp", "", Color.WHITE, Color(0.25, 0.28, 0.32), 0.45)
+				if tipo_x == "G":
+					return _sagoma("standee/sprout.webp", "", Color.WHITE, Color(0.2, 0.35, 0.15), 0.42)
+				return _cubetto(colx))
 			_metti(nodo4, _v3(c + Vector2(-r.size.x * 0.38 + (k % 5) * 0.32, r.size.y * 0.02 + (k / 5) * 0.32)))
 	for chiave in _pedine.keys():
 		if not viste.has(chiave):
@@ -522,11 +531,11 @@ func _standee(m: Dictionary) -> Node3D:
 	var radice := Node3D.new()
 	var base := MeshInstance3D.new()
 	var cil := CylinderMesh.new()
-	cil.top_radius = 0.42
-	cil.bottom_radius = 0.45
-	cil.height = 0.08
+	cil.top_radius = 0.3
+	cil.bottom_radius = 0.32
+	cil.height = 0.06
 	base.mesh = cil
-	base.material_override = _mat(Color(0.55, 0.06, 0.1))
+	base.material_override = _mat(Color(0.38, 0.04, 0.07))
 	base.position.y = 0.04
 	radice.add_child(base)
 	var q := MeshInstance3D.new()
@@ -560,12 +569,51 @@ func _standee(m: Dictionary) -> Node3D:
 	_aggiorna_standee(radice, m)
 	return radice
 
+## Standee del modulo (sagoma ritagliata) per nome inglese della Minaccia o del Lander, "" se non c'è.
+const STANDEE := ["aerugon_saboteur", "apex_predator", "arrogator_behemoth", "arrogator_warswarm", "bombardment", "builder_s_biomebot",
+	"carnivorous_thicket", "dragonfly", "drone", "dust_storm", "enraptured_visitor", "faustschlag", "flowerbug", "guardian_metahedron",
+	"idemian_pilgrim", "kurma", "magnacereb", "maw", "ophthalmoid", "pelican", "scintillating_shardfly", "space_ranger", "sprout",
+	"void_ranger", "waygate"]
+
+static func file_standee(nome: String) -> String:
+	var k := RegEx.create_from_string("[^a-z0-9]+").sub(nome.to_lower(), "", true)
+	for f in STANDEE:
+		if f.replace("_", "") == k:
+			return "standee/%s.webp" % f
+	# varianti ("Converted Arrogator Behemoth", "Idemian Pilgrim" infuriato…)
+	for f in STANDEE:
+		if f.length() > 5 and k.contains(f.replace("_", "")):
+			return "standee/%s.webp" % f
+	return ""
+
+## Altezza dello standee in proporzione alla sagoma originale (le Minacce grandi restano grandi).
+static func _altezza_standee(px: float) -> float:
+	return clampf(px / 300.0, 0.55, 2.1)
+
 func _aggiorna_standee(n: Node3D, m: Dictionary) -> void:
 	n.set_meta("file", str(m.get("file", "")))
 	var nome: Label3D = n.get_node("Nome")
 	nome.text = "☠ " + str(m.get("nome", "")).to_upper()
 	var q: MeshInstance3D = n.get_node("Carta")
 	var mq: StandardMaterial3D = q.material_override
+	var sagoma := file_standee(str(m.get("en", "")))
+	if sagoma == "":
+		sagoma = file_standee(str(Carte.per_file(str(m.get("file", ""))).get("nomi", [""])[0]))
+	if sagoma != "":
+		# sagoma ritagliata del modulo: trasparente, sulla basetta
+		mq.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
+		mq.alpha_scissor_threshold = 0.4
+		Immagini.carica(sagoma, func(t):
+			if is_instance_valid(q) and t:
+				var s: Vector2 = t.get_size()
+				var h := _altezza_standee(s.y)
+				var qm := QuadMesh.new()
+				qm.size = Vector2(h * s.x / s.y, h)
+				q.mesh = qm
+				q.position.y = 0.08 + h / 2.0
+				nome.position.y = h + 0.35
+				mq.albedo_texture = t)
+		return
 	Immagini.carica(str(m.get("file", "")), func(t):
 		if is_instance_valid(q) and t:
 			var s: Vector2 = t.get_size()
@@ -575,6 +623,9 @@ func _aggiorna_standee(n: Node3D, m: Dictionary) -> void:
 			mq.albedo_texture = t)
 
 func _lander() -> Node3D:
+	var sagoma := file_standee(str(_nome_lander))
+	if sagoma != "":
+		return _sagoma(sagoma, "LANDER " + str(_nome_lander).to_upper(), Color(0.55, 0.85, 1.0), Color(0.12, 0.16, 0.2), 1.5)
 	var radice := Node3D.new()
 	var corpo := MeshInstance3D.new()
 	var cil := CylinderMesh.new()
@@ -627,6 +678,61 @@ func _lander() -> Node3D:
 	l.render_priority = 1
 	l.add_to_group("nomi_p3d")
 	radice.add_child(l)
+	return radice
+
+var _nome_lander := ""
+
+## Una sagoma ritagliata in piedi su una basetta, sempre rivolta verso la telecamera.
+func _sagoma(file: String, testo: String, col_testo: Color, col_base: Color, largo: float) -> Node3D:
+	var radice := Node3D.new()
+	var base := MeshInstance3D.new()
+	var cil := CylinderMesh.new()
+	cil.top_radius = minf(0.3, largo * 0.24)
+	cil.bottom_radius = minf(0.32, largo * 0.26)
+	cil.height = 0.07
+	base.mesh = cil
+	base.material_override = _mat(col_base)
+	base.position.y = 0.035
+	radice.add_child(base)
+	var q := MeshInstance3D.new()
+	var mq := _mat()
+	mq.billboard_mode = BaseMaterial3D.BILLBOARD_FIXED_Y
+	mq.billboard_keep_scale = true
+	mq.cull_mode = BaseMaterial3D.CULL_DISABLED
+	mq.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mq.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
+	mq.alpha_scissor_threshold = 0.4
+	q.material_override = mq
+	radice.add_child(q)
+	var l: Label3D = null
+	if testo != "":
+		l = Label3D.new()
+		l.text = testo
+		l.font = Tema.titolo
+		l.font_size = 28
+		l.pixel_size = 0.0005
+		l.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		l.fixed_size = true
+		l.no_depth_test = true
+		l.modulate = col_testo
+		l.outline_size = 8
+		l.outline_modulate = Color(0, 0, 0, 0.9)
+		l.position.y = 1.0
+		l.render_priority = 1
+		l.add_to_group("nomi_p3d")
+		radice.add_child(l)
+	Immagini.carica(file, func(t):
+		if is_instance_valid(q) and t:
+			var s: Vector2 = t.get_size()
+			var w := largo
+			var h := w * s.y / s.x
+			var qm := QuadMesh.new()
+			qm.size = Vector2(w, h)
+			q.mesh = qm
+			q.position.y = 0.07 + h / 2.0
+			if l:
+				l.position.y = h + 0.3
+			mq.albedo_texture = t)
 	return radice
 
 func _gettone(col: Color, testo: String, r: float) -> Node3D:

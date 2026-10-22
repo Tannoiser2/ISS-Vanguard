@@ -66,6 +66,9 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
     le facce dei dadi del modulo, ottaedri arancio per il Pericolo) e il risultato è la faccia che resta
     in alto; anche i ritiri rilanciano solo quei dadi; i dadi Pericolo tirati da Eventi, sentieri,
     Minacce ed effetti rotolano in un vassoio che compare in basso;
+  - **standee originali** del modulo sulla plancia 3D: le sagome ritagliate delle Minacce (in scala, le grandi
+    restano grandi), del Lander in uso, dei Droni dello Sciame e dei Germogli; per le poche Minacce senza
+    standee nel modulo resta la carta in piedi;
   - **plance originali dei Reparti** (Recon, Security, Science, Engineering) nel cassetto SQUADRA: dadi
     disponibili negli alloggiamenti del loro colore, Dadi Spesi con la faccia rimasta, carta del Membro,
     Cariche, Ferite, mazzo e scarti; un clic la apre a tutto schermo; nella barra in basso c'è la

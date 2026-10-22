@@ -256,6 +256,8 @@ static func analizza_it(testo: String) -> Dictionary:
 		["(?i)apri il manuale della nave a pagina (\\d+)", func(m): return {"op": "nave_pagina", "n": int(m.get_string(1))}],
 		["(?i)apri la planetopedia alle pagine (\\d+)\\s*[-–]\\s*(\\d+)", func(m): return {"op": "planetopedia", "pagina": "p.%d-%d" % [int(m.get_string(1)), int(m.get_string(2))]}],
 		["(?i)non (?:succede|accade) nulla", func(m): return {"op": "niente"}],
+		["(?i)(?:posiziona|metti) (?:un|1) segnalino germoglio nei? settor[ei] ((?:\\d+(?:\\s*(?:,|e)\\s*)?)+)", func(m): return {"op": "germogli", "n": 1, "settori": Array(RegEx.create_from_string("\\d+").search_all(m.get_string(1)).map(func(x): return int(x.get_string(0))))}],
+		["(?i)scarta la carta missione insieme ai segnalini\\s*germogli", func(m): return {"op": "germogli", "n": -999, "settori": []}],
 		# segnaposto su carte, riserve e slot; Piaghe nei settori (le domande del Logbook li controllano)
 		["(?i)(?:posiziona|aggiungi|metti) " + N + " segnaposto (?:universal[ei] )?(sulla carta [^.,;•]+?|alla riserva [^.,;•]+?|allo slot [^.,;•]+?|nello slot [^.,;•]+?)(?=[.,;•]| e | se | su di| oppure|$)", func(m): return {"op": "segni", "dove": chiave_segni(m.get_string(2)), "n": _ni(m.get_string(1))}],
 		["(?i)(?:scarta|rimuovi|togli) " + N + " segnaposto (dalla carta [^.,;•]+?|dalla riserva [^.,;•]+?|dallo slot [^.,;•]+?)(?=[.,;•]| e | se |$)", func(m): return {"op": "segni", "dove": chiave_segni(m.get_string(2)), "n": -_ni(m.get_string(1))}],
