@@ -69,6 +69,9 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   - **standee originali** del modulo sulla plancia 3D: le sagome ritagliate delle Minacce (in scala, le grandi
     restano grandi), del Lander in uso, dei Droni dello Sciame e dei Germogli; per le poche Minacce senza
     standee nel modulo resta la carta in piedi;
+  - **segnalini originali**: le Attrezzature di missione sono dischi con l'immagine del segnalino del modulo;
+    i segnalini Tempo (l'esagono originale, con il numero) stanno sulle carte PDI e accanto alle Minacce;
+    sulla plancia si vedono anche Piaghe, segnaposto dei settori e carte Evento rimaste in un settore;
   - **plance originali dei Reparti** (Recon, Security, Science, Engineering) nel cassetto SQUADRA: dadi
     disponibili negli alloggiamenti del loro colore, Dadi Spesi con la faccia rimasta, carta del Membro,
     Cariche, Ferite, mazzo e scarti; un clic la apre a tutto schermo; nella barra in basso c'è la

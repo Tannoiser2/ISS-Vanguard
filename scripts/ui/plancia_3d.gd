@@ -291,8 +291,6 @@ func _info(n: int) -> String:
 		return ("➜ " + str(mis._consentiti[n])) if str(mis._consentiti[n]) != "" else "➜"
 	var st: Dictionary = esp.s["settori"].get(str(n), {})
 	var out := []
-	if int(st.get("tempo", 0)) > 0:
-		out.append("⧗%d" % int(st["tempo"]))
 	for k in st.get("tracce", {}):
 		out.append("▶%d" % int(st["tracce"][k]))
 	if int(st.get("log", 0)) > 0 and not st.get("visitato", false):
@@ -366,6 +364,12 @@ func _aggiorna_pedine(esp: Esplorazione, attivo: int) -> void:
 			if nodo2.get_meta("file", "") != str(mm.get("file", "")):
 				_aggiorna_standee(nodo2, mm)
 			_metti(nodo2, _v3(c + Vector2(-r.size.x * 0.3 + k * 1.0, -r.size.y * 0.12)))
+			# segnalini Tempo della Minaccia accanto alla sua basetta
+			if int(mm.get("tempo", 0)) > 0:
+				viste["T" + chiave2] = true
+				var nt := _pedina("T" + chiave2, _tempo_3d)
+				_conta_tempo(nt, int(mm["tempo"]))
+				_metti(nt, _v3(c + Vector2(-r.size.x * 0.3 + k * 1.0 + 0.42, -r.size.y * 0.12 + 0.3)))
 		if int(esp.s["lander"]["settore"]) == int(n):
 			_nome_lander = str(esp.s["lander"].get("nome", ""))
 			viste["L"] = true
@@ -376,9 +380,27 @@ func _aggiorna_pedine(esp: Esplorazione, attivo: int) -> void:
 			var chiave3 := "E%s#%d" % [str(n), k]
 			viste[chiave3] = true
 			var tk: Dictionary = tok[k]
-			var nodo3 := _pedina(chiave3, func(): return _gettone(Color(0.25, 0.8, 0.45), str(tk.get("nome", "")), 0.32))
+			var nodo3 := _pedina(chiave3, func(): return _segnalino_attrezzatura(tk))
 			_metti(nodo3, _v3(c + Vector2(r.size.x * 0.4, r.size.y * 0.3 - k * 0.55)))
+		# segnalini Tempo sulla carta PDI del settore
+		if int(st.get("tempo", 0)) > 0 and not (st.get("pdi", []) as Array).is_empty():
+			viste["TP%s" % str(n)] = true
+			var ntp := _pedina("TP%s" % str(n), _tempo_3d)
+			_conta_tempo(ntp, int(st["tempo"]))
+			_metti(ntp, _v3(c + Vector2(r.size.x * 0.36, -r.size.y * 0.36)))
+		# carte Evento rimaste nel settore: distese in un angolo
+		var evs: Array = st.get("eventi", [])
+		for k in evs.size():
+			var ke := "EV%s#%d" % [str(n), k]
+			viste[ke] = true
+			var fe := str(evs[k].get("file", ""))
+			var ne := _pedina(ke, func(): return _carta_distesa(fe))
+			_metti(ne, _v3(c + Vector2(-r.size.x * 0.32 + k * 0.25, r.size.y * 0.3)))
 		var extra := []
+		for k in int(st.get("piaghe", 0)):
+			extra.append(["P", Color(0.5, 0.12, 0.35)])
+		for k in int(st.get("segnalini", 0)):
+			extra.append(["N", Color(0.95, 0.75, 0.2)])
 		for k in int(st.get("segni", 0)):
 			extra.append(["S", Color(1.0, 0.6, 0.15)])
 		for k in int(st.get("droni", 0)):
@@ -393,6 +415,12 @@ func _aggiorna_pedine(esp: Esplorazione, attivo: int) -> void:
 			var nodo4 := _pedina(chiave4, func():
 				if tipo_x == "D":
 					return _sagoma("standee/drone.webp", "", Color.WHITE, Color(0.25, 0.28, 0.32), 0.45)
+				if tipo_x == "P":
+					return _disco(colx, "PIAGA")
+				if tipo_x == "N":
+					return _disco(colx, "")
+				if tipo_x == "S":
+					return _disco(Color(0.75, 0.12, 0.12), "")
 				if tipo_x == "G":
 					return _sagoma("standee/sprout.webp", "", Color.WHITE, Color(0.2, 0.35, 0.15), 0.42)
 				return _cubetto(colx))
@@ -733,6 +761,181 @@ func _sagoma(file: String, testo: String, col_testo: Color, col_base: Color, lar
 			if l:
 				l.position.y = h + 0.3
 			mq.albedo_texture = t)
+	return radice
+
+## Immagine circolare di un segnalino (gli angoli bianchi del ritaglio diventano trasparenti).
+static var _cache_tondi := {}
+static func _tondo(t: Texture2D, chiave: String) -> Texture2D:
+	if _cache_tondi.has(chiave):
+		return _cache_tondi[chiave]
+	var im := t.get_image()
+	if im.is_compressed():
+		im.decompress()
+	im.clear_mipmaps()
+	im.convert(Image.FORMAT_RGBA8)
+	var w := im.get_width()
+	var h := im.get_height()
+	var rr := minf(w, h) * 0.5 - 1.0
+	for y in h:
+		for x in w:
+			if Vector2(x - w * 0.5, y - h * 0.5).length() > rr:
+				im.set_pixel(x, y, Color(0, 0, 0, 0))
+	im.generate_mipmaps()
+	var tx := ImageTexture.create_from_image(im)
+	_cache_tondi[chiave] = tx
+	return tx
+
+## Immagine del segnalino di un'Attrezzatura di missione (dal titolo inglese della carta), "" se non c'è.
+const FILE_SEGNALINI := ["biomass_fabricator_d9b114", "cannon_unit_modular_turret_upgrade_232bea", "comms_tower_outpost_upgrade_368d89",
+	"defense_system_1a9dea", "drill_rig_outpost_upgrade_fd6a97", "expansion_outpost_upgrade_b0b38e", "heavy_mining_laser_c133e3",
+	"hyrdofarm_outpost_upgrade_7c8e06", "improvised_expansion_92aa31", "improvised_outpost_d75976", "improvised_oxygen_farm_outpost_upgrade_4f363f",
+	"medevac_drone_81ff24", "mining_probe_88d4a4", "modular_turret_cc74c8", "outpost_48b6ba", "p_e_t_238f67", "pod_62878a",
+	"pod_launcher_313b78", "seeker_droid_517ed8", "shield_unit_modular_turret_upgrade_9f7b05", "zip_line_cbd552"]
+
+static func file_segnalino(titolo_en: String) -> String:
+	var k := RegEx.create_from_string("[^a-z0-9]+").sub(titolo_en.to_lower().replace("(final ", "(").replace("hydrofarm", "hyrdofarm"), "", true)
+	var meglio := ""
+	var lung := 0
+	for f in FILE_SEGNALINI:
+		var fk := RegEx.create_from_string("_[0-9a-f]{6}$").sub(f, "").replace("_", "")
+		if (k == fk or k.begins_with(fk)) and fk.length() > lung:
+			meglio = f
+			lung = fk.length()
+	return ("oggetti/%s.webp" % meglio) if meglio != "" else ""
+
+## Segnalino di un'Attrezzatura di missione: disco con l'immagine originale (o un disco verde col nome).
+func _segnalino_attrezzatura(tk: Dictionary) -> Node3D:
+	var ce := Carte.per_id(str(tk.get("id", "")))
+	var file := file_segnalino(Carte.en(ce.get("titolo", "")) if ce.get("titolo") is Dictionary else str(tk.get("nome", "")))
+	if file == "":
+		file = file_segnalino(str(tk.get("nome", "")))
+	if file == "":
+		return _gettone(Color(0.25, 0.8, 0.45), str(tk.get("nome", "")), 0.32)
+	var radice := Node3D.new()
+	var bordo := MeshInstance3D.new()
+	var cil := CylinderMesh.new()
+	cil.top_radius = 0.3
+	cil.bottom_radius = 0.3
+	cil.height = 0.06
+	cil.radial_segments = 32
+	bordo.mesh = cil
+	bordo.material_override = _mat(Color(0.85, 0.88, 0.9))
+	bordo.position.y = 0.03
+	radice.add_child(bordo)
+	var faccia := MeshInstance3D.new()
+	var pm := PlaneMesh.new()
+	pm.size = Vector2(0.6, 0.6)
+	faccia.mesh = pm
+	var mf := _mat()
+	mf.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
+	mf.alpha_scissor_threshold = 0.5
+	faccia.material_override = mf
+	faccia.position.y = 0.062
+	radice.add_child(faccia)
+	var l := Label3D.new()
+	l.text = "⚙ " + Carte.titolo(ce) if not ce.is_empty() else str(tk.get("nome", ""))
+	l.font = Tema.titolo
+	l.font_size = 22
+	l.pixel_size = 0.0005
+	l.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	l.fixed_size = true
+	l.no_depth_test = true
+	l.modulate = Color(0.6, 1.0, 0.75)
+	l.outline_size = 8
+	l.outline_modulate = Color(0, 0, 0, 0.9)
+	l.position.y = 0.35
+	l.render_priority = 1
+	l.add_to_group("nomi_p3d")
+	radice.add_child(l)
+	Immagini.carica(file, func(t):
+		if is_instance_valid(faccia) and t:
+			mf.albedo_texture = _tondo(t, file))
+	return radice
+
+## Pila di segnalini Tempo (l'esagono originale) con il numero.
+func _tempo_3d() -> Node3D:
+	var radice := Node3D.new()
+	var q := MeshInstance3D.new()
+	var pm := PlaneMesh.new()
+	pm.size = Vector2(0.44, 0.55)
+	q.mesh = pm
+	var mq := _mat()
+	mq.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
+	mq.alpha_scissor_threshold = 0.5
+	q.material_override = mq
+	q.position.y = 0.05
+	radice.add_child(q)
+	Immagini.carica("oggetti/time_f68b57.webp", func(t): if is_instance_valid(q) and t: mq.albedo_texture = t)
+	var l := Label3D.new()
+	l.font = Tema.titolo
+	l.font_size = 30
+	l.pixel_size = 0.0005
+	l.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	l.fixed_size = true
+	l.no_depth_test = true
+	l.modulate = Color(0.85, 0.7, 1.0)
+	l.outline_size = 8
+	l.outline_modulate = Color(0, 0, 0, 0.9)
+	l.position.y = 0.3
+	l.render_priority = 1
+	l.name = "Conta"
+	radice.add_child(l)
+	return radice
+
+func _conta_tempo(n: Node3D, v: int) -> void:
+	var l: Label3D = n.get_node_or_null("Conta")
+	if l:
+		l.text = str(v)
+	var q: MeshInstance3D = n.get_child(0)
+	q.position.y = 0.03 + 0.02 * mini(v, 6)   # la pila cresce con i segnalini
+
+## Carta distesa sulla plancia (Evento rimasto nel settore).
+func _carta_distesa(file: String) -> Node3D:
+	var radice := Node3D.new()
+	var q := MeshInstance3D.new()
+	var pm := PlaneMesh.new()
+	pm.size = Vector2(0.55, 0.78)
+	q.mesh = pm
+	var mq := _mat()
+	q.material_override = mq
+	q.position.y = 0.04
+	q.rotation.y = 0.25
+	radice.add_child(q)
+	Immagini.carica(file, func(t): if is_instance_valid(q) and t: mq.albedo_texture = t)
+	return radice
+
+## Segnaposto piatto (Piaghe, segnaposto del settore, segnalini Minaccia).
+func _disco(col: Color, testo: String) -> Node3D:
+	var radice := Node3D.new()
+	var g := MeshInstance3D.new()
+	var cil := CylinderMesh.new()
+	cil.top_radius = 0.13
+	cil.bottom_radius = 0.13
+	cil.height = 0.07
+	cil.radial_segments = 20
+	g.mesh = cil
+	var m := _mat(col)
+	m.metallic = 0.2
+	m.roughness = 0.4
+	g.material_override = m
+	g.position.y = 0.035
+	radice.add_child(g)
+	if testo != "":
+		var l := Label3D.new()
+		l.text = testo
+		l.font = Tema.titolo
+		l.font_size = 18
+		l.pixel_size = 0.0005
+		l.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		l.fixed_size = true
+		l.no_depth_test = true
+		l.modulate = col.lightened(0.5)
+		l.outline_size = 6
+		l.outline_modulate = Color(0, 0, 0, 0.9)
+		l.position.y = 0.25
+		l.render_priority = 1
+		l.add_to_group("nomi_p3d")
+		radice.add_child(l)
 	return radice
 
 func _gettone(col: Color, testo: String, r: float) -> Node3D:

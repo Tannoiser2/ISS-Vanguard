@@ -75,6 +75,16 @@ func _run() -> void:
 			mis._aggiungi_minaccia(cm, 2 + fatte)
 			fatte += 1
 	mis.esp.s["settori"]["1"]["germogli"] = 2
+	for k in mis.esp.s["settori"]:
+		var st0: Dictionary = mis.esp.s["settori"][k]
+		if not (st0.get("pdi", []) as Array).is_empty():
+			st0["tempo"] = 2
+	mis.esp.s["settori"]["2"]["piaghe"] = 2
+	mis.esp.s["settori"]["2"]["segnalini"] = 1
+	mis.esp.s["settori"]["1"].get_or_add("attrezzature", []).append({"id": "E62", "nome": "Modular Turret", "marcatori": 2})
+	mis.esp.s["settori"]["1"].get_or_add("eventi", []).append({"file": str(root.get_node("Carte").categoria("eventi")[0]["file"]), "tempo": 0})
+	for mn in mis.esp.s["minacce"]:
+		mn["tempo"] = 1
 	mis.esp.s["settori"]["1"].get_or_add("attrezzature", []).append({"id": "E47", "nome": "Outpost", "marcatori": 0})
 	mis.aggiorna()
 	await aspetta(2)
