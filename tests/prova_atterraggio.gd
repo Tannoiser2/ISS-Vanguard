@@ -313,6 +313,40 @@ func _run() -> void:
 	await chiudi()
 	ok(e.membro(0).get("veterano", false) and str(e.membro(0)["file"]) == str(vet["file"]) and not (e.membro(0)["conv_extra"] as Array).is_empty(), "traccia piena: il Membro diventa Veterano con una conversione in più")
 	mis.apri_cassetto("")
+	# arrivando in un settore durante un'azione si legge subito la sua annotazione (prima andava persa)
+	var s_log := 0
+	for k in e.s["settori"]:
+		if int(k) != int(e.membro(0)["settore"]):
+			s_log = int(k)
+			break
+	e.s["settori"][str(s_log)]["log"] = 210
+	e.s["settori"][str(s_log)]["visitato"] = false
+	mis._logbook.visible = false
+	mis._occupato = true
+	var arr_l := []
+	await mis._muovi(0, s_log, arr_l)
+	mis._occupato = false
+	mis._rivela_arrivo(s_log, arr_l)
+	await aspetta()
+	ok(arr_l == [210] and mis._logbook.visible, "Viaggio: entrando nel settore si apre l'Annotazione 210")
+	mis._logbook.visible = false
+	e.s["settori"][str(s_log)]["log"] = 0
+	mis._rivela_arrivo(s_log, [])
+	ok(mis._cassetto_box.visible and mis._cassetto_tipo == "settore" and mis._sel == s_log, "Viaggio: senza annotazione si mostra la carta del settore")
+	mis.apri_cassetto("")
+	# effetti delle carte: elenchi, scelte e frasi separate
+	var prima_ind := 0
+	for t3 in e.s["indizi"]:
+		prima_ind += (e.s["indizi"][t3] as Array).size()
+	var A = load("res://scripts/core/effetti.gd")
+	var an1: Dictionary = A.analizza("Gain 1 [success] and 2 Alien Tech Leads, go to Log 69.")
+	ok(an1["resto"] == "" and an1["op"].size() == 3 and an1["op"][1]["op"] == "indizi" and int(an1["op"][1]["n"]) == 2, "elenco: 'and 2 Alien Tech Leads' è un guadagno")
+	var an2: Dictionary = A.analizza("Each Crewmember in this Sector rolls [dangerDieC].")
+	ok(an2["resto"] == "" and an2["op"][0]["op"] == "tutti" and an2["op"][0]["filtro"].get("settore", "") == "questo", "Each Crewmember in this Sector: effetto per ciascuno nel settore")
+	var an3: Dictionary = A.analizza("Discard up to 2 Injury cards and 2 Injury dice from 1 Crewmember.")
+	ok(an3["resto"] == "" and an3["op"].size() == 2, "cure: carte e dadi Ferita")
+	var an4: Dictionary = A.analizza("Remove 1 marker from the Enemy Advantage Slot, gain 1 [success], go to Log 502.")
+	ok(an4["resto"] == "" and an4["op"][0]["dove"] == "slot:vantaggio nemico", "slot Vantaggio Nemico")
 	# Obiettivi individuali automatici: gli eventi della partita fanno avanzare le tracce da soli
 	var vet_n := {}
 	for c in Carte.categoria("veterani"):

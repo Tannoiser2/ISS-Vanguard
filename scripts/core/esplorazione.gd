@@ -468,6 +468,16 @@ func scoperta(tipo: String) -> String:
 
 # ------------------------------------------------------------------ settori, tempo, minacce
 
+## Mette una carta PDI sopra quelle del settore (senza scartarle): Tempo e segnalini ripartono da zero.
+func pdi_sopra(n: int, carta: String) -> void:
+	var st: Dictionary = s["settori"].get_or_add(str(n), {"pdi": [], "tempo": 0, "segnalini": 0, "tracce": {}, "finito": false})
+	(st["pdi"] as Array).append(carta)
+	st["tempo"] = 0
+	st["tracce"] = {}
+	st.erase("tempo_scattato")
+	diario("Settore %d: %s sopra la carta" % [n, carta])
+	notifica("pdi_piazzato", {"settore": n, "carta": carta, "sostituito": true})
+
 func pdi_in_cima(n: int) -> String:
 	var p: Array = s["settori"].get(str(n), {}).get("pdi", [])
 	return "" if p.is_empty() else str(p[-1])
@@ -507,6 +517,13 @@ func tempo_tutte(delta: int) -> void:
 	for k in s["settori"]:
 		if not s["settori"][k]["pdi"].is_empty():
 			s["settori"][k]["tempo"] = max(0, int(s["settori"][k]["tempo"]) + delta)
+	# gli Eventi rimasti nei settori e le Missioni con una traccia del Tempo
+	for k in s["settori"]:
+		for ev in s["settori"][k].get("eventi", []):
+			ev["tempo"] = max(0, int(ev.get("tempo", 0)) + delta)
+	var tm: Dictionary = s.get_or_add("tempo_missioni", {})
+	for id in s.get("missioni", []):
+		tm[str(id)] = max(0, int(tm.get(str(id), 0)) + delta)
 
 func azzera_tempo() -> void:
 	s["condizione"]["tempo"] = 0

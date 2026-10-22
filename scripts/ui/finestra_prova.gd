@@ -880,7 +880,7 @@ func _notifica_prova(colore: String, req: String, tracce: Dictionary, conv: Arra
 			if int(tracce.get(c, 0)) > 0:
 				colore = c
 				break
-	esp.s["_ultima_prova"] = {"assistenti": assistenti}
+	esp.s["_ultima_prova"] = {"assistenti": assistenti, "dadi": sezione.filter(func(d): return d["id"] != "pet").map(func(d): return [int(d["chi"]), str(d["id"])])}
 	esp.notifica("prova", {"chi": chi, "settore": settore, "colore": colore, "req": req,
 		"propri": sezione.filter(func(d): return int(d["chi"]) == chi and d["id"] != "pet").size(), "totale": sezione.size(),
 		"icone_distinte": distinte.size(), "accidenti": n_acc, "accidenti_tiro": _accidenti_iniziali, "vanguard": n_van,
