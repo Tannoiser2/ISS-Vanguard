@@ -19,6 +19,7 @@ static var _slot := {}
 var membro: Dictionary
 var esp_ref: Esplorazione
 var indice := 0
+var miniatura := false   # nella barra in basso: solo immagine e dadi, niente scritte
 var _base: Control
 
 static func _dati() -> Dictionary:
@@ -149,6 +150,9 @@ func _ancora(c: Control, r: Rect2) -> void:
 	c.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func _testo(l: Label, r: Rect2, col: Color) -> void:
+	if miniatura:
+		l.free()
+		return
 	l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	l.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	l.add_theme_color_override("font_color", col)

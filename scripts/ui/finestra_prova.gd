@@ -22,6 +22,7 @@ var _pool: Array = []      # dadi tirati (copie con "chi")
 var _pet := false          # P.E.T. (E23) assiste con il suo dado
 var _accidenti_iniziali := 0   # [accident] nel tiro prima di ogni modifica (Obiettivi individuali)
 var _abilita_qui := 0          # abilità del Membro usate in questa Prova
+var _abilita_accident := false # un'abilità ha tolto un dado [accident] dalla Riserva (Obiettivo di Keith)
 var _sel_mod := {}         # carta/abilità in uso che chiede di scegliere dei dadi: {"modo", "n", "colore", "testo", "poi"}
 var _fase := 0             # 0 scelta, 1 dopo il tiro
 var _corpo: VBoxContainer
@@ -230,6 +231,19 @@ func _usa_modificatore(x: Dictionary) -> void:
 		_sel_mod = {"modo": "spendi", "n": 2, "colore": "", "testo": "%s: clicca 2 dadi da spostare nei Dadi Spesi" % x["titolo"], "poi": {"modo": "vanguard", "n": 1, "colore": "", "testo": "%s: clicca il dado da girare su [vanguard]" % x["titolo"]}}
 	elif lo.contains("move 2 [die] from the roll pool to their owner's spent pool to turn 1 other [die] to the result"):
 		_sel_mod = {"modo": "spendi", "n": 2, "colore": "", "testo": "%s: clicca 2 dadi da spostare nei Dadi Spesi" % x["titolo"], "poi": {"modo": "gira", "n": 1, "colore": "", "testo": "%s: clicca il dado da girare sul risultato che vuoi" % x["titolo"]}}
+	elif RegEx.create_from_string("(?i)turn 1 \\[die\\] in their roll pool to any result").search(en):
+		_sel_mod = {"modo": "gira", "n": 1, "colore": "", "testo": "%s: clicca il dado (di chi ti assiste) da girare sul risultato che vuoi" % x["titolo"], "abilita_di": j if str(x["tipo"]) == "abilita" else -1}
+	elif lo.contains("ignore the result of 1 injury die"):
+		var fer := _pool.filter(func(d): return d["tipo"] == "ferita")
+		if not fer.is_empty():
+			# si ignora il dado Ferita peggiore (prima il danno grave)
+			fer.sort_custom(func(a, b): return "heavyDamage" in Prova.icone(a) and not "heavyDamage" in Prova.icone(b))
+			var df: Dictionary = fer[0]
+			var ic_f := Prova.icone(df)
+			_togli_dal_tiro(df)
+			_resoconto_mod.append("%s: ignorato il dado Ferita (%s)" % [x["titolo"], "+".join(ic_f)])
+			if str(x["tipo"]) == "abilita":
+				esp.notifica("abilita", {"chi": j, "in_prova": true, "volte_prova": 0, "volte_turno": 0, "ferita_ignorata": str(ic_f[0]) if not ic_f.is_empty() else ""})
 	elif RegEx.create_from_string("(?i)turn 1 \\[(die|redDie|blueDie|greenDie)\\] to the chosen result").search(en):
 		var g := RegEx.create_from_string("(?i)turn 1 \\[(die|redDie|blueDie|greenDie)\\]").search(en)
 		_sel_mod = {"modo": "gira", "n": 1, "colore": _col_dado(g.get_string(1)), "testo": "%s: clicca %s da girare sul risultato che vuoi" % [x["titolo"], _quanti(1, g.get_string(1))]}
@@ -237,6 +251,8 @@ func _usa_modificatore(x: Dictionary) -> void:
 		for d in _pool:
 			if not d["tipo"] in ["ferita", "pericolo", "virtuale"] and "accident" in Prova.icone(d):
 				_togli_dal_tiro(d)
+				if str(x["tipo"]) == "abilita":
+					_abilita_accident = true
 				_resoconto_mod.append("%s: tolto un dado con [accident]" % x["titolo"])
 				break
 	elif RegEx.create_from_string("(?i)treat any \\[(\\w+)\\] result as a \\[vanguard\\] result").search(en):
@@ -339,6 +355,8 @@ func _mostra_scelta() -> void:
 				r.add_child(cb)
 			_corpo.add_child(r)
 	var pet := _token(int(m["settore"]), "E23")
+	if pet == {}:
+		pet = _token(int(m["settore"]), "E102")
 	if pet != {} and pet.get("dado") is Dictionary and not (pet["dado"] as Dictionary).is_empty():
 		var cbp := CheckBox.new()
 		cbp.text = "P.E.T. assiste con il suo dado (%s)" % str(pet["dado"].get("tipo", ""))
@@ -414,8 +432,12 @@ func _tira() -> void:
 				Prova.tira(c, esp.rng)
 				_pool.append(c)
 	var pet := _token(int(m["settore"]), "E23")
-	if _pet and pet != {} and pet.get("dado") is Dictionary:
+	if pet == {}:
+		pet = _token(int(m["settore"]), "E102")
+	if _pet and pet != {} and pet.get("dado") is Dictionary and not (pet["dado"] as Dictionary).is_empty():
 		var cp: Dictionary = (pet["dado"] as Dictionary).duplicate()
+		if str(pet.get("id", "")) == "E102":
+			pet["dado"] = {}   # P.E.T. Wilson: dopo il tiro il dado torna nella scatola
 		cp["id"] = "pet"
 		cp["chi"] = chi
 		Prova.tira(cp, esp.rng)
@@ -623,6 +645,8 @@ func _clic_dado(d: Dictionary) -> void:
 				if _dadi3d:
 					_dadi3d.allinea(d)
 				_resoconto_mod.append("Un dado girato su %s" % "+".join(facce[id]))
+				if int(_sel_mod.get("abilita_di", -1)) >= 0:
+					esp.notifica("abilita", {"chi": int(_sel_mod["abilita_di"]), "in_prova": true, "volte_prova": 0, "volte_turno": 0, "girato_su": str(facce[id][0])})
 				_avanza_sel()
 				_mostra_tiro())
 			add_child(pm)
@@ -917,7 +941,8 @@ func _notifica_prova(colore: String, req: String, tracce: Dictionary, conv: Arra
 		"icone_distinte": distinte.size(), "accidenti": n_acc, "accidenti_tiro": _accidenti_iniziali, "vanguard": n_van,
 		"assistenti": assistenti, "conversioni": n_conv, "pet": _pet, "spesi": spesi,
 		"carte_usate": _usati.filter(func(x): return str(x).begins_with("carta")).size() + _combo_scelte.size(),
-		"traccia_gv": int(tracce.get("green", 0)) > 0 or int(tracce.get("yellow", 0)) > 0})
+		"traccia_gv": int(tracce.get("green", 0)) > 0 or int(tracce.get("yellow", 0)) > 0,
+		"abilita_accident": _abilita_accident, "assist_abilita": _assist_abilita.keys()})
 
 const CARTE_FERITA := {"wounded": "Wounded", "panicked": "Panicked", "freezing": "Freezing", "exhausted": "Exhausted",
 	"critically_wounded": "Critically Wounded", "burned": "Burned", "just_a_scratch": "Just a Scratch!"}

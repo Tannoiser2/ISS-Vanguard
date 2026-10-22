@@ -36,7 +36,7 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   iniziale e prima esplorazione), Gestione della Nave (Ship Book passo per passo), Esplorazione planetaria.
   All'apertura il gioco va da solo alla fase in corso; il tavolo virtuale 3D del modulo TTS resta
   disponibile come strumento (TAVOLO nella nave, ≡ nell'esplorazione) con "TORNA ALLA PARTITA".
-- **Il programma tiene traccia di tutto**: risponde da solo a circa 430 delle 560 domande Sì/No del
+- **Il programma tiene traccia di tutto**: risponde da solo a circa 460 delle 560 domande Sì/No del
   Logbook (statistiche del Lander, carte e PDI sulla plancia, Condizione Generale, Missioni, Minacce,
   Squadra, quarte Ferite, segnaposto su carte/riserve/slot, Piaghe, modalità di gioco, Obiettivo, Scanner,
   Morale, Scoperte Eccezionali…); le altre sono scelte vere ("vuoi spendere…", "desideri abbandonare…").
@@ -64,10 +64,14 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
     Generale), Riposo, Preparazione, Azione Speciale (una per turno), Decollo; Sforzo in ogni momento;
   - **dadi veri**: nella finestra della Prova i dadi si lanciano in un vassoio 3D con la fisica (cubi con
     le facce dei dadi del modulo, ottaedri arancio per il Pericolo) e il risultato è la faccia che resta
-    in alto; anche i ritiri rilanciano solo quei dadi;
+    in alto; anche i ritiri rilanciano solo quei dadi; i dadi Pericolo tirati da Eventi, sentieri,
+    Minacce ed effetti rotolano in un vassoio che compare in basso;
   - **plance originali dei Reparti** (Recon, Security, Science, Engineering) nel cassetto SQUADRA: dadi
     disponibili negli alloggiamenti del loro colore, Dadi Spesi con la faccia rimasta, carta del Membro,
-    Cariche, Ferite, mazzo e scarti; un clic la apre a tutto schermo;
+    Cariche, Ferite, mazzo e scarti; un clic la apre a tutto schermo; nella barra in basso c'è la
+    plancia in miniatura del Membro di turno;
+  - tracce del Tempo anche sui segnalini Attrezzatura (Potenziamenti finali dell'Avamposto che si
+    attivano, Seeker Droid, P.E.T. Wilson che riceve un dado dalla scatola);
   - **arrivando in un settore** si apre subito la sua annotazione, altrimenti la sua carta;
   - **prove di dadi** complete: scelta dei dadi e assistenza, tiro, ritiri e modifiche, Combinazioni
     delle carte Reparto, dadi Ferita e Pericolo (tutte le tabelle A–I e T), effetti speciali,
@@ -180,9 +184,10 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   Prove, dadi finiti nei Dadi Spesi, assistenze, abilità, Sforzi, sacrifici, rimescolamenti, Indizi,
   Provviste, Cariche, dadi Pericolo, ritiri, Attrezzature e tute, Scoperte ottenute e usate, PDI sostituiti,
   Minacce scartate, fine turno e fine esplorazione) e fa avanzare le tracce o compie l'Obiettivo con un
-  avviso, senza fare domande: 79 carte su 90. Le 11 che dipendono da come si usa l'abilità del Membro
-  (Abby, Carles, Ebe, Francesca, Jaromir, Keith, Konstantin, Mark, Riku, Sofia, Zoe) restano da segnare
-  con i pulsanti, e la carta lo dice. I File del libretto sono solo
+  avviso, senza fare domande: 88 carte su 90. Restano da segnare con i pulsanti solo Carles e Riku
+  (dipendono da quale carta si usa dopo averla presa con l'abilità), e la carta lo dice. Le abilità dei
+  Membri che scattano da sole (Ebe che scarta una Ferita, Mark che ignora un dado Pericolo, Konstantin
+  che ignora un dado Ferita) chiedono solo se usarle. I File del libretto sono solo
   racconto (il modulo non li contiene) e non servono per giocare.
 - **Regolamento** e riassunto delle regole (inglese, dai PDF del modulo) consultabili in gioco.
 
@@ -225,6 +230,8 @@ tests/prova_ponte.gd       potenziamenti del Ponte e delle strutture, carte spos
 tests/prova_fascicoli.gd   Fascicoli del personale (Obiettivi individuali e Veterani)
 tests/audit_effetti.gd     diagnostica: applica tutti i testi d'effetto delle carte e conta quelli rimasti a mano
 tests/foto_dadi.gd         screenshot del vassoio 3D dei dadi (xvfb-run)
+tests/partita_simulata.gd  un'esplorazione intera giocata da sola (azioni a caso), per trovare blocchi ed errori
+tools/espansioni_mancanti.md  componenti di Deadly Frontier e Lost Fleet citati dai Logbook e assenti nel modulo
 tests/foto_3d.gd           screenshot della plancia 3D dell'esplorazione
 tests/prova_atterraggio.gd atterraggio, risposte automatiche del Logbook e Minacce
 tests/prova_pianeti.gd     registrazione e ripristino dei pianeti visitati
@@ -232,7 +239,7 @@ tools/unisci_carte.py      trascrizioni delle carte (data/carte) -> data/carte_d
 ```
 
 ## Da fare / limiti attuali
-- Effetti delle carte: su 618 testi d'effetto 38 lasciano ancora qualcosa da fare a mano (regole molto
+- Effetti delle carte: su 618 testi d'effetto una trentina lasciano ancora qualcosa da fare a mano (regole molto
   particolari, come il dado Pericolo aggiunto alla Riserva del Tiro o le scelte "dopo il tiro").
 - Le carte sono quelle **inglesi** del modulo TTS: le scansioni italiane si sostituiscono rigenerando
   `web/img/carte` (stessi nomi file) senza toccare il codice.

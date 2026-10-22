@@ -517,8 +517,13 @@ func tempo_tutte(delta: int) -> void:
 	for k in s["settori"]:
 		if not s["settori"][k]["pdi"].is_empty():
 			s["settori"][k]["tempo"] = max(0, int(s["settori"][k]["tempo"]) + delta)
-	# gli Eventi rimasti nei settori e le Missioni con una traccia del Tempo
+	# gli Eventi rimasti nei settori, i segnalini Attrezzatura e le Missioni con una traccia del Tempo
 	for k in s["settori"]:
+		for tk in s["settori"][k].get("attrezzature", []):
+			# la traccia di P.E.T. avanza solo quando non ha un dado sopra
+			if tk.get("dado") is Dictionary and not (tk["dado"] as Dictionary).is_empty():
+				continue
+			tk["tempo"] = max(0, int(tk.get("tempo", 0)) + delta)
 		for ev in s["settori"][k].get("eventi", []):
 			ev["tempo"] = max(0, int(ev.get("tempo", 0)) + delta)
 	var tm: Dictionary = s.get_or_add("tempo_missioni", {})

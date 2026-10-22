@@ -96,6 +96,16 @@ func _run() -> void:
 				b.pressed.emit()
 		await aspetta(1)
 		await foto("effetti")
+	# dado Pericolo tirato da un effetto: vassoio 3D in basso
+	for cz in mis.get_children():
+		if cz is ColorRect and cz.get_child_count() > 0 and cz.get_child(0) is CenterContainer:
+			cz.queue_free()
+	mis._occupato = false
+	mis._tira_pericolo("A", int(mis.esp.s["attivo"]), 1, [], [], [], "prova")
+	var t0 := Time.get_ticks_msec()
+	while (mis._vassoio == null or not mis._vassoio_titolo.text.contains("→")) and Time.get_ticks_msec() - t0 < 60000:
+		await process_frame
+	await foto("pericolo_3d")
 	quit()
 
 func _bottoni(n_: Node) -> Array:
