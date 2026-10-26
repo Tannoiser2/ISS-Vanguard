@@ -1795,13 +1795,30 @@ func _viaggio() -> void:
 		return
 	if not _inizia():
 		return
+	# prima si controlla dove si può andare davvero: il costo del sentiero (dadi da spendere o sacrificare,
+	# anche quelli dell'icona Viaggio della Condizione Generale) deve essere pagabile
 	var dest_ok := {}
 	var indice := {}
+	var esclusi := []
+	var disp := esp.dadi_disponibili(chi).size()
+	var in_gioco: int = (esp.membro(chi)["dadi"] as Array).filter(func(d): return d["stato"] != "sacrificato").size()
 	for k in sentieri.size():
 		var a := int(sentieri[k]["a"])
-		if not dest_ok.has(a):
-			dest_ok[a] = ", ".join((sentieri[k]["icone"] as Array).map(func(x): return _txt_icone("[%s]" % x)))
-			indice[a] = k
+		if dest_ok.has(a):
+			continue
+		var costo := _costo_sentiero(sentieri[k]["icone"])
+		var sconto := 1 if costo[0] > 0 and _sconto_sentiero(chi, sett) else 0
+		if costo[0] - sconto > disp or costo[1] > in_gioco - (costo[0] - sconto):
+			esclusi.append("Settore %d (servono %d dadi disponibili)" % [a, costo[0] - sconto + costo[1]])
+			continue
+		dest_ok[a] = ", ".join((sentieri[k]["icone"] as Array).map(func(x): return _txt_icone("[%s]" % x)))
+		indice[a] = k
+	if dest_ok.is_empty():
+		avviso("Non puoi pagare nessun sentiero: " + "; ".join(esclusi) + ". Riposa o fai uno Sforzo.")
+		_finisci()
+		return
+	if not esclusi.is_empty():
+		avviso("Sentieri che non puoi pagare: " + "; ".join(esclusi))
 	var scelto := await _scegli_settore("VIAGGIO: clicca sulla mappa il settore di destinazione", dest_ok)
 	if scelto < 0:
 		_finisci()
@@ -1850,14 +1867,30 @@ func _viaggio() -> void:
 			testi.append({"en": "Roll [%s]." % s, "it": "Tira [%s]." % s, "fonte": "sentiero"})
 		else:
 			testi.append({"en": "", "it": "Icona del sentiero da risolvere: [%s]" % s, "fonte": "sentiero"})
+	var con_prova_gc := false
+	for ic in sentieri[j]["icone"]:
+		var vg2 = _condizione().get("viaggio") if str(ic).begins_with("travel") else null
+		if vg2 is Dictionary and (vg2.get("prova", false) or str(vg2.get("icona", "")) == "diceCheck"):
+			con_prova_gc = true
 	await applica(testi, chi, sett)
 	var arrivo := []
 	var dove := _destinazione
+	# con l'icona Viaggio risolta da una Prova ci si sposta solo se l'esito dice "Muoviti in un Settore collegato"
+	# (l'effetto "muovi" usa la destinazione scelta e la azzera); altrimenti si resta dove si è
+	if con_prova_gc and _destinazione > 0:
+		avviso("L'esito della Prova di Viaggio non ti fa spostare: resti nel Settore %d" % sett)
+		_destinazione = 0
+		dove = 0
 	if _destinazione > 0 and str(esp.s.get("finita", "")) == "":
 		await _muovi(chi, _destinazione, arrivo)
 	_destinazione = 0
 	_finisci()
-	_rivela_arrivo(dove, arrivo)
+	# spostato dall'esito della Prova di Viaggio: l'annotazione l'ha già aperta l'effetto, resta la carta
+	var mosso_da_esito := dove == 0 and int(esp.membro(chi)["settore"]) == dest and dest != sett
+	if mosso_da_esito and int(esp.s["settori"].get(str(dest), {}).get("log", 0)) == 0:
+		_rivela_arrivo(dest, [])
+	else:
+		_rivela_arrivo(dove, arrivo)
 
 ## Arrivati in un settore: si legge subito l'annotazione che contiene, altrimenti si mostra la sua carta.
 func _rivela_arrivo(n: int, logs: Array) -> void:
@@ -2107,6 +2140,37 @@ func _pericolo_ignorato(chi: int, sett: int, d: Dictionary, fatti: Array) -> boo
 	return false
 
 ## Tute che permettono di ignorare un [spendDie] del sentiero.
+## Costo di un sentiero: [dadi da spendere, dadi da sacrificare] (l'icona Viaggio usa il costo minimo
+## della Condizione Generale, se ne ha uno; una Prova non ha costo).
+func _costo_sentiero(icone: Array) -> Array:
+	var sp := 0
+	var sa := 0
+	for ic in icone:
+		var x := str(ic)
+		if x.begins_with("spendDie"):
+			sp += 1
+		elif x.begins_with("sacrifaceDie"):
+			sa += 1
+		elif x.begins_with("travel"):
+			var vg = _condizione().get("viaggio")
+			if vg is Dictionary and str(vg.get("costo", "")) != "" and not vg.get("prova", false):
+				var minimo := 99
+				for alt in str(vg["costo"]).split(" / "):
+					if str(alt).contains("dangerDie"):
+						minimo = 0
+					else:
+						minimo = mini(minimo, str(alt).count("spendDie"))
+				sp += minimo if minimo < 99 else 0
+	return [sp, sa]
+
+## C'è un'attrezzatura che può far ignorare un [spendDie] del sentiero (senza chiedere: solo per il controllo).
+func _sconto_sentiero(chi: int, sett: int) -> bool:
+	for e in esp.membro(chi).get("attrezzatura", []):
+		var ce := Carte.per_id(str(e))
+		if str(ce.get("quando", "")) == "travel" and Carte.en(ce.get("effetto", "")).contains("ignore 1 [spendDie]"):
+			return true
+	return false
+
 func _ignora_spendi_sentiero(chi: int, sett: int) -> bool:
 	var icone := esp.icone_settore(pl, sett, _carte_pdi())
 	for e in esp.membro(chi).get("attrezzatura", []):
@@ -2989,6 +3053,9 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			else:
 				fatti.append("%s subisce la Ferita %s" % [m["carta"], NOMI_FERITE.get(r, r)] if r != "evac" else "Quarta Ferita: evacuazione d'emergenza!")
 		"sostituisci_pdi":
+			if op.get("se_assente", false) and str(op["carta"]) in (esp.s["settori"].get(str(sett), {}).get("pdi", []) as Array):
+				fatti.append("%s è già nel Settore %d" % [op["carta"], sett])
+				return
 			esp.piazza_pdi(sett, str(op["carta"]))
 			fatti.append("Settore %d: ora c'è %s" % [sett, op["carta"]])
 		"piazza_pdi":
@@ -3235,8 +3302,14 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 				ts = await _scegli_tipo_scoperta("SCOPERTA DI QUALE TIPO?")
 			await _op({"op": "scoperta", "tipo": ts, "n": int(op.get("n", 1))}, chi, sett, fatti, manuali, logs, fonte)
 		"pdi_sopra":
-			esp.pdi_sopra(sett, str(op["carta"]))
-			fatti.append("Settore %d: %s sopra la carta" % [sett, op["carta"]])
+			var s_sopra := int(op.get("settore", 0)) if int(op.get("settore", 0)) > 0 else sett
+			esp.pdi_sopra(s_sopra, str(op["carta"]))
+			fatti.append("Settore %d: %s sopra la carta" % [s_sopra, op["carta"]])
+		"scarta_pdi":
+			var pila_s: Array = esp.s["settori"].get(str(sett), {}).get("pdi", [])
+			if str(op["carta"]) in pila_s:
+				pila_s.erase(str(op["carta"]))
+				fatti.append("%s si scarta dal Settore %d" % [op["carta"], sett])
 		"sostituisci_missione":
 			var vecchia := _azione_in_corso.get_slice("#", 0) if _azione_in_corso != "" else _missione_fonte(fonte)
 			if vecchia != "" and vecchia in esp.s["missioni"]:

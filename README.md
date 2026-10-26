@@ -78,7 +78,10 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
     plancia in miniatura del Membro di turno;
   - tracce del Tempo anche sui segnalini Attrezzatura (Potenziamenti finali dell'Avamposto che si
     attivano, Seeker Droid, P.E.T. Wilson che riceve un dado dalla scatola);
-  - **arrivando in un settore** si apre subito la sua annotazione, altrimenti la sua carta;
+  - **Viaggio**: si possono scegliere solo i sentieri che si possono pagare (dadi da spendere o sacrificare,
+    anche per l'icona Viaggio della Condizione Generale); con la Prova di Viaggio ci si sposta solo se l'esito
+    lo dice; arrivando in un settore si apre subito la sua annotazione, altrimenti la sua carta, e le carte
+    PDI che l'annotazione fa posizionare ("in questo Settore", "sopra alle altre carte"…) si piazzano da sole;
   - **prove di dadi** complete: scelta dei dadi e assistenza, tiro, ritiri e modifiche, Combinazioni
     delle carte Reparto, dadi Ferita e Pericolo (tutte le tabelle A–I e T), effetti speciali,
     esiti collegati dalle frecce, tracce di avanzamento salvate nel settore;

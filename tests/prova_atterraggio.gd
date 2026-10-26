@@ -334,6 +334,16 @@ func _run() -> void:
 	mis._rivela_arrivo(s_log, [])
 	ok(mis._cassetto_box.visible and mis._cassetto_tipo == "settore" and mis._sel == s_log, "Viaggio: senza annotazione si mostra la carta del settore")
 	mis.apri_cassetto("")
+	# carte PDI chieste dal Logbook entrando nel settore
+	var AI = load("res://scripts/core/effetti.gd")
+	var o1: Array = AI.analizza_it("Posiziona la carta [b]P107[/b] in questo Settore.")["op"]
+	var o2: Array = AI.analizza_it("Posiziona la carta [b]P111[/b] sopra alle altre carte nel Settore [b]5[/b].")["op"]
+	var o3: Array = AI.analizza_it("Sostituisci questo PDI con la carta [b]P113[/b].")["op"]
+	ok(o1.size() == 1 and o1[0]["op"] == "sostituisci_pdi" and o2[0]["op"] == "pdi_sopra" and int(o2[0]["settore"]) == 5 and o3[0]["op"] == "sostituisci_pdi", "Logbook: carte PDI \"in questo Settore\", \"sopra alle altre\", \"sostituisci questo PDI\"")
+	var s_qui := int(e.membro(0)["settore"])
+	await mis.istruzione_logbook("Posiziona la carta [b]P107[/b] in questo Settore.")
+	ok(e.pdi_in_cima(s_qui) == "P107", "il PDI dal Logbook va nel settore del Membro di turno")
+	ok(mis._costo_sentiero(["spendDie", "spendDie"]) == [2, 0] and mis._costo_sentiero(["sacrifaceDie"]) == [0, 1], "costo dei sentieri")
 	# effetti delle carte: elenchi, scelte e frasi separate
 	var prima_ind := 0
 	for t3 in e.s["indizi"]:
