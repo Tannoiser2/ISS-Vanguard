@@ -1531,6 +1531,7 @@ func _passo_hangar() -> void:
 			str(cm.get("corazza", "?")), str(cm.get("sensori", "?")), str(cm.get("agilita", "?")), str(cm.get("provviste", {}).get("base", "?")) if cm.get("provviste") is Dictionary else "?",
 			str(cm.get("scoperte_max", "?")), str(cm.get("carico", {}).get("personali", "?")), str(cm.get("carico", {}).get("missione", "?")),
 			str(cm.get("modifiche", {}).get("structural", 0)), str(cm.get("modifiche", {}).get("utility", 0))]
+		dett = RegEx.create_from_string("(\\d)\\.0\\b").sub(dett, "$1", true)
 		var v := VBoxContainer.new()
 		fl.add_child(v)
 		_cv(str(pl[0]["file"]) if not pl.is_empty() else "", v, 420, ("✔ " if scelto else "") + nome + (" · DANNEGGIATO" if l.get("danneggiato", false) else ""), bool(l.get("danneggiato", false)),
@@ -1545,6 +1546,15 @@ func _passo_hangar() -> void:
 		v.add_child(ld)
 	if not nave.s["mod_lander"].is_empty():
 		_sezione("Modifiche del Lander (pag. 21)")
+		var pls: Array = plance.filter(func(x): return str(x.get("campi", {}).get("nome", "")).to_upper() == str(nave.s["lander_scelto"]).to_upper())
+		var slot_max: Dictionary = pls[0].get("campi", {}).get("modifiche", {}) if not pls.is_empty() else {}
+		var tipo_mod := func(id: String) -> String: return str(Carte.per_id(id).get("campi", {}).get("modifica", ""))
+		var usati := {}
+		for x in nave.s["mod_montate"]:
+			var tx: String = tipo_mod.call(str(x))
+			usati[tx] = int(usati.get(tx, 0)) + 1
+		_testo("Slot del Lander %s: [b]%d/%d[/b] strutturali, [b]%d/%d[/b] utilità." % [str(nave.s["lander_scelto"]), int(usati.get("structural", 0)), int(slot_max.get("structural", 0)),
+			int(usati.get("utility", 0)), int(slot_max.get("utility", 0))], 14)
 		var fm := _fila()
 		for a in nave.s["mod_lander"]:
 			var aa := str(a)
@@ -1555,10 +1565,13 @@ func _passo_hangar() -> void:
 					if montata:
 						nave.s["mod_montate"].erase(aa)
 					else:
+						var tm: String = tipo_mod.call(aa)
+						if int(usati.get(tm, 0)) >= int(slot_max.get(tm, 0)):
+							avviso("Il Lander non ha slot %s liberi" % {"structural": "strutturali", "utility": "di utilità"}.get(tm, tm))
+							return
 						nave.s["mod_montate"].append(aa)
 					_salva()
 					aggiorna()]], _pulito(Carte.t(c.get("testo", ""))), Color("5be39b") if montata else Tema.TESTO_2)
-		_testo("[color=#9fbbd6]Al massimo una modifica per slot, solo nel tipo di slot giusto (strutturale o utilità).[/color]", 13)
 	var lc := str(nave.s["scanner"].get("carta", ""))
 	if lc != "":
 		var hd := HBoxContainer.new()
@@ -1701,7 +1714,8 @@ func _passo_partenza() -> void:
 			(e.get("scoperte", []) as Array).size(), ", ".join((e.get("eccezionali", []) as Array).map(func(x): return str(x))) if not (e.get("eccezionali", []) as Array).is_empty() else "nessuna"], 16)
 		_fila_reduci(e)
 	var cb := CheckBox.new()
-	cb.text = "La carta Grado Superiore è stata completata (girata) durante l'esplorazione"
+	cb.text = "La carta Grado Superiore è stata completata (girata) durante l'esplorazione  [dall'esplorazione: %s]" % ("sì" if bool(e.get("grado_girato", false)) else "no")
+	cb.tooltip_text = "Impostata dai dati dell'esplorazione conclusa; correggi solo se serve."
 	cb.button_pressed = bool(e.get("grado_girato", false))
 	cb.toggled.connect(func(on): e["grado_girato"] = on)
 	_corpo.add_child(cb)
@@ -1726,7 +1740,8 @@ func _passo_attracco() -> void:
 	var missioni: Array = e.get("missioni_rimaste", [])
 	_sezione("1. Missione fallita?")
 	var cb := CheckBox.new()
-	cb.text = "C'è ancora una carta Missione sulla plancia (o il segnalino Missione fallita): si abbassa il Morale"
+	cb.text = "C'è ancora una carta Missione sulla plancia (o il segnalino Missione fallita): si abbassa il Morale  [dall'esplorazione: %s]" % ("%d Missioni rimaste" % missioni.size() if not missioni.is_empty() else "nessuna Missione rimasta")
+	cb.tooltip_text = "Impostata dai dati dell'esplorazione conclusa; correggi solo se serve."
 	cb.button_pressed = not missioni.is_empty()
 	_corpo.add_child(cb)
 	_sezione("2. Scoperte in eccesso")
@@ -1736,15 +1751,42 @@ func _passo_attracco() -> void:
 	var sc: Array = e.get("scoperte", [])
 	var ecc: Array = e.get("eccezionali", [])
 	_testo("Il Lander %s porta al massimo %d Scoperte (comprese le Eccezionali, che non si scartano). Ne hai %d." % [lander, lim, sc.size() + ecc.size()], 15)
+	var da_scartare: int = max(0, sc.size() + ecc.size() - lim)
+	var scartate: Array = _scelta.get_or_add("scartate", [])
+	if da_scartare > 0:
+		_testo("[color=#ffb347]Scegli [b]%d[/b] Scoperte da scartare (ne hai scelte %d).[/color]" % [da_scartare, scartate.size()], 15)
+	var fsc := _fila()
+	for k in sc.size():
+		var kk: int = k
+		var via: bool = k in scartate
+		var x: Dictionary = sc[k]
+		_cv(str(x.get("carta", "")), fsc, 100, ("SCARTATA · " if via else "") + NOMI_SCOPERTE.get(str(x.get("tipo", "")), str(x.get("tipo", ""))).to_upper(), via,
+			[["TIENI" if via else "SCARTA", func():
+				if via:
+					scartate.erase(kk)
+				elif scartate.size() < da_scartare:
+					scartate.append(kk)
+				else:
+					avviso("Ne hai già scelte %d" % da_scartare)
+					return
+				aggiorna(), da_scartare > 0]], "", Color("ff5a6e") if via else Tema.TESTO_2)
 	_sezione("3. Equipaggio disponibile")
 	_testo("I Membri a riposo tornano disponibili.", 15)
 	_avanti("ALLO SCARICO ▶", func():
+		if da_scartare > 0 and scartate.size() < da_scartare:
+			avviso("Scegli ancora %d Scoperte da scartare" % (da_scartare - scartate.size()))
+			return false
 		if cb.button_pressed:
 			nave.morale_giu()
 			nave.diario("Missione fallita: Morale giù")
 		var tenere: int = max(0, lim - ecc.size())
 		if sc.size() > tenere:
-			e["scoperte"] = sc.slice(0, tenere)
+			var scelte: Array = _scelta.get("scartate", [])
+			var resto := []
+			for k in sc.size():
+				if not k in scelte:
+					resto.append(sc[k])
+			e["scoperte"] = resto.slice(0, tenere)
 			nave.diario("Scartate %d Scoperte in eccesso" % (sc.size() - tenere))
 		for i in nave.membri("", "riposo"):
 			nave.s["equipaggio"][i]["stato"] = "disponibile"
@@ -1888,7 +1930,15 @@ func _passo_memoriale() -> void:
 	var nuovi: Array = nave.s["memoriale"].filter(func(x): return not x.get("onorato", false))
 	if nuovi.is_empty():
 		_testo("[color=#9fbbd6]Nessun caduto in questa missione.[/color]")
+	else:
+		_testo("Ogni caduto va nella prima casella libera del suo Reparto sul Muro (pagg. 37-38); quando le tre caselle del Reparto sono piene, nella prima casella generica. Si ottiene il bonus della casella.", 15)
 	for m in nuovi:
+		if not m.has("casella"):
+			var c := nave.casella_muro(str(m["reparto"]))
+			m["casella"] = c["casella"]
+			m["tessera"] = c["file"]
+			m["bonus"] = c["bonus"]
+			_salva()
 		var h := HBoxContainer.new()
 		h.add_theme_constant_override("separation", 14)
 		_corpo.add_child(h)
@@ -1897,27 +1947,93 @@ func _passo_memoriale() -> void:
 			if str(x["carta"]) == str(m["carta"]):
 				file = str(x["file"])
 		_cv(file, h, 120, "CADUTO", true, [], str(m["carta"]), Color("ff5a6e"))
-		var muro := _muro(str(m["reparto"]))
-		if muro != "":
-			_cv(muro, h, 420, "MURO DELLA MEMORIA · " + str(Dati.SEZIONI.get(m["reparto"], {}).get("nome", "")).to_upper(), false, [], "", Tema.TESTO_2)
-	if not nuovi.is_empty():
-		_testo("Ogni caduto va nella prima casella libera del suo Reparto (pagg. 37-38) e se ne applica il bonus. Le caselle generiche: Morale su (se è già Alto, +1 Comando).", 15)
+		var mm: Dictionary = m
+		var onora := func():
+			await _bonus_muro(mm)
+			mm["onorato"] = true
+			_salva()
+			aggiorna()
+		if str(m.get("tessera", "")) != "":
+			_cv(str(m["tessera"]), h, 380, "CASELLA %s" % str(m["casella"]).to_upper(), false, [["OTTIENI IL BONUS", onora]], Nave.TESTI_MURO.get(str(m["bonus"]), ""), Tema.AMBRA)
+		else:
+			var v := VBoxContainer.new()
+			h.add_child(v)
+			_testo("Casella %s: %s" % [str(m["casella"]), Nave.TESTI_MURO.get(str(m["bonus"]), "nessun bonus")], 15, v)
+			v.add_child(Tema.pulsante_primario("OTTIENI IL BONUS", onora, 14))
 	_avanti("AL DEBRIEFING ▶", func():
-		for m in nuovi:
+		for m in nave.s["memoriale"].filter(func(x): return not x.get("onorato", false)):
+			if not m.has("casella"):
+				var c := nave.casella_muro(str(m["reparto"]))
+				m["casella"] = c["casella"]
+				m["bonus"] = c["bonus"]
+			await _bonus_muro(m)
 			m["onorato"] = true
-			if nave.s["morale"] == "high":
-				nave.s["pool"]["comando"] = int(nave.s["pool"]["comando"]) + 1
-			else:
-				nave.morale_su()
 		return true)
 
-## Plancia del Muro della memoria del Reparto.
-static func _muro(reparto: String) -> String:
-	var en: String = {"ingegneria": "engineering", "ricognizione": "recon", "scienza": "science", "sicurezza": "security"}.get(reparto, "")
-	for c in Carte.categoria("strutture"):
-		if str(c.get("file", "")).contains(en + "_memorial"):
-			return str(c["file"])
-	return ""
+## Applica il bonus della casella del Muro (con le scelte che servono).
+func _bonus_muro(m: Dictionary) -> void:
+	var b := str(m.get("bonus", ""))
+	var rep := str(m.get("reparto", ""))
+	var fatto := nave.bonus_muro_semplice(b)
+	match b:
+		"promuovi":
+			var g1 := nave.membri(rep).filter(func(i): return int(nave.s["equipaggio"][i]["grado"]) == 1 and nave.s["equipaggio"][i]["stato"] in ["disponibile", "riposo"])
+			var opz := ["Promuovi un Membro di Grado 1 al Grado 2", "Pesca 2 Reclute a caso e inseriscine una al Grado 1"]
+			var j := 0 if not g1.is_empty() else 1
+			if not g1.is_empty():
+				j = await _scegli("MURO DELLA MEMORIA — %s" % str(Dati.SEZIONI.get(rep, {}).get("nome", rep)).to_upper(), opz, "", false)
+			if j == 0:
+				var k := await _scegli("CHI PROMUOVI?", g1.map(func(i): return _nome_membro(i)), "", false)
+				nave.s["equipaggio"][g1[k]]["grado"] = 2
+				fatto = "%s promosso al Grado 2" % nave.s["equipaggio"][g1[k]]["carta"]
+				await _nuovo_fascicolo(g1[k])
+			else:
+				var pool: Array = (nave.s["reclute"] as Array).duplicate()
+				pool.shuffle()
+				pool = pool.slice(0, 2)
+				if pool.is_empty():
+					fatto = "Nessuna Recluta nel mazzo"
+				else:
+					var k2 := await _scegli("QUALE RECLUTA?", pool.map(func(f): return _desc_recluta(str(f))), "", false)
+					nave.recluta(str(pool[k2]), rep)
+					fatto = "Nuova recluta: %s" % Carte.per_file(str(pool[k2])).get("nome", "?")
+		"scoperte2", "scoperta1":
+			var n := 2 if b == "scoperte2" else 1
+			var tipi := ["mineral", "microorganism", "live_specimen", "strange_flora", "alien_tech"]
+			var pescate := []
+			for k in n:
+				var t := await _scegli("PESCA UNA SCOPERTA (%d/%d)" % [k + 1, n], tipi.map(func(x): return NOMI_SCOPERTE[x]), "Da quale mazzo?", false)
+				var mazzo := Carte.categoria("scoperte").filter(func(x): return str(x.get("campi", {}).get("categoria", "")) == tipi[t] and str(x.get("campi", {}).get("rarita", "common")) != "exceptional")
+				if not mazzo.is_empty():
+					pescate.append(mazzo[nave.rng.randi() % mazzo.size()])
+			if not pescate.is_empty():
+				var k3 := 0
+				if pescate.size() > 1:
+					k3 = await _scegli("QUALE TIENI?", pescate.map(func(x): return "%s %s" % [NOMI_SCOPERTE.get(str(x.get("campi", {}).get("categoria", "")), ""), Carte.titolo(x)]), "L'altra torna nel suo mazzo.", false)
+				var c: Dictionary = pescate[k3]
+				nave.s["scoperte"].append({"tipo": str(c.get("campi", {}).get("categoria", "")), "file": str(c.get("file", "")), "rarita": str(c.get("campi", {}).get("rarita", ""))})
+				fatto = "Scoperta raccolta: %s" % Carte.titolo(c)
+		"dadi":
+			var tipi2 := {}
+			var nomi: Array = Prova.defs()["reparto"].keys().filter(func(k): return not str(k).begins_with("base_"))
+			for r in Nave.REPARTI:
+				var j2 := await _scegli("%s: QUALE DADO?" % Dati.SEZIONI[r]["nome"].to_upper(), nomi.map(func(k): return "%s (%s)" % [k, Prova.defs()["reparto"][k].get("colore", "")]), "Muro della memoria: ogni Reparto ottiene 1 dado Reparto.", false)
+				tipi2[r] = nomi[j2]
+				nave.s["dadi"][r].append(str(nomi[j2]))
+			fatto = "Ogni Reparto ottiene 1 dado"
+		"reclute":
+			var nuove := []
+			for r in Nave.REPARTI:
+				if (nave.s["reclute"] as Array).is_empty():
+					break
+				var f: String = nave.s["reclute"][nave.rng.randi() % (nave.s["reclute"] as Array).size()]
+				var j3 := await _scegli("%s: RECLUTA A CASO" % Dati.SEZIONI[r]["nome"].to_upper(), ["Entra al Grado 1", "Torna fra le Reclute"], _desc_recluta(f), false, f)
+				if j3 == 0:
+					nave.recluta(f, r)
+					nuove.append(str(Carte.per_file(f).get("nome", "?")))
+			fatto = "Nuove reclute: %s" % (", ".join(nuove) if not nuove.is_empty() else "nessuna")
+	nave.diario("Muro della memoria (%s, casella %s): %s" % [m.get("carta", ""), m.get("casella", ""), fatto if fatto != "" else "bonus da applicare a mano"])
+	avviso("Muro della memoria: " + (fatto if fatto != "" else "applica il bonus a mano"))
 
 func _passo_debriefing() -> void:
 	_titolo("Debriefing", 27)

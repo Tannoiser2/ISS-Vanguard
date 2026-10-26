@@ -64,7 +64,7 @@ func _run() -> void:
 			esq.append({"nave": i, "carta": m["carta"], "file": m["file"], "ferite": ["wounded"] if i == 3 else [], "morto": false})
 		esq.append({"nave": 2, "carta": st["equipaggio"][2]["carta"], "file": st["equipaggio"][2]["file"], "ferite": [], "morto": true})
 		var scs := []
-		for x in st["scoperte"].slice(0, 3):
+		for x in st["scoperte"].slice(0, 7):
 			scs.append({"tipo": x["tipo"], "carta": x["file"]})
 		campagna.dati["esplorazioni_concluse"] = [{"pagina": "p.4-5", "finita": "decollo", "successi": 4, "scoperte": scs, "eccezionali": [1], "equipaggio": esq, "grado_girato": true}]
 	campagna.dati["nave"] = st

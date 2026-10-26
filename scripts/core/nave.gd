@@ -768,6 +768,69 @@ func muori(i: int) -> void:
 
 # ------------------------------------------------------------------ passi
 
+# ------------------------------------------------------------------ Muro della memoria (pagg. 36-38)
+
+## Tessere del Muro (modulo TTS, pagg. 37-38): per ogni Reparto le caselle 1-3 nell'ordine, poi le
+## caselle generiche della pag. 38. Un caduto va nella prima casella libera del suo Reparto; quando
+## sono piene, nella prima generica libera. Bonus: chiave interpretata dalla Gestione della Nave.
+const MURO := {
+	"ingegneria": [["oggetti/engineering_memorial_36a53d.webp", "promuovi"], ["oggetti/engineering_memorial_3de1e8.webp", "energia3"], ["oggetti/engineering_memorial_e7ff41.webp", "comando1"]],
+	"ricognizione": [["oggetti/recon_memorial_7366cf.webp", "promuovi"], ["oggetti/recon_memorial_178dcc.webp", "scoperte2"], ["oggetti/recon_memorial_88903c.webp", "comando1"]],
+	"scienza": [["oggetti/science_memorial_580632.webp", "promuovi"], ["oggetti/science_memorial_cdcba3.webp", "scoperta1"], ["oggetti/science_memorial_2a1fa8.webp", "comando1"]],
+	"sicurezza": [["oggetti/security_memorial_6e10c5.webp", "promuovi"], ["oggetti/security_memorial_ebcf71.webp", "situazioni"], ["oggetti/security_memorial_93e857.webp", "morale"]],
+	"generico": [["oggetti/memorial_69a78a.webp", "dadi"], ["oggetti/memorial_f7d97c.webp", "comando1"], ["oggetti/memorial_510e32.webp", "energia3"],
+		["oggetti/memorial_dfa53c.webp", "reclute"], ["oggetti/memorial_1d9b4a.webp", "morale"], ["", "morale"]],
+}
+const TESTI_MURO := {
+	"promuovi": "Il Reparto può promuovere un Membro di Grado 1 al Grado 2 OPPURE pescare 2 Reclute a caso e inserirne una in una bustina di Grado 1.",
+	"energia3": "Ottieni 3 segnalini Energia.", "comando1": "Ottieni 1 segnalino Comando.",
+	"scoperte2": "Pesca 2 Scoperte di qualsiasi tipo, spostane una fra le Scoperte raccolte e rimetti a posto l'altra.",
+	"scoperta1": "Pesca 1 Scoperta di qualsiasi tipo e spostala fra le Scoperte raccolte.",
+	"situazioni": "Sposta tutte le Situazioni della busta \"In attesa…\" fra le Situazioni possibili.",
+	"morale": "Alza il Morale. Se è già \"Alto\", ottieni invece 1 segnalino Comando.",
+	"dadi": "Ogni Reparto ottiene 1 dado Reparto.",
+	"reclute": "Ogni Reparto può pescare 1 Recluta a caso: la Recluta entra al Grado 1 o torna fra le Reclute.",
+}
+
+## Prossima casella libera del Muro per un caduto del Reparto: {"file", "bonus", "casella"} (e la occupa).
+func casella_muro(reparto: String) -> Dictionary:
+	var muro: Dictionary = s.get_or_add("muro", {})
+	var k := int(muro.get(reparto, 0))
+	var fila: Array = MURO.get(reparto, [])
+	if k < fila.size():
+		muro[reparto] = k + 1
+		return {"file": fila[k][0], "bonus": fila[k][1], "casella": "%s %d" % [reparto, k + 1]}
+	var g := int(muro.get("generico", 0))
+	if g < (MURO["generico"] as Array).size():
+		muro["generico"] = g + 1
+		return {"file": MURO["generico"][g][0], "bonus": MURO["generico"][g][1], "casella": "generica %d" % (g + 1)}
+	return {"file": "", "bonus": "", "casella": "nessuna (Muro pieno)"}
+
+## Bonus del Muro che non richiedono scelte. Restituisce la descrizione, o "" se serve la Gestione.
+func bonus_muro_semplice(b: String) -> String:
+	match b:
+		"energia3":
+			s["pool"]["energia"] = int(s["pool"]["energia"]) + 3
+			return "+3 Energia"
+		"comando1":
+			s["pool"]["comando"] = int(s["pool"]["comando"]) + 1
+			return "+1 Comando"
+		"morale":
+			if s["morale"] == "high":
+				s["pool"]["comando"] = int(s["pool"]["comando"]) + 1
+				return "Morale già Alto: +1 Comando"
+			morale_su()
+			return "Morale: %s" % NOMI_MORALE[s["morale"]]
+		"situazioni":
+			var n := 0
+			for id in (s["busta"] as Array).duplicate():
+				if str(id).begins_with("S"):
+					s["busta"].erase(id)
+					s["situazioni_possibili"].append(id)
+					n += 1
+			return "%d Situazioni dalla busta fra le possibili" % n
+	return ""
+
 func passo() -> String:
 	return str(s.get("passo", "ponte"))
 
