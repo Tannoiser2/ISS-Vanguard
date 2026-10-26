@@ -36,6 +36,11 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   iniziale e prima esplorazione), Gestione della Nave (Ship Book passo per passo), Esplorazione planetaria.
   All'apertura il gioco va da solo alla fase in corso; il tavolo virtuale 3D del modulo TTS resta
   disponibile come strumento (TAVOLO nella nave, ≡ nell'esplorazione) con "TORNA ALLA PARTITA".
+- **Effetti dentro la Prova**: le tracce che avanzano "per ogni Membro che ti Assiste", le tracce
+  completate che fanno avanzare un'altra traccia, i dadi Pericolo "da aggiungere alla Riserva del Tiro"
+  (Condizioni Generali come Sciame e Vento Gelido) e "sacrifica un dado per ritirarne uno" si risolvono
+  da soli; le Missioni "quando hai le Scoperte Eccezionali 2 e 3" o "quando non ci sono più Germogli"
+  si completano da sole.
 - **Il programma tiene traccia di tutto**: risponde da solo a circa 470 delle 560 domande Sì/No del
   Logbook (statistiche del Lander, carte e PDI sulla plancia, Condizione Generale, Missioni, Minacce,
   Squadra, quarte Ferite, Prove di Sopravvivenza (tira lui i 3 dadi Ferita), segnaposto su carte/riserve/slot, Piaghe, modalità di gioco, Obiettivo, Scanner,
@@ -254,6 +259,7 @@ tests/prova_dadi.gd        prove del motore dei dadi
 tests/prova_missione.gd    partita simulata a caso dell'esplorazione (-- p.18-19 500)
 tests/foto_missione.gd     screenshot della preparazione e dell'esplorazione
 tests/prova_nave.gd        giro completo della Gestione della Nave (-- foto per gli screenshot)
+tests/prova_effetti_prova.gd effetti risolti dentro la Prova (tracce per chi assiste, dado Pericolo aggiunto, sacrificio per ritirare) e Missioni che si completano da sole
 tests/prova_abilita_carte.gd abilità di Carles e Riku durante la Prova e i loro Obiettivi individuali
 tests/partita_nave.gd      Gestione della Nave giocata da sola per più giri, premendo ogni pulsante (-- giri seme)
 tests/foto_nave.gd         screenshot di tutti i passi della Gestione della Nave, Strutture e cassetti (xvfb-run)

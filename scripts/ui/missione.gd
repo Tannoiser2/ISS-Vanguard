@@ -1660,6 +1660,43 @@ func _finisci() -> void:
 	_occupato = false
 	_salva()
 	aggiorna()
+	_missioni_automatiche()
+
+## Missioni che si completano da sole quando la condizione è vera: "When you have Unique Discovery 2
+## and 3, …" (Scoperte Eccezionali sul Lander) e "When there are no Sprouts on the Planet board, …".
+func _missioni_automatiche() -> void:
+	if _occupato:
+		return
+	for id in (esp.s["missioni"] as Array).duplicate():
+		var mi := Carte.per_id(str(id))
+		var cmp := Carte.en(mi.get("completamento", ""))
+		var vero := false
+		var resto := ""
+		var mu := RegEx.create_from_string("(?i)^when you have unique discover(?:y|ies) (\\d+)(?: and (\\d+))?,\\s*(?:discard this mission and\\s*)?(.*)$").search(cmp)
+		if mu:
+			var ecc: Array = (esp.s["eccezionali"] as Array).map(func(x): return int(x))
+			vero = int(mu.get_string(1)) in ecc and (mu.get_string(2) == "" or int(mu.get_string(2)) in ecc)
+			resto = mu.get_string(3)
+		var mg := RegEx.create_from_string("(?i)^when there are no sprouts on the planet board,\\s*(.*)$").search(cmp)
+		if mg:
+			var tot := 0
+			for k in esp.s["settori"]:
+				tot += int(esp.s["settori"][k].get("germogli", 0))
+			if tot > 0:
+				esp.s["_germogli_visti"] = true
+			vero = tot == 0 and esp.s.get("_germogli_visti", false)
+			resto = mg.get_string(1)
+		if not vero:
+			continue
+		esp.s["missioni"].erase(id)
+		esp.diario("Missione %s completata da sola" % id)
+		avviso("Missione completata: %s" % Carte.titolo(mi))
+		if not _inizia():
+			return
+		await applica([{"en": resto, "it": Carte.t(mi.get("completamento", "")), "fonte": Carte.titolo(mi)}], int(esp.s["attivo"]), int(esp.membro(int(esp.s["attivo"]))["settore"]))
+		_occupato = false
+		_salva()
+		aggiorna()
 
 func _esegui_azione(a: Dictionary, fonte: String, chiave: String, n: int) -> void:
 	var chi := int(esp.s["attivo"])

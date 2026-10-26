@@ -144,6 +144,12 @@ func _modificatori() -> Array:
 		if enj.begins_with("anytime") and (enj.contains("section compartment") or enj.contains("from your discard pile")) and int(esp.membro(j)["cariche"]) > 0:
 			out.append({"tipo": "abilita_carta", "chi": j, "id": "abilita", "titolo": "Abilità " + str(abj.get("nome", "")), "testo": Carte.t(abj),
 				"da": "scomparto" if enj.contains("section compartment") else "scarti"})
+	for sp in azione.get("speciali", []):
+		if str(sp.get("req", "")) != "" or not sp.get("effetto") is Dictionary:
+			continue
+		var ms := RegEx.create_from_string("(?i)you may \\[sacrifaceDie(Red|Green|Blue)?\\] to reroll (1|one) \\[die\\]").search(Carte.en(sp["effetto"]))
+		if ms and not "sacrifica_ritira" + str(chi) + "sp" in _usati:
+			out.append({"tipo": "sacrifica_ritira", "chi": chi, "id": "sp", "titolo": "Effetto della carta", "testo": Carte.t(sp["effetto"]), "colore": ms.get_string(1).to_lower()})
 	var tor := _torretta()
 	if tor != {} and int(tor.get("marcatori", 0)) > 0:
 		if chiave_tracce.begins_with("M:"):
@@ -194,6 +200,20 @@ func _usa_modificatore(x: Dictionary) -> void:
 			esp.notifica_attrezzatura(j, str(x["id"]), str(Carte.per_id(str(x["id"])).get("costo", "")).count("spendDie"))
 			if Carte.en(Carte.per_id(str(x["id"])).get("effetto", "")).to_lower().contains("return this card to the armory"):
 				(esp.membro(j)["attrezzatura"] as Array).erase(str(x["id"]))
+		"sacrifica_ritira":
+			var col_s := str(x.get("colore", ""))
+			var prima: int = esp.membro(chi)["dadi"].filter(func(d): return d["stato"] == "sacrificato").size()
+			# si sacrifica un dado che non è nella Riserva del Tiro (di preferenza già speso)
+			var nel_tiro: Array = _pool.map(func(d): return str(d["id"]))
+			var fuori: Array = esp.membro(chi)["dadi"].filter(func(d): return d["stato"] != "sacrificato" and not str(d["id"]) in nel_tiro and (col_s == "" or Prova.colore(d) == col_s))
+			if fuori.is_empty():
+				_resoconto_mod.append("Nessun dado %s fuori dal tiro da sacrificare" % col_s)
+				_mostra_tiro()
+				return
+			esp.sacrifica_dado(chi, str(fuori[0]["id"]))
+			if esp.membro(chi)["dadi"].filter(func(d): return d["stato"] == "sacrificato").size() == prima:
+				return
+			_sel_mod = {"modo": "ritira", "n": 1, "colore": "", "testo": "%s: clicca il dado da ritirare" % x["titolo"]}
 		"abilita_carta":
 			var mis = get_parent()
 			if not mis or not mis.has_method("carta_da_abilita"):
@@ -236,6 +256,7 @@ func _usa_modificatore(x: Dictionary) -> void:
 	match str(x["tipo"]):
 		"carta": en = Carte.en(Carte.per_file(str(x["id"])).get("effetto", ""))
 		"attrezzatura": en = Carte.en(Carte.per_id(str(x["id"])).get("effetto", ""))
+		"sacrifica_ritira": en = ""
 		_: en = Carte.en(Carte.per_file(str(esp.membro(j).get("file", ""))).get("abilita", {}))
 	if en.to_lower().contains("reroll 1 danger die"):
 		for d in _pool:
@@ -816,6 +837,19 @@ func _risolvi() -> void:
 	var tutte := speciali_globali + (azione.get("speciali", []) as Array)
 	var ris := Prova.risolvi_speciali(tutte, _pool, conv, vietati)
 	var tracce := ferita_tracce.duplicate()
+	var n_assist := {}
+	for d in _pool:
+		if not d["tipo"] in ["ferita", "pericolo", "virtuale"] and int(d["chi"]) != chi:
+			n_assist[int(d["chi"])] = true
+	for riga0 in tutte:
+		if str(riga0.get("req", "")) != "" or not riga0.get("effetto") is Dictionary:
+			continue
+		var m0 := RegEx.create_from_string("(?i)^\\[outcome(green|yellow|red)(progress|reduction)\\] for every assisting crewmember").search(Carte.en(riga0["effetto"]))
+		if m0:
+			var col0 := m0.get_string(1).to_lower()
+			var n0 := n_assist.size() * (1 if m0.get_string(2).to_lower() == "progress" else -1)
+			tracce[col0] = int(tracce.get(col0, 0)) + n0
+			resoconto.append("%s per ogni Membro che assiste: %+d sulla traccia %s" % [_nome_colore(col0), n0, _nome_colore(col0)])
 	for x in ris:
 		var riga: Dictionary = tutte[x["riga"]]
 		var eff = riga.get("effetto", "")
@@ -837,7 +871,9 @@ func _risolvi() -> void:
 						testi.append({"en": parte, "it": parte, "fonte": "effetto speciale"})
 		else:
 			for k in volte:
-				testi.append({"en": Carte.en(eff), "it": Carte.t(eff), "fonte": "effetto speciale"})
+				var en_s := _effetto_in_prova(Carte.en(eff), tracce, resoconto, testi)
+				if en_s != "":
+					testi.append({"en": en_s, "it": Carte.t(eff) if en_s == Carte.en(eff) else en_s, "fonte": "effetto speciale"})
 		resoconto.append("Effetto speciale \"%s\" ×%d" % [riga.get("req", ""), volte])
 		if esito_immediato != "":
 			break
@@ -883,8 +919,23 @@ func _risolvi() -> void:
 		if v >= int(t2.get("caselle", 1)) and esito_immediato == "":
 			tr_finite.append(t2)
 			esp.avanza_traccia(settore, k, -99, int(t2.get("caselle", 1)))
-	for t3 in tr_finite:
-		testi.append({"en": t3.get("en", ""), "it": t3.get("it", ""), "fonte": "traccia " + str(t3.get("colore", ""))})
+	var k_tr := 0
+	while k_tr < tr_finite.size():
+		var t3: Dictionary = tr_finite[k_tr]
+		k_tr += 1
+		var altre := {}
+		var en3 := _effetto_in_prova(str(t3.get("en", "")), altre, resoconto, testi)
+		for col4 in altre:
+			for t5 in azione.get("tracce", []):
+				if str(t5.get("colore", "")) == col4:
+					var k5 := "%s#%s" % [chiave_tracce, col4]
+					var v5 := esp.avanza_traccia(settore, k5, int(altre[col4]), int(t5.get("caselle", 1)))
+					resoconto.append("Traccia %s: %d/%d" % [_nome_colore(col4), v5, int(t5.get("caselle", 1))])
+					if v5 >= int(t5.get("caselle", 1)) and not t5 in tr_finite:
+						esp.avanza_traccia(settore, k5, -99, int(t5.get("caselle", 1)))
+						tr_finite.append(t5)
+		if en3 != "":
+			testi.append({"en": en3, "it": str(t3.get("it", "")) if en3 == str(t3.get("en", "")) else en3, "fonte": "traccia " + str(t3.get("colore", ""))})
 		# freccia verso un'altra traccia: si risolve anche quella
 		var sg := str(t3.get("segue", ""))
 		for t4 in azione.get("tracce", []):
@@ -928,6 +979,30 @@ func _risolvi() -> void:
 	resoconto = _resoconto_mod + resoconto
 	esp.diario("%s: %s" % [m["carta"], "; ".join(resoconto)])
 	_mostra_riepilogo(resoconto, testi)
+
+## Parti di un effetto che si risolvono dentro la Prova: i segnalini delle tracce ([outcomeGreenProgress],
+## [outcomeRedReduction]…) vanno in tracce; "roll [dangerDieC] and add it to your Roll Pool" tira il dado
+## Pericolo e ne applica l'effetto. Restituisce il resto del testo (inglese) da applicare dopo la Prova.
+func _effetto_in_prova(en: String, tracce: Dictionary, resoconto: Array, testi: Array) -> String:
+	var resto := en
+	for m in RegEx.create_from_string("(?i)\\[outcome(green|yellow|red)(progress|reduction)\\]").search_all(en):
+		var col := m.get_string(1).to_lower()
+		tracce[col] = int(tracce.get(col, 0)) + (1 if m.get_string(2).to_lower() == "progress" else -1)
+		resto = resto.replace(m.get_string(0), "")
+	var mp := RegEx.create_from_string("(?i),?\\s*(?:and )?roll \\[dangerDie(\\w)\\],? and add it to your roll pool").search(resto)
+	if mp:
+		resto = resto.replace(mp.get_string(0), "")
+		var d := {"id": "p%d" % (_pool.size() + 10), "tipo": "pericolo", "faccia": 0, "chi": chi, "lettera": mp.get_string(1)}
+		Prova.tira(d, esp.rng)
+		_pool.append(d)
+		var e := Prova.effetto_pericolo(str(d["lettera"]), d)
+		var ic := Prova.icone(d)
+		resoconto.append("Dado Pericolo %s aggiunto alla Riserva: %s → %s" % [d["lettera"], "+".join(ic) if not ic.is_empty() else "vuoto", e if e != "" else "nessun effetto"])
+		if e != "":
+			testi.append({"en": e, "it": _it_pericolo(e), "fonte": "dado Pericolo"})
+	resto = RegEx.create_from_string("^[\\s,.;]+|[\\s,;]+$").sub(resto.strip_edges(), "", true)
+	resto = resto.replace(" ,", ",").replace(",.", ".")
+	return "" if resto.strip_edges() in ["", "."] else resto.strip_edges()
 
 ## Riepilogo della Prova per gli Obiettivi individuali.
 func _notifica_prova(colore: String, req: String, tracce: Dictionary, conv: Array, viet0: Dictionary, spesi: Dictionary) -> void:
