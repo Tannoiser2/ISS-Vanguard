@@ -48,6 +48,12 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   sentieri che li chiudono (G35), Mechatute TZO e Attrezzatura da Missione a faccia in giù (G20),
   Scoperte Perdute, tracce delle Minacce fatte avanzare dai PDI e le opzioni di completamento delle
   Missioni come pulsanti (M91).
+- **Salvataggi al sicuro fra un aggiornamento e l'altro**: la campagna è un file di dati separato dal
+  programma (sul dispositivo e online). Quando si apre una campagna salvata con una versione precedente,
+  il gioco aggiunge da solo i dati nuovi della nave e dell'esplorazione in corso con il loro valore
+  iniziale (e lo annota nel diario). A ogni apertura tiene una copia di sicurezza (le ultime 8): dal
+  menu, ↺ torna a una copia precedente, ⤓ scarica il salvataggio in un file e CARICA DA UN FILE lo
+  riprende.
 - **Il programma tiene traccia di tutto**: risponde da solo a circa 470 delle 560 domande Sì/No del
   Logbook (statistiche del Lander, carte e PDI sulla plancia, Condizione Generale, Missioni, Minacce,
   Squadra, quarte Ferite, Prove di Sopravvivenza (tira lui i 3 dadi Ferita), segnaposto su carte/riserve/slot, Piaghe, modalità di gioco, Obiettivo, Scanner,
@@ -266,6 +272,7 @@ tests/prova_dadi.gd        prove del motore dei dadi
 tests/prova_missione.gd    partita simulata a caso dell'esplorazione (-- p.18-19 500)
 tests/foto_missione.gd     screenshot della preparazione e dell'esplorazione
 tests/prova_nave.gd        giro completo della Gestione della Nave (-- foto per gli screenshot)
+tests/prova_salvataggi.gd  aggiornamento dei salvataggi vecchi, copie di sicurezza, esporta / importa
 tests/prova_effetti_prova.gd effetti risolti dentro la Prova (tracce per chi assiste, dado Pericolo aggiunto, sacrificio per ritirare) e Missioni che si completano da sole
 tests/prova_abilita_carte.gd abilità di Carles e Riku durante la Prova e i loro Obiettivi individuali
 tests/partita_nave.gd      Gestione della Nave giocata da sola per più giri, premendo ogni pulsante (-- giri seme)

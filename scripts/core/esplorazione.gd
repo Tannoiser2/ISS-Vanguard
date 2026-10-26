@@ -182,6 +182,52 @@ func limite_mano(i: int) -> int:
 	return LIMITE_MANO.get(int(membro(i)["grado"]), 2)
 
 ## Sentieri che partono dal settore n: [{"a": settore, "icone": [...]}] (rispetta i sensi unici).
+## Aggiornamento di un salvataggio vecchio di un'esplorazione in corso: aggiunge i dati che mancano
+## (stato generale, settori, Lander, Membri) con il loro valore iniziale. Restituisce i nomi aggiunti.
+static func completa(stato: Dictionary) -> Array:
+	if stato.is_empty():
+		return []
+	var aggiunti := []
+	var indizi := {}
+	var mazzi := {}
+	for t in TIPI_SCOPERTA:
+		indizi[t] = []
+		mazzi[t] = []
+	var base := {"round": 1, "settori": {}, "primo": 0, "attivo": 0, "azioni": 2, "speciale_usata": false, "eventi": [], "scarti_eventi": [],
+		"condizione": {"carta": "", "tempo": 0}, "missioni": [], "minacce": [], "mazzi_scoperte": mazzi, "indizi": indizi, "sacchetto": [],
+		"fuori_sacchetto": [], "scoperte": [], "eccezionali": [], "successi": 0, "ferite_mazzo": MAZZO_FERITE.duplicate(), "grado_superiore": "",
+		"finita": "", "provviste_illimitate": false, "tutorial": false, "eventi_sospesi": false, "morale": 0, "diario": [], "eccezionali_pianeta": [],
+		"equipaggio": [], "lander": {}}
+	for k in base:
+		if not stato.has(k):
+			stato[k] = base[k].duplicate(true) if base[k] is Dictionary or base[k] is Array else base[k]
+			aggiunti.append(k)
+	for t in TIPI_SCOPERTA:
+		if not (stato["indizi"] as Dictionary).has(t):
+			stato["indizi"][t] = []
+		if not (stato["mazzi_scoperte"] as Dictionary).has(t):
+			stato["mazzi_scoperte"][t] = []
+	for k in (stato["settori"] as Dictionary):
+		var st: Dictionary = stato["settori"][k]
+		var base_s := {"pdi": [], "tempo": 0, "segnalini": 0, "tracce": {}, "finito": false, "visitato": false, "log": 0}
+		for kk in base_s:
+			if not st.has(kk):
+				st[kk] = base_s[kk].duplicate() if base_s[kk] is Dictionary or base_s[kk] is Array else base_s[kk]
+	var ld: Dictionary = stato["lander"]
+	var base_l := {"nome": "Lander", "settore": 0, "provviste": 6, "max_scoperte": 5, "corazza": 0, "sensori": 0, "agilita": 0, "caselle": 5,
+		"partenza": 1, "contatore": 0, "danni": 0, "briefing": 0, "mod": []}
+	for k in base_l:
+		if not ld.has(k):
+			ld[k] = base_l[k].duplicate() if base_l[k] is Array else base_l[k]
+	var base_m := {"carta": "", "file": "", "nave": -1, "reparto": "", "grado": 1, "settore": 1, "dadi": [], "dadi_ferita": 0, "ferite": [], "mano": [],
+		"mazzo": [], "scarti": [], "cariche": 0, "conv": {}, "conv_extra": [], "obiettivo": {}, "turno_fatto": false, "morto": false, "attrezzatura": []}
+	for m in stato["equipaggio"]:
+		if m is Dictionary:
+			for k in base_m:
+				if not m.has(k):
+					m[k] = base_m[k].duplicate() if base_m[k] is Dictionary or base_m[k] is Array else base_m[k]
+	return aggiunti
+
 ## Chiave di un sentiero fra due settori (per i segnalini sui sentieri della Condizione Generale G35).
 static func chiave_sentiero(a: int, b: int) -> String:
 	return "%d-%d" % [mini(a, b), maxi(a, b)]

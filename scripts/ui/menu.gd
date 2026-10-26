@@ -55,6 +55,7 @@ void fragment(){
 	sx.add_child(_spazio(16))
 	sx.add_child(_largo(Tema.pulsante_primario("NUOVA CAMPAGNA", _nuova, 20)))
 	sx.add_child(_largo(Tema.pulsante("RIPRENDI CON UN CODICE", _codice, 18)))
+	sx.add_child(_largo(Tema.pulsante("CARICA DA UN FILE", _carica_file, 18)))
 	sx.add_child(_largo(Tema.pulsante("REGOLAMENTO", _regole, 18)))
 	if not OS.has_feature("web"):
 		sx.add_child(_largo(Tema.pulsante("ESCI", func(): get_tree().quit(), 18)))
@@ -117,6 +118,12 @@ func _aggiorna_lista() -> void:
 		var data := Time.get_datetime_string_from_unix_time(int(x["aggiornata"]) + _fuso(), true).substr(0, 16)
 		b.text = "%s   ·   %s   ·   %s   ·   %s" % [x["nome"], Dati.CAMPAGNE.get(x["camp"], {}).get("nome", ""), x["codice"], data]
 		r.add_child(b)
+		var sc := Tema.pulsante("⤓", func(): _scarica(str(x["codice"]), str(x["nome"])), 14)
+		sc.tooltip_text = "Scarica il salvataggio in un file (copia di sicurezza)"
+		r.add_child(sc)
+		var cp := Tema.pulsante("↺", func(): _copie(str(x["codice"]), str(x["nome"])), 14)
+		cp.tooltip_text = "Copie di sicurezza: torna a una versione precedente"
+		r.add_child(cp)
 		var d := Tema.pulsante("✕", func():
 			_conferma("Eliminare la copia locale di \"%s\"? (La copia online resta: si riprende con il codice %s.)" % [x["nome"], x["codice"]], func():
 				Campagna.elimina_locale(x["codice"])
@@ -124,6 +131,85 @@ func _aggiorna_lista() -> void:
 		d.tooltip_text = "Elimina dal dispositivo"
 		r.add_child(d)
 		_lista.add_child(r)
+
+## Scarica il salvataggio in un file .json (nel browser come download, sul computer con una finestra).
+func _scarica(cod: String, nome: String) -> void:
+	var testo := Campagna.esporta(cod)
+	if testo == "":
+		_stato.text = "Salvataggio non trovato"
+		return
+	var nome_f := "ISS-Vanguard_%s_%s.json" % [cod, Time.get_date_string_from_system()]
+	if OS.has_feature("web"):
+		JavaScriptBridge.download_buffer(testo.to_utf8_buffer(), nome_f, "application/json")
+		_stato.text = "Salvataggio di \"%s\" scaricato (%s)" % [nome, nome_f]
+		return
+	var fd := FileDialog.new()
+	fd.file_mode = FileDialog.FILE_MODE_SAVE_FILE
+	fd.access = FileDialog.ACCESS_FILESYSTEM
+	fd.current_file = nome_f
+	fd.filters = PackedStringArray(["*.json ; Salvataggio ISS Vanguard"])
+	fd.file_selected.connect(func(p):
+		var f := FileAccess.open(p, FileAccess.WRITE)
+		if f:
+			f.store_string(testo)
+			f.close()
+			_stato.text = "Salvataggio scritto in %s" % p
+		else:
+			_stato.text = "Non riesco a scrivere %s" % p)
+	add_child(fd)
+	fd.popup_centered(Vector2i(900, 600))
+
+var _cb_file: JavaScriptObject
+
+## Carica una campagna da un file .json scaricato prima.
+func _carica_file() -> void:
+	if OS.has_feature("web"):
+		_cb_file = JavaScriptBridge.create_callback(func(args): _file_letto(str(args[0])))
+		JavaScriptBridge.get_interface("window").issFileLetto = _cb_file
+		JavaScriptBridge.eval("""(function(){var i=document.createElement('input');i.type='file';i.accept='.json,application/json';
+			i.onchange=function(){var f=i.files[0];if(!f)return;var r=new FileReader();r.onload=function(){window.issFileLetto(r.result);};r.readAsText(f);};
+			i.click();})();""", true)
+		return
+	var fd := FileDialog.new()
+	fd.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+	fd.access = FileDialog.ACCESS_FILESYSTEM
+	fd.filters = PackedStringArray(["*.json ; Salvataggio ISS Vanguard"])
+	fd.file_selected.connect(func(p): _file_letto(FileAccess.get_file_as_string(p)))
+	add_child(fd)
+	fd.popup_centered(Vector2i(900, 600))
+
+func _file_letto(testo: String) -> void:
+	if Campagna.importa(testo):
+		inizia.emit()
+	else:
+		_stato.text = "Il file non è un salvataggio di ISS Vanguard"
+
+## Copie di sicurezza di una campagna: si sceglie a quale tornare.
+func _copie(cod: String, nome: String) -> void:
+	var copie := Campagna.elenco_copie(cod)
+	var d := AcceptDialog.new()
+	d.title = "Copie di sicurezza di \"%s\"" % nome
+	d.ok_button_text = "Chiudi"
+	var v := VBoxContainer.new()
+	var l := Label.new()
+	l.text = "Il gioco tiene una copia della campagna ogni volta che la apri (le ultime %d).\nScegli a quale versione tornare: quella attuale resta fra le copie." % Campagna.MAX_COPIE if not copie.is_empty() else "Nessuna copia di sicurezza per questa campagna (si crea la prima volta che la apri)."
+	l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	l.custom_minimum_size = Vector2(560, 0)
+	v.add_child(l)
+	for c in copie:
+		var quando := Time.get_datetime_string_from_unix_time(int(c["quando"]) + _fuso(), true).substr(0, 16)
+		var f: String = c["file"]
+		var torna := func():
+			if Campagna.ripristina_copia(f):
+				inizia.emit()
+			else:
+				_stato.text = "Copia non leggibile"
+		v.add_child(Tema.pulsante("Torna alla copia del %s" % quando, func():
+			d.queue_free()
+			_conferma("Tornare alla copia del %s di \"%s\"?" % [quando, nome], torna), 14))
+	d.add_child(v)
+	add_child(d)
+	d.popup_centered(Vector2i(620, 0))
 
 func _fuso() -> int:
 	return int(Time.get_time_zone_from_system().get("bias", 0)) * 60

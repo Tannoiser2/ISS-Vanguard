@@ -11,7 +11,10 @@ extends Node
 signal cambiata
 signal salvata(ok: bool, dove: String)
 
-const VERSIONE := 1
+## 2: salvataggi completati all'apertura (dati nuovi della nave e dell'esplorazione) e copie di sicurezza.
+const VERSIONE := 2
+const COPIE := "user://campagne/copie"
+const MAX_COPIE := 8
 const CARTELLA := "user://campagne"
 const LETTERE := "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
 
@@ -22,6 +25,7 @@ var _timer: Timer
 
 func _ready() -> void:
 	DirAccess.make_dir_recursive_absolute(CARTELLA)
+	DirAccess.make_dir_recursive_absolute(COPIE)
 	_timer = Timer.new()
 	_timer.one_shot = true
 	_timer.wait_time = 4.0
@@ -141,11 +145,97 @@ func elimina_locale(cod: String) -> void:
 
 func _usa(x: Dictionary) -> void:
 	dati = x
+	# copia di sicurezza della campagna così com'era prima di aprirla con questa versione del programma
+	copia_di_sicurezza()
 	for k in ["logbook", "tavolo", "registro"]:
 		if not (dati.get(k) is Dictionary):
 			dati[k] = {}
+	_aggiorna_salvataggio()
 	_prepara()
 	cambiata.emit()
+
+## Completa i dati di un salvataggio fatto con una versione precedente del programma.
+func _aggiorna_salvataggio() -> void:
+	var aggiunti := []
+	if dati.get("nave") is Dictionary and not (dati["nave"] as Dictionary).is_empty():
+		aggiunti += Nave.completa(dati["nave"]).map(func(k): return "nave." + str(k))
+	if dati.get("esplorazione") is Dictionary and not (dati["esplorazione"] as Dictionary).is_empty():
+		aggiunti += Esplorazione.completa(dati["esplorazione"]).map(func(k): return "esplorazione." + str(k))
+	var v := int(dati.get("versione", 1))
+	if v < VERSIONE or not aggiunti.is_empty():
+		dati["versione"] = VERSIONE
+		if not dati["registro"].has("eventi"):
+			dati["registro"]["eventi"] = []
+		annota("Salvataggio aggiornato alla versione %d del programma%s" % [VERSIONE, (" (aggiunti: " + ", ".join(aggiunti) + ")") if not aggiunti.is_empty() else ""])
+		_sporco = true
+		if _timer:
+			_timer.start()
+
+# ------------------------------------------------------------------ copie di sicurezza e file
+
+## Salva una copia della campagna (una per apertura, le ultime MAX_COPIE per campagna).
+func copia_di_sicurezza() -> void:
+	if dati.is_empty() or codice() == "":
+		return
+	_copia_testo(codice(), JSON.stringify(dati))
+
+func _copia_testo(cod: String, testo: String) -> void:
+	if testo == "":
+		return
+	var copie := elenco_copie(cod)
+	if not copie.is_empty() and FileAccess.get_file_as_string(copie[0]["file"]) == testo:
+		return
+	var quando := int(Time.get_unix_time_from_system())
+	if not copie.is_empty() and int(copie[0]["quando"]) >= quando:
+		quando = int(copie[0]["quando"]) + 1
+	var f := FileAccess.open("%s/%s_%d.json" % [COPIE, cod, quando], FileAccess.WRITE)
+	if f:
+		f.store_string(testo)
+		f.close()
+	copie = elenco_copie(cod)
+	for k in range(MAX_COPIE, copie.size()):
+		DirAccess.remove_absolute(copie[k]["file"])
+
+## Copie di sicurezza di una campagna, dalla più recente: [{file, quando}].
+func elenco_copie(cod: String) -> Array:
+	var out := []
+	var d := DirAccess.open(COPIE)
+	if d == null:
+		return out
+	for f in d.get_files():
+		if f.begins_with(cod + "_") and f.ends_with(".json"):
+			out.append({"file": COPIE + "/" + f, "quando": int(f.trim_prefix(cod + "_").trim_suffix(".json"))})
+	out.sort_custom(func(a, b): return a["quando"] > b["quando"])
+	return out
+
+## Riprende una campagna da una copia di sicurezza (la versione attuale resta fra le copie).
+func ripristina_copia(file: String) -> bool:
+	var x = JSON.parse_string(FileAccess.get_file_as_string(file))
+	if not (x is Dictionary) or not x.has("codice"):
+		return false
+	# anche la versione attuale resta fra le copie, così si può tornare indietro
+	_copia_testo(str(x["codice"]), FileAccess.get_file_as_string("%s/%s.json" % [CARTELLA, str(x["codice"])]))
+	x["aggiornata"] = Time.get_unix_time_from_system()
+	_usa(x)
+	salva_subito()
+	return true
+
+## Testo del salvataggio (per scaricarlo in un file).
+func esporta(cod: String) -> String:
+	if cod == codice() and not dati.is_empty():
+		return JSON.stringify(dati, "  ")
+	return FileAccess.get_file_as_string("%s/%s.json" % [CARTELLA, cod])
+
+## Carica una campagna da un file scaricato prima (diventa la versione più recente, anche online).
+func importa(testo: String) -> bool:
+	var x = JSON.parse_string(testo)
+	if not (x is Dictionary) or not x.has("codice") or not x.has("logbook"):
+		return false
+	_copia_testo(str(x["codice"]), FileAccess.get_file_as_string("%s/%s.json" % [CARTELLA, str(x["codice"])]))
+	x["aggiornata"] = Time.get_unix_time_from_system()
+	_usa(x)
+	salva_subito()
+	return true
 
 func chiudi() -> void:
 	if _sporco:

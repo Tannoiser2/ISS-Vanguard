@@ -31,6 +31,32 @@ func _init(stato: Dictionary = {}) -> void:
 	s = stato
 	rng.randomize()
 
+## Aggiornamento di un salvataggio vecchio: aggiunge i dati che le versioni nuove del programma usano
+## (con il loro valore iniziale), senza toccare quelli che ci sono. Restituisce i nomi aggiunti.
+static func completa(stato: Dictionary) -> Array:
+	if stato.is_empty():
+		return []
+	var tmp := {}
+	var n := Nave.new(tmp)
+	n.inizializza([])
+	var aggiunti := []
+	for k in tmp:
+		if not stato.has(k) and not k in ["equipaggio", "diario"]:
+			stato[k] = tmp[k].duplicate(true) if tmp[k] is Dictionary or tmp[k] is Array else tmp[k]
+			aggiunti.append(k)
+	for k in (tmp["pool"] as Dictionary):
+		if not (stato["pool"] as Dictionary).has(k):
+			stato["pool"][k] = 0
+	for r in REPARTI:
+		if not (stato["dadi"] as Dictionary).has(r):
+			stato["dadi"][r] = (tmp["dadi"][r] as Array).duplicate()
+	for m in stato.get("equipaggio", []):
+		if m is Dictionary:
+			for k in {"stato": "riposo", "grado": 1, "reparto": "", "file": "", "carta": ""}:
+				if not m.has(k):
+					m[k] = {"stato": "riposo", "grado": 1, "reparto": "", "file": "", "carta": ""}[k]
+	return aggiunti
+
 func diario(t: String) -> void:
 	s.get_or_add("diario", []).append(t)
 	if s["diario"].size() > 400:
