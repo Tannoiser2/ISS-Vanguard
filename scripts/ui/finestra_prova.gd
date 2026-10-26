@@ -22,6 +22,7 @@ var _pool: Array = []      # dadi tirati (copie con "chi")
 var _pet := false          # P.E.T. (E23) assiste con il suo dado
 var _accidenti_iniziali := 0   # [accident] nel tiro prima di ogni modifica (Obiettivi individuali)
 var _abilita_qui := 0          # abilità del Membro usate in questa Prova
+var _carte_abilita := {}       # indice membro -> carta presa con l'abilità durante questa Prova
 var _abilita_accident := false # un'abilità ha tolto un dado [accident] dalla Riserva (Obiettivo di Keith)
 var _sel_mod := {}         # carta/abilità in uso che chiede di scegliere dei dadi: {"modo", "n", "colore", "testo", "poi"}
 var _fase := 0             # 0 scelta, 1 dopo il tiro
@@ -136,6 +137,13 @@ func _modificatori() -> Array:
 	var ab = cm.get("abilita", {})
 	if ab is Dictionary and (Carte.en(ab).to_lower().begins_with("during a dice check") or str(ab.get("quando", "")).to_lower().contains("dice check")):
 		out.append({"tipo": "abilita", "chi": chi, "id": "abilita", "titolo": "Abilità " + str(ab.get("nome", "")), "testo": Carte.t(ab)})
+	# abilità "In qualsiasi momento" che prendono una carta (Carles, Riku): usabili anche durante la Prova
+	for j in presenti:
+		var abj = Carte.per_file(str(esp.membro(j).get("file", ""))).get("abilita", {})
+		var enj := Carte.en(abj).to_lower() if abj is Dictionary else ""
+		if enj.begins_with("anytime") and (enj.contains("section compartment") or enj.contains("from your discard pile")) and int(esp.membro(j)["cariche"]) > 0:
+			out.append({"tipo": "abilita_carta", "chi": j, "id": "abilita", "titolo": "Abilità " + str(abj.get("nome", "")), "testo": Carte.t(abj),
+				"da": "scomparto" if enj.contains("section compartment") else "scarti"})
 	var tor := _torretta()
 	if tor != {} and int(tor.get("marcatori", 0)) > 0:
 		if chiave_tracce.begins_with("M:"):
@@ -179,11 +187,27 @@ func _usa_modificatore(x: Dictionary) -> void:
 				_pool = _pool.filter(func(d): return d["tipo"] != "pericolo")
 				_resoconto_mod.append("Unità Scudo: tolti i dadi Pericolo")
 		"carta":
+			if j != chi and str(_carte_abilita.get(j, "")) == str(x["id"]):
+				esp.notifica("assisti_carta_abilita", {"chi": j, "verso": chi})
 			esp.scarta_carta(j, str(x["id"]))
 		"attrezzatura":
 			esp.notifica_attrezzatura(j, str(x["id"]), str(Carte.per_id(str(x["id"])).get("costo", "")).count("spendDie"))
 			if Carte.en(Carte.per_id(str(x["id"])).get("effetto", "")).to_lower().contains("return this card to the armory"):
 				(esp.membro(j)["attrezzatura"] as Array).erase(str(x["id"]))
+		"abilita_carta":
+			var mis = get_parent()
+			if not mis or not mis.has_method("carta_da_abilita"):
+				return
+			var c: String = await mis.carta_da_abilita(j, str(x["da"]))
+			if c == "":
+				return
+			esp.membro(j)["cariche"] = max(0, int(esp.membro(j)["cariche"]) - 1)
+			_carte_abilita[j] = c
+			_abilita_qui += 1
+			esp.notifica("abilita", {"chi": j, "in_prova": true, "volte_prova": _abilita_qui, "volte_turno": _abilita_turno_piu(j)})
+			_resoconto_mod.append("%s prende in mano %s" % [esp.membro(j)["carta"], Carte.titolo(Carte.per_file(c))])
+			_mostra_tiro()
+			return
 		"abilita":
 			if str(x["testo"]).to_lower().contains("caric"):
 				esp.membro(j)["cariche"] = max(0, int(esp.membro(j)["cariche"]) - 1)
@@ -723,6 +747,8 @@ func _risolvi() -> void:
 			for id in r["dadi"]:
 				vietati[id] = true
 			testi.append({"en": Carte.en(combo), "it": Carte.t(combo), "fonte": Carte.titolo(carta)})
+			if str(_carte_abilita.get(chi, "")) == str(c):
+				esp.notifica("combo_carta_abilita", {"chi": chi})
 			esp.scarta_carta(chi, str(c))
 			resoconto.append("Combinazione: " + Carte.titolo(carta))
 	# 6. dadi Ferita: ognuno va sulla prima carta Ferita (da sinistra) libera con la sua icona

@@ -1258,8 +1258,37 @@ const INDIZI_DI := {"CAMELIA TRENTINO": ["microorganism", "mineral"], "CHO JAE-Y
 	"GAL YADIN": ["microorganism", "alien_tech"], "JOPPE ULRICH": ["live_specimen", "mineral"]}
 const SOLO_SCOPERTE := {"BIANCA OLIVEIRA SOUSA": {"alien_tech": 4}, "EVELYN CASTILLO": {"live_specimen": 4}, "ZAIMA ANWAR": {"strange_flora": 4},
 	"BORYS WALCZAK": {"strange_flora": 2, "alien_tech": 2}, "JESSIE BENNET": {"microorganism": 2, "live_specimen": 2}}
-## Obiettivi che dipendono da come si usa l'abilità del Membro: restano da segnare con i pulsanti.
-const A_MANO := ["CARLES PORRA", "RIKU HASHIMURA"]
+## Obiettivi che dipendono da come si usa l'abilità del Membro (ora seguiti anche questi).
+const A_MANO := []
+
+## Abilità che prendono una carta: dallo Scomparto del Reparto (carte di qualsiasi Grado che non sono nel
+## mazzo, in mano o negli scarti del Membro) o dalla propria pila degli scarti. La carta va in mano e si
+## ricorda (per gli Obiettivi individuali di Carles e Riku). Restituisce il file della carta o "".
+func carta_da_abilita(i: int, da: String) -> String:
+	var m := esp.membro(i)
+	var cand := []
+	if da == "scarti":
+		cand = (m["scarti"] as Array).duplicate()
+	else:
+		var rep: String = Nave.REP_EN.get(str(m.get("reparto", "")), str(m.get("reparto", "")))
+		var gia: Array = (m["mazzo"] as Array) + (m["mano"] as Array) + (m["scarti"] as Array)
+		for c in Carte.categoria("reparto"):
+			if str(c.get("reparto", "")) == rep and not str(c["file"]) in gia and str(c.get("lato", "fronte")) != "retro":
+				cand.append(str(c["file"]))
+	if cand.is_empty():
+		avviso("Nessuna carta da prendere")
+		return ""
+	var nomi := cand.map(func(f): var c := Carte.per_file(str(f)); return "%s (Grado %s)" % [Carte.titolo(c), str(c.get("grado", "?")).replace(".0", "")])
+	var j := await _scegli("QUALE CARTA PRENDI?" if da == "scomparto" else "QUALE CARTA RIPRENDI DAGLI SCARTI?", nomi, "", false)
+	if j < 0:
+		return ""
+	var f := str(cand[j])
+	if da == "scarti":
+		(m["scarti"] as Array).erase(f)
+	m["mano"].append(f)
+	esp.s["_carta_abilita"] = {"chi": i, "carta": f}
+	esp.diario("%s prende in mano %s" % [m["carta"], Carte.titolo(Carte.per_file(f))])
+	return f
 
 ## Riceve gli eventi della partita e fa avanzare (o completa) gli Obiettivi individuali della Squadra.
 func _evento_obiettivi(ev: String, d: Dictionary) -> void:
@@ -1325,6 +1354,8 @@ func _progresso_obiettivo(nome: String, ev: String, i: int, d: Dictionary) -> in
 				return 0
 		return 99
 	match nome:
+		"CARLES PORRA": return 1 if ev == "assisti_carta_abilita" and mio else 0
+		"RIKU HASHIMURA": return 1 if ev == "combo_carta_abilita" and mio else 0
 		"LI TENG": return 1 if ev == "prova" and mio and str(d.get("colore", "")) == "yellow" else 0
 		"BERN LOUW": return 99 if ev == "prova" and mio and str(d.get("colore", "")) == "green" and int(d.get("propri", 1)) == 0 else 0
 		"OWEN CAMPBELL": return 99 if ev == "prova" and mio and (str(d.get("colore", "")) in ["green", "yellow"] or d.get("traccia_gv", false)) and int(d.get("accidenti", 0)) >= 3 else 0
@@ -3061,6 +3092,12 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 		"piazza_pdi":
 			esp.piazza_pdi(int(op["settore"]), str(op["carta"]))
 			fatti.append("Settore %d: ora c'è %s" % [int(op["settore"]), op["carta"]])
+		"carta_scomparto", "carta_scarti":
+			var c := await carta_da_abilita(chi, "scomparto" if op["op"] == "carta_scomparto" else "scarti")
+			if c != "":
+				fatti.append("%s prende in mano %s" % [m["carta"], Carte.titolo(Carte.per_file(c))])
+			else:
+				fatti.append("nessuna carta da prendere")
 		"pesca":
 			for k in int(op["n"]):
 				esp.pesca_carta(chi)
@@ -4256,6 +4293,8 @@ func in_atterraggio() -> bool:
 ## Risposta alle domande Sì/No del Logbook che dipendono dallo stato della partita:
 ## 1 = sì, 0 = no, -1 = non si sa (la decide il giocatore). spiegazione in _ultima_spiegazione.
 var _ultima_spiegazione := ""
+var _sopravvivenza := {}
+
 func rispondi_logbook(q: String) -> int:
 	var t := RegEx.create_from_string("\\{i:(\\w+)\\}").sub(q, "[$1]", true)
 	t = RegEx.create_from_string("\\[/?[bi]\\]").sub(t, "", true).replace("\n", " ").replace("’", "'").strip_edges()
@@ -4285,7 +4324,7 @@ func rispondi_logbook(q: String) -> int:
 	var ok := true
 	var trovato := false
 	var spieg := []
-	if tl.contains("almeno"):
+	if tl.contains("almeno") or tl.contains("at least"):
 		for m in rx_alm.search_all(t):
 			trovato = true
 			var v := _stat(m.get_string(2))
@@ -4304,13 +4343,15 @@ func rispondi_logbook(q: String) -> int:
 	if trovato:
 		_ultima_spiegazione = ", ".join(spieg)
 		return 1 if ok else 0
-	var m2 := RegEx.create_from_string("(?i)segnaposto danno sulla plancia lander").search(t)
+	var m2 := RegEx.create_from_string("(?i)segnaposto danno\\)? sulla plancia (?:del )?lander").search(t)
 	if m2 and tl.contains("o più"):
 		var n2 := int(RegEx.create_from_string("(\\d+)").search(t).get_string(1))
 		_ultima_spiegazione = "%d segnalini danno sul Lander" % int(esp.s["lander"].get("danni", 0))
 		return 1 if int(esp.s["lander"].get("danni", 0)) >= n2 else 0
 	# posizione del Membro di turno
-	var m3 := RegEx.create_from_string("(?i)ti trovi nel settore (\\d+)").search(t)
+	var m3 := RegEx.create_from_string("(?i)(?:ti trovi|sei) nel settore (\\d+)\\s*\\??$").search(t)
+	if not m3:
+		m3 = RegEx.create_from_string("(?i)ti trovi nel settore (\\d+)").search(t)
 	if m3:
 		var sett := int(esp.membro(int(esp.s["attivo"]))["settore"])
 		_ultima_spiegazione = "%s è nel Settore %d" % [esp.membro(int(esp.s["attivo"]))["carta"], sett]
@@ -4320,6 +4361,32 @@ func rispondi_logbook(q: String) -> int:
 		if pc >= 0:
 			_ultima_spiegazione = "Carte del Ponte: %s" % ", ".join(Campagna.dati["nave"].get("ponte", []) + Campagna.dati["nave"].get("ponte_viaggio", []))
 			return pc
+	# "requires 1 Live Specimen Discovery" (testo rimasto in inglese)
+	var mr := RegEx.create_from_string("(?i)requires (\\d+) (mineral|microorganism|live specimen|strange flora|alien tech) discover").search(t)
+	if mr:
+		var tipo := mr.get_string(2).to_lower().replace(" ", "_")
+		var n_sc := (esp.s["scoperte"] as Array).filter(func(x): return str(x.get("tipo", "")) == tipo).size()
+		_ultima_spiegazione = "Scoperte %s sul Lander: %d" % [tipo, n_sc]
+		return 1 if n_sc >= int(mr.get_string(1)) else 0
+	# Prova di Sopravvivenza: si tirano 3 dadi Ferita (muore con 1 [heavyDamage] e 1 [damage] oppure 2 [heavyDamage])
+	var sopr := tl.contains("supera la prova di sopravvivenza")
+	if sopr or RegEx.create_from_string("(?i)^se ottieni 1 \\[heavydamage\\] e 1 \\[damage\\] oppure 2 \\[heavydamage\\]\\??$").search(t):
+		# un solo tiro per pulsante del Logbook: le alternative dello stesso pulsante riusano lo stesso esito
+		if int(_sopravvivenza.get("frame", -1)) != Engine.get_process_frames():
+			var dadi := []
+			for k in 3:
+				var d := {"tipo": "ferita", "faccia": 0}
+				Prova.tira(d, esp.rng)
+				dadi.append(d)
+			var facce := Nave._facce(dadi)
+			_sopravvivenza = {"frame": Engine.get_process_frames(), "muore": Nave._morte(facce),
+				"testo": "Prova di Sopravvivenza (3 dadi Ferita): %s → %s" % [", ".join(facce) if not facce.is_empty() else "nessun danno", "non superata" if Nave._morte(facce) else "superata"]}
+			esp.diario(str(_sopravvivenza["testo"]))
+		var muore: bool = _sopravvivenza["muore"]
+		_ultima_spiegazione = str(_sopravvivenza["testo"])
+		if sopr:
+			return 0 if muore else 1
+		return 1 if muore else 0
 	var m4 := RegEx.create_from_string("(?i)(?:carta )?missione (M\\d+) è scoperta").search(t)
 	if m4:
 		_ultima_spiegazione = "Missioni in gioco: %s" % ", ".join(esp.s["missioni"])
@@ -4409,6 +4476,15 @@ func _rispondi_extra(t: String, tl: String) -> int:
 				tutte = false
 		if conosciute == parti.size():
 			return si.call(tutte, "Minacce sulla plancia: %s" % ", ".join(nomi_min.map(func(x): return x[2]["nome"])))
+		# un PDI per nome ("La Stele in Riavvio è scoperta?"): visibile in cima a un settore
+		if parti.size() == 1:
+			var pn2 := str(parti[0]).strip_edges().trim_prefix("la ").trim_prefix("il ").trim_prefix("lo ")
+			var nota := Carte.categoria("pdi").filter(func(x): return Carte.titolo(x).to_lower() == pn2)
+			if not nota.is_empty() and pn2.length() > 4:
+				for k in esp.s["settori"]:
+					if Carte.titolo(Carte.per_id(esp.pdi_in_cima(int(k)))).to_lower() == pn2:
+						return si.call(true, "%s nel Settore %s" % [Carte.titolo(nota[0]), str(k)])
+				return si.call(false, "%s non è scoperta" % Carte.titolo(nota[0]))
 	# Membri nei settori
 	var mm := RegEx.create_from_string("(?i)un membro dell'equipaggio si trova nel settore(?: in questo momento)? (\\d+)").search(t)
 	if mm:

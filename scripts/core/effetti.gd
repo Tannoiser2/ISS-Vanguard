@@ -104,6 +104,8 @@ static func analizza(en: String) -> Dictionary:
 		["(?i)take your crewmember and any number of assisting crewmembers from this sector and place them in sector (\\d+)(?: or sector (\\d+))?", func(m): return {"op": "muovi_gruppo", "settori": [int(m.get_string(1))] + ([int(m.get_string(2))] if m.get_string(2) != "" else [])}],
 		["(?i)(?:place|move) your crewmember (?:in|to|into) the lander sector", func(m): return {"op": "muovi_lander"}],
 		["(?i)(?:place|move) your crewmember (?:in|to|into) sector:? (\\d+(?:(?:,\\s*|,? or )\\d+)*)", func(m): return {"op": "muovi_attivo", "settori": Array(RegEx.create_from_string("\\d+").search_all(m.get_string(1)).map(func(x): return int(x.get_string(0)))), "settore": int(RegEx.create_from_string("\\d+").search(m.get_string(1)).get_string(0))}],
+		["(?i)take (?:1|a|one) card of any rank from your section compartment to your hand", func(m): return {"op": "carta_scomparto"}],
+		["(?i)draw a chosen card from your discard pile", func(m): return {"op": "carta_scarti"}],
 		["(?i)draw (\\d+|a|an|one|two|three) (?:section )?cards?", func(m): return {"op": "pesca", "n": _n(m.get_string(1))}],
 		["(?i)draw and resolve " + N + " event cards?", func(m): return {"op": "evento", "n": _n(m.get_string(1))}],
 		["(?i)discard " + N + " (?:section )?cards?(?! from)", func(m): return {"op": "scarta_carte", "n": _n(m.get_string(1))}],

@@ -36,9 +36,9 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   iniziale e prima esplorazione), Gestione della Nave (Ship Book passo per passo), Esplorazione planetaria.
   All'apertura il gioco va da solo alla fase in corso; il tavolo virtuale 3D del modulo TTS resta
   disponibile come strumento (TAVOLO nella nave, ≡ nell'esplorazione) con "TORNA ALLA PARTITA".
-- **Il programma tiene traccia di tutto**: risponde da solo a circa 460 delle 560 domande Sì/No del
+- **Il programma tiene traccia di tutto**: risponde da solo a circa 470 delle 560 domande Sì/No del
   Logbook (statistiche del Lander, carte e PDI sulla plancia, Condizione Generale, Missioni, Minacce,
-  Squadra, quarte Ferite, segnaposto su carte/riserve/slot, Piaghe, modalità di gioco, Obiettivo, Scanner,
+  Squadra, quarte Ferite, Prove di Sopravvivenza (tira lui i 3 dadi Ferita), segnaposto su carte/riserve/slot, Piaghe, modalità di gioco, Obiettivo, Scanner,
   Morale, Scoperte Eccezionali…); le altre sono scelte vere ("vuoi spendere…", "desideri abbandonare…").
   Le regole sempre attive di PDI e Condizioni Generali scattano da sole (chi entra nel settore, inizio e
   fine del turno, Riposo e Sforzo); la traccia del Tempo della Condizione Generale si risolve da sola.
@@ -210,8 +210,10 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   Prove, dadi finiti nei Dadi Spesi, assistenze, abilità, Sforzi, sacrifici, rimescolamenti, Indizi,
   Provviste, Cariche, dadi Pericolo, ritiri, Attrezzature e tute, Scoperte ottenute e usate, PDI sostituiti,
   Minacce scartate, fine turno e fine esplorazione) e fa avanzare le tracce o compie l'Obiettivo con un
-  avviso, senza fare domande: 88 carte su 90. Restano da segnare con i pulsanti solo Carles e Riku
-  (dipendono da quale carta si usa dopo averla presa con l'abilità), e la carta lo dice. Le abilità dei
+  avviso, senza fare domande: tutte le 90 carte. Le abilità di Carles (prendere una carta dallo
+  Scomparto del Reparto) e di Riku (riprendere una carta dagli scarti) si usano anche dentro la finestra
+  della Prova, e il gioco ricorda la carta presa: Assistere con quella carta (Carles) o usarne la
+  Combinazione (Riku) nella stessa Prova fa avanzare l'Obiettivo. Le abilità dei
   Membri che scattano da sole (Ebe che scarta una Ferita, Mark che ignora un dado Pericolo, Konstantin
   che ignora un dado Ferita) chiedono solo se usarle. I File del libretto sono solo
   racconto (il modulo non li contiene) e non servono per giocare.
@@ -252,6 +254,7 @@ tests/prova_dadi.gd        prove del motore dei dadi
 tests/prova_missione.gd    partita simulata a caso dell'esplorazione (-- p.18-19 500)
 tests/foto_missione.gd     screenshot della preparazione e dell'esplorazione
 tests/prova_nave.gd        giro completo della Gestione della Nave (-- foto per gli screenshot)
+tests/prova_abilita_carte.gd abilità di Carles e Riku durante la Prova e i loro Obiettivi individuali
 tests/partita_nave.gd      Gestione della Nave giocata da sola per più giri, premendo ogni pulsante (-- giri seme)
 tests/foto_nave.gd         screenshot di tutti i passi della Gestione della Nave, Strutture e cassetti (xvfb-run)
 tests/prova_ponte.gd       potenziamenti del Ponte e delle strutture, carte spostate dal Logbook
