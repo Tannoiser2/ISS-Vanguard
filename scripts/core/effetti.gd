@@ -111,6 +111,16 @@ static func analizza(en: String) -> Dictionary:
 		["(?i)discard " + N + " (?:section )?cards?(?! from)", func(m): return {"op": "scarta_carte", "n": _n(m.get_string(1))}],
 		["(?i)discard (?:1|a|an|one) (?:\\[(personalEquipment|missionEquipment|smallEquipment)\\]|equipment card)( from any sector)?", func(m): return {"op": "scarta_attrezzatura", "tipo": m.get_string(1)}],
 		["(?i)discard " + N + " (?:(" + TIPI_RX + ") )?discover(?:y|ies)(?: from (?:the|your) lander)?", func(m): return {"op": "scarta_scoperte", "n": _n(m.get_string(1)), "tipo": SCOPERTE.get(m.get_string(2).to_lower(), "")}],
+		["(?i)discard every lead token from (?:the )?discovery decks\\.?\\s*each crewmember may roll \\[dangerDie(\\w)\\] any number of times to save one chosen lead token from being discarded", func(m): return {"op": "indizi_salva", "lettera": m.get_string(1)}],
+		["(?i)place a marker on \\(or discard a marker from\\) a connected path with a \\[travel\\]", func(m): return {"op": "segna_sentiero"}],
+		["(?i)if you gained the panicked injury during this action, discard it along with the injury die", func(m): return {"op": "scarta_panico_azione"}],
+		["(?i)place this sprout on this card", func(m): return {"op": "cattura_germoglio"}],
+		["(?i)if the ([a-z' ]+?) threat is in this sector, progress the (green|yellow|red) track on its card by (\\d+|one)", func(m): return {"op": "traccia_minaccia", "nome": m.get_string(1), "colore": m.get_string(2).to_lower(), "n": _n(m.get_string(3))}],
+		["(?i)move card (P\\d{3})(?: \\([^)]*\\))? by (\\d+) sectors? toward the crewmember(?:s)?(?: \\([^)]*\\))?", func(m): return {"op": "pdi_verso_squadra", "carta": m.get_string(1).to_upper(), "n": int(m.get_string(2))}],
+		["(?i)\\(after resolving log \\d+ if needed\\)", func(m): return {"op": "niente_regola"}],
+		["(?i)place all lost discoveries next to your crew board", func(m): return {"op": "recupera_perdute"}],
+		["(?i)flip all tzo mechasuit cards and (?:all )?mission equipment cards face up", func(m): return {"op": "attrezzatura_scoperta"}],
+		["(?i)^\\s*the door is now open!?", func(m): return {"op": "niente_regola"}],
 		["(?i)discard every lead token from (?:the )?discovery decks", func(m): return {"op": "indizi_scarta_tutti"}],
 		["(?i)return (?:any )?" + N + " discarded leads? to the lead bag", func(m): return {"op": "indizi_sacchetto", "n": _n(m.get_string(1))}],
 		["(?i)(?:take|gain) (?:1|a|one) (?:chosen )?small equipment card from (?:the )?armory", func(m): return {"op": "armeria", "tipo": "smallEquipment"}],
@@ -238,6 +248,8 @@ static func analizza_it(testo: String) -> Dictionary:
 	t = RegEx.create_from_string("\\[/?[bi]\\]").sub(t, "", true).replace("\n", " ").replace("’", "'")
 	var N := "(\\d+|un|una|uno|due|tre|quattro|cinque|sei)"
 	var regole := [
+		["(?i)sposta tutte le scoperte dalla plancia (?:del )?lander (?:alla casella|accanto allo slot)[^.]*scoperte perdute", func(m): return {"op": "perdi_scoperte"}],
+		["(?i)prendi tutte le scoperte perdute dal relativo slot", func(m): return {"op": "recupera_perdute"}],
 		["(?i)ottien[ie] " + N + " \\[success\\]", func(m): return {"op": "successi", "n": _ni(m.get_string(1))}],
 		["(?i)(?:ottien[ie] (?:anche )?|e )la scoperta eccezionale (\\d+)", func(m): return {"op": "scoperta_eccezionale", "n": int(m.get_string(1))}],
 		["(?i)ottien[ie] " + N + " indizi[o]? (strana vegetazione|minerale|microorganismo|esemplare vivo|tecnologia aliena|flora strana)", func(m): return {"op": "indizi", "tipo": SCOPERTE_IT[m.get_string(2).to_lower()], "n": _ni(m.get_string(1))}],

@@ -40,7 +40,14 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   completate che fanno avanzare un'altra traccia, i dadi Pericolo "da aggiungere alla Riserva del Tiro"
   (Condizioni Generali come Sciame e Vento Gelido) e "sacrifica un dado per ritirarne uno" si risolvono
   da soli; le Missioni "quando hai le Scoperte Eccezionali 2 e 3" o "quando non ci sono più Germogli"
-  si completano da sole.
+  si completano da sole. Anche i casi singoli: costi e condizioni scritti sulle azioni con Prova (Ferita
+  Panico prima del tiro, scartare 1 Successo o 1 Provvista, segnalini richiesti, tutti nel Settore, tirare
+  tutti i dadi), le scelte delle azioni senza Prova (Borgo Speculare), "se non hai [x] nella Riserva del
+  Tiro", Nato Fortunato (dado Pericolo girato su un risultato senza effetto), Uragano (si tira il dado
+  Pericolo per salvare gli Indizi), Germogli catturati, P513 che insegue la Squadra, segnalini sui
+  sentieri che li chiudono (G35), Mechatute TZO e Attrezzatura da Missione a faccia in giù (G20),
+  Scoperte Perdute, tracce delle Minacce fatte avanzare dai PDI e le opzioni di completamento delle
+  Missioni come pulsanti (M91).
 - **Il programma tiene traccia di tutto**: risponde da solo a circa 470 delle 560 domande Sì/No del
   Logbook (statistiche del Lander, carte e PDI sulla plancia, Condizione Generale, Missioni, Minacce,
   Squadra, quarte Ferite, Prove di Sopravvivenza (tira lui i 3 dadi Ferita), segnaposto su carte/riserve/slot, Piaghe, modalità di gioco, Obiettivo, Scanner,

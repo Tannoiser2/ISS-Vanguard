@@ -1515,6 +1515,10 @@ func _sezione_condizione() -> void:
 		var idd := str(id)
 		var hb := HBoxContainer.new()
 		hb.add_child(Tema.pulsante("VEDI", func(): _mostra_carta(str(mi.get("file", "")), Carte.titolo(mi)), 12))
+		for opz in RegEx.create_from_string("•\\s*([^•]+?)to go to log (\\d+)").search_all(Carte.en(mi.get("completamento", ""))):
+			var cond := opz.get_string(1).strip_edges()
+			var nlog := int(opz.get_string(2))
+			hb.add_child(Tema.pulsante("→ ANN. %d" % nlog, func(): await _opzione_missione(idd, cond, nlog), 12))
 		hb.add_child(Tema.pulsante("COMPLETATA", func():
 			esp.s["missioni"].erase(idd)
 			esp.diario("Missione %s completata" % idd)
@@ -1662,6 +1666,42 @@ func _finisci() -> void:
 	aggiorna()
 	_missioni_automatiche()
 
+## Opzione di completamento di una Missione ("In qualsiasi momento puoi scartare 2 Scoperte Esemplare
+## Vivo dal Lander per andare all'Annotazione 426", "Se sei in un Settore con [important], puoi
+## [spendDie]+[spendDie]+[spendDie] per andare all'Annotazione 408"): controlla e paga, poi il Logbook.
+func _opzione_missione(id: String, cond: String, nlog: int) -> void:
+	var chi := int(esp.s["attivo"])
+	var sett := int(esp.membro(chi)["settore"])
+	var lo := cond.to_lower()
+	var ms := RegEx.create_from_string("discard (\\d+) (mineral|microorganism|live specimen|strange flora|alien tech) discoveries").search(lo)
+	if ms:
+		var tipo := ms.get_string(2).replace(" ", "_")
+		var idx := []
+		for k in (esp.s["scoperte"] as Array).size():
+			if str(esp.s["scoperte"][k]["tipo"]) == tipo and idx.size() < int(ms.get_string(1)):
+				idx.append(k)
+		if idx.size() < int(ms.get_string(1)):
+			avviso("Servono %s Scoperte %s sul Lander" % [ms.get_string(1), NOMI_SCOPERTE.get(tipo, tipo)])
+			return
+		idx.reverse()
+		for k in idx:
+			esp.s["scoperte"].remove_at(k)
+	var mi := RegEx.create_from_string("in a sector with \\[(\\w+)\\]").search(lo)
+	if mi and not mi.get_string(1) in esp.icone_settore(pl, sett, _carte_pdi()):
+		avviso("Devi essere in un Settore con l'icona %s" % _txt_icone("[%s]" % mi.get_string(1)))
+		return
+	var nd := cond.count("spendDie")
+	if nd > 0:
+		if esp.dadi_disponibili(chi).size() < nd:
+			avviso("Servono %d dadi disponibili" % nd)
+			return
+		for k in nd:
+			esp.spendi_dado(chi)
+	esp.diario("Missione %s: %s → Annotazione %d" % [id, cond, nlog])
+	_salva()
+	aggiorna()
+	_apri_log(nlog)
+
 ## Missioni che si completano da sole quando la condizione è vera: "When you have Unique Discovery 2
 ## and 3, …" (Scoperte Eccezionali sul Lander) e "When there are no Sprouts on the Planet board, …".
 func _missioni_automatiche() -> void:
@@ -1708,9 +1748,27 @@ func _esegui_azione(a: Dictionary, fonte: String, chiave: String, n: int) -> voi
 		return
 	var testi := []
 	if a.get("prova", false) or str(a.get("icona", "")) == "diceCheck":
+		var tutti_dadi := false
+		if a.get("costo") is Dictionary or (str(a.get("costo", "")) != "" and str(a.get("costo", "")) != "spendDie"):
+			var esito_c := await _costo_prova(a, chi, n)
+			if esito_c == "no":
+				esp.s["azioni"] = int(esp.s["azioni"]) + 1
+				esp.s["speciale_usata"] = false
+				_finisci()
+				return
+			tutti_dadi = esito_c == "tutti"
+		elif str(a.get("costo", "")) == "spendDie":
+			if esp.dadi_disponibili(chi).size() < 2:
+				avviso("Serve un dado da spendere (oltre a quelli da tirare)")
+				esp.s["azioni"] = int(esp.s["azioni"]) + 1
+				esp.s["speciale_usata"] = false
+				_finisci()
+				return
+			esp.spendi_dado(chi)
 		var f := FinestraProva.new()
 		f.esp = esp
 		f.chi = chi
+		f.tutti_i_dadi = tutti_dadi
 		f.azione = a
 		f.fonte = fonte
 		f.chiave_tracce = chiave
@@ -1739,15 +1797,76 @@ func _esegui_azione(a: Dictionary, fonte: String, chiave: String, n: int) -> voi
 			testi.append({"en": alt[j], "it": alt[j], "fonte": "costo"})
 		if a.has("testo"):
 			testi.append({"en": Carte.en(a["testo"]), "it": Carte.t(a["testo"]), "fonte": fonte})
+		var scelte: Array = a.get("scelte", []) if a.get("scelte") is Array else []
 		for e in a.get("esiti", []):
+			if not scelte.is_empty() and Carte.en(e).to_lower().contains("choose one from the options below"):
+				# il costo è già nel campo costo; resta la scelta
+				continue
 			testi.append({"en": Carte.en(e), "it": Carte.t(e), "fonte": fonte})
+		if not scelte.is_empty():
+			var js := await _scegli(Carte.t(a.get("nome", "")).to_upper(), scelte.map(func(x): return Carte.t(x)), "Scegli una delle opzioni (conta come un'Azione).", false)
+			testi.append({"en": Carte.en(scelte[max(0, js)]).get_slice(" - ", 1) if Carte.en(scelte[max(0, js)]).contains(" - ") else Carte.en(scelte[max(0, js)]), "it": Carte.t(scelte[max(0, js)]), "fonte": fonte})
 	_azione_in_corso = chiave
 	await applica(testi, chi, n)
 	_azione_in_corso = ""
+	esp.s.erase("_panico_azione")
 	_finisci()
 
 var _azione_in_corso := ""
 var _annulla_resto := false   # un costo non pagabile ferma il resto dell'effetto
+
+## Costo o condizione scritta di un'azione con Prova. Restituisce "ok", "no" (non si può fare) o
+## "tutti" (si tirano tutti i dadi della plancia, anche quelli spesi).
+func _costo_prova(a: Dictionary, chi: int, n: int) -> String:
+	var co = a.get("costo")
+	var en := (Carte.en(co) if co is Dictionary else str(co).get_slice(" / ", 0)).strip_edges()
+	var lo := en.to_lower()
+	var sett := n if n > 0 else int(esp.membro(chi)["settore"])
+	var segni := func(k: int) -> int: return int(esp.s["settori"].get(str(k), {}).get("segnalini", 0)) + int(esp.s["settori"].get(str(k), {}).get("segni", 0))
+	var m := RegEx.create_from_string("only if there are (\\d+) markers in this sector").search(lo)
+	if m:
+		if segni.call(sett) < int(m.get_string(1)):
+			avviso("Servono %s segnalini in questo Settore (ce ne sono %d)" % [m.get_string(1), segni.call(sett)])
+			return "no"
+		return "ok"
+	if lo.contains("only if all crewmembers are in this sector"):
+		if not esp.vivi().all(func(i): return int(esp.membro(i)["settore"]) == sett):
+			avviso("Tutti i Membri dell'Equipaggio devono essere in questo Settore")
+			return "no"
+		return "ok" if await _si_no("TUTTI D'ACCORDO?", "%s\nSiete tutti d'accordo?" % Carte.t(co) if co is Dictionary else en) else "no"
+	var m2 := RegEx.create_from_string("only if card (p\\d{3}) [^.]*?is in sector (\\d+) and there are no markers in this or connected sectors").search(lo)
+	if m2:
+		var ok: bool = esp.pdi_in_cima(int(m2.get_string(2))) == m2.get_string(1).to_upper() and segni.call(sett) == 0 and esp.collegati(pl, sett).all(func(x): return segni.call(int(x)) == 0)
+		if not ok:
+			avviso("Non puoi: %s" % (Carte.t(co) if co is Dictionary else en))
+			return "no"
+		return "ok"
+	if lo.contains("must discard 1 [success]"):
+		if int(esp.s["successi"]) < 1:
+			avviso("Serve 1 Successo da scartare")
+			return "no"
+		esp.s["successi"] = int(esp.s["successi"]) - 1
+		esp.diario("Costo dell'azione: -1 Successo")
+		return "ok"
+	if lo.contains("must lose 1 supplies"):
+		if int(esp.s["lander"]["provviste"]) < 1:
+			avviso("Serve 1 Provvista")
+			return "no"
+		esp.s["lander"]["provviste"] = int(esp.s["lander"]["provviste"]) - 1
+		esp.diario("Costo dell'azione: -1 Provviste")
+		return "ok"
+	if lo.contains("gain a panicked injury before the roll"):
+		var t := esp.ferita(chi, "panicked")
+		if t == "panicked":
+			esp.s["_panico_azione"] = chi
+		esp.diario("%s subisce una Ferita Panico prima del tiro" % esp.membro(chi)["carta"])
+		return "ok"
+	if lo.contains("must take and roll all dice from your crew board"):
+		for d in esp.membro(chi)["dadi"]:
+			if d["stato"] == "speso":
+				d["stato"] = "disponibile"
+		return "tutti"
+	return "ok"
 
 static func _nome_colore_it(c: String) -> String:
 	return {"green": "verde", "red": "rossa", "yellow": "gialla", "blue": "blu"}.get(c, c)
@@ -1854,9 +1973,9 @@ func _viaggio() -> void:
 	if "noMovement" in icone:
 		avviso("Da questo settore non si può viaggiare (icona Nessun movimento)")
 		return
-	var sentieri := esp.sentieri(pl, sett)
+	var sentieri := esp.sentieri_movimento(pl, sett)
 	if sentieri.is_empty():
-		avviso("Nessun sentiero parte da questo settore")
+		avviso("Nessun sentiero percorribile parte da questo settore" + (" (i sentieri con un segnalino sono chiusi)" if not esp.s.get("sentieri_segnati", []).is_empty() else ""))
 		return
 	if int(esp.s["azioni"]) <= 0:
 		avviso("Non hai più azioni: termina il turno")
@@ -2178,6 +2297,14 @@ func _pericolo_ignorato(chi: int, sett: int, d: Dictionary, fatti: Array) -> boo
 					mj["cariche"] = int(mj["cariche"]) - 1
 					fatti.append("%s ignora il dado Pericolo con la sua abilità" % mj["carta"])
 					esp.notifica("abilita", {"chi": j, "in_prova": false, "ricaricati": 0, "volte_turno": 1, "pericolo_ignorato": eff_d})
+					return true
+	if eff_d != "":
+		for c in (esp.membro(chi)["mano"] as Array).duplicate():
+			if Carte.en(Carte.per_file(str(c)).get("effetto", "")).to_lower().contains("after rolling a danger die, turn it to the chosen result"):
+				if await _si_no(Carte.titolo(Carte.per_file(str(c))), "Dado Pericolo %s: %s\nGiochi la carta per girare il dado su un risultato senza effetto?" % [d.get("lettera", ""), _txt_icone(FinestraProva._it_pericolo(eff_d))], str(c)):
+					esp.scarta_carta(chi, str(c))
+					FinestraProva.gira_pericolo_innocuo(d)
+					fatti.append("%s gioca %s: il dado Pericolo non ha effetto" % [esp.membro(chi)["carta"], Carte.titolo(Carte.per_file(str(c)))])
 					return true
 	for e in esp.membro(chi).get("attrezzatura", []):
 		var ce := Carte.per_id(str(e))
@@ -2541,7 +2668,17 @@ func _scarta_eccesso() -> void:
 			esp.scarta_carta(i, str(mano[j]))
 
 ## Attrezzatura: paga il costo (dadi, azione) e applica l'effetto; si può anche passare a chi è nel settore.
+## Condizione Generale G20 (Voci inquietanti) in gioco: Mechatute TZO e Attrezzatura da Missione a faccia in giù.
+func attrezzatura_bloccata(id: String) -> bool:
+	if str(esp.s["condizione"]["carta"]).get_slice("@", 0) != "G20":
+		return false
+	var ce := Carte.per_id(id)
+	return str(ce.get("tipo", "")) == "missionEquipment" or Carte.titolo(ce).to_upper().contains("TZO") or str(ce.get("titolo", {}).get("en", "")).to_upper().contains("TZO")
+
 func _usa_attrezzatura(i: int, id: String) -> void:
+	if attrezzatura_bloccata(id):
+		avviso("Voci inquietanti: le Mechatute TZO e l'Attrezzatura da Missione sono a faccia in giù, per ora non si possono usare")
+		return
 	var c := Carte.per_id(id)
 	var en := Carte.en(c.get("effetto", ""))
 	var it := Carte.t(c.get("effetto", ""))
@@ -3129,6 +3266,122 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 		"piazza_pdi":
 			esp.piazza_pdi(int(op["settore"]), str(op["carta"]))
 			fatti.append("Settore %d: ora c'è %s" % [int(op["settore"]), op["carta"]])
+		"indizi_salva":
+			var tutti := []
+			for t3 in Esplorazione.TIPI_SCOPERTA:
+				for tk in esp.s["indizi"][t3]:
+					tutti.append([t3, tk])
+			var salvati := []
+			for i in esp.vivi():
+				while salvati.size() < tutti.size():
+					if not await _si_no("URAGANO — %s" % str(esp.membro(i)["carta"]).to_upper(), "Tutti gli Indizi sui mazzi Scoperte stanno per essere scartati.\n%s tira il dado Pericolo %s per salvarne uno? (si può tirare più volte)" % [esp.membro(i)["carta"], op["lettera"]]):
+						break
+					await _tira_pericolo(str(op["lettera"]), i, int(esp.membro(i)["settore"]), fatti, manuali, logs, fonte)
+					var rimasti := tutti.filter(func(x): return not x in salvati)
+					var js := 0
+					if rimasti.size() > 1:
+						js = await _scegli("QUALE INDIZIO SALVI?", rimasti.map(func(x): return "%s (valore %d)" % [NOMI_SCOPERTE.get(x[0], x[0]), int(x[1].get("v", 1))]), "", false)
+					salvati.append(rimasti[max(0, js)])
+			for t3 in Esplorazione.TIPI_SCOPERTA:
+				for tk in esp.s["indizi"][t3]:
+					if not salvati.any(func(x): return x[1] == tk):
+						(esp.s["sacchetto"] if tk.get("riciclo", false) else esp.s["fuori_sacchetto"]).append(tk)
+				esp.s["indizi"][t3] = (esp.s["indizi"][t3] as Array).filter(func(tk): return salvati.any(func(x): return x[1] == tk))
+			fatti.append("Indizi scartati dai mazzi Scoperte; salvati: %d" % salvati.size())
+		"segna_sentiero":
+			var cand := esp.sentieri(pl, sett).filter(func(p): return (p["icone"] as Array).any(func(x): return str(x).begins_with("travel")))
+			if cand.is_empty():
+				fatti.append("Nessun sentiero collegato con [travel]")
+			else:
+				var segn: Array = esp.s.get_or_add("sentieri_segnati", [])
+				var js := await _scegli("SISTEMA DI DIFESA — SENTIERI", cand.map(func(p): return "Sentiero verso il Settore %d — %s" % [int(p["a"]), "togli il segnalino (si riapre)" if Esplorazione.chiave_sentiero(sett, int(p["a"])) in segn else "metti un segnalino (si chiude)"]), "Durante il movimento nessuno può usare i sentieri con un segnalino.", false)
+				var ch := Esplorazione.chiave_sentiero(sett, int(cand[max(0, js)]["a"]))
+				if ch in segn:
+					segn.erase(ch)
+					fatti.append("Sentiero %s riaperto" % ch)
+				else:
+					segn.append(ch)
+					fatti.append("Sentiero %s chiuso da un segnalino" % ch)
+		"scarta_panico_azione":
+			var ip := int(esp.s.get("_panico_azione", -1))
+			if ip >= 0 and "panicked" in esp.membro(ip)["ferite"]:
+				esp.cura(ip, "panicked")
+				esp.membro(ip)["dadi_ferita"] = max(0, int(esp.membro(ip)["dadi_ferita"]) - 1)
+				esp.s.erase("_panico_azione")
+				fatti.append("%s scarta la Ferita Panico e il dado Ferita" % esp.membro(ip)["carta"])
+			else:
+				fatti.append("Nessuna Ferita Panico subita in questa Azione")
+		"cattura_germoglio":
+			var stg2: Dictionary = esp.s["settori"].get(str(sett), {})
+			if int(stg2.get("germogli", 0)) > 0:
+				stg2["germogli"] = int(stg2["germogli"]) - 1
+				esp.s["germogli_catturati"] = int(esp.s.get("germogli_catturati", 0)) + 1
+				fatti.append("Germoglio catturato nel Settore %d (sulla carta Missione: %d)" % [sett, int(esp.s["germogli_catturati"])])
+			else:
+				fatti.append("Nessun Germoglio nel Settore %d" % sett)
+		"traccia_minaccia":
+			var nm := str(op["nome"]).to_lower()
+			var trovata := false
+			for mn in esp.s["minacce"]:
+				var c_m := _carta_minaccia(mn)
+				if (str(mn.get("en", "")).to_lower() == nm or str(mn["nome"]).to_lower() == nm) and int(mn.get("settore", 0)) == sett:
+					trovata = true
+					var cas := 3
+					var testo_t := {}
+					for t in (c_m.get("azioni", [{}]) as Array)[0].get("tracce", []) if not (c_m.get("azioni", []) as Array).is_empty() else []:
+						if str(t.get("colore", "")) == str(op["colore"]):
+							cas = int(t.get("caselle", 3))
+							testo_t = t
+					var chiave_m := "M:%s#0#%s" % [mn.get("en", mn["nome"]), op["colore"]]
+					var v := esp.avanza_traccia(-1, chiave_m, int(op["n"]), cas)
+					fatti.append("Traccia %s di %s: %d/%d" % [_nome_colore_it(str(op["colore"])), mn["nome"], v, cas])
+					if v >= cas and not testo_t.is_empty():
+						esp.avanza_traccia(-1, chiave_m, -99, cas)
+						var vecchia := _azione_in_corso
+						_azione_in_corso = "M:%s#0" % mn.get("en", mn["nome"])
+						for op2 in Effetti.analizza(Carte.en(testo_t))["op"]:
+							await _op(op2, chi, sett, fatti, manuali, logs, "Minaccia " + str(mn["nome"]))
+						_azione_in_corso = vecchia
+			if not trovata:
+				fatti.append("La Minaccia %s non è in questo Settore" % op["nome"])
+		"pdi_verso_squadra":
+			var da := -1
+			for k in esp.s["settori"]:
+				if str(op["carta"]) in (esp.s["settori"][k].get("pdi", []) as Array):
+					da = int(k)
+			if da < 0:
+				fatti.append("La carta %s non è sulla plancia" % op["carta"])
+			else:
+				var meta := -1
+				var dmin := 999
+				for i in esp.vivi():
+					var dd := esp.distanza(pl, da, int(esp.membro(i)["settore"]))
+					if dd >= 0 and dd < dmin:
+						dmin = dd
+						meta = int(esp.membro(i)["settore"])
+				var qui := da
+				for k in int(op["n"]):
+					if qui == meta or meta < 0:
+						break
+					for x in esp.collegati(pl, qui):
+						if esp.distanza(pl, int(x), meta) == esp.distanza(pl, qui, meta) - 1:
+							qui = int(x)
+							break
+				if qui != da:
+					(esp.s["settori"][str(da)]["pdi"] as Array).erase(str(op["carta"]))
+					(esp.s["settori"][str(qui)]["pdi"] as Array).append(str(op["carta"]))
+				fatti.append("%s si sposta dal Settore %d al Settore %d" % [Carte.titolo(Carte.per_id(str(op["carta"]))), da, qui])
+		"perdi_scoperte":
+			esp.s.get_or_add("scoperte_perdute", []).append_array(esp.s["scoperte"])
+			fatti.append("%d Scoperte nello slot Scoperte Perdute" % (esp.s["scoperte"] as Array).size())
+			esp.s["scoperte"] = []
+		"recupera_perdute":
+			var per: Array = esp.s.get("scoperte_perdute", [])
+			esp.s["scoperte"].append_array(per)
+			fatti.append("%d Scoperte Perdute recuperate" % per.size())
+			esp.s["scoperte_perdute"] = []
+		"attrezzatura_scoperta":
+			fatti.append("Le Mechatute TZO e l'Attrezzatura da Missione tornano utilizzabili")
 		"carta_scomparto", "carta_scarti":
 			var c := await carta_da_abilita(chi, "scomparto" if op["op"] == "carta_scomparto" else "scarti")
 			if c != "":
@@ -4882,7 +5135,8 @@ func _parti_minaccia(en: String, fatti: Array, manuali: Array, logs: Array) -> S
 		var parte := str(p).strip_edges().trim_suffix(".").trim_suffix(",")
 		if parte == "":
 			continue
-		var pl2 := parte.to_lower().trim_prefix("then, ").trim_prefix("then ")
+		var pl2 := parte.to_lower().trim_prefix("then, ").trim_prefix("then ").trim_prefix("to resolve ")
+		parte = RegEx.create_from_string("(?i)^to resolve ").sub(parte, "")
 		if regole.contains("\n" + pl2 + ":") or regole.begins_with(pl2 + ":") or regole.contains("- " + pl2 + ":"):
 			await _effetto_minaccia(m, c, parte.trim_prefix("Then, ").trim_prefix("then, "), fatti, manuali, logs)
 		elif pl2 == "flip this card":
@@ -4891,7 +5145,7 @@ func _parti_minaccia(en: String, fatti: Array, manuali: Array, logs: Array) -> S
 			var nmv := Effetti._n(RegEx.create_from_string("by (\\d+|one|two)").search(pl2).get_string(1))
 			for k in nmv:
 				var okm := {}
-				for x in esp.collegati(pl, int(m["settore"])):
+				for x in esp.sentieri_movimento(pl, int(m["settore"])).map(func(p): return int(p["a"])):
 					okm[int(x)] = ""
 				var dm := await _scegli_settore("Dove si sposta %s? Clicca un settore collegato" % m["nome"], okm)
 				if dm > 0:

@@ -22,6 +22,7 @@ var _pool: Array = []      # dadi tirati (copie con "chi")
 var _pet := false          # P.E.T. (E23) assiste con il suo dado
 var _accidenti_iniziali := 0   # [accident] nel tiro prima di ogni modifica (Obiettivi individuali)
 var _abilita_qui := 0          # abilità del Membro usate in questa Prova
+var tutti_i_dadi := false     # costo della carta: si tirano tutti i dadi della plancia
 var _carte_abilita := {}       # indice membro -> carta presa con l'abilità durante questa Prova
 var _abilita_accident := false # un'abilità ha tolto un dado [accident] dalla Riserva (Obiettivo di Keith)
 var _sel_mod := {}         # carta/abilità in uso che chiede di scegliere dei dadi: {"modo", "n", "colore", "testo", "poi"}
@@ -124,8 +125,17 @@ func _modificatori() -> Array:
 			var pericolo_ok: bool = Carte.en(carta.get("effetto", "")).to_lower().contains("reroll 1 danger die") and _pool.any(func(d): return d["tipo"] == "pericolo")
 			if pericolo_ok or (str(carta.get("quando", "")) in ["during_check", "when_assisting"] and (j == chi or str(carta.get("quando", "")) == "during_check")):
 				out.append({"tipo": "carta", "chi": j, "id": str(c), "titolo": Carte.titolo(carta), "testo": Carte.t(carta.get("effetto", ""))})
+	# Nato Fortunato e simili: "In qualsiasi momento: dopo aver tirato un dado Pericolo, giralo sul risultato a scelta"
+	if _pool.any(func(d): return d["tipo"] == "pericolo" and Prova.effetto_pericolo(str(d["lettera"]), d) != ""):
+		for c in m["mano"]:
+			var cf := Carte.per_file(str(c))
+			if Carte.en(cf.get("effetto", "")).to_lower().contains("after rolling a danger die, turn it to the chosen result"):
+				out.append({"tipo": "carta", "chi": chi, "id": str(c), "titolo": Carte.titolo(cf), "testo": Carte.t(cf.get("effetto", ""))})
+	var mis0 = get_parent()
 	for e in m.get("attrezzatura", []):
 		var ce := Carte.per_id(str(e))
+		if mis0 and mis0.has_method("attrezzatura_bloccata") and mis0.attrezzatura_bloccata(str(e)):
+			continue
 		if str(ce.get("quando", "")) == "during_check":
 			out.append({"tipo": "attrezzatura", "chi": chi, "id": str(e), "titolo": Carte.titolo(ce), "testo": Carte.t(ce.get("effetto", ""))})
 	for k in esp.s["scoperte"].size():
@@ -258,6 +268,12 @@ func _usa_modificatore(x: Dictionary) -> void:
 		"attrezzatura": en = Carte.en(Carte.per_id(str(x["id"])).get("effetto", ""))
 		"sacrifica_ritira": en = ""
 		_: en = Carte.en(Carte.per_file(str(esp.membro(j).get("file", ""))).get("abilita", {}))
+	if en.to_lower().contains("after rolling a danger die, turn it to the chosen result"):
+		for d in _pool:
+			if d["tipo"] == "pericolo" and Prova.effetto_pericolo(str(d["lettera"]), d) != "":
+				gira_pericolo_innocuo(d)
+				_resoconto_mod.append("%s: il dado Pericolo %s è girato su un risultato senza effetto" % [x["titolo"], d["lettera"]])
+				break
 	if en.to_lower().contains("reroll 1 danger die"):
 		for d in _pool:
 			if d["tipo"] == "pericolo":
@@ -341,6 +357,9 @@ var _resoconto_mod: Array = []
 # ------------------------------------------------------------------ 1. scelta dei dadi
 
 func _mostra_scelta() -> void:
+	if tutti_i_dadi:
+		for d in esp.dadi_disponibili(chi):
+			_scelti[d["id"]] = true
 	_svuota()
 	_corpo.add_child(_riquadro_azione())
 	var m := esp.membro(chi)
@@ -833,8 +852,8 @@ func _risolvi() -> void:
 				resoconto.append("Dado Pericolo %s: %s (tabella sulla carta o nell'annotazione)" % [d["lettera"], "+".join(ic2)])
 				testi.append({"en": "", "it": "Dado Pericolo %s: risultato %s" % [d["lettera"], "+".join(ic2)], "pericolo_ignoto": str(d["lettera"]), "icona": str(ic2[0]), "fonte": "dado Pericolo"})
 	# 7. effetti speciali (prima quelli della Condizione Generale)
-	var esito_immediato := ferita_esito
 	var tutte := speciali_globali + (azione.get("speciali", []) as Array)
+	var esito_immediato := ferita_esito
 	var ris := Prova.risolvi_speciali(tutte, _pool, conv, vietati)
 	var tracce := ferita_tracce.duplicate()
 	var n_assist := {}
@@ -843,6 +862,13 @@ func _risolvi() -> void:
 			n_assist[int(d["chi"])] = true
 	for riga0 in tutte:
 		if str(riga0.get("req", "")) != "" or not riga0.get("effetto") is Dictionary:
+			continue
+		var mn0 := RegEx.create_from_string("(?i)^if you have no \\[(\\w+)\\] in your roll pool, \\[outcome(red|green|yellow)\\]").search(Carte.en(riga0["effetto"]))
+		if mn0:
+			var ic0 := mn0.get_string(1)
+			if not _pool.any(func(d): return not d["tipo"] in ["ferita", "pericolo"] and ic0 in Prova.icone(d)):
+				esito_immediato = mn0.get_string(2).to_lower()
+				resoconto.append("Nessun %s nella Riserva del Tiro: esito %s" % [ic0, _nome_colore(esito_immediato)])
 			continue
 		var m0 := RegEx.create_from_string("(?i)^\\[outcome(green|yellow|red)(progress|reduction)\\] for every assisting crewmember").search(Carte.en(riga0["effetto"]))
 		if m0:
@@ -1003,6 +1029,21 @@ func _effetto_in_prova(en: String, tracce: Dictionary, resoconto: Array, testi: 
 	resto = RegEx.create_from_string("^[\\s,.;]+|[\\s,;]+$").sub(resto.strip_edges(), "", true)
 	resto = resto.replace(" ,", ",").replace(",.", ".")
 	return "" if resto.strip_edges() in ["", "."] else resto.strip_edges()
+
+## Gira un dado Pericolo su una faccia senza effetto (o la meno dannosa: vuota, poi comune).
+static func gira_pericolo_innocuo(d: Dictionary) -> void:
+	for f in 8:
+		var d2 := d.duplicate()
+		d2["faccia"] = f
+		if Prova.effetto_pericolo(str(d["lettera"]), d2) == "" or Prova.icone(d2).is_empty():
+			d["faccia"] = f
+			return
+	for f in 8:
+		var d3 := d.duplicate()
+		d3["faccia"] = f
+		if "common" in Prova.icone(d3):
+			d["faccia"] = f
+			return
 
 ## Riepilogo della Prova per gli Obiettivi individuali.
 func _notifica_prova(colore: String, req: String, tracce: Dictionary, conv: Array, viet0: Dictionary, spesi: Dictionary) -> void:

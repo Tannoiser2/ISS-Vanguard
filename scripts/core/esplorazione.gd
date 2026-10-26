@@ -182,6 +182,15 @@ func limite_mano(i: int) -> int:
 	return LIMITE_MANO.get(int(membro(i)["grado"]), 2)
 
 ## Sentieri che partono dal settore n: [{"a": settore, "icone": [...]}] (rispetta i sensi unici).
+## Chiave di un sentiero fra due settori (per i segnalini sui sentieri della Condizione Generale G35).
+static func chiave_sentiero(a: int, b: int) -> String:
+	return "%d-%d" % [mini(a, b), maxi(a, b)]
+
+## Sentieri percorribili per muoversi: quelli con un segnalino sono chiusi (G35).
+func sentieri_movimento(pianeta: Dictionary, n: int) -> Array:
+	var chiusi: Array = s.get("sentieri_segnati", [])
+	return sentieri(pianeta, n).filter(func(p): return not chiave_sentiero(n, int(p["a"])) in chiusi)
+
 func sentieri(pianeta: Dictionary, n: int) -> Array:
 	var out := []
 	for p in pianeta.get("sentieri", []):
