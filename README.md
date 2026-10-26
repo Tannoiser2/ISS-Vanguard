@@ -187,6 +187,12 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   - **potenziamenti delle strutture**: F01 (ritiro di un Danno nella prova di sopravvivenza), F02 (prova
     in più per avanzare in infermeria), F03 (Scoperte per mandare un Membro per Reparto a riposo), F04
     (coda 2), F05 (dado Pericolo su un progetto), F06 (Scoperte per far avanzare tutti i progetti).
+  - Sul tavolo ci sono le carte vere del modulo, non elenchi: carte del Ponte, Obiettivo e Livello
+    tecnologico, segnalini Comando/Energia/Successi, Situazioni (mazzo e carte rivelate), progetti di
+    ricerca e di produzione (code con gli stadi), reclute ed Equipaggio per Reparto, plance dei Lander e
+    modifiche, carta Atterraggio, Armeria, Scoperte, feriti, caduti con il Muro della memoria del Reparto.
+    Ogni carta si ingrandisce con un clic (con il testo e le stesse azioni dei pulsanti sotto la carta);
+    anche i cassetti Equipaggio, Progetti, Situazioni e Magazzino mostrano le carte.
 - **Fascicoli del personale** (espansione Personnel Files, nel modulo TTS): le 90 carte Veterano trascritte.
   Nel cassetto EQUIPAGGIO della nave si sceglie la versione (Obiettivo dal Grado 2, standard; dal Grado 3,
   impegnativa; oppure espansione spenta — spenta di base per Deadly Frontier, che non la prevede). Alla
@@ -241,6 +247,7 @@ tests/prova_dadi.gd        prove del motore dei dadi
 tests/prova_missione.gd    partita simulata a caso dell'esplorazione (-- p.18-19 500)
 tests/foto_missione.gd     screenshot della preparazione e dell'esplorazione
 tests/prova_nave.gd        giro completo della Gestione della Nave (-- foto per gli screenshot)
+tests/foto_nave.gd         screenshot di tutti i passi della Gestione della Nave, Strutture e cassetti (xvfb-run)
 tests/prova_ponte.gd       potenziamenti del Ponte e delle strutture, carte spostate dal Logbook
 tests/prova_fascicoli.gd   Fascicoli del personale (Obiettivi individuali e Veterani)
 tests/audit_effetti.gd     diagnostica: applica tutti i testi d'effetto delle carte e conta quelli rimasti a mano

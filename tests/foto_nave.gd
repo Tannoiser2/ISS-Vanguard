@@ -42,8 +42,31 @@ func _run() -> void:
 		st["equipaggio"][1]["stato"] = "infermeria"
 		st["equipaggio"][1]["ferite"] = ["wounded"]
 		st["equipaggio"][2]["stato"] = "morto"
-	for f in ["", "", ""]:
-		pass
+	if not "--vuota" in OS.get_cmdline_user_args():
+		st["ponte"] = ["B05", "B08"]
+		st["ponte_viaggio"] = ["B01"]
+		st["ricerca"] = ["R04", "R02", "R05", "R07"]
+		st["code"][0] = ["C04", null, "C05"]
+		st["situazioni"] = ["S01", "S03"]
+		st["mod_lander"] = ["A01", "A02", "A05"]
+		st["armeria"] = ["E01", "E02", "E05"]
+		st["busta"] = ["R06"]
+		for c in Carte.categoria("scoperte").filter(func(x): return int(str(x.get("file", "")).hash()) % 9 == 0).slice(0, 8):
+			st["scoperte"].append({"tipo": str(c.get("campi", {}).get("categoria", "")), "file": str(c.get("file", "")), "rarita": str(c.get("campi", {}).get("rarita", ""))})
+		st["eccezionali"]["2"] = true
+		st["scanner"] = {"carta": "L1", "rivelate": 3, "destinazione": "Pellucid"}
+		st["lander"].append({"nome": "PELICAN", "danneggiato": false})
+		st["mod_montate"] = ["A01"]
+		st["memoriale"].append({"carta": st["equipaggio"][2]["carta"], "reparto": st["equipaggio"][2]["reparto"]})
+		var esq := []
+		for i in [0, 3, 4]:
+			var m: Dictionary = st["equipaggio"][i]
+			esq.append({"nave": i, "carta": m["carta"], "file": m["file"], "ferite": ["wounded"] if i == 3 else [], "morto": false})
+		esq.append({"nave": 2, "carta": st["equipaggio"][2]["carta"], "file": st["equipaggio"][2]["file"], "ferite": [], "morto": true})
+		var scs := []
+		for x in st["scoperte"].slice(0, 3):
+			scs.append({"tipo": x["tipo"], "carta": x["file"]})
+		campagna.dati["esplorazioni_concluse"] = [{"pagina": "p.4-5", "finita": "decollo", "successi": 4, "scoperte": scs, "eccezionali": [1], "equipaggio": esq, "grado_girato": true}]
 	campagna.dati["nave"] = st
 	g.apri_nave()
 	await aspetta(3)
