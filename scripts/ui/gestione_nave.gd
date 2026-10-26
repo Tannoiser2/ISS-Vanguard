@@ -870,24 +870,15 @@ func _passo_mappa() -> void:
 		_testo("[b]%s[/b] — %s" % [str(sis.get("nome", "")), _bb(Carte.t(sis.get("testo", "")))], 15)
 	var scanner: Dictionary = nave.s["scanner"]
 	if str(scanner.get("carta", "")) == "":
+		_mappa_visiva(sis)
 		_sezione("1. Vola verso un nuovo sistema")
 		for rt in sis.get("rotte", []):
 			var req := str(rt.get("richiede", ""))
 			var ok_req: bool = req == "" or req in nave.s["ponte_viaggio"] or req in nave.s["ponte"]
 			var en0: int = int(rt.get("energia", 0)) if rt.get("energia") != null else 0
 			var en: int = nave.costo_rotta(en0)
-			var b := Tema.pulsante("→ %s · %d Energia%s%s%s" % [rt.get("verso", "?"), en, " (B07)" if en != en0 else "", (" · richiede " + req) if req != "" else "", (" · Annotazione %d" % int(rt["log"])) if rt.get("log") != null else ""], func():
-				if not nave.spendi("energia", en):
-					avviso("Energia insufficiente")
-					return
-				nave.diario("Volo verso %s (%d Energia)" % [rt.get("verso", ""), en])
-				nave.s["sistema"] = str(rt.get("verso", nave.s["sistema"]))
-				if not nave.s["sistema"] in nave.s["sistemi_visitati"]:
-					nave.s["sistemi_visitati"].append(nave.s["sistema"])
-				_salva()
-				aggiorna()
-				if rt.get("log") != null:
-					_apri_log(int(rt["log"])), 14)
+			var rtt: Dictionary = rt
+			var b := Tema.pulsante("→ %s · %d Energia%s%s%s" % [rt.get("verso", "?"), en, " (B07)" if en != en0 else "", (" · richiede " + req) if req != "" else "", (" · Annotazione %d" % int(rt["log"])) if rt.get("log") != null else ""], func(): _vola(rtt), 14)
 			b.disabled = not ok_req or int(nave.s["pool"]["energia"]) < en
 			b.alignment = HORIZONTAL_ALIGNMENT_LEFT
 			_corpo.add_child(b)
@@ -899,17 +890,8 @@ func _passo_mappa() -> void:
 			var lbl := "%s · %d Energia%s%s" % [d.get("nome", "?"), en2, " (B15)" if en2 != en20 else "", (" · ATTERRAGGIO " + at) if at != "" else ""]
 			var v := VBoxContainer.new()
 			_corpo.add_child(v)
-			var b2 := Tema.pulsante(lbl, func():
-				if not nave.spendi("energia", en2):
-					avviso("Energia insufficiente")
-					return
-				nave.diario("Visita: %s" % d.get("nome", ""))
-				if at != "":
-					nave.s["scanner"] = {"carta": at, "rivelate": 0, "destinazione": str(d.get("nome", ""))}
-					_salva()
-					aggiorna()
-				else:
-					await applica(Carte.en(d.get("testo", "")), Carte.t(d.get("testo", "")), str(d.get("nome", ""))), 14)
+			var dd: Dictionary = d
+			var b2 := Tema.pulsante(lbl, func(): await _visita(dd), 14)
 			var req2 := nave.requisito_destinazione(Carte.en(d.get("testo", "")))
 			b2.disabled = int(nave.s["pool"]["energia"]) < en2 or req2 != ""
 			if req2 != "":
@@ -984,6 +966,72 @@ func _passo_mappa() -> void:
 					_salva()
 					aggiorna(), 13))
 	_avanti("ALLE STRUTTURE DELLA NAVE ▶")
+
+## Vola lungo una rotta del sistema attuale (Energia, sistemi visitati, annotazione della rotta).
+func _vola(rt: Dictionary) -> void:
+	var en0: int = int(rt.get("energia", 0)) if rt.get("energia") != null else 0
+	var en: int = nave.costo_rotta(en0)
+	if not nave.spendi("energia", en):
+		avviso("Energia insufficiente")
+		return
+	nave.diario("Volo verso %s (%d Energia)" % [rt.get("verso", ""), en])
+	nave.s["sistema"] = str(rt.get("verso", nave.s["sistema"]))
+	if not nave.s["sistema"] in nave.s["sistemi_visitati"]:
+		nave.s["sistemi_visitati"].append(nave.s["sistema"])
+	_salva()
+	aggiorna()
+	if rt.get("log") != null:
+		_apri_log(int(rt["log"]))
+
+## Visita una destinazione del sistema: carta Atterraggio nello scanner o effetto della destinazione.
+func _visita(d: Dictionary) -> void:
+	var en20: int = int(d.get("energia", 0)) if d.get("energia") != null else 0
+	var en2: int = nave.costo_destinazione(en20)
+	var at := str(d.get("atterraggio", ""))
+	if not nave.spendi("energia", en2):
+		avviso("Energia insufficiente")
+		return
+	nave.diario("Visita: %s" % d.get("nome", ""))
+	if at != "":
+		nave.s["scanner"] = {"carta": at, "rivelate": 0, "destinazione": str(d.get("nome", ""))}
+		_salva()
+		aggiorna()
+	else:
+		await applica(Carte.en(d.get("testo", "")), Carte.t(d.get("testo", "")), str(d.get("nome", "")))
+
+## La pagina del sistema con le zone cliccabili e la mappa d'insieme della rotta.
+func _mappa_visiva(sis: Dictionary) -> void:
+	var chiave := ""
+	for k in Carte.db.get("sistemi", {}):
+		if str(k).to_upper() == str(nave.s["sistema"]).to_upper() or str(Carte.db["sistemi"][k].get("nome", "")).to_upper() == str(nave.s["sistema"]).to_upper():
+			chiave = str(k)
+	if chiave == "":
+		return
+	var ms := MappaStellare.new()
+	ms.sistema = chiave
+	ms.visitati = (nave.s.get("sistemi_visitati", []) as Array).duplicate()
+	var energia := int(nave.s["pool"]["energia"])
+	for rt in sis.get("rotte", []):
+		var req := str(rt.get("richiede", ""))
+		var ok_req: bool = req == "" or req in nave.s["ponte_viaggio"] or req in nave.s["ponte"]
+		var en: int = nave.costo_rotta(int(rt.get("energia", 0)) if rt.get("energia") != null else 0)
+		ms.rotte.append({"verso": str(rt.get("verso", "")), "energia": en, "ok": ok_req and energia >= en,
+			"perche": ("Serve il potenziamento del Ponte " + req) if not ok_req else ("Energia insufficiente (%d)" % energia if energia < en else "")})
+	for d in sis.get("destinazioni", []):
+		var en2: int = nave.costo_destinazione(int(d.get("energia", 0)) if d.get("energia") != null else 0)
+		var req2 := nave.requisito_destinazione(Carte.en(d.get("testo", "")))
+		ms.destinazioni.append({"n": int(d.get("n", 0)), "nome": str(d.get("nome", "")), "energia": en2, "ok": req2 == "" and energia >= en2,
+			"perche": ("Serve: " + req2) if req2 != "" else ("Energia insufficiente (%d)" % energia if energia < en2 else "")})
+	var rotte_sis: Array = sis.get("rotte", [])
+	var dest_sis: Array = sis.get("destinazioni", [])
+	ms.vola.connect(func(k: int): if k < rotte_sis.size(): _vola(rotte_sis[k]))
+	ms.visita.connect(func(n: int):
+		for d in dest_sis:
+			if int(d.get("n", 0)) == n:
+				await _visita(d)
+				return)
+	_corpo.add_child(ms)
+	_testo("[color=#9fbbd6]Clicca sulla pagina un sistema in uscita o una destinazione numerata, oppure una stella illuminata sulla mappa della rotta. Sotto c'è lo stesso elenco in forma di pulsanti.[/color]", 13)
 
 func _retro_atterraggio(id: String) -> String:
 	for f in Carte.db.get("per_id", {}).get(id.to_upper(), []):

@@ -159,8 +159,14 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   - inizio della campagna dopo il tutorial o con l'inizio rapido (reclute a scelta per ogni Reparto);
   - Ponte: installazione delle carte dalla busta "In attesa…", segnalini Comando ed Energia da Obiettivo
     e Livello tecnologico, effetti delle Situazioni in sospeso, nuove Situazioni (in base al Morale);
-  - Mappa stellare: rotte con costo in Energia e potenziamenti richiesti, destinazioni, carta Atterraggio
-    nello scanner e scansione delle sue parti (con i Membri in ricognizione);
+  - Mappa stellare: la pagina vera del libro delle Mappe dei Sistemi con le zone cliccabili (sistemi in
+    uscita e destinazioni numerate, spente se mancano Energia o potenziamenti) e accanto la mappa d'insieme
+    della rotta della Vanguard (i 21 sistemi come stelle collegate dalle rotte, posizione attuale, sistemi
+    visitati, costo in Energia delle rotte; clic su una stella per volarci). Sotto resta l'elenco a pulsanti;
+    rotte con costo in Energia e potenziamenti richiesti, destinazioni, carta Atterraggio
+    nello scanner e scansione delle sue parti (con i Membri in ricognizione). Le zone delle pagine sono in
+    `data/mappe_sistemi.json` (OCR con `tools/mappe_hotspot.py`), la disposizione delle stelle in
+    `data/galassia.json`;
   - Strutture (1 Comando ciascuna): Laboratorio (costi in Scoperte, parole chiave, retro dei progetti con
     gli spostamenti di carte), Complesso produttivo (code a 3 stadi, avvio, potenziamento con le icone di
     conversione), Caserma (reclute in base al Morale, addestramento, trasferimenti), Sala situazioni;
