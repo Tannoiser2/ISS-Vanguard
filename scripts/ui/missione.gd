@@ -209,6 +209,8 @@ func _imposta_vista(tre_d: bool) -> void:
 	if tre_d:
 		_p3d.vista_iniziale()
 		_p3d.aggiorna()
+	else:
+		_stato_2d()
 
 # ------------------------------------------------------------------ traccia del turno (sotto la riga di stato)
 
@@ -692,7 +694,15 @@ func _crea_settori() -> void:
 		info.add_theme_constant_override("outline_size", 6)
 		info.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		box.add_child(info)
-		_widget[n] = {"box": box, "img": img, "bordo": bordo, "crew": crew, "info": info, "dati": st, "pdi": ""}
+		# caselle delle tracce delle azioni (cubetti pieni / vuoti), sotto la riga delle informazioni
+		var tracce := VBoxContainer.new()
+		tracce.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+		tracce.offset_left = 8
+		tracce.offset_top = 24
+		tracce.add_theme_constant_override("separation", 3)
+		tracce.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		box.add_child(tracce)
+		_widget[n] = {"box": box, "img": img, "bordo": bordo, "crew": crew, "info": info, "tracce": tracce, "dati": st, "pdi": ""}
 	_disponi()
 
 ## Rettangolo in cui è disegnata l'immagine della plancia (KEEP_ASPECT_CENTERED).
@@ -713,6 +723,8 @@ func _disponi() -> void:
 		var box: Control = _widget[n]["box"]
 		box.position = c - Vector2(w, h) / 2.0
 		box.size = Vector2(w, h)
+	if _stato2d != null:
+		_stato_2d()
 
 func seleziona(n: int) -> void:
 	if _scelta_settore:
@@ -795,20 +807,145 @@ func _aggiorna_settori() -> void:
 		var info := []
 		if int(st.get("tempo", 0)) > 0:
 			info.append("Tempo %d" % int(st["tempo"]))
-		for k in st.get("tracce", {}):
-			info.append("▶%d" % int(st["tracce"][k]))
+		if settore_esplorato(int(n)):
+			info.append("ESPLORATO")
+		var sgp: int = segni_su(esp.pdi_in_cima(int(n))) if esp.pdi_in_cima(int(n)) != "" else 0
+		if sgp > 0:
+			info.append("Segnaposto %d" % sgp)
+		for ch in w["tracce"].get_children():
+			ch.queue_free()
+		for t in tracce_settore(int(n)):
+			w["tracce"].add_child(_fila_2d(t, 13))
 		for mn in esp.s["minacce"]:
 			if int(mn.get("settore", 0)) == int(n):
 				info.append("☠ " + str(mn.get("nome", "")))
-		if int(st.get("log", 0)) > 0 and not st.get("visitato", false):
+		if int(st.get("log", 0)) > 0 and (st.get("pdi", []) as Array).is_empty():
 			info.append("Log %d" % int(st["log"]))
 		for tk in st.get("attrezzature", []):
 			info.append("⚙ " + str(tk.get("nome", "")))
 		if _scelta_settore and _consentiti.has(int(n)):
 			info = ["➜ " + str(_consentiti[int(n)])] if str(_consentiti[int(n)]) != "" else ["➜"]
 		w["info"].text = "  ".join(info)
+	_stato_2d()
 	if _p3d and _p3d.visible:
 		_p3d.aggiorna()
+
+## Fila di caselle di una traccia per la vista 2D.
+func _fila_2d(t: Dictionary, lato := 13) -> HBoxContainer:
+	var h := HBoxContainer.new()
+	h.add_theme_constant_override("separation", 3)
+	h.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var col: Color = COLORI_TRACCIA.get(str(t["colore"]), Color(0.8, 0.8, 0.8))
+	for j in int(t["caselle"]):
+		var q := Panel.new()
+		q.custom_minimum_size = Vector2(lato, lato)
+		q.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var pieno: bool = j < int(t["valore"])
+		q.add_theme_stylebox_override("panel", Tema.box(col if pieno else Color(0, 0, 0, 0.55), col.lightened(0.3) if pieno else col, 2, 2, 0))
+		h.add_child(q)
+	return h
+
+var _stato2d: Control
+
+## Vista 2D: carte Missione e Condizione Generale nei loro spazi, Minacce sul bordo alto, contatori.
+func _stato_2d() -> void:
+	if _plancia == null or not _plancia.visible or _sovra == null:
+		return
+	if _stato2d == null:
+		_stato2d = Control.new()
+		_stato2d.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_stato2d.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		_sovra.add_child(_stato2d)
+		_sovra.move_child(_stato2d, 0)
+	for c in _stato2d.get_children():
+		c.queue_free()
+	var r := _rett_plancia()
+	var in_rett := func(f: Rect2) -> Rect2: return Rect2(r.position + f.position * r.size, f.size * r.size)
+	var carta_2d := func(file: String, dove: Rect2, segni: int, filari: Array, aspetto := 1.4) -> void:
+		# la carta resta centrata nello spazio con le sue proporzioni: i segnalini vanno sulla carta vera
+		var cw := minf(dove.size.x, dove.size.y * aspetto)
+		var ch := cw / aspetto
+		dove = Rect2(dove.position + (dove.size - Vector2(cw, ch)) / 2.0, Vector2(cw, ch))
+		var tr := TextureRect.new()
+		tr.position = dove.position
+		tr.size = dove.size
+		tr.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		tr.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		tr.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		Immagini.carica(file, func(t): if is_instance_valid(tr): tr.texture = t)
+		_stato2d.add_child(tr)
+		var v := VBoxContainer.new()
+		v.position = dove.position + Vector2(6, dove.size.y * 0.62)
+		v.add_theme_constant_override("separation", 3)
+		v.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		for f in filari:
+			v.add_child(_fila_2d(f, 12))
+		if segni > 0:
+			var hs := HBoxContainer.new()
+			hs.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			for j in segni:
+				var d := Panel.new()
+				d.custom_minimum_size = Vector2(12, 12)
+				d.mouse_filter = Control.MOUSE_FILTER_IGNORE
+				d.add_theme_stylebox_override("panel", Tema.box(Color(0.95, 0.75, 0.2), Color.BLACK, 1, 6, 0))
+				hs.add_child(d)
+			v.add_child(hs)
+		_stato2d.add_child(v)
+	var miss: Array = esp.s["missioni"]
+	var sm: Rect2 = in_rett.call(SLOT_PLANCIA["missione"])
+	for k in miss.size():
+		var mi := Carte.per_id(str(miss[k]))
+		if mi.has("file"):
+			# più Missioni: lo spazio si divide in righe
+			var hr := sm.size.y / maxi(1, miss.size())
+			carta_2d.call(str(mi["file"]), Rect2(sm.position + Vector2(0, k * hr + 2), Vector2(sm.size.x, hr - 4)), segni_su(str(miss[k]), Carte.titolo(mi)), [])
+	var cg := str(esp.s["condizione"].get("carta", ""))
+	var gc := _condizione()
+	var filari := tracce_condizione()
+	var tc := tempo_condizione()
+	if int(tc[1]) > 0:
+		filari.append({"colore": "yellow", "valore": tc[0], "caselle": tc[1]})
+	var scg: Rect2 = in_rett.call(SLOT_PLANCIA["condizione"])
+	if cg.begins_with("G") and gc.has("file"):
+		carta_2d.call(str(gc["file"]), scg, segni_su(cg, Carte.titolo(gc)), filari)
+	elif not filari.is_empty():
+		var v2 := VBoxContainer.new()
+		v2.position = scg.position + Vector2(6, scg.size.y * 0.62)
+		for f in filari:
+			v2.add_child(_fila_2d(f, 12))
+		_stato2d.add_child(v2)
+	# Minacce: la carta sul bordo alto, a destra, con il Tempo
+	var mins: Array = esp.s["minacce"]
+	for k in mins.size():
+		var cm := _carta_minaccia(mins[k])
+		if not cm.has("file"):
+			continue
+		# nella parte alta della colonna destra (sopra la descrizione del pianeta)
+		var h := r.size.y * 0.24
+		var dove := Rect2(r.position + Vector2(r.size.x * 0.985 - (k + 1) * h * 0.7, r.size.y * 0.015), Vector2(h * 0.66, h))
+		var trm: Array = cm.get("tempo", []) if cm.get("tempo") is Array else []
+		carta_2d.call(str(cm["file"]), dove, int(mins[k].get("marcatori", 0)), [{"colore": "yellow", "valore": int(mins[k].get("tempo", 0)), "caselle": trm.size()}] if not trm.is_empty() else [], 0.667)
+	var righe := []
+	var rimaste: Array = esp.s.get("eccezionali_pianeta", [])
+	if not rimaste.is_empty():
+		righe.append("Scoperte Eccezionali: " + ", ".join(rimaste.map(func(x): return str(x))))
+	for x in contatori_liberi():
+		righe.append("%s: %d" % [x[0], int(x[1])])
+	if not righe.is_empty():
+		var pc := PanelContainer.new()
+		pc.add_theme_stylebox_override("panel", Tema.box(Color(0.02, 0.04, 0.08, 0.9), Tema.AMBRA, 1, 4, 4))
+		pc.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var l := Label.new()
+		l.text = "\n".join(righe)
+		var se: Rect2 = in_rett.call(SLOT_PLANCIA["eccezionali"])
+		pc.position = se.position + Vector2(4, se.size.y * 0.66)
+		pc.add_child(l)
+		l.add_theme_font_size_override("font_size", 13)
+		l.add_theme_color_override("font_color", Tema.AMBRA)
+		l.add_theme_color_override("font_outline_color", Color.BLACK)
+		l.add_theme_constant_override("outline_size", 5)
+		l.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_stato2d.add_child(pc)
 
 func _gettone(t: String, col: Color, tip: String, attivo := false) -> Control:
 	var p := Panel.new()
@@ -5287,6 +5424,93 @@ func _istruzioni_minacce(t: String, sett: int, fatti: Array) -> String:
 				if pos >= 0:
 					testo = testo.substr(0, pos) + " ¦ " + testo.substr(pos + mm.get_string(0).length())
 	return testo
+
+# ------------------------------------------------------------------ stato del gioco da mostrare sulla mappa
+
+## Posizione degli spazi della colonna destra della plancia (uguale in tutte le pagine del Planetopedia),
+## in frazioni dell'immagine: Scoperte Eccezionali, Missione, Condizione Generale.
+const SLOT_PLANCIA := {"eccezionali": Rect2(0.817, 0.273, 0.172, 0.174), "missione": Rect2(0.817, 0.459, 0.172, 0.239),
+	"condizione": Rect2(0.817, 0.72, 0.172, 0.242), "minacce": Rect2(0.52, -0.2, 0.28, 0.18)}
+
+## Tracce delle azioni di una carta: [{"colore", "valore", "caselle"}].
+func _tracce_azioni(azioni: Array, base: String, n: int) -> Array:
+	var out := []
+	for k in azioni.size():
+		var a = azioni[k]
+		if not a is Dictionary:
+			continue
+		for t in a.get("tracce", []):
+			var col := str(t.get("colore", ""))
+			out.append({"colore": col, "valore": esp.traccia("%s#%d#%s" % [base, k, col], n), "caselle": int(t.get("caselle", 1))})
+	return out
+
+## Tracce della carta in cima al settore n (o delle azioni stampate sulla plancia).
+func tracce_settore(n: int) -> Array:
+	var carta := _carta_pdi(n)
+	var sorgente := carta
+	if carta.is_empty():
+		for x in pl.get("settori", []):
+			if int(x.get("n", 0)) == n and x.get("stampato") is Dictionary:
+				sorgente = x["stampato"]
+	var az = sorgente.get("azioni", [])
+	return _tracce_azioni(az if az is Array else [], esp.pdi_in_cima(n) if not carta.is_empty() else "S%d" % n, n)
+
+## Il settore è esplorato del tutto (la carta in cima ha l'icona PDI finale).
+func settore_esplorato(n: int) -> bool:
+	var c := _carta_pdi(n)
+	return not c.is_empty() and "finalPOI" in (c.get("icone", []) as Array)
+
+## Segnaposto sopra una carta (contatori "carta:m21", "carta:vigilanza"…): cerca per codice e per titolo.
+func segni_su(id: String, titolo := "") -> int:
+	var cont: Dictionary = esp.s.get("contatori", {})
+	var tot := int(cont.get("carta:" + id.get_slice("@", 0).to_lower(), 0))
+	if titolo != "":
+		tot = maxi(tot, int(cont.get("carta:" + titolo.to_lower(), 0)))
+	return tot
+
+## Contatori che non stanno su una carta visibile (slot e riserve della plancia, carte non in gioco):
+## [[etichetta, valore]].
+func contatori_liberi() -> Array:
+	var su_carte := {}
+	for id in esp.s["missioni"]:
+		su_carte["carta:" + str(id).to_lower()] = true
+		su_carte["carta:" + Carte.titolo(Carte.per_id(str(id))).to_lower()] = true
+	var gc := str(esp.s["condizione"].get("carta", ""))
+	if gc != "":
+		su_carte["carta:" + gc.get_slice("@", 0).to_lower()] = true
+		su_carte["carta:" + Carte.titolo(_condizione()).to_lower()] = true
+	for k in esp.s["settori"]:
+		var idp := esp.pdi_in_cima(int(k))
+		if idp != "":
+			su_carte["carta:" + idp.get_slice("@", 0).to_lower()] = true
+	var out := []
+	var cont: Dictionary = esp.s.get("contatori", {})
+	for k in cont:
+		if int(cont[k]) <= 0 or su_carte.has(k):
+			continue
+		var tipo := str(k).get_slice(":", 0)
+		var nome := str(k).get_slice(":", 1)
+		out.append(["%s %s" % [{"slot": "Slot", "riserva": "Riserva", "carta": "Carta"}.get(tipo, tipo), nome.capitalize()], int(cont[k])])
+	return out
+
+## Tracce globali (Condizione Generale) per la carta in gioco.
+func tracce_condizione() -> Array:
+	var gc := _condizione()
+	var out := []
+	if gc.get("viaggio") is Dictionary:
+		for t in gc["viaggio"].get("tracce", []):
+			out.append({"colore": str(t.get("colore", "")), "valore": esp.traccia("GC#viaggio#%s" % str(t.get("colore", "")), -1), "caselle": int(t.get("caselle", 1))})
+	for a in gc.get("azioni", []) if gc.get("azioni") is Array else []:
+		for t in a.get("tracce", []):
+			out.append({"colore": str(t.get("colore", "")), "valore": esp.traccia("GC#%s#%s" % [Carte.t(a.get("nome", "")), str(t.get("colore", ""))], -1), "caselle": int(t.get("caselle", 1))})
+	return out
+
+## Traccia del Tempo della Condizione Generale: [valore, caselle] (caselle 0 = senza traccia).
+func tempo_condizione() -> Array:
+	var tm = _condizione().get("tempo")
+	return [int(esp.s["condizione"].get("tempo", 0)), int(tm.get("caselle", 0)) if tm is Dictionary else 0]
+
+const COLORI_TRACCIA := {"green": Color("3fbf5a"), "red": Color("d8343f"), "yellow": Color("f0c020"), "blue": Color("2f8fe0")}
 
 ## Settore dell'ultima carta PDI piazzata da un'istruzione ("… e posiziona 2 segnaposto su di essa").
 var _ultimo_pdi := 0

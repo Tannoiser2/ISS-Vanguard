@@ -47,6 +47,11 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   riquadro ISTRUZIONI dice che cosa ha fatto il programma e, a parte, solo le frasi che restano da fare a mano.
   L'annotazione stampata in un settore si rilegge a ogni ingresso finché una carta non la copre (così la
   Missione "Riunirsi" del tutorial si completa quando arriva l'ultimo Membro nel Settore 4).
+- **Stato del gioco sulla mappa** (in 3D e in 2D), come sul tavolo vero: cubetti colorati delle tracce delle
+  azioni sulle carte dei settori (pieni per le caselle raggiunte, vuoti per le altre), segnaposto sulle carte,
+  bollino ESPLORATO sui settori finiti, carte Missione nel loro spazio (più Missioni una sotto l'altra) con i
+  segnaposto, la Condizione Generale con la traccia del Tempo e le sue tracce, le carte Minaccia con il loro
+  Tempo, le Scoperte Eccezionali rimaste e i segnaposto degli slot (Vantaggio nemico…).
 - **Simboli sempre visibili**: un estratto di DejaVu Sans (`assets/font/simboli.ttf`) fa da riserva ai font del
   gioco per frecce e simboli; `python3 tools/controlla_glifi.py` e `tests/prova_glifi.gd` lo verificano.
 - **Effetti dentro la Prova**: le tracce che avanzano "per ogni Membro che ti Assiste", le tracce
@@ -296,6 +301,7 @@ tests/audit_effetti.gd     diagnostica: applica tutti i testi d'effetto delle ca
 tests/audit_logbook.gd     diagnostica: passa all'interprete tutte le istruzioni del Logbook
 tests/prova_tutorial.gd    prima missione: carte dei settori dal Logbook e Missione M01 completata
 tests/foto_prova.gd        screenshot della Prova con i dadi sulla mappa (anche formato iPad)
+tests/foto_stato.gd        screenshot dello stato del gioco sulla mappa (tracce, Missioni, Condizione, Minacce)
 tests/foto_dadi.gd         screenshot del vassoio 3D dei dadi (xvfb-run)
 tests/partita_simulata.gd  un'esplorazione intera giocata da sola (azioni a caso), per trovare blocchi ed errori
 tools/espansioni_mancanti.md  componenti di Deadly Frontier e Lost Fleet citati dai Logbook e assenti nel modulo

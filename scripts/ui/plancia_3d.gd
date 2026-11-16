@@ -291,9 +291,7 @@ func _info(n: int) -> String:
 		return ("➜ " + str(mis._consentiti[n])) if str(mis._consentiti[n]) != "" else "➜"
 	var st: Dictionary = esp.s["settori"].get(str(n), {})
 	var out := []
-	for k in st.get("tracce", {}):
-		out.append("▶%d" % int(st["tracce"][k]))
-	if int(st.get("log", 0)) > 0 and not st.get("visitato", false):
+	if int(st.get("log", 0)) > 0 and (st.get("pdi", []) as Array).is_empty():
 		out.append("Log %d" % int(st["log"]))
 	return "  ".join(out)
 
@@ -425,10 +423,113 @@ func _aggiorna_pedine(esp: Esplorazione, attivo: int) -> void:
 					return _sagoma("standee/sprout.webp", "", Color.WHITE, Color(0.2, 0.35, 0.15), 0.42)
 				return _cubetto(colx))
 			_metti(nodo4, _v3(c + Vector2(-r.size.x * 0.38 + (k % 5) * 0.32, r.size.y * 0.02 + (k / 5) * 0.32)))
+	_stato_partita(esp, viste)
 	for chiave in _pedine.keys():
 		if not viste.has(chiave):
 			_pedine[chiave].queue_free()
 			_pedine.erase(chiave)
+
+## Da frazioni dell'immagine della plancia a coordinate del tavolo.
+func _pf(f: Vector2) -> Vector2:
+	return Vector2((f.x - 0.5) * W, (f.y - 0.5) * D)
+
+## Fila di caselle di una traccia: cubetti pieni per le caselle raggiunte, vuoti per le altre.
+func _fila_traccia(chiave: String, t: Dictionary, inizio: Vector2, passo: float, viste: Dictionary) -> void:
+	var col: Color = mis.COLORI_TRACCIA.get(str(t["colore"]), Color(0.8, 0.8, 0.8))
+	for j in int(t["caselle"]):
+		var pieno: bool = j < int(t["valore"])
+		var kc := "%s#%d%s" % [chiave, j, "P" if pieno else "V"]
+		viste[kc] = true
+		_metti(_pedina(kc, func(): return _cubo_traccia(col, pieno)), _v3(inizio + Vector2(j * passo, 0)))
+
+## Lo stato che nel gioco vero sta sopra le carte: cubetti delle tracce, segnaposto, settori esplorati,
+## carte Missione e Condizione Generale nei loro spazi, carte Minaccia con il Tempo, Scoperte Eccezionali.
+func _stato_partita(esp: Esplorazione, viste: Dictionary) -> void:
+	for n in _settori:
+		var r: Rect2 = _settori[n]["rett"]
+		var tr: Array = mis.tracce_settore(int(n))
+		for k in tr.size():
+			_fila_traccia("TR%s#%d" % [str(n), k], tr[k], r.position + Vector2(r.size.x * 0.1, r.size.y * 0.1 + k * 0.26), 0.24, viste)
+		var idp := esp.pdi_in_cima(int(n))
+		var sg: int = mis.segni_su(idp) if idp != "" else 0
+		for j in sg:
+			viste["SG%s#%d" % [str(n), j]] = true
+			_metti(_pedina("SG%s#%d" % [str(n), j], func(): return _disco(Color(0.95, 0.75, 0.2), "")), _v3(r.position + Vector2(r.size.x * 0.62 + (j % 4) * 0.3, r.size.y * 0.12 + (j / 4) * 0.3)))
+		if mis.settore_esplorato(int(n)):
+			viste["FIN%s" % str(n)] = true
+			_metti(_pedina("FIN%s" % str(n), func(): return _bollino(Color(0.3, 0.85, 0.45), "ESPLORATO")), _v3(r.position + Vector2(r.size.x * 0.88, r.size.y * 0.86)))
+	# Missioni nello spazio Missione (le altre leggermente sfalsate sopra)
+	var sm: Rect2 = mis.SLOT_PLANCIA["missione"]
+	var miss: Array = esp.s["missioni"]
+	for k in miss.size():
+		var mi := Carte.per_id(str(miss[k]))
+		if not mi.has("file"):
+			continue
+		# più Missioni: lo spazio si divide in righe, una carta per riga
+		var righe := maxi(1, miss.size())
+		var dim := Vector2(sm.size.x * W * 0.94, sm.size.y * D * 0.94 / righe)
+		var centro := _pf(Vector2(sm.get_center().x, sm.position.y + sm.size.y * (k + 0.5) / righe))
+		var km := "MS%s" % str(miss[k])
+		viste[km] = true
+		var nm := _pedina(km, func(): return _carta_piatta(str(mi["file"]), dim))
+		_metti(nm, _v3(centro))
+		var sgm: int = mis.segni_su(str(miss[k]), Carte.titolo(mi))
+		for j in sgm:
+			viste["%s#S%d" % [km, j]] = true
+			_metti(_pedina("%s#S%d" % [km, j], func(): return _disco(Color(0.95, 0.75, 0.2), "")), _v3(centro + Vector2(-dim.x * 0.4 + (j % 8) * 0.3, dim.y * 0.25), 0.02))
+	# Condizione Generale: la carta (se non è quella stampata), il suo Tempo, tracce e segnaposto
+	var sc: Rect2 = mis.SLOT_PLANCIA["condizione"]
+	var cg := str(esp.s["condizione"].get("carta", ""))
+	var ccg: Vector2 = _pf(sc.get_center())
+	var dcg := Vector2(sc.size.x * W * 0.94, sc.size.y * D * 0.94)
+	if cg.begins_with("G"):
+		var gc: Dictionary = mis._condizione()
+		if gc.has("file"):
+			viste["GC" + cg] = true
+			_metti(_pedina("GC" + cg, func(): return _carta_piatta(str(gc["file"]), dcg)), _v3(ccg))
+		var sgc: int = mis.segni_su(cg, Carte.titolo(gc))
+		for j in sgc:
+			viste["GCS%d" % j] = true
+			_metti(_pedina("GCS%d" % j, func(): return _disco(Color(0.95, 0.75, 0.2), "")), _v3(ccg + Vector2(-dcg.x * 0.4 + (j % 6) * 0.3, -dcg.y * 0.3 + (j / 6) * 0.3), 0.02))
+	var tc: Array = mis.tempo_condizione()
+	if int(tc[1]) > 0:
+		_fila_traccia("GCT", {"colore": "yellow", "valore": tc[0], "caselle": tc[1]}, ccg + Vector2(-dcg.x * 0.42, dcg.y * 0.36), 0.24, viste)
+	var tg: Array = mis.tracce_condizione()
+	for k in tg.size():
+		_fila_traccia("GCR%d" % k, tg[k], ccg + Vector2(-dcg.x * 0.42, dcg.y * 0.12 - k * 0.26), 0.24, viste)
+	# Scoperte Eccezionali ancora sulla plancia: una pila coperta con i numeri
+	var se: Rect2 = mis.SLOT_PLANCIA["eccezionali"]
+	var rimaste: Array = esp.s.get("eccezionali_pianeta", [])
+	if not rimaste.is_empty():
+		viste["UD"] = true
+		var nud := _pedina("UD", func(): return _bollino(Color(0.7, 0.55, 1.0), ""))
+		_metti(nud, _v3(_pf(se.get_center()) + Vector2(0, se.size.y * D * 0.25)))
+		(nud.get_child(1) as Label3D).text = "SCOPERTE ECCEZIONALI: " + ", ".join(rimaste.map(func(x): return str(x)))
+	# Minacce: la loro carta sopra il bordo della plancia, con la traccia del Tempo
+	var mins: Array = esp.s["minacce"]
+	for k in mins.size():
+		var mm: Dictionary = mins[k]
+		var cm: Dictionary = mis._carta_minaccia(mm)
+		if not cm.has("file"):
+			continue
+		var dm := Vector2(1.9, 2.85)
+		var cmn := Vector2(W * 0.5 - 1.4 - k * 2.2, -D * 0.5 - dm.y * 0.5 - 0.4)
+		var kmn := "MC%s#%d" % [str(mm.get("file", "")), k]
+		viste[kmn] = true
+		_metti(_pedina(kmn, func(): return _carta_piatta(str(cm["file"]), dm)), _v3(cmn))
+		var trm: Array = cm.get("tempo", []) if cm.get("tempo") is Array else []
+		if not trm.is_empty():
+			_fila_traccia(kmn + "T", {"colore": "yellow", "valore": int(mm.get("tempo", 0)), "caselle": trm.size()}, cmn + Vector2(-dm.x * 0.42, dm.y * 0.58), 0.24, viste)
+		for j in int(mm.get("marcatori", 0)):
+			viste["%s#S%d" % [kmn, j]] = true
+			_metti(_pedina("%s#S%d" % [kmn, j], func(): return _disco(Color(0.95, 0.75, 0.2), "")), _v3(cmn + Vector2(-dm.x * 0.35 + (j % 4) * 0.3, 0)))
+	# segnaposto su slot e riserve della plancia, e su carte che non sono in gioco
+	var lib: Array = mis.contatori_liberi()
+	if not lib.is_empty():
+		viste["CL"] = true
+		var ncl := _pedina("CL", func(): return _bollino(Color(0.95, 0.75, 0.2), ""))
+		_metti(ncl, _v3(_pf(Vector2(0.9, 1.0)) + Vector2(0, 0.55)))
+		(ncl.get_child(1) as Label3D).text = "\n".join(lib.map(func(x): return "%s: %d" % [x[0], int(x[1])]))
 
 func _pedina(chiave: String, crea: Callable) -> Node3D:
 	if _pedine.has(chiave) and is_instance_valid(_pedine[chiave]):
@@ -968,6 +1069,81 @@ func _gettone(col: Color, testo: String, r: float) -> Node3D:
 	radice.add_child(l)
 	return radice
 
+## Carta distesa sul tavolo, grande dim (larghezza, profondità), con lo spessore.
+func _carta_piatta(file: String, dim: Vector2) -> Node3D:
+	var radice := Node3D.new()
+	var q := MeshInstance3D.new()
+	var mq := _mat()
+	mq.metallic_specular = 0.05
+	q.material_override = mq
+	q.position.y = 0.045
+	radice.add_child(q)
+	var sp := MeshInstance3D.new()
+	sp.material_override = _mat(Color(0.08, 0.09, 0.11))
+	radice.add_child(sp)
+	Immagini.carica(file, func(t):
+		if not is_instance_valid(q) or t == null:
+			return
+		var s: Vector2 = t.get_size()
+		var k: float = minf(dim.x / s.x, dim.y / s.y)
+		var pm := PlaneMesh.new()
+		pm.size = s * k
+		q.mesh = pm
+		var bm := BoxMesh.new()
+		bm.size = Vector3(s.x * k, 0.03, s.y * k)
+		sp.mesh = bm
+		sp.position.y = 0.02
+		mq.albedo_texture = t)
+	return radice
+
+## Casella di una traccia: cubetto pieno del colore della traccia, oppure casella vuota (contorno scuro).
+func _cubo_traccia(col: Color, pieno: bool) -> Node3D:
+	var radice := Node3D.new()
+	var c := MeshInstance3D.new()
+	var b := BoxMesh.new()
+	b.size = Vector3(0.18, 0.18 if pieno else 0.03, 0.18)
+	c.mesh = b
+	var m := _mat(col if pieno else Color(col.r, col.g, col.b, 0.35), not pieno)
+	if pieno:
+		m.emission_enabled = true
+		m.emission = col * 0.25
+	c.material_override = m
+	c.position.y = 0.1 if pieno else 0.06
+	c.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON if pieno else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	radice.add_child(c)
+	return radice
+
+## Bollino piatto con una scritta (settore esplorato, Scoperte Eccezionali, segnaposto degli slot).
+func _bollino(col: Color, testo: String) -> Node3D:
+	var radice := Node3D.new()
+	var g := MeshInstance3D.new()
+	var cil := CylinderMesh.new()
+	cil.top_radius = 0.16
+	cil.bottom_radius = 0.16
+	cil.height = 0.05
+	g.mesh = cil
+	var m := _mat(col)
+	m.emission_enabled = true
+	m.emission = col * 0.4
+	g.material_override = m
+	g.position.y = 0.05
+	radice.add_child(g)
+	var l := Label3D.new()
+	l.text = testo
+	l.font = Tema.titolo
+	l.font_size = 22
+	l.pixel_size = 0.0005
+	l.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	l.fixed_size = true
+	l.no_depth_test = true
+	l.modulate = col.lightened(0.45)
+	l.outline_size = 8
+	l.outline_modulate = Color(0, 0, 0, 0.9)
+	l.position.y = 0.3
+	l.render_priority = 1
+	radice.add_child(l)
+	return radice
+
 func _cubetto(col: Color) -> Node3D:
 	var radice := Node3D.new()
 	var c := MeshInstance3D.new()
@@ -982,7 +1158,9 @@ func _cubetto(col: Color) -> Node3D:
 # ------------------------------------------------------------------ telecamera e mouse
 
 func vista_iniziale(anima := false) -> void:
-	_vai(Vector3(0, 0, D * 0.04), maxf(W, D * 2.0) * 0.98, 62.0, 0.0, anima)
+	# con le carte Minaccia sopra il bordo alto si inquadra un po' più in su
+	var minacce: bool = mis != null and not (mis.esp.s.get("minacce", []) as Array).is_empty()
+	_vai(Vector3(0, 0, D * (-0.06 if minacce else 0.04)), maxf(W, D * 2.0) * (1.06 if minacce else 0.98), 62.0, 0.0, anima)
 
 func _ruota(gradi: float) -> void:
 	_vai(_cam_t, _cam_d, _cam_p, _cam_y + gradi, true)
