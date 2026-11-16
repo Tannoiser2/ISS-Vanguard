@@ -301,7 +301,7 @@ func _aggiorna_carta(n: int, w: Dictionary, id: String) -> void:
 	w["pdi"] = id
 	var carta: MeshInstance3D = w["carta"]
 	carta.visible = false
-	var c := Carte.per_id(id) if id != "" and id != "P000" else {}
+	var c := Carte.per_id(id) if id != "" else {}
 	if not c.has("file"):
 		return
 	var r: Rect2 = w["rett"]
@@ -347,7 +347,8 @@ func _aggiorna_pedine(esp: Esplorazione, attivo: int) -> void:
 		var crew: Array = g.get("crew", [])
 		for k in crew.size():
 			var i: int = crew[k]
-			var p := c + Vector2(-r.size.x * 0.08 + (k - (crew.size() - 1) / 2.0) * minf(0.95, r.size.x * 0.6 / max(1, crew.size())), r.size.y * 0.22)
+			# nell'angolo in basso a sinistra della carta, in fila verso destra: i testi restano leggibili
+			var p := r.position + Vector2(0.32 + k * minf(0.62, r.size.x * 0.5 / max(1, crew.size())), r.size.y - 0.32)
 			var chiave := "C%d" % i
 			viste[chiave] = true
 			var nodo := _pedina(chiave, func(): return _miniatura(esp.membro(i)))
@@ -361,13 +362,13 @@ func _aggiorna_pedine(esp: Esplorazione, attivo: int) -> void:
 			var nodo2 := _pedina(chiave2, func(): return _standee(mm))
 			if nodo2.get_meta("file", "") != str(mm.get("file", "")):
 				_aggiorna_standee(nodo2, mm)
-			_metti(nodo2, _v3(c + Vector2(-r.size.x * 0.3 + k * 1.0, -r.size.y * 0.12)))
+			_metti(nodo2, _v3(r.position + Vector2(r.size.x - 0.4 - k * 0.8, r.size.y - 0.45)))
 			# segnalini Tempo della Minaccia accanto alla sua basetta
 			if int(mm.get("tempo", 0)) > 0:
 				viste["T" + chiave2] = true
 				var nt := _pedina("T" + chiave2, _tempo_3d)
 				_conta_tempo(nt, int(mm["tempo"]))
-				_metti(nt, _v3(c + Vector2(-r.size.x * 0.3 + k * 1.0 + 0.42, -r.size.y * 0.12 + 0.3)))
+				_metti(nt, _v3(r.position + Vector2(r.size.x - 0.4 - k * 0.8 - 0.42, r.size.y - 0.2)))
 		if int(esp.s["lander"]["settore"]) == int(n):
 			_nome_lander = str(esp.s["lander"].get("nome", ""))
 			viste["L"] = true
@@ -449,7 +450,7 @@ func _stato_partita(esp: Esplorazione, viste: Dictionary) -> void:
 		var r: Rect2 = _settori[n]["rett"]
 		var tr: Array = mis.tracce_settore(int(n))
 		for k in tr.size():
-			_fila_traccia("TR%s#%d" % [str(n), k], tr[k], r.position + Vector2(r.size.x * 0.1, r.size.y * 0.1 + k * 0.26), 0.24, viste)
+			_fila_traccia("TR%s#%d" % [str(n), k], tr[k], r.position + Vector2(r.size.x * 0.55, r.size.y * 0.12 + k * 0.32), 0.3, viste)
 		var idp := esp.pdi_in_cima(int(n))
 		var sg: int = mis.segni_su(idp) if idp != "" else 0
 		for j in sg:
@@ -457,7 +458,16 @@ func _stato_partita(esp: Esplorazione, viste: Dictionary) -> void:
 			_metti(_pedina("SG%s#%d" % [str(n), j], func(): return _disco(Color(0.95, 0.75, 0.2), "")), _v3(r.position + Vector2(r.size.x * 0.62 + (j % 4) * 0.3, r.size.y * 0.12 + (j / 4) * 0.3)))
 		if mis.settore_esplorato(int(n)):
 			viste["FIN%s" % str(n)] = true
-			_metti(_pedina("FIN%s" % str(n), func(): return _bollino(Color(0.3, 0.85, 0.45), "ESPLORATO")), _v3(r.position + Vector2(r.size.x * 0.88, r.size.y * 0.86)))
+			_metti(_pedina("FIN%s" % str(n), func(): return _bollino(Color(0.3, 0.85, 0.45), "ESPLORATO")), _v3(r.position + Vector2(r.size.x - 0.3, 0.85)))
+	# segnalini Successo sopra il bordo alto della plancia, come sul tavolo
+	for j in int(esp.s["successi"]):
+		viste["SUC%d" % j] = true
+		_metti(_pedina("SUC%d" % j, func(): return _disco(Color(1.0, 0.82, 0.3), "")), _v3(Vector2(-1.2 + (j % 10) * 0.34, -D * 0.5 - 0.35 - (j / 10) * 0.34)))
+	if int(esp.s["successi"]) > 0:
+		viste["SUCL"] = true
+		var nsl := _pedina("SUCL", func(): return _bollino(Color(1.0, 0.82, 0.3), ""))
+		_metti(nsl, _v3(Vector2(-1.75, -D * 0.5 - 0.35)))
+		(nsl.get_child(1) as Label3D).text = "SUCCESSI %d" % int(esp.s["successi"])
 	# Missioni nello spazio Missione (le altre leggermente sfalsate sopra)
 	var sm: Rect2 = mis.SLOT_PLANCIA["missione"]
 	var miss: Array = esp.s["missioni"]
@@ -1101,7 +1111,7 @@ func _cubo_traccia(col: Color, pieno: bool) -> Node3D:
 	var radice := Node3D.new()
 	var c := MeshInstance3D.new()
 	var b := BoxMesh.new()
-	b.size = Vector3(0.18, 0.18 if pieno else 0.03, 0.18)
+	b.size = Vector3(0.24, 0.24 if pieno else 0.04, 0.24)
 	c.mesh = b
 	var m := _mat(col if pieno else Color(col.r, col.g, col.b, 0.35), not pieno)
 	if pieno:
@@ -1131,7 +1141,7 @@ func _bollino(col: Color, testo: String) -> Node3D:
 	var l := Label3D.new()
 	l.text = testo
 	l.font = Tema.titolo
-	l.font_size = 22
+	l.font_size = 15
 	l.pixel_size = 0.0005
 	l.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	l.fixed_size = true

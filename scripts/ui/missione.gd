@@ -46,7 +46,7 @@ var _testo_scelta := ""
 signal _settore_scelto(n: int)
 
 const ALTO_HUD := 46
-const ALTO_TURNO := 58
+const ALTO_TURNO := 80
 const ALTO_BARRA := 74
 
 # ------------------------------------------------------------------ avvio
@@ -216,6 +216,7 @@ func _imposta_vista(tre_d: bool) -> void:
 
 var _turno_box: HBoxContainer
 var _turno_guida: RichTextLabel
+var _turno_obiettivo: RichTextLabel
 
 ## Il turno scandito: Round, ordine della Squadra (chi ha giocato, chi è di turno, chi deve ancora),
 ## i passi del turno (Azione 1, Azione 2, Fine turno con l'Evento) e una riga "cosa fare adesso".
@@ -236,6 +237,12 @@ func _traccia_turno() -> Control:
 	_turno_guida.scroll_active = false
 	_turno_guida.autowrap_mode = TextServer.AUTOWRAP_OFF
 	v.add_child(_turno_guida)
+	# obiettivo della Missione e suggerimento concreto per il Membro di turno
+	_turno_obiettivo = Tema.testo_ricco(15)
+	_turno_obiettivo.fit_content = true
+	_turno_obiettivo.scroll_active = false
+	_turno_obiettivo.autowrap_mode = TextServer.AUTOWRAP_OFF
+	v.add_child(_turno_obiettivo)
 	return p
 
 func _chip_turno(testo: String, stato: String, col := Color.WHITE) -> Control:
@@ -318,6 +325,82 @@ func _aggiorna_traccia_turno() -> void:
 	else:
 		g = "[b]%s[/b] ha finito le azioni: premi [b]FINE TURNO[/b] — si pesca e si risolve un Evento, poi tocca %s." % [nome, "al prossimo Membro" if resto > 0 else "alla fine del Round: poi un nuovo Round, e decidete voi chi gioca per primo"]
 	_turno_guida.text = "[color=#9fbbd6]COSA FARE ▸[/color] " + g
+	_turno_obiettivo.text = _obiettivo_e_consiglio(att)
+
+## Riga dell'obiettivo: la Missione in corso e un consiglio concreto per chi gioca (dove andare, che cosa fare).
+func _obiettivo_e_consiglio(att: int) -> String:
+	if str(esp.s.get("finita", "")) != "" or in_atterraggio():
+		return ""
+	var testo_m := ""
+	var dest := 0
+	var regroup := false
+	var sugg := ""
+	for idm in esp.s["missioni"]:
+		var c := Carte.per_id(str(idm))
+		if c.get("opzionale", false) and testo_m != "":
+			continue
+		var ob := Carte.t(c.get("obiettivo", ""))
+		var tit_m := Carte.titolo(c).to_upper()
+		testo_m = "[color=#ffd36e][b]%s%s[/b][/color] %s" % ["" if tit_m.begins_with("MISSIONE") else "MISSIONE ", tit_m, Dati.testo_carta(ob, 18)]
+		regroup = ob.to_lower().contains("tutti")
+		sugg = Carte.t(c.get("suggerimento", ""))
+		_turno_obiettivo.tooltip_text = "%s\n%s%s" % [Carte.titolo(c), ob, ("\nSuggerimento: " + sugg) if sugg != "" else ""]
+		var mm := RegEx.create_from_string("(?i)settore (\\d+)").search(ob)
+		if mm:
+			dest = int(mm.get_string(1))
+		break
+	var m := esp.membro(att)
+	var sett := int(m["settore"])
+	var nome := str(m["carta"]).get_slice(" ", 0)
+	var cons := ""
+	var icone: Array = esp.icone_settore(pl, sett, _carte_pdi())
+	var azs := _azioni_settore(sett)
+	if esp.dadi_disponibili(att).is_empty() and int(esp.s["azioni"]) > 0:
+		cons = "%s non ha dadi: RIPOSO ne ricarica metà." % nome
+	elif "noMovement" in icone and not azs.is_empty():
+		cons = "Da qui non si viaggia: usa l'Azione Speciale %s per aprirti la strada." % Carte.t(azs[0]["azione"].get("nome", "")).to_upper()
+	elif dest > 0 and sett == dest and regroup:
+		var qui := esp.vivi().filter(func(i): return int(esp.membro(i)["settore"]) == dest).size()
+		cons = "%s è nel Settore %d (%d di %d Membri)." % [nome, dest, qui, esp.vivi().size()]
+	elif dest > 0 and sett == dest and sugg != "":
+		cons = "Suggerimento della Missione: " + sugg + (" (pulsante MISSIONE)" if sugg.to_lower().contains("annotazione") else "")
+	elif dest > 0 and sett == dest:
+		cons = ("Sei nel Settore %d: prova l'Azione Speciale %s, oppure cerca altrove il modo di andare avanti." % [dest, Carte.t(azs[0]["azione"].get("nome", "")).to_upper()]) if not azs.is_empty() else "Sei nel Settore %d: qui non c'è un'Azione Speciale, cerca altrove il modo di andare avanti." % dest
+	elif dest > 0:
+		# un'Azione Speciale che porta proprio là?
+		for a in azs:
+			if JSON.stringify(a["azione"]).contains("Sector %d" % dest):
+				cons = "L'Azione Speciale %s porta nel Settore %d." % [Carte.t(a["azione"].get("nome", "")).to_upper(), dest]
+		if cons == "":
+			var via := _prossimo_passo(sett, dest)
+			if via > 0:
+				cons = "Per il Settore %d: VIAGGIO verso il Settore %d." % [dest, via]
+			else:
+				var vicini := esp.sentieri_movimento(pl, sett).map(func(x): return str(int(x["a"])))
+				cons = "Il Settore %d non è collegato da qui: esplora %s (alcune carte spostano i Membri)." % [dest, ("il Settore " + " o ".join(vicini)) if not vicini.is_empty() else "con l'Azione Speciale"]
+	if cons.length() > 170:
+		cons = cons.substr(0, 165) + "…"
+	return (testo_m + ("   [color=#5be39b]▸ %s[/color]" % cons if cons != "" else "")) if testo_m != "" else ("[color=#5be39b]▸ %s[/color]" % cons if cons != "" else "")
+
+## Primo settore da raggiungere per andare da "da" ad "a" seguendo i sentieri (0 se non ci si arriva).
+func _prossimo_passo(da: int, a: int) -> int:
+	var padre := {da: 0}
+	var coda := [da]
+	while not coda.is_empty():
+		var x: int = coda.pop_front()
+		if x == a:
+			var cur := a
+			while int(padre[cur]) != da:
+				cur = int(padre[cur])
+			return cur
+		if x != da and "noMovement" in esp.icone_settore(pl, x, _carte_pdi()):
+			continue
+		for st in esp.sentieri_movimento(pl, x):
+			var y := int(st["a"])
+			if not padre.has(y):
+				padre[y] = x
+				coda.append(y)
+	return 0
 
 func _voce_menu(id: int) -> void:
 	if id == 0:
@@ -1648,9 +1731,14 @@ func _sezione_condizione() -> void:
 		if mi.is_empty():
 			_testo(str(id), 15)
 			continue
-		_testo("[b]%s[/b]\n%s\n[color=#9fbbd6]%s[/color]" % [Carte.titolo(mi), Dati.testo_carta(Carte.t(mi.get("obiettivo", "")), 20), Dati.testo_carta(Carte.t(mi.get("completamento", "")), 20)], 15)
+		var sug_m := Carte.t(mi.get("suggerimento", ""))
+		_testo("[b]%s[/b]\n%s%s\n[color=#9fbbd6]%s[/color]" % [Carte.titolo(mi), Dati.testo_carta(Carte.t(mi.get("obiettivo", "")), 20), ("\n[color=#5be39b]Suggerimento: %s[/color]" % Dati.testo_carta(sug_m, 20)) if sug_m != "" else "", Dati.testo_carta(Carte.t(mi.get("completamento", "")), 20)], 15)
 		var idd := str(id)
 		var hb := HBoxContainer.new()
+		var m_aiuto := RegEx.create_from_string("(?i)annotazione (\\d+)").search(sug_m)
+		if m_aiuto:
+			var n_aiuto := int(m_aiuto.get_string(1))
+			hb.add_child(Tema.pulsante("BLOCCATI? ANN. %d" % n_aiuto, func(): _apri_log(n_aiuto), 12))
 		hb.add_child(Tema.pulsante("VEDI", func(): _mostra_carta(str(mi.get("file", "")), Carte.titolo(mi)), 12))
 		for opz in RegEx.create_from_string("•\\s*([^•]+?)to go to log (\\d+)").search_all(Carte.en(mi.get("completamento", ""))):
 			var cond := opz.get_string(1).strip_edges()
@@ -2262,7 +2350,13 @@ func _rivela_arrivo(n: int, logs: Array) -> void:
 	_sel = n
 	apri_cassetto("settore")
 	var c := _carta_pdi(n)
-	avviso("Settore %d: %s" % [n, Carte.titolo(c) if not c.is_empty() else "nessuna carta"])
+	var tit := Carte.titolo(c) if not c.is_empty() else ""
+	if tit == "":
+		for x in pl.get("settori", []):
+			if int(x.get("n", 0)) == n and x.get("stampato") is Dictionary:
+				tit = Carte.t(x["stampato"].get("titolo", ""))
+	var azs := _azioni_settore(n)
+	avviso("Settore %d: %s%s" % [n, tit if tit != "" else "nessuna carta", (" — Azione Speciale: " + ", ".join(azs.map(func(a): return Carte.t(a["azione"].get("nome", "")).to_upper()))) if not azs.is_empty() else ""])
 
 func _muovi(chi: int, a: int, logs: Array) -> void:
 	esp.viaggia(chi, a)
@@ -3869,6 +3963,10 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			elif quale in esp.s["missioni"]:
 				esp.s["missioni"].erase(quale)
 				esp.diario("Missione %s completata e scartata" % quale)
+				# tutorial: con la squadra riunita (M01 completata) cominciano le carte Evento (Annotazione 298)
+				if quale == "M01" and esp.s.get("eventi_sospesi", false):
+					esp.s["eventi_sospesi"] = false
+					fatti.append("Da ora, a fine turno si pescano le carte Evento")
 				fatti.append("Missione %s (%s) scartata" % [quale, Carte.titolo(Carte.per_id(quale))])
 			else:
 				fatti.append("La Missione %s non è in gioco" % quale)

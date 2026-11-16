@@ -1187,7 +1187,7 @@ func _riquadro_azione() -> Control:
 	for s in azione.get("speciali", []):
 		righe.append("[b]Speciale:[/b] %s = %s" % [_req(str(s.get("req", ""))), _eff(s.get("effetto", ""))])
 	for e in azione.get("esiti", []):
-		righe.append("[color=%s]■[/color] %s → %s" % [_col(str(e.get("colore", ""))), _req(str(e.get("req", ""))) if str(e.get("req", "")) != "" else "(sempre)", Dati.testo_carta(str(e.get("it", ""))) ])
+		righe.append("[color=%s]■[/color] %s → %s" % [_col(str(e.get("colore", ""))), _req(str(e.get("req", ""))) if str(e.get("req", "")) != "" else "(se nessun altro esito)", Dati.testo_carta(str(e.get("it", ""))) ])
 	for t in azione.get("tracce", []):
 		var k := "%s#%s" % [chiave_tracce, str(t.get("colore", ""))]
 		righe.append("[color=%s]▶[/color] Traccia %d/%d → %s" % [_col(str(t.get("colore", ""))), esp.traccia(k, settore), int(t.get("caselle", 1)), Dati.testo_carta(str(t.get("it", "")))])
