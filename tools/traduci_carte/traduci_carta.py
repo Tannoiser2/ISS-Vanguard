@@ -25,7 +25,8 @@ F = {
     "corsivo": QUI + "/font/exo-2-latin-400-italic.ttf",
 }
 # riquadri fissi per categoria (frazioni della carta), usati quando l'OCR non riesce a leggere
-MODELLI = {"reparto": {"titolo": (0.47, 0.25, 0.52, 0.22, "d")}}
+MODELLI = {"reparto": {"titolo": (0.47, 0.25, 0.52, 0.22, "d")},
+           "pdi": {"titolo": (0.01, 0.015, 0.63, 0.075, "s")}}
 # riquadri misurati a mano (frazioni della carta) dove l'OCR sbaglia; la chiave è il file o la cartella,
 # poi "titolo" o l'inizio del testo inglese: (x, y, w, h, allineamento s/c/d, righe, chiaro)
 CORREZIONI = json.load(open(QUI + "/correzioni.json")) if os.path.exists(QUI + "/correzioni.json") else {}
@@ -45,47 +46,52 @@ def norm(w):
 # ------------------------------------------------------------------ campi da tradurre
 
 def campi(c):
-    """[(en, it, stile)] dei testi stampati sulla carta."""
+    """[(en, it, stile)] di tutti i testi stampati sulla carta: ogni oggetto {en, it} dei dati, ovunque sia;
+    lo stile dipende dal nome del campo."""
     out = []
-    def t(o, stile, campo=None):
-        if isinstance(o, dict) and o.get("en"):
-            out.append((o["en"], o.get("it", ""), stile))
-    t(c.get("titolo"), "titolo")
-    t(c.get("testo_colore"), "corsivo")
-    for k in ("obiettivo", "suggerimento", "completamento"):
-        if isinstance(c.get(k), dict):
-            lab = {"obiettivo": "OBJECTIVE:", "suggerimento": "HINT:", "completamento": "COMPLETION:"}[k]
-            out.append((lab + " " + c[k]["en"], ETICHETTE[lab] + " " + c[k].get("it", ""), "etichetta"))
-    t(c.get("principale"), "testo")
-    if isinstance(c.get("testo"), dict) and c["testo"].get("en"):
-        en_t = re.split(r"\s*Rank requirement:", c["testo"]["en"])[0]
-        it_t = re.split(r"\s*Requisito di grado:", c["testo"].get("it", ""))[0]
-        out.append((en_t, it_t, "prefisso"))
-    t(c.get("secondario"), "testo")
-    if isinstance(c.get("tempo"), dict):
-        t(c["tempo"], "testo")
-    t(c.get("effetto"), "prefisso")
-    if isinstance(c.get("combo"), dict):
-        t(c["combo"], "testo")
-    if isinstance(c.get("regole"), dict):
-        for en, it in zip(c["regole"]["en"].split("\n"), c["regole"].get("it", "").split("\n")):
-            out.append((en, it, "prefisso"))
-    if isinstance(c.get("viaggio"), dict):
-        v = c["viaggio"]
-        t(v.get("nome"), "titolo")
-        for e in v.get("esiti", []):
-            out.append((e["en"], e.get("it", ""), "testo"))
-    if isinstance(c.get("tempo"), list):
-        for x in c["tempo"]:
-            out.append((x["en"], x.get("it", ""), "piccolo"))
-    for a in c.get("azioni", []) or []:
-        t(a.get("nome"), "titolo")
-        for e in a.get("esiti", []):
-            out.append((e["en"], e.get("it", ""), "testo"))
-        for tr in a.get("tracce", []) or []:
-            if tr.get("en"):
-                out.append((tr["en"], tr.get("it", ""), "testo"))
-    return [x for x in out if x[0].strip() and x[1].strip()]
+    etich = {"obiettivo": "OBJECTIVE:", "suggerimento": "HINT:", "completamento": "COMPLETION:"}
+
+    def giro(o, chiave, in_azione):
+        if isinstance(o, list):
+            for v in o:
+                giro(v, chiave, in_azione)
+            return
+        if not isinstance(o, dict):
+            return
+        en, it = o.get("en"), o.get("it", "")
+        if isinstance(en, str) and en.strip() and isinstance(it, str) and it.strip():
+            if chiave in etich:
+                out.append((etich[chiave] + " " + en, ETICHETTE[etich[chiave]] + " " + it, "etichetta"))
+            elif chiave == "regole":
+                for e1, i1 in zip(en.split("\n"), it.split("\n")):
+                    out.append((e1, i1, "prefisso"))
+            elif chiave == "titolo" or (chiave == "nome" and in_azione):
+                out.append((en, it, "titolo"))
+            elif chiave == "testo_colore":
+                out.append((en, it, "corsivo"))
+            elif chiave == "tempo" and in_azione == "lista_tempo":
+                out.append((en, it, "piccolo"))
+            elif chiave in ("effetto", "testo"):
+                en = re.split(r"\s*Rank requirement:", en)[0]
+                it = re.split(r"\s*Requisito di grado:", it)[0]
+                out.append((en, it, "prefisso"))
+            else:
+                out.append((en, it, "testo"))
+        for k, v in o.items():
+            if k in ("en", "it", "campi"):
+                continue
+            giro(v, k, in_azione or k in ("azioni", "viaggio"))
+    for k, v in c.items():
+        if k == "tempo" and isinstance(v, list):
+            giro(v, "tempo", "lista_tempo")
+        elif k not in ("campi",):
+            giro(v, k, k in ("azioni", "viaggio"))
+    visti, finali = set(), []
+    for x in out:
+        if x[0].strip() and x[1].strip() and x[0] not in visti:
+            visti.add(x[0])
+            finali.append(x)
+    return finali
 
 
 # ------------------------------------------------------------------ OCR
@@ -273,7 +279,7 @@ def adatta(it, stile, w, h, n_righe_orig, corpo, passo, extra_x=0, extra_y=0):
     """Corpo e impaginazione: si parte dal corpo dell'originale; prima si stringe l'interlinea, poi si
     usa lo spazio libero intorno, e solo alla fine si riduce il corpo."""
     pz = pezzi(it, stile)
-    il0 = passo / corpo if n_righe_orig > 1 else 1.22
+    il0 = max(1.08, passo / corpo) if n_righe_orig > 1 else 1.22
     size = int(corpo)
     while size > 8:
         for il in (il0, min(il0, 1.12), min(il0, 1.05)):
@@ -306,6 +312,7 @@ def scrivi(img, box, it, stile, col, centrato, n_righe_orig, alto_riga, destra=F
     alto = (len(righe) - 1) * size * il + size * 1.1
     yy = y + (h - alto) / 2 if alto <= h or n_righe_orig <= 1 else box[1] + size * 0.05
     chiara = sum(col) / 3 > 128
+    y_ini = yy
     for r in righe:
         lw = sum(t[2] for t in r) + sp * (len(r) - 1)
         xx = x + (w - lw) / 2 if centrato else (x + w - lw if destra else x)
@@ -322,9 +329,18 @@ def scrivi(img, box, it, stile, col, centrato, n_righe_orig, alto_riga, destra=F
     if cx < 1:
         livello = img.resize(dest.size, Image.LANCZOS)
         dest.paste(livello, (0, 0), livello)
+    larghe = max((sum(t[2] for t in r) + sp * (len(r) - 1)) for r in righe) * cx
+    xa_ = (x * cx + (w * cx - larghe) / 2) if centrato else ((x + w) * cx - larghe if destra else x * cx)
+    return (xa_, y_ini, xa_ + larghe, y_ini + alto)
+
+
+MANCANTI = []      # campi dell'ultima carta non trovati sull'immagine
+PROBLEMI = []      # altri segnali di qualità dell'ultima carta
 
 
 def traduci(chiave, uscita, debug=False):
+    MANCANTI.clear()
+    PROBLEMI.clear()
     c = carta(chiave)
     src = Image.open(REPO + "/web/img/" + c["file"]).convert("RGB")
     ps = parole(src)
@@ -362,11 +378,15 @@ def traduci(chiave, uscita, debug=False):
             fx, fy, fw, fh, all_ = MODELLI[c["categoria"]]["titolo"]
             H, W = big.shape[:2]
             box = (int(fx * W), int(fy * H), int(fw * W), int(fh * H))
-            blocchi.append({"en": en, "it": it, "stile": stile, "box": box, "alto": box[3] / 2.2, "righe": 2,
-                            "centrato": all_ == "c", "destra": all_ == "d", "chiaro": True})
+            nr = 2 if fh > 0.15 else 1
+            blocchi.append({"en": en, "it": it, "stile": stile, "box": box, "alto": box[3] / (2.2 if nr == 2 else 1.3), "righe": nr,
+                            "centrato": all_ == "c", "destra": all_ == "d", "chiaro": True, "corpo": box[3] / nr * 0.8, "passo": box[3] / nr,
+                            "extra_x": 0, "extra_y": 0, "fisso": True})
             continue
         if g is None:
             print("  non trovato:", en[:60])
+            if re.sub(r"\[\w+\]|\W", "", en):
+                MANCANTI.append(en)
             continue
         usate |= set(g)
         xs = [ps[i]["b"] for i in g]
@@ -486,10 +506,10 @@ def traduci(chiave, uscita, debug=False):
                         "corpo": corpo, "passo": passo, "extra_x": dx, "extra_y": dy, "azione": stile == "titolo" and en != (c.get("titolo") or {}).get("en")})
     for _giro in range(3):
         for i, p in enumerate(ps):
-            if i in usate or p["c"] < 80 or not re.match(r"^[A-Za-z0-9]", p["t"]) or len(re.sub(r"\W", "", p["t"])) < 2:
+            if i in usate or p["c"] < 70 or not re.match(r"^[A-Za-z0-9]", p["t"]) or len(re.sub(r"\W", "", p["t"])) < 2:
                 continue
             b = p["b"]
-            if re.sub(r"\W", "", p["t"]).isupper() and len(re.sub(r"\W", "", p["t"])) >= 3:
+            if re.sub(r"\W", "", p["t"]).isalpha() and re.sub(r"\W", "", p["t"]).isupper() and len(re.sub(r"\W", "", p["t"])) >= 3:
                 continue
             if any(b[0] < o["box"][0] + o["box"][2] and o["box"][0] < b[0] + b[2] and b[1] < o["box"][1] + o["box"][3] and o["box"][1] < b[1] + b[3] for o in blocchi):
                 continue
@@ -548,6 +568,9 @@ def traduci(chiave, uscita, debug=False):
         manca = int(lw - (w - b["alto"] * 0.25))
         if manca <= 0:
             continue
+        if manca > min(w * 0.35, x - big.shape[1] * 0.02):
+            manca = int(max(0, min(w * 0.35, x - big.shape[1] * 0.02)))
+            size, il, righe, fonts, sp, _, _ = adatta(b["it"], "titolo", w + manca - b["alto"] * 0.25, h, 1, b["corpo"], b["passo"])
         # la striscia di icone a sinistra del titolo: colonne con pixel chiari o colorati, fino a un vuoto
         band = orig[y:y + h].astype(int)
         acceso = (band.min(axis=2) > 175) | ((band[..., 0] > 170) & (band[..., 1] > 125) & (band[..., 2] < 110))
@@ -557,7 +580,8 @@ def traduci(chiave, uscita, debug=False):
             xa -= 1
             vuoto = 0 if col_on[xa] else vuoto + 1
         xa += vuoto
-        if x - xa > b["alto"] * 0.5:
+        manca = min(manca, xa)
+        if x - xa > b["alto"] * 0.5 and manca > 0:
             sposta.append((xa, y, x - xa, h, manca))
         b["box"] = (x - manca, y, w + manca, h)
         b["adattato"] = (size, il, righe, fonts, sp, w + manca, h)
@@ -582,10 +606,26 @@ def traduci(chiave, uscita, debug=False):
         big[y:y + h, xa - manca:xa - manca + ws] = (reg * mm + dst * (1 - mm)).astype(np.uint8)
     img = Image.fromarray(big)
     for b in blocchi:
-        scrivi(img, b["box"], b["it"], b["stile"], b["col"], b["centrato"], b["righe"], b["alto"], b.get("destra", False),
+        b["rect"] = scrivi(img, b["box"], b["it"], b["stile"], b["col"], b["centrato"], b["righe"], b["alto"], b.get("destra", False),
                b.get("corpo"), b.get("passo"), b.get("extra_x", 0), b.get("extra_y", 0), b.get("adattato"))
         if debug:
             ImageDraw.Draw(img).rectangle([b["box"][0], b["box"][1], b["box"][0] + b["box"][2], b["box"][1] + b["box"][3]], outline=(255, 0, 255), width=3)
+    # testi che finiscono uno sopra l'altro, o fuori dalla carta
+    W_, H_ = img.size
+    for i_, a_ in enumerate(blocchi):
+        ra = a_.get("rect")
+        if not ra:
+            continue
+        if ra[0] < -5 or ra[2] > W_ + 5 or ra[1] < -5 or ra[3] > H_ + 5:
+            PROBLEMI.append("fuori dalla carta: " + a_["it"][:30])
+        for b_ in blocchi[i_ + 1:]:
+            rb = b_.get("rect")
+            if not rb:
+                continue
+            ix = min(ra[2], rb[2]) - max(ra[0], rb[0])
+            iy = min(ra[3], rb[3]) - max(ra[1], rb[1])
+            if ix > 0 and iy > 0 and ix * iy > 0.08 * min((ra[2] - ra[0]) * (ra[3] - ra[1]), (rb[2] - rb[0]) * (rb[3] - rb[1])):
+                PROBLEMI.append("sovrapposti: %s / %s" % (a_["it"][:20], b_["it"][:20]))
     img = img.resize((src.width * 2, src.height * 2), Image.LANCZOS)
     img.save(uscita)
     return blocchi
