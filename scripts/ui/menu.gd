@@ -57,6 +57,14 @@ void fragment(){
 	sx.add_child(_largo(Tema.pulsante("RIPRENDI CON UN CODICE", _codice, 18)))
 	sx.add_child(_largo(Tema.pulsante("CARICA DA UN FILE", _carica_file, 18)))
 	sx.add_child(_largo(Tema.pulsante("REGOLAMENTO", _regole, 18)))
+	var lingua: Button = Tema.pulsante("", Callable(), 18)
+	var testo_lingua := func(): lingua.text = "CARTE: " + ("ITALIANO" if Immagini.carte_italiane else "INGLESE ORIGINALE")
+	testo_lingua.call()
+	lingua.tooltip_text = "Le carte tradotte in italiano con la grafica originale (%d per ora, le altre restano in inglese)" % Immagini.quante_italiane()
+	lingua.pressed.connect(func():
+		Immagini.imposta_italiano(not Immagini.carte_italiane)
+		testo_lingua.call())
+	sx.add_child(_largo(lingua))
 	if not OS.has_feature("web"):
 		sx.add_child(_largo(Tema.pulsante("ESCI", func(): get_tree().quit(), 18)))
 	_stato = Label.new()

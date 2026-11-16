@@ -4,7 +4,16 @@
 ## - nella versione web: richiesta HTTP all'indirizzo della pagina (img/...)
 ## - nell'editor o in una copia locale del progetto: lettura diretta da res://web/img
 ## - in un eseguibile esportato senza la cartella: scaricate dal sito pubblicato
+## Le carte tradotte in italiano (stessa grafica, testo italiano) stanno in web/img/it/ con lo stesso
+## percorso dell'originale; data/carte_it.json le elenca. Se la preferenza è attiva si usano quelle.
 extends Node
+
+const PREFERENZE := "user://preferenze.cfg"
+signal lingua_cambiata
+
+## true: carte in italiano dove esistono; false: sempre le originali inglesi.
+var carte_italiane := true
+var _it := {}
 
 const SITO := "https://tannoiser2.github.io/ISS-Vanguard/"
 const MAX_PARALLELE := 12
@@ -19,6 +28,15 @@ var _base := ""
 var _locale := ""
 
 func _ready() -> void:
+	var f := FileAccess.open("res://data/carte_it.json", FileAccess.READ)
+	if f:
+		var lista = JSON.parse_string(f.get_as_text())
+		if lista is Array:
+			for r in lista:
+				_it[str(r)] = true
+	var c := ConfigFile.new()
+	if c.load(PREFERENZE) == OK:
+		carte_italiane = bool(c.get_value("carte", "italiano", true))
 	if OS.has_feature("web"):
 		var href = JavaScriptBridge.eval("location.href.split('?')[0].split('#')[0]")
 		_base = str(href).get_base_dir() + "/"
@@ -28,14 +46,33 @@ func _ready() -> void:
 			_locale = p + "/"
 		_base = SITO
 
+## Quante carte esistono in versione italiana.
+func quante_italiane() -> int:
+	return _it.size()
+
+func imposta_italiano(si: bool) -> void:
+	carte_italiane = si
+	var c := ConfigFile.new()
+	c.load(PREFERENZE)
+	c.set_value("carte", "italiano", si)
+	c.save(PREFERENZE)
+	lingua_cambiata.emit()
+
+## Il file da caricare davvero: la versione italiana se c'è e se è scelta.
+func scelta(rel: String) -> String:
+	if carte_italiane and _it.has(rel):
+		return "it/" + rel
+	return rel
+
 ## Texture già in memoria (oppure null).
 func subito(rel: String) -> Texture2D:
-	return _cache.get(rel)
+	return _cache.get(scelta(rel))
 
 ## Chiede un'immagine: cb(tex) viene chiamata appena è pronta (anche subito se già in memoria).
 func carica(rel: String, cb: Callable) -> void:
 	if rel == "":
 		return
+	rel = scelta(rel)
 	if _cache.has(rel):
 		cb.call(_cache[rel])
 		return
@@ -52,6 +89,7 @@ func carica(rel: String, cb: Callable) -> void:
 
 ## Versione con await.
 func attendi(rel: String) -> Texture2D:
+	rel = scelta(rel)
 	if _cache.has(rel):
 		return _cache[rel]
 	var out: Array = [null, false]
