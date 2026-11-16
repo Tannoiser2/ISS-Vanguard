@@ -240,36 +240,162 @@ static func _ni(s: String) -> int:
 	s = s.strip_edges().to_lower()
 	return int(s) if s.is_valid_int() else int(NUMERI_IT.get(s, 1))
 
+## Frasi delle istruzioni che non chiedono di fare nulla sul tavolo.
+const FRASI_VUOTE := ["questa annotazione si conclude", "continua la partita", "continua a giocare", "continuate a giocare", "dai inizio alla gestione della nave",
+	"esegui la procedura", "non puoi scegliere questa opzione", "ma non oltre l'ultima casella", "hai fatto un ottimo lavoro", "congratulazioni",
+	"devi leggere questa annotazione", "leggi la carta missione", "questo dar", "questo dà inizio", "hai completato", "in caso contrario, sostituisci con essi",
+	"leggi la relativa carta minaccia", "prosegui", "e spostala in “scoperte raccolte", "se non sono già presenti, prendil", "se non è già presente, prendil"]
+
+## Dal testo rimasto dopo le regole ("resto" di analizza_it) alle frasi che il giocatore deve ancora
+## eseguire a mano: senza promemoria, suggerimenti e frasi di contorno.
+static func residuo_it(resto: String, carte_nave := false) -> Array:
+	var out := []
+	for parte in RegEx.create_from_string("¦|[•●»]|(?<=[.!])\\s|\\s[–-]\\s").sub(resto, "§", true).split("§"):
+		var p := str(parte).strip_edges()
+		p = RegEx.create_from_string("^[\\s.,;:!)+]+|[\\s.,;:(]+$").sub(p, "", true)
+		var pl := p.to_lower()
+		if RegEx.create_from_string("[a-zà-ú]{3}").search_all(pl).size() < 2:
+			continue
+		if RegEx.create_from_string("^(promemoria|suggerimento|nota|hint|attenzione|importante|in seguito$|altrimenti$|e$|poi$|inoltre$)").search(pl):
+			continue
+		if FRASI_VUOTE.any(func(x): return pl.contains(x)):
+			continue
+		if carte_nave and RegEx.create_from_string("^(sposta|prendi|rimuovi) (la|le) cart").search(pl):
+			continue
+		# solo le frasi che chiedono di fare qualcosa: il racconto non è un'istruzione
+		if not RegEx.create_from_string("\\b(posizion|spost|scart|rimuov|ripon|sostitu|ottien|perd[ie]|tira|pesca|ricaric|gira|trova|prendi|mett[ie]|aggiung|mescol|avanza|resett|incaric|contrassegn|segna|apri|scegli|riport|subisc|muo[ir]|uccis|promoss|alza|abbassa|riduc|aument|spend|sacrific|rivela|scopri|assicurati|ripeti|risolv)|\\[\\w+\\]").search(pl):
+			continue
+		out.append(p)
+	return out
+
+## Toglie dal testo delle istruzioni quello che confonde le regole: i nomi fra parentesi dopo i codici
+## delle carte ("P434 (Getto di Plasma Deviato)"), "carta PDI", "a faccia in su", gli spazi mancanti.
+static func pulisci_it(t: String) -> String:
+	t = RegEx.create_from_string("\\s+").sub(t, " ", true)
+	t = RegEx.create_from_string("(?i)\\b([PMG]\\d{2,3})(?:/b)?\\)?\\s*\\([^)]*\\)\\)?").sub(t, "$1", true)
+	t = RegEx.create_from_string("(?i)\\b(carta|carte) pdi\\b").sub(t, "$1", true)
+	t = RegEx.create_from_string("(?i)\\bil pdi (P\\d{3})").sub(t, "la carta $1", true)
+	t = RegEx.create_from_string("(?i) a faccia in su").sub(t, "", true)
+	t = RegEx.create_from_string("(?i)\\bsettore(\\d)").sub(t, "settore $1", true)
+	t = RegEx.create_from_string("(?i)\\bcarta(P\\d{3})").sub(t, "carta $1", true)
+	t = RegEx.create_from_string("(?i)(\\d)(con|e) ").sub(t, "$1 $2 ", true)
+	t = RegEx.create_from_string("(?i)\\[lb\\](\\w+)\\[rb\\]").sub(t, "[$1]", true)
+	return t
+
+static func _settori_elenco(t: String) -> Array:
+	var out := []
+	var mr := RegEx.create_from_string("(\\d+)\\s*-\\s*(\\d+)").search(t)
+	if mr:
+		for k in range(int(mr.get_string(1)), int(mr.get_string(2)) + 1):
+			out.append(k)
+		return out
+	for x in RegEx.create_from_string("\\d+").search_all(t):
+		out.append(int(x.get_string(0)))
+	return out
+
+static func _filtro_it(dove: String, s1: String, s2: String) -> Dictionary:
+	if s1 != "":
+		return {"settori": [int(s1)] + ([int(s2)] if s2 != "" else [])}
+	if dove.strip_edges() != "":
+		return {"settore": "questo"}
+	return {}
+
 ## Istruzioni del Logbook in italiano -> operazioni (come analizza). Le icone sono {i:nome}.
 ## Operazioni in più: muovi_tutti, muovi_attivo, scarta_missione, minaccia, ricarica_tutti, pericolo_tutti,
 ## nave_pagina, planetopedia.
 static func analizza_it(testo: String) -> Dictionary:
 	var t := " " + RegEx.create_from_string("\\{i:(\\w+)\\}").sub(testo, "[$1]", true) + " "
 	t = RegEx.create_from_string("\\[/?[bi]\\]").sub(t, "", true).replace("\n", " ").replace("’", "'")
+	t = pulisci_it(t)
 	var N := "(\\d+|un|una|uno|due|tre|quattro|cinque|sei)"
 	var regole := [
 		["(?i)sposta tutte le scoperte dalla plancia (?:del )?lander (?:alla casella|accanto allo slot)[^.]*scoperte perdute", func(m): return {"op": "perdi_scoperte"}],
 		["(?i)prendi tutte le scoperte perdute dal relativo slot", func(m): return {"op": "recupera_perdute"}],
-		["(?i)ottien[ie] " + N + " \\[success\\]", func(m): return {"op": "successi", "n": _ni(m.get_string(1))}],
+		["(?i)ottien[ie] " + N + " ?\\[success\\]", func(m): return {"op": "successi", "n": _ni(m.get_string(1))}],
 		["(?i)(?:ottien[ie] (?:anche )?|e )la scoperta eccezionale (\\d+)", func(m): return {"op": "scoperta_eccezionale", "n": int(m.get_string(1))}],
 		["(?i)ottien[ie] " + N + " indizi[o]? (strana vegetazione|minerale|microorganismo|esemplare vivo|tecnologia aliena|flora strana)", func(m): return {"op": "indizi", "tipo": SCOPERTE_IT[m.get_string(2).to_lower()], "n": _ni(m.get_string(1))}],
 		["(?i)ottien[ie] " + N + " scopert[ae] (strana vegetazione|minerale|microorganismo|esemplare vivo|tecnologia aliena|flora strana)", func(m): return {"op": "scoperta", "tipo": SCOPERTE_IT[m.get_string(2).to_lower()], "n": _ni(m.get_string(1))}],
 		["(?i)ottien[ie] " + N + " provvist[ae]", func(m): return {"op": "provviste", "n": _ni(m.get_string(1))}],
 		["(?i)perd[ie] " + N + " provvist[ae](?! meno)", func(m): return {"op": "provviste", "n": -_ni(m.get_string(1))}],
-		["(?i)sostituisci (?:il pdi|la carta|questa carta(?: pdi)?|eventuali carte|la carta pdi) (?:in questo settore |nel tuo settore )?con la carta (P\\d{3})", func(m): return {"op": "sostituisci_pdi", "carta": m.get_string(1).to_upper()}],
-		["(?i)sostituisci (?:il pdi|la carta|eventuali carte|la carta pdi) nel settore (\\d+) con la carta (P\\d{3})", func(m): return {"op": "piazza_pdi", "carta": m.get_string(2).to_upper(), "settore": int(m.get_string(1))}],
-		["(?i)posiziona la carta (P\\d{3})[^.•]{0,40}? sopra (?:a |alle )?(?:qualsiasi |altre |eventuali )*(?:altra )?carte?(?: presente| presenti)? (?:in questo settore|nel tuo settore|nel settore (\\d+))", func(m): return {"op": "pdi_sopra", "carta": m.get_string(1).to_upper(), "settore": int(m.get_string(2)) if m.get_string(2) != "" else 0}],
-		["(?i)posiziona la carta (P\\d{3})(?![^.•]{0,40}?sopra)[^.•]{0,40}? nel settore (\\d+)", func(m): return {"op": "piazza_pdi", "carta": m.get_string(1).to_upper(), "settore": int(m.get_string(2))}],
-		["(?i)posiziona la carta (P\\d{3})(?:\\s*\\([^)]*\\))?\\s*(?:in questo settore|nel tuo settore)(,? se non si trova già lì)?", func(m): return {"op": "sostituisci_pdi", "carta": m.get_string(1).to_upper(), "se_assente": m.get_string(2) != ""}],
-		["(?i)sostituisci (?:questo pdi|il tuo pdi|la carta nel tuo settore|la carta in questo settore|il pdi in questo settore)?\\s*con (?:la carta )?(P\\d{3})", func(m): return {"op": "sostituisci_pdi", "carta": m.get_string(1).to_upper()}],
-		["(?i)scarta la carta (P\\d{3}) da questo settore", func(m): return {"op": "scarta_pdi", "carta": m.get_string(1).to_upper()}],
-		["(?i)scarta la (?:carta )?missione (M\\d+)", func(m): return {"op": "scarta_missione", "carta": m.get_string(1).to_upper()}],
+		# --- carte PDI (il testo è già ripulito: niente "(nome)", "carta PDI" -> "carta", "a faccia in su" tolto)
+		["(?i)se la carta (P\\d{3}) si trova nel settore (\\d+), scartala", func(m): return {"op": "scarta_pdi", "carta": m.get_string(1).to_upper(), "settore": int(m.get_string(2))}],
+		["(?i)se la carta (P\\d{3}) si trova nel settore (\\d+), scarta la carta P\\d{3}", func(m): return {"op": "scarta_pdi", "carta": m.get_string(1).to_upper(), "settore": int(m.get_string(2))}],
+		["(?i)se la carta (P\\d{3}) si trova nel settore (\\d+), sostituiscila con la carta (P\\d{3})", func(m): return {"op": "pdi_cambia", "vecchie": [m.get_string(1).to_upper()], "carta": m.get_string(3).to_upper(), "settore": int(m.get_string(2))}],
+		["(?i)se la carta (P\\d{3})\\)?(?: oppure (P\\d{3}))? è (?:già )?presente sulla plancia pianeta, sostituiscila con la carta (P\\d{3})", func(m): return {"op": "pdi_cambia", "vecchie": [m.get_string(1).to_upper()] + ([m.get_string(2).to_upper()] if m.get_string(2) != "" else []), "carta": m.get_string(3).to_upper(), "settore": 0}],
+		["(?i)se la carta (P\\d{3}) non si trova nel settore (\\d+), posizionala lì", func(m): return {"op": "piazza_pdi", "carta": m.get_string(1).to_upper(), "settore": int(m.get_string(2)), "se_assente": true}],
+		["(?i)assicurati che (?:il pdi|la carta) (P\\d{3}) si trovi nel settore (\\d+) e (?:il pdi|la carta) (P\\d{3}) si trovi nel settore (\\d+)(?:\\W+in caso contrario, sostituisci con essi i pdi lì present[ei]?)?", func(m): return {"op": "multi", "ops": [
+			{"op": "piazza_pdi", "carta": m.get_string(1).to_upper(), "settore": int(m.get_string(2)), "se_assente": true},
+			{"op": "piazza_pdi", "carta": m.get_string(3).to_upper(), "settore": int(m.get_string(4)), "se_assente": true}]}],
+		["(?i)trova tutte e (?:tre|due|quattro|\\d+) le carte (P\\d{3}), mescolale e posizionale nel settore (\\d+)", func(m): return {"op": "pila_pdi", "carta": m.get_string(1).to_upper(), "settore": int(m.get_string(2))}],
+		["(?i)trova tutte e (?:tre|due|quattro|\\d+) le carte (P\\d{3})\\W+posizionane una qualsiasi in questo settore", func(m): return {"op": "sostituisci_pdi", "carta": m.get_string(1).to_upper(), "casuale": true}],
+		["(?i)rimuovi questa carta dal gioco e sostituiscila con un'altra carta (P\\d{3})(?: casuale)?(?:\\W+se non ci sono più carte P\\d{3}, sostituisci questa carta con la carta (P\\d{3}))?", func(m): return {"op": "sostituisci_pdi", "carta": m.get_string(1).to_upper(), "casuale": true, "rimuovi": true, "altrimenti": m.get_string(2).to_upper()}],
+		["(?i)posiziona (?:la carta |una carta |il pdi |questo pdi )?(P\\d{3})( casuale)? (?:sopra|in cima|in fondo)(?: a| alle| ad)? (?:qualsiasi |qualunque |altre |eventuali |le altre )*(?:altr[ae] )?(?:cart[ae]|questo pdi)(?: pdi)?(?: present[ei])? ?(?:in questo settore|nel tuo settore|nel settore (\\d+))?", func(m): return {"op": "pdi_sopra", "carta": m.get_string(1).to_upper(), "casuale": m.get_string(2) != "", "settore": int(m.get_string(3)) if m.get_string(3) != "" else 0}],
+		["(?i)sostituisci la carta (P\\d{3})(?:/b)? (?:nel tuo settore |in questo settore |nel settore (\\d+) )?con (?:la carta )?(P\\d{3})", func(m): return {"op": "pdi_cambia", "vecchie": [m.get_string(1).to_upper()], "carta": m.get_string(3).to_upper(), "settore": int(m.get_string(2)) if m.get_string(2) != "" else 0, "qui": true}],
+		["(?i)sostituisc[ia] (?:il pdi|la carta|una carta|eventuali carte|il tuo pdi|questo pdi|questa carta|la)?(?: present[ei])? ?(?:in questo settore |nel tuo settore )?co[nl] (?:la carta |il pdi |una carta |un'altra carta )?(P\\d{3})( casuale)?", func(m): return {"op": "sostituisci_pdi", "carta": m.get_string(1).to_upper(), "casuale": m.get_string(2) != ""}],
+		["(?i)sostituisci (?:il pdi|la carta|una carta|eventuali carte)(?: present[ei])? nel settore (\\d+) ?(?:e nel settore (\\d+) )?co[nl] (?:la carta |il pdi |una carta )?(P\\d{3})( casuale)?(?: e nel settore (\\d+) con la carta (P\\d{3}))?", func(m):
+			var ops := [{"op": "piazza_pdi", "carta": m.get_string(3).to_upper(), "settore": int(m.get_string(1)), "casuale": m.get_string(4) != ""}]
+			if m.get_string(2) != "":
+				ops.append({"op": "piazza_pdi", "carta": m.get_string(3).to_upper(), "settore": int(m.get_string(2)), "casuale": m.get_string(4) != ""})
+			if m.get_string(5) != "":
+				ops.append({"op": "piazza_pdi", "carta": m.get_string(6).to_upper(), "settore": int(m.get_string(5))})
+			return {"op": "multi", "ops": ops}],
+		["(?i)posiziona (?:la carta |le carte |una carta |il pdi )?(P\\d{3})( casuale)? e il tuo membro dell'equipaggio nel settore (\\d+)", func(m): return {"op": "multi", "ops": [
+			{"op": "piazza_pdi", "carta": m.get_string(1).to_upper(), "settore": int(m.get_string(3)), "casuale": m.get_string(2) != ""}, {"op": "muovi_attivo", "settore": int(m.get_string(3))}]}],
+		["(?i)posiziona (?:la carta |le carte |una carta |il pdi )?(P\\d{3})( casuale)? nel settore (\\d+) e nel settore (\\d+)", func(m): return {"op": "multi", "ops": [
+			{"op": "piazza_pdi", "carta": m.get_string(1).to_upper(), "settore": int(m.get_string(3)), "casuale": true}, {"op": "piazza_pdi", "carta": m.get_string(1).to_upper(), "settore": int(m.get_string(4)), "casuale": true}]}],
+		["(?i)(?:posiziona )?(?:la carta |una carta |il pdi |ka carta )?\\b(P\\d{3})( casuale)? nel settore ?(\\d+)", func(m): return {"op": "piazza_pdi", "carta": m.get_string(1).to_upper(), "settore": int(m.get_string(3)), "casuale": m.get_string(2) != ""}],
+		["(?i)posiziona (?:la carta |una carta |il pdi )?(P\\d{3})( casuale)? (?:in questo settore|nel tuo settore)(,? se non si trova già lì)?", func(m): return {"op": "sostituisci_pdi", "carta": m.get_string(1).to_upper(), "casuale": m.get_string(2) != "", "se_assente": m.get_string(3) != ""}],
+		["(?i)(?<=\\d) e posiziona " + N + " segnaposto (?:su di essa|sul pdi nel settore \\d+)", func(m): return {"op": "segnalini_ultimo", "n": _ni(m.get_string(1))}],
+		["(?i)(?:scarta|rimuovi|riponi) (?:la carta |il pdi |le carte |eventuali carte )?(P\\d{3})(?: e (P\\d{3}))?(?: con tutti i (?:relativi )?(?:segnaposto|gettoni)(?: e i (?:segnaposto|gettoni))?)? ?(?:dal settore (\\d+)|da questo settore|dal tuo settore|dalla plancia pianeta|dal gioco|nella pila delle carte pdi|in “punti di interesse\\.?”)?", func(m):
+			var ops := [{"op": "scarta_pdi", "carta": m.get_string(1).to_upper(), "settore": int(m.get_string(3)) if m.get_string(3) != "" else 0}]
+			if m.get_string(2) != "":
+				ops.append({"op": "scarta_pdi", "carta": m.get_string(2).to_upper(), "settore": 0})
+			return {"op": "multi", "ops": ops}],
+		["(?i)scarta (?:la (?:prima )?carta|il pdi) (?:da questo settore|dal tuo settore|dal settore (\\d+))", func(m): return {"op": "scarta_pdi_cima", "settori": [int(m.get_string(1))] if m.get_string(1) != "" else []}],
+		["(?i)(?:rimuovi|scarta) (?:tutte )?le carte dai settori ((?:\\d+\\s*(?:,|e|-)?\\s*)+)", func(m): return {"op": "svuota_settori", "settori": _settori_elenco(m.get_string(1))}],
+		["(?i)scarta tutte le carte dal settore (\\d+)", func(m): return {"op": "svuota_settori", "settori": [int(m.get_string(1))]}],
+		# --- Missioni
+		["(?i)sostituisci la (?:carta )?missione (M\\d+) con la (?:carta )?missione (M\\d+)(?:\\W+leggi la carta missione M\\d+)?", func(m): return {"op": "sostituisci_missione", "vecchia": m.get_string(1).to_upper(), "carta": m.get_string(2).to_upper()}],
+		["(?i)(?:trova|prendi|scopri|rivela) (?:e scopri )?l[ae] (?:cart[ae] )?mission[ei](?: opzional[ei])? (M\\d+)(?: e (M\\d+))?(?: e posizional[ae][^.•●»]*)?", func(m): return {"op": "missioni_nuove", "carte": [m.get_string(1).to_upper()] + ([m.get_string(2).to_upper()] if m.get_string(2) != "" else [])}],
+		["(?i)posiziona la carta missione(?: opzionale)? (M\\d+)(?: (?:nello slot|accanto|sul bordo|a destra)[^.•●»]*?(?=\\.|•|●|»|$| sostituisci| posiziona| trova))?", func(m): return {"op": "missioni_nuove", "carte": [m.get_string(1).to_upper()]}],
+		["(?i)scarta le carte missione (M\\d+) e (M\\d+)(?:,? se scoperte)?", func(m): return {"op": "multi", "ops": [{"op": "scarta_missione", "carta": m.get_string(1).to_upper()}, {"op": "scarta_missione", "carta": m.get_string(2).to_upper()}]}],
+		["(?i)scarta la (?:carta )?missione(?: opzionale)? (M\\d+)", func(m): return {"op": "scarta_missione", "carta": m.get_string(1).to_upper()}],
+		["(?i)rimuovi la (?:carta )?missione (M\\d+) dal gioco", func(m): return {"op": "scarta_missione", "carta": m.get_string(1).to_upper()}],
+		["(?i)tira pericolo morire", func(m): return {"op": "pericolo", "lettera": "T", "n": 1}],
+		["(?i)(?:se )?è presente un altro membro dell'equipaggio in questo settore, potrebbe \\[spendDie\\] per aiutarti\\. in tal caso, posiziona il tuo membro dell'equipaggio e il membro dell'equipaggio che ti ha aiutato nel settore (\\d+)", func(m): return {"op": "aiuto_sposta", "settore": int(m.get_string(1))}],
+		["(?i)se ci sono delle scoperte eccezionali rimanenti sulla plancia pianeta, scarta " + N + " ?\\[success\\] \\(se ne possiedi\\) e ottieni subito le scoperte", func(m): return {"op": "eccezionali_rimaste", "n": _ni(m.get_string(1))}],
+		["(?i)scarta tutte le carte missione(?: scoperte)?(?: dalla plancia pianeta)?", func(m): return {"op": "scarta_missione", "carta": "*"}],
+		["(?i)scarta la (?:tua )?carta missione(?: attuale| corrente)?(?! (?:M\\d|insieme|in quarantena|opzionale))", func(m): return {"op": "scarta_missione", "carta": ""}],
+		# --- Condizioni Generali
+		["(?i)scarta la (?:carta )?(?:tua )?condizion[ei] general[ei] attuale e sostituiscila con (?:la carta )?(G\\d+)", func(m): return {"op": "condizione", "carta": m.get_string(1).to_upper()}],
+		["(?i)sostituisci la (?:tua )?(?:carta )?condizion[ei] general[ei](?: attuale)? con (?:la carta )?(G\\d+)", func(m): return {"op": "condizione", "carta": m.get_string(1).to_upper()}],
+		["(?i)(?:posiziona|trova) la (?:carta )?(?:condizion[ei] general[ei] )?(G\\d+)(?: e posizionala)? (?:nello|sullo) slot[^.•●»]*", func(m): return {"op": "condizione", "carta": m.get_string(1).to_upper()}],
+		["(?i)scarta la (?:carta )?condizion[ei] general[ei](?: attuale| (G\\d+))?", func(m): return {"op": "condizione", "carta": "", "solo": m.get_string(1).to_upper()}],
+		# --- Membri dell'Equipaggio
+		["(?i)posiziona il tuo membro(?: dell'equipaggio)? (?:ed eventuali membri dell'equipaggio che (?:hanno prestato|prestano|ti hanno prestato) assistenza |e il membro dell'equipaggio che ti ha aiutato )nel settore (\\d+)", func(m): return {"op": "muovi_gruppo", "settori": [int(m.get_string(1))]}],
+		["(?i)(?:posiziona|sposta)(?: nuovamente)? il tuo membro(?: dell'equipaggio)? nel settore (\\d+)", func(m): return {"op": "muovi_attivo", "settore": int(m.get_string(1))}],
+		["(?i)posiziona ciascun membro dell'equipaggio dal settore (\\d+) nel settore (\\d+)", func(m): return {"op": "muovi_da", "da": int(m.get_string(1)), "a": int(m.get_string(2))}],
+		["(?i)ciascun membro dell'equipaggio(?: che si trova)?( in questo settore| nel tuo settore| nel settore (\\d+)(?: e (\\d+))?)? (?:riporta|subisce|ottiene) ?(?:una|1) ferita (ferito|lesione grave|ustione|allo stremo|panico|congelamento|lesione|solo un graffio|niente di grave)", func(m): return {"op": "tutti", "filtro": _filtro_it(m.get_string(1), m.get_string(2), m.get_string(3)), "ops": [{"op": "ferita", "tipo": FERITE_IT.get(m.get_string(4).to_lower(), "wounded")}], "sub": {}}],
+		["(?i)ciascun membro dell'equipaggio(?: che si trova)?( in questo settore| nel tuo settore| nel settore (\\d+)(?: e (\\d+))?)? (?:" + N + " )?((?:\\[(?:spendDie|sacrifaceDie)\\]\\s*\\+?\\s*)+)(?! ?meno)", func(m): return {"op": "tutti", "filtro": _filtro_it(m.get_string(1), m.get_string(2), m.get_string(3)), "ops": [{"op": "sacrifica" if m.get_string(5).contains("sacriface") else "spendi", "n": (m.get_string(5).count("Die") if m.get_string(4) == "" else _ni(m.get_string(4))), "colore": ""}], "sub": {}}],
+		["(?i)ciascun membro dell'equipaggio(?: che si trova)?( in questo settore| nel tuo settore| nel settore (\\d+)(?: e (\\d+))?)? pesca " + N + " cart[ae] reparto", func(m): return {"op": "tutti", "filtro": _filtro_it(m.get_string(1), m.get_string(2), m.get_string(3)), "ops": [{"op": "pesca", "n": _ni(m.get_string(4))}], "sub": {}}],
+		["(?i)ciascun membro dell'equipaggio (?:che si trova )?(in questo settore|nel tuo settore|nel settore (\\d+)(?: e (\\d+))?) ricarica " + N + " ?\\[(die|redDie|blueDie|greenDie)\\]", func(m): return {"op": "tutti", "filtro": _filtro_it(" " + m.get_string(1), m.get_string(2), m.get_string(3)), "ops": [{"op": "ricarica", "n": _ni(m.get_string(4)), "colore": COLORE_DADO[m.get_string(5)]}], "sub": {}}],
+		["(?i)(?<!equipaggio )(?<!totale di )\\bricarica " + N + " ?\\[(die|redDie|blueDie|greenDie)\\]", func(m): return {"op": "ricarica", "n": _ni(m.get_string(1)), "colore": COLORE_DADO[m.get_string(2)]}],
+		["(?i)(?<!equipaggio )\\bpesca " + N + " cart[ae] reparto", func(m): return {"op": "pesca", "n": _ni(m.get_string(1))}],
+		["(?i)(?:subisci|ottieni|riporti|riporta) (?:una|1) ferita (ferito|lesione grave|lesione|ustione|allo stremo|panico|congelamento|solo un graffio|niente di grave)", func(m): return {"op": "ferita", "tipo": FERITE_IT[m.get_string(1).to_lower()]}],
+		["(?i)(?<![\\w\\]] )(?<!equipaggio )(?<!\\+ )(?<!\\+)\\[spendDie\\](?:\\s*(?:\\+|,|e)\\s*\\[spendDie\\])*(?! meno)", func(m): return {"op": "spendi", "n": m.get_string(0).count("spendDie"), "colore": ""}],
+		["(?i)(?<![\\w\\]] )(?<!equipaggio )(?<!\\+ )(?<!\\+)\\[sacrifaceDie\\](?:\\s*(?:\\+|,|e)\\s*\\[sacrifaceDie\\])*(?! meno)", func(m): return {"op": "sacrifica", "n": m.get_string(0).count("sacrifaceDie"), "colore": ""}],
+		["(?i)ottien[ie] " + N + " indizi[o]? di qualsiasi tipo", func(m): return {"op": "indizi_scelta", "n": _ni(m.get_string(1)), "tipi": []}],
+		["(?i)(?<=[\\w\\]]) e " + N + " indizi[o]? (strana vegetazione|minerale|microorganismo|esemplare vivo|tecnologia aliena|flora strana)", func(m): return {"op": "indizi", "tipo": SCOPERTE_IT[m.get_string(2).to_lower()], "n": _ni(m.get_string(1))}],
+		["(?i)(?<=[\\w\\]]) e " + N + " ?\\[success\\]", func(m): return {"op": "successi", "n": _ni(m.get_string(1))}],
+		["(?i)scarta " + N + " ?\\[success\\]", func(m): return {"op": "successi", "n": -_ni(m.get_string(1))}],
+		["(?i)gira la carta grado superiore sul lato completato", func(m): return {"op": "grado"}],
+		["(?i)(?:posiziona|metti) " + N + " segnaposto (?:universal[ei] )?(in questo settore|nel tuo settore|nel settore (\\d+))", func(m): return {"op": "segnalini_in", "n": _ni(m.get_string(1)), "settore": int(m.get_string(3)) if m.get_string(3) != "" else 0}],
+		["(?i)alza il morale", func(m): return {"op": "morale", "n": 1}],
+		["(?i)abbassa il morale", func(m): return {"op": "morale", "n": -1}],
 		["(?i)posiziona tutti i membri dell'equipaggio[^.]{0,40}? nel settore (\\d+)", func(m): return {"op": "muovi_tutti", "settore": int(m.get_string(1))}],
-		["(?i)posiziona il tuo membro(?: dell'equipaggio)? nel settore (\\d+)", func(m): return {"op": "muovi_attivo", "settore": int(m.get_string(1))}],
 		["(?i)ciascun membro dell'equipaggio ricarica " + N + " \\[(die|redDie|blueDie|greenDie)\\]", func(m): return {"op": "ricarica_tutti", "n": _ni(m.get_string(1)), "colore": COLORE_DADO[m.get_string(2)]}],
 		["(?i)ciascun membro dell'equipaggio tira \\[(dangerDie\\w*)\\]", func(m): return {"op": "pericolo_tutti", "lettera": m.get_string(1).trim_prefix("dangerDie")}],
 		["(?i)(?<!ciascun membro dell'equipaggio )tira (?:un |il )?(?:dado )?\\[(dangerDie\\w*)\\]", func(m): return {"op": "pericolo", "lettera": m.get_string(1).trim_prefix("dangerDie"), "n": 1}],
-		["(?i)(?:subisci|ottieni) una ferita (ferito|lesione grave|lesione|ustione|allo stremo|panico|congelamento|solo un graffio|niente di grave)", func(m): return {"op": "ferita", "tipo": FERITE_IT[m.get_string(1).to_lower()]}],
 		["(?i)fai avanzare tutte le tracce del tempo di " + N, func(m): return {"op": "tempo_tutte", "n": _ni(m.get_string(1))}],
 		["(?i)apri il manuale della nave a pagina (\\d+)", func(m): return {"op": "nave_pagina", "n": int(m.get_string(1))}],
 		["(?i)apri la planetopedia alle pagine (\\d+)\\s*[-–]\\s*(\\d+)", func(m): return {"op": "planetopedia", "pagina": "p.%d-%d" % [int(m.get_string(1)), int(m.get_string(2))]}],
@@ -289,16 +415,21 @@ static func analizza_it(testo: String) -> Dictionary:
 		["(?i)(?:sposta|muovi) il segnaposto (?:sul contatore dell'atterraggio )?di (\\d+) casell[ae] verso sinistra", func(m): return {"op": "atterraggio", "n": -int(m.get_string(1))}],
 		["(?i)perd[ie] " + N + " provvist[ae] meno ?\\[(landerArmor|landerSensors|landerAgility)\\]", func(m): return {"op": "provviste_meno", "n": _ni(m.get_string(1)), "stat": m.get_string(2)}],
 		["(?i)ciascun membro dell'equipaggio " + N + " \\[(sacrifaceDie|spendDie)\\] meno ?\\[(landerArmor|landerSensors|landerAgility)\\]", func(m): return {"op": "dadi_meno", "n": _ni(m.get_string(1)), "dado": m.get_string(2), "stat": m.get_string(3)}],
-		["(?i)ciascun membro dell'equipaggio (?:ottiene|subisce) una ferita (ferito|lesione grave|ustione|allo stremo|panico|congelamento|lesione|solo un graffio|niente di grave)", func(m): return {"op": "ferita_tutti", "tipo": FERITE_IT.get(m.get_string(1).to_lower(), "wounded")}],
 		["(?i)posiziona " + N + " segnaposto(?: danno)? sulla plancia lander,? meno\\.? ?\\[(landerArmor|landerSensors|landerAgility)\\]", func(m): return {"op": "danni_meno", "n": _ni(m.get_string(1)), "stat": m.get_string(2)}],
 		["(?i)tira un dado pericolo " + N + " volte,? meno ?\\[(landerArmor|landerSensors|landerAgility)\\]\\.? per ciascun \\[(common|uncommon|rare|special)\\]", func(m): return {"op": "danni_tiro", "n": _ni(m.get_string(1)), "stat": m.get_string(2), "faccia": m.get_string(3)}],
 	]
 	var trovate := []
+	# "Se …, fai X", "Altrimenti, fai X", "Puoi fare X": non si esegue da soli (resta fra le cose da fare a mano),
+	# tranne le regole che controllano loro stesse la condizione
+	var rx_cond := RegEx.create_from_string("(?i)(?:^|[.•●»¦!:]\\s*)(?:in seguito, )?(?:se|altrimenti|puoi|potete|per ciascun[oa]?|ogni volta che) [^.•●»¦!]*$")
 	for r in regole:
 		var rx := RegEx.create_from_string(r[0])
+		var libera: bool = str(r[0]).begins_with("(?i)se ") or str(r[0]).begins_with("(?i)(?:se )") or str(r[0]).contains("mission[ei](?: opzional[ei])? (M")
 		for m in rx.search_all(t):
+			if not libera and rx_cond.search(t.substr(0, m.get_start())) != null:
+				continue
 			trovate.append([m.get_start(), m.get_end(), r[1].call(m)])
-	trovate.sort_custom(func(a, b): return a[0] < b[0])
+	trovate.sort_custom(func(a, b): return a[0] < b[0] or (a[0] == b[0] and a[1] > b[1]))
 	var occ := []
 	var ops := []
 	for x in trovate:
@@ -310,4 +441,9 @@ static func analizza_it(testo: String) -> Dictionary:
 			continue
 		occ.append([x[0], x[1]])
 		ops.append(x[2])
-	return {"op": ops}
+	# testo che nessuna regola ha riconosciuto (per dire al giocatore che cosa resta da fare)
+	var resto := t
+	occ.sort_custom(func(a, b): return a[0] > b[0])
+	for o in occ:
+		resto = resto.substr(0, o[0]) + " ¦ " + resto.substr(o[1])
+	return {"op": ops, "resto": resto}

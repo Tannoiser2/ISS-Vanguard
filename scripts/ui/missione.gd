@@ -794,7 +794,7 @@ func _aggiorna_settori() -> void:
 		var st: Dictionary = esp.s["settori"].get(str(n), {})
 		var info := []
 		if int(st.get("tempo", 0)) > 0:
-			info.append("⧗%d" % int(st["tempo"]))
+			info.append("Tempo %d" % int(st["tempo"]))
 		for k in st.get("tracce", {}):
 			info.append("▶%d" % int(st["tracce"][k]))
 		for mn in esp.s["minacce"]:
@@ -1596,20 +1596,42 @@ func _scegli(titolo: String, opzioni: Array, testo := "", annullabile := true, i
 	if auto_audit:
 		await get_tree().process_frame
 		return 0 if not opzioni.is_empty() else -1
+	# senza immagine il riquadro sta nella colonna di destra, compatto: la mappa resta scoperta
+	var laterale := immagine == ""
+	var largo := 520 if laterale else 720
 	var vel := ColorRect.new()
-	vel.color = Color(0, 0.01, 0.03, 0.75)
+	vel.color = Color(0, 0.01, 0.03, 0.0 if laterale else 0.75)
 	vel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(vel)
 	var c := CenterContainer.new()
-	c.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	if laterale:
+		c.set_anchors_preset(Control.PRESET_RIGHT_WIDE)
+		c.offset_left = -FinestraProva.LARGO - 6
+		c.offset_right = -6
+		c.offset_top = ALTO_HUD + 6
+		c.offset_bottom = -ALTO_BARRA - 6
+	else:
+		c.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	vel.add_child(c)
 	var p := PanelContainer.new()
-	p.custom_minimum_size = Vector2(720, 0)
+	p.custom_minimum_size = Vector2(largo, 0)
+	p.add_theme_stylebox_override("panel", Tema.box(Color(0.02, 0.045, 0.09, 0.98), Tema.CIANO, 2, 6, 12))
 	c.add_child(p)
+	var v0 := VBoxContainer.new()
+	v0.add_theme_constant_override("separation", 8)
+	p.add_child(v0)
+	# titolo e testo scorrono se sono lunghi; i pulsanti restano sempre in vista sotto
+	var sc := ScrollContainer.new()
+	sc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	v0.add_child(sc)
 	var v := VBoxContainer.new()
+	v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	v.add_theme_constant_override("separation", 8)
-	p.add_child(v)
-	v.add_child(Tema.etichetta(titolo, 20, Tema.TESTO, true))
+	sc.add_child(v)
+	var tit := Tema.etichetta(titolo, 18, Tema.TESTO, true)
+	tit.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	tit.custom_minimum_size = Vector2(largo - 40, 0)
+	v.add_child(tit)
 	if immagine != "":
 		var tr := TextureRect.new()
 		tr.custom_minimum_size = Vector2(700, 420)
@@ -1621,22 +1643,34 @@ func _scegli(titolo: String, opzioni: Array, testo := "", annullabile := true, i
 		var r := Tema.testo_ricco(17)
 		r.fit_content = true
 		r.scroll_active = false
-		r.custom_minimum_size = Vector2(700, 0)
+		r.custom_minimum_size = Vector2(largo - 40, 0)
 		r.text = testo
 		v.add_child(r)
+	var bv := VBoxContainer.new()
+	bv.add_theme_constant_override("separation", 6)
+	v0.add_child(bv)
+	var esito := [-2]
 	for i in opzioni.size():
 		var k: int = i
 		var b := Tema.pulsante(str(opzioni[i]), func():
 			vel.queue_free()
-			_scelto.emit(k), 15)
+			esito[0] = k, 15)
 		b.alignment = HORIZONTAL_ALIGNMENT_LEFT
-		v.add_child(b)
+		b.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		b.custom_minimum_size = Vector2(largo - 40, 0)
+		bv.add_child(b)
 	if annullabile:
-		v.add_child(Tema.pulsante("ANNULLA", func():
+		bv.add_child(Tema.pulsante("ANNULLA", func():
 			vel.queue_free()
-			_scelto.emit(-1), 13))
-	var r2: int = await _scelto
-	return r2
+			esito[0] = -1, 13))
+	# l'altezza della parte che scorre: quanto serve, ma mai oltre lo spazio della colonna
+	await get_tree().process_frame
+	if is_instance_valid(sc):
+		var disponibile: float = size.y - ALTO_HUD - ALTO_BARRA - 60.0 - bv.get_combined_minimum_size().y
+		sc.custom_minimum_size.y = clampf(v.get_combined_minimum_size().y, 40.0, maxf(120.0, disponibile))
+	while esito[0] == -2:
+		await get_tree().process_frame
+	return esito[0]
 
 func _mostra_carta(rel: String, titolo: String) -> void:
 	if rel == "":
@@ -2171,9 +2205,10 @@ func _passivi(momento: String, chi: int) -> void:
 ## Entrando in un settore con un'annotazione non ancora letta, la si legge subito.
 func _entra_nel_settore(chi: int, logs: Array) -> void:
 	var st: Dictionary = esp.s["settori"].get(str(int(esp.membro(chi)["settore"])), {})
-	if int(st.get("log", 0)) > 0 and not st.get("visitato", false):
+	# l'annotazione stampata nel settore si legge ogni volta che ci si entra, finché una carta PDI non la copre
+	if int(st.get("log", 0)) > 0 and (st.get("pdi", []) as Array).is_empty():
 		st["visitato"] = true
-		if logs.is_empty() and not _occupato:
+		if logs.is_empty() and not _occupato and not _da_logbook:
 			_apri_log(int(st["log"]))
 		else:
 			logs.append(int(st["log"]))
@@ -2595,41 +2630,61 @@ var _vassoio_dadi: Dadi3D
 var _vassoio_titolo: Label
 var _vassoio_tw: Tween
 
+var _dadi_mappa: Dadi3D
+
+## I dadi 3D si lanciano sopra la mappa: un riquadro trasparente che copre la plancia fino alla colonna
+## di destra (largo_destra). Non ferma i clic: la mappa sotto resta manovrabile.
+func dadi_mappa(largo_destra := 0) -> Dadi3D:
+	if _dadi_mappa == null or not is_instance_valid(_dadi_mappa):
+		_dadi_mappa = Dadi3D.new()
+		_dadi_mappa.sulla_mappa = true
+		_dadi_mappa.custom_minimum_size = Vector2.ZERO
+		_dadi_mappa.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		_dadi_mappa.offset_top = ALTO_HUD + ALTO_TURNO
+		_dadi_mappa.offset_bottom = -ALTO_BARRA
+		add_child(_dadi_mappa)
+		move_child(_dadi_mappa, _p3d.get_index() + 1)
+	_dadi_mappa.offset_right = -largo_destra
+	_dadi_mappa.visible = true
+	return _dadi_mappa
+
 func _lancia_3d(dadi: Array, titolo: String) -> void:
 	if not FinestraProva._3d_attivo() or auto_audit:
 		return
 	if _vassoio == null:
+		# solo una striscia con il titolo: il dado rotola sulla mappa
 		_vassoio = PanelContainer.new()
-		_vassoio.add_theme_stylebox_override("panel", Tema.box(Color(0.02, 0.045, 0.09, 0.97), Tema.AMBRA, 2, 8, 8))
-		_vassoio.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
-		_vassoio.custom_minimum_size = Vector2(620, 0)
-		_vassoio.offset_left = -310
-		_vassoio.offset_right = 310
-		_vassoio.offset_bottom = -ALTO_BARRA - 14
-		_vassoio.offset_top = -ALTO_BARRA - 14 - 300
+		_vassoio.add_theme_stylebox_override("panel", Tema.box(Color(0.02, 0.045, 0.09, 0.95), Tema.AMBRA, 2, 8, 8))
+		_vassoio.set_anchors_preset(Control.PRESET_CENTER_TOP)
+		_vassoio.grow_horizontal = Control.GROW_DIRECTION_BOTH
+		_vassoio.offset_top = ALTO_HUD + ALTO_TURNO + 44
 		_vassoio.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		var v := VBoxContainer.new()
-		_vassoio.add_child(v)
-		_vassoio_titolo = Tema.etichetta("", 15, Tema.AMBRA, true)
-		v.add_child(_vassoio_titolo)
-		_vassoio_dadi = Dadi3D.new()
-		_vassoio_dadi.custom_minimum_size = Vector2(600, 250)
-		v.add_child(_vassoio_dadi)
+		_vassoio_titolo = Tema.etichetta("", 16, Tema.AMBRA, true)
+		_vassoio.add_child(_vassoio_titolo)
 		add_child(_vassoio)
+	# se è aperta una Prova i suoi dadi sono già sulla mappa: il dado Pericolo si aggiunge a quelli
+	var in_prova := get_children().any(func(c): return c is FinestraProva)
+	_vassoio_dadi = dadi_mappa(FinestraProva.LARGO + 12 if in_prova or (_cassetto_box and _cassetto_box.visible) else 0)
 	if _vassoio_tw:
 		_vassoio_tw.kill()
 	_vassoio.modulate.a = 1.0
 	_vassoio.visible = true
 	_vassoio_titolo.text = titolo.to_upper()
+	_vassoio.reset_size()
 	await _vassoio_dadi.lancia(dadi)
 	var ic := Prova.icone(dadi[0]) if not dadi.is_empty() else []
 	var it := {"common": "comune", "uncommon": "non comune", "rare": "raro", "special": "speciale", "damage": "danno", "mental": "mentale", "heavyDamage": "danno grave"}
 	_vassoio_titolo.text = "%s → %s" % [titolo.to_upper(), ("+".join(ic.map(func(x): return it.get(x, x))) if not ic.is_empty() else "faccia vuota").to_upper()]
-	# resta visibile qualche istante, poi sparisce da solo
+	_vassoio.reset_size()
+	# resta visibile qualche istante, poi sparisce da solo (con il dado)
+	var dm := _vassoio_dadi
 	_vassoio_tw = create_tween()
-	_vassoio_tw.tween_interval(2.2)
+	_vassoio_tw.tween_interval(2.4)
 	_vassoio_tw.tween_property(_vassoio, "modulate:a", 0.0, 0.5)
-	_vassoio_tw.tween_callback(func(): _vassoio.visible = false)
+	_vassoio_tw.tween_callback(func():
+		_vassoio.visible = false
+		if is_instance_valid(dm) and not get_children().any(func(c): return c is FinestraProva):
+			dm.svuota())
 
 ## Evento rimasto nel settore che vieta le Azioni Speciali: ne restituisce il titolo.
 func _evento_blocca_speciali(sett: int) -> String:
@@ -2818,8 +2873,12 @@ func _carta_in_mano(i: int, c: String) -> void:
 	var testo := "[b]%s[/b]\n%s" % [Carte.t(carta.get("quando", "")) if carta.get("quando") is Dictionary else str(carta.get("quando", "")).replace("_", " "), Dati.testo_carta(Carte.t(carta.get("effetto", "")), 20)]
 	if carta.get("combo") is Dictionary:
 		testo += "\n\n[color=#ffb347]Combinazione[/color] %s: %s" % [_req(str(carta["combo"].get("req", ""))), Dati.testo_carta(Carte.t(carta["combo"]), 20)]
-	var j := await _scegli(Carte.titolo(carta), ["GIOCA (applica l'effetto e scarta)", "SCARTA"], testo, true, str(carta.get("file", "")))
-	if j == 0:
+	# le carte "Durante una Prova" e "Quando assisti" non si giocano da qui: compaiono da sole nella Prova
+	var solo_in_prova: bool = str(carta.get("quando", "")) in ["during_check", "when_assisting"] or Carte.en(carta.get("effetto", "")).to_lower().begins_with("during a dice check")
+	if solo_in_prova:
+		testo += "\n\n[color=#5be39b]Questa carta si usa durante una Prova: dopo il tiro la trovi nella colonna della Prova (passo 4, pulsante USA). Non serve giocarla da qui.[/color]"
+	var j := await _scegli(Carte.titolo(carta), ["CHIUDI" if solo_in_prova else "GIOCA (applica l'effetto e scarta)", "SCARTA"], testo, not solo_in_prova, str(carta.get("file", "")))
+	if j == 0 and not solo_in_prova:
 		if not await _gioca_reparto(i, c):
 			esp.scarta_carta(i, c)
 			await applica([{"en": Carte.en(carta.get("effetto", "")), "it": Carte.t(carta.get("effetto", "")), "fonte": Carte.titolo(carta)}], i, int(esp.membro(i)["settore"]))
@@ -3057,12 +3116,7 @@ func _carta_dal_logbook(nome: String) -> void:
 		if k >= 0:
 			esp.piazza_pdi(k, nome)
 	elif nome.begins_with("M") and not c.is_empty():
-		if not nome in esp.s["missioni"]:
-			esp.s["missioni"].append(nome)
-			esp.diario("Nuova Missione: " + nome)
-		if nome == "M02" and esp.s.get("eventi_sospesi", false):
-			esp.s["eventi_sospesi"] = false
-			avviso("Da ora, a fine turno si pescano le carte Evento")
+		avviso(_nuova_missione(nome))
 	elif nome.begins_with("G") and not c.is_empty():
 		esp.s["condizione"] = {"carta": nome, "tempo": 0}
 		esp.diario("Nuova Condizione Generale: " + Carte.titolo(c))
@@ -3230,11 +3284,11 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 				elif pe is Dictionary:
 					manuali.append("Scoperta Eccezionale %d: %s" % [num, Carte.t(pe)])
 		"successi":
-			esp.s["successi"] = int(esp.s["successi"]) + int(op["n"])
-			fatti.append("+%d Successo" % int(op["n"]))
+			esp.s["successi"] = max(0, int(esp.s["successi"]) + int(op["n"]))
+			fatti.append("%+d Successo" % int(op["n"]))
 			if esp.s.get("tutorial", false) and int(esp.s["successi"]) >= 3 and not esp.s.get("grado_girato", false):
 				esp.s["grado_girato"] = true
-				manuali.append("Hai 3 Successi: gira la carta Grado Superiore sul lato Completato (Regolamento pag. 21)")
+				fatti.append("[b]Hai 3 Successi: carta Grado Superiore completata![/b] (Regolamento pag. 21)")
 		"provviste":
 			if int(op["n"]) > 0:
 				esp.notifica("provviste", {"n": int(op["n"])})
@@ -3257,15 +3311,124 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 				fatti.append("%s ha già una Ferita: si ignora (tutorial)" % m["carta"])
 			else:
 				fatti.append("%s subisce la Ferita %s" % [m["carta"], NOMI_FERITE.get(r, r)] if r != "evac" else "Quarta Ferita: evacuazione d'emergenza!")
-		"sostituisci_pdi":
-			if op.get("se_assente", false) and str(op["carta"]) in (esp.s["settori"].get(str(sett), {}).get("pdi", []) as Array):
-				fatti.append("%s è già nel Settore %d" % [op["carta"], sett])
+		"sostituisci_pdi", "piazza_pdi":
+			var s_pdi := int(op.get("settore", 0)) if int(op.get("settore", 0)) > 0 else sett
+			if op.get("se_assente", false) and _pdi_nel_settore(s_pdi, str(op["carta"])):
+				fatti.append("%s è già nel Settore %d" % [op["carta"], s_pdi])
 				return
-			esp.piazza_pdi(sett, str(op["carta"]))
-			fatti.append("Settore %d: ora c'è %s" % [sett, op["carta"]])
-		"piazza_pdi":
-			esp.piazza_pdi(int(op["settore"]), str(op["carta"]))
-			fatti.append("Settore %d: ora c'è %s" % [int(op["settore"]), op["carta"]])
+			if op.get("rimuovi", false):
+				# la carta che c'era esce dal gioco: non potrà più essere pescata fra le versioni
+				(esp.s.get_or_add("pdi_rimossi", []) as Array).append(esp.pdi_in_cima(s_pdi))
+			var nuova := _pdi_versione(str(op["carta"]))
+			if nuova == "" and str(op.get("altrimenti", "")) != "":
+				nuova = _pdi_versione(str(op["altrimenti"]))
+			if nuova == "":
+				nuova = str(op["carta"])
+			esp.piazza_pdi(s_pdi, nuova)
+			_ultimo_pdi = s_pdi
+			fatti.append("Settore %d: ora c'è %s" % [s_pdi, _nome_pdi(nuova)])
+		"pdi_cambia":
+			# "Sostituisci la carta P238 con la carta P002", "Se la carta P435 si trova nel Settore 2, sostituiscila…"
+			var dove_c := 0
+			for k in esp.s["settori"]:
+				if int(op.get("settore", 0)) > 0 and int(k) != int(op["settore"]):
+					continue
+				for v in op["vecchie"]:
+					if _pdi_nel_settore(int(k), str(v)):
+						dove_c = int(k)
+			if dove_c == 0 and op.get("qui", false):
+				dove_c = int(op.get("settore", 0)) if int(op.get("settore", 0)) > 0 else sett
+			if dove_c == 0:
+				fatti.append("%s non è sulla plancia: niente da sostituire" % " / ".join(op["vecchie"]))
+			else:
+				var nuova_c := _pdi_versione(str(op["carta"]))
+				esp.piazza_pdi(dove_c, nuova_c if nuova_c != "" else str(op["carta"]))
+				_ultimo_pdi = dove_c
+				fatti.append("Settore %d: ora c'è %s" % [dove_c, _nome_pdi(str(op["carta"]))])
+		"pila_pdi":
+			# "Trova tutte e tre le carte P382, mescolale e posizionale nel Settore 2": la pila mescolata
+			var vers := []
+			for k in Carte.versioni(str(op["carta"])).size():
+				vers.append("%s@%d" % [op["carta"], k])
+			vers.shuffle()
+			esp.piazza_pdi(int(op["settore"]), str(vers[0]) if not vers.is_empty() else str(op["carta"]))
+			if vers.size() > 1:
+				esp.s["settori"][str(int(op["settore"]))]["pdi"] = vers
+			_ultimo_pdi = int(op["settore"])
+			fatti.append("Settore %d: le %d carte %s mescolate, in cima %s" % [int(op["settore"]), vers.size(), op["carta"], _nome_pdi(esp.pdi_in_cima(int(op["settore"])))])
+		"scarta_pdi_cima":
+			var quali: Array = op.get("settori", [])
+			for sx in (quali if not quali.is_empty() else [sett]):
+				var pila_x: Array = esp.s["settori"].get(str(int(sx)), {}).get("pdi", [])
+				if not pila_x.is_empty():
+					var tolta := str(pila_x.pop_back())
+					esp.s["settori"][str(int(sx))]["tempo"] = 0
+					esp.s["settori"][str(int(sx))]["tracce"] = {}
+					fatti.append("Settore %d: scartata %s%s" % [int(sx), _nome_pdi(tolta), (", sotto c'è " + _nome_pdi(str(pila_x[-1]))) if not pila_x.is_empty() else ""])
+		"svuota_settori":
+			for sx in op["settori"]:
+				if esp.s["settori"].has(str(int(sx))):
+					esp.s["settori"][str(int(sx))]["pdi"] = []
+					esp.s["settori"][str(int(sx))]["tempo"] = 0
+					esp.s["settori"][str(int(sx))]["tracce"] = {}
+			fatti.append("Carte PDI tolte dai Settori %s" % ", ".join((op["settori"] as Array).map(func(x): return str(int(x)))))
+		"segnalini_ultimo", "segnalini_in":
+			var s_seg := _ultimo_pdi if str(op["op"]) == "segnalini_ultimo" else int(op.get("settore", 0))
+			if s_seg <= 0:
+				s_seg = sett
+			var st_seg: Dictionary = esp.s["settori"].get(str(s_seg), {})
+			st_seg["segnalini"] = max(0, int(st_seg.get("segnalini", 0)) + int(op["n"]))
+			fatti.append("Settore %d: %d segnaposto" % [s_seg, int(st_seg["segnalini"])])
+		"missioni_nuove":
+			for idm in op["carte"]:
+				if Carte.per_id(str(idm)).is_empty():
+					manuali.append("Prendi la carta Missione %s" % idm)
+				else:
+					fatti.append(_nuova_missione(str(idm)))
+		"condizione":
+			var gc_ora := str(esp.s["condizione"].get("carta", ""))
+			if str(op.get("solo", "")) != "" and gc_ora.get_slice("@", 0) != str(op["solo"]):
+				fatti.append("La Condizione Generale %s non è in gioco" % op["solo"])
+			elif str(op["carta"]) == "":
+				esp.s["condizione"] = {"carta": "", "tempo": 0}
+				fatti.append("Condizione Generale scartata")
+			elif Carte.per_id(str(op["carta"])).is_empty():
+				manuali.append("Prendi la carta Condizione Generale %s" % op["carta"])
+			else:
+				esp.s["condizione"] = {"carta": str(op["carta"]), "tempo": 0}
+				esp.diario("Nuova Condizione Generale: " + Carte.titolo(Carte.per_id(str(op["carta"]))))
+				fatti.append("Nuova Condizione Generale: %s (%s)" % [Carte.titolo(Carte.per_id(str(op["carta"]))), op["carta"]])
+		"aiuto_sposta":
+			# "Chiamare aiuto": un altro Membro nel settore spende un dado e i due si spostano insieme
+			var altri_a: Array = esp.nel_settore(sett).filter(func(x): return int(x) != chi and not esp.dadi_disponibili(int(x)).is_empty())
+			if altri_a.is_empty():
+				manuali.append("Nessun altro Membro nel Settore %d può spendere un dado per aiutarti: scegli un'altra opzione (INDIETRO)" % sett)
+			else:
+				var ja := 0
+				if altri_a.size() > 1:
+					ja = maxi(0, await _scegli("CHI TI AIUTA?", altri_a.map(func(x): return str(esp.membro(int(x))["carta"])), "", false))
+				var aiuto := int(altri_a[ja])
+				esp.spendi_dado(aiuto)
+				esp.viaggia(chi, int(op["settore"]))
+				esp.viaggia(aiuto, int(op["settore"]))
+				fatti.append("%s spende un dado; %s e %s nel Settore %d" % [esp.membro(aiuto)["carta"], m["carta"], esp.membro(aiuto)["carta"], int(op["settore"])])
+		"eccezionali_rimaste":
+			var rimaste: Array = (esp.s.get("eccezionali_pianeta", []) as Array).duplicate()
+			if rimaste.is_empty():
+				fatti.append("Nessuna Scoperta Eccezionale rimasta sulla plancia")
+			else:
+				esp.s["successi"] = max(0, int(esp.s["successi"]) - int(op["n"]))
+				fatti.append("-%d Successo per le Scoperte Eccezionali rimaste" % int(op["n"]))
+				for ne in rimaste:
+					await _op({"op": "scoperta_eccezionale", "n": int(ne)}, chi, sett, fatti, manuali, logs, fonte)
+		"muovi_da":
+			var mossi := []
+			for i in esp.vivi():
+				if int(esp.membro(i)["settore"]) == int(op["da"]):
+					esp.viaggia(i, int(op["a"]))
+					mossi.append(str(esp.membro(i)["carta"]))
+			if not mossi.is_empty():
+				fatti.append("%s nel Settore %d" % [", ".join(mossi), int(op["a"])])
 		"indizi_salva":
 			var tutti := []
 			for t3 in Esplorazione.TIPI_SCOPERTA:
@@ -3552,8 +3715,26 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 				fatti.append("Scoperta %s ottenuta" % NOMI_SCOPERTE[tipi[k]])
 				_controlla_scoperte(manuali)
 		"scarta_missione":
-			esp.s["missioni"].erase(str(op["carta"]))
-			fatti.append("Missione %s scartata" % op["carta"])
+			var quale := str(op["carta"])
+			if quale == "*":
+				if not (esp.s["missioni"] as Array).is_empty():
+					fatti.append("Missioni scartate: %s" % ", ".join(esp.s["missioni"]))
+				esp.s["missioni"] = []
+			elif quale == "":
+				# "scarta la carta Missione": quella obbligatoria in corso
+				var obbl: Array = (esp.s["missioni"] as Array).filter(func(x): return not Carte.per_id(str(x)).get("opzionale", false))
+				if obbl.size() == 1 or (obbl.is_empty() and (esp.s["missioni"] as Array).size() == 1):
+					var una := str(obbl[0]) if not obbl.is_empty() else str(esp.s["missioni"][0])
+					esp.s["missioni"].erase(una)
+					fatti.append("Missione %s scartata" % una)
+				elif not (esp.s["missioni"] as Array).is_empty():
+					manuali.append("Scarta la carta Missione indicata (pulsante MISSIONE): ce n'è più di una in gioco")
+			elif quale in esp.s["missioni"]:
+				esp.s["missioni"].erase(quale)
+				esp.diario("Missione %s completata e scartata" % quale)
+				fatti.append("Missione %s (%s) scartata" % [quale, Carte.titolo(Carte.per_id(quale))])
+			else:
+				fatti.append("La Missione %s non è in gioco" % quale)
 		"muovi_tutti":
 			for i in esp.vivi():
 				esp.viaggia(i, int(op["settore"]))
@@ -3630,15 +3811,27 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			await _op({"op": "scoperta", "tipo": ts, "n": int(op.get("n", 1))}, chi, sett, fatti, manuali, logs, fonte)
 		"pdi_sopra":
 			var s_sopra := int(op.get("settore", 0)) if int(op.get("settore", 0)) > 0 else sett
-			esp.pdi_sopra(s_sopra, str(op["carta"]))
-			fatti.append("Settore %d: %s sopra la carta" % [s_sopra, op["carta"]])
+			var sopra := _pdi_versione(str(op["carta"]))
+			esp.pdi_sopra(s_sopra, sopra if sopra != "" else str(op["carta"]))
+			_ultimo_pdi = s_sopra
+			fatti.append("Settore %d: %s sopra la carta" % [s_sopra, _nome_pdi(str(op["carta"]))])
 		"scarta_pdi":
-			var pila_s: Array = esp.s["settori"].get(str(sett), {}).get("pdi", [])
-			if str(op["carta"]) in pila_s:
-				pila_s.erase(str(op["carta"]))
-				fatti.append("%s si scarta dal Settore %d" % [op["carta"], sett])
+			# dal settore indicato, altrimenti da dove si trova (prima il settore di chi agisce)
+			var cerca: Array = [int(op.get("settore", 0))] if int(op.get("settore", 0)) > 0 else ([sett] + esp.s["settori"].keys().map(func(x): return int(x)))
+			var tolto := false
+			for sx in cerca:
+				var pila_s: Array = esp.s["settori"].get(str(int(sx)), {}).get("pdi", [])
+				for idp in pila_s.duplicate():
+					if not tolto and str(idp).get_slice("@", 0) == str(op["carta"]):
+						pila_s.erase(idp)
+						tolto = true
+						esp.s["settori"][str(int(sx))]["tempo"] = 0
+						esp.s["settori"][str(int(sx))]["tracce"] = {}
+						fatti.append("%s si scarta dal Settore %d" % [_nome_pdi(str(idp)), int(sx)])
+			if not tolto:
+				fatti.append("%s non è sulla plancia" % op["carta"])
 		"sostituisci_missione":
-			var vecchia := _azione_in_corso.get_slice("#", 0) if _azione_in_corso != "" else _missione_fonte(fonte)
+			var vecchia := str(op["vecchia"]) if op.has("vecchia") else (_azione_in_corso.get_slice("#", 0) if _azione_in_corso != "" else _missione_fonte(fonte))
 			if vecchia != "" and vecchia in esp.s["missioni"]:
 				esp.s["missioni"][esp.s["missioni"].find(vecchia)] = str(op["carta"])
 			else:
@@ -4996,26 +5189,152 @@ func _pdi_sulla_plancia() -> Dictionary:
 	return out
 
 ## Istruzioni del Logbook eseguite dal programma; restituisce le righe "fatto" (vuoto = niente).
+## Che cosa resta da fare a mano dell'ultima istruzione del Logbook (frasi non riconosciute).
+var _resto_istruzione: Array = []
+## Annotazioni da leggere dopo l'istruzione (un Membro spostato in un settore con un rinvio), se il
+## Logbook non prosegue già da solo.
+var _log_dopo_istruzione: Array = []
+var _da_logbook := false
+
 func istruzione_logbook(t: String) -> Array:
+	_resto_istruzione = []
+	_log_dopo_istruzione = []
 	var carte := []
 	if Campagna.dati.get("nave") is Dictionary and not (Campagna.dati["nave"] as Dictionary).is_empty():
 		carte = Nave.new(Campagna.dati["nave"]).istruzione_carte(t)
 		if not carte.is_empty():
 			Campagna.modificata()
-	var ops: Array = Effetti.analizza_it(t)["op"]
-	if ops.is_empty() or str(esp.s.get("finita", "")) != "":
+	if str(esp.s.get("finita", "")) != "":
 		return carte
 	var chi := int(esp.s["attivo"])
 	var sett := int(esp.membro(chi)["settore"])
 	var fatti := []
 	var manuali := []
 	var logs := []
-	for op in ops:
+	_ultimo_pdi = 0
+	# prima le Minacce (i loro nomi non seguono una forma fissa), poi tutto il resto
+	var testo := _istruzioni_minacce(t, sett, fatti)
+	var an: Dictionary = Effetti.analizza_it(testo)
+	_da_logbook = true
+	for op in an["op"]:
 		await _op(op, chi, sett, fatti, manuali, logs, "Logbook")
+	_da_logbook = false
+	_log_dopo_istruzione = logs
+	_resto_istruzione = manuali + Effetti.residuo_it(str(an.get("resto", "")), not carte.is_empty())
 	fatti = carte + fatti
 	_salva()
 	aggiorna()
 	return fatti
+
+## Nomi delle Minacce come li scrive il Logbook italiano -> titolo inglese della carta.
+const MINACCE_LOGBOOK := {"colosso usurpatore convertito": "CONVERTED ARROGATOR BEHEMOTH", "colosso usurpatore": "ARROGATOR BEHEMOTH",
+	"sciame da guerra usurpatore": "ARROGATOR WARSWARM", "guardiano usurpatore": "ARROGATOR GUARDIAN",
+	"insetto scheggia scintillante": "SCINTILLATING SHARDFLY", "tempesta di sabbia": "DUST STORM", "superpredatore": "APEX PREDATOR",
+	"visitatore estatico": "ENRAPTURED VISITOR", "da cacciatori a prede": "HUNTERS BECOME PREY", "raggio rioriginante": "RE-ORIGINATION BEAM",
+	"sabotatore aerugo": "AERUGON SABOTEUR", "guardiano metaedro": "GUARDIAN METAHEDRON"}
+
+## "Posiziona la carta Minaccia X nello slot… e posiziona il segnalino X nel Settore N", "Scarta la carta
+## Minaccia X e il relativo segnalino": le esegue e restituisce il testo senza quelle frasi.
+func _istruzioni_minacce(t: String, sett: int, fatti: Array) -> String:
+	var testo := Effetti.pulisci_it(RegEx.create_from_string("\\[/?[bi]\\]").sub(t, "", true).replace("\n", " ").replace("’", "'"))
+	if not testo.to_lower().contains("minaccia") and not testo.to_lower().contains("segnalino"):
+		return testo
+	var nomi := {}
+	for c in Carte.categoria("minacce"):
+		if str(c.get("lato", "fronte")) != "retro":
+			nomi[Carte.titolo(c).to_lower()] = c
+	for k in MINACCE_LOGBOOK:
+		var trovate := _trova_minaccia(MINACCE_LOGBOOK[k])
+		if not trovate.is_empty():
+			nomi[k] = trovate[0]
+	var ordine := nomi.keys()
+	ordine.sort_custom(func(a, b): return str(a).length() > str(b).length())
+	for nome in ordine:
+		var c: Dictionary = nomi[nome]
+		var q := "\\Q" + str(nome) + "\\E"
+		var titolo := Carte.titolo(c)
+		var in_gioco: Array = (esp.s["minacce"] as Array).filter(func(x): return str(x.get("file", "")) == str(c["file"]))
+		# via dalla plancia
+		var rx_via := RegEx.create_from_string("(?i)(?:scarta|rimuovi) (?:la carta e il segnalino(?: minaccia)? " + q + "|la carta minaccia " + q + "(?: e (?:scarta )?il (?:relativo )?segnalino(?: " + q + ")?)?|il segnalino " + q + "(?: e la (?:relativa )?carta minaccia)?)(?: dalla plancia(?: pianeta)?)?(?:,? se presente)?")
+		var mv := rx_via.search(testo)
+		if mv:
+			for x in in_gioco:
+				esp.s["minacce"].erase(x)
+				esp.s["minaccia_scartata"] = true
+				esp.notifica("minaccia_scartata", {"chi": int(esp.s["attivo"]), "settore": int(x.get("settore", 0))})
+			fatti.append("Minaccia %s: %s" % [titolo, "scartata" if not in_gioco.is_empty() else "non era in gioco"])
+			testo = testo.substr(0, mv.get_start()) + " ¦ " + testo.substr(mv.get_end())
+			continue
+		# in gioco: la carta nello slot e il segnalino in un settore
+		var rx_carta := RegEx.create_from_string("(?i)posiziona la carta minaccia " + q + " (?:nell'apposit[oa]|nello|nella|accanto|sopra)[^.•●»¦]*?(?= e posiziona|\\.|•|●|»|¦|$)")
+		var rx_segn := RegEx.create_from_string("(?i)(?:e )?posiziona (?:il segnalino |la miniatura |il gettone )?(?:minaccia )?" + q + " (in questo settore|nel tuo settore|nel settore (\\d+))")
+		var mc := rx_carta.search(testo)
+		var msg := rx_segn.search(testo)
+		if mc == null and msg == null:
+			continue
+		var dove := sett
+		if msg and msg.get_string(2) != "":
+			dove = int(msg.get_string(2))
+		if in_gioco.is_empty():
+			_aggiungi_minaccia(c, dove)
+			fatti.append("Minaccia %s nel Settore %d" % [titolo, dove])
+		elif msg:
+			in_gioco[0]["settore"] = dove
+			fatti.append("Minaccia %s spostata nel Settore %d" % [titolo, dove])
+		for mm in [msg, mc]:
+			if mm:
+				var pos := testo.find(mm.get_string(0))
+				if pos >= 0:
+					testo = testo.substr(0, pos) + " ¦ " + testo.substr(pos + mm.get_string(0).length())
+	return testo
+
+## Settore dell'ultima carta PDI piazzata da un'istruzione ("… e posiziona 2 segnaposto su di essa").
+var _ultimo_pdi := 0
+
+func _pdi_nel_settore(n: int, carta: String) -> bool:
+	for id in esp.s["settori"].get(str(n), {}).get("pdi", []):
+		if str(id).get_slice("@", 0) == carta.get_slice("@", 0):
+			return true
+	return false
+
+func _nome_pdi(id: String) -> String:
+	var c := Carte.per_id(id)
+	return "%s (%s)" % [id.get_slice("@", 0), Carte.titolo(c)] if not c.is_empty() else id
+
+## Le carte con più versioni dello stesso codice (tre P113, le P000…): se ne prende una a caso fra quelle
+## che non sono già sulla plancia e non sono uscite dal gioco. "" se non ne restano.
+func _pdi_versione(carta: String) -> String:
+	if carta.contains("@") or carta in ["P000", "P001"]:
+		return carta
+	var n := Carte.versioni(carta).size()
+	if n <= 1:
+		return carta if n == 1 else ""
+	var titoli := {}
+	for c in Carte.versioni(carta):
+		titoli[Carte.titolo(c)] = true
+	if titoli.size() == 1:
+		return carta   # copie identiche (Niente di interessante)
+	var usate := (esp.s.get("pdi_rimossi", []) as Array).duplicate()
+	for k in esp.s["settori"]:
+		usate.append_array(esp.s["settori"][k].get("pdi", []))
+	var libere := []
+	for k in n:
+		var idv := "%s@%d" % [carta, k]
+		if not idv in usate and not (k == 0 and carta in usate):
+			libere.append(idv)
+	return "" if libere.is_empty() else str(libere[esp.rng.randi() % libere.size()])
+
+## Una nuova carta Missione entra in gioco (dal Logbook o da una carta).
+func _nuova_missione(nome: String) -> String:
+	if nome in esp.s["missioni"]:
+		return "La Missione %s è già in gioco" % nome
+	esp.s["missioni"].append(nome)
+	esp.diario("Nuova Missione: %s (%s)" % [nome, Carte.titolo(Carte.per_id(nome))])
+	var out := "Nuova Missione: %s (%s)" % [Carte.titolo(Carte.per_id(nome)), nome]
+	if nome == "M02" and esp.s.get("eventi_sospesi", false):
+		esp.s["eventi_sospesi"] = false
+		out += " — da ora, a fine turno si pescano le carte Evento"
+	return out
 
 func _eccezionale(n: int) -> Dictionary:
 	for c in Carte.categoria("scoperte"):

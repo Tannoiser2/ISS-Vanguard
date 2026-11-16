@@ -446,7 +446,11 @@ func _esegui(c: Dictionary) -> void:
 		_occupato = false
 	var dest := motore.scegli(c)
 	Campagna.modificata()
-	if dest.is_empty():
+	var dopo = contesto.get("_log_dopo_istruzione") if contesto and istr != "" else null
+	if dest.is_empty() and dopo is Array and not (dopo as Array).is_empty():
+		# l'istruzione ha portato un Membro in un settore con un rinvio: si legge subito
+		apri_numero(int(dopo[0]))
+	elif dest.is_empty():
 		_fine_annotazione()
 	else:
 		var a := motore.annotazione(dest[0])
@@ -461,22 +465,35 @@ func _istruzioni(t: String) -> void:
 	var v := VBoxContainer.new()
 	v.add_theme_constant_override("separation", 10)
 	p.add_child(v)
-	v.add_child(Tema.etichetta("ESEGUI SUL TAVOLO", 13, Tema.VERDE))
+	v.add_child(Tema.etichetta("ISTRUZIONI", 13, Tema.VERDE))
 	var r := Tema.testo_ricco(19)
 	r.text = Dati.testo_bb(t, 22)
 	v.add_child(r)
+	var resto = null   # null: il contesto non sa dire che cosa resta (nave); altrimenti le frasi da fare a mano
 	if contesto and contesto.has_method("istruzione_logbook"):
 		var fatti: Array = await contesto.istruzione_logbook(t)
+		resto = contesto.get("_resto_istruzione")
 		if not fatti.is_empty():
 			var rf := Tema.testo_ricco(17)
-			rf.text = "[color=#5be39b][b]FATTO DAL PROGRAMMA[/b][/color] (non ripeterlo sul tavolo)\n" + "\n".join(fatti.map(func(x): return "• " + str(x)))
+			rf.text = "[color=#5be39b][b]FATTO DAL PROGRAMMA[/b][/color] (non ripeterlo sul tavolo)\n" + "\n".join(fatti.map(func(x): return "• " + Dati.testo_carta(str(x), 18)))
 			v.add_child(rf)
+		elif resto is Array and (resto as Array).is_empty():
+			var rn := Tema.testo_ricco(16)
+			rn.text = "[color=#9fbbd6]Niente da fare sul tavolo: prosegui.[/color]"
+			v.add_child(rn)
+	var da_cercare := _pulito(t)
+	if resto is Array:
+		da_cercare = " ".join(resto)
+		if not (resto as Array).is_empty():
+			var rm := Tema.testo_ricco(17)
+			rm.text = "[color=#ffb347][b]RESTA DA FARE A MANO[/b][/color]\n" + "\n".join((resto as Array).map(func(x): return "• " + Dati.testo_carta(str(x), 18)))
+			v.add_child(rm)
 	var rx := RegEx.create_from_string(RX_CARTA)
 	var viste := {}
 	var hb := HFlowContainer.new()
 	hb.add_theme_constant_override("h_separation", 6)
 	var catalogo := Dati.carte_per_nome()
-	for m in rx.search_all(_pulito(t)):
+	for m in rx.search_all(da_cercare):
 		var nome := m.get_string(0).to_upper()
 		if viste.has(nome) or not catalogo.has(nome):
 			continue
@@ -487,7 +504,7 @@ func _istruzioni(t: String) -> void:
 	if hb.get_child_count() > 0:
 		v.add_child(hb)
 	var fatto := [false]
-	var bf := Tema.pulsante_primario("FATTO, PROSEGUI", func(): fatto[0] = true, 16)
+	var bf := Tema.pulsante_primario("PROSEGUI" if resto is Array and (resto as Array).is_empty() else "FATTO, PROSEGUI", func(): fatto[0] = true, 16)
 	v.add_child(bf)
 	# le opzioni precedenti non servono più
 	for ch in _corpo.get_children():
@@ -514,7 +531,8 @@ func _avviso(t: String) -> void:
 	r.text = "[color=#ffb347]%s[/color]" % t
 	_corpo.add_child(r)
 	await get_tree().process_frame
-	_scroll.ensure_control_visible(r)
+	if is_instance_valid(r) and r.is_inside_tree() and _scroll.is_ancestor_of(r):
+		_scroll.ensure_control_visible(r)
 	await get_tree().create_timer(6.0).timeout
 	if is_instance_valid(r):
 		r.queue_free()

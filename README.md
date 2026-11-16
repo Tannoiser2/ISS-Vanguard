@@ -36,6 +36,19 @@ ufficiale *ISS Vanguard Companion* (database `appData.sqlite`), i componenti dal
   iniziale e prima esplorazione), Gestione della Nave (Ship Book passo per passo), Esplorazione planetaria.
   All'apertura il gioco va da solo alla fase in corso; il tavolo virtuale 3D del modulo TTS resta
   disponibile come strumento (TAVOLO nella nave, ≡ nell'esplorazione) con "TORNA ALLA PARTITA".
+- **Prova nella colonna destra, dadi sulla mappa**: la Prova di dadi, le scelte e gli effetti stanno in una
+  colonna a destra larga quanto il pannello del settore, con i pulsanti di conferma (TIRA, RISOLVI, APPLICA)
+  sempre in vista in fondo; la mappa resta scoperta e manovrabile e i dadi 3D rotolano sopra la plancia,
+  con la loro ombra (anche il dado Pericolo tirato dagli effetti). Le carte "Durante una Prova" non si
+  giocano dalla mano: compaiono da sole nella Prova (passo 4, pulsante USA).
+- **Istruzioni del Logbook eseguite dal programma**: carte PDI piazzate, sostituite, messe sopra, scartate o
+  pescate fra le versioni (P113, P382…), Missioni nuove, sostituite e scartate, Condizioni Generali, Minacce
+  con il loro segnalino, spostamenti dei Membri, Ferite, dadi spesi o sacrificati, Successi e Indizi. Il
+  riquadro ISTRUZIONI dice che cosa ha fatto il programma e, a parte, solo le frasi che restano da fare a mano.
+  L'annotazione stampata in un settore si rilegge a ogni ingresso finché una carta non la copre (così la
+  Missione "Riunirsi" del tutorial si completa quando arriva l'ultimo Membro nel Settore 4).
+- **Simboli sempre visibili**: un estratto di DejaVu Sans (`assets/font/simboli.ttf`) fa da riserva ai font del
+  gioco per frecce e simboli; `python3 tools/controlla_glifi.py` e `tests/prova_glifi.gd` lo verificano.
 - **Effetti dentro la Prova**: le tracce che avanzano "per ogni Membro che ti Assiste", le tracce
   completate che fanno avanzare un'altra traccia, i dadi Pericolo "da aggiungere alla Riserva del Tiro"
   (Condizioni Generali come Sciame e Vento Gelido) e "sacrifica un dado per ritirarne uno" si risolvono
@@ -280,6 +293,9 @@ tests/foto_nave.gd         screenshot di tutti i passi della Gestione della Nave
 tests/prova_ponte.gd       potenziamenti del Ponte e delle strutture, carte spostate dal Logbook
 tests/prova_fascicoli.gd   Fascicoli del personale (Obiettivi individuali e Veterani)
 tests/audit_effetti.gd     diagnostica: applica tutti i testi d'effetto delle carte e conta quelli rimasti a mano
+tests/audit_logbook.gd     diagnostica: passa all'interprete tutte le istruzioni del Logbook
+tests/prova_tutorial.gd    prima missione: carte dei settori dal Logbook e Missione M01 completata
+tests/foto_prova.gd        screenshot della Prova con i dadi sulla mappa (anche formato iPad)
 tests/foto_dadi.gd         screenshot del vassoio 3D dei dadi (xvfb-run)
 tests/partita_simulata.gd  un'esplorazione intera giocata da sola (azioni a caso), per trovare blocchi ed errori
 tools/espansioni_mancanti.md  componenti di Deadly Frontier e Lost Fleet citati dai Logbook e assenti nel modulo

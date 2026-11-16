@@ -25,10 +25,16 @@ var mono: FontFile
 var tema: Theme
 
 func _ready() -> void:
-	var ext_r := _f("exo-2-latin-ext-400-normal")
-	var ext_i := _f("exo-2-latin-ext-400-italic")
-	var ext_b := _f("exo-2-latin-ext-600-normal")
-	var ext_bi := _f("exo-2-latin-ext-600-italic")
+	# simboli (frecce, spunte, stelle…) che Exo 2 e Orbitron non hanno: senza questa riserva nel browser e
+	# su iPad compaiono come quadratini. È un estratto di DejaVu Sans con i soli simboli usati dal gioco.
+	var simboli: Array = []
+	var fs = load("res://assets/font/simboli.ttf")
+	if fs is FontFile:
+		simboli = [fs]
+	var ext_r := _f("exo-2-latin-ext-400-normal", simboli)
+	var ext_i := _f("exo-2-latin-ext-400-italic", simboli)
+	var ext_b := _f("exo-2-latin-ext-600-normal", simboli)
+	var ext_bi := _f("exo-2-latin-ext-600-italic", simboli)
 	testo = _f("exo-2-latin-400-normal", [ext_r])
 	testo_corsivo = _f("exo-2-latin-400-italic", [ext_i])
 	testo_grassetto = _f("exo-2-latin-600-normal", [ext_b])

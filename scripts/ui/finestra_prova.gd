@@ -32,48 +32,77 @@ var _titolo: Label
 var _dadi3d: Dadi3D = null   # vassoio 3D: i dadi si lanciano con la fisica (non nelle prove automatiche)
 
 static func _3d_attivo() -> bool:
-	return OS.get_environment("ISS_PROVA") == "" and DisplayServer.get_name() != "headless"
+	return (OS.get_environment("ISS_PROVA") == "" or OS.get_environment("ISS_DADI_3D") != "") and DisplayServer.get_name() != "headless"
+
+## Larghezza della colonna della Prova, a destra: la mappa resta scoperta e ci rotolano sopra i dadi.
+const LARGO := 540
+var _piede: VBoxContainer    # pulsanti di conferma, sempre visibili sotto la parte che scorre
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	mouse_filter = Control.MOUSE_FILTER_IGNORE   # la mappa sotto resta manovrabile (sposta, zoom, ruota)
 	theme = Tema.tema
-	var vel := ColorRect.new()
-	vel.color = Color(0, 0.01, 0.03, 0.8)
-	vel.set_anchors_preset(Control.PRESET_FULL_RECT)
-	add_child(vel)
+	var mis0 = get_parent()
 	var p := PanelContainer.new()
-	p.set_anchors_preset(Control.PRESET_CENTER)
-	p.custom_minimum_size = Vector2(1180, 760)
-	p.position = Vector2(-590, -380)
+	p.set_anchors_preset(Control.PRESET_RIGHT_WIDE)
+	p.offset_left = -LARGO - 6
+	p.offset_right = -6
+	p.offset_top = 52
+	p.offset_bottom = -80
+	p.add_theme_stylebox_override("panel", Tema.box(Color(0.02, 0.045, 0.09, 1.0), Tema.CIANO, 2, 6, 10))
 	add_child(p)
 	var v := VBoxContainer.new()
-	v.add_theme_constant_override("separation", 10)
+	v.add_theme_constant_override("separation", 8)
 	p.add_child(v)
 	var h := HBoxContainer.new()
 	v.add_child(h)
-	_titolo = Tema.etichetta("PROVA", 22, Tema.TESTO, true)
+	_titolo = Tema.etichetta("PROVA", 17, Tema.TESTO, true)
 	_titolo.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_titolo.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_titolo.custom_minimum_size = Vector2(300, 0)
 	h.add_child(_titolo)
-	h.add_child(Tema.pulsante("ANNULLA", func():
+	var ba := Tema.pulsante("ANNULLA", func():
+		_via_i_dadi()
 		conclusa.emit({"annullata": true})
-		queue_free(), 13))
+		queue_free(), 13)
+	ba.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	h.add_child(ba)
 	if _3d_attivo():
-		_dadi3d = Dadi3D.new()
-		_dadi3d.visible = false
-		v.add_child(_dadi3d)
+		if mis0 and mis0.has_method("dadi_mappa"):
+			_dadi3d = mis0.dadi_mappa(LARGO + 12)
+		else:
+			_dadi3d = Dadi3D.new()
+			_dadi3d.custom_minimum_size = Vector2(0, 200)
+			_dadi3d.visible = false
+			v.add_child(_dadi3d)
 	var sc := ScrollContainer.new()
 	sc.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	sc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	v.add_child(sc)
 	_corpo = VBoxContainer.new()
 	_corpo.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_corpo.add_theme_constant_override("separation", 12)
+	_corpo.add_theme_constant_override("separation", 8)
+	# nessuna etichetta può allargare la colonna: i titoli lunghi vanno a capo
+	_corpo.child_entered_tree.connect(func(n):
+		if n is Label:
+			n.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			n.custom_minimum_size.x = 200)
 	sc.add_child(_corpo)
+	_piede = VBoxContainer.new()
+	_piede.add_theme_constant_override("separation", 6)
+	v.add_child(_piede)
 	_titolo.text = ("%s — %s" % [Carte.t(azione.get("nome", "")), fonte]).to_upper()
 	_mostra_scelta()
 
+## Fine della Prova: i dadi lasciano la mappa prima che partano gli effetti (che possono lanciarne altri).
+func _via_i_dadi() -> void:
+	if _dadi3d and is_instance_valid(_dadi3d) and _dadi3d.sulla_mappa:
+		_dadi3d.svuota()
+
 func _svuota() -> void:
 	for c in _corpo.get_children():
+		c.queue_free()
+	for c in _piede.get_children():
 		c.queue_free()
 
 func _conv(i: int) -> Array:
@@ -180,10 +209,12 @@ func _mostra_modificatori() -> void:
 		r.fit_content = true
 		r.scroll_active = false
 		r.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		r.custom_minimum_size = Vector2(260, 0)
 		r.text = "[b]%s[/b]%s: %s" % [x["titolo"], (" (" + str(esp.membro(int(x["chi"]))["carta"]) + ")") if int(x["chi"]) != chi else "", Dati.testo_carta(str(x["testo"]), 18)]
 		h.add_child(r)
 		var xx: Dictionary = x
 		var b := Tema.pulsante("USA", func(): _usa_modificatore(xx), 13)
+		b.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
 		if x["tipo"] == "abilita" and int(esp.membro(chi)["cariche"]) <= 0 and str(x["testo"]).to_lower().contains("caric"):
 			b.disabled = true
 			b.tooltip_text = "Nessuna Carica"
@@ -387,7 +418,7 @@ func _mostra_scelta() -> void:
 			r.add_theme_constant_override("h_separation", 8)
 			var l := Label.new()
 			l.text = str(esp.membro(j)["carta"]) + ":"
-			l.custom_minimum_size = Vector2(160, 0)
+			l.custom_minimum_size = Vector2(130, 0)
 			r.add_child(l)
 			var ab := _abilita_assist(j)
 			var lontano: bool = int(esp.membro(j)["settore"]) != int(m["settore"]) and not da_lontano
@@ -436,7 +467,7 @@ func _mostra_scelta() -> void:
 	if not extra.is_empty():
 		info.text = "[color=#ffb347]Si aggiungono: %s.[/color]" % ", ".join(extra)
 		_corpo.add_child(info)
-	_corpo.add_child(Tema.pulsante_primario("TIRA I DADI", _tira, 18))
+	_piede.add_child(Tema.pulsante_primario("TIRA I DADI", _tira, 18))
 
 ## Abilità "When Assisting" del Membro j: "2", "tutti", "lontano" o "".
 func _abilita_assist(j: int) -> String:
@@ -455,7 +486,7 @@ func _chip_dado(d: Dictionary, premuto: bool, cb: Callable) -> Button:
 	var b := Button.new()
 	b.toggle_mode = true
 	b.button_pressed = premuto or _scelti.has(d["id"])
-	b.custom_minimum_size = Vector2(64, 64)
+	b.custom_minimum_size = Vector2(58, 58)
 	b.focus_mode = Control.FOCUS_NONE
 	var col: Color = {"red": Color("b0263a"), "blue": Color("1683c8"), "green": Color("3f9a36")}.get(Prova.colore(d), Color(0.5, 0.5, 0.5))
 	b.add_theme_stylebox_override("normal", Tema.box(col.darkened(0.45), col, 2, 6, 4))
@@ -535,7 +566,7 @@ func _tira() -> void:
 	if _dadi3d:
 		# il risultato è quello che esce davvero dal lancio
 		_svuota()
-		_corpo.add_child(Tema.etichetta("I dadi rotolano…", 18, Tema.CIANO))
+		_corpo.add_child(Tema.etichetta("I dadi rotolano sulla mappa…" if _dadi3d.sulla_mappa else "I dadi rotolano…", 16, Tema.CIANO))
 		_dadi3d.visible = true
 		await _dadi3d.lancia(_pool.filter(func(d): return d["tipo"] != "virtuale"))
 	_fase = 1
@@ -574,7 +605,10 @@ func _mostra_tiro() -> void:
 		r.add_child(_faccia(d))
 	_corpo.add_child(r)
 	var nota := Label.new()
-	nota.text = "I dadi si cambiano solo con le carte, l'attrezzatura e le abilità qui sotto: il programma ti dice quali cliccare." if _sel_mod.is_empty() else ""
+	nota.text = "I dadi si cambiano solo con carte, attrezzatura e abilità qui sotto." if _sel_mod.is_empty() and not _modificatori().is_empty() else ""
+	nota.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	nota.custom_minimum_size = Vector2(300, 0)
+	nota.visible = nota.text != ""
 	if not _sel_mod.is_empty():
 		var bs := HBoxContainer.new()
 		var ls := Tema.testo_ricco(16)
@@ -598,12 +632,12 @@ func _mostra_tiro() -> void:
 		_corpo.add_child(rm)
 	_mostra_modificatori()
 	_mostra_combinazioni()
-	_corpo.add_child(Tema.pulsante_primario("RISOLVI LA PROVA", _risolvi, 18))
+	_piede.add_child(Tema.pulsante_primario("RISOLVI LA PROVA", _risolvi, 18))
 
 func _faccia(d: Dictionary) -> Control:
 	var v := VBoxContainer.new()
 	var b := Button.new()
-	b.custom_minimum_size = Vector2(72, 72)
+	b.custom_minimum_size = Vector2(60, 60)
 	b.focus_mode = Control.FOCUS_NONE
 	var col: Color = {"red": Color("b0263a"), "blue": Color("1683c8"), "green": Color("3f9a36")}.get(Prova.colore(d), Color("e8c21a") if d["tipo"] == "ferita" else Color("f0901a"))
 	b.add_theme_stylebox_override("normal", Tema.box(col, Color.WHITE, 2, 8, 2))
@@ -618,7 +652,7 @@ func _faccia(d: Dictionary) -> Control:
 		if p != "":
 			var t := TextureRect.new()
 			t.texture = load(p)
-			t.custom_minimum_size = Vector2(30, 30) if ic.size() > 1 else Vector2(46, 46)
+			t.custom_minimum_size = Vector2(25, 25) if ic.size() > 1 else Vector2(40, 40)
 			t.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 			t.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			t.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -763,12 +797,22 @@ func _mostra_combinazioni() -> void:
 		return
 	_corpo.add_child(Tema.etichetta("COMBINAZIONI DELLE CARTE REPARTO IN MANO", 15, Tema.CIANO))
 	for r in righe:
+		# casella + testo che va a capo (con le icone): mai più largo della colonna
+		var hr := HBoxContainer.new()
+		hr.add_theme_constant_override("separation", 6)
 		var cb := CheckBox.new()
-		cb.text = "%s — %s: %s" % [Carte.titolo(r[1]), r[2].get("req", ""), Carte.t(r[2])]
 		cb.disabled = not r[3]
 		cb.button_pressed = _combo_scelte.has(r[0])
+		cb.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
 		cb.toggled.connect(func(on): if on: _combo_scelte[r[0]] = true else: _combo_scelte.erase(r[0]))
-		_corpo.add_child(cb)
+		hr.add_child(cb)
+		var rt := Tema.testo_ricco(15)
+		rt.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		rt.custom_minimum_size = Vector2(260, 0)
+		rt.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		rt.text = "%s[b]%s[/b] — %s: %s%s" % ["" if r[3] else "[color=#7f93a8]", Carte.titolo(r[1]), _req(str(r[2].get("req", ""))), Dati.testo_carta(Carte.t(r[2]), 18), "" if r[3] else "[/color]"]
+		hr.add_child(rt)
+		_corpo.add_child(hr)
 
 # ------------------------------------------------------------------ risoluzione (passi 5-10)
 
@@ -918,7 +962,7 @@ func _risolvi() -> void:
 			req_esito = str(esiti[e2["riga"]].get("req", ""))
 			colore_esito = str(esiti[e2["riga"]].get("colore", ""))
 			var r0: Dictionary = esiti[e2["riga"]]
-			testi.append({"en": r0.get("en", ""), "it": r0.get("it", ""), "fonte": "esito " + colore_esito})
+			testi.append({"en": r0.get("en", ""), "it": r0.get("it", ""), "fonte": "Esito " + str({"green": "verde", "red": "rosso", "yellow": "giallo", "blue": "blu"}.get(colore_esito, colore_esito))})
 			_segui(esiti, r0, testi)
 			resoconto.append("Esito: %s" % _nome_colore(colore_esito))
 		else:
@@ -926,7 +970,7 @@ func _risolvi() -> void:
 	if colore_esito != "" and esito_immediato != "":
 		for r1 in esiti:
 			if str(r1.get("colore", "")) == colore_esito:
-				testi.append({"en": r1.get("en", ""), "it": r1.get("it", ""), "fonte": "esito " + colore_esito})
+				testi.append({"en": r1.get("en", ""), "it": r1.get("it", ""), "fonte": "Esito " + str({"green": "verde", "red": "rosso", "yellow": "giallo", "blue": "blu"}.get(colore_esito, colore_esito))})
 				_segui(esiti, r1, testi)
 				break
 		for t1 in azione.get("tracce", []):
@@ -1102,7 +1146,7 @@ func _segui(esiti: Array, r: Dictionary, testi: Array) -> void:
 		return
 	for r2 in esiti:
 		if str(r2.get("colore", "")) == s and r2 != r:
-			testi.append({"en": r2.get("en", ""), "it": r2.get("it", ""), "fonte": "esito " + s})
+			testi.append({"en": r2.get("en", ""), "it": r2.get("it", ""), "fonte": "Esito " + str({"green": "verde", "red": "rosso", "yellow": "giallo", "blue": "blu"}.get(str(s), str(s)))})
 			return
 
 static func _nome_colore(c: String) -> String:
@@ -1128,7 +1172,8 @@ func _mostra_riepilogo(resoconto: Array, testi: Array) -> void:
 			var rt := Tema.testo_ricco(18)
 			rt.text = "[b]%s[/b]: %s" % [str(t.get("fonte", "")), Dati.testo_carta(str(t.get("it", ""))) if str(t.get("it", "")) != "" else "(nessun testo)"]
 			_corpo.add_child(rt)
-	_corpo.add_child(Tema.pulsante_primario("APPLICA", func():
+	_piede.add_child(Tema.pulsante_primario("APPLICA", func():
+		_via_i_dadi()
 		conclusa.emit({"testi": testi, "annullata": false})
 		queue_free(), 18))
 

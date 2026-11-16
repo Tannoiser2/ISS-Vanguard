@@ -50,8 +50,13 @@ func cerca_numero(camp: int, numero: int) -> Array:
 	return logbook(camp).get("index", {}).get(str(numero), [])
 
 ## Percorso dell'icona da usare nel testo.
-func icona(nome: String) -> String:
+## chiara: la versione chiara delle icone nere (per i testi su fondo scuro); sui dadi colorati resta la nera.
+func icona(nome: String, chiara := false) -> String:
 	if icone.has(nome):
+		if chiara:
+			var pc := "res://assets/app/icone_chiare/%d.webp" % int(icone[nome])
+			if ResourceLoader.exists(pc):
+				return pc
 		return "res://assets/app/icone/%d.webp" % int(icone[nome])
 	return ""
 
@@ -64,7 +69,7 @@ func testo_bb(t: String, dim := 22) -> String:
 	var k := 0
 	for m in rx.search_all(t):
 		out += t.substr(k, m.get_start() - k)
-		var p := icona(m.get_string(1))
+		var p := icona(m.get_string(1), true)
 		out += ("[img height=%d]%s[/img]" % [dim, p]) if p != "" else "[lb]%s[rb]" % m.get_string(1)
 		k = m.get_end()
 	return out + t.substr(k)
@@ -80,7 +85,7 @@ func testo_carta(t: String, dim := 22) -> String:
 		var alias := {"travel": "", "time": "", "marker": "", "die": "die", "defense": "defence"}
 		if alias.has(n) and alias[n] != "":
 			n = alias[n]
-		var p := icona(n)
+		var p := icona(n, true)
 		out += ("[img height=%d]%s[/img]" % [dim, p]) if p != "" else "[color=#ffb347]⟨%s⟩[/color]" % Traduzioni.icona(m.get_string(1))
 		k = m.get_end()
 	return out + t.substr(k).replace("[", "[lb]")

@@ -12,6 +12,15 @@ const RAGGIO_D8 := 0.74     # distanza dei vertici dell'ottaedro dal centro
 const VASSOIO := Vector2(14.0, 5.6)
 const COLORI := {"red": Color("b0263a"), "blue": Color("1683c8"), "green": Color("3f9a36")}
 
+## true: niente vassoio, i dadi rotolano sopra la mappa (fondo trasparente, sponde invisibili, ombre a terra)
+var sulla_mappa := false
+var _area := VASSOIO        # zona in cui rotolano i dadi (larghezza, profondità)
+var _sponde: Array = []
+var _cam: Camera3D
+var _tex_ombra: Texture2D
+var _ombre: Control
+const ALTO_VISTA := 12.5    # profondità della zona inquadrata sulla mappa, in unità dei dadi
+
 var _vp: SubViewport
 var _mondo: Node3D
 var _corpi: Array = []      # [{"corpo": RigidBody3D, "d": Dictionary, "normali": Array}]
@@ -28,12 +37,13 @@ func _ready() -> void:
 	_vp.own_world_3d = true
 	_vp.msaa_3d = Viewport.MSAA_4X
 	_vp.physics_object_picking = false
+	_vp.transparent_bg = sulla_mappa
 	add_child(_vp)
 	_mondo = Node3D.new()
 	_vp.add_child(_mondo)
 	var amb := WorldEnvironment.new()
 	var env := Environment.new()
-	env.background_mode = Environment.BG_COLOR
+	env.background_mode = Environment.BG_CLEAR_COLOR if sulla_mappa else Environment.BG_COLOR
 	env.background_color = Color(0.02, 0.05, 0.09)
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	env.ambient_light_color = Color(0.55, 0.6, 0.7)
@@ -50,10 +60,78 @@ func _ready() -> void:
 	cam.fov = 31
 	_mondo.add_child(cam)
 	cam.look_at(Vector3(0, 0, 0.2), Vector3.UP)
+	_cam = cam
 	_fisica = PhysicsMaterial.new()
 	_fisica.bounce = 0.28
 	_fisica.friction = 0.75
+	if sulla_mappa:
+		# vista quasi a piombo, più alta: i dadi hanno la misura di dadi veri posati sulla plancia
+		cam.position = Vector3(0, ALTO_VISTA / (2.0 * tan(deg_to_rad(cam.fov / 2.0))), 1.6)
+		cam.look_at(Vector3.ZERO, Vector3.FORWARD)
+		var g := Gradient.new()
+		g.set_color(0, Color(0, 0, 0, 0.7))
+		g.set_color(1, Color(0, 0, 0, 0))
+		var gt := GradientTexture2D.new()
+		gt.gradient = g
+		gt.fill = GradientTexture2D.FILL_RADIAL
+		gt.fill_from = Vector2(0.5, 0.5)
+		gt.fill_to = Vector2(1.0, 0.5)
+		gt.width = 64
+		gt.height = 64
+		_tex_ombra = gt
+		_ombre = Control.new()
+		_ombre.show_behind_parent = true
+		_ombre.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_ombre.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		_ombre.draw.connect(_disegna_ombre)
+		add_child(_ombre)
+		resized.connect(_adatta_area)
+		_adatta_area()
 	_vassoio()
+
+## Sulla mappa la zona dei dadi segue la forma del riquadro: larga quanto la parte visibile, meno un margine.
+func _adatta_area() -> void:
+	var aspetto := size.x / maxf(size.y, 1.0) if size.y > 0 else 1.6
+	var nuova := Vector2(clampf(ALTO_VISTA * aspetto - 5.0, 6.0, 12.5), ALTO_VISTA - 5.5)
+	if nuova.is_equal_approx(_area):
+		return
+	_area = nuova
+	if not _sponde.is_empty():
+		for n in _sponde:
+			n.queue_free()
+		_sponde = []
+		_vassoio()
+
+func _process(_dt: float) -> void:
+	if sulla_mappa and _ombre:
+		_ombre.queue_redraw()
+
+## Ombre morbide sotto i dadi, disegnate in 2D dietro il riquadro 3D: senza un piano che le riceva
+## sono loro a "posare" i dadi sulla mappa.
+func _disegna_ombre() -> void:
+	if _cam == null or _vp == null or _vp.size.x <= 0:
+		return
+	var scala := size / Vector2(_vp.size)
+	for c in _corpi:
+		if not is_instance_valid(c["corpo"]):
+			continue
+		var b: RigidBody3D = c["corpo"]
+		var a_terra := Vector3(b.position.x + 0.18 + b.position.y * 0.1, 0.0, b.position.z + 0.18 + b.position.y * 0.1)
+		var p := _cam.unproject_position(a_terra) * scala
+		var r := absf((_cam.unproject_position(a_terra + Vector3(LATO * 1.05, 0, 0)).x - _cam.unproject_position(a_terra).x) * scala.x)
+		r *= clampf(1.0 + b.position.y * 0.1, 1.0, 1.7)
+		_ombre.draw_texture_rect(_tex_ombra, Rect2(p - Vector2(r, r), Vector2(r, r) * 2.0), false, Color(1, 1, 1, clampf(1.0 - b.position.y * 0.12, 0.35, 1.0)))
+
+## Toglie tutti i dadi (fine della Prova).
+func svuota() -> void:
+	for x in _corpi:
+		_libera(x)
+	_corpi = []
+
+func _libera(x: Dictionary) -> void:
+	if is_instance_valid(x["corpo"]):
+		x["corpo"].queue_free()
+
 
 ## Il vassoio: fondo di feltro e bordi bassi.
 func _vassoio() -> void:
@@ -61,26 +139,28 @@ func _vassoio() -> void:
 	fondo.physics_material_override = _fisica
 	var sh := CollisionShape3D.new()
 	var bx := BoxShape3D.new()
-	bx.size = Vector3(VASSOIO.x, 0.4, VASSOIO.y)
+	bx.size = Vector3(_area.x + 4.0, 0.4, _area.y + 4.0)
 	sh.shape = bx
 	sh.position.y = -0.2
 	fondo.add_child(sh)
-	var mi := MeshInstance3D.new()
-	var pm := BoxMesh.new()
-	pm.size = Vector3(VASSOIO.x, 0.4, VASSOIO.y)
-	mi.mesh = pm
-	mi.position.y = -0.2
-	var mt := StandardMaterial3D.new()
-	mt.albedo_color = Color(0.06, 0.16, 0.24)
-	mt.roughness = 0.95
-	mi.material_override = mt
-	fondo.add_child(mi)
+	if not sulla_mappa:
+		var mi := MeshInstance3D.new()
+		var pm := BoxMesh.new()
+		pm.size = Vector3(_area.x, 0.4, _area.y)
+		mi.mesh = pm
+		mi.position.y = -0.2
+		var mt := StandardMaterial3D.new()
+		mt.albedo_color = Color(0.06, 0.16, 0.24)
+		mt.roughness = 0.95
+		mi.material_override = mt
+		fondo.add_child(mi)
 	_mondo.add_child(fondo)
+	_sponde.append(fondo)
 	var bordo := StandardMaterial3D.new()
 	bordo.albedo_color = Color(0.1, 0.28, 0.4)
 	bordo.roughness = 0.6
-	for lato in [[Vector3(0, 0.6, -VASSOIO.y / 2 - 0.15), Vector3(VASSOIO.x + 0.6, 1.2, 0.3)], [Vector3(0, 0.6, VASSOIO.y / 2 + 0.15), Vector3(VASSOIO.x + 0.6, 1.2, 0.3)],
-			[Vector3(-VASSOIO.x / 2 - 0.15, 0.6, 0), Vector3(0.3, 1.2, VASSOIO.y)], [Vector3(VASSOIO.x / 2 + 0.15, 0.6, 0), Vector3(0.3, 1.2, VASSOIO.y)]]:
+	for lato in [[Vector3(0, 0.6, -_area.y / 2 - 0.15), Vector3(_area.x + 0.6, 1.2, 0.3)], [Vector3(0, 0.6, _area.y / 2 + 0.15), Vector3(_area.x + 0.6, 1.2, 0.3)],
+			[Vector3(-_area.x / 2 - 0.15, 0.6, 0), Vector3(0.3, 1.2, _area.y)], [Vector3(_area.x / 2 + 0.15, 0.6, 0), Vector3(0.3, 1.2, _area.y)]]:
 		var w := StaticBody3D.new()
 		w.physics_material_override = _fisica
 		w.position = lato[0]
@@ -90,20 +170,22 @@ func _vassoio() -> void:
 		cs.shape = b2
 		cs.position.y = 3
 		w.add_child(cs)
-		var m2 := MeshInstance3D.new()
-		var bm := BoxMesh.new()
-		bm.size = lato[1] * Vector3(1, 0.35, 1)
-		m2.mesh = bm
-		m2.position.y = -0.4
-		m2.material_override = bordo
-		w.add_child(m2)
+		if not sulla_mappa:
+			var m2 := MeshInstance3D.new()
+			var bm := BoxMesh.new()
+			bm.size = lato[1] * Vector3(1, 0.35, 1)
+			m2.mesh = bm
+			m2.position.y = -0.4
+			m2.material_override = bordo
+			w.add_child(m2)
 		_mondo.add_child(w)
+		_sponde.append(w)
 
 ## Lancia tutti i dadi (sostituisce quelli già nel vassoio) e, quando si fermano, scrive in ogni dado la
 ## faccia rimasta in alto (d["faccia"]).
 func lancia(dadi: Array) -> void:
 	for x in _corpi:
-		x["corpo"].queue_free()
+		_libera(x)
 	_corpi = []
 	var n := dadi.size()
 	for i in n:
@@ -134,7 +216,7 @@ func rilancia(dadi: Array) -> void:
 func togli(d: Dictionary) -> void:
 	for c in _corpi.duplicate():
 		if c["d"] == d:
-			c["corpo"].queue_free()
+			_libera(c)
 			_corpi.erase(c)
 
 ## Allinea il dado alla faccia scritta in d["faccia"] (dopo una correzione a mano o un effetto).
@@ -153,7 +235,7 @@ func _getta(b: RigidBody3D, i: int, n: int) -> void:
 	var riga := i % 2
 	var colonna := float(i / 2)
 	var colonne := ceilf(n / 2.0)
-	b.position = Vector3(-VASSOIO.x / 2 + 0.9 + randf() * 0.4, 2.2 + randf() * 1.4 + colonna * 0.25, (riga - 0.5) * 2.0 + randf_range(-0.5, 0.5))
+	b.position = Vector3(-_area.x / 2 + 0.9 + randf() * 0.4, 2.2 + randf() * 1.4 + colonna * 0.25, (riga - 0.5) * 2.0 + randf_range(-0.5, 0.5))
 	b.basis = Basis.from_euler(Vector3(randf() * TAU, randf() * TAU, randf() * TAU))
 	b.linear_velocity = Vector3(randf_range(5.0, 8.5) + colonne * 0.1, randf_range(-1, 1.0), randf_range(-1.6, 1.6))
 	b.angular_velocity = Vector3(randf_range(-22, 22), randf_range(-14, 14), randf_range(-22, 22))
@@ -167,6 +249,7 @@ func _attendi(quali: Array = []) -> void:
 	var quieti := 0.0
 	while t < 4.5:
 		await get_tree().physics_frame
+		quali = quali.filter(func(c): return is_instance_valid(c["corpo"]))
 		var dt := 1.0 / float(Engine.physics_ticks_per_second)
 		t += dt
 		if t > 0.6 and quali.all(func(c): return c["corpo"].sleeping or (c["corpo"].linear_velocity.length() < 0.12 and c["corpo"].angular_velocity.length() < 0.25)):
@@ -231,7 +314,8 @@ func _nuovo_dado(d: Dictionary) -> Dictionary:
 					mt2.albedo_texture = tex)
 	b.add_child(cs)
 	b.add_child(mi)
-	return {"corpo": b, "d": d, "normali": normali}
+	var out := {"corpo": b, "d": d, "normali": normali}
+	return out
 
 ## Cubo con le facce prese dalla griglia 3×2 dell'immagine del dado (faccia i = cella i).
 static func _cubo() -> ArrayMesh:

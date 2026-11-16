@@ -118,7 +118,7 @@ func _aggiorna_lista() -> void:
 		var data := Time.get_datetime_string_from_unix_time(int(x["aggiornata"]) + _fuso(), true).substr(0, 16)
 		b.text = "%s   ·   %s   ·   %s   ·   %s" % [x["nome"], Dati.CAMPAGNE.get(x["camp"], {}).get("nome", ""), x["codice"], data]
 		r.add_child(b)
-		var sc := Tema.pulsante("⤓", func(): _scarica(str(x["codice"]), str(x["nome"])), 14)
+		var sc := Tema.pulsante("SCARICA", func(): _scarica(str(x["codice"]), str(x["nome"])), 14)
 		sc.tooltip_text = "Scarica il salvataggio in un file (copia di sicurezza)"
 		r.add_child(sc)
 		var cp := Tema.pulsante("↺", func(): _copie(str(x["codice"]), str(x["nome"])), 14)

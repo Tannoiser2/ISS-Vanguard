@@ -321,6 +321,7 @@ func _run() -> void:
 			break
 	e.s["settori"][str(s_log)]["log"] = 210
 	e.s["settori"][str(s_log)]["visitato"] = false
+	e.s["settori"][str(s_log)]["pdi"] = []   # l'annotazione stampata si legge finché nessuna carta la copre
 	mis._logbook.visible = false
 	mis._occupato = true
 	var arr_l := []
