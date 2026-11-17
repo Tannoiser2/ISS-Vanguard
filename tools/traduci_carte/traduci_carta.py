@@ -163,7 +163,8 @@ def campi(c):
     # etichette stampate comuni, se nessun altro testo le contiene già
     GENERICHE = [("OPTIONAL MISSION", "MISSIONE OPZIONALE"), ("OBJECTIVE", "OBIETTIVO"), ("EFFECT", "EFFETTO"),
                  ("SOLVED", "RISOLTA"), ("UTILITY", "UTILITÀ"), ("STRUCTURAL", "STRUTTURALE"),
-                 ("CAMPAIGN OBJECTIVE", "OBIETTIVO DELLA CAMPAGNA"), ("SITUATIONS", "SITUAZIONI"), ("TRAVEL", "VIAGGIO")]
+                 ("CAMPAIGN OBJECTIVE", "OBIETTIVO DELLA CAMPAGNA"), ("SITUATIONS", "SITUAZIONI"), ("TRAVEL", "VIAGGIO"),
+                 ("DO NOT REVEAL THIS CARD UNTIL RESEARCHED", "NON RIVELARE QUESTA CARTA FINCHÉ NON È STATA RICERCATA")]
     gia = " ".join(x[0].upper() for x in out)
     for en_, it_ in GENERICHE:
         if en_ not in gia:
@@ -494,11 +495,11 @@ def traduci(chiave, uscita, debug=False):
     usate = set()
     blocchi = []
     maiuscole = {norm(p["t"]) for p in ps if re.sub(r"[^A-Za-z]", "", p["t"]).isupper() and p["c"] >= 60}
-    gen = {"OPTIONAL MISSION", "OBJECTIVE", "EFFECT", "SOLVED", "UTILITY", "STRUCTURAL", "CAMPAIGN OBJECTIVE", "SITUATIONS", "TRAVEL"}
+    gen = {"OPTIONAL MISSION", "OBJECTIVE", "EFFECT", "SOLVED", "UTILITY", "STRUCTURAL", "CAMPAIGN OBJECTIVE", "SITUATIONS", "TRAVEL", "DO NOT REVEAL THIS CARD UNTIL RESEARCHED"}
     titolo_doppio = sum(1 for x in campi(c) if x[0] == (c.get("titolo") or {}).get("en")) > 1
     titolo_fatto = False
     for en, it, stile in sorted(campi(c), key=lambda x: -len(x[0])):
-        if en in gen and norm(en.split()[-1]) not in maiuscole:
+        if en in gen and norm(en.split()[-1]) not in maiuscole and not (en.startswith("DO NOT REVEAL") and c.get("tipo") == "research_project"):
             continue
         primo_titolo = stile == "titolo" and en == (c.get("titolo") or {}).get("en") and not titolo_fatto
         if primo_titolo:
