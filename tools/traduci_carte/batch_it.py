@@ -43,8 +43,8 @@ def controllo(rel, png):
     parole_it = set(tutto_it.split())
     for p in T.parole(Image.open(png).convert("RGB")):
         t = re.sub(r"[^A-Za-z]", "", p["t"]).lower()
-        if p["c"] >= 85 and len(t) >= 6 and t == T.norm(p["t"]) and t not in it_unito and \
-                not any(difflib.SequenceMatcher(None, t, w).ratio() >= 0.8 for w in parole_it):
+        if p["c"] >= 85 and len(t) >= 6 and t == T.norm(p["t"]) and t not in it_unito and t[:6] not in it_unito and \
+                not any(difflib.SequenceMatcher(None, t, w).ratio() >= 0.7 for w in parole_it):
             forti.add(t)
             forti.add("·")
     for p in lette:

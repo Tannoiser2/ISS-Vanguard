@@ -26,7 +26,7 @@ F = {
 }
 # riquadri fissi per categoria (frazioni della carta), usati quando l'OCR non riesce a leggere
 MODELLI = {"reparto": {"titolo": (0.47, 0.25, 0.52, 0.22, "d")},
-           "pdi": {"titolo": (0.01, 0.015, 0.63, 0.075, "s")},
+           "pdi": {"titolo": (0.01, 0.015, 0.63, 0.075, "s"), "corsivo": (0.015, 0.075, 0.62, 0.095, "s")},
            "minacce": {"titolo": (0.01, 0.0, 0.6, 0.045, "s")}}
 # riquadri misurati a mano (frazioni della carta) dove l'OCR sbaglia; la chiave è il file o la cartella,
 # poi "titolo" o l'inizio del testo inglese: (x, y, w, h, allineamento s/c/d, righe, chiaro)
@@ -60,7 +60,7 @@ def campi(c):
         if not isinstance(o, dict):
             return
         en, it = o.get("en"), o.get("it", "")
-        if isinstance(en, str) and en.strip() and isinstance(it, str) and it.strip():
+        if isinstance(en, str) and en.strip() and isinstance(it, str) and it.strip() and not re.match(r"(?i)time track with \d+ spaces", en):
             if chiave == "costo" and c.get("tipo") == "research_project":
                 pass   # scritto con l'etichetta COSTO:
             elif chiave == "obiettivo" and c.get("veterano"):
@@ -96,6 +96,12 @@ def campi(c):
             giro(v, "tempo", "lista_tempo")
         elif k not in ("campi", "retro"):
             giro(v, k, k in ("azioni", "viaggio"))
+    # costo delle azioni scritto come "testo inglese / testo italiano"
+    for a_ in c.get("azioni", []) or []:
+        cs = a_.get("costo") if isinstance(a_, dict) else None
+        if isinstance(cs, str) and " / " in cs and len(cs) > 25 and re.search(r"[a-z]{4}", cs):
+            en_c, it_c = cs.rsplit(" / ", 1)
+            out.append((en_c.strip(), it_c.strip(), "testo"))
     # etichette stampate che nei dati non hanno un testo {en, it}
     CONCEDE = {"Equipment": "Attrezzatura", "Lander Mod": "Modifica del Lander", "Lander Mods": "Modifiche del Lander",
                "Bridge Upgrade": "Potenziamento del Ponte", "Production Project": "Progetto di Produzione",
@@ -162,10 +168,11 @@ def campi(c):
     for en_, it_ in GENERICHE:
         if en_ not in gia:
             out.append((en_, it_, "etichetta"))
-    visti, finali = set(), []
+    visti, finali = {}, []
     for x in out:
-        if x[0].strip() and x[1].strip() and x[0] not in visti:
-            visti.add(x[0])
+        # lo stesso titolo può essere stampato due volte (titolo della carta e titolo dell'azione)
+        if x[0].strip() and x[1].strip() and visti.get(x[0], 0) < (2 if x[2] == "titolo" else 1):
+            visti[x[0]] = visti.get(x[0], 0) + 1
             finali.append(x)
     # i pezzi già contenuti in un testo più lungo (es. le due scelte di "A - OPPURE - B") si scrivono con quello
     def nudo(t):
@@ -488,9 +495,14 @@ def traduci(chiave, uscita, debug=False):
     blocchi = []
     maiuscole = {norm(p["t"]) for p in ps if re.sub(r"[^A-Za-z]", "", p["t"]).isupper() and p["c"] >= 60}
     gen = {"OPTIONAL MISSION", "OBJECTIVE", "EFFECT", "SOLVED", "UTILITY", "STRUCTURAL", "CAMPAIGN OBJECTIVE", "SITUATIONS", "TRAVEL"}
+    titolo_doppio = sum(1 for x in campi(c) if x[0] == (c.get("titolo") or {}).get("en")) > 1
+    titolo_fatto = False
     for en, it, stile in sorted(campi(c), key=lambda x: -len(x[0])):
         if en in gen and norm(en.split()[-1]) not in maiuscole:
             continue
+        primo_titolo = stile == "titolo" and en == (c.get("titolo") or {}).get("en") and not titolo_fatto
+        if primo_titolo:
+            titolo_fatto = True
         corr = None
         for chiave in (c["file"], c["file"].split("/")[1]):
             for k_, v_ in CORREZIONI.get(chiave, {}).items():
@@ -519,7 +531,21 @@ def traduci(chiave, uscita, debug=False):
         g = trova_blocco(en, ps, usate)
         if g is None:
             g = trova_sfumato(en, ps, usate)
-        if g is None and stile == "titolo" and en == c["titolo"]["en"] and c.get("categoria") in MODELLI:
+        # Luoghi: il titolo è sempre in alto a sinistra; se l'OCR lo "trova" altrove, si usa il riquadro tipico
+        if g is not None and primo_titolo and c.get("categoria") == "pdi":
+            H_, W_ = big.shape[:2]
+            if min(ps[i]["b"][1] for i in g) > H_ * 0.06 or min(ps[i]["b"][0] for i in g) > W_ * 0.1:
+                usate.difference_update(g)
+                g = None
+        if g is None and stile == "corsivo" and c.get("categoria") == "pdi" and "corsivo" in MODELLI["pdi"]:
+            fx, fy, fw, fh, all_ = MODELLI["pdi"]["corsivo"]
+            H, W = big.shape[:2]
+            box = (int(fx * W), int(fy * H), int(fw * W), int(fh * H))
+            blocchi.append({"en": en, "it": it, "stile": stile, "box": box, "alto": box[3] / 2.6, "righe": 2,
+                            "centrato": False, "destra": False, "chiaro": True, "corpo": box[3] / 2.6, "passo": box[3] / 2,
+                            "extra_x": 0, "extra_y": 0, "fisso": True})
+            continue
+        if g is None and primo_titolo and c.get("categoria") in MODELLI:
             fx, fy, fw, fh, all_ = MODELLI[c["categoria"]]["titolo"]
             H, W = big.shape[:2]
             box = (int(fx * W), int(fy * H), int(fw * W), int(fh * H))
@@ -586,7 +612,7 @@ def traduci(chiave, uscita, debug=False):
         muro |= ((np.abs(gr - fb) > 90).sum(axis=0) > (y1 - y0) * 0.55)
         n_tok = len([w for w in re.sub(r"\[\w+\]", " ", en).split() if norm(w)])
         manca_parola = len(set(ps[i]["n"] for i in g)) < n_tok
-        lim_vuoto = alto_riga * (0.7 if manca_parola or stile == "titolo" else 0.4)
+        lim_vuoto = alto_riga * (0.7 if manca_parola or stile in ("titolo", "corsivo") else 0.4)
         vuoto = 0
         xx = x1
         v0 = vuoto
