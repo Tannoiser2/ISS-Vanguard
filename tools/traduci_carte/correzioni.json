@@ -2593,5 +2593,1024 @@
    3,
    false
   ]
+ },
+ "carte/bridge_cards/b05_9304.webp": {
+  "BRIDGE UPGRADE": [
+   0.21,
+   0.22,
+   0.7,
+   0.06,
+   "s",
+   1,
+   true,
+   "POTENZIAMENTO DEL PONTE (VIAGGIO)"
+  ],
+  "titolo": [
+   0.1,
+   0.32,
+   0.55,
+   0.1,
+   "s",
+   2,
+   false
+  ],
+  "The": [
+   0.1,
+   0.43,
+   0.78,
+   0.26,
+   "s",
+   6,
+   false
+  ]
+ },
+ "carte/bridge_cards/b07_9306.webp": {
+  "BRIDGE UPGRADE": [
+   0.21,
+   0.22,
+   0.7,
+   0.06,
+   "s",
+   1,
+   true,
+   "POTENZIAMENTO DEL PONTE (VIAGGIO)"
+  ],
+  "titolo": [
+   0.1,
+   0.32,
+   0.74,
+   0.05,
+   "s",
+   1,
+   false
+  ],
+  "Reduce": [
+   0.1,
+   0.39,
+   0.76,
+   0.12,
+   "s",
+   3,
+   false
+  ],
+  "Utilizing": [
+   0.1,
+   0.53,
+   0.78,
+   0.12,
+   "s",
+   3,
+   false
+  ]
+ },
+ "carte/bridge_cards/o02_11801.webp": {
+  "CAMPAIGN": [
+   0.24,
+   0.22,
+   0.63,
+   0.06,
+   "s",
+   1,
+   true
+  ],
+  "titolo": [
+   0.1,
+   0.32,
+   0.62,
+   0.05,
+   "s",
+   1,
+   false
+  ],
+  "OBJECTIVE": [
+   0.1,
+   0.38,
+   0.76,
+   0.29,
+   "s",
+   7,
+   false
+  ],
+  "The": [
+   0.1,
+   0.69,
+   0.76,
+   0.12,
+   "s",
+   3,
+   false
+  ],
+  "+1 SITUATION": [
+   0.42,
+   0.895,
+   0.5,
+   0.07,
+   "s",
+   1,
+   true,
+   "1 SITUAZIONE"
+  ]
+ },
+ "carte/bridge_cards/o05_9204.webp": {
+  "CAMPAIGN": [
+   0.24,
+   0.22,
+   0.63,
+   0.06,
+   "s",
+   1,
+   true
+  ],
+  "titolo": [
+   0.1,
+   0.32,
+   0.45,
+   0.05,
+   "s",
+   1,
+   false
+  ],
+  "OBJECTIVE": [
+   0.1,
+   0.39,
+   0.8,
+   0.21,
+   "s",
+   5,
+   false
+  ],
+  "The": [
+   0.1,
+   0.61,
+   0.76,
+   0.12,
+   "s",
+   3,
+   false
+  ],
+  "2 SITUATIONS": [
+   0.42,
+   0.895,
+   0.5,
+   0.07,
+   "s",
+   1,
+   true,
+   "2 SITUAZIONI"
+  ]
+ },
+ "carte/bridge_cards/o06_9205.webp": {
+  "CAMPAIGN": [
+   0.24,
+   0.22,
+   0.63,
+   0.06,
+   "s",
+   1,
+   true
+  ],
+  "titolo": [
+   0.1,
+   0.32,
+   0.79,
+   0.05,
+   "s",
+   1,
+   false
+  ],
+  "OBJECTIVE": [
+   0.1,
+   0.4,
+   0.78,
+   0.28,
+   "s",
+   6,
+   false
+  ],
+  "Two": [
+   0.1,
+   0.7,
+   0.79,
+   0.11,
+   "s",
+   3,
+   false
+  ],
+  "3 SITUATIONS": [
+   0.42,
+   0.895,
+   0.5,
+   0.07,
+   "s",
+   1,
+   true,
+   "3 SITUAZIONI"
+  ]
+ },
+ "carte/bridge_cards/o07_9206.webp": {
+  "CAMPAIGN": [
+   0.24,
+   0.22,
+   0.63,
+   0.06,
+   "s",
+   1,
+   true
+  ],
+  "titolo": [
+   0.1,
+   0.32,
+   0.58,
+   0.05,
+   "s",
+   1,
+   false
+  ],
+  "OBJECTIVE": [
+   0.1,
+   0.39,
+   0.78,
+   0.25,
+   "s",
+   6,
+   false
+  ],
+  "Somewhere": [
+   0.1,
+   0.66,
+   0.76,
+   0.11,
+   "s",
+   3,
+   false
+  ],
+  "3 SITUATIONS": [
+   0.42,
+   0.895,
+   0.5,
+   0.07,
+   "s",
+   1,
+   true,
+   "3 SITUAZIONI"
+  ]
+ },
+ "carte/missions/m10_12305.webp": {
+  "titolo": [
+   0.15,
+   0.015,
+   0.7,
+   0.07,
+   "c",
+   1,
+   false,
+   "MISSIONE: OBIETTIVO PRIORITARIO (M10)"
+  ],
+  "OPTIONAL MISSION": "salta",
+  "If": [
+   0.05,
+   0.53,
+   0.92,
+   0.11,
+   "s",
+   2,
+   false
+  ],
+  "OBJECTIVE": [
+   0.03,
+   0.68,
+   0.93,
+   0.06,
+   "s",
+   1,
+   false
+  ],
+  "COMPLETION": [
+   0.03,
+   0.83,
+   0.9,
+   0.11,
+   "s",
+   2,
+   false
+  ],
+  "Orbital": [
+   0.15,
+   0.11,
+   0.7,
+   0.08,
+   "c",
+   2,
+   false
+  ]
+ },
+ "carte/missions/m123_18710.webp": {
+  "titolo": [
+   0.15,
+   0.02,
+   0.7,
+   0.065,
+   "c",
+   1,
+   false,
+   "MISSIONE OPZIONALE: COMPRENSIONE (M123)"
+  ],
+  "OPTIONAL MISSION": "salta",
+  "The": [
+   0.1,
+   0.11,
+   0.8,
+   0.09,
+   "c",
+   2,
+   false
+  ],
+  "OBJECTIVE": [
+   0.03,
+   0.55,
+   0.93,
+   0.12,
+   "s",
+   2,
+   false
+  ],
+  "HINT": [
+   0.05,
+   0.73,
+   0.85,
+   0.06,
+   "s",
+   1,
+   false
+  ],
+  "COMPLETION": [
+   0.03,
+   0.83,
+   0.9,
+   0.11,
+   "s",
+   2,
+   false
+  ]
+ },
+ "carte/missions/m133_18714.webp": {
+  "titolo": [
+   0.12,
+   0.025,
+   0.76,
+   0.06,
+   "c",
+   1,
+   false,
+   "MISSIONE: RITIRATA! (M133)"
+  ],
+  "OPTIONAL MISSION": "salta",
+  "The": [
+   0.08,
+   0.12,
+   0.84,
+   0.09,
+   "c",
+   2,
+   false
+  ],
+  "OBJECTIVE": [
+   0.03,
+   0.55,
+   0.93,
+   0.06,
+   "s",
+   1,
+   false
+  ],
+  "COMPLETION": [
+   0.03,
+   0.69,
+   0.9,
+   0.11,
+   "s",
+   2,
+   false
+  ],
+  "Go": [
+   0.42,
+   0.88,
+   0.3,
+   0.07,
+   "s",
+   1,
+   false
+  ]
+ },
+ "carte/missions/m134_18715.webp": {
+  "titolo": [
+   0.15,
+   0.015,
+   0.7,
+   0.135,
+   "c",
+   2,
+   false,
+   "MISSIONE: DECOLLARE PRIMA CHE IL RELITTO AFFONDI (M134)"
+  ],
+  "OPTIONAL MISSION": "salta",
+  "We": [
+   0.07,
+   0.16,
+   0.86,
+   0.05,
+   "c",
+   1,
+   false
+  ],
+  "OBJECTIVE": [
+   0.03,
+   0.56,
+   0.93,
+   0.06,
+   "s",
+   1,
+   false
+  ],
+  "COMPLETION": [
+   0.03,
+   0.69,
+   0.9,
+   0.11,
+   "s",
+   2,
+   false
+  ],
+  "Go": [
+   0.53,
+   0.88,
+   0.25,
+   0.07,
+   "s",
+   1,
+   false
+  ]
+ },
+ "carte/missions/m161_18719.webp": {
+  "titolo": [
+   0.15,
+   0.02,
+   0.7,
+   0.12,
+   "c",
+   2,
+   false,
+   "MISSIONE: ESPLORARE I PIANETI ABITABILI (M161)"
+  ],
+  "OPTIONAL MISSION": "salta",
+  "OBJECTIVE": [
+   0.03,
+   0.69,
+   0.8,
+   0.11,
+   "s",
+   2,
+   false
+  ],
+  "COMPLETION": [
+   0.03,
+   0.88,
+   0.9,
+   0.06,
+   "s",
+   1,
+   false
+  ],
+  "There's": [
+   0.15,
+   0.16,
+   0.7,
+   0.1,
+   "c",
+   2,
+   false
+  ]
+ },
+ "carte/missions/m162_18720.webp": {
+  "titolo": [
+   0.15,
+   0.02,
+   0.7,
+   0.12,
+   "c",
+   2,
+   false,
+   "MISSIONE OPZIONALE: SCOPRIRE I SEGRETI DEI BUNKER (M162)"
+  ],
+  "OPTIONAL MISSION": "salta",
+  "The": [
+   0.2,
+   0.16,
+   0.6,
+   0.1,
+   "c",
+   2,
+   false
+  ],
+  "OBJECTIVE": [
+   0.03,
+   0.71,
+   0.6,
+   0.06,
+   "s",
+   1,
+   false
+  ],
+  "COMPLETION": [
+   0.03,
+   0.83,
+   0.9,
+   0.11,
+   "s",
+   2,
+   false
+  ]
+ },
+ "carte/missions/m23_12408.webp": {
+  "titolo": [
+   0.15,
+   0.025,
+   0.7,
+   0.06,
+   "c",
+   1,
+   false,
+   "MISSIONE OPZIONALE: SAPERNE DI PIÙ (M23)"
+  ],
+  "OPTIONAL MISSION": "salta",
+  "OBJECTIVE": [
+   0.03,
+   0.62,
+   0.93,
+   0.11,
+   "s",
+   2,
+   false
+  ],
+  "COMPLETION": [
+   0.03,
+   0.83,
+   0.9,
+   0.11,
+   "s",
+   2,
+   false
+  ],
+  "Vanguard's": [
+   0.08,
+   0.11,
+   0.84,
+   0.16,
+   "c",
+   3,
+   false
+  ]
+ },
+ "carte/missions/m50_12502.webp": {
+  "titolo": [
+   0.2,
+   0.015,
+   0.6,
+   0.07,
+   "c",
+   1,
+   false,
+   "MISSIONE: VITA NELLA TEMPESTA (M50)"
+  ],
+  "OPTIONAL MISSION": "salta",
+  "We": [
+   0.04,
+   0.11,
+   0.92,
+   0.2,
+   "c",
+   4,
+   false
+  ],
+  "OBJECTIVE": [
+   0.03,
+   0.69,
+   0.93,
+   0.06,
+   "s",
+   1,
+   false
+  ],
+  "COMPLETION": [
+   0.03,
+   0.83,
+   0.9,
+   0.11,
+   "s",
+   2,
+   false
+  ]
+ },
+ "carte/missions/m51_12503.webp": {
+  "titolo": [
+   0.25,
+   0.025,
+   0.5,
+   0.06,
+   "c",
+   1,
+   false,
+   "MISSIONE: NAUFRAGHI (M51)"
+  ],
+  "OPTIONAL MISSION": "salta",
+  "The": [
+   0.04,
+   0.11,
+   0.92,
+   0.14,
+   "c",
+   3,
+   false
+  ],
+  "OBJECTIVE": [
+   0.03,
+   0.69,
+   0.6,
+   0.06,
+   "s",
+   1,
+   false
+  ],
+  "COMPLETION": [
+   0.03,
+   0.83,
+   0.9,
+   0.11,
+   "s",
+   2,
+   false
+  ]
+ },
+ "carte/missions/m73_12507.webp": {
+  "titolo": [
+   0.18,
+   0.025,
+   0.66,
+   0.06,
+   "c",
+   1,
+   false,
+   "MISSIONE: LUCE NELL'OSCURITÀ (M73)"
+  ],
+  "OPTIONAL MISSION": "salta",
+  "We": [
+   0.1,
+   0.11,
+   0.8,
+   0.14,
+   "c",
+   3,
+   false
+  ],
+  "OBJECTIVE": [
+   0.03,
+   0.55,
+   0.93,
+   0.12,
+   "s",
+   2,
+   false
+  ],
+  "HINT": [
+   0.05,
+   0.73,
+   0.75,
+   0.06,
+   "s",
+   1,
+   false
+  ],
+  "COMPLETION": [
+   0.03,
+   0.83,
+   0.9,
+   0.11,
+   "s",
+   2,
+   false
+  ]
+ },
+ "carte/missions/m80_12509.webp": {
+  "titolo": [
+   [
+    0.18,
+    0.025,
+    0.64,
+    0.06,
+    "c",
+    1,
+    false,
+    "MISSIONE: RACCOGLIERE ACQUA (M80)"
+   ],
+   [
+    0.62,
+    0.58,
+    0.34,
+    0.06,
+    "d",
+    1,
+    true,
+    "RACCOGLIERE ACQUA"
+   ]
+  ],
+  "OPTIONAL MISSION": "salta",
+  "While": [
+   0.04,
+   0.12,
+   0.92,
+   0.14,
+   "c",
+   3,
+   false
+  ],
+  "OBJECTIVE": [
+   0.03,
+   0.37,
+   0.93,
+   0.11,
+   "s",
+   2,
+   false
+  ],
+  "You may": [
+   0.25,
+   0.63,
+   0.71,
+   0.06,
+   "d",
+   1,
+   false
+  ],
+  "Gain 1": [
+   0.55,
+   0.8,
+   0.4,
+   0.17,
+   "s",
+   3,
+   false
+  ]
+ },
+ "carte/unavailable_equipment/e14_17005.webp": {
+  "titolo": [
+   0.25,
+   0.07,
+   0.5,
+   0.06,
+   "c",
+   1,
+   false
+  ],
+  "[spendDieRed]": [
+   0.03,
+   0.46,
+   0.94,
+   0.5,
+   "c",
+   10,
+   false
+  ]
+ },
+ "carte/unavailable_equipment/e35_7917.webp": {
+  "titolo": [
+   0.22,
+   0.07,
+   0.56,
+   0.06,
+   "c",
+   1,
+   false
+  ],
+  "[spendDieBlue]": [
+   0.03,
+   0.6,
+   0.94,
+   0.36,
+   "c",
+   7,
+   false
+  ]
+ },
+ "carte/unavailable_equipment/e53_18307.webp": {
+  "titolo": [
+   0.3,
+   0.07,
+   0.4,
+   0.06,
+   "c",
+   1,
+   false
+  ],
+  "During": [
+   0.1,
+   0.7,
+   0.8,
+   0.27,
+   "c",
+   5,
+   false
+  ]
+ },
+ "carte/unavailable_equipment/e57_18311.webp": {
+  "titolo": [
+   0.2,
+   0.07,
+   0.6,
+   0.1,
+   "c",
+   2,
+   false
+  ],
+  "[spendDieGreen]": [
+   0.04,
+   0.41,
+   0.92,
+   0.43,
+   "c",
+   9,
+   false
+  ],
+  "If there are": "salta",
+  "Each Crewmember draws": "salta",
+  "Activation": [
+   0.65,
+   0.88,
+   0.2,
+   0.08,
+   "s",
+   2,
+   false
+  ]
+ },
+ "carte/unavailable_equipment/e58_18312.webp": {
+  "titolo": [
+   0.22,
+   0.07,
+   0.56,
+   0.1,
+   "c",
+   2,
+   false
+  ],
+  "[spendDieRed]": [
+   0.04,
+   0.64,
+   0.92,
+   0.33,
+   "c",
+   6,
+   false
+  ]
+ },
+ "carte/unavailable_equipment/e59_18313.webp": {
+  "titolo": [
+   0.18,
+   0.07,
+   0.64,
+   0.1,
+   "c",
+   2,
+   false
+  ],
+  "[spendDieBlue]": [
+   0.04,
+   0.43,
+   0.92,
+   0.4,
+   "c",
+   8,
+   false
+  ],
+  "If there are": "salta",
+  "Activation": [
+   0.75,
+   0.88,
+   0.2,
+   0.08,
+   "s",
+   2,
+   false
+  ]
+ },
+ "carte/unavailable_equipment/e60_18314.webp": {
+  "titolo": [
+   0.18,
+   0.07,
+   0.64,
+   0.1,
+   "c",
+   2,
+   false
+  ],
+  "[spendDieBlue]": [
+   0.03,
+   0.41,
+   0.94,
+   0.43,
+   "c",
+   9,
+   false
+  ],
+  "If there are": "salta",
+  "Gain 1 Mineral": "salta",
+  "Activation": [
+   0.75,
+   0.88,
+   0.2,
+   0.08,
+   "s",
+   2,
+   false
+  ]
+ },
+ "carte/unavailable_equipment/e73_18325.webp": {
+  "titolo": [
+   0.25,
+   0.07,
+   0.5,
+   0.1,
+   "c",
+   2,
+   false
+  ],
+  "Take": [
+   0.12,
+   0.81,
+   0.78,
+   0.16,
+   "c",
+   3,
+   false
+  ]
+ },
+ "carte/unavailable_equipment/e75_18327.webp": {
+  "titolo": [
+   0.25,
+   0.07,
+   0.5,
+   0.1,
+   "c",
+   2,
+   false
+  ],
+  "Treat": [
+   0.08,
+   0.85,
+   0.84,
+   0.11,
+   "c",
+   2,
+   false
+  ]
+ },
+ "carte/unavailable_equipment/e76_18328.webp": {
+  "titolo": [
+   0.25,
+   0.07,
+   0.5,
+   0.1,
+   "c",
+   2,
+   false
+  ],
+  "You may": [
+   0.03,
+   0.57,
+   0.94,
+   0.4,
+   "c",
+   8,
+   false
+  ]
+ },
+ "carte/unavailable_equipment/e77_18329.webp": {
+  "titolo": [
+   0.25,
+   0.07,
+   0.5,
+   0.1,
+   "c",
+   2,
+   false
+  ],
+  "You may": [
+   0.05,
+   0.57,
+   0.9,
+   0.4,
+   "c",
+   8,
+   false
+  ]
  }
 }

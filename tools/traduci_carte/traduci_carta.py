@@ -128,7 +128,7 @@ def campi(c):
     # codice della Missione stampato dopo il titolo: "MISSION: X (M32)"
     if c.get("categoria") == "missioni" and c.get("id") and isinstance(c.get("titolo"), dict):
         for k_, x in enumerate(out):
-            if x[0] == c["titolo"]["en"]:
+            if x[0] == c["titolo"]["en"] and "(%s)" % c["id"] not in x[0]:
                 out[k_] = (x[0] + " (%s)" % c["id"], x[1] + " (%s)" % c["id"], x[2])
     TIPI = {"lander_mod": ("LANDER MOD", "MODIFICA DEL LANDER"), "medbay_upgrade": ("MEDBAY UPGRADE", "POTENZIAMENTO DELL'INFERMERIA"),
             "production_upgrade": ("PRODUCTION UPGRADE", "POTENZIAMENTO DELLA PRODUZIONE"),
@@ -169,6 +169,11 @@ def campi(c):
     for en_, it_ in GENERICHE:
         if en_ not in gia:
             out.append((en_, it_, "etichetta"))
+    # testi stampati che nei dati mancano: nelle correzioni con chiave "+testo inglese" e la traduzione come 8° valore
+    for k_, v_ in CORREZIONI.get(c.get("file", ""), {}).items():
+        if k_.startswith("+"):
+            v1 = v_[0] if isinstance(v_[0], list) else v_
+            out.append((k_[1:], v1[7], "etichetta"))
     visti, finali = {}, []
     for x in out:
         # lo stesso titolo può essere stampato due volte (titolo della carta e titolo dell'azione)
@@ -427,7 +432,8 @@ def adatta(it, stile, w, h, n_righe_orig, corpo, passo, extra_x=0, extra_y=0):
     usa lo spazio libero intorno, e solo alla fine si riduce il corpo."""
     pz = pezzi(it, stile)
     il0 = max(1.08, passo / corpo) if n_righe_orig > 1 else 1.22
-    size = int(corpo)
+    size = max(9, int(corpo))
+    righe, fonts, sp = impagina(pz, size, w / stretto(stile))
     while size > 8:
         for il in (il0, min(il0, 1.12), min(il0, 1.05)):
             prove = [(w, h), (w + extra_x, h)]
@@ -481,11 +487,13 @@ def scrivi(img, box, it, stile, col, centrato, n_righe_orig, alto_riga, destra=F
     return (xa_, y_ini, xa_ + larghe, y_ini + alto)
 
 
+USO_CORR = {}
 MANCANTI = []      # campi dell'ultima carta non trovati sull'immagine
 PROBLEMI = []      # altri segnali di qualità dell'ultima carta
 
 
 def traduci(chiave, uscita, debug=False):
+    USO_CORR.clear()
     MANCANTI.clear()
     PROBLEMI.clear()
     c = carta(chiave)
@@ -507,20 +515,28 @@ def traduci(chiave, uscita, debug=False):
         corr = None
         for chiave in (c["file"], c["file"].split("/")[1]):
             for k_, v_ in CORREZIONI.get(chiave, {}).items():
-                if (k_ == "titolo" and en == (c.get("titolo") or {}).get("en")) or (k_ != "titolo" and en.startswith(k_)):
+                if (k_ == "titolo" and en.split(" (%s)" % c.get("id", "§"))[0] == (c.get("titolo") or {}).get("en", "").split(" (%s)" % c.get("id", "§"))[0]) or (k_ != "titolo" and en.startswith(k_.lstrip("+"))):
                     corr = v_
             if corr:
                 break
+        if corr == [] or corr == "salta":
+            continue
         if corr:
             H, W = big.shape[:2]
-            # più riquadri per lo stesso testo stampato più volte: [[...], [...]]
-            for corr1 in (corr if isinstance(corr[0], list) else [corr]):
+            lista_c = corr if isinstance(corr[0], list) else [corr]
+            # testo identico stampato più volte nei dati (titolo della carta e dell'azione): un riquadro per volta
+            n_uguali = sum(1 for x in campi(c) if x[0] == en)
+            if n_uguali > 1 and len(lista_c) == n_uguali:
+                k_u = USO_CORR.get((c["file"], en), 0)
+                USO_CORR[(c["file"], en)] = k_u + 1
+                lista_c = [lista_c[k_u % n_uguali]]
+            for corr1 in lista_c:
                 fx, fy, fw, fh, all_, nr, chiaro = corr1[:7]
                 it1 = corr1[7] if len(corr1) > 7 else it
                 box = (int(fx * W), int(fy * H), int(fw * W), int(fh * H))
                 passo = box[3] / nr
                 corpo = passo * (0.78 if stile == "titolo" else 0.74)
-                azione = stile == "titolo" and en != (c.get("titolo") or {}).get("en")
+                azione = stile == "titolo" and en.split(" (%s)" % c.get("id", "§"))[0] != (c.get("titolo") or {}).get("en", "").split(" (%s)" % c.get("id", "§"))[0] and not str(it1).startswith("MISSIONE")
                 blocchi.append({"en": en, "it": it1, "stile": stile, "box": box, "alto": passo * 0.62, "righe": nr,
                                 "centrato": all_ == "c", "destra": all_ == "d", "chiaro": bool(chiaro), "corpo": corpo, "passo": passo,
                                 "extra_x": 0, "extra_y": 0, "azione": azione, "fisso": True})
@@ -728,6 +744,27 @@ def traduci(chiave, uscita, debug=False):
                 b_["box"] = (bx_, m_, bw_, by_ + bh_ - m_)
     # prima si cancella tutto, poi si scrive
     for b in blocchi:
+        if c.get("categoria") == "missioni" and b["stile"] == "titolo" and not b.get("chiaro") and b["box"][1] < big.shape[0] * 0.1:
+            # titolo scuro sul cartiglio bianco: si ridipinge il cartiglio
+            x, y, w, h = b["box"]
+            # tutto il cartiglio, non solo il riquadro del testo: si chiudono i buchi delle lettere nel bianco
+            Hh, Ww = big.shape[:2]
+            x0c, x1c, y1c = int(Ww * 0.02), int(Ww * 0.98), min(Hh, y + h + int(h * 0.3))
+            reg = big[0:y1c, x0c:x1c]
+            gr = reg.mean(axis=2)
+            chiari = reg[gr > 190]
+            if len(chiari) > reg.shape[0] * reg.shape[1] * 0.3:
+                bianco = np.median(chiari, axis=0)
+                wm = (gr > 175).astype(np.uint8) * 255
+                k = max(5, int(h * 0.9)) | 1
+                chiuso = cv2.morphologyEx(wm, cv2.MORPH_CLOSE, np.ones((k, k), np.uint8))
+                m = (chiuso > 0) & (gr < 190)
+                m = cv2.dilate(m.astype(np.uint8), np.ones((3, 3), np.uint8), iterations=1) > 0
+                m &= chiuso > 0
+                reg[m] = bianco
+                big[0:y1c, x0c:x1c] = reg
+                b["col"] = np.array([25.0, 28.0, 36.0])
+                continue
         if b.get("chiaro"):
             # lettere chiare con il bordo scuro: si tolgono i pixel chiari e il loro contorno
             x, y, w, h = b["box"]
