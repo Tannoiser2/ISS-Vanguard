@@ -87,7 +87,7 @@ func stato() -> String:
 	for k in s["settori"]:
 		if not (s["settori"][k]["pdi"] as Array).is_empty():
 			pdi.append("S%s:%s" % [k, ",".join(s["settori"][k]["pdi"])])
-	return "R%d az%d | %s | missioni %s | succ %d | PDI %s" % [int(s["round"]), int(s["azioni"]), ", ".join(sq), str(s["missioni"]), int(s["successi"]), " ".join(pdi)]
+	return "R%d az%d | %s | missioni %s | succ %d | PDI %s | CG %s" % [int(s["round"]), int(s["azioni"]), ", ".join(sq), str(s["missioni"]), int(s["successi"]), " ".join(pdi), JSON.stringify(s.get("condizione", {}))]
 
 func novita() -> void:
 	var d: Array = mis.esp.s["diario"]
@@ -146,6 +146,10 @@ func riquadro(c: Control, pref: String) -> void:
 				await premi(b)
 				return
 	for b in bs:
+		if not b.text.to_upper().contains("ANNULLA") and not b.text.to_upper().begins_with("VEDI") and not b.text.contains("SACRIFICANO"):
+			await premi(b, "prima opzione senza sacrifici")
+			return
+	for b in bs:
 		if not b.text.to_upper().contains("ANNULLA") and not b.text.to_upper().begins_with("VEDI"):
 			await premi(b, "prima opzione")
 			return
@@ -186,10 +190,23 @@ func _e_prova(n: Node) -> bool:
 
 func prova(f) -> void:
 	scrivi("    PROVA: " + f._titolo.text)
-	# 1. tutti i dadi
-	var bt = cerca(f, "TUTTI")
-	if bt:
-		await premi(bt)
+	# 1. i dadi: come un giocatore, si tira con quelli già evidenziati (tutti, all'inizio)
+	if f._titolo.text.contains("CONSOLE"):
+		# come dice il suggerimento: niente coppia verde+blu
+		var ds: Array = f.esp.dadi_disponibili(f.chi)
+		var nb := 0
+		var ng := 0
+		for d in ds:
+			var col: String = load("res://scripts/core/prova.gd").colore(d)
+			if col == "blue": nb += 1
+			if col == "green": ng += 1
+		var togli := "blue" if ng >= nb else "green"
+		for d in ds:
+			if load("res://scripts/core/prova.gd").colore(d) == togli and f._scelti.has(d["id"]) and f._scelti.size() > 1:
+				f._scelti.erase(d["id"])
+		f._mostra_scelta()
+		scrivi("      [deseleziono i dadi %s] restano %d" % [togli, f._scelti.size()])
+		await aspetta(0.2)
 	await foto("prova_scelta")
 	var bd = cerca(f, "TIRA I DADI")
 	if bd:
@@ -235,7 +252,14 @@ func bottone_barra(prefisso: String) -> Button:
 
 ## distanza in viaggi da un settore al 4
 ## settore indicato dall'obiettivo della Missione in corso (0 se nessuno)
-func obiettivo() -> int:
+func obiettivo(chi := -1) -> int:
+	# M03: uno aspetta nel Settore 6, l'altro accende la corrente nel 7 (Annotazione 600)
+	if "M03" in mis.esp.s["missioni"] and chi >= 0:
+		var st6 = mis.esp.s["settori"].get(6, mis.esp.s["settori"].get("6", {}))
+		var p6 := str(st6.get("pdi", []))
+		if p6.contains("P106"):
+			return 6
+		return int(mis._piano_m03(chi).get("dest", 7 if chi == 0 else 6))
 	for idm in mis.esp.s["missioni"]:
 		var c: Dictionary = mis.Carte.per_id(str(idm)) if false else root.get_node("Carte").per_id(str(idm))
 		var mm := RegEx.create_from_string("(?i)sector (\\d+)").search(str(c.get("obiettivo", {}).get("en", "")))
@@ -285,6 +309,16 @@ func _run() -> void:
 	await foto("inizio")
 	await risolvi_riquadri()
 	var e = mis.esp
+	if "log200" in OS.get_cmdline_user_args():
+		# dalla fine del tutorial: l'Annotazione 200 deve chiudere l'esplorazione e riportare alla nave
+		e.s["missioni"] = ["M03"]
+		mis._apri_log(200)
+		await risolvi_riquadri()
+		scrivi("=== dopo l'Annotazione 200: finita = '%s'" % str(e.s.get("finita", "")))
+		await foto("dopo_200")
+		scrivi("   pulsanti: " + ", ".join(bottoni(mis).map(func(b): return b.text)))
+		quit()
+		return
 	var ultimo_round := -1
 	while passi < 140:
 		passi += 1
@@ -300,7 +334,7 @@ func _run() -> void:
 		if str(s.get("finita", "")) != "":
 			scrivi("=== esplorazione finita: " + str(s["finita"]))
 			break
-		if int(s["round"]) > 16:
+		if int(s["round"]) > 30:
 			scrivi("=== TROPPI ROUND, missione non completata")
 			break
 		if int(s["round"]) != ultimo_round:
@@ -326,7 +360,7 @@ func _run() -> void:
 		for b in bottoni(mis._azioni_box):
 			if b.text.begins_with("◆"):
 				b_sp = b
-		var meta := obiettivo()
+		var meta := obiettivo(chi)
 		scrivi("   obiettivo: Settore %d — guida: %s" % [meta, mis._turno_obiettivo.get_parsed_text()])
 		var dest := passo_verso(sett, meta) if sett != meta and meta > 0 else -1
 		var esplora := -1
@@ -343,6 +377,14 @@ func _run() -> void:
 				spec_txt += JSON.stringify(a["azione"])
 		if e.dadi_disponibili(chi).is_empty() and bottone_barra("RIPOSO"):
 			await premi(bottone_barra("RIPOSO"), "nessun dado disponibile")
+		elif sett == 6 and b_sp and b_sp.text.contains("CONSOLE") and e.dadi_disponibili(chi).size() >= 1:
+			await premi(b_sp, "c'è corrente: subito alla console")
+		elif "M03" in s["missioni"] and sett == meta and (mis._turno_obiettivo.get_parsed_text().contains("RIPOSA") or mis._turno_obiettivo.get_parsed_text().contains("Riposate")) and bottone_barra("RIPOSO"):
+			await premi(bottone_barra("RIPOSO"), "il gioco consiglia di riposare")
+		elif "M03" in s["missioni"] and sett == meta and mis._turno_obiettivo.get_parsed_text().contains("Pronto: resta qui"):
+			await premi(bottone_barra("FINE TURNO"), "aspetto la corrente")
+		elif sett == meta and b_sp and e.dadi_disponibili(chi).size() < 3 and "M03" in s["missioni"] and bottone_barra("RIPOSO"):
+			await premi(bottone_barra("RIPOSO"), "pochi dadi per la Prova")
 		elif sett == meta and b_sp and e.dadi_disponibili(chi).size() > 1:
 			await premi(b_sp, "azione speciale nel settore della Missione")
 		elif sett == meta or meta <= 0:

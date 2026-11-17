@@ -61,7 +61,9 @@ def campi(c):
             return
         en, it = o.get("en"), o.get("it", "")
         if isinstance(en, str) and en.strip() and isinstance(it, str) and it.strip():
-            if chiave in etich:
+            if chiave == "obiettivo" and c.get("veterano"):
+                pass   # l'obiettivo dei Veterani è stampato sul retro
+            elif chiave in etich:
                 out.append((etich[chiave] + " " + en, ETICHETTE[etich[chiave]] + " " + it, "etichetta"))
             elif chiave == "regole":
                 for e1, i1 in zip(en.split("\n"), it.split("\n")):
@@ -72,7 +74,9 @@ def campi(c):
                 out.append((en, it, "corsivo"))
             elif chiave == "tempo" and in_azione == "lista_tempo":
                 out.append((en, it, "piccolo"))
-            elif chiave in ("effetto", "testo"):
+            elif chiave == "obiettivo" and c.get("veterano"):
+                pass   # l'obiettivo dei Veterani è stampato sul retro
+            elif chiave in ("effetto", "testo", "abilita"):
                 en = re.split(r"\s*Rank requirement:", en)[0]
                 it = re.split(r"\s*Requisito di grado:", it)[0]
                 out.append((en, it, "prefisso"))
@@ -96,7 +100,34 @@ def campi(c):
     if c.get("concede"):
         out.append(("GRANTS:", "CONCEDE:", "etichetta"))
         out.append((", ".join(c["concede"]), ", ".join(CONCEDE.get(x, x) for x in c["concede"]), "testo"))
+    ABILITA = {"ADAPTIVE": "ADATTABILE", "ADVISOR": "CONSIGLIERE", "ALERTNESS": "ALLERTA", "ALPHA": "ALFA",
+               "BRUTE FORCE": "FORZA BRUTA", "CAREFUL": "PRUDENTE", "COMPETENT": "COMPETENTE", "DISCIPLINED": "DISCIPLINATO",
+               "EFFICIENT": "EFFICIENTE", "ENDURANCE": "RESISTENZA", "ENERGETIC": "ENERGICO", "FOLLOWER": "GREGARIO",
+               "FORECAST": "PREVISIONE", "FORTITUDE": "TEMPRA", "GRIT": "GRINTA", "HERMIT": "EREMITA",
+               "HIDDEN RESERVES": "RISERVE NASCOSTE", "INSIGHT": "INTUITO", "LOADER": "CARICATORE", "METHODICAL": "METODICO",
+               "PROTECTOR": "PROTETTORE", "RECKLESS": "SPERICOLATO", "RECORD KEEPER": "ARCHIVISTA", "SEARCHER": "CERCATORE",
+               "SELFLESS": "ALTRUISTA", "SOLDIER": "SOLDATO", "STORYTELLER": "NARRATORE", "SYSTEMATIC": "SISTEMATICO",
+               "TEAM PLAYER": "GIOCO DI SQUADRA", "TRUMP CARD": "ASSO NELLA MANICA", "UNBREAKABLE": "INDISTRUTTIBILE",
+               "WELL-TRAINED": "BEN ADDESTRATO", "WILD CARD": "JOLLY"}
+    abil = c.get("abilita")
+    for a_ in (abil if isinstance(abil, list) else [abil]):
+        if isinstance(a_, dict) and isinstance(a_.get("nome"), str) and a_["nome"] in ABILITA:
+            out.append((a_["nome"], ABILITA[a_["nome"]], "grassetto"))
     tipo = c.get("tipo", "")
+    # codice della Missione stampato dopo il titolo: "MISSION: X (M32)"
+    if c.get("categoria") == "missioni" and c.get("id") and isinstance(c.get("titolo"), dict):
+        for k_, x in enumerate(out):
+            if x[0] == c["titolo"]["en"]:
+                out[k_] = (x[0] + " (%s)" % c["id"], x[1] + " (%s)" % c["id"], x[2])
+    TIPI = {"lander_mod": ("LANDER MOD", "MODIFICA DEL LANDER"), "medbay_upgrade": ("MEDBAY UPGRADE", "POTENZIAMENTO DELL'INFERMERIA"),
+            "production_upgrade": ("PRODUCTION UPGRADE", "POTENZIAMENTO DELLA PRODUZIONE"),
+            "bridge_upgrade": ("BRIDGE UPGRADE", "POTENZIAMENTO DEL PONTE"), "bridge_upgrade_travel": ("BRIDGE UPGRADE", "POTENZIAMENTO DEL PONTE")}
+    if tipo in TIPI:
+        out.append(TIPI[tipo] + ("etichetta",))
+    camp = c.get("campi") if isinstance(c.get("campi"), dict) else {}
+    MODIF = {"structural": ("STRUCTURAL", "STRUTTURALE"), "utility": ("UTILITY", "UTILITÀ")}
+    if tipo == "lander_mod" and camp.get("modifica") in MODIF:
+        out.append(MODIF[camp["modifica"]] + ("etichetta",))
     if tipo == "production_project":
         out += [("BOOST:", "POTENZIAMENTO:", "etichetta"), ("PRODUCTION PROJECT", "PROGETTO DI PRODUZIONE", "etichetta"),
                 ("ANY ICON", "QUALSIASI ICONA", "etichetta")]
@@ -112,6 +143,13 @@ def campi(c):
                  "microorganism": ("MICROORGANISM", "MICRORGANISMO")}
     if tipo == "discovery" and cat_scoperta in ETIC_SCOP:
         out.append(ETIC_SCOP[cat_scoperta] + ("titolo",))
+    # etichette stampate comuni, se nessun altro testo le contiene già
+    GENERICHE = [("OPTIONAL MISSION", "MISSIONE OPZIONALE"), ("OBJECTIVE", "OBIETTIVO"), ("EFFECT", "EFFETTO"),
+                 ("SOLVED", "RISOLTA"), ("UTILITY", "UTILITÀ"), ("STRUCTURAL", "STRUTTURALE")]
+    gia = " ".join(x[0].upper() for x in out)
+    for en_, it_ in GENERICHE:
+        if en_ not in gia:
+            out.append((en_, it_, "etichetta"))
     visti, finali = set(), []
     for x in out:
         if x[0].strip() and x[1].strip() and x[0] not in visti:
@@ -269,9 +307,24 @@ def colori(arr, box):
     return testo, fondo, float(np.std(bordo))
 
 
-def cancella(arr, box, testo, fondo, tutto):
+def cancella(arr, box, testo, fondo, tutto, icone=False, oltre=0, limite=None):
     x, y, w, h = box
+    if icone and oltre:
+        # un'icona alla fine di una riga può sporgere oltre il riquadro trovato
+        x1 = min(arr.shape[1], x + w + oltre, limite if limite else arr.shape[1])
+        reg2 = arr[y:y + h, x + w:x1].astype(float)
+        if reg2.size:
+            sat2 = (reg2.max(axis=2) - reg2.min(axis=2) > 70) & (reg2.max(axis=2) > 100)
+            cols = np.where(sat2.sum(axis=0) > 2)[0]
+            if len(cols):
+                w = int(cols.max()) + 1 + w + 4
+    box = (x, y, w, h)
     reg = arr[y:y + h, x:x + w].astype(float)
+    colorati = None
+    if icone:
+        # le icone dei dadi e dei simboli colorati nel testo: si tolgono anche quelle (si riscrivono)
+        sat = reg.max(axis=2) - reg.min(axis=2)
+        colorati = (sat > 70) & (reg.max(axis=2) > 100)
     contrasto = max(30.0, float(np.linalg.norm(testo - fondo)))
     if tutto:
         # fondo uniforme: si toglie tutto quello che non è fondo (anche le icone, che si riscrivono)
@@ -281,6 +334,8 @@ def cancella(arr, box, testo, fondo, tutto):
         verso = (reg - fondo) @ ((testo - fondo) / contrasto)
         m = verso > 0.2 * contrasto
     mask = np.zeros(arr.shape[:2], np.uint8)
+    if colorati is not None and np.linalg.norm(fondo - np.array([fondo.mean()] * 3)) < 40:
+        m = m | colorati
     mask[y:y + h, x:x + w] = (m * 255).astype(np.uint8)
     mask = cv2.dilate(mask, np.ones((3, 3), np.uint8), iterations=5)
     out = cv2.inpaint(arr, mask, 7, cv2.INPAINT_TELEA)
@@ -316,7 +371,7 @@ def pezzi(testo, stile):
         if tok.startswith("[") and tok.endswith("]"):
             out.append((tok, None))
         else:
-            k = {"titolo": "titolo", "corsivo": "corsivo"}.get(stile, "testo")
+            k = {"titolo": "titolo", "corsivo": "corsivo", "grassetto": "grassetto"}.get(stile, "testo")
             if i < grassetto_fino or (re.match(r"^Annotazion[ei]$", tok) or re.match(r"^\d+[.,]?$", tok) and re.search(r"Annotazion[ei]\s+$", testo[:i])):
                 k = "grassetto"
             out.append((tok, k))
@@ -419,7 +474,11 @@ def traduci(chiave, uscita, debug=False):
     big = np.array(src.resize((src.width * SCALA, src.height * SCALA), Image.LANCZOS))
     usate = set()
     blocchi = []
+    maiuscole = {norm(p["t"]) for p in ps if re.sub(r"[^A-Za-z]", "", p["t"]).isupper() and p["c"] >= 60}
+    gen = {"OPTIONAL MISSION", "OBJECTIVE", "EFFECT", "SOLVED", "UTILITY", "STRUCTURAL"}
     for en, it, stile in sorted(campi(c), key=lambda x: -len(x[0])):
+        if en in gen and norm(en.split()[-1]) not in maiuscole:
+            continue
         corr = None
         for chiave in (c["file"], c["file"].split("/")[1]):
             for k_, v_ in CORREZIONI.get(chiave, {}).items():
@@ -587,12 +646,13 @@ def traduci(chiave, uscita, debug=False):
             if i in usate or p["c"] < 70 or not re.match(r"^[A-Za-z0-9]", p["t"]) or len(re.sub(r"\W", "", p["t"])) < 2:
                 continue
             b = p["b"]
-            if re.sub(r"\W", "", p["t"]).isalpha() and re.sub(r"\W", "", p["t"]).isupper() and len(re.sub(r"\W", "", p["t"])) >= 3:
-                continue
+            maiusc = re.sub(r"\W", "", p["t"]).isalpha() and re.sub(r"\W", "", p["t"]).isupper() and len(re.sub(r"\W", "", p["t"])) >= 3
             if any(b[0] < o["box"][0] + o["box"][2] and o["box"][0] < b[0] + b[2] and b[1] < o["box"][1] + o["box"][3] and o["box"][1] < b[1] + b[3] for o in blocchi):
                 continue
             for bl in blocchi:
                 if bl.get("chiaro") or bl.get("azione") or bl.get("fisso") or bl["stile"] == "titolo":
+                    continue
+                if maiusc and not (bl["en"].isupper() and norm(p["t"]) in [norm(w) for w in bl["en"].split()]):
                     continue
                 x, y, w, h = bl["box"]
                 al = bl["alto"]
@@ -607,6 +667,14 @@ def traduci(chiave, uscita, debug=False):
                     bl["righe"] = max(bl["righe"], int(round((ny1 - ny0) / max(1.0, bl["passo"]))))
                     usate.add(i)
                     break
+    # Equipaggio e Veterani: il testo in basso non deve coprire il riquadro delle Cariche a destra
+    if c.get("categoria") in ("equipaggio", "veterani"):
+        H_, W_ = big.shape[:2]
+        for b_ in blocchi:
+            x_, y_, w_, h_ = b_["box"]
+            if y_ + h_ > H_ * 0.82 and x_ + w_ > W_ * 0.71:
+                b_["box"] = (x_, y_, int(W_ * 0.71) - x_, h_)
+                b_["extra_x"] = 0
     # riquadri che si sovrappongono in verticale: si dividono a metà della sovrapposizione
     for a_ in blocchi:
         for b_ in blocchi:
@@ -633,7 +701,8 @@ def traduci(chiave, uscita, debug=False):
             continue
         testo, fondo, var = colori(big, b["box"])
         b["col"] = testo
-        big = cancella(big, b["box"], testo, fondo, tutto=var < 18)
+        lim = int(big.shape[1] * 0.71) if c.get("categoria") in ("equipaggio", "veterani") else None
+        big = cancella(big, b["box"], testo, fondo, tutto=var < 18, icone="[" in b["en"], oltre=int(b["alto"] * 1.6), limite=lim)
     orig = np.array(src.resize((src.width * SCALA, src.height * SCALA), Image.LANCZOS))
     sposta = []
     for b in blocchi:

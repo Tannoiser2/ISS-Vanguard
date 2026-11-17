@@ -353,9 +353,18 @@ func _obiettivo_e_consiglio(att: int) -> String:
 	var sett := int(m["settore"])
 	var nome := str(m["carta"]).get_slice(" ", 0)
 	var cons := ""
+	# Tutorial, Missione M03: il piano dell'Annotazione 600 (uno aspetta nel 6, l'altro accende la corrente nel 7)
+	if "M03" in esp.s["missioni"] and str(esp.s.get("pagina", "")) == "p.2-3":
+		var piano := _piano_m03(att)
+		if piano.has("dest"):
+			dest = int(piano["dest"])
+		if piano.has("cons"):
+			cons = str(piano["cons"])
 	var icone: Array = esp.icone_settore(pl, sett, _carte_pdi())
 	var azs := _azioni_settore(sett)
-	if esp.dadi_disponibili(att).is_empty() and int(esp.s["azioni"]) > 0:
+	if cons != "":
+		pass
+	elif esp.dadi_disponibili(att).is_empty() and int(esp.s["azioni"]) > 0:
 		cons = "%s non ha dadi: RIPOSO ne ricarica metà." % nome
 	elif "noMovement" in icone and not azs.is_empty():
 		cons = "Da qui non si viaggia: usa l'Azione Speciale %s per aprirti la strada." % Carte.t(azs[0]["azione"].get("nome", "")).to_upper()
@@ -382,8 +391,62 @@ func _obiettivo_e_consiglio(att: int) -> String:
 		cons = cons.substr(0, 165) + "…"
 	return (testo_m + ("   [color=#5be39b]▸ %s[/color]" % cons if cons != "" else "")) if testo_m != "" else ("[color=#5be39b]▸ %s[/color]" % cons if cons != "" else "")
 
+## Tutorial M03: dove deve andare il Membro att e che cosa fare, secondo l'Annotazione 600.
+func _piano_m03(att: int) -> Dictionary:
+	var sett := int(esp.membro(att)["settore"])
+	var p106 := (esp.s["settori"].get(6, esp.s["settori"].get("6", {})).get("pdi", []) as Array).any(func(x): return str(x).contains("P106"))
+	var dadi := esp.dadi_disponibili(att)
+	var verdi := dadi.filter(func(d): return Prova.colore(d) == "green").size()
+	var blu := dadi.filter(func(d): return Prova.colore(d) == "blue").size()
+	if p106:
+		if sett == 6:
+			return {"dest": 6, "cons": "C'è corrente! Subito ACCEDERE ALLA CONSOLE. Non tirare insieme dadi verdi e blu: la coppia verde+blu fa avanzare la traccia rossa."}
+		return {"dest": 6, "cons": "C'è corrente: raggiungi il Settore 6 e usa la console P106 prima che si spenga (traccia del Tempo su G01)."}
+	var altri_in_6 := esp.vivi().filter(func(i): return i != att and int(esp.membro(i)["settore"]) == 6)
+	# chi ha ancora (fra disponibili e spesi) almeno 2 dadi verdi e 1 blu può accendere la corrente
+	var adatto := func(i: int) -> bool:
+		var vivi_d: Array = esp.membro(i)["dadi"].filter(func(d): return d["stato"] != "sacrificato")
+		return vivi_d.filter(func(d): return Prova.colore(d) == "green").size() >= 2 and vivi_d.filter(func(d): return Prova.colore(d) == "blue").size() >= 1
+	if not adatto.call(att) and esp.vivi().any(func(i): return i != att and adatto.call(i)):
+		var altro: int = esp.vivi().filter(func(i): return i != att and adatto.call(i))[0]
+		var nome_a := str(esp.membro(altro)["carta"]).get_slice(" ", 0)
+		if sett == 6:
+			if dadi.size() < mini(4, _dadi_in_gioco(att)):
+				return {"dest": 6, "cons": "Resta tu nel 6 e RIPOSA per avere i dadi pronti: l'accoppiatore nel 7 lo installa %s (servono 2 verdi + 1 blu)." % nome_a}
+			return {"dest": 6, "cons": "Pronto: resta qui. %s installa l'accoppiatore nel 7, poi qui comparirà la console." % nome_a}
+		var via_s := _prossimo_passo(sett, 6)
+		return {"dest": 6, "cons": "Non hai più 2 dadi verdi e 1 blu: vai ad aspettare nel Settore 6%s; nel 7 va %s." % [(" (VIAGGIO verso il %d)" % via_s) if via_s > 0 else "", nome_a]}
+	if sett == 7:
+		var pronti := 0
+		var serve := 4
+		var chi6 := ""
+		for i in altri_in_6:
+			if esp.dadi_disponibili(i).size() >= pronti:
+				pronti = esp.dadi_disponibili(i).size()
+				serve = mini(4, _dadi_in_gioco(i))
+				chi6 = str(esp.membro(i)["carta"]).get_slice(" ", 0)
+		if chi6 != "" and pronti < serve:
+			return {"dest": 7, "cons": "Non accendere ancora: la corrente dura poco e %s nel Settore 6 ha solo %d dadi pronti. Riposate finché ne ha almeno 4." % [chi6, pronti]}
+		if verdi >= 2 and blu >= 1:
+			return {"dest": 7, "cons": "Usa INSTALLARE UN ACCOPPIATORE DI ENERGIA: servono 2 dadi verdi e 1 blu (li hai)."}
+		return {"dest": 7, "cons": "Per INSTALLARE UN ACCOPPIATORE servono 2 verdi e 1 blu (ne hai %d verdi, %d blu): prima RIPOSO, o fatti assistere." % [verdi, blu]}
+	if sett == 6 and altri_in_6.is_empty() and not esp.vivi().filter(func(i): return i != att).all(func(i): return not adatto.call(i)):
+		if dadi.size() < mini(4, _dadi_in_gioco(att)):
+			return {"dest": 6, "cons": "Resta qui e RIPOSA finché hai i dadi pronti: quando un altro Membro accende la corrente nel 7, la console va usata subito."}
+		return {"dest": 6, "cons": "Pronto: resta qui. Quando un altro Membro accende la corrente nel Settore 7 comparirà la console (Annotazione 600)."}
+	if not altri_in_6.is_empty() or esp.vivi().size() == 1:
+		var via7 := _prossimo_passo(sett, 7)
+		return {"dest": 7, "cons": "Vai nel Settore 7 a accendere la corrente (2 dadi verdi + 1 blu)%s." % ((": VIAGGIO verso il Settore %d" % via7) if via7 > 0 else "")}
+	var via6 := _prossimo_passo(sett, 6)
+	return {"dest": 6, "cons": "Un Membro aspetta nel Settore 6, l'altro va nel 7 ad accendere la corrente%s." % ((": VIAGGIO verso il Settore %d" % via6) if via6 > 0 else "")}
+
+func _dadi_in_gioco(i: int) -> int:
+	return (esp.membro(i)["dadi"] as Array).filter(func(d): return d["stato"] != "sacrificato").size()
+
 ## Primo settore da raggiungere per andare da "da" ad "a" seguendo i sentieri (0 se non ci si arriva).
 func _prossimo_passo(da: int, a: int) -> int:
+	if da == a:
+		return 0
 	var padre := {da: 0}
 	var coda := [da]
 	while not coda.is_empty():
@@ -3402,8 +3465,13 @@ func applica(testi_in: Array, chi: int, sett: int) -> void:
 		if alt.size() > 1:
 			var it_alt := Array(RegEx.create_from_string("(?i)\\s+-?\\s*OPPURE\\s*-?\\s+").sub(str(t.get("it", "")), "§", true).split("§"))
 			var nomi := []
+			var disp_alt := esp.dadi_disponibili(int(esp.s["attivo"])).size()
 			for k in alt.size():
-				nomi.append(_txt_icone(str(it_alt[k]) if it_alt.size() == alt.size() else str(alt[k])))
+				var nome_alt := _txt_icone(str(it_alt[k]) if it_alt.size() == alt.size() else str(alt[k]))
+				var spese := RegEx.create_from_string("\\[spend\\w*\\]").search_all(str(alt[k])).size()
+				if spese > disp_alt:
+					nome_alt += "\nATTENZIONE: hai solo %d dadi disponibili, quelli che mancano si SACRIFICANO (persi per tutta l'esplorazione)" % disp_alt
+				nomi.append(nome_alt)
 			if RegEx.create_from_string("(?i)^\\s*you may").search(en):
 				nomi.append("Nessuna (non lo fai)")
 			var jj := await _scegli(fonte.to_upper(), nomi, "Scegli una delle alternative:", false)
@@ -3791,6 +3859,10 @@ func _op(op: Dictionary, chi: int, sett: int, fatti: Array, manuali: Array, logs
 			if int(op["n"]) > 0:
 				esp.notifica("cariche", {"chi": chi})
 			fatti.append("+%d Cariche a %s" % [int(op["n"]), m["carta"]])
+		"azzera_tempo_condizione":
+			esp.s["condizione"]["tempo"] = 0
+			esp.s["condizione"]["scattata"] = false
+			fatti.append("La traccia del Tempo della Condizione Generale si azzera")
 		"tempo_tutte":
 			esp.tempo_tutte(int(op["n"]))
 			fatti.append("Tutte le tracce del Tempo avanzano di %d" % int(op["n"]))

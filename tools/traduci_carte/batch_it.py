@@ -30,7 +30,32 @@ def controllo(rel, png):
     sospette = en_p - it_p
     img = Image.open(png).convert("RGB")
     img = img.resize((img.width // 2, img.height // 2), Image.LANCZOS)
-    return sorted({p["n"] for p in T.parole(img) if p["c"] >= 80 and p["n"] in sospette})
+    lette = T.parole(img)
+    forti = {p["n"] for p in lette if p["c"] >= 80 and p["n"] in sospette}
+    # pezzi di parole inglesi rimasti (es. "SHIP" di TOWNSHIP): presenti nel testo inglese, assenti dall'italiano
+    tutto_en = " ".join(T.norm(w) for e, _, _ in T.campi(c) for w in e.split())
+    tutto_it = " ".join(T.norm(w) for _, i, _ in T.campi(c) for w in i.split())
+    import difflib
+    nomi = " ".join(str(c.get("nome", "")).split() + [str(n) for n in c.get("nomi", [])] +
+                    [w for e, i, _ in T.campi(c) if T.norm(e) == T.norm(i) for w in e.split()]).lower()
+    tutto_it = tutto_it + " " + re.sub(r"[^a-z ]", "", nomi)
+    it_unito = re.sub(r"[^a-z]", "", tutto_it)
+    parole_it = set(tutto_it.split())
+    for p in T.parole(Image.open(png).convert("RGB")):
+        t = re.sub(r"[^A-Za-z]", "", p["t"]).lower()
+        if p["c"] >= 85 and len(t) >= 6 and t == T.norm(p["t"]) and t not in it_unito and \
+                not any(difflib.SequenceMatcher(None, t, w).ratio() >= 0.8 for w in parole_it):
+            forti.add(t)
+            forti.add("·")
+    for p in lette:
+        t = re.sub(r"[^A-Za-z]", "", p["t"])
+        if p["c"] >= 75 and len(t) >= 3 and t.isupper() and p["n"] in tutto_en and p["n"] not in tutto_it:
+            forti.add(p["n"])
+            forti.add("·")
+    # anche un solo resto ben leggibile di 5+ lettere basta a scartare la carta
+    if any(len(w) >= 5 for w in forti):
+        forti.add("·")
+    return sorted(forti)
 
 
 lista = [r for r in sorted(T.DB["per_file"]) if tutte or r.split("/")[1] in scelte or r in scelte]

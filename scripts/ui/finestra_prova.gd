@@ -387,7 +387,14 @@ var _resoconto_mod: Array = []
 
 # ------------------------------------------------------------------ 1. scelta dei dadi
 
+var _scelta_iniziata := false
+
 func _mostra_scelta() -> void:
+	# all'inizio sono scelti tutti i dadi del Membro (quello che si fa quasi sempre); si tolgono cliccandoli
+	if not _scelta_iniziata:
+		_scelta_iniziata = true
+		for d in esp.dadi_disponibili(chi):
+			_scelti[d["id"]] = true
 	if tutti_i_dadi:
 		for d in esp.dadi_disponibili(chi):
 			_scelti[d["id"]] = true
@@ -398,7 +405,7 @@ func _mostra_scelta() -> void:
 	var riga := HFlowContainer.new()
 	riga.add_theme_constant_override("h_separation", 8)
 	for d in esp.dadi_disponibili(chi):
-		riga.add_child(_chip_dado(d, true, func(on): if on: _scelti[d["id"]] = true else: _scelti.erase(d["id"])))
+		riga.add_child(_chip_dado(d, _scelti.has(d["id"]), func(on): if on: _scelti[d["id"]] = true else: _scelti.erase(d["id"])))
 	if riga.get_child_count() == 0:
 		riga.add_child(Tema.etichetta("Nessun dado disponibile", 14, Tema.AMBRA))
 	_corpo.add_child(riga)
@@ -485,7 +492,7 @@ func _abilita_assist(j: int) -> String:
 func _chip_dado(d: Dictionary, premuto: bool, cb: Callable) -> Button:
 	var b := Button.new()
 	b.toggle_mode = true
-	b.button_pressed = premuto or _scelti.has(d["id"])
+	b.button_pressed = premuto
 	b.custom_minimum_size = Vector2(58, 58)
 	b.focus_mode = Control.FOCUS_NONE
 	var col: Color = {"red": Color("b0263a"), "blue": Color("1683c8"), "green": Color("3f9a36")}.get(Prova.colore(d), Color(0.5, 0.5, 0.5))
@@ -504,6 +511,12 @@ static func _sigla(t: String) -> String:
 # ------------------------------------------------------------------ 2-3. tiro
 
 func _tira() -> void:
+	var propri := esp.dadi_disponibili(chi).filter(func(d): return _scelti.has(d["id"]))
+	var assistenza := _assist.values().any(func(a): return not (a as Array).is_empty())
+	if propri.is_empty() and not assistenza and not esp.dadi_disponibili(chi).is_empty():
+		# niente da tirare: non si consuma l'azione
+		_avviso("Scegli almeno un dado (cliccalo) prima di tirare.")
+		return
 	_pool = []
 	var m := esp.membro(chi)
 	for d in esp.dadi_disponibili(chi):
@@ -1217,3 +1230,10 @@ func _eff(e) -> String:
 
 static func _col(c: String) -> String:
 	return {"green": "#5be39b", "yellow": "#ffd23f", "red": "#ff5a6e"}.get(c, "#9fbbd6")
+
+## Messaggio breve in fondo alla colonna, sopra i pulsanti.
+func _avviso(t: String) -> void:
+	var l := Tema.etichetta(t, 15, Tema.AMBRA)
+	l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	l.custom_minimum_size = Vector2(300, 0)
+	_corpo.add_child(l)

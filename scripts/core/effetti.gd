@@ -278,6 +278,9 @@ static func pulisci_it(t: String) -> String:
 	t = RegEx.create_from_string("(?i) a faccia in su").sub(t, "", true)
 	t = RegEx.create_from_string("(?i)\\bsettore(\\d)").sub(t, "settore $1", true)
 	t = RegEx.create_from_string("(?i)\\bcarta(P\\d{3})").sub(t, "carta $1", true)
+	# parole attaccate al codice della carta ("Condizione GeneraleG01", "Pianet" senza la a finale)
+	t = RegEx.create_from_string("(?i)([a-z])([PMG]\\d{2,3})\\b").sub(t, "$1 $2", true)
+	t = RegEx.create_from_string("(?i)\\bplancia pianet\\b").sub(t, "plancia Pianeta", true)
 	t = RegEx.create_from_string("(?i)(\\d)(con|e) ").sub(t, "$1 $2 ", true)
 	t = RegEx.create_from_string("(?i)\\[lb\\](\\w+)\\[rb\\]").sub(t, "[$1]", true)
 	return t
@@ -370,7 +373,8 @@ static func analizza_it(testo: String) -> Dictionary:
 		["(?i)scarta la (?:carta )?(?:tua )?condizion[ei] general[ei] attuale e sostituiscila con (?:la carta )?(G\\d+)", func(m): return {"op": "condizione", "carta": m.get_string(1).to_upper()}],
 		["(?i)sostituisci la (?:tua )?(?:carta )?condizion[ei] general[ei](?: attuale)? con (?:la carta )?(G\\d+)", func(m): return {"op": "condizione", "carta": m.get_string(1).to_upper()}],
 		["(?i)(?:posiziona|trova) la (?:carta )?(?:condizion[ei] general[ei] )?(G\\d+)(?: e posizionala)? (?:nello|sullo) slot[^.•●»]*", func(m): return {"op": "condizione", "carta": m.get_string(1).to_upper()}],
-		["(?i)scarta la (?:carta )?condizion[ei] general[ei](?: attuale| (G\\d+))?", func(m): return {"op": "condizione", "carta": "", "solo": m.get_string(1).to_upper()}],
+		["(?i)(?:resetta|azzera) (?:il contatore|la traccia del tempo) sulla (?:carta )?condizion[ei] general[ei] ?(G\\d+)?", func(m): return {"op": "azzera_tempo_condizione"}],
+		["(?i)scarta (?:la )?(?:carta )?condizion[ei] general[ei](?: attuale| (G\\d+))?", func(m): return {"op": "condizione", "carta": "", "solo": m.get_string(1).to_upper()}],
 		# --- Membri dell'Equipaggio
 		["(?i)posiziona il tuo membro(?: dell'equipaggio)? (?:ed eventuali membri dell'equipaggio che (?:hanno prestato|prestano|ti hanno prestato) assistenza |e il membro dell'equipaggio che ti ha aiutato )nel settore (\\d+)", func(m): return {"op": "muovi_gruppo", "settori": [int(m.get_string(1))]}],
 		["(?i)(?:posiziona|sposta)(?: nuovamente)? il tuo membro(?: dell'equipaggio)? nel settore (\\d+)", func(m): return {"op": "muovi_attivo", "settore": int(m.get_string(1))}],

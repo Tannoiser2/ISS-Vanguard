@@ -430,6 +430,12 @@ func sacrifica_dado(i: int, id_dado := "", colore := "") -> void:
 		lista = lista.filter(func(d): return d["id"] == id_dado)
 	if lista.is_empty():
 		return
+	# non si scende mai sotto 3 dadi Reparto in gioco: al posto del sacrificio si subisce Allo Stremo
+	var in_gioco: Array = membro(i)["dadi"].filter(func(d): return d["stato"] != "sacrificato")
+	if in_gioco.size() <= 3 and not s.get("_in_sforzo", false):
+		diario("%s ha solo %d dadi in gioco: invece di sacrificarne uno subisce Allo Stremo" % [membro(i)["carta"], in_gioco.size()])
+		ferita(i, "exhausted")
+		return
 	# di preferenza un dado già speso, poi il più "povero" (base)
 	lista.sort_custom(func(a, b): return _valore_dado(a) < _valore_dado(b))
 	lista[0]["stato"] = "sacrificato"
