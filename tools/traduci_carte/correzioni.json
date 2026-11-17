@@ -3905,5 +3905,1070 @@
    2,
    true
   ]
+ },
+ "carte/landing_cards/retro_12102.webp": {
+  "titolo": "salta",
+  "Briefing": "salta",
+  "OPTIONAL MISSION": "salta",
+  "+B0": [
+   0.08,
+   0.065,
+   0.84,
+   0.05,
+   "c",
+   1,
+   true,
+   "Briefing (non leggere finché non viene indicato): 267"
+  ],
+  "+B1": [
+   0.25,
+   0.198,
+   0.5,
+   0.07,
+   "c",
+   1,
+   true,
+   "ATTERRAGGIO:"
+  ],
+  "+B2": [
+   0.3,
+   0.27,
+   0.4,
+   0.085,
+   "c",
+   2,
+   true,
+   "Detriti orbitali – consigliata [landerArmor]."
+  ],
+  "+B3": [
+   0.1,
+   0.465,
+   0.33,
+   0.1,
+   "c",
+   2,
+   true,
+   "PROVE FREQUENTI:"
+  ],
+  "+B4": [
+   0.58,
+   0.505,
+   0.3,
+   0.06,
+   "c",
+   1,
+   true,
+   "BIOMI:"
+  ],
+  "+B5": [
+   0.1,
+   0.785,
+   0.3,
+   0.06,
+   "c",
+   1,
+   true,
+   "METEO:"
+  ],
+  "+B6": [
+   0.08,
+   0.835,
+   0.36,
+   0.06,
+   "c",
+   1,
+   true,
+   "Minaccia errante."
+  ],
+  "+B7": [
+   0.52,
+   0.745,
+   0.4,
+   0.1,
+   "c",
+   2,
+   true,
+   "CURIOSITÀ BIOLOGICA:"
+  ],
+  "+B8": [
+   0.5,
+   0.825,
+   0.44,
+   0.07,
+   "c",
+   1,
+   true,
+   "Consigliati [biology] e [xenology]."
+  ]
+ },
+ "carte/landing_cards/retro_9508.webp": {
+  "titolo": "salta",
+  "Briefing": "salta",
+  "OPTIONAL MISSION": "salta",
+  "+B0": [
+   0.08,
+   0.065,
+   0.84,
+   0.05,
+   "c",
+   1,
+   true,
+   "Briefing (non leggere finché non viene indicato): 354"
+  ],
+  "+B1": [
+   0.25,
+   0.183,
+   0.5,
+   0.07,
+   "c",
+   1,
+   true,
+   "ATTERRAGGIO:"
+  ],
+  "+B2": [
+   0.2,
+   0.255,
+   0.6,
+   0.11,
+   "c",
+   3,
+   true,
+   "Buone condizioni. Rare anomalie gravitazionali – consigliati [landerSensors]."
+  ],
+  "+B3": [
+   0.1,
+   0.465,
+   0.33,
+   0.1,
+   "c",
+   2,
+   true,
+   "PROVE FREQUENTI:"
+  ],
+  "+B4": [
+   0.58,
+   0.505,
+   0.3,
+   0.06,
+   "c",
+   1,
+   true,
+   "BIOMI:"
+  ],
+  "+B5": [
+   0.15,
+   0.745,
+   0.7,
+   0.06,
+   "c",
+   1,
+   true,
+   "PROVE IMPORTANTI:"
+  ]
+ },
+ "carte/landing_cards/retro_9509.webp": {
+  "titolo": "salta",
+  "Briefing": "salta",
+  "OPTIONAL MISSION": "salta",
+  "+B0": [
+   0.08,
+   0.065,
+   0.84,
+   0.05,
+   "c",
+   1,
+   true,
+   "Briefing (non leggere finché non viene indicato): 875"
+  ],
+  "+B1": [
+   0.25,
+   0.198,
+   0.5,
+   0.07,
+   "c",
+   1,
+   true,
+   "ATTERRAGGIO:"
+  ],
+  "+B2": [
+   0.1,
+   0.27,
+   0.8,
+   0.085,
+   "c",
+   2,
+   true,
+   "Turbolenze e brillamenti solari. Difficoltà moderata, ma consigliati [landerAgility] e [landerSensors]."
+  ],
+  "+B3": [
+   0.1,
+   0.465,
+   0.33,
+   0.1,
+   "c",
+   2,
+   true,
+   "PROVE FREQUENTI:"
+  ],
+  "+B4": [
+   0.58,
+   0.505,
+   0.3,
+   0.06,
+   "c",
+   1,
+   true,
+   "BIOMI:"
+  ],
+  "+B5": [
+   0.12,
+   0.745,
+   0.3,
+   0.06,
+   "c",
+   1,
+   true,
+   "PERICOLO:"
+  ],
+  "+B6": [
+   0.03,
+   0.795,
+   0.48,
+   0.09,
+   "c",
+   2,
+   true,
+   "Fenomeni meteorologici estremi – preparatevi a tiri di [dangerDieC] e [dangerDieE]."
+  ],
+  "+B7": [
+   0.58,
+   0.745,
+   0.3,
+   0.06,
+   "c",
+   1,
+   true,
+   "MINACCE:"
+  ],
+  "+B8": [
+   0.55,
+   0.795,
+   0.36,
+   0.06,
+   "c",
+   1,
+   true,
+   "Minaccia errante."
+  ]
+ },
+ "carte/landing_cards/retro_9510.webp": {
+  "titolo": "salta",
+  "Briefing": "salta",
+  "OPTIONAL MISSION": "salta",
+  "+B0": [
+   0.08,
+   0.065,
+   0.84,
+   0.05,
+   "c",
+   1,
+   true,
+   "Briefing (non leggere finché non viene indicato): 1000"
+  ],
+  "+B1": [
+   0.2,
+   0.135,
+   0.6,
+   0.075,
+   "c",
+   1,
+   true,
+   "TIPO DI MISSIONE:"
+  ],
+  "+B2": [
+   0.06,
+   0.2,
+   0.88,
+   0.2,
+   "c",
+   5,
+   true,
+   "Un'Operazione impegnativa per 1 Membro dell'Equipaggio. Non è necessario completarla per terminare la campagna. Il Lander e le Modifiche del Lander non hanno effetto in questa missione. Nella Procedura di Lancio della Missione, saltate i passi 2 e 3."
+  ],
+  "+B3": [
+   0.3,
+   0.485,
+   0.4,
+   0.06,
+   "c",
+   1,
+   true,
+   "DIFFICOLTÀ:"
+  ],
+  "+B4": [
+   0.15,
+   0.535,
+   0.7,
+   0.085,
+   "c",
+   2,
+   true,
+   "Missione pericolosa con Provviste limitate. Il vostro Membro dell'Equipaggio potrebbe morire."
+  ]
+ },
+ "carte/landing_cards/retro_9511.webp": {
+  "titolo": "salta",
+  "Briefing": "salta",
+  "OPTIONAL MISSION": "salta",
+  "+B0": [
+   0.08,
+   0.065,
+   0.84,
+   0.05,
+   "c",
+   1,
+   true,
+   "Briefing (non leggere finché non viene indicato): 477"
+  ],
+  "+B1": [
+   0.25,
+   0.198,
+   0.5,
+   0.07,
+   "c",
+   1,
+   true,
+   "ATTERRAGGIO:"
+  ],
+  "+B2": [
+   0.2,
+   0.27,
+   0.6,
+   0.085,
+   "c",
+   2,
+   true,
+   "Atterraggio molto pericoloso – consigliati Attributi del Lander elevati."
+  ],
+  "+B3": [
+   0.1,
+   0.465,
+   0.33,
+   0.1,
+   "c",
+   2,
+   true,
+   "PROVE IMPORTANTI:"
+  ],
+  "+B4": [
+   0.58,
+   0.505,
+   0.3,
+   0.06,
+   "c",
+   1,
+   true,
+   "BIOMI:"
+  ],
+  "+B5": [
+   0.12,
+   0.725,
+   0.3,
+   0.06,
+   "c",
+   1,
+   true,
+   "PERICOLI:"
+  ],
+  "+B6": [
+   0.06,
+   0.785,
+   0.4,
+   0.12,
+   "c",
+   3,
+   true,
+   "Preparatevi a tiri di [dangerDieB] e [dangerDieG]. Consigliata un'elevata mobilità."
+  ],
+  "+B7": [
+   0.58,
+   0.745,
+   0.3,
+   0.06,
+   "c",
+   1,
+   true,
+   "MINACCE:"
+  ],
+  "+B8": [
+   0.5,
+   0.795,
+   0.46,
+   0.09,
+   "c",
+   2,
+   true,
+   "Sono possibili Minacce aggressive. Siate preparati."
+  ]
+ },
+ "carte/landing_cards/retro_9513.webp": {
+  "titolo": "salta",
+  "Briefing": "salta",
+  "OPTIONAL MISSION": "salta",
+  "+B0": [
+   0.08,
+   0.055,
+   0.84,
+   0.05,
+   "c",
+   1,
+   true,
+   "Briefing (non leggere finché non viene indicato): 575"
+  ],
+  "+B1": [
+   0.25,
+   0.198,
+   0.5,
+   0.07,
+   "c",
+   1,
+   true,
+   "ATTERRAGGIO:"
+  ],
+  "+B2": [
+   0.1,
+   0.27,
+   0.8,
+   0.085,
+   "c",
+   2,
+   true,
+   "Forze estreme e nubi di plasma surriscaldato – consigliati [landerArmor] e [landerAgility] molto elevati."
+  ],
+  "+B3": [
+   0.1,
+   0.475,
+   0.38,
+   0.06,
+   "c",
+   1,
+   true,
+   "DIFFICOLTÀ:"
+  ],
+  "+B4": [
+   0.05,
+   0.525,
+   0.46,
+   0.13,
+   "c",
+   3,
+   true,
+   "Una missione lunga e pericolosa, con molti effetti e regole che causano Ferite."
+  ],
+  "+B5": [
+   0.58,
+   0.475,
+   0.3,
+   0.06,
+   "c",
+   1,
+   true,
+   "BIOMI:"
+  ],
+  "+B6": [
+   0.1,
+   0.735,
+   0.33,
+   0.1,
+   "c",
+   2,
+   true,
+   "PROVE FREQUENTI:"
+  ],
+  "+B7": [
+   0.58,
+   0.765,
+   0.3,
+   0.06,
+   "c",
+   1,
+   true,
+   "MINACCE:"
+  ],
+  "+B8": [
+   0.54,
+   0.815,
+   0.42,
+   0.09,
+   "c",
+   2,
+   true,
+   "Diverse Minacce aggressive o erranti."
+  ]
+ },
+ "carte/landing_cards/retro_9514.webp": {
+  "titolo": "salta",
+  "Briefing": "salta",
+  "OPTIONAL MISSION": "salta",
+  "+B0": [
+   0.08,
+   0.065,
+   0.84,
+   0.05,
+   "c",
+   1,
+   true,
+   "Briefing (non leggere finché non viene indicato): 579"
+  ],
+  "+B1": [
+   0.25,
+   0.198,
+   0.5,
+   0.07,
+   "c",
+   1,
+   true,
+   "ATTERRAGGIO:"
+  ],
+  "+B2": [
+   0.2,
+   0.27,
+   0.6,
+   0.085,
+   "c",
+   2,
+   true,
+   "Turbolenza estrema – consigliati [landerSensors] e [landerAgility] molto elevati."
+  ],
+  "+B3": [
+   0.1,
+   0.465,
+   0.33,
+   0.1,
+   "c",
+   2,
+   true,
+   "PROVE FREQUENTI:"
+  ],
+  "+B4": [
+   0.58,
+   0.505,
+   0.3,
+   0.06,
+   "c",
+   1,
+   true,
+   "BIOMI:"
+  ],
+  "+B5": [
+   0.12,
+   0.785,
+   0.3,
+   0.06,
+   "c",
+   1,
+   true,
+   "PERICOLI:"
+  ],
+  "+B6": [
+   0.08,
+   0.835,
+   0.36,
+   0.06,
+   "c",
+   1,
+   true,
+   "Alta probabilità di Ferite."
+  ],
+  "+B7": [
+   0.5,
+   0.745,
+   0.46,
+   0.1,
+   "c",
+   2,
+   true,
+   "AMBIENTE VARIO:"
+  ],
+  "+B8": [
+   0.52,
+   0.835,
+   0.42,
+   0.06,
+   "c",
+   1,
+   true,
+   "Consigliata un'elevata mobilità."
+  ]
+ },
+ "carte/landing_cards/retro_9516.webp": {
+  "titolo": "salta",
+  "Briefing": "salta",
+  "OPTIONAL MISSION": "salta",
+  "+B0": [
+   0.08,
+   0.055,
+   0.84,
+   0.05,
+   "c",
+   1,
+   true,
+   "Briefing (non leggere finché non viene indicato): 572"
+  ],
+  "+B1": [
+   0.25,
+   0.198,
+   0.5,
+   0.07,
+   "c",
+   1,
+   true,
+   "ATTERRAGGIO:"
+  ],
+  "+B2": [
+   0.1,
+   0.27,
+   0.8,
+   0.085,
+   "c",
+   2,
+   true,
+   "Perimetro difensivo – consigliata [landerArmor] molto elevata oppure [landerAgility] e [landerSensors] elevati."
+  ],
+  "+B3": [
+   0.1,
+   0.465,
+   0.33,
+   0.1,
+   "c",
+   2,
+   true,
+   "PROVE FREQUENTI:"
+  ],
+  "+B4": [
+   0.58,
+   0.505,
+   0.3,
+   0.06,
+   "c",
+   1,
+   true,
+   "BIOMI:"
+  ],
+  "+B5": [
+   0.3,
+   0.745,
+   0.4,
+   0.06,
+   "c",
+   1,
+   true,
+   "PERICOLO:"
+  ],
+  "+B6": [
+   0.15,
+   0.795,
+   0.7,
+   0.09,
+   "c",
+   2,
+   true,
+   "Alta probabilità di Minacce aggressive e ambiente ostile."
+  ]
+ },
+ "carte/landing_cards/retro_9517.webp": {
+  "titolo": "salta",
+  "Briefing": "salta",
+  "OPTIONAL MISSION": "salta",
+  "+B0": [
+   0.08,
+   0.065,
+   0.84,
+   0.05,
+   "c",
+   1,
+   true,
+   "Briefing (non leggere finché non viene indicato): 1050"
+  ],
+  "+B1": [
+   0.25,
+   0.18,
+   0.5,
+   0.085,
+   "c",
+   1,
+   true,
+   "ATTERRAGGIO:"
+  ],
+  "+B2": [
+   0.1,
+   0.27,
+   0.8,
+   0.085,
+   "c",
+   2,
+   true,
+   "Possibili attacchi della popolazione indigena – consigliati [landerArmor] e [landerAgility] elevati."
+  ],
+  "+B3": [
+   0.1,
+   0.495,
+   0.33,
+   0.06,
+   "c",
+   1,
+   true,
+   "PERICOLI:"
+  ],
+  "+B4": [
+   0.05,
+   0.545,
+   0.46,
+   0.09,
+   "c",
+   2,
+   true,
+   "Le condizioni sul pianeta peggiorano col passare del tempo."
+  ],
+  "+B5": [
+   0.58,
+   0.495,
+   0.3,
+   0.06,
+   "c",
+   1,
+   true,
+   "BIOMI:"
+  ],
+  "+B6": [
+   0.1,
+   0.735,
+   0.33,
+   0.1,
+   "c",
+   2,
+   true,
+   "PROVE FREQUENTI:"
+  ],
+  "+B7": [
+   0.58,
+   0.765,
+   0.3,
+   0.06,
+   "c",
+   1,
+   true,
+   "MINACCE:"
+  ],
+  "+B8": [
+   0.56,
+   0.815,
+   0.34,
+   0.06,
+   "c",
+   1,
+   true,
+   "Minaccia mobile."
+  ]
+ },
+ "carte/rank_ups/34303.webp": {
+  "titolo": [
+   0.05,
+   0.025,
+   0.62,
+   0.115,
+   "s",
+   2,
+   true,
+   "GRADO SUPERIORE INCOMPLETO"
+  ],
+  "ANYTIME": [
+   0.05,
+   0.165,
+   0.75,
+   0.1,
+   "s",
+   2,
+   true,
+   "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA:"
+  ],
+  "SEEK LIFE": [
+   0.24,
+   0.295,
+   0.72,
+   0.085,
+   "d",
+   2,
+   true,
+   "CERCARE FORME DI VITA"
+  ],
+  "Only in": [
+   0.38,
+   0.39,
+   0.56,
+   0.11,
+   "c",
+   2,
+   false
+  ],
+  "Flip": [
+   0.5,
+   0.515,
+   0.42,
+   0.065,
+   "c",
+   1,
+   false
+  ]
+ },
+ "carte/rank_ups/34304.webp": {
+  "titolo": [
+   0.05,
+   0.025,
+   0.62,
+   0.115,
+   "s",
+   2,
+   true,
+   "GRADO SUPERIORE INCOMPLETO"
+  ],
+  "ANYTIME": [
+   0.05,
+   0.165,
+   0.75,
+   0.1,
+   "s",
+   2,
+   true,
+   "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA:"
+  ],
+  "STUDY VOLATILE FUMES": [
+   0.24,
+   0.295,
+   0.72,
+   0.085,
+   "d",
+   2,
+   true,
+   "STUDIARE I FUMI VOLATILI"
+  ],
+  "Only in": [
+   0.38,
+   0.39,
+   0.56,
+   0.11,
+   "c",
+   2,
+   false
+  ],
+  "Flip": [
+   0.5,
+   0.515,
+   0.42,
+   0.065,
+   "c",
+   1,
+   false
+  ]
+ },
+ "carte/rank_ups/34313.webp": {
+  "titolo": [
+   0.05,
+   0.025,
+   0.62,
+   0.115,
+   "s",
+   2,
+   true,
+   "GRADO SUPERIORE INCOMPLETO"
+  ],
+  "ANYTIME": [
+   0.05,
+   0.165,
+   0.75,
+   0.1,
+   "s",
+   2,
+   true,
+   "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA:"
+  ],
+  "PREPARE BREATHTAKING FOOTAGE": [
+   0.24,
+   0.295,
+   0.72,
+   0.085,
+   "d",
+   2,
+   true,
+   "PREPARARE RIPRESE MOZZAFIATO"
+  ],
+  "Only in": [
+   0.38,
+   0.39,
+   0.56,
+   0.11,
+   "c",
+   2,
+   false
+  ],
+  "Flip": [
+   0.5,
+   0.515,
+   0.42,
+   0.065,
+   "c",
+   1,
+   false
+  ]
+ },
+ "carte/rank_ups/34314.webp": {
+  "titolo": [
+   0.05,
+   0.025,
+   0.62,
+   0.115,
+   "s",
+   2,
+   true,
+   "GRADO SUPERIORE INCOMPLETO"
+  ],
+  "ANYTIME": [
+   0.05,
+   0.165,
+   0.75,
+   0.1,
+   "s",
+   2,
+   true,
+   "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA:"
+  ],
+  "RECKLESS RESEARCH": [
+   0.24,
+   0.295,
+   0.72,
+   0.085,
+   "d",
+   2,
+   true,
+   "RICERCA SCONSIDERATA"
+  ],
+  "Only in": [
+   0.38,
+   0.39,
+   0.56,
+   0.11,
+   "c",
+   2,
+   false
+  ],
+  "Flip": [
+   0.5,
+   0.515,
+   0.42,
+   0.065,
+   "c",
+   1,
+   false
+  ]
+ },
+ "carte/rank_ups/34315.webp": {
+  "titolo": [
+   0.05,
+   0.025,
+   0.62,
+   0.115,
+   "s",
+   2,
+   true,
+   "GRADO SUPERIORE INCOMPLETO"
+  ],
+  "ANYTIME": [
+   0.05,
+   0.165,
+   0.75,
+   0.1,
+   "s",
+   2,
+   true,
+   "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA:"
+  ],
+  "STUDY A PRESSURE ANOMALY": [
+   0.24,
+   0.295,
+   0.72,
+   0.085,
+   "d",
+   2,
+   true,
+   "STUDIARE UN'ANOMALIA DI PRESSIONE"
+  ],
+  "Only in": [
+   0.38,
+   0.39,
+   0.56,
+   0.11,
+   "c",
+   2,
+   false
+  ],
+  "Flip": [
+   0.5,
+   0.515,
+   0.42,
+   0.065,
+   "c",
+   1,
+   false
+  ]
+ },
+ "carte/rank_ups/34318.webp": {
+  "titolo": [
+   0.05,
+   0.025,
+   0.62,
+   0.115,
+   "s",
+   2,
+   true,
+   "GRADO SUPERIORE INCOMPLETO"
+  ],
+  "ANYTIME": [
+   0.05,
+   0.165,
+   0.75,
+   0.1,
+   "s",
+   2,
+   true,
+   "IN QUALSIASI MOMENTO DURANTE L'ESPLORAZIONE PLANETARIA:"
+  ],
+  "EXAMINE A FOSSIL": [
+   0.24,
+   0.295,
+   0.72,
+   0.085,
+   "d",
+   2,
+   true,
+   "ESAMINARE UN FOSSILE"
+  ],
+  "Only in": [
+   0.38,
+   0.39,
+   0.56,
+   0.11,
+   "c",
+   2,
+   false
+  ],
+  "Flip": [
+   0.5,
+   0.515,
+   0.42,
+   0.065,
+   "c",
+   1,
+   false
+  ]
  }
 }
