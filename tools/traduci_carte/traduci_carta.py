@@ -882,6 +882,9 @@ def traduci(chiave, uscita, debug=False):
         big[y:y + h, xa - manca:xa - manca + ws] = (reg * mm + dst * (1 - mm)).astype(np.uint8)
     img = Image.fromarray(big)
     for b in blocchi:
+        if b["it"] == "§cancella":   # testo inglese da togliere soltanto (già compreso in un altro blocco)
+            b["rect"] = (0, 0, 0, 0)
+            continue
         b["rect"] = scrivi(img, b["box"], b["it"], b["stile"], b["col"], b["centrato"], b["righe"], b["alto"], b.get("destra", False),
                b.get("corpo"), b.get("passo"), b.get("extra_x", 0), b.get("extra_y", 0), b.get("adattato"))
         if debug:
