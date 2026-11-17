@@ -1248,7 +1248,32 @@ func _hover(n: int) -> void:
 		aggiorna()
 	_vpc.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if n >= 0 else Control.CURSOR_ARROW
 
+var _tocco := Tocco.new()
+
 func _input_vista(e: InputEvent) -> void:
+	# due dita (iPad): pizzico = zoom, rotazione = gira la vista, scorrimento = sposta
+	if e is InputEventScreenTouch or e is InputEventScreenDrag:
+		var g := _tocco.evento(e)
+		if g.has("inizio"):
+			_premuto = false
+			_pan = false
+			_orbita = false
+		elif g.has("zoom"):
+			if _tw_cam:
+				_tw_cam.kill()
+			if absf(g["zoom"] - 1.0) > 0.001:
+				_zoom(g["centro"], 1.0 / g["zoom"])
+			if g["sposta"].length() > 0.0:
+				var a2 := _punto_piano(g["centro"] - g["sposta"])
+				var b2 := _punto_piano(g["centro"])
+				_cam_t += a2 - b2
+			_cam_y += rad_to_deg(g["ruota"])
+			_aggiorna_camera()
+		_vpc.accept_event()
+		return
+	if _tocco.attivo() and (e is InputEventMouseButton or e is InputEventMouseMotion):
+		_vpc.accept_event()
+		return
 	if e is InputEventMouseButton:
 		var mb: InputEventMouseButton = e
 		match mb.button_index:

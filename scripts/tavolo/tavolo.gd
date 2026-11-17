@@ -400,8 +400,22 @@ func seleziona(p: Pezzo) -> void:
 	if p:
 		p.evidenzia(true, Tema.AMBRA)
 
+var _tocco := Tocco.new()
+
 func _unhandled_input(e: InputEvent) -> void:
 	if not input_attivo or camera == null:
+		return
+	if e is InputEventScreenTouch or e is InputEventScreenDrag:
+		var g := _tocco.evento(e)
+		if g.has("zoom"):
+			if absf(g["zoom"] - 1.0) > 0.001:
+				_zoom_verso(g["centro"], 1.0 / g["zoom"])
+			_cam_y += rad_to_deg(g["ruota"])
+			_cam_t += _punto_piano(g["centro"] - g["sposta"]) - _punto_piano(g["centro"])
+			_cam_t.y = 0.0
+			_aggiorna_camera()
+		return
+	if _tocco.attivo() and (e is InputEventMouseButton or e is InputEventMouseMotion):
 		return
 	if e is InputEventMouseButton:
 		_tasto_mouse(e)
