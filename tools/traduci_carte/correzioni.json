@@ -196,5 +196,27 @@
    1,
    true
   ]
+ },
+ "production_projects": {
+  "DO NOT REVEAL": [
+   0.12,
+   0.53,
+   0.72,
+   0.12,
+   "c",
+   3,
+   false
+  ]
+ },
+ "research_projects": {
+  "DO NOT REVEAL": [
+   0.15,
+   0.685,
+   0.58,
+   0.135,
+   "c",
+   3,
+   false
+  ]
  }
 }

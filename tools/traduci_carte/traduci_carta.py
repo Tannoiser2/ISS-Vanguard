@@ -61,7 +61,9 @@ def campi(c):
             return
         en, it = o.get("en"), o.get("it", "")
         if isinstance(en, str) and en.strip() and isinstance(it, str) and it.strip():
-            if chiave == "obiettivo" and c.get("veterano"):
+            if chiave == "costo" and c.get("tipo") == "research_project":
+                pass   # scritto con l'etichetta COSTO:
+            elif chiave == "obiettivo" and c.get("veterano"):
                 pass   # l'obiettivo dei Veterani è stampato sul retro
             elif chiave in etich:
                 out.append((etich[chiave] + " " + en, ETICHETTE[etich[chiave]] + " " + it, "etichetta"))
@@ -76,6 +78,9 @@ def campi(c):
                 out.append((en, it, "piccolo"))
             elif chiave == "obiettivo" and c.get("veterano"):
                 pass   # l'obiettivo dei Veterani è stampato sul retro
+            elif chiave == "testo" and " | " in en and en.count(" | ") == it.count(" | "):
+                for e1, i1 in zip(en.split(" | "), it.split(" | ")):
+                    out.append((e1, i1, "prefisso"))
             elif chiave in ("effetto", "testo", "abilita"):
                 en = re.split(r"\s*Rank requirement:", en)[0]
                 it = re.split(r"\s*Requisito di grado:", it)[0]
@@ -83,13 +88,13 @@ def campi(c):
             else:
                 out.append((en, it, "testo"))
         for k, v in o.items():
-            if k in ("en", "it", "campi"):
+            if k in ("en", "it", "campi", "retro"):
                 continue
             giro(v, k, in_azione or k in ("azioni", "viaggio"))
     for k, v in c.items():
         if k == "tempo" and isinstance(v, list):
             giro(v, "tempo", "lista_tempo")
-        elif k not in ("campi",):
+        elif k not in ("campi", "retro"):
             giro(v, k, k in ("azioni", "viaggio"))
     # etichette stampate che nei dati non hanno un testo {en, it}
     CONCEDE = {"Equipment": "Attrezzatura", "Lander Mod": "Modifica del Lander", "Lander Mods": "Modifiche del Lander",
@@ -128,6 +133,12 @@ def campi(c):
     MODIF = {"structural": ("STRUCTURAL", "STRUTTURALE"), "utility": ("UTILITY", "UTILITÀ")}
     if tipo == "lander_mod" and camp.get("modifica") in MODIF:
         out.append(MODIF[camp["modifica"]] + ("etichetta",))
+    if c.get("livello_tecnologico_richiesto") not in (None, ""):
+        out.append(("REQUIRED TECH LEVEL: %s" % c["livello_tecnologico_richiesto"], "LIVELLO TECNOLOGICO RICHIESTO: %s" % c["livello_tecnologico_richiesto"], "etichetta"))
+    PAROLE_CHIAVE = {"BUILDERS": "COSTRUTTORI", "MATERIALS": "MATERIALI", "ALIEN": "ALIENO", "TECH": "TECNOLOGIA", "BASIC": "BASE",
+                     "ADVANCED": "AVANZATO", "COMPUTING": "CALCOLO", "BIO": "BIO", "FUTURE": "FUTURO"}
+    if c.get("parola_chiave") in PAROLE_CHIAVE:
+        out.append((c["parola_chiave"], PAROLE_CHIAVE[c["parola_chiave"]], "etichetta"))
     if tipo == "production_project":
         out += [("BOOST:", "POTENZIAMENTO:", "etichetta"), ("PRODUCTION PROJECT", "PROGETTO DI PRODUZIONE", "etichetta"),
                 ("ANY ICON", "QUALSIASI ICONA", "etichetta")]
@@ -145,7 +156,8 @@ def campi(c):
         out.append(ETIC_SCOP[cat_scoperta] + ("titolo",))
     # etichette stampate comuni, se nessun altro testo le contiene già
     GENERICHE = [("OPTIONAL MISSION", "MISSIONE OPZIONALE"), ("OBJECTIVE", "OBIETTIVO"), ("EFFECT", "EFFETTO"),
-                 ("SOLVED", "RISOLTA"), ("UTILITY", "UTILITÀ"), ("STRUCTURAL", "STRUTTURALE")]
+                 ("SOLVED", "RISOLTA"), ("UTILITY", "UTILITÀ"), ("STRUCTURAL", "STRUTTURALE"),
+                 ("CAMPAIGN OBJECTIVE", "OBIETTIVO DELLA CAMPAGNA"), ("SITUATIONS", "SITUAZIONI"), ("TRAVEL", "VIAGGIO")]
     gia = " ".join(x[0].upper() for x in out)
     for en_, it_ in GENERICHE:
         if en_ not in gia:
@@ -158,7 +170,7 @@ def campi(c):
     # i pezzi già contenuti in un testo più lungo (es. le due scelte di "A - OPPURE - B") si scrivono con quello
     def nudo(t):
         return re.sub(r"\W+", " ", re.sub(r"\[\w+\]", " ", t)).strip().lower()
-    return [x for x in finali if x[2] in ("titolo", "etichetta") or not any(y is not x and len(nudo(y[0])) > len(nudo(x[0])) and nudo(x[0]) and nudo(x[0]) in nudo(y[0]) for y in finali)]
+    return [x for x in finali if x[2] in ("titolo", "etichetta") or not any(y is not x and re.search(r"\bOR\b", y[0]) and len(nudo(y[0])) > len(nudo(x[0])) and nudo(x[0]) and nudo(x[0]) in nudo(y[0]) for y in finali)]
 
 
 # ------------------------------------------------------------------ OCR
@@ -475,7 +487,7 @@ def traduci(chiave, uscita, debug=False):
     usate = set()
     blocchi = []
     maiuscole = {norm(p["t"]) for p in ps if re.sub(r"[^A-Za-z]", "", p["t"]).isupper() and p["c"] >= 60}
-    gen = {"OPTIONAL MISSION", "OBJECTIVE", "EFFECT", "SOLVED", "UTILITY", "STRUCTURAL"}
+    gen = {"OPTIONAL MISSION", "OBJECTIVE", "EFFECT", "SOLVED", "UTILITY", "STRUCTURAL", "CAMPAIGN OBJECTIVE", "SITUATIONS", "TRAVEL"}
     for en, it, stile in sorted(campi(c), key=lambda x: -len(x[0])):
         if en in gen and norm(en.split()[-1]) not in maiuscole:
             continue
