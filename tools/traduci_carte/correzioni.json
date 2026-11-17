@@ -4970,5 +4970,732 @@
    1,
    false
   ]
+ },
+ "dragonfly": {
+  "+LOAD": [
+   0.168,
+   0.529,
+   0.13,
+   0.036,
+   "c",
+   1,
+   true,
+   "CARICO"
+  ],
+  "+SUPPLIES": [
+   0.048,
+   0.615,
+   0.155,
+   0.034,
+   "c",
+   1,
+   true,
+   "PROVVISTE"
+  ],
+  "+STRUCTURAL MOD": [
+   0.353,
+   0.606,
+   0.21,
+   0.05,
+   "s",
+   2,
+   true,
+   "MOD STRUTTURALE"
+  ],
+  "+UTILITY MOD": [
+   0.703,
+   0.606,
+   0.13,
+   0.05,
+   "s",
+   2,
+   true,
+   "MOD UTILITÀ"
+  ],
+  "+DISCOVERIES - MAXIMUM:": [
+   0.15,
+   0.725,
+   0.66,
+   0.036,
+   "d",
+   1,
+   true,
+   "SCOPERTE - MASSIMO:"
+  ],
+  "+LANDING SUCCESSFUL": [
+   0.716,
+   0.786,
+   0.225,
+   0.054,
+   "s",
+   2,
+   true,
+   "ATTERRAGGIO RIUSCITO"
+  ]
+ },
+ "pelican": {
+  "+LOAD": [
+   0.168,
+   0.529,
+   0.13,
+   0.036,
+   "c",
+   1,
+   true,
+   "CARICO"
+  ],
+  "+SUPPLIES": [
+   0.048,
+   0.615,
+   0.155,
+   0.034,
+   "c",
+   1,
+   true,
+   "PROVVISTE"
+  ],
+  "+STRUCTURAL MOD": [
+   0.353,
+   0.606,
+   0.21,
+   0.05,
+   "s",
+   2,
+   true,
+   "MOD STRUTTURALE"
+  ],
+  "+UTILITY MOD": [
+   0.703,
+   0.606,
+   0.13,
+   0.05,
+   "s",
+   2,
+   true,
+   "MOD UTILITÀ"
+  ],
+  "+DISCOVERIES - MAXIMUM:": [
+   0.15,
+   0.725,
+   0.66,
+   0.036,
+   "d",
+   1,
+   true,
+   "SCOPERTE - MASSIMO:"
+  ],
+  "+LANDING SUCCESSFUL": [
+   0.716,
+   0.786,
+   0.225,
+   0.054,
+   "s",
+   2,
+   true,
+   "ATTERRAGGIO RIUSCITO"
+  ]
+ },
+ "faustschlag": {
+  "+LOAD": [
+   0.168,
+   0.529,
+   0.13,
+   0.036,
+   "c",
+   1,
+   true,
+   "CARICO"
+  ],
+  "+SUPPLIES": [
+   0.048,
+   0.615,
+   0.155,
+   0.034,
+   "c",
+   1,
+   true,
+   "PROVVISTE"
+  ],
+  "+STRUCTURAL MOD": [
+   0.353,
+   0.606,
+   0.21,
+   0.05,
+   "s",
+   2,
+   true,
+   "MOD STRUTTURALE"
+  ],
+  "+UTILITY MOD": [
+   0.703,
+   0.606,
+   0.13,
+   0.05,
+   "s",
+   2,
+   true,
+   "MOD UTILITÀ"
+  ],
+  "+DISCOVERIES - MAXIMUM:": [
+   0.15,
+   0.725,
+   0.66,
+   0.036,
+   "d",
+   1,
+   true,
+   "SCOPERTE - MASSIMO:"
+  ],
+  "+LANDING SUCCESSFUL": [
+   0.716,
+   0.786,
+   0.225,
+   0.054,
+   "s",
+   2,
+   true,
+   "ATTERRAGGIO RIUSCITO"
+  ]
+ },
+ "space_ranger": {
+  "+LOAD": [
+   0.168,
+   0.529,
+   0.13,
+   0.036,
+   "c",
+   1,
+   true,
+   "CARICO"
+  ],
+  "+SUPPLIES": [
+   0.048,
+   0.615,
+   0.155,
+   0.034,
+   "c",
+   1,
+   true,
+   "PROVVISTE"
+  ],
+  "+STRUCTURAL MOD": [
+   0.353,
+   0.606,
+   0.21,
+   0.05,
+   "s",
+   2,
+   true,
+   "MOD STRUTTURALE"
+  ],
+  "+UTILITY MOD": [
+   0.703,
+   0.606,
+   0.13,
+   0.05,
+   "s",
+   2,
+   true,
+   "MOD UTILITÀ"
+  ],
+  "+DISCOVERIES - MAXIMUM:": [
+   0.15,
+   0.725,
+   0.66,
+   0.036,
+   "d",
+   1,
+   true,
+   "SCOPERTE - MASSIMO:"
+  ],
+  "+LANDING SUCCESSFUL": [
+   0.716,
+   0.786,
+   0.225,
+   0.054,
+   "s",
+   2,
+   true,
+   "ATTERRAGGIO RIUSCITO"
+  ]
+ },
+ "void_ranger": {
+  "+LOAD": [
+   0.168,
+   0.529,
+   0.13,
+   0.036,
+   "c",
+   1,
+   true,
+   "CARICO"
+  ],
+  "+SUPPLIES": [
+   0.048,
+   0.615,
+   0.155,
+   0.034,
+   "c",
+   1,
+   true,
+   "PROVVISTE"
+  ],
+  "+STRUCTURAL MOD": [
+   0.353,
+   0.606,
+   0.21,
+   0.05,
+   "s",
+   2,
+   true,
+   "MOD STRUTTURALE"
+  ],
+  "+UTILITY MOD": [
+   0.703,
+   0.606,
+   0.13,
+   0.05,
+   "s",
+   2,
+   true,
+   "MOD UTILITÀ"
+  ],
+  "+DISCOVERIES - MAXIMUM:": [
+   0.15,
+   0.725,
+   0.66,
+   0.036,
+   "d",
+   1,
+   true,
+   "SCOPERTE - MASSIMO:"
+  ],
+  "+LANDING SUCCESSFUL": [
+   0.716,
+   0.786,
+   0.225,
+   0.054,
+   "s",
+   2,
+   true,
+   "ATTERRAGGIO RIUSCITO"
+  ]
+ },
+ "waygate": {
+  "+LOAD": [
+   0.168,
+   0.529,
+   0.13,
+   0.036,
+   "c",
+   1,
+   true,
+   "CARICO"
+  ],
+  "+SUPPLIES": [
+   0.048,
+   0.615,
+   0.155,
+   0.034,
+   "c",
+   1,
+   true,
+   "PROVVISTE"
+  ],
+  "+STRUCTURAL MOD": [
+   0.353,
+   0.606,
+   0.21,
+   0.05,
+   "s",
+   2,
+   true,
+   "MOD STRUTTURALE"
+  ],
+  "+UTILITY MOD": [
+   0.703,
+   0.606,
+   0.13,
+   0.05,
+   "s",
+   2,
+   true,
+   "MOD UTILITÀ"
+  ],
+  "+DISCOVERIES - MAXIMUM:": [
+   0.15,
+   0.725,
+   0.66,
+   0.036,
+   "d",
+   1,
+   true,
+   "SCOPERTE - MASSIMO:"
+  ],
+  "LOAD: [personalEquipment]": "salta",
+  "+To choose this Lander you must discard 1 Alien Tech or 1 Mineral Discovery from \"Gathered Discoveries\". During the Landing Procedure, you immediately land successfully.": [
+   0.05,
+   0.79,
+   0.9,
+   0.074,
+   "c",
+   3,
+   true,
+   "Per scegliere questo Lander devi scartare 1 Scoperta Tecnologia Aliena o 1 Scoperta Minerale dalle \"Scoperte Raccolte\". Durante la Procedura di Atterraggio, atterri immediatamente con successo."
+  ]
+ },
+ "carte/bombardment/bombardment_19103.webp": {
+  "+Salvo": [
+   [
+    0.2,
+    0.8837,
+    0.0842,
+    0.0249,
+    "c",
+    1,
+    true,
+    "Salva"
+   ],
+   [
+    0.4723,
+    0.8841,
+    0.0838,
+    0.0258,
+    "c",
+    1,
+    true,
+    "Salva"
+   ]
+  ]
+ },
+ "carte/guardian_metahedron/guardian_metahedron_7807.webp": {
+  "+Charge": [
+   [
+    0.0992,
+    0.8851,
+    0.1117,
+    0.032,
+    "c",
+    1,
+    true,
+    "Carica"
+   ],
+   [
+    0.564,
+    0.8861,
+    0.1121,
+    0.0329,
+    "c",
+    1,
+    true,
+    "Carica"
+   ]
+  ]
+ },
+ "carte/idemian_pilgrim/idemian_pilgrim_19304.webp": {
+  "+Cleansing Ritual": [
+   [
+    0.13,
+    0.86,
+    0.22,
+    0.052,
+    "c",
+    2,
+    true,
+    "Rituale di Purificazione"
+   ],
+   [
+    0.4,
+    0.86,
+    0.22,
+    0.052,
+    "c",
+    2,
+    true,
+    "Rituale di Purificazione"
+   ]
+  ],
+  "+Procession, reset this track": [
+   0.655,
+   0.86,
+   0.26,
+   0.052,
+   "c",
+   2,
+   true,
+   "Processione, azzera questa traccia"
+  ]
+ },
+ "carte/converted_arrogator_behemoth/converted_arrogator_behemoth_7802.webp": {
+  "+Spark": [
+   [
+    0.17,
+    0.88,
+    0.14,
+    0.034,
+    "c",
+    1,
+    true,
+    "Scintilla"
+   ],
+   [
+    0.44,
+    0.88,
+    0.14,
+    0.034,
+    "c",
+    1,
+    true,
+    "Scintilla"
+   ]
+  ],
+  "+Spark, Discharged": [
+   0.67,
+   0.86,
+   0.22,
+   0.054,
+   "c",
+   2,
+   true,
+   "Scintilla, Scarico"
+  ]
+ },
+ "carte/arrogator_warswarm/arrogator_warswarm_19105.webp": {
+  "+Swarm": [
+   0.0819,
+   0.8888,
+   0.1037,
+   0.024,
+   "c",
+   1,
+   true,
+   "Sciame"
+  ],
+  "+Drones": [
+   0.3277,
+   0.8894,
+   0.1046,
+   0.024,
+   "c",
+   1,
+   true,
+   "Droni"
+  ],
+  "+Eradication Blast": [
+   0.5091,
+   0.8886,
+   0.2327,
+   0.0256,
+   "c",
+   1,
+   true,
+   "Raffica di Eradicazione"
+  ],
+  "FIGHT THE WARSWARM": [
+   0.435,
+   0.302,
+   0.53,
+   0.038,
+   "d",
+   1,
+   true
+  ]
+ },
+ "carte/kurma/kurma_33309.webp": {
+  "+Thrash": [
+   0.09,
+   0.878,
+   0.14,
+   0.032,
+   "c",
+   1,
+   true,
+   "Sferzata"
+  ],
+  "+Swim, Thrash": [
+   0.28,
+   0.878,
+   0.22,
+   0.032,
+   "c",
+   1,
+   true,
+   "Nuotare, Sferzata"
+  ],
+  "+Swim": [
+   0.555,
+   0.878,
+   0.13,
+   0.032,
+   "c",
+   1,
+   true,
+   "Nuotare"
+  ],
+  "+Swim, Thrash, reset this track": [
+   0.72,
+   0.86,
+   0.27,
+   0.052,
+   "c",
+   2,
+   true,
+   "Nuotare, Sferzata, azzera questa traccia"
+  ]
+ },
+ "carte/maw/maw_7801.webp": {
+  "+Terror": [
+   [
+    0.194,
+    0.8914,
+    0.0896,
+    0.0222,
+    "c",
+    1,
+    true,
+    "Terrore"
+   ],
+   [
+    0.4662,
+    0.8907,
+    0.09,
+    0.0231,
+    "c",
+    1,
+    true,
+    "Terrore"
+   ]
+  ]
+ },
+ "carte/re_origination_beam/re_origination_beam_7810.webp": {
+  "+Travel": [
+   [
+    0.8015,
+    0.8634,
+    0.1004,
+    0.0293,
+    "c",
+    1,
+    true,
+    "Viaggio"
+   ],
+   [
+    0.1085,
+    0.8877,
+    0.0904,
+    0.024,
+    "c",
+    1,
+    true,
+    "Viaggio"
+   ],
+   [
+    0.3408,
+    0.8876,
+    0.0917,
+    0.0249,
+    "c",
+    1,
+    true,
+    "Viaggio"
+   ],
+   [
+    0.5742,
+    0.8876,
+    0.09,
+    0.0249,
+    "c",
+    1,
+    true,
+    "Viaggio"
+   ]
+  ]
+ },
+ "carte/scintillating_shardfly/scintillating_shardfly_7900.webp": {
+  "+DISASSEMBLE": [
+   0.6292,
+   0.4664,
+   0.3267,
+   0.0604,
+   "s",
+   1,
+   true,
+   "SMONTARE"
+  ],
+  "+Travel, Scintillation": [
+   [
+    0.14,
+    0.86,
+    0.21,
+    0.052,
+    "c",
+    2,
+    true,
+    "Viaggio, Scintillazione"
+   ],
+   [
+    0.395,
+    0.86,
+    0.21,
+    0.052,
+    "c",
+    2,
+    true,
+    "Viaggio, Scintillazione"
+   ]
+  ],
+  "+Travel, reset this track": [
+   0.665,
+   0.86,
+   0.25,
+   0.052,
+   "c",
+   2,
+   true,
+   "Viaggio, azzera questa traccia"
+  ]
+ },
+ "carte/builder_s_biomebot/builder_s_biomebot_7806.webp": {
+  "titolo": [
+   0.005,
+   0.006,
+   0.75,
+   0.037,
+   "s",
+   1,
+   true
+  ]
+ },
+ "carte/hunters_become_prey/hunters_become_prey_7902.webp": {
+  "+Panic fire, reset this track": [
+   0.665,
+   0.86,
+   0.25,
+   0.052,
+   "c",
+   2,
+   true,
+   "Fuoco nel Panico, azzera questa traccia"
+  ],
+  "+Travel, Panic Fire": [
+   0.405,
+   0.86,
+   0.23,
+   0.052,
+   "c",
+   2,
+   true,
+   "Viaggio, Fuoco nel Panico"
+  ],
+  "+Panic Fire, Travel": [
+   0.15,
+   0.86,
+   0.23,
+   0.052,
+   "c",
+   2,
+   true,
+   "Fuoco nel Panico, Viaggio"
+  ]
  }
 }

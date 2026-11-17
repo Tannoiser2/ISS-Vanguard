@@ -91,6 +91,8 @@ for n_, rel in enumerate(lista):
     except Exception as e:
         print("ERRORE", rel, e, flush=True)
 
+import ritocchi
+ritocchi.main(solo=set(lista))
 os.chdir(T.REPO + "/web/img/it")
 elenco = sorted(glob.glob("carte/**/*.webp", recursive=True))
 json.dump(elenco, open(T.REPO + "/data/carte_it.json", "w"), indent=0)

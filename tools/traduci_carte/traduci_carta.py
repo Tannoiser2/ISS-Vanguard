@@ -185,14 +185,19 @@ def campi(c):
         if en_ not in gia:
             out.append((en_, it_, "etichetta"))
     # testi stampati che nei dati mancano: nelle correzioni con chiave "+testo inglese" e la traduzione come 8° valore
-    for k_, v_ in CORREZIONI.get(c.get("file", ""), {}).items():
+    _agg = dict(CORREZIONI.get(c.get("file", "").split("/")[1] if c.get("file", "").count("/") > 1 else "§", {}))
+    _agg.update(CORREZIONI.get(c.get("file", ""), {}))
+    out[:] = [x for x in out if "+" + x[0] not in _agg]
+    for k_, v_ in _agg.items():
         if k_.startswith("+"):
             v1 = v_[0] if isinstance(v_[0], list) else v_
-            out.append((k_[1:], v1[7], "etichetta"))
+            for _ in range(len(v_) if isinstance(v_[0], list) else 1):
+                out.append((k_[1:], v1[7], "etichetta"))
+    piu = {k_[1:]: len(v_) for k_, v_ in _agg.items() if k_.startswith("+") and isinstance(v_[0], list)}
     visti, finali = {}, []
     for x in out:
         # lo stesso titolo può essere stampato due volte (titolo della carta e titolo dell'azione)
-        if x[0].strip() and x[1].strip() and visti.get(x[0], 0) < (2 if x[2] == "titolo" else 1):
+        if x[0].strip() and x[1].strip() and visti.get(x[0], 0) < (2 if x[2] == "titolo" else piu.get(x[0], 1)):
             visti[x[0]] = visti.get(x[0], 0) + 1
             finali.append(x)
     # i pezzi già contenuti in un testo più lungo (es. le due scelte di "A - OPPURE - B") si scrivono con quello
@@ -530,7 +535,7 @@ def traduci(chiave, uscita, debug=False):
         corr = None
         for chiave in (c["file"], c["file"].split("/")[1]):
             for k_, v_ in CORREZIONI.get(chiave, {}).items():
-                if (k_ == "titolo" and en.split(" (%s)" % c.get("id", "§"))[0] == (c.get("titolo") or {}).get("en", "").split(" (%s)" % c.get("id", "§"))[0]) or (k_ != "titolo" and en.startswith(k_.lstrip("+"))):
+                if (k_ == "titolo" and en.split(" (%s)" % c.get("id", "§"))[0] == (c.get("titolo") or {}).get("en", "").split(" (%s)" % c.get("id", "§"))[0]) or (k_ != "titolo" and not k_.startswith("+") and en.startswith(k_)) or (k_.startswith("+") and en == k_[1:]):
                     corr = v_
             if corr:
                 break
