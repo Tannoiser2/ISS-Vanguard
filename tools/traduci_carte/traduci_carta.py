@@ -26,7 +26,8 @@ F = {
 }
 # riquadri fissi per categoria (frazioni della carta), usati quando l'OCR non riesce a leggere
 MODELLI = {"reparto": {"titolo": (0.47, 0.25, 0.52, 0.22, "d")},
-           "pdi": {"titolo": (0.01, 0.015, 0.63, 0.075, "s")}}
+           "pdi": {"titolo": (0.01, 0.015, 0.63, 0.075, "s")},
+           "minacce": {"titolo": (0.01, 0.0, 0.6, 0.045, "s")}}
 # riquadri misurati a mano (frazioni della carta) dove l'OCR sbaglia; la chiave è il file o la cartella,
 # poi "titolo" o l'inizio del testo inglese: (x, y, w, h, allineamento s/c/d, righe, chiaro)
 CORREZIONI = json.load(open(QUI + "/correzioni.json")) if os.path.exists(QUI + "/correzioni.json") else {}
@@ -86,12 +87,40 @@ def campi(c):
             giro(v, "tempo", "lista_tempo")
         elif k not in ("campi",):
             giro(v, k, k in ("azioni", "viaggio"))
+    # etichette stampate che nei dati non hanno un testo {en, it}
+    CONCEDE = {"Equipment": "Attrezzatura", "Lander Mod": "Modifica del Lander", "Lander Mods": "Modifiche del Lander",
+               "Bridge Upgrade": "Potenziamento del Ponte", "Production Project": "Progetto di Produzione",
+               "Production Projects": "Progetti di Produzione", "Facility Upgrade": "Potenziamento della Struttura",
+               "Research Project": "Progetto di Ricerca", "Research Projects": "Progetti di Ricerca", "Lander": "Lander",
+               "Story Log": "Annotazione della Storia", "Lander Upgrade": "Potenziamento del Lander", "[success]": "[success]"}
+    if c.get("concede"):
+        out.append(("GRANTS:", "CONCEDE:", "etichetta"))
+        out.append((", ".join(c["concede"]), ", ".join(CONCEDE.get(x, x) for x in c["concede"]), "testo"))
+    tipo = c.get("tipo", "")
+    if tipo == "production_project":
+        out += [("BOOST:", "POTENZIAMENTO:", "etichetta"), ("PRODUCTION PROJECT", "PROGETTO DI PRODUZIONE", "etichetta"),
+                ("ANY ICON", "QUALSIASI ICONA", "etichetta")]
+        if c.get("stadio_iniziale") not in (None, ""):
+            out.append(("STARTING STAGE: %s" % c["stadio_iniziale"], "FASE INIZIALE: %s" % c["stadio_iniziale"], "etichetta"))
+    if tipo == "research_project":
+        out.append(("RESEARCH PROJECT", "PROGETTO DI RICERCA", "etichetta"))
+        if isinstance(c.get("costo"), dict):
+            out.append(("COST: " + c["costo"]["en"], "COSTO: " + c["costo"].get("it", ""), "etichetta"))
+    cat_scoperta = (c.get("campi") or {}).get("categoria") if isinstance(c.get("campi"), dict) else None
+    ETIC_SCOP = {"alien_tech": ("ALIEN TECH", "TECNOLOGIA ALIENA"), "strange_flora": ("STRANGE FLORA", "STRANA VEGETAZIONE"),
+                 "live_specimen": ("LIVE SPECIMEN", "ESEMPLARE VIVO"), "mineral": ("MINERAL", "MINERALE"),
+                 "microorganism": ("MICROORGANISM", "MICRORGANISMO")}
+    if tipo == "discovery" and cat_scoperta in ETIC_SCOP:
+        out.append(ETIC_SCOP[cat_scoperta] + ("titolo",))
     visti, finali = set(), []
     for x in out:
         if x[0].strip() and x[1].strip() and x[0] not in visti:
             visti.add(x[0])
             finali.append(x)
-    return finali
+    # i pezzi già contenuti in un testo più lungo (es. le due scelte di "A - OPPURE - B") si scrivono con quello
+    def nudo(t):
+        return re.sub(r"\W+", " ", re.sub(r"\[\w+\]", " ", t)).strip().lower()
+    return [x for x in finali if x[2] in ("titolo", "etichetta") or not any(y is not x and len(nudo(y[0])) > len(nudo(x[0])) and nudo(x[0]) and nudo(x[0]) in nudo(y[0]) for y in finali)]
 
 
 # ------------------------------------------------------------------ OCR
@@ -180,6 +209,49 @@ def trova_blocco(en, ps, usate):
         if len(buone) <= 2 or not vicine or min(max(0, max(b[0], ps[j]["b"][0]) - min(b[0] + b[2], ps[j]["b"][0] + ps[j]["b"][2])) for j in vicine) < 3 * b[3]:
             tenute.append(i)
     return tenute or None
+
+
+def trova_sfumato(en, ps, usate):
+    """Ripiego quando la sequenza non si trova: le parole lette che somigliano alle parole del testo,
+    raggruppate per vicinanza; si prende il gruppo che ne copre di più."""
+    toks = [norm(w) for w in re.sub(r"\[\w+\]", " ", en).split() if len(norm(w)) >= 3]
+    if not toks:
+        return None
+    cand = []
+    for i, p in enumerate(ps):
+        if i in usate or p["c"] < 50 or len(p["n"]) < 2:
+            continue
+        for t in toks:
+            if p["n"] == t or (len(p["n"]) >= 3 and difflib.SequenceMatcher(None, p["n"], t).ratio() >= 0.75) or (len(p["n"]) >= 4 and p["n"] in t):
+                cand.append((i, t))
+                break
+    if not cand:
+        return None
+    # gruppi: parole a meno di due righe una dall'altra
+    gruppi = []
+    for i, t in cand:
+        b = ps[i]["b"]
+        messo = None
+        for gr in gruppi:
+            for j, _ in gr:
+                bb = ps[j]["b"]
+                h = max(b[3], bb[3])
+                vic_v = abs((b[1] + b[3] / 2) - (bb[1] + bb[3] / 2)) < 2.2 * h
+                vic_o = b[0] < bb[0] + bb[2] + 6 * h and bb[0] < b[0] + b[2] + 6 * h
+                if vic_v and vic_o:
+                    messo = gr
+                    break
+            if messo:
+                break
+        if messo:
+            messo.append((i, t))
+        else:
+            gruppi.append([(i, t)])
+    migliore = max(gruppi, key=lambda gr: len({t for _, t in gr}))
+    coperti = len({t for _, t in migliore})
+    if coperti < max(1 if len(toks) <= 2 else 2, int(0.4 * len(toks) + 0.5)):
+        return None
+    return [i for i, _ in migliore]
 
 
 # ------------------------------------------------------------------ cancellazione e scrittura
@@ -374,6 +446,8 @@ def traduci(chiave, uscita, debug=False):
                     usate.add(i)
             continue
         g = trova_blocco(en, ps, usate)
+        if g is None:
+            g = trova_sfumato(en, ps, usate)
         if g is None and stile == "titolo" and en == c["titolo"]["en"] and c.get("categoria") in MODELLI:
             fx, fy, fw, fh, all_ = MODELLI[c["categoria"]]["titolo"]
             H, W = big.shape[:2]
@@ -385,7 +459,11 @@ def traduci(chiave, uscita, debug=False):
             continue
         if g is None:
             print("  non trovato:", en[:60])
-            if re.sub(r"\[\w+\]|\W", "", en):
+            # conta solo se il testo è davvero stampato su questo lato della carta (le sue parole si leggono)
+            parole_en = [norm(w) for w in re.sub(r"\[\w+\]", " ", en).split() if len(norm(w)) >= 4]
+            lette = [p["n"] for p in ps if p["c"] >= 60 and len(p["n"]) >= 3]
+            presenti = sum(1 for w in parole_en if any(difflib.SequenceMatcher(None, w, l).ratio() >= 0.75 or (len(l) >= 4 and l in w) for l in lette))
+            if parole_en and presenti >= min(2, len(parole_en)):
                 MANCANTI.append(en)
             continue
         usate |= set(g)
