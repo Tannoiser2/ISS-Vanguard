@@ -38,7 +38,7 @@ def controllo(rel, png):
     import difflib
     nomi = " ".join(str(c.get("nome", "")).split() + [str(n) for n in c.get("nomi", [])] +
                     [w for e, i, _ in T.campi(c) if T.norm(e) == T.norm(i) for w in e.split()]).lower()
-    tutto_it = tutto_it + " " + re.sub(r"[^a-z ]", "", nomi)
+    tutto_it = tutto_it + " " + re.sub(r"[^a-z ]", "", nomi) + " ultrararo ultrarara"
     it_unito = re.sub(r"[^a-z]", "", tutto_it)
     parole_it = set(tutto_it.split())
     for p in T.parole(Image.open(png).convert("RGB")):

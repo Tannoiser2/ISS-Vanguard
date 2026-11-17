@@ -26,6 +26,7 @@ F = {
 }
 # riquadri fissi per categoria (frazioni della carta), usati quando l'OCR non riesce a leggere
 MODELLI = {"reparto": {"titolo": (0.47, 0.25, 0.52, 0.22, "d")},
+           "scoperte": {"titolo": (0.05, 0.12, 0.90, 0.125, "c")},
            "pdi": {"titolo": (0.01, 0.015, 0.63, 0.075, "s"), "corsivo": (0.015, 0.075, 0.62, 0.095, "s")},
            "minacce": {"titolo": (0.01, 0.0, 0.6, 0.045, "s")}}
 # riquadri misurati a mano (frazioni della carta) dove l'OCR sbaglia; la chiave è il file o la cartella,
@@ -158,8 +159,22 @@ def campi(c):
     ETIC_SCOP = {"alien_tech": ("ALIEN TECH", "TECNOLOGIA ALIENA"), "strange_flora": ("STRANGE FLORA", "STRANA VEGETAZIONE"),
                  "live_specimen": ("LIVE SPECIMEN", "ESEMPLARE VIVO"), "mineral": ("MINERAL", "MINERALE"),
                  "microorganism": ("MICROORGANISM", "MICRORGANISMO")}
-    if tipo == "discovery" and cat_scoperta in ETIC_SCOP:
-        out.append(ETIC_SCOP[cat_scoperta] + ("titolo",))
+    # Scoperte: "CATEGORIA — SEZIONE: testo" è stampato in tre punti diversi
+    if c.get("categoria") == "scoperte" and isinstance(c.get("testo"), dict):
+        rx = r"^(?:(.+?)\s+[—–-]\s+)?([A-ZÀ-Ü' ]{6,}):\s*(.*)$"
+        me, mi = re.match(rx, c["testo"].get("en", ""), re.S), re.match(rx, c["testo"].get("it", ""), re.S)
+        if not (me and mi) and cat_scoperta in ETIC_SCOP and "/unique_discoveries/" not in c["file"]:
+            out.append(ETIC_SCOP[cat_scoperta] + ("categoria_scop",))
+        if me and mi:
+            out[:] = [x for x in out if x[0] != c["testo"]["en"] and not x[0].startswith(c["testo"]["en"][:30])]
+            if me.group(1) and mi.group(1):
+                out.append((me.group(1).strip(), mi.group(1).strip(), "categoria_scop"))
+            elif cat_scoperta in ETIC_SCOP and "/unique_discoveries/" not in c["file"]:
+                out.append(ETIC_SCOP[cat_scoperta] + ("categoria_scop",))
+            out.append((me.group(2).strip(), mi.group(2).strip(), "etichetta"))
+            out.append((me.group(3).strip(), mi.group(3).strip(), "testo"))
+    elif c.get("categoria") == "scoperte" and cat_scoperta in ETIC_SCOP and "/unique_discoveries/" not in c.get("file", ""):
+        out.append(ETIC_SCOP[cat_scoperta] + ("categoria_scop",))
     # etichette stampate comuni, se nessun altro testo le contiene già
     GENERICHE = [("OPTIONAL MISSION", "MISSIONE OPZIONALE"), ("OBJECTIVE", "OBIETTIVO"), ("EFFECT", "EFFETTO"),
                  ("SOLVED", "RISOLTA"), ("UTILITY", "UTILITÀ"), ("STRUCTURAL", "STRUTTURALE"),
@@ -546,6 +561,29 @@ def traduci(chiave, uscita, debug=False):
                     if box[0] <= b[0] + b[2] / 2 <= box[0] + box[2] and box[1] <= b[1] + b[3] / 2 <= box[1] + box[3]:
                         usate.add(i)
             continue
+        if c.get("categoria") == "scoperte" and (stile == "categoria_scop" or primo_titolo):
+            H, W = big.shape[:2]
+            alto_pz = [p for p in ps if p["b"][1] < H * 0.12]
+            ultra = any("ULTRA" in p["t"].upper() for p in alto_pz)
+            if stile == "categoria_scop":
+                it_c = re.sub(r"^((?:ESEMPLARE VIVO|MINERALE|MICRORGANISMO)\s+)RARA$", r"\1RARO", it.strip())
+                if ultra and "ULTRA" not in it.upper():
+                    fem = it.startswith("TECNOLOGIA") or it.startswith("STRANA")
+                    it_c = re.sub(r"\s+RAR[AO]$", "", it) + (" ULTRARARA" if fem else " ULTRARARO")
+                box = (int(.08 * W), int(.035 * H), int(.84 * W), int(.085 * H))
+                nr, it_b, st_b = (2 if ultra else 1), it_c, "etichetta"
+            else:
+                box = (int(.04 * W), int(.115 * H), int(.92 * W), int(.165 * H))
+                nr, it_b, st_b = 2, it, "titolo"
+            passo = box[3] / nr
+            blocchi.append({"en": en, "it": it_b, "stile": st_b, "box": box, "alto": passo * 0.62, "righe": nr,
+                            "centrato": True, "destra": False, "chiaro": True, "corpo": passo * (0.8 if st_b == "titolo" else 0.62),
+                            "passo": passo, "extra_x": 0, "extra_y": 0, "fisso": True})
+            for i, p in enumerate(ps):
+                bb = p["b"]
+                if box[0] <= bb[0] + bb[2] / 2 <= box[0] + box[2] and box[1] <= bb[1] + bb[3] / 2 <= box[1] + box[3]:
+                    usate.add(i)
+            continue
         g = trova_blocco(en, ps, usate)
         if g is None:
             g = trova_sfumato(en, ps, usate)
@@ -695,6 +733,12 @@ def traduci(chiave, uscita, debug=False):
         dy = 0
         while dy < bh * 0.4 and unif(by + bh + dy, by + bh + dy + passo_x, bx, bx + bw) and (centrato or True):
             dy += passo_x
+        if c.get("categoria") == "scoperte" and stile == "etichetta" and by > big.shape[0] * 0.4:
+            # intestazione di sezione: si cancella tutta la fascia tra le parentesi decorative
+            W_ = big.shape[1]
+            box = (int(W_ * .11), by, int(W_ * .78), bh)
+            centrato, dx = True, 0
+            corpo = min(corpo, big.shape[0] * 0.04)
         blocchi.append({"en": en, "it": it, "stile": stile, "box": box, "alto": alto_riga, "righe": len(per_riga), "centrato": centrato,
                         "corpo": corpo, "passo": passo, "extra_x": dx, "extra_y": dy, "azione": stile == "titolo" and en != (c.get("titolo") or {}).get("en")})
     for _giro in range(3):
