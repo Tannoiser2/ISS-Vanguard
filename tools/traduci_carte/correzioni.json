@@ -3612,5 +3612,298 @@
    8,
    false
   ]
+ },
+ "carte/rank_i_engineering/1305.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_i_engineering/1306.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_i_recon/1412.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_i_recon/17507.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_i_science/1500.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_i_science/8421.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_i_science/8422.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_i_security/1615.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ],
+  "During": [
+   0.08,
+   0.03,
+   0.84,
+   0.11,
+   "c",
+   3,
+   false
+  ],
+  "Refresh": [
+   0.15,
+   0.885,
+   0.7,
+   0.065,
+   "c",
+   1,
+   false
+  ]
+ },
+ "carte/rank_ii_engineering/8616.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_ii_engineering/8618.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_ii_recon/17410.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_ii_recon/17412.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_ii_recon/17413.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_ii_science/8424.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_ii_science/8426.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_ii_science/8427.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_ii_security/17602.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_ii_security/17606.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_iii_engineering/32410.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_iii_engineering/32411.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_iii_recon/32801.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_iii_recon/32802.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_iii_science/32612.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_iii_science/32613.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
+ },
+ "carte/rank_iii_science/32614.webp": {
+  "titolo": [
+   0.4,
+   0.225,
+   0.57,
+   0.15,
+   "d",
+   2,
+   true
+  ]
  }
 }
