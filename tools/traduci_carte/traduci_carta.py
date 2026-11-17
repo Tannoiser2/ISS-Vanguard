@@ -512,21 +512,22 @@ def traduci(chiave, uscita, debug=False):
                 break
         if corr:
             H, W = big.shape[:2]
-            fx, fy, fw, fh, all_, nr, chiaro = corr[:7]
-            if len(corr) > 7:
-                it = corr[7]
-            box = (int(fx * W), int(fy * H), int(fw * W), int(fh * H))
-            passo = box[3] / nr
-            corpo = passo * (0.78 if stile == "titolo" else 0.74)
-            azione = stile == "titolo" and en != (c.get("titolo") or {}).get("en")
-            blocchi.append({"en": en, "it": it, "stile": stile, "box": box, "alto": passo * 0.62, "righe": nr,
-                            "centrato": all_ == "c", "destra": all_ == "d", "chiaro": bool(chiaro), "corpo": corpo, "passo": passo,
-                            "extra_x": 0, "extra_y": 0, "azione": azione, "fisso": True})
-            # le parole OCR dentro il riquadro non servono più ad altri blocchi
-            for i, p in enumerate(ps):
-                b = p["b"]
-                if box[0] <= b[0] + b[2] / 2 <= box[0] + box[2] and box[1] <= b[1] + b[3] / 2 <= box[1] + box[3]:
-                    usate.add(i)
+            # più riquadri per lo stesso testo stampato più volte: [[...], [...]]
+            for corr1 in (corr if isinstance(corr[0], list) else [corr]):
+                fx, fy, fw, fh, all_, nr, chiaro = corr1[:7]
+                it1 = corr1[7] if len(corr1) > 7 else it
+                box = (int(fx * W), int(fy * H), int(fw * W), int(fh * H))
+                passo = box[3] / nr
+                corpo = passo * (0.78 if stile == "titolo" else 0.74)
+                azione = stile == "titolo" and en != (c.get("titolo") or {}).get("en")
+                blocchi.append({"en": en, "it": it1, "stile": stile, "box": box, "alto": passo * 0.62, "righe": nr,
+                                "centrato": all_ == "c", "destra": all_ == "d", "chiaro": bool(chiaro), "corpo": corpo, "passo": passo,
+                                "extra_x": 0, "extra_y": 0, "azione": azione, "fisso": True})
+                # le parole OCR dentro il riquadro non servono più ad altri blocchi
+                for i, p in enumerate(ps):
+                    b = p["b"]
+                    if box[0] <= b[0] + b[2] / 2 <= box[0] + box[2] and box[1] <= b[1] + b[3] / 2 <= box[1] + box[3]:
+                        usate.add(i)
             continue
         g = trova_blocco(en, ps, usate)
         if g is None:
@@ -738,6 +739,9 @@ def traduci(chiave, uscita, debug=False):
             b["col"] = np.array([240.0, 240.0, 240.0])
             continue
         testo, fondo, var = colori(big, b["box"])
+        # riquadri misurati a mano: se il colore letto è poco staccato dal fondo, testo chiaro (come sulle carte)
+        if b.get("fisso") and np.linalg.norm(np.array(testo, float) - np.array(fondo, float)) < 110 and float(np.mean(fondo)) < 120:
+            testo = np.array([238.0, 238.0, 238.0])
         b["col"] = testo
         lim = int(big.shape[1] * 0.71) if c.get("categoria") in ("equipaggio", "veterani") else None
         big = cancella(big, b["box"], testo, fondo, tutto=var < 18, icone="[" in b["en"], oltre=int(b["alto"] * 1.6), limite=lim)
